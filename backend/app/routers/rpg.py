@@ -65,6 +65,30 @@ def update_streak(user: User) -> None:
     user.last_checkin_at = datetime.utcnow()
 
 
+def check_penalty(user: User) -> None:
+    """Check if user missed a day and deduct hearts."""
+    today = date.today()
+    
+    # If never checked in, no penalty yet (grace period)
+    if not user.last_checkin_at:
+        return
+
+    last_checkin_date = user.last_checkin_at.date()
+    days_since_checkin = (today - last_checkin_date).days
+
+    # If missed more than 1 day (yesterday), deduct heart
+    if days_since_checkin > 1:
+        # Check if we already penalized today
+        if user.last_heart_loss and user.last_heart_loss.date() == today:
+            return
+            
+        if user.hearts > 0:
+            user.hearts -= 1
+            user.last_heart_loss = datetime.utcnow()
+            # Reset streak on penalty
+            user.streak = 0
+
+
 def get_active_quest(db: Session) -> UserQuest | None:
     return (
         db.query(UserQuest)
@@ -91,6 +115,7 @@ def get_rpg_state(db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="User not found")
 
     refresh_focus_points(user)
+    check_penalty(user)
     db.commit()
 
     active_quest = get_active_quest(db)
@@ -130,4 +155,44 @@ def get_rpg_state(db: Session = Depends(get_db)):
         "focus_cap": FOCUS_CAP,
         "active_quest": quest_payload,
         "active_challenges": challenges_payload,
+        "hearts": user.hearts,
+        "streak_freeze_count": user.streak_freeze_count,
     }
+
+
+@router.post("/buy/{item_id}")
+def buy_item(item_id: str, db: Session = Depends(get_db)):
+    """Buy an item from the shop."""
+    user = db.query(User).filter(User.id == DEFAULT_USER_ID).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    if item_id == "streak_freeze":
+        cost = 50
+        if user.gold < cost:
+            raise HTTPException(status_code=400, detail="Not enough gold")
+        user.gold -= cost
+        user.streak_freeze_count += 1
+    
+    elif item_id == "potion_focus":
+        cost = 20
+        if user.gold < cost:
+            raise HTTPException(status_code=400, detail="Not enough gold")
+        user.gold -= cost
+        user.focus_points = FOCUS_CAP
+        user.focus_refreshed_at = datetime.utcnow()
+        
+    elif item_id == "heart_refill":
+        cost = 100
+        if user.gold < cost:
+            raise HTTPException(status_code=400, detail="Not enough gold")
+        if user.hearts >= 3:
+             raise HTTPException(status_code=400, detail="Hearts already full")
+        user.gold -= cost
+        user.hearts += 1
+        
+    else:
+        raise HTTPException(status_code=404, detail="Item not found")
+
+    db.commit()
+    return {"message": f"Bought {item_id}", "gold": user.gold}

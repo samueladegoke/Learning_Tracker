@@ -355,7 +355,7 @@ def complete_task(task_id: str, db: Session = Depends(get_db)):
             gold_bonus_total += ach_gold
             achievements_unlocked.append("a-hundred-tasks")
 
-    # Award quest badge
+    # Award quest badge and assign next quest
     if boss_defeated and quest and quest.quest and quest.quest.reward_badge_id:
         awarded, bonus_xp, bonus_gold = award_badge(db, DEFAULT_USER_ID, quest.quest.reward_badge_id)
         if awarded:
@@ -367,6 +367,12 @@ def complete_task(task_id: str, db: Session = Depends(get_db)):
             xp_bonus_total += ach_xp
             gold_bonus_total += ach_gold
             achievements_unlocked.append("a-boss-first")
+        
+        # Auto-assign next quest
+        from ..utils.quest_manager import assign_next_quest
+        next_quest = assign_next_quest(db, DEFAULT_USER_ID)
+        if next_quest:
+            print(f"Auto-assigned new quest: {next_quest.quest_id}")
 
     # Award challenge badges
     for update in challenge_updates:

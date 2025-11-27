@@ -212,28 +212,115 @@ def seed_database():
             )
             print(f"  Achievement: {a['name']}")
 
-        # Sample quest (bootcamp boss)
-        print("Creating sample quest...")
-        quest = Quest(
-            name="Bootcamp Boss: Fundamentals",
-            description="Defeat the fundamentals boss by clearing core review tasks.",
-            boss_hp=200,
-            reward_xp_bonus=50,
-            reward_badge_id="b-quest-fundamentals",
-        )
-        db.add(quest)
-        db.flush()
+        # Create Boss Battle badges
+        boss_badges = [
+            {"badge_id": "b-boss-syntax-serpent", "name": "Syntax Serpent Slayer", "description": "Defeated the Syntax Serpent - Python Foundations Master", "xp_value": 50, "difficulty": "hard"},
+            {"badge_id": "b-boss-oop-titan", "name": "OOP Titan Vanquisher", "description": "Defeated the OOP Titan - Object-Oriented Champion", "xp_value": 60, "difficulty": "hard"},
+            {"badge_id": "b-boss-gui-golem", "name": "GUI Golem Crusher", "description": "Defeated the GUI Golem - Interface Architect", "xp_value": 70, "difficulty": "hard"},
+            {"badge_id": "b-boss-api-hydra", "name": "API Hydra Hunter", "description": "Defeated the API Hydra - Automation Master", "xp_value": 80, "difficulty": "epic"},
+            {"badge_id": "b-boss-flask-dragon", "name": "Flask Dragon Tamer", "description": "Defeated the Flask Dragon - Full-Stack Hero", "xp_value": 100, "difficulty": "epic"},
+            {"badge_id": "b-boss-data-leviathan", "name": "Data Leviathan Conqueror", "description": "Defeated the Data Leviathan - Data Wizard", "xp_value": 120, "difficulty": "epic"},
+            {"badge_id": "b-boss-portfolio-phoenix", "name": "Portfolio Phoenix Champion", "description": "Defeated the Portfolio Phoenix - Bootcamp Champion", "xp_value": 150, "difficulty": "legendary"},
+        ]
+        
+        for badge_data in boss_badges:
+            db.add(
+                Badge(
+                    badge_id=badge_data["badge_id"],
+                    name=badge_data["name"],
+                    description=badge_data.get("description"),
+                    xp_value=badge_data.get("xp_value", 0),
+                    difficulty=badge_data.get("difficulty", "normal"),
+                )
+            )
+        
+        # Create dynamic Boss Battle system based on curriculum milestones
+        print("Creating milestone-based Boss Battles...")
+        bosses_data = [
+            {
+                "name": "The Syntax Serpent",
+                "description": "The first guardian of Python mastery. Defeat it by proving your command of variables, loops, functions, and basic data structures.",
+                "boss_hp": 70,
+                "reward_xp_bonus": 30,
+                "reward_badge_id": "b-boss-syntax-serpent",
+                "task_ids": ["w1-d1", "w1-d2", "w1-d3", "w1-d4", "w1-d5"]  # Week 1 (Beginner Foundations)
+            },
+            {
+                "name": "The OOP Titan",
+                "description": "A structured beast that tests your understanding of classes, objects, and inheritance. Only clean, encapsulated code can bring it down.",
+                "boss_hp": 95,
+                "reward_xp_bonus": 40,
+                "reward_badge_id": "b-boss-oop-titan",
+                "task_ids": ["w2-d1", "w2-d2", "w2-d3", "w2-d4", "w2-d5"]  # Week 2 (OOP Mastery)
+            },
+            {
+                "name": "The GUI Golem",
+                "description": "This boss demands mastery of Tkinter interfaces and API interactions. Build beautiful, functional applications to conquer it.",
+                "boss_hp": 70,
+                "reward_xp_bonus": 50,
+                "reward_badge_id": "b-boss-gui-golem",
+                "task_ids": ["w3-d1", "w3-d2", "w3-d3", "w3-d4", "w3-d5"]  # Week 3 (GUI & Automation)
+            },
+            {
+                "name": "The API Hydra",
+                "description": "A multi-headed beast representing complex API integrations, web scraping, and automation. Each task you complete severs one of its heads.",
+                "boss_hp": 80,
+                "reward_xp_bonus": 60,
+                "reward_badge_id": "b-boss-api-hydra",
+                "task_ids": ["w4-d1", "w4-d2", "w4-d3", "w4-d4", "w4-d5"]  # Week 4 (API & Automation)
+            },
+            {
+                "name": "The Flask Dragon",
+                "description": "The Flask Dragon breathes fire and serves dynamic web pages. Defeat it with full-stack development skills, from Selenium bots to complete Flask applications.",
+                "boss_hp": 160,
+                "reward_xp_bonus": 80,
+                "reward_badge_id": "b-boss-flask-dragon",
+                "task_ids": ["w5-d1", "w5-d2", "w5-d3", "w5-d4", "w5-d5", "w6-d1", "w6-d2", "w6-d3", "w6-d4", "w6-d5"]  # Weeks 5-6 (Web Dev)
+            },
+            {
+                "name": "The Data Leviathan",
+                "description": "A colossal beast swimming in oceans of data. Conquer it with pandas, matplotlib, and visualization prowess.",
+                "boss_hp": 90,
+                "reward_xp_bonus": 100,
+                "reward_badge_id": "b-boss-data-leviathan",
+                "task_ids": ["w7-d1", "w7-d2", "w7-d3", "w7-d4", "w7-d5"]  # Week 7 (Data Science)
+            },
+            {
+                "name": "The Portfolio Phoenix",
+                "description": "The ultimate test. This legendary Phoenix represents your complete transformation into a professional Python developer. Defeat it to earn your place among the masters.",
+                "boss_hp": 200,
+                "reward_xp_bonus": 150,
+                "reward_badge_id": "b-boss-portfolio-phoenix",
+                "task_ids": ["w8-d1", "w8-d2", "w8-d3", "w8-d4", "w8-d5"]  # Week 8 (Capstone)
+            },
+        ]
+        
+        quest_objects = []
+        for boss_data in bosses_data:
+            quest = Quest(
+                name=boss_data["name"],
+                description=boss_data["description"],
+                boss_hp=boss_data["boss_hp"],
+                reward_xp_bonus=boss_data["reward_xp_bonus"],
+                reward_badge_id=boss_data["reward_badge_id"],
+            )
+            db.add(quest)
+            db.flush()
+            
+            # Map tasks to quest
+            for task_id in boss_data["task_ids"]:
+                if task_id in task_lookup:
+                    db.add(QuestTask(quest_id=quest.id, task_id=task_lookup[task_id].id))
+            
+            quest_objects.append(quest)
+            print(f"  Created Boss: {boss_data['name']} ({boss_data['boss_hp']} HP)")
 
-        # Map first three tasks to quest
-        for task_id in ["w1-d1", "w1-d2", "w1-d3"]:
-            if task_id in task_lookup:
-                db.add(QuestTask(quest_id=quest.id, task_id=task_lookup[task_id].id))
-
+        # Assign first Boss to user
         db.add(
             UserQuest(
                 user_id=default_user.id,
-                quest_id=quest.id,
-                boss_hp_remaining=quest.boss_hp,
+                quest_id=quest_objects[0].id,
+                boss_hp_remaining=quest_objects[0].boss_hp,
             )
         )
 

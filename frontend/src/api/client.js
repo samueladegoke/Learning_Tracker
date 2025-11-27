@@ -1,8 +1,8 @@
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8001'
 
 async function fetchAPI(endpoint, options = {}) {
   const url = `${API_BASE}${endpoint}`
-  
+
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -10,14 +10,14 @@ async function fetchAPI(endpoint, options = {}) {
     },
     ...options,
   }
-  
+
   const response = await fetch(url, config)
-  
+
   if (!response.ok) {
     const error = await response.json().catch(() => ({ detail: 'Unknown error' }))
     throw new Error(error.detail || `HTTP ${response.status}`)
   }
-  
+
   return response.json()
 }
 
@@ -63,5 +63,6 @@ export const achievementsAPI = {
 // RPG API
 export const rpgAPI = {
   getState: () => fetchAPI('/rpg/state'),
+  buyItem: (itemId) => fetchAPI(`/rpg/buy/${itemId}`, { method: 'POST' }),
 }
 
