@@ -1,0 +1,542 @@
+{
+  "schedule_type": "8_weeks_5_days_per_week",
+  "total_bootcamp_days": 80,
+  "weeks": [
+    {
+      "week_number": 1,
+      "label": "Week 1 – Bootcamp Days 1–11",
+      "notes": "Review-heavy week (you may batch 2–3 bootcamp days per study session).",
+      "tasks": [
+        {
+          "task_id": "w1-d1",
+          "calendar_slot": "Day 1",
+          "bootcamp_days": [1, 2, 3],
+          "bootcamp_day_titles": [
+            "Working with Variables in Python to Manage Data (Band Name Generator)",
+            "Understanding Data Types and How to Manipulate Strings (Tip Calculator)",
+            "Control Flow and Logical Operators (Treasure Island)"
+          ],
+          "type": "review",
+          "xp_reward": 15,
+          "description": "Complete bootcamp Day(s) 1, 2, 3: Working with Variables; Data Types & Strings; Control Flow & Logical Operators + projects (Band Name Generator, Tip Calculator, Treasure Island)."
+        },
+        {
+          "task_id": "w1-d2",
+          "calendar_slot": "Day 2",
+          "bootcamp_days": [4, 5],
+          "bootcamp_day_titles": [
+            "Randomisation and Python Lists (Rock, Paper, Scissors)",
+            "Python Loops (Password Generator)"
+          ],
+          "type": "review",
+          "xp_reward": 10,
+          "description": "Complete bootcamp Day(s) 4, 5: Randomisation & Lists (Rock, Paper, Scissors) and Loops (Password Generator)."
+        },
+        {
+          "task_id": "w1-d3",
+          "calendar_slot": "Day 3",
+          "bootcamp_days": [6, 7],
+          "bootcamp_day_titles": [
+            "Python Functions & Karel (Reborg's World Maze)",
+            "Hangman Game"
+          ],
+          "type": "review",
+          "xp_reward": 10,
+          "description": "Complete bootcamp Day(s) 6, 7: Functions & Karel maze; Hangman game."
+        },
+        {
+          "task_id": "w1-d4",
+          "calendar_slot": "Day 4",
+          "bootcamp_days": [8, 9],
+          "bootcamp_day_titles": [
+            "Caesar Cipher",
+            "Blind Auction"
+          ],
+          "type": "review",
+          "xp_reward": 10,
+          "description": "Complete bootcamp Day(s) 8, 9: Caesar Cipher and Blind Auction (dictionaries)."
+        },
+        {
+          "task_id": "w1-d5",
+          "calendar_slot": "Day 5",
+          "bootcamp_days": [10, 11],
+          "bootcamp_day_titles": [
+            "Functions with Outputs (Calculator)",
+            "Blackjack Capstone Project"
+          ],
+          "type": "review",
+          "xp_reward": 10,
+          "description": "Complete bootcamp Day(s) 10, 11: Functions with outputs (Calculator) and Blackjack capstone."
+        }
+      ]
+    },
+    {
+      "week_number": 2,
+      "label": "Week 2 – Bootcamp Days 12–25",
+      "notes": "Review-heavy week (you may batch 2–3 bootcamp days per study session). OOP Coffee/Quiz days get slightly more focus.",
+      "tasks": [
+        {
+          "task_id": "w2-d1",
+          "calendar_slot": "Day 1",
+          "bootcamp_days": [12, 13, 14],
+          "bootcamp_day_titles": [
+            "Guess the Number",
+            "Debugging",
+            "Higher Lower Game"
+          ],
+          "type": "review",
+          "xp_reward": 15,
+          "description": "Complete bootcamp Day(s) 12, 13, 14: Guess the Number, Debugging, Higher Lower Game."
+        },
+        {
+          "task_id": "w2-d2",
+          "calendar_slot": "Day 2",
+          "bootcamp_days": [15, 16],
+          "bootcamp_day_titles": [
+            "Coffee Machine (procedural)",
+            "Coffee Machine (OOP)"
+          ],
+          "type": "review",
+          "xp_reward": 10,
+          "description": "Complete bootcamp Day(s) 15, 16: Coffee Machine procedural + OOP refactor (core OOP fundamentals)."
+        },
+        {
+          "task_id": "w2-d3",
+          "calendar_slot": "Day 3",
+          "bootcamp_days": [17, 18, 19],
+          "bootcamp_day_titles": [
+            "Quiz Project (OOP)",
+            "Hirst Painting (Turtle)",
+            "Turtle Race"
+          ],
+          "type": "review",
+          "xp_reward": 15,
+          "description": "Complete bootcamp Day(s) 17, 18, 19: Quiz Project (OOP), Hirst Painting, Turtle Race."
+        },
+        {
+          "task_id": "w2-d4",
+          "calendar_slot": "Day 4",
+          "bootcamp_days": [20, 21, 22],
+          "bootcamp_day_titles": [
+            "Snake Game – Part 1",
+            "Snake Game – Part 2",
+            "Pong Game"
+          ],
+          "type": "review",
+          "xp_reward": 15,
+          "description": "Complete bootcamp Day(s) 20, 21, 22: Snake Game (2 days) and Pong Game."
+        },
+        {
+          "task_id": "w2-d5",
+          "calendar_slot": "Day 5",
+          "bootcamp_days": [23, 24, 25],
+          "bootcamp_day_titles": [
+            "Turtle Crossing Game",
+            "Mail Merge Project",
+            "US States Game"
+          ],
+          "type": "review",
+          "xp_reward": 15,
+          "description": "Complete bootcamp Day(s) 23, 24, 25: Turtle Crossing, Mail Merge (file I/O), and US States Game (CSV + pandas)."
+        }
+      ]
+    },
+    {
+      "week_number": 3,
+      "label": "Week 3 – Bootcamp Days 26–35",
+      "notes": "Review-heavy but transitioning to more complex GUI + API work. Still 2 bootcamp days per study session.",
+      "tasks": [
+        {
+          "task_id": "w3-d1",
+          "calendar_slot": "Day 1",
+          "bootcamp_days": [26, 27],
+          "bootcamp_day_titles": [
+            "NATO Alphabet Project",
+            "Mile to Kilometers Converter (Tkinter)"
+          ],
+          "type": "review",
+          "xp_reward": 10,
+          "description": "Complete bootcamp Day(s) 26, 27: NATO Alphabet project and Tkinter miles-to-km converter."
+        },
+        {
+          "task_id": "w3-d2",
+          "calendar_slot": "Day 2",
+          "bootcamp_days": [28, 29],
+          "bootcamp_day_titles": [
+            "Pomodoro Timer (Tkinter)",
+            "Password Manager – Part 1 (Tkinter)"
+          ],
+          "type": "full_lesson",
+          "xp_reward": 10,
+          "description": "Complete bootcamp Day(s) 28, 29: Pomodoro Timer GUI and Password Manager (part 1, Tkinter)."
+        },
+        {
+          "task_id": "w3-d3",
+          "calendar_slot": "Day 3",
+          "bootcamp_days": [30, 31],
+          "bootcamp_day_titles": [
+            "Password Manager – Part 2 (Tkinter)",
+            "Flash Card App (Tkinter)"
+          ],
+          "type": "full_lesson",
+          "xp_reward": 10,
+          "description": "Complete bootcamp Day(s) 30, 31: Password Manager part 2 and Flash Card App."
+        },
+        {
+          "task_id": "w3-d4",
+          "calendar_slot": "Day 4",
+          "bootcamp_days": [32, 33],
+          "bootcamp_day_titles": [
+            "Birthday Wisher",
+            "ISS Overhead Notifier"
+          ],
+          "type": "full_lesson",
+          "xp_reward": 10,
+          "description": "Complete bootcamp Day(s) 32, 33: Birthday Wisher (email automation) and ISS Overhead Notifier (API)."
+        },
+        {
+          "task_id": "w3-d5",
+          "calendar_slot": "Day 5",
+          "bootcamp_days": [34, 35],
+          "bootcamp_day_titles": [
+            "Quizzler App (API + Tkinter)",
+            "Rain Alert (Weather API)"
+          ],
+          "type": "full_lesson",
+          "xp_reward": 10,
+          "description": "Complete bootcamp Day(s) 34, 35: Quizzler App (API + Tkinter GUI) and Rain Alert (weather API + notifications)."
+        }
+      ]
+    },
+    {
+      "week_number": 4,
+      "label": "Week 4 – Bootcamp Days 36–45",
+      "notes": "Mixed week: regular pace (mostly 2 bootcamp days per study session). Focus on APIs, automation, and first larger data/HTML projects.",
+      "tasks": [
+        {
+          "task_id": "w4-d1",
+          "calendar_slot": "Day 1",
+          "bootcamp_days": [36, 37],
+          "bootcamp_day_titles": [
+            "Stock News Alert",
+            "Habit Tracker (Pixela API)"
+          ],
+          "type": "full_lesson",
+          "xp_reward": 10,
+          "description": "Complete bootcamp Day(s) 36, 37: Stock News Alert and Habit Tracker."
+        },
+        {
+          "task_id": "w4-d2",
+          "calendar_slot": "Day 2",
+          "bootcamp_days": [38, 39],
+          "bootcamp_day_titles": [
+            "Workout Tracker (Google Sheets API + NLP)",
+            "Flight Deal Finder"
+          ],
+          "type": "full_lesson",
+          "xp_reward": 10,
+          "description": "Complete bootcamp Day(s) 38, 39: Workout Tracker and Flight Deal Finder."
+        },
+        {
+          "task_id": "w4-d3",
+          "calendar_slot": "Day 3",
+          "bootcamp_days": [40, 41],
+          "bootcamp_day_titles": [
+            "Flight Club (with database)",
+            "Personal Website – HTML & CSS Basics (Day 1)"
+          ],
+          "type": "full_lesson",
+          "xp_reward": 10,
+          "description": "Complete bootcamp Day(s) 40, 41: Flight Club (DB integration) and Personal Website – HTML/CSS basics."
+        },
+        {
+          "task_id": "w4-d4",
+          "calendar_slot": "Day 4",
+          "bootcamp_days": [42, 43],
+          "bootcamp_day_titles": [
+            "Personal Website – Layout & Styling (Day 2)",
+            "Personal Website – Responsive Design (Day 3)"
+          ],
+          "type": "full_lesson",
+          "xp_reward": 10,
+          "description": "Complete bootcamp Day(s) 42, 43: Personal Website – layout, styling and responsive design."
+        },
+        {
+          "task_id": "w4-d5",
+          "calendar_slot": "Day 5",
+          "bootcamp_days": [44, 45],
+          "bootcamp_day_titles": [
+            "Personal Website – Final Polish (Day 4)",
+            "Movie Scraper"
+          ],
+          "type": "full_lesson",
+          "xp_reward": 10,
+          "description": "Complete bootcamp Day(s) 44, 45: Finish Personal Website and build Movie Scraper."
+        }
+      ]
+    },
+    {
+      "week_number": 5,
+      "label": "Week 5 – Bootcamp Days 46–55",
+      "notes": "Mixed week: regular pace (~2 bootcamp days per study session). Focus on scraping + Selenium bots + Flask intro.",
+      "tasks": [
+        {
+          "task_id": "w5-d1",
+          "calendar_slot": "Day 1",
+          "bootcamp_days": [46, 47],
+          "bootcamp_day_titles": [
+            "Musical Time Machine (Spotify + Web Scraping)",
+            "Automated Amazon Price Tracker"
+          ],
+          "type": "full_lesson",
+          "xp_reward": 10,
+          "description": "Complete bootcamp Day(s) 46, 47: Musical Time Machine and Amazon Price Tracker."
+        },
+        {
+          "task_id": "w5-d2",
+          "calendar_slot": "Day 2",
+          "bootcamp_days": [48, 49],
+          "bootcamp_day_titles": [
+            "Cookie Clicker Bot (Selenium Automation)",
+            "Automating Job Applications (Selenium)"
+          ],
+          "type": "full_lesson",
+          "xp_reward": 10,
+          "description": "Complete bootcamp Day(s) 48, 49: Cookie Clicker bot and Job Application automation (Selenium)."
+        },
+        {
+          "task_id": "w5-d3",
+          "calendar_slot": "Day 3",
+          "bootcamp_days": [50, 51],
+          "bootcamp_day_titles": [
+            "Auto Bumble Swiping Bot (Selenium)",
+            "Instagram Follower Bot (Selenium)"
+          ],
+          "type": "full_lesson",
+          "xp_reward": 10,
+          "description": "Complete bootcamp Day(s) 50, 51: Bumble swiping bot and Instagram follower bot."
+        },
+        {
+          "task_id": "w5-d4",
+          "calendar_slot": "Day 4",
+          "bootcamp_days": [52, 53],
+          "bootcamp_day_titles": [
+            "Internet Speed Twitter Complaint Bot",
+            "Data Job Entry Automation"
+          ],
+          "type": "full_lesson",
+          "xp_reward": 10,
+          "description": "Complete bootcamp Day(s) 52, 53: Internet speed complaint bot and data job entry automation."
+        },
+        {
+          "task_id": "w5-d5",
+          "calendar_slot": "Day 5",
+          "bootcamp_days": [54, 55],
+          "bootcamp_day_titles": [
+            "Python Decorators Exercise",
+            "Higher or Lower URLs (Flask intro)"
+          ],
+          "type": "full_lesson",
+          "xp_reward": 10,
+          "description": "Complete bootcamp Day(s) 54, 55: Decorators deep dive and Flask intro (Higher or Lower URLs)."
+        }
+      ]
+    },
+    {
+      "week_number": 6,
+      "label": "Week 6 – Bootcamp Days 56–65",
+      "notes": "Heavy project week: advanced Flask/web; keep pace at ~2 bootcamp days per study session, no 3-day batches.",
+      "tasks": [
+        {
+          "task_id": "w6-d1",
+          "calendar_slot": "Day 1",
+          "bootcamp_days": [56, 57],
+          "bootcamp_day_titles": [
+            "Name Card (Flask + Templating)",
+            "Blog Templating (Flask + Jinja2)"
+          ],
+          "type": "full_lesson",
+          "xp_reward": 10,
+          "description": "Complete bootcamp Day(s) 56, 57: Name Card app and Blog templating with Flask/Jinja2."
+        },
+        {
+          "task_id": "w6-d2",
+          "calendar_slot": "Day 2",
+          "bootcamp_days": [58, 59],
+          "bootcamp_day_titles": [
+            "Tindog Website (Bootstrap)",
+            "Blog Website – Part 1 (Flask + DB)"
+          ],
+          "type": "full_lesson",
+          "xp_reward": 10,
+          "description": "Complete bootcamp Day(s) 58, 59: Tindog landing page (Bootstrap) and Blog Website part 1."
+        },
+        {
+          "task_id": "w6-d3",
+          "calendar_slot": "Day 3",
+          "bootcamp_days": [60, 61],
+          "bootcamp_day_titles": [
+            "Blog Website – Part 2 (Flask + DB)",
+            "Flask Secrets (env vars, security basics)"
+          ],
+          "type": "full_lesson",
+          "xp_reward": 10,
+          "description": "Complete bootcamp Day(s) 60, 61: Blog Website part 2 and Flask Secrets."
+        },
+        {
+          "task_id": "w6-d4",
+          "calendar_slot": "Day 4",
+          "bootcamp_days": [62, 63],
+          "bootcamp_day_titles": [
+            "Coffee and Wifi (Flask + CSV/Forms)",
+            "Bookshelf (Flask + Database CRUD)"
+          ],
+          "type": "full_lesson",
+          "xp_reward": 10,
+          "description": "Complete bootcamp Day(s) 62, 63: Coffee & Wifi app and Bookshelf app."
+        },
+        {
+          "task_id": "w6-d5",
+          "calendar_slot": "Day 5",
+          "bootcamp_days": [64, 65],
+          "bootcamp_day_titles": [
+            "My Top 10 Movies Website",
+            "Intro to Web Design (UX/UI)"
+          ],
+          "type": "full_lesson",
+          "xp_reward": 10,
+          "description": "Complete bootcamp Day(s) 64, 65: Top 10 Movies website and Intro to Web Design."
+        }
+      ]
+    },
+    {
+      "week_number": 7,
+      "label": "Week 7 – Bootcamp Days 66–75",
+      "notes": "Heavy project week: REST APIs, auth, multi-user blogs, and data science intro. Still ~2 bootcamp days per session.",
+      "tasks": [
+        {
+          "task_id": "w7-d1",
+          "calendar_slot": "Day 1",
+          "bootcamp_days": [66, 67],
+          "bootcamp_day_titles": [
+            "Cafe API (Flask REST)",
+            "Restful Blog (Flask REST CRUD)"
+          ],
+          "type": "full_lesson",
+          "xp_reward": 10,
+          "description": "Complete bootcamp Day(s) 66, 67: Cafe API and RESTful Blog."
+        },
+        {
+          "task_id": "w7-d2",
+          "calendar_slot": "Day 2",
+          "bootcamp_days": [68, 69],
+          "bootcamp_day_titles": [
+            "Authentication with Flask",
+            "Blog with Users – Part 1"
+          ],
+          "type": "full_lesson",
+          "xp_reward": 10,
+          "description": "Complete bootcamp Day(s) 68, 69: Authentication and Blog with Users (part 1)."
+        },
+        {
+          "task_id": "w7-d3",
+          "calendar_slot": "Day 3",
+          "bootcamp_days": [70, 71],
+          "bootcamp_day_titles": [
+            "Blog with Users – Part 2",
+            "Data Exploration with Pandas"
+          ],
+          "type": "full_lesson",
+          "xp_reward": 10,
+          "description": "Complete bootcamp Day(s) 70, 71: Blog with Users (part 2) and Data Exploration with pandas."
+        },
+        {
+          "task_id": "w7-d4",
+          "calendar_slot": "Day 4",
+          "bootcamp_days": [72, 73],
+          "bootcamp_day_titles": [
+            "Data Visualization with Matplotlib",
+            "Analyze the LEGO Dataset"
+          ],
+          "type": "full_lesson",
+          "xp_reward": 10,
+          "description": "Complete bootcamp Day(s) 72, 73: Data visualization with matplotlib and LEGO dataset analysis."
+        },
+        {
+          "task_id": "w7-d5",
+          "calendar_slot": "Day 5",
+          "bootcamp_days": [74, 75],
+          "bootcamp_day_titles": [
+            "Google Trends Data Visualization",
+            "Google Play Store Project"
+          ],
+          "type": "full_lesson",
+          "xp_reward": 10,
+          "description": "Complete bootcamp Day(s) 74, 75: Google Trends visualization and Google Play Store data project."
+        }
+      ]
+    },
+    {
+      "week_number": 8,
+      "label": "Week 8 – Bootcamp Days 76–80",
+      "notes": "Capstone & portfolio week: 1 bootcamp day per session with extra time for polishing and reflection.",
+      "tasks": [
+        {
+          "task_id": "w8-d1",
+          "calendar_slot": "Day 1",
+          "bootcamp_days": [76],
+          "bootcamp_day_titles": [
+            "Computation with NumPy"
+          ],
+          "type": "capstone",
+          "xp_reward": 20,
+          "description": "Complete bootcamp Day 76: Computation with NumPy — focus on numerical computing and performance."
+        },
+        {
+          "task_id": "w8-d2",
+          "calendar_slot": "Day 2",
+          "bootcamp_days": [77],
+          "bootcamp_day_titles": [
+            "Intermediate Portfolio Project 1"
+          ],
+          "type": "capstone",
+          "xp_reward": 20,
+          "description": "Complete bootcamp Day 77: Intermediate Portfolio Project 1 — apply your skills in a self-directed project."
+        },
+        {
+          "task_id": "w8-d3",
+          "calendar_slot": "Day 3",
+          "bootcamp_days": [78],
+          "bootcamp_day_titles": [
+            "Intermediate Portfolio Project 2"
+          ],
+          "type": "capstone",
+          "xp_reward": 20,
+          "description": "Complete bootcamp Day 78: Intermediate Portfolio Project 2 — extend or build another project."
+        },
+        {
+          "task_id": "w8-d4",
+          "calendar_slot": "Day 4",
+          "bootcamp_days": [79],
+          "bootcamp_day_titles": [
+            "Intermediate Portfolio Project 3"
+          ],
+          "type": "capstone",
+          "xp_reward": 20,
+          "description": "Complete bootcamp Day 79: Intermediate Portfolio Project 3."
+        },
+        {
+          "task_id": "w8-d5",
+          "calendar_slot": "Day 5",
+          "bootcamp_days": [80],
+          "bootcamp_day_titles": [
+            "Intermediate Portfolio Project 4"
+          ],
+          "type": "capstone",
+          "xp_reward": 20,
+          "description": "Complete bootcamp Day 80: Intermediate Portfolio Project 4 — final polish and portfolio preparation."
+        }
+      ]
+    }
+  ]
+}
