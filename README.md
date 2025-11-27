@@ -1,6 +1,64 @@
 # 🔥 AI Learning Roadmap Tracker & Gamified Dashboard
 
-**A progress-tracking, motivation-boosting web app** to support a 5-day/ week, 2-hour/day learning roadmap — combining structured curriculum, daily tasks, reflections, and gamified rewards. Built (or to be built) with a Python backend (e.g. FastAPI) and a modern frontend (e.g. React / Vue), this app aims to help the learner stay accountable, organized, and motivated from Day 1 to Project MVP completion.  
+**A progress-tracking, motivation-boosting web app** to support a 5-day/week, 2-hour/day learning roadmap — combining structured curriculum, daily tasks, reflections, and gamified rewards. Built with a Python backend (FastAPI) and a modern React frontend, this app helps you stay accountable, organized, and motivated from Day 1 through your 100-day learning journey.
+
+> **Version:** 1.0.0 (MVP) | **Repository:** [samueladegoke/Learning_Tracker](https://github.com/samueladegoke/Learning_Tracker)
+
+---
+
+## 📋 Project Structure
+
+```
+Learning_Tracker/
+├── backend/
+│   ├── app/
+│   │   ├── __init__.py
+│   │   ├── main.py              # FastAPI application entry point
+│   │   ├── database.py          # SQLite database configuration
+│   │   ├── models.py            # SQLAlchemy ORM models
+│   │   ├── schemas.py           # Pydantic data validation schemas
+│   │   └── routers/             # API route handlers
+│   │       ├── weeks.py         # Week and task endpoints
+│   │       ├── tasks.py         # Task completion endpoints
+│   │       ├── reflections.py   # Weekly reflection endpoints
+│   │       ├── progress.py      # User progress & statistics
+│   │       ├── badges.py        # Badge/achievement endpoints
+│   │       ├── rpg.py           # RPG gamification features
+│   │       └── achievements.py  # Achievement system
+│   ├── seed.py                  # Database seed script
+│   ├── requirements.txt         # Python dependencies
+│   └── *.db                     # SQLite database files
+├── frontend/
+│   ├── src/
+│   │   ├── api/
+│   │   │   └── client.js        # API client functions
+│   │   ├── components/          # Reusable React components
+│   │   │   ├── Navbar.jsx
+│   │   │   ├── TaskCard.jsx
+│   │   │   ├── WeekAccordion.jsx
+│   │   │   ├── BadgeCard.jsx
+│   │   │   ├── ProgressBar.jsx
+│   │   │   ├── ProgressRing.jsx
+│   │   │   └── StatCard.jsx
+│   │   ├── pages/               # Page components
+│   │   │   ├── Dashboard.jsx
+│   │   │   ├── Planner.jsx
+│   │   │   ├── Reflections.jsx
+│   │   │   └── Progress.jsx
+│   │   ├── App.jsx              # Main app component
+│   │   ├── main.jsx             # React entry point
+│   │   └── index.css            # Global styles
+│   ├── e2e/                     # Playwright E2E tests
+│   ├── public/                  # Static assets
+│   ├── package.json
+│   ├── tailwind.config.js
+│   ├── vite.config.js
+│   └── playwright.config.js
+├── seed_data.json               # Curriculum data for seeding
+├── 100_DAYS_OF_CODE_CURRICULUM.md  # Full learning curriculum
+├── README.md                    # This file
+└── .gitignore                   # Git ignore rules
+```
 
 ---
 
@@ -44,13 +102,27 @@ Initially for a single user (you), but architecture should support scaling to mu
 
 ---
 
-## 🛠️ Tech Stack (Suggested)
+## 🛠️ Tech Stack
 
-- **Backend:** Python + FastAPI (or equivalent)  
-- **Database:** SQLite (initial) or PostgreSQL (for scaling)  
-- **Frontend:** React (or Vue) + CSS framework / UI lib (e.g. Tailwind, Bootstrap)  
-- **State management & API communication:** React Context / Hooks (or Vue + store), Axios / fetch  
-- **Optional deployment / containerization:** Docker  
+### Backend
+- **Framework:** FastAPI 0.104.1
+- **Server:** Uvicorn 0.24.0
+- **Database:** SQLite
+- **ORM:** SQLAlchemy 2.0.23
+- **Data Validation:** Pydantic 2.5.2
+
+### Frontend
+- **Framework:** React 18.2.0
+- **Build Tool:** Vite 5.0.0
+- **Routing:** React Router 6.20.0
+- **Styling:** Tailwind CSS 3.3.5
+- **Testing:** Playwright 1.57.0 (E2E)
+- **State:** React Hooks & Context API
+
+### Deployment & DevOps
+- **Containerization:** Docker (optional)
+- **Version Control:** Git
+- **Package Managers:** pip (Python), npm (Node.js)  
 
 ---
 
@@ -83,27 +155,143 @@ Initially for a single user (you), but architecture should support scaling to mu
 
 ## 🧪 Getting Started — Setup & Running Locally
 
+### Prerequisites
+- Python 3.9+
+- Node.js 16+ and npm
+- Git
+
+### Installation & Setup
+
 ```bash
-# Clone the repo  
-git clone <repo-url>  
-cd <repo-folder>  
+# Clone the repository
+git clone https://github.com/samueladegoke/Learning_Tracker.git
+cd Learning_Tracker
 
-# (Backend) Create virtual environment & install dependencies  
-python -m venv .venv  
-source .venv/bin/activate      # or `.venv\Scripts\activate` on Windows  
-pip install -r backend/requirements.txt  
+# ========== BACKEND SETUP ==========
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate          # On Windows: venv\Scripts\activate
 
-# (Frontend) install dependencies  
-cd frontend  
-npm install                  # or yarn  
+# Install dependencies
+cd backend
+pip install -r requirements.txt
 
-# Start backend  
-cd ..  
-uvicorn backend.main:app --reload  
+# Seed the database with curriculum data
+python seed.py
 
-# Start frontend (in separate terminal)  
-cd frontend  
-npm start                   # or yarn dev  
+# Start the API server
+uvicorn app.main:app --reload --port 8000
 
-# Visit in browser  
-http://localhost:3000        # or whatever port the frontend uses  
+# Backend will be available at: http://localhost:8000
+# API docs at: http://localhost:8000/docs
+
+# ========== FRONTEND SETUP (in new terminal) ==========
+cd frontend
+npm install
+
+# Start development server
+npm run dev
+
+# Frontend will be available at: http://localhost:5173
+```
+
+---
+
+## 📦 Version Control & Release History
+
+### Current Release: v1.0.0 (MVP)
+
+**Release Date:** November 27, 2025
+
+#### What's Included (MVP Features)
+- ✅ Full 32-week learning roadmap loaded from curriculum
+- ✅ Dashboard with current week overview and daily task tracker
+- ✅ Planner/Roadmap view with expandable weeks and task management
+- ✅ Task completion system with XP rewards
+- ✅ Weekly reflection/journal system with prompts
+- ✅ Progress & Statistics page showing completion %, XP, level, streak
+- ✅ Badge/Achievement system with unlock tracking
+- ✅ Gamification features (XP, levels, streaks, badges)
+- ✅ REST API with complete CRUD operations
+- ✅ SQLite database with proper schema
+- ✅ Dark-themed responsive UI with Tailwind CSS
+- ✅ E2E test suite with Playwright
+- ✅ Database seeding with 32-week curriculum
+
+#### Known Limitations
+- Single-user system (hardcoded default user)
+- No user authentication/authorization
+- Streak logic is placeholder (tracks completion, not consecutive days)
+- No data export/import functionality
+- No mobile-optimized layout
+- No real-time notifications
+
+#### Future Enhancements (v1.1+)
+- [ ] Multi-user support with authentication
+- [ ] Real-time notifications and reminders
+- [ ] Advanced analytics and progress charts
+- [ ] Mobile app support
+- [ ] Data export/import (CSV, JSON)
+- [ ] Collaborative learning features
+- [ ] Dark/light theme toggle
+- [ ] Customizable learning paths
+- [ ] Integration with external APIs (GitHub, LeetCode, etc.)
+
+### How to Report Issues
+If you find bugs or have feature requests, please:
+1. Check existing [Issues](https://github.com/samueladegoke/Learning_Tracker/issues)
+2. Create a new issue with:
+   - Clear description of the problem
+   - Steps to reproduce
+   - Expected vs. actual behavior
+   - Screenshots/logs if applicable
+
+### Contributing
+Contributions are welcome! Please:
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/your-feature`)
+3. Commit your changes (`git commit -m 'Add feature: ...'`)
+4. Push to the branch (`git push origin feature/your-feature`)
+5. Open a Pull Request
+
+---
+
+## 📞 Support & Contact
+
+For questions or support, please open an issue on the [GitHub repository](https://github.com/samueladegoke/Learning_Tracker).
+
+---
+
+## 📄 License
+
+This project is open source. Please check the LICENSE file for details.
+
+---
+
+**Built with ❤️ to support your learning journey! Happy coding! 🚀**
+
+### Access the Application
+- **Frontend:** http://localhost:5173
+- **Backend API:** http://localhost:8000
+- **API Documentation:** http://localhost:8000/docs
+
+### Available Scripts
+
+**Backend:**
+```bash
+# Run with auto-reload for development
+uvicorn app.main:app --reload
+
+# Seed database with curriculum data
+python seed.py
+```
+
+**Frontend:**
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run preview      # Preview production build
+npm test             # Run Playwright E2E tests
+npm run test:headed  # Run tests with visible browser
+npm run test:ui      # Run tests in UI mode
+```  
