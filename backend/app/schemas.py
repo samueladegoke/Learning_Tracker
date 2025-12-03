@@ -142,6 +142,8 @@ class RPGState(BaseModel):
     streak: int
     focus_points: int
     focus_cap: int
+    hearts: int
+    streak_freeze_count: int
     active_quest: Optional[RPGQuestState] = None
     active_challenges: List[RPGChallengeState] = []
 
@@ -174,3 +176,18 @@ class UserResponse(BaseModel):
     class Config:
         from_attributes = True
 
+
+# Quiz schemas
+class QuestionResponse(BaseModel):
+    id: int
+    quiz_id: str
+    text: str
+    options: List[str]
+    explanation: Optional[str] = None  # Only show after submission? Or maybe just don't send it initially.
+
+    class Config:
+        from_attributes = True
+
+class QuizSubmission(BaseModel):
+    quiz_id: str
+    answers: dict[int, int]  # question_id -> selected_option_index

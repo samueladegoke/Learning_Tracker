@@ -30,6 +30,8 @@ app.include_router(progress.router, prefix="/progress", tags=["progress"])
 app.include_router(badges.router, prefix="/badges", tags=["badges"])
 app.include_router(rpg.router, prefix="/rpg", tags=["rpg"])
 app.include_router(achievements.router, prefix="/achievements", tags=["achievements"])
+from .routers import quizzes
+app.include_router(quizzes.router, prefix="/quizzes", tags=["quizzes"])
 
 
 @app.get("/")

@@ -66,7 +66,7 @@ def update_streak(user: User) -> None:
 
 
 def check_penalty(user: User) -> None:
-    """Check if user missed a day and deduct hearts."""
+    """Check if user missed a day and deduct hearts. Uses streak freeze if available."""
     today = date.today()
     
     # If never checked in, no penalty yet (grace period)
@@ -76,12 +76,22 @@ def check_penalty(user: User) -> None:
     last_checkin_date = user.last_checkin_at.date()
     days_since_checkin = (today - last_checkin_date).days
 
-    # If missed more than 1 day (yesterday), deduct heart
+    # If missed more than 1 day (yesterday), apply penalty
     if days_since_checkin > 1:
-        # Check if we already penalized today
-        if user.last_heart_loss and user.last_heart_loss.date() == today:
+        # Only penalize once per inactive period:
+        # If last_heart_loss occurred AFTER last_checkin_at, we already penalized for this absence
+        if user.last_heart_loss and user.last_heart_loss >= user.last_checkin_at:
             return
-            
+
+        # Check if user has a streak freeze to consume
+        if user.streak_freeze_count > 0:
+            user.streak_freeze_count -= 1
+            # Streak freeze protects the streak but we still mark the penalty time
+            # to prevent multiple freeze consumptions in the same inactive period
+            user.last_heart_loss = datetime.utcnow()
+            return
+
+        # No streak freeze available - apply full penalty
         if user.hearts > 0:
             user.hearts -= 1
             user.last_heart_loss = datetime.utcnow()

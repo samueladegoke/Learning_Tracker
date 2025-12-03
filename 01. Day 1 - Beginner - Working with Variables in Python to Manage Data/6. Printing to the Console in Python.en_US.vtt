@@ -1,0 +1,553 @@
+WEBVTT
+
+0
+00:00.320 --> 00:00.890
+Now,
+
+1
+00:00.890 --> 00:09.080
+hopefully, you've already got everything set up so that you're ready to go on the Day 1 tasks, and you're
+
+2
+00:09.080 --> 00:11.780
+able to see what I'm seeing right here.
+
+3
+00:11.780 --> 00:17.900
+Now, if you don't know what I'm talking about, or if you don't have access to any of this, be sure
+
+4
+00:17.900 --> 00:24.170
+to go back to the previous lesson where I showed you, step-by-step, 'How to Download' and get hold of
+
+5
+00:24.170 --> 00:31.980
+the latest version of the Curriculum Exercises on PyCharm. So be sure you do that before you proceed,
+
+6
+00:31.980 --> 00:38.340
+so that we're all starting at the same place and you're seeing exactly what is shown in the videos,
+
+7
+00:38.340 --> 00:41.640
+and we're ready to start learning how to program.
+
+8
+00:41.640 --> 00:47.130
+Now, remember that the whole reason why we're learning to program is to be able to tell the computer
+
+9
+00:47.130 --> 00:51.240
+what it needs to do, and for it to follow our commands.
+
+10
+00:51.240 --> 00:54.610
+So let's go ahead and tell the computer to do something.
+
+11
+00:54.670 --> 00:58.240
+And we're going to do that by writing our first line of code.
+
+12
+00:58.360 --> 01:04.120
+So in this case I'm creating something called a "print function", which is just the word print all in
+
+13
+01:04.120 --> 01:07.720
+lowercase and then followed by a set of parentheses().
+
+14
+01:07.750 --> 01:13.270
+Now inside these parentheses, I'm going to tell it what I want it to print.
+
+15
+01:13.270 --> 01:17.830
+And hopefully it's going to output that inside our console.
+
+16
+01:18.530 --> 01:24.110
+So I'm going to start off by writing the classic "Hello world!" inside here,
+
+17
+01:24.110 --> 01:28.100
+and then once you're ready then go ahead and click Run.
+
+18
+01:28.490 --> 01:34.550
+After a few seconds you should see the computer follow your command, namely printing the words that
+
+19
+01:34.550 --> 01:39.500
+you told it to print inside the console or the output area over here.
+
+20
+01:39.770 --> 01:47.260
+And once it's done, it indicates that by writing, "Process finished with exit code 0", which means
+
+21
+01:47.260 --> 01:51.490
+everything was successful, everything was run without any issues.
+
+22
+01:51.490 --> 01:58.120
+Now, just to break down this area a little bit more for you, if you look at the top line here, which
+
+23
+01:58.120 --> 02:04.420
+you'll always, always see, there's a lot of text in here, but it's actually very simple to understand.
+
+24
+02:04.420 --> 02:12.170
+Essentially, it's telling you the location of the current file that is being run that has resulted in
+
+25
+02:12.170 --> 02:13.190
+this output.
+
+26
+02:13.190 --> 02:17.210
+So in our case, it's the Day 1 task.
+
+27
+02:17.210 --> 02:21.380
+And you'll see this change as you go through the different days
+
+28
+02:21.380 --> 02:26.240
+because the location of this file, where you wrote the code, will change.
+
+29
+02:26.240 --> 02:31.200
+So the first line is the location of the file that you executed.
+
+30
+02:31.230 --> 02:38.550
+The second line, or multiple lines in between, is the result of your command to the computer.
+
+31
+02:38.550 --> 02:45.660
+And then finally at the very, very end, it tells you if the process finished with success, which
+
+32
+02:45.660 --> 02:51.570
+is in this case, or if there are any other issues, it would show up here as well, which we're going
+
+33
+02:51.570 --> 02:53.400
+to see very, very shortly.
+
+34
+02:53.490 --> 03:00.430
+And to be sure that you're always running the current file, make sure that this drop down is selected
+
+35
+03:00.430 --> 03:01.750
+as Current File,
+
+36
+03:01.750 --> 03:09.010
+and that way, every time you press the play button here, it will run the code into the output area.
+
+37
+03:09.580 --> 03:15.640
+Now if you want to do a shortcut and you're really into keyboard shortcuts, you can hover over the
+
+38
+03:15.640 --> 03:24.560
+play button and you'll see the shortcut on what I'm using, which is a Mac, is  Control + R, in Windows
+
+39
+03:24.560 --> 03:25.250
+or Linux,
+
+40
+03:25.250 --> 03:30.290
+it'll show up different shortcuts, but it should all show up there if you want to try that out.
+
+41
+03:30.290 --> 03:34.370
+Alternatively, just keep pressing the play button and it works just as well.
+
+42
+03:34.520 --> 03:37.490
+And the way that this command works is super simple.
+
+43
+03:37.490 --> 03:44.220
+You have the keyword, "print", followed by a set of parentheses, and then inside the parentheses, you
+
+44
+03:44.220 --> 03:46.320
+tell it what you want it to print.
+
+45
+03:46.500 --> 03:52.890
+And once you've inserted that, then when this line of code gets executed by the computer, it'll know
+
+46
+03:52.890 --> 03:58.110
+to simply print or output the thing that you've placed in between the parentheses.
+
+47
+03:59.310 --> 04:07.230
+But notice here that it's not just the word, "Hello world!", that I've put inside my parentheses,
+
+48
+04:07.300 --> 04:12.970
+I've also added some quotation marks or double quotes around the word,
+
+49
+04:13.090 --> 04:20.530
+and the reason why I've done this is so that I can tell the computer that this bit here, in between
+
+50
+04:20.530 --> 04:22.840
+the double quotes, is not code.
+
+51
+04:22.840 --> 04:25.990
+It's not like print where it's supposed to do something,
+
+52
+04:25.990 --> 04:30.190
+this is just some text that I've made up, that I want it to print out.
+
+53
+04:31.180 --> 04:36.320
+And these pieces of text in programming lingo, is known as "Strings".
+
+54
+04:36.320 --> 04:40.070
+And you can imagine it as almost like a pearl necklace.
+
+55
+04:40.070 --> 04:40.370
+Right?
+
+56
+04:40.370 --> 04:43.310
+It's a string of characters.
+
+57
+04:43.490 --> 04:52.970
+And what the double quotes do, is they basically show the beginning and the end of that string of characters.
+
+58
+04:53.810 --> 04:57.760
+So that means you have to be really careful when you're typing.
+
+59
+04:57.760 --> 05:05.260
+For example, if I go ahead and I miss out the closing double quote, well, now you can see that there's
+
+60
+05:05.260 --> 05:11.350
+some changes that have happened to our code already, namely that the last parentheses, instead of
+
+61
+05:11.350 --> 05:18.310
+being colored in white like the opening parentheses or how it used to be, it's now colored in green,
+
+62
+05:18.310 --> 05:23.380
+the same color as the rest of our text or our string.
+
+63
+05:23.380 --> 05:25.600
+And this is a subtle hint to us.
+
+64
+05:25.600 --> 05:31.990
+You're going to get really attuned to these subtle hints, because they are the clues that will tell
+
+65
+05:31.990 --> 05:34.360
+you what might have gone wrong in your code.
+
+66
+05:34.360 --> 05:38.350
+If I run this code as it is right now, it's going to break.
+
+67
+05:38.350 --> 05:45.780
+It's going to give me a SyntaxError, and it says something that seems like it's completely not English.
+
+68
+05:45.780 --> 05:48.840
+So how can we figure out what this means?
+
+69
+05:49.500 --> 05:54.270
+Now, the thing I want you to know is that all programmers make mistakes.
+
+70
+05:54.270 --> 06:01.980
+We all make lots of errors, like forgetting to add the double quotes at the end of the string, or
+
+71
+06:01.980 --> 06:05.730
+forgetting to add a closing parentheses.
+
+72
+06:05.730 --> 06:09.060
+These things are just common errors because we're human.
+
+73
+06:09.250 --> 06:15.910
+But the thing that differentiates great programmers is we're really good at figuring out what the problem
+
+74
+06:15.910 --> 06:17.380
+is and how to fix it.
+
+75
+06:17.380 --> 06:22.000
+So you can imagine that coding is just a whole bunch of problems that you have to solve.
+
+76
+06:22.000 --> 06:29.500
+And in this case, when we get some sort of red text, and our code is not doing what we expect it to do,
+
+77
+06:29.500 --> 06:35.570
+then all we have to do is take this entire error message where it says something, something error,
+
+78
+06:35.570 --> 06:41.030
+and this is some sort of message that we're supposed to understand, and we're simply going to drop
+
+79
+06:41.030 --> 06:42.050
+it into Google.
+
+80
+06:42.050 --> 06:47.480
+And usually the first link you come across will be from a website called stackoverflow.com.
+
+81
+06:47.480 --> 06:53.510
+And this is basically the Q&amp;A website that all developers will go to whenever something is wrong with
+
+82
+06:53.510 --> 06:56.360
+their code, or when they can't figure out how to do something.
+
+83
+06:57.570 --> 07:03.150
+So if we click on this link, you can see that somebody else has also had this error,
+
+84
+07:03.330 --> 07:10.140
+and some kind souls have told us that the solution might be the fact that you're missing a double quote
+
+85
+07:10.140 --> 07:12.150
+before the end of the line.
+
+86
+07:12.150 --> 07:18.330
+So if we take a look back at our code, the code that generated this error looks like this.
+
+87
+07:18.330 --> 07:23.320
+And indeed, we are missing a double quote at the end of our string.
+
+88
+07:24.790 --> 07:30.160
+As you're learning to code, as you're going through your 100 Days, I want you to become more and more
+
+89
+07:30.160 --> 07:37.180
+attuned to the color of your code, because one of the most helpful things that code editors such as
+
+90
+07:37.180 --> 07:41.800
+this do for us is something called, "Syntax highlighting".
+
+91
+07:41.890 --> 07:49.130
+For example, when I was missing that double quote, it highlighted this entire thing and that is basically
+
+92
+07:49.130 --> 07:53.360
+it telling us, it seems like this whole thing is some text.
+
+93
+07:53.360 --> 07:59.780
+It thinks that all of this is a string and that we're missing a closing parenthesis.
+
+94
+08:00.800 --> 08:05.510
+So if you notice this and you're like, wait, actually that's not right,
+
+95
+08:05.510 --> 08:09.800
+this part should match the color of the open brace, which is white.
+
+96
+08:09.800 --> 08:11.910
+So there must be something wrong here.
+
+97
+08:11.910 --> 08:18.810
+And indeed, if you have a look at the error message, it actually has a little caret sign right here
+
+98
+08:18.810 --> 08:23.370
+showing you that there's something that's probably not right here.
+
+99
+08:23.370 --> 08:29.400
+And it might jog your memory that, "Oh yeah, I've forgotten a closing double quote."
+
+100
+08:30.510 --> 08:38.050
+Now, the really handy thing about PyCharm is it actually underlines your errors before you even run
+
+101
+08:38.050 --> 08:38.980
+your code.
+
+102
+08:38.980 --> 08:46.450
+And if you hover over the underline, it usually gives you some intelligent guess as to what your problem
+
+103
+08:46.450 --> 08:47.200
+might be.
+
+104
+08:47.200 --> 08:50.260
+And in this case, it's absolutely spot on.
+
+105
+08:50.260 --> 08:55.600
+It says, you're missing a closing quote, which is exactly what we're missing.
+
+106
+08:55.600 --> 09:01.580
+So that will also be really helpful for us to figure out what it is that we need to do.
+
+107
+09:01.580 --> 09:07.970
+But as with all things with AI, if we don't know what we're doing in the first place, these hints
+
+108
+09:07.970 --> 09:09.440
+don't help us that much.
+
+109
+09:09.440 --> 09:15.320
+For example, if I put the closing quote right here, I've got other problems and I'm going to create
+
+110
+09:15.320 --> 09:16.820
+more problems for myself.
+
+111
+09:16.820 --> 09:24.330
+So it's important that we first understand how things work and then use technology and AI to help us,
+
+112
+09:24.330 --> 09:26.880
+such as in this case, to fix our bug.
+
+113
+09:27.690 --> 09:36.090
+Now, you'll notice that there is also a tiny squiggly line under this closing brace, but in this case,
+
+114
+09:36.090 --> 09:42.450
+it's not in red, so it's not an error, but instead it's in yellow, which is a warning.
+
+115
+09:42.480 --> 09:50.300
+Now, most of these warnings come from a good standard practice for how to write code.
+
+116
+09:50.300 --> 09:57.560
+And if we hover over this warning, it tells us that PEP 8, which is guidance for how to write
+
+117
+09:57.560 --> 10:04.910
+Python code, and it tells you that the problem that it's seeing is there's no new line at the end of
+
+118
+10:04.910 --> 10:05.780
+the file.
+
+119
+10:05.810 --> 10:11.120
+Now, we can ignore all of this because it's a bit too complicated, and it's actually very simple to
+
+120
+10:11.120 --> 10:12.300
+solve this problem.
+
+121
+10:12.300 --> 10:18.930
+All it's saying is that in good practice, when we're writing Python code, there should be a new line
+
+122
+10:18.930 --> 10:25.950
+at the end of the file so that we have our cursor down here instead of ending right there.
+
+123
+10:25.950 --> 10:27.930
+And that's all there is to it.
+
+124
+10:27.930 --> 10:31.650
+And with that one thing, we've gotten rid of all our errors,
+
+125
+10:31.650 --> 10:33.720
+we've gotten rid of all our warnings,
+
+126
+10:33.720 --> 10:39.220
+our code looks good stylistically, as well as syntactically.
+
+127
+10:39.220 --> 10:43.750
+All these big words that all that it means is that it looks great in every single way.
+
+128
+10:43.750 --> 10:49.120
+And we've got our little check mark, which means no problems found by the editor.
+
+129
+10:49.120 --> 10:54.310
+Now, sometimes the editor can be really picky, and some of the things that it tells you, you can safely
+
+130
+10:54.310 --> 10:54.760
+ignore,
+
+131
+10:54.760 --> 10:59.560
+but as always, we need to understand how everything works before we can do that.
+
+132
+10:59.800 --> 11:05.750
+So now that we've embarked on our first step to write some code and start commanding the computer to
+
+133
+11:05.750 --> 11:10.730
+do what we want it to do, which is to print out some words into the output area,
+
+134
+11:10.730 --> 11:13.190
+it's now time for a challenge.
+
+135
+11:13.190 --> 11:19.040
+So head over to the next lesson, and we're going to test you on what you've learned in this lesson
+
+136
+11:19.040 --> 11:21.650
+by practicing writing some print statements.
+
+137
+11:21.650 --> 11:25.340
+So for all of that and more, I'll see you on the next lesson.

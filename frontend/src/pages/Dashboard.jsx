@@ -39,9 +39,37 @@ function Dashboard() {
   const [error, setError] = useState(null)
   const [shopOpen, setShopOpen] = useState(false)
   const [weekCount, setWeekCount] = useState(0)
+  const [currentDateTime, setCurrentDateTime] = useState(new Date())
 
-  const fetchData = async () => {
+  // Update date/time every second
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentDateTime(new Date())
+    }, 1000)
+    return () => clearInterval(timer)
+  }, [])
+
+  // Simple in-memory cache
+  const CACHE_DURATION = 60000 // 1 minute
+
+  const fetchData = async (force = false) => {
     try {
+      const now = Date.now()
+      const cached = sessionStorage.getItem('dashboard_cache')
+
+      if (!force && cached) {
+        const { data, timestamp } = JSON.parse(cached)
+        if (now - timestamp < CACHE_DURATION) {
+          setProgress(data.progress)
+          setWeekCount(data.weekCount)
+          setRpgState(data.rpgState)
+          setBadges(data.badges)
+          if (data.currentWeek) setCurrentWeek(data.currentWeek)
+          setLoading(false)
+          return
+        }
+      }
+
       setLoading(true)
       const [progressData, weeksData, rpgData, badgesData] = await Promise.all([
         progressAPI.get(),
@@ -49,19 +77,34 @@ function Dashboard() {
         rpgAPI.getState(),
         badgesAPI.getAll(),
       ])
-      setProgress(progressData)
-      setWeekCount(weeksData.length)
-      setRpgState(rpgData)
-      setBadges(badgesData)
 
+      let weekDetails = null
       // Get current week (first incomplete week or last week)
       const firstIncomplete = weeksData.find(w => w.tasks_completed < w.tasks_total)
       const weekToLoad = firstIncomplete || weeksData[weeksData.length - 1]
 
       if (weekToLoad) {
-        const weekDetails = await weeksAPI.getById(weekToLoad.id)
+        weekDetails = await weeksAPI.getById(weekToLoad.id)
         setCurrentWeek(weekDetails)
       }
+
+      setProgress(progressData)
+      setWeekCount(weeksData.length)
+      setRpgState(rpgData)
+      setBadges(badgesData)
+
+      // Update cache
+      sessionStorage.setItem('dashboard_cache', JSON.stringify({
+        data: {
+          progress: progressData,
+          weekCount: weeksData.length,
+          rpgState: rpgData,
+          badges: badgesData,
+          currentWeek: weekDetails
+        },
+        timestamp: now
+      }))
+
     } catch (err) {
       setError(err.message)
     } finally {
@@ -82,7 +125,7 @@ function Dashboard() {
         await tasksAPI.uncomplete(taskId)
       }
       // Refresh data
-      fetchData()
+      fetchData(true)
     } catch (err) {
       console.error('Failed to toggle task:', err)
       soundManager.error()
@@ -92,7 +135,7 @@ function Dashboard() {
   const handlePurchase = async (itemId) => {
     try {
       await rpgAPI.buyItem(itemId)
-      await fetchData() // Refresh to get updated gold and item counts
+      await fetchData(true) // Refresh to get updated gold and item counts
     } catch (err) {
       throw err // Re-throw so ShopModal can handle it
     }
@@ -138,8 +181,39 @@ function Dashboard() {
     return badge ? badge.name : badgeId
   }
 
+  const formatDateTime = (date) => {
+    return {
+      date: date.toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      }),
+      time: date.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true
+      })
+    }
+  }
+
+  const { date: formattedDate, time: formattedTime } = formatDateTime(currentDateTime)
+
   return (
     <div className="space-y-6">
+      {/* Date and Time Display */}
+      <div className="card p-4 bg-gradient-to-r from-primary-900/20 to-surface-900 border-primary-700/30">
+        <div className="flex items-center justify-between">
+          <div>
+            <div className="text-sm text-surface-500 mb-1">Current Date & Time</div>
+            <div className="text-lg font-semibold text-surface-100">{formattedDate}</div>
+            <div className="text-sm text-primary-400 font-mono">{formattedTime}</div>
+          </div>
+          <div className="text-4xl">📅</div>
+        </div>
+      </div>
+
       {/* Character Status */}
       <CharacterCard rpgState={rpgState} progress={progress} />
 

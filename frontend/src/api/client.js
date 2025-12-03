@@ -1,4 +1,4 @@
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8001'
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
 async function fetchAPI(endpoint, options = {}) {
   const url = `${API_BASE}${endpoint}`
@@ -48,6 +48,7 @@ export const reflectionsAPI = {
 // Progress API
 export const progressAPI = {
   get: () => fetchAPI('/progress'),
+  getCalendar: () => fetchAPI('/progress/calendar'),
 }
 
 // Badges API
@@ -64,5 +65,14 @@ export const achievementsAPI = {
 export const rpgAPI = {
   getState: () => fetchAPI('/rpg/state'),
   buyItem: (itemId) => fetchAPI(`/rpg/buy/${itemId}`, { method: 'POST' }),
+}
+
+// Quizzes API
+export const quizzesAPI = {
+  getQuestions: (quizId) => fetchAPI(`/quizzes/${quizId}/questions`),
+  submit: (data) => fetchAPI('/quizzes/submit', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  }),
 }
 

@@ -21,12 +21,11 @@ def assign_next_quest(db: Session, user_id: int) -> UserQuest | None:
     ]
     
     # Find the first quest not yet completed
-    next_quest = (
-        db.query(Quest)
-        .filter(Quest.id.notin_(completed_quest_ids) if completed_quest_ids else True)
-        .order_by(Quest.id)
-        .first()
-    )
+    query = db.query(Quest)
+    if completed_quest_ids:
+        query = query.filter(Quest.id.notin_(completed_quest_ids))
+    
+    next_quest = query.order_by(Quest.id).first()
     
     if not next_quest:
         return None

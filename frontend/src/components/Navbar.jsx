@@ -4,8 +4,10 @@ function Navbar() {
   const navItems = [
     { to: '/', label: 'Dashboard', icon: '◉' },
     { to: '/planner', label: 'Planner', icon: '☰' },
+    { to: '/calendar', label: 'Calendar', icon: '📅' },
     { to: '/reflections', label: 'Reflections', icon: '✎' },
     { to: '/progress', label: 'Progress', icon: '◈' },
+    { to: '/practice', label: 'Practice', icon: '⚡' },
   ]
 
   return (

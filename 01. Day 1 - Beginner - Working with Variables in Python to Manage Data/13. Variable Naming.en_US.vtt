@@ -1,0 +1,237 @@
+WEBVTT
+
+0
+00:00.200 --> 00:06.890
+Now, when it comes to naming your variables, you can pretty much call it whatever it is you want.
+
+1
+00:06.980 --> 00:13.640
+So instead of calling this name, I could have just called it n, and I could have called this l, and
+
+2
+00:13.640 --> 00:15.740
+as long as I'm consistent,
+
+3
+00:15.740 --> 00:21.680
+so if I wanted to get the length of n, then I would have to change this as well.
+
+4
+00:21.680 --> 00:26.240
+And if I wanted to print out l, then I have to change this as well.
+
+5
+00:26.240 --> 00:29.270
+But there's a couple of rules that you should probably follow,
+
+6
+00:29.270 --> 00:34.550
+and the most important one is to make your code readable.
+
+7
+00:34.550 --> 00:42.320
+Because if you come back to this in 6 months, 12 months, n and l is not going to have a lot of meaning
+
+8
+00:42.320 --> 00:42.860
+for you.
+
+9
+00:42.860 --> 00:46.520
+So try to make sure that it actually makes sense to you.
+
+10
+00:47.270 --> 00:52.730
+And if you want to, you can actually have multiple words in the name of your variable.
+
+11
+00:52.730 --> 00:58.760
+So for example, if you wanted to call this username, then you would write the word user, and then
+
+12
+00:58.760 --> 01:02.330
+you would separate each of the words with an underscore.
+
+13
+01:02.360 --> 01:05.660
+But you can't have a space in between.
+
+14
+01:05.660 --> 01:07.100
+This is not valid code.
+
+15
+01:07.100 --> 01:10.280
+And if you try to run it, you'll get a SyntaxError.
+
+16
+01:10.520 --> 01:14.600
+So the name of the variable has to be one single unit.
+
+17
+01:14.780 --> 01:19.430
+And in order to separate words in Python we use the underscore.
+
+18
+01:19.820 --> 01:24.230
+Now if you want to use numbers in the name of your variable you can.
+
+19
+01:24.230 --> 01:26.870
+So for example length1, length2,
+
+20
+01:26.930 --> 01:31.520
+but they can't be at the beginning of the name of the variables.
+
+21
+01:31.520 --> 01:35.300
+So you can't say 1length, or 3length.
+
+22
+01:35.300 --> 01:38.690
+That will generate a syntax error as well.
+
+23
+01:38.960 --> 01:43.100
+Finally, there's certain privileged words that we use,
+
+24
+01:43.100 --> 01:47.690
+for example, the names of our functions like print and input.
+
+25
+01:47.720 --> 01:54.380
+And it's usually good practice to not use them as the names of your variables, because you can see
+
+26
+01:54.380 --> 01:59.510
+that syntax highlighting gets messed up because it thinks that it's actually input() function you're trying
+
+27
+01:59.510 --> 02:00.260
+to create.
+
+28
+02:00.260 --> 02:05.960
+And even though often when you run your app it might not have any issues, this is really bad practice
+
+29
+02:05.960 --> 02:07.820
+because it's very confusing.
+
+30
+02:08.390 --> 02:13.990
+So try to make sure that all the names of your variables get highlighted like the other variables in
+
+31
+02:13.990 --> 02:15.100
+the same color.
+
+32
+02:15.130 --> 02:22.660
+Now, the final thing to remember is that if you decide to call your variable this particular name, N-A-M-E,
+
+33
+02:22.840 --> 02:26.740
+and at a later point, you make a typo and you spell it wrong,
+
+34
+02:26.740 --> 02:33.130
+so maybe instead of name, you said, nama, this is not going to work.
+
+35
+02:33.130 --> 02:40.630
+And when you run your code, you'll get what's called a NameError because it says this name is not
+
+36
+02:40.630 --> 02:41.560
+defined.
+
+37
+02:41.560 --> 02:45.310
+And the idea is that you would look at where the error is,
+
+38
+02:45.310 --> 02:49.930
+Line 2, print nama, and you'll see, "Oh, that's not right."
+
+39
+02:49.930 --> 02:57.610
+It's meant to be spelled, N-A-M-E, so you'll have to go and fix it in order for your code to work.
+
+40
+02:57.640 --> 03:03.340
+Now remember that this is not because Python is doing any sort of spell checking for you.
+
+41
+03:03.340 --> 03:05.620
+It's like, "Oh, that's not how you spell name."
+
+42
+03:05.620 --> 03:06.250
+No.
+
+43
+03:06.250 --> 03:14.470
+In fact, if you decided to call this nama, and you later on use it as nama, there's no problems. Other
+
+44
+03:14.470 --> 03:20.440
+than this green squiggly underline which tells you that there is a typo in this word,
+
+45
+03:20.440 --> 03:26.260
+Python doesn't actually care, and that's why your file is still checked because very often you might
+
+46
+03:26.260 --> 03:30.610
+be in the situation where you need to create something that is unique, right?
+
+47
+03:30.610 --> 03:36.640
+You might have a player in your video game called Nama and you decide to call it that.
+
+48
+03:36.640 --> 03:37.960
+It's totally up to you.
+
+49
+03:37.960 --> 03:44.140
+And the only thing that Python really cares about is that you are consistent.
+
+50
+03:44.140 --> 03:48.250
+This is the name that's associated with this piece of data,
+
+51
+03:48.250 --> 03:54.310
+later on, when you want to use this piece of data, you use this name to refer to it.
+
+52
+03:54.310 --> 04:00.130
+And as long as these two spellings are identical, then the computer doesn't care at all.
+
+53
+04:00.400 --> 04:07.450
+So when you get a NameError in your code, you now know it's probably because you've misspelled or
+
+54
+04:07.450 --> 04:11.200
+mistyped one of the variable names somewhere in your code.
+
+55
+04:11.830 --> 04:17.650
+Now, in the next lesson, I've prepared a quiz for you where you'll get to select which variable names
+
+56
+04:17.650 --> 04:19.900
+are valid, and which ones are not
+
+57
+04:19.900 --> 04:20.770
+good practice.
+
+58
+04:20.770 --> 04:23.590
+Have a go at that over on the next lesson.

@@ -7,6 +7,7 @@ import os
 import sys
 from typing import Dict, List, Tuple
 from datetime import datetime, timedelta
+from sqlalchemy.orm import Session
 
 # Add the app directory to path for imports
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -28,6 +29,7 @@ from app.models import (
     UserInventory,
     Achievement,
     UserAchievement,
+    Question,
 )
 
 
@@ -108,7 +110,64 @@ def clear_existing_data(db):
     db.query(Badge).delete()
     db.query(Week).delete()
     db.query(User).delete()
+    db.query(Question).delete() # Added Question to clear existing data
     db.commit()
+
+
+def seed_questions(db: Session):
+    """Seed initial quiz questions."""
+    # Check if questions exist
+    if db.query(Question).first():
+        print("Questions already exist, skipping seeding.")
+        return
+
+    print("Seeding questions...")
+    
+    day1_questions = [
+        {
+            "q": "What is the correct way to assign 10 to 'score'?",
+            "options": ["score == 10", "score = 10", "10 = score", "int score = 10"],
+            "answer": 1,
+            "explanation": "In Python, '=' is the assignment operator. '==' is for comparison."
+        },
+        {
+            "q": "What does input() return by default?",
+            "options": ["Integer", "Float", "String", "Boolean"],
+            "answer": 2,
+            "explanation": "input() always returns a string, even if the user types a number."
+        },
+        {
+            "q": "Which variable name is invalid?",
+            "options": ["user_name", "total_score", "2nd_player", "player2"],
+            "answer": 2,
+            "explanation": "Variable names cannot start with a number."
+        },
+        {
+            "q": "What is the output of: print('Hello' + ' ' + 'World')?",
+            "options": ["Hello World", "Hello+ +World", "HelloWorld", "Error"],
+            "answer": 0,
+            "explanation": "The '+' operator concatenates (joins) strings together."
+        },
+        {
+            "q": "How do you check the length of a string 'text'?",
+            "options": ["'text'.length", "len('text')", "length('text')", "'text'.size()"],
+            "answer": 1,
+            "explanation": "len() is a built-in Python function to get the length of a sequence."
+        }
+    ]
+    
+    for q in day1_questions:
+        db_question = Question(
+            quiz_id="day-1-practice",
+            text=q["q"],
+            options=json.dumps(q["options"]),
+            correct_index=q["answer"],
+            explanation=q["explanation"]
+        )
+        db.add(db_question)
+    
+    db.commit()
+    print(f"  Seeded {len(day1_questions)} questions for 'day-1-practice'.")
 
 
 def seed_database():
@@ -324,6 +383,8 @@ def seed_database():
             )
         )
 
+        seed_questions(db)
+        
         # Sample 7-day consistency challenge
         print("Creating sample challenge...")
         challenge = Challenge(

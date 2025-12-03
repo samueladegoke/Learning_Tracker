@@ -42,17 +42,7 @@ REWARD_MULTIPLIER = {
 }
 
 
-def xp_needed_for_level(level: int) -> int:
-    return int(100 * (level ** 1.2))
-
-
-def level_from_xp(xp: int) -> int:
-    level = 1
-    remaining = xp
-    while remaining >= xp_needed_for_level(level):
-        remaining -= xp_needed_for_level(level)
-        level += 1
-    return level
+from ..utils.gamification import level_from_xp, xp_for_next_level as xp_needed_for_level
 
 
 def refresh_focus_points(user: User) -> None:
@@ -370,9 +360,7 @@ def complete_task(task_id: str, db: Session = Depends(get_db)):
         
         # Auto-assign next quest
         from ..utils.quest_manager import assign_next_quest
-        next_quest = assign_next_quest(db, DEFAULT_USER_ID)
-        if next_quest:
-            print(f"Auto-assigned new quest: {next_quest.quest_id}")
+        assign_next_quest(db, DEFAULT_USER_ID)
 
     # Award challenge badges
     for update in challenge_updates:

@@ -30,6 +30,7 @@ class User(Base):
     inventories = relationship("UserInventory", back_populates="user")
     challenges = relationship("UserChallenge", back_populates="user")
     user_quests = relationship("UserQuest", back_populates="user")
+    quiz_results = relationship("QuizResult", back_populates="user")
 
 
 class Week(Base):
@@ -226,3 +227,27 @@ class UserInventory(Base):
 
     user = relationship("User", back_populates="inventories")
 
+
+class QuizResult(Base):
+    __tablename__ = "quiz_results"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    quiz_id = Column(String(50), nullable=False)
+    score = Column(Integer, default=0)
+    total_questions = Column(Integer, default=0)
+    completed_at = Column(DateTime, default=datetime.utcnow)
+
+    user = relationship("User", back_populates="quiz_results")
+
+
+
+class Question(Base):
+    __tablename__ = "questions"
+
+    id = Column(Integer, primary_key=True, index=True)
+    quiz_id = Column(String(50), index=True, nullable=False)  # e.g., "day-1-practice"
+    text = Column(Text, nullable=False)
+    options = Column(Text, nullable=False)  # JSON string of options list
+    correct_index = Column(Integer, nullable=False)
+    explanation = Column(Text)

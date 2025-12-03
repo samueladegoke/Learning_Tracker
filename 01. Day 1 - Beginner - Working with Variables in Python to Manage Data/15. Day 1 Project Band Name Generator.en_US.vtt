@@ -1,0 +1,281 @@
+WEBVTT
+
+0
+00:00.320 --> 00:04.940
+All right, guys, it's time for the final project of today.
+
+1
+00:04.940 --> 00:08.990
+So the program that you're going to be building looks a little bit like this.
+
+2
+00:08.990 --> 00:14.690
+And you can check it out if you head over to this link, either by typing it in or heading to the Course
+
+3
+00:14.690 --> 00:18.500
+Resources page and clicking on the corresponding link.
+
+4
+00:18.500 --> 00:26.120
+But essentially, it's a Band Name Generator, and it asks you for a city that you grew up in and the
+
+5
+00:26.120 --> 00:32.290
+name of your pet, and then it combines those together and gives you the name of your band.
+
+6
+00:32.470 --> 00:34.240
+There's a couple of things to note here.
+
+7
+00:34.240 --> 00:41.920
+Firstly is notice when this input got triggered, the cursor actually showed up on a new line.
+
+8
+00:41.920 --> 00:45.850
+So if I run this again, you can see it says, "What's the name of the city you grew up in?"
+
+9
+00:45.850 --> 00:48.790
+And then the cursor is on the next line.
+
+10
+00:48.910 --> 00:54.700
+And what I want you to do is to go ahead and head over to this stunning project.
+
+11
+00:54.910 --> 00:58.330
+So there's a couple of steps in here as hints.
+
+12
+00:58.330 --> 01:04.390
+But the important thing is, once you've completed this project, it should work exactly the same as
+
+13
+01:04.390 --> 01:06.040
+the one that you see here.
+
+14
+01:06.160 --> 01:11.500
+And in order to do this, you're going to have to apply everything that you learned today, including
+
+15
+01:11.500 --> 01:18.310
+printing inputs, variables, new lines, string manipulation, debugging, and a whole lot more.
+
+16
+01:18.340 --> 01:24.430
+So this is the time to grab yourself a cup of tea or coffee, pause the video, and tackle this final
+
+17
+01:24.430 --> 01:25.150
+project.
+
+18
+01:29.740 --> 01:34.180
+All right guys, I hope you gave that a go and you were able to complete it.
+
+19
+01:34.180 --> 01:39.520
+If you want to see how I've implemented it, or if you want to, just check to see if you have any errors
+
+20
+01:39.520 --> 01:44.740
+or if there's something that you're unsure about, then continue watching and I'll go through
+
+21
+01:44.740 --> 01:45.930
+the solution with you.
+
+22
+01:47.040 --> 01:50.670
+The first step is to create a greeting for your program.
+
+23
+01:50.670 --> 01:54.120
+In our case, it says, Welcome to the Band Name Generator,
+
+24
+01:54.120 --> 01:56.610
+so that's exactly what I'm going to create.
+
+25
+01:56.610 --> 02:00.210
+And we print these messages using the print() function.
+
+26
+02:00.210 --> 02:06.090
+So I'm going to say, "Welcome to the Band Name Generator."
+
+27
+02:07.230 --> 02:11.060
+And this when I run it will just print that message.
+
+28
+02:12.650 --> 02:16.370
+Now the next step is to ask the user for the city that they grew up in.
+
+29
+02:16.400 --> 02:21.950
+So in order to get some input from the user, we'll need of course the input() function.
+
+30
+02:21.950 --> 02:26.720
+And we're going to ask them using the prompt which goes inside the parentheses,
+
+31
+02:27.080 --> 02:32.600
+"Which city did you grow up in?"
+
+32
+02:32.630 --> 02:40.150
+So now when I hit run it's going to ask me for the city that I grew up in and I'm able to add a reply
+
+33
+02:40.150 --> 02:41.020
+like so.
+
+34
+02:41.890 --> 02:48.730
+Now that data is just going to be lost to thin air unless I capture it and I give it a name.
+
+35
+02:48.730 --> 02:53.290
+So I'm going to have to create a variable to hold on to the data that the user inputted.
+
+36
+02:53.290 --> 02:59.440
+So we'll just call that city and then add the equal sign to assign whatever it is that the user typed
+
+37
+02:59.440 --> 03:01.660
+in to this variable name.
+
+38
+03:02.050 --> 03:09.970
+And now I have access to this city variable, and I can print it or use it later on if I want to,
+
+39
+03:10.000 --> 03:11.230
+like so.
+
+40
+03:13.780 --> 03:18.490
+Now the next step is to ask the user for the name of a pet.
+
+41
+03:18.490 --> 03:25.270
+So we'll call that variable pet, and we'll assign it the value that the user inputs for
+
+42
+03:25.270 --> 03:28.620
+what is the name of a pet?
+
+43
+03:29.820 --> 03:35.280
+Now step four is to combine the name of the city and the pet and show them their band name.
+
+44
+03:35.280 --> 03:39.810
+Now, there's quite a few ways of doing this, especially if you look around on the internet, but the
+
+45
+03:39.810 --> 03:44.130
+way that you learned in today's lessons is using string concatenation.
+
+46
+03:44.130 --> 03:45.390
+So we're going to do that.
+
+47
+03:45.390 --> 03:51.000
+So we're going to use a print statement and tell them, "Your band name could be:..."
+
+48
+03:51.650 --> 04:00.680
+And then we're going to add the name of the city, and then add a space and then add the name of their
+
+49
+04:00.680 --> 04:01.370
+pet.
+
+50
+04:01.580 --> 04:10.730
+So now when we run our code, it will ask us for the name of their city and then the name of a pet.
+
+51
+04:10.730 --> 04:15.500
+And then it should combine those together and show us the name of our band.
+
+52
+04:15.530 --> 04:22.400
+Now the final step is that the input cursor should show on a new line like this.
+
+53
+04:22.400 --> 04:28.340
+So here's the cursor, but here's the input just so that you get a bit of space and you're not typing
+
+54
+04:28.340 --> 04:31.460
+it in directly after the prompt here.
+
+55
+04:31.460 --> 04:32.900
+Like what we have.
+
+56
+04:32.900 --> 04:34.490
+So how do we do that?
+
+57
+04:34.490 --> 04:42.440
+Well, you learned about modifying strings by creating a new line using the \n, and we can add
+
+58
+04:42.440 --> 04:46.610
+that both to the end of the city input and the pet input,
+
+59
+04:46.610 --> 04:52.730
+and now when we run our code, you'll see that the cursor now shows up on the next line,
+
+60
+04:52.730 --> 04:55.640
+and our program looks a lot better.
+
+61
+04:56.810 --> 04:58.460
+So there you have it.
+
+62
+04:58.460 --> 05:01.370
+This is how you solve this boss challenge.
+
+63
+05:01.370 --> 05:05.480
+And this is how you create the Band Name Generator project.
+
+64
+05:05.480 --> 05:11.920
+So I hope you had fun with me today, learning Python and a lot of the fundamentals of Python.
+
+65
+05:11.920 --> 05:19.060
+And tomorrow I've got another jam-packed module of really awesome tutorials, and code challenges, and
+
+66
+05:19.060 --> 05:23.050
+projects for you to sink your teeth into. I'm looking forward to seeing you tomorrow.
+
+67
+05:23.050 --> 05:27.670
+So have a rest now and let your brain work on the things that you learned while you sleep,
+
+68
+05:27.670 --> 05:29.980
+and I'll see you here bright and early.
+
+69
+05:30.010 --> 05:31.570
+Good night, and see you tomorrow.

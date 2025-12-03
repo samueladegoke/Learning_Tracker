@@ -4,6 +4,8 @@ import Dashboard from './pages/Dashboard'
 import Planner from './pages/Planner'
 import Reflections from './pages/Reflections'
 import Progress from './pages/Progress'
+import Calendar from './pages/Calendar'
+import Practice from './pages/Practice'
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
             <Route path="/planner" element={<Planner />} />
             <Route path="/reflections" element={<Reflections />} />
             <Route path="/progress" element={<Progress />} />
+            <Route path="/calendar" element={<Calendar />} />
+            <Route path="/practice" element={<Practice />} />
           </Routes>
         </main>
       </div>

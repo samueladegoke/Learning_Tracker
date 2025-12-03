@@ -74,3 +74,7 @@ Your remote database currently has tables but **no data**. To load the curriculu
 
 3.  Visit your Vercel URL. You should see the Dashboard populated with Week 1 data!
 
+
+
+
+
