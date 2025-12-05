@@ -37,11 +37,6 @@ BMAD rules have been installed to: `.cursor/rules/bmad/`
 **Tools:**
 - @bmad/core/tools/shard-doc - shard-doc
 
-### BMB
-
-**Agents:**
-- @bmad/bmb/agents/bmad-builder - bmad-builder
-
 ### BMM
 
 **Agents:**

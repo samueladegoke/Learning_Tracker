@@ -169,6 +169,67 @@ def seed_questions(db: Session):
     db.commit()
     print(f"  Seeded {len(day1_questions)} questions for 'day-1-practice'.")
 
+    day2_questions = [
+        {
+            "q": "What is the data type of the result for: a = int(\"5\") / int(2.7)",
+            "options": ["int", "float", "str", "bool"],
+            "answer": 1,
+            "explanation": "Converting both values to int then dividing uses true division, which returns a float."
+        },
+        {
+            "q": "Which expression correctly calculates BMI from weight_kg and height_m?",
+            "options": [
+                "weight_kg / (height_m ** 2)",
+                "weight_kg * height_m ** 2",
+                "weight_kg / height_m * 2",
+                "weight_kg // height_m ** 2"
+            ],
+            "answer": 0,
+            "explanation": "BMI is weight divided by height squared. Parentheses ensure the exponent applies before division."
+        },
+        {
+            "q": "How do you format a number called share so it always shows exactly two decimal places?",
+            "options": [
+                "print(f\"{share:.2f}\")",
+                "print(round(share))",
+                "print(str(share)[:4])",
+                "print(format(share, \".0f\"))"
+            ],
+            "answer": 0,
+            "explanation": "An f-string with .2f keeps two digits after the decimal, matching the Day 2 tip calculator requirement."
+        },
+        {
+            "q": "What is the result of 8 % 3?",
+            "options": ["2", "2.66", "3", "1"],
+            "answer": 0,
+            "explanation": "Modulo returns the remainder of division. 8 divided by 3 leaves a remainder of 2."
+        },
+        {
+            "q": "Why does this line raise a TypeError? print(\"You are \" + age + \" years old\") when age = 12",
+            "options": [
+                "You cannot concatenate a string and an integer without converting the integer.",
+                "The variable name age is invalid.",
+                "print() cannot handle numbers.",
+                "Strings must use single quotes."
+            ],
+            "answer": 0,
+            "explanation": "String concatenation requires both operands to be strings. Wrap age with str() or use an f-string."
+        }
+    ]
+
+    for q in day2_questions:
+        db_question = Question(
+            quiz_id="day-2-practice",
+            text=q["q"],
+            options=json.dumps(q["options"]),
+            correct_index=q["answer"],
+            explanation=q["explanation"]
+        )
+        db.add(db_question)
+
+    db.commit()
+    print(f"  Seeded {len(day2_questions)} questions for 'day-2-practice'.")
+
 
 def seed_database():
     """Seed the database with initial data."""
@@ -439,4 +500,3 @@ def seed_database():
 
 if __name__ == "__main__":
     seed_database()
-

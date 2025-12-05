@@ -1,17 +1,55 @@
 import { useState, useEffect } from 'react'
-import { quizzesAPI } from '../api/client'
+import { quizApi } from '../api/quizApi'
+import { rpgAPI } from '../api/client'
 import CodeBlock from '../components/CodeBlock'
+import CodeEditor from '../components/CodeEditor'
 
-
+const DAY_META = {
+    'day-1': {
+        label: 'Day 1',
+        title: 'Day 1: Variables & Strings',
+        subtitle: 'Mastering the fundamentals of Python data management.',
+        quizId: 'day-1-practice',
+        level: 'beginner',
+        topics: ['variables', 'print', 'input', 'strings']
+    },
+    'day-2': {
+        label: 'Day 2',
+        title: 'Day 2: Data Types & Number Manipulation',
+        subtitle: 'Turn raw input into the right types, format output cleanly, and avoid math gotchas.',
+        quizId: 'day-2-practice',
+        level: 'beginner',
+        topics: ['integers', 'floats', 'strings']
+    }
+}
 
 function Practice() {
     const [activeTab, setActiveTab] = useState('deep-dive')
+    const [activeDay, setActiveDay] = useState('day-2')
+
+    const currentDay = DAY_META[activeDay]
 
     return (
         <div className="space-y-8 pb-12">
-            <header>
-                <h1 className="text-3xl font-bold text-surface-100 font-display">Day 1: Variables & Strings</h1>
-                <p className="text-surface-400 mt-2">Mastering the fundamentals of Python data management.</p>
+            <header className="space-y-3">
+                <div className="flex flex-wrap items-center gap-3">
+                    {Object.entries(DAY_META).map(([key, meta]) => (
+                        <button
+                            key={key}
+                            onClick={() => setActiveDay(key)}
+                            className={`px-3 py-1 rounded-full text-sm font-medium transition-colors border ${activeDay === key
+                                ? 'bg-primary-500/10 text-primary-200 border-primary-500/60'
+                                : 'bg-surface-800 text-surface-300 border-surface-700 hover:text-surface-100'
+                                }`}
+                        >
+                            {meta.label}
+                        </button>
+                    ))}
+                </div>
+                <div>
+                    <h1 className="text-3xl font-bold text-surface-100 font-display">{currentDay.title}</h1>
+                    <p className="text-surface-400 mt-2">{currentDay.subtitle}</p>
+                </div>
             </header>
 
             {/* Tabs */}
@@ -32,15 +70,20 @@ function Practice() {
 
             {/* Content */}
             <div className="min-h-[400px]">
-                {activeTab === 'deep-dive' && <DeepDive />}
-                {activeTab === 'quiz' && <Quiz />}
-                {activeTab === 'transcripts' && <Transcripts />}
+                {activeTab === 'deep-dive' && <DeepDive activeDay={activeDay} />}
+                {activeTab === 'quiz' && <Quiz quizId={currentDay.quizId} activeDay={activeDay} />}
+                {activeTab === 'transcripts' && <Transcripts activeDay={activeDay} />}
             </div>
         </div>
     )
 }
 
-function DeepDive() {
+function DeepDive({ activeDay }) {
+    if (activeDay === 'day-1') return <DeepDiveDay1 />
+    return <DeepDiveDay2 />
+}
+
+function DeepDiveDay1() {
     return (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2 space-y-8 text-surface-200 leading-relaxed">
@@ -106,7 +149,7 @@ print(f"You will be {age_as_int + 1} next year.")`} />
                     <h3 className="text-lg font-semibold text-surface-100 mt-4">f-Strings (Formatted String Literals)</h3>
                     <p>
                         The cleanest way to insert variables into strings. Just put an <code>f</code> before the quote
-                        and use curly braces <code>{ }</code>.
+                        and use curly braces <code>{'{}'}</code>.
                     </p>
                     <CodeBlock code={`score = 0
 height = 1.8
@@ -173,27 +216,168 @@ print(f"Your score is {score}, your height is {height}, you are winning is {is_w
     )
 }
 
+function DeepDiveDay2() {
+    return (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2 space-y-8 text-surface-200 leading-relaxed">
 
-function Quiz() {
+                {/* Section 1: Primitive Data Types */}
+                <section className="space-y-4">
+                    <h2 className="text-2xl font-bold text-surface-100 flex items-center gap-2">
+                        <span className="text-primary-400">01.</span> Primitive Data Types
+                    </h2>
+                    <p>
+                        Python stores numbers and text with different types: <strong>int</strong> for whole numbers,
+                        <strong> float</strong> for decimals, <strong>bool</strong> for True/False, and <strong>str</strong> for text.
+                        Use <code>type()</code> when you are unsure what you are holding.
+                    </p>
+                    <CodeBlock code={`score = 42          # int
+pi = 3.14159       # float
+is_subscribed = False  # bool
+welcome = "Hello"  # str
+
+print(type(score))           # <class 'int'>
+print(734_529.678)           # underscores improve readability`} />
+
+                    <div className="bg-surface-800/50 p-6 rounded-xl border border-surface-700">
+                        <h3 className="text-lg font-semibold text-primary-400 mb-3">Spot the type quickly</h3>
+                        <ul className="space-y-2 list-disc list-inside text-surface-300">
+                            <li>Quotes (<code>\"\"</code> or <code>''</code>) mean <strong>string</strong> even if the text looks numeric.</li>
+                            <li>Decimals or scientific notation (<code>1e3</code>) mean <strong>float</strong>.</li>
+                            <li><code>True</code> or <code>False</code> (no quotes) are <strong>bool</strong>.</li>
+                            <li>Use <code>int()</code> or <code>float()</code> to convert when needed.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                {/* Section 2: Type Conversion & Input */}
+                <section className="space-y-4">
+                    <h2 className="text-2xl font-bold text-surface-100 flex items-center gap-2">
+                        <span className="text-primary-400">02.</span> Type Conversion & Input
+                    </h2>
+                    <p>
+                        <code>input()</code> always returns a string. Converting before math prevents <code>TypeError</code>.
+                        Chain conversions to reshape data (e.g., string → float → rounded int).
+                    </p>
+                    <CodeBlock code={`height = float(input("Height (m): "))
+weight = float(input("Weight (kg): "))
+
+# BMI formula: weight divided by height squared
+bmi = weight / (height ** 2)
+
+# Round to 1 decimal for display
+print(f"Your BMI is {bmi:.1f}")`} />
+                    <p>
+                        Conversion is also handy when slicing strings. For example, pulling digits out of a number-string
+                        and turning them back into integers to sum them.
+                    </p>
+                    <CodeBlock code={`two_digit = input("Enter a two-digit number: ")  # e.g. "49"
+total = int(two_digit[0]) + int(two_digit[1])
+print(f"Digit sum = {total}")`} />
+                </section>
+
+                {/* Section 3: Number Manipulation & Formatting */}
+                <section className="space-y-4">
+                    <h2 className="text-2xl font-bold text-surface-100 flex items-center gap-2">
+                        <span className="text-primary-400">03.</span> Number Manipulation & Formatting
+                    </h2>
+                    <p>
+                        Operators you will use daily: <code>**</code> exponent, <code>//</code> floor division,
+                        <code>%</code> remainder, and <code>round(value, ndigits)</code> for friendly output.
+                        Order of operations follows PEMDAS (parentheses, exponents, multiply/divide, add/subtract).
+                    </p>
+                    <CodeBlock code={`result = 6 + 4 / 2 - (1 * 2)   # 6.0
+print(8 // 3)   # 2 -> floor division
+print(8 % 3)    # 2 -> remainder
+print(round(3.14159, 2))  # 3.14`} />
+
+                    <h3 className="text-lg font-semibold text-surface-100 mt-4">F-Strings for money math</h3>
+                    <p>
+                        Format currency to exactly two decimals with f-strings—perfect for the Day 2 tip calculator.
+                    </p>
+                    <CodeBlock code={`total_bill = 124.56
+tip_percent = 12
+people = 7
+
+bill_with_tip = total_bill * (1 + tip_percent / 100)
+split = bill_with_tip / people
+print(f"Each person pays: \${split:.2f}")  # always shows 2 decimal places`} />
+                </section>
+            </div>
+
+            {/* Sidebar: External Insights */}
+            <div className="space-y-6">
+                <div className="bg-surface-800/30 p-6 rounded-xl border border-surface-700 sticky top-24">
+                    <h3 className="text-lg font-bold text-surface-100 mb-4 flex items-center gap-2">
+                        <span className="text-xl">💡</span> Pro Tips
+                    </h3>
+                    <div className="space-y-4">
+                        <div>
+                            <h4 className="font-medium text-primary-400 text-sm uppercase tracking-wider mb-1">Float Precision</h4>
+                            <p className="text-sm text-surface-400">
+                                Binary floating points can show tiny rounding artifacts (see Python docs on floating point).
+                                Use <code>round(value, 2)</code> for display, or <code>Decimal</code> for money-critical math.
+                            </p>
+                        </div>
+                        <div className="w-full h-px bg-surface-700/50"></div>
+                        <div>
+                            <h4 className="font-medium text-primary-400 text-sm uppercase tracking-wider mb-1">Readable Numbers</h4>
+                            <p className="text-sm text-surface-400">
+                                Underscores in numeric literals (<code>1_000_000</code>) keep code legible without changing the value.
+                            </p>
+                        </div>
+                        <div className="w-full h-px bg-surface-700/50"></div>
+                        <div>
+                            <h4 className="font-medium text-primary-400 text-sm uppercase tracking-wider mb-1">Quick Type Checks</h4>
+                            <p className="text-sm text-surface-400">
+                                When debugging TypeErrors, sprinkle <code>print(type(value))</code> before the failing line to confirm
+                                exactly what you are adding or dividing.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+function Quiz({ quizId, activeDay }) {
     const [questions, setQuestions] = useState([])
     const [currentQ, setCurrentQ] = useState(0)
-    const [answers, setAnswers] = useState({}) // { questionId: selectedIndex }
+    const [answers, setAnswers] = useState({}) // { questionId: selectedIndex or { code, passed, total } }
     const [showResult, setShowResult] = useState(false)
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [resultData, setResultData] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
+    const [quizStats, setQuizStats] = useState(null)
+    const [xpWarning, setXpWarning] = useState(null)
 
     useEffect(() => {
-        loadQuiz()
-    }, [])
+        loadQuiz(quizId)
+    }, [quizId])
 
-    const loadQuiz = async () => {
+    const loadQuiz = async (targetQuizId) => {
         try {
+            if (!targetQuizId) {
+                setError('No quiz selected.')
+                setQuestions([])
+                setLoading(false)
+                return
+            }
             setLoading(true)
             setError(null)
-            const data = await quizzesAPI.getQuestions('day-1-practice')
-            setQuestions(data)
+            
+            // Fetch questions from Supabase
+            const data = await quizApi.getQuestions(targetQuizId)
+            setQuestions(data || [])
+            
+            // Get quiz stats
+            if (data && data.length > 0) {
+                const stats = await quizApi.getQuizStats(targetQuizId)
+                setQuizStats(stats)
+            }
+            
             // Reset state
             setCurrentQ(0)
             setAnswers({})
@@ -207,11 +391,19 @@ function Quiz() {
         }
     }
 
-    const handleAnswer = (optionIndex) => {
+    const handleMCQAnswer = (optionIndex) => {
         const questionId = questions[currentQ].id
         setAnswers(prev => ({
             ...prev,
             [questionId]: optionIndex
+        }))
+    }
+
+    const handleCodingResult = (result) => {
+        const questionId = questions[currentQ].id
+        setAnswers(prev => ({
+            ...prev,
+            [questionId]: result
         }))
     }
 
@@ -223,14 +415,53 @@ function Quiz() {
         }
     }
 
+    const prevQuestion = () => {
+        if (currentQ > 0) {
+            setCurrentQ(c => c - 1)
+        }
+    }
+
     const finishQuiz = async () => {
         setIsSubmitting(true)
         try {
-            const response = await quizzesAPI.submit({
-                quiz_id: 'day-1-practice',
-                answers: answers
+            // Calculate score locally
+            let score = 0
+            let totalAnswered = 0
+
+            questions.forEach(q => {
+                const answer = answers[q.id]
+                if (answer === undefined) return
+                totalAnswered++
+
+                if (q.question_type === 'mcq') {
+                    if (answer === q.correct_index) {
+                        score++
+                    }
+                } else if (q.question_type === 'coding') {
+                    if (answer.allPassed) {
+                        score++
+                    }
+                }
             })
-            setResultData(response)
+
+            // Try to award XP via backend
+            const xpToAward = score * 10
+            let xpAwarded = false
+            try {
+                await rpgAPI.awardXP(xpToAward)
+                xpAwarded = true
+                setXpWarning(null)
+            } catch (xpError) {
+                console.warn('Could not award XP:', xpError)
+                setXpWarning(`XP could not be saved to your profile. ${xpError.message || 'Please check your connection.'}`)
+            }
+
+            setResultData({
+                score,
+                total_questions: questions.length,
+                xp_gained: score * 10,
+                xp_saved: xpAwarded
+            })
             setShowResult(true)
         } catch (error) {
             console.error('Error submitting score:', error)
@@ -240,34 +471,81 @@ function Quiz() {
         }
     }
 
-    if (loading) return <div className="text-center p-8 text-surface-400">Loading quiz...</div>
+    if (loading) return (
+        <div className="flex items-center justify-center p-8">
+            <div className="flex items-center gap-3 text-surface-400">
+                <div className="w-5 h-5 border-2 border-primary-500 border-t-transparent rounded-full animate-spin"></div>
+                Loading quiz from Supabase...
+            </div>
+        </div>
+    )
+
     if (error) return (
         <div className="text-center p-8">
             <p className="text-red-400 mb-4">{error}</p>
-            <button onClick={loadQuiz} className="btn-primary">Retry</button>
+            <button onClick={() => loadQuiz(quizId)} className="px-6 py-2 bg-primary-600 hover:bg-primary-500 text-white rounded-lg transition-colors">
+                Retry
+            </button>
         </div>
     )
-    if (questions.length === 0) return <div className="text-center p-8 text-surface-400">No questions found.</div>
+
+    if (questions.length === 0) return (
+        <div className="text-center p-8">
+            <div className="text-surface-400 mb-4">No questions found for this quiz.</div>
+            <p className="text-surface-500 text-sm">
+                Run the seeding script to add questions:
+                <br />
+                <code className="bg-surface-800 px-2 py-1 rounded mt-2 inline-block">python scripts/seed_supabase_questions.py</code>
+            </p>
+        </div>
+    )
 
     if (showResult && resultData) {
+        const percentage = Math.round((resultData.score / resultData.total_questions) * 100)
+        const isPerfect = percentage === 100
+        const isPassing = percentage >= 70
+
         return (
-            <div className="flex flex-col items-center justify-center h-96 space-y-6 bg-surface-800/30 rounded-2xl border border-surface-700">
+            <div className="flex flex-col items-center justify-center min-h-[400px] space-y-6 bg-surface-800/30 rounded-2xl border border-surface-700 p-8">
+                <div className={`text-6xl ${isPerfect ? 'animate-bounce' : ''}`}>
+                    {isPerfect ? '🏆' : isPassing ? '🎉' : '📚'}
+                </div>
                 <h3 className="text-3xl font-bold text-surface-100">Quiz Complete!</h3>
                 <div className="text-center">
-                    <p className="text-5xl font-bold text-primary-400 mb-2">
-                        {Math.round((resultData.score / resultData.total_questions) * 100)}%
+                    <p className={`text-5xl font-bold mb-2 ${
+                        isPerfect ? 'text-yellow-400' : isPassing ? 'text-primary-400' : 'text-amber-400'
+                    }`}>
+                        {percentage}%
                     </p>
                     <p className="text-surface-400">
                         You scored {resultData.score} out of {resultData.total_questions}
                     </p>
                     <p className="text-sm text-primary-300 mt-2">
                         +{resultData.xp_gained} XP Earned!
+                        {!resultData.xp_saved && (
+                            <span className="block text-amber-400 text-xs mt-1">
+                                ⚠️ XP not saved to profile
+                            </span>
+                        )}
                     </p>
+                    {xpWarning && (
+                        <p className="text-xs text-amber-400 mt-2 p-2 bg-amber-500/10 rounded border border-amber-500/30">
+                            {xpWarning}
+                        </p>
+                    )}
                 </div>
+
+                {quizStats && (
+                    <div className="flex gap-4 text-sm text-surface-500">
+                        <span>MCQ: {quizStats.byType.mcq}</span>
+                        <span>•</span>
+                        <span>Coding: {quizStats.byType.coding}</span>
+                    </div>
+                )}
 
                 <div className="flex gap-4">
                     <button
-                        onClick={loadQuiz}
+                        onClick={() => loadQuiz(quizId)}
                         className="px-8 py-3 bg-primary-600 hover:bg-primary-500 text-white rounded-xl transition-colors font-medium shadow-lg shadow-primary-900/20"
                     >
                         Try Again
@@ -279,12 +557,46 @@ function Quiz() {
 
     const currentQuestion = questions[currentQ]
     const selectedOption = answers[currentQuestion.id]
+    const isMCQ = currentQuestion.question_type === 'mcq'
+    const isCoding = currentQuestion.question_type === 'coding'
+
+    // Check if current question is answered
+    const isAnswered = isMCQ 
+        ? selectedOption !== undefined 
+        : selectedOption?.code !== undefined
 
     return (
-        <div className="max-w-3xl mx-auto mt-8">
-            <div className="mb-6 flex justify-between items-center text-surface-400 text-sm font-medium">
-                <div className="flex items-center gap-4">
-                    <span>Question {currentQ + 1} of {questions.length}</span>
+        <div className="max-w-4xl mx-auto mt-4">
+            {/* Progress bar */}
+            <div className="mb-6">
+                <div className="flex justify-between items-center text-surface-400 text-sm font-medium mb-2">
+                    <div className="flex items-center gap-4">
+                        <span>Question {currentQ + 1} of {questions.length}</span>
+                        <span className={`px-2 py-1 rounded-full text-xs ${
+                            isMCQ ? 'bg-blue-500/10 text-blue-400 border border-blue-500/30' 
+                                  : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30'
+                        }`}>
+                            {isMCQ ? 'Multiple Choice' : 'Coding Challenge'}
+                        </span>
+                        {currentQuestion.difficulty && (
+                            <span className={`px-2 py-1 rounded-full text-xs ${
+                                currentQuestion.difficulty === 'easy' ? 'bg-green-500/10 text-green-400' :
+                                currentQuestion.difficulty === 'medium' ? 'bg-amber-500/10 text-amber-400' :
+                                'bg-red-500/10 text-red-400'
+                            }`}>
+                                {currentQuestion.difficulty}
+                            </span>
+                        )}
+                    </div>
+                    <span className="text-surface-500">
+                        {DAY_META[activeDay]?.label} Quiz
+                    </span>
+                </div>
+                <div className="h-2 bg-surface-800 rounded-full overflow-hidden">
+                    <div 
+                        className="h-full bg-gradient-to-r from-primary-600 to-primary-400 transition-all duration-300"
+                        style={{ width: `${((currentQ + 1) / questions.length) * 100}%` }}
+                    />
                 </div>
             </div>
 
@@ -293,40 +605,124 @@ function Quiz() {
                     {currentQuestion.text}
                 </h3>
 
-                <div className="space-y-3">
-                    {currentQuestion.options.map((opt, idx) => (
-                        <button
-                            key={idx}
-                            onClick={() => handleAnswer(idx)}
-                            className={`w-full text-left p-4 rounded-xl border transition-all duration-200 flex justify-between items-center font-mono ${selectedOption === idx
-                                ? 'bg-primary-600/20 border-primary-500 text-primary-200'
-                                : 'bg-surface-700/50 border-surface-600 hover:bg-surface-700 hover:border-surface-500 text-surface-200'
+                {/* MCQ Options */}
+                {isMCQ && currentQuestion.options && (
+                    <div className="space-y-3">
+                        {currentQuestion.options.map((opt, idx) => (
+                            <button
+                                key={idx}
+                                onClick={() => handleMCQAnswer(idx)}
+                                className={`w-full text-left p-4 rounded-xl border transition-all duration-200 flex justify-between items-center ${
+                                    selectedOption === idx
+                                        ? 'bg-primary-600/20 border-primary-500 text-primary-200'
+                                        : 'bg-surface-700/50 border-surface-600 hover:bg-surface-700 hover:border-surface-500 text-surface-200'
                                 }`}
-                        >
-                            <span>{opt}</span>
-                            {selectedOption === idx && <span>Selected</span>}
-                        </button>
-                    ))}
-                </div>
+                            >
+                                <div className="flex items-center gap-3">
+                                    <span className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm font-medium ${
+                                        selectedOption === idx
+                                            ? 'bg-primary-500 text-white'
+                                            : 'bg-surface-600 text-surface-300'
+                                    }`}>
+                                        {String.fromCharCode(65 + idx)}
+                                    </span>
+                                    <span className="font-mono text-sm">{opt}</span>
+                                </div>
+                                {selectedOption === idx && (
+                                    <span className="text-primary-400">✓</span>
+                                )}
+                            </button>
+                        ))}
+                    </div>
+                )}
 
-                <div className="mt-8 flex justify-end">
+                {/* Coding Challenge */}
+                {isCoding && (
+                    <div className="mt-4">
+                        <CodeEditor
+                            starterCode={currentQuestion.starter_code || '# Write your code here\n'}
+                            testCases={currentQuestion.test_cases || []}
+                            onResult={handleCodingResult}
+                            questionId={currentQuestion.id}
+                        />
+                        {selectedOption?.allPassed !== undefined && (
+                            <div className={`mt-4 p-4 rounded-lg ${
+                                selectedOption.allPassed 
+                                    ? 'bg-emerald-500/10 border border-emerald-500/30 text-emerald-400'
+                                    : 'bg-amber-500/10 border border-amber-500/30 text-amber-400'
+                            }`}>
+                                {selectedOption.allPassed 
+                                    ? `✓ All ${selectedOption.total} test cases passed!`
+                                    : `${selectedOption.passed} of ${selectedOption.total} test cases passed`
+                                }
+                            </div>
+                        )}
+                    </div>
+                )}
+
+                {/* Navigation */}
+                <div className="mt-8 flex justify-between items-center">
+                    <button
+                        onClick={prevQuestion}
+                        disabled={currentQ === 0}
+                        className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                            currentQ === 0
+                                ? 'text-surface-600 cursor-not-allowed'
+                                : 'text-surface-400 hover:text-surface-200 hover:bg-surface-700'
+                        }`}
+                    >
+                        ← Previous
+                    </button>
+
+                    <div className="flex gap-2">
+                        {questions.map((_, idx) => (
+                            <button
+                                key={idx}
+                                onClick={() => setCurrentQ(idx)}
+                                className={`w-8 h-8 rounded-lg text-sm font-medium transition-colors ${
+                                    idx === currentQ
+                                        ? 'bg-primary-600 text-white'
+                                        : answers[questions[idx].id] !== undefined
+                                            ? 'bg-primary-600/20 text-primary-400'
+                                            : 'bg-surface-700 text-surface-400 hover:bg-surface-600'
+                                }`}
+                            >
+                                {idx + 1}
+                            </button>
+                        ))}
+                    </div>
+
                     <button
                         onClick={nextQuestion}
-                        disabled={selectedOption === undefined}
-                        className={`px-6 py-3 rounded-xl font-medium transition-colors ${selectedOption !== undefined
-                            ? 'bg-primary-600 hover:bg-primary-500 text-white'
-                            : 'bg-surface-700 text-surface-500 cursor-not-allowed'
-                            }`}
+                        disabled={!isAnswered && isMCQ}
+                        className={`px-6 py-3 rounded-xl font-medium transition-colors ${
+                            isAnswered || !isMCQ
+                                ? 'bg-primary-600 hover:bg-primary-500 text-white'
+                                : 'bg-surface-700 text-surface-500 cursor-not-allowed'
+                        }`}
                     >
-                        {currentQ < questions.length - 1 ? 'Next Question' : 'Submit Quiz'}
+                        {currentQ < questions.length - 1 ? 'Next →' : 'Submit Quiz'}
                     </button>
                 </div>
             </div>
+
+            {/* Explanation (shown after answering) */}
+            {currentQuestion.explanation && isAnswered && (
+                <div className="mt-4 p-4 bg-surface-800/50 rounded-xl border border-surface-700">
+                    <h4 className="text-sm font-medium text-primary-400 mb-2">💡 Explanation</h4>
+                    <p className="text-surface-300 text-sm">{currentQuestion.explanation}</p>
+                </div>
+            )}
         </div>
     )
 }
 
-function Transcripts() {
+function Transcripts({ activeDay }) {
+    if (activeDay === 'day-1') return <TranscriptsDay1 />
+    return <TranscriptsDay2 />
+}
+
+function TranscriptsDay1() {
     return (
         <div className="space-y-4 max-w-3xl">
             <details className="bg-surface-800/30 rounded-xl border border-surface-700 overflow-hidden group">
@@ -362,6 +758,43 @@ function Transcripts() {
                     Good: <code>name = "Angela"</code>
                     <br />
                     Separate words with underscores: <code>user_name</code>.
+                </div>
+            </details>
+        </div>
+    )
+}
+
+function TranscriptsDay2() {
+    return (
+        <div className="space-y-4 max-w-3xl">
+            <details className="bg-surface-800/30 rounded-xl border border-surface-700 overflow-hidden group">
+                <summary className="p-4 cursor-pointer font-medium text-surface-200 hover:bg-surface-800/50 transition-colors flex items-center justify-between">
+                    1. Python Primitive Data Types
+                    <span className="text-surface-500 group-open:rotate-180 transition-transform">▼</span>
+                </summary>
+                <div className="p-4 pt-0 text-surface-400 text-sm leading-relaxed border-t border-surface-700/50 mt-2">
+                    Integers, floats, booleans, and strings each store data differently. Use <code>type()</code> to inspect values,
+                    and remember that quotes instantly turn numbers into strings.
+                </div>
+            </details>
+            <details className="bg-surface-800/30 rounded-xl border border-surface-700 overflow-hidden group">
+                <summary className="p-4 cursor-pointer font-medium text-surface-200 hover:bg-surface-800/50 transition-colors flex items-center justify-between">
+                    2. Type Errors and Conversion
+                    <span className="text-surface-500 group-open:rotate-180 transition-transform">▼</span>
+                </summary>
+                <div className="p-4 pt-0 text-surface-400 text-sm leading-relaxed border-t border-surface-700/50 mt-2">
+                    Mixing strings with ints in math triggers <code>TypeError</code>. Convert with <code>int()</code>, <code>float()</code>, or <code>str()</code>
+                    before concatenating or calculating.
+                </div>
+            </details>
+            <details className="bg-surface-800/30 rounded-xl border border-surface-700 overflow-hidden group">
+                <summary className="p-4 cursor-pointer font-medium text-surface-200 hover:bg-surface-800/50 transition-colors flex items-center justify-between">
+                    3. Number Manipulation & F-Strings
+                    <span className="text-surface-500 group-open:rotate-180 transition-transform">▼</span>
+                </summary>
+                <div className="p-4 pt-0 text-surface-400 text-sm leading-relaxed border-t border-surface-700/50 mt-2">
+                    Use math operators (<code>**</code>, <code>//</code>, <code>%</code>) and PEMDAS to shape calculations. F-strings make it easy to
+                    embed values and format decimals (e.g., <code>{'{value:.2f}'}</code> for money).
                 </div>
             </details>
         </div>

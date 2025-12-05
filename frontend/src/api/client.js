@@ -65,6 +65,7 @@ export const achievementsAPI = {
 export const rpgAPI = {
   getState: () => fetchAPI('/rpg/state'),
   buyItem: (itemId) => fetchAPI(`/rpg/buy/${itemId}`, { method: 'POST' }),
+  awardXP: (amount) => fetchAPI(`/rpg/award-xp?amount=${amount}`, { method: 'POST' }),
 }
 
 // Quizzes API

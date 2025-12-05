@@ -170,6 +170,32 @@ def get_rpg_state(db: Session = Depends(get_db)):
     }
 
 
+@router.post("/award-xp")
+def award_xp(amount: int, db: Session = Depends(get_db)):
+    """Award XP to the current user (e.g., from quiz completion)."""
+    if amount <= 0:
+        raise HTTPException(status_code=400, detail="XP amount must be positive")
+    if amount > 1000:
+        raise HTTPException(status_code=400, detail="XP amount too large (max 1000 per request)")
+    
+    user = db.query(User).filter(User.id == DEFAULT_USER_ID).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    old_level = level_from_xp(user.xp)
+    user.xp += amount
+    new_level = level_from_xp(user.xp)
+    
+    db.commit()
+    
+    return {
+        "xp_awarded": amount,
+        "total_xp": user.xp,
+        "level": new_level,
+        "leveled_up": new_level > old_level
+    }
+
+
 @router.post("/buy/{item_id}")
 def buy_item(item_id: str, db: Session = Depends(get_db)):
     """Buy an item from the shop."""
