@@ -1,0 +1,162 @@
+[
+  {
+    "text": "What is the purpose of a Flowchart in programming?",
+    "options": [
+      "To draw pretty pictures",
+      "To break down complex problems into steps",
+      "To compile the code faster",
+      "To debug syntax errors"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "flowcharts",
+    "explanation": "Flowcharts are visual representations used to plan and break down the logic of a program."
+  },
+  {
+    "text": "How do you pick a random item from a list `fruits`?",
+    "options": [
+      "random.pick(fruits)",
+      "random.choice(fruits)",
+      "random.select(fruits)",
+      "fruits.random()"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "random",
+    "explanation": "`random.choice(list)` returns a random element from the non-empty sequence."
+  },
+  {
+    "text": "Which operator checks if a value exists inside a list or string?",
+    "options": [
+      "exists",
+      "has",
+      "in",
+      "contains"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "logic",
+    "explanation": "The `in` keyword checks for membership. E.g., `'a' in 'apple'` is True."
+  },
+  {
+    "text": "How do you import only `logo` from `hangman_art.py`?",
+    "options": [
+      "import logo from hangman_art",
+      "from hangman_art import logo",
+      "import hangman_art.logo",
+      "using hangman_art import logo"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "modules",
+    "explanation": "The syntax is `from module_name import item_name`."
+  },
+  {
+    "text": "What happens if you try to assign `word[0] = 'a'` where `word` is a string?",
+    "options": [
+      "It changes the first letter",
+      "It creates a new string",
+      "It throws a TypeError (Strings are immutable)",
+      "It works if the string is empty"
+    ],
+    "correct_index": 2,
+    "difficulty": "medium",
+    "topic_tag": "strings",
+    "explanation": "Strings in Python are immutable. You cannot change characters in place; you must create a new string or list."
+  },
+  {
+    "text": "If `lives = 6`, what logic checks if the player has lost?",
+    "options": [
+      "lives > 0",
+      "lives == 0",
+      "lives < 6",
+      "lives != 0"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "flowcharts",
+    "explanation": "If lives reach 0, the game is over and the player has lost."
+  },
+  {
+    "question_type": "coding",
+    "text": "Check Membership\nWrite a function `check_in_list(item, my_list)` that returns True if `item` is in `my_list`.",
+    "starter_code": "def check_in_list(item, my_list):\n    # Use 'in' keyword\n    pass",
+    "test_cases": [
+      {
+        "input": [
+          "a",
+          [
+            "a",
+            "b"
+          ]
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          "z",
+          [
+            "a",
+            "b"
+          ]
+        ],
+        "expected": false
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "logic",
+    "solution_code": "def check_in_list(item, my_list):\n    return item in my_list"
+  },
+  {
+    "question_type": "coding",
+    "text": "Update Blanks\nGiven a word \"apple\" and a list of blanks `['_', '_', '_', '_', '_']`,\nupdate the blanks to show 'p' at the correct indices.",
+    "starter_code": "def update_blanks(word, blanks, guess):\n    # Loop through word by index (range(len(word)))\n    # If letter matches guess, update blanks matched index\n    return blanks",
+    "test_cases": [
+      {
+        "input": [
+          "apple",
+          [
+            "_",
+            "_",
+            "_",
+            "_",
+            "_"
+          ],
+          "p"
+        ],
+        "expected": [
+          "_",
+          "p",
+          "p",
+          "_",
+          "_"
+        ]
+      }
+    ],
+    "difficulty": "hard",
+    "topic_tag": "loops",
+    "solution_code": "def update_blanks(word, blanks, guess):\n    for i in range(len(word)):\n        if word[i] == guess:\n            blanks[i] = guess\n    return blanks"
+  },
+  {
+    "question_type": "coding",
+    "text": "Game Over Logic\nWrite a function `is_game_over(lives)` that returns True if lives are 0.",
+    "starter_code": "def is_game_over(lives):\n    # Return True if 0\n    pass",
+    "test_cases": [
+      {
+        "input": [
+          0
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          1
+        ],
+        "expected": false
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "flowcharts",
+    "solution_code": "def is_game_over(lives):\n    return lives == 0"
+  }
+]

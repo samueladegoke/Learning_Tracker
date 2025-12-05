@@ -7,23 +7,6 @@ project:
   sprint_start: "2025-12-05"
   sprint_end: "2025-12-12"
 
-# Sprint Goal
-sprint_goal: "Extend course content to Day 4-5, improve infrastructure, and add test coverage"
-
-# Epics and Stories
-epics:
-  - id: "epic-content"
-    name: "Course Content Integration"
-    status: "in-progress"
-    priority: 1
-    stories:
-      - id: "story-day4"
-        name: "Day 4: Randomisation and Python Lists"
-        status: "ready"
-        priority: 1
-        estimate: "4h"
-        tasks:
-          - "[ ] Add Day 4 to DAY_META"
           - "[ ] Create DeepDiveDay4 (lists, random module)"
           - "[ ] Create TranscriptsDay4"
           - "[ ] Add DAY4_QUESTIONS to seed script"
@@ -122,7 +105,27 @@ metrics:
   capacity: 3  # Target stories this sprint
   blocked: 0
 
+completions:
+  - id: "story-day4"
+    name: "Day 4: Randomisation & Lists"
+    completed_date: "2025-12-05"
+  - id: "story-day5"
+    name: "Day 5: Python Loops"
+    completed_date: "2025-12-05"
+  - id: "story-day6"
+    name: "Day 6: Functions & Karel"
+    completed_date: "2025-12-05"
+  - id: "story-day7"
+    name: "Day 7: Hangman Project"
+    completed_date: "2025-12-05"
+  - id: "story-backend-docs"
+    name: "Backend API Documentation"
+    completed_date: "2025-12-05"
+  - id: "story-tech-debt-seed"
+    name: "Refactor Seed Script"
+    completed_date: "2025-12-05"
+    notes: "Migrated to JSON loader"
+
 # Next Actions
 next_actions:
-  - "Start story-day4 (Day 4 content integration)"
-  - "Create backend documentation"
+  - "Start story-day8 (Function Parameters & Caesar Cipher)"

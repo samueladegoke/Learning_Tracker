@@ -1,0 +1,167 @@
+[
+  {
+    "text": "Which keyword is used to define a function in Python?",
+    "options": [
+      "function",
+      "def",
+      "define",
+      "func"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "functions",
+    "explanation": "The `def` keyword is used to define a new function."
+  },
+  {
+    "text": "What is the correct way to call a function named `move`?",
+    "options": [
+      "move",
+      "call move",
+      "move()",
+      "run move()"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "functions",
+    "explanation": "You call a function by writing its name followed by parentheses `()`."
+  },
+  {
+    "text": "What happens if you mix tabs and spaces for indentation in Python 3?",
+    "options": [
+      "It works fine",
+      "It causes an IndentationError",
+      "It runs but warns you",
+      "It automatically fixes it"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "indentation",
+    "explanation": "Python 3 disallows mixing tabs and spaces for indentation. You should stick to 4 spaces."
+  },
+  {
+    "text": "When does a `while` loop stop running?",
+    "options": [
+      "When the condition becomes False",
+      "When the condition becomes True",
+      "After 10 iterations",
+      "Never"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "loops",
+    "explanation": "A while loop runs *while* the condition is True, and stops when it becomes False."
+  },
+  {
+    "text": "What is an infinite loop?",
+    "options": [
+      "A loop that runs very fast",
+      "A loop that never stops because the condition remains True",
+      "A loop with too many lines of code",
+      "A loop inside another loop"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "loops",
+    "explanation": "An infinite loop occurs when the loop's condition never becomes False."
+  },
+  {
+    "text": "In the Right-Hand Rule maze algorithm, what do you do if the right is clear?",
+    "options": [
+      "Go straight",
+      "Turn left",
+      "Turn right and move",
+      "Stop"
+    ],
+    "correct_index": 2,
+    "difficulty": "medium",
+    "topic_tag": "algorithms",
+    "explanation": "If the right is clear, you turn right to follow the wall."
+  },
+  {
+    "question_type": "coding",
+    "text": "Define a Function\nWrite a function named `greet` that simply prints 'Hello World'.\nDo not call it, just define it.",
+    "starter_code": "# Define your function here\n",
+    "test_cases": [
+      {
+        "input": [],
+        "expected": "Hello World",
+        "code_check": "def greet"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "functions",
+    "solution_code": "def greet():\n    print('Hello World')"
+  },
+  {
+    "question_type": "coding",
+    "text": "While Loop Countdown\nWrite a function `countdown` that prints numbers from `n` down to 1 using a `while` loop.\nExample n=3 outputs:\n3\n2\n1",
+    "starter_code": "def countdown(n):\n    # Write your while loop here\n    pass",
+    "test_cases": [
+      {
+        "input": [
+          3
+        ],
+        "expected": "3\n2\n1"
+      },
+      {
+        "input": [
+          1
+        ],
+        "expected": "1"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "loops",
+    "solution_code": "def countdown(n):\n    while n > 0:\n        print(n)\n        n -= 1"
+  },
+  {
+    "question_type": "coding",
+    "text": "Is It Clear?\nWrite a function `check_path` that returns True if `obstacle` is False, and False otherwise.\nLogic: while obstacle is True, return False. If we exit/skip loop, return True.",
+    "starter_code": "def check_path(obstacle):\n    # Use a while loop or if check\n    return False",
+    "test_cases": [
+      {
+        "input": [
+          false
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          true
+        ],
+        "expected": false
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "logic",
+    "solution_code": "def check_path(obstacle):\n    if obstacle:\n        return False\n    return True"
+  },
+  {
+    "question_type": "coding",
+    "text": "Factorial with While\nCalculate the factorial of `n` using a `while` loop.\nfactorial(5) = 5 * 4 * 3 * 2 * 1 = 120",
+    "starter_code": "def factorial(n):\n    result = 1\n    # Use while loop\n    return result",
+    "test_cases": [
+      {
+        "input": [
+          5
+        ],
+        "expected": 120
+      },
+      {
+        "input": [
+          3
+        ],
+        "expected": 6
+      },
+      {
+        "input": [
+          1
+        ],
+        "expected": 1
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "algorithms",
+    "solution_code": "def factorial(n):\n    result = 1\n    while n > 0:\n        result *= n\n        n -= 1\n    return result"
+  }
+]

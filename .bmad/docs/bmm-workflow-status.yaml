@@ -17,8 +17,8 @@ completed_phases:
 
 # Active work items
 active_work:
-  current_task: "Day 3 Content Integration"
-  status: "completed"
+  current_task: "Day 6 Content Integration"
+  status: "pending"
   last_updated: "2025-12-05"
 
 # Sprint tracking
@@ -34,6 +34,21 @@ sprints:
           status: "done"
           tasks_completed: 7
           tasks_total: 7
+        - id: "story-day4"
+          name: "Day 4: Randomisation and Python Lists"
+          status: "done"
+          tasks_completed: 7
+          tasks_total: 7
+        - id: "story-day5"
+          name: "Day 5: Python Loops"
+          status: "done"
+          tasks_completed: 7
+          tasks_total: 7
+        - id: "story-day6"
+          name: "Day 6: Python Functions & Karel"
+          status: "todo"
+          tasks_completed: 0
+          tasks_total: 7
 
 # Recent activity
 changelog:
@@ -41,5 +56,11 @@ changelog:
     action: "Day 3 integration complete"
     details: "Added DeepDive, Transcripts, Quiz (15 questions seeded)"
   - date: "2025-12-05"
+    action: "Day 4 integration complete"
+    details: "Added Random module and List topics. Seeded questions."
+  - date: "2025-12-05"
+    action: "Day 5 integration complete"
+    details: "Added Loops and Range topics. Seeded questions."
+  - date: "2025-12-05"
     action: "Code review fixes"
-    details: "Security (service key), performance (split ops), maintainability (routers)"
+    details: "Refactored Practice.jsx, hardened seed script, updated API docs."

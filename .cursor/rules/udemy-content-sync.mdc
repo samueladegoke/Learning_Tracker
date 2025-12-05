@@ -1,0 +1,27 @@
+---
+description: Rule to synchronize implementation with Udemy course content
+globs: frontend/src/components/content/**/*, frontend/src/pages/Practice.jsx, scripts/seed_supabase_questions.py
+alwaysApply: true
+---
+
+# Udemy Content Synchronization Rule
+
+This rule enforces that all "Day X" content implemented in the project MUST be derived from the corresponding source material in the `Udemy - 100 Days of Code The Complete Python Pro Bootcamp 2025-8` directory.
+
+## 1. Context Gathering
+Before creating `DeepDive`, `Transcripts`, or `Questions` for a new Day:
+1.  **Locate Source Files**: Find the directory matching the Day number in `Udemy - 100 Days of Code The Complete Python Pro Bootcamp 2025-8`.
+2.  **Audit Content**: List the files to understand the topics covered (e.g., video titles, code files).
+3.  **Extract Details**: Read relevant VTT (transcript) or code files to capture:
+    - Specific terminology (e.g., "Hurdle 1", "Escaping the Maze").
+    - Algorithms or logic rules (e.g., "Right-Hand Rule").
+    - Code examples used in the lesson.
+
+## 2. Implementation Requirements
+- **DeepDive**: Must reference specific concepts found in the source files.
+- **Transcripts**: Must be based on potential summaries of the actual video content topics.
+- **Quiz**: Questions must test concepts present in the Udemy directory for that Day.
+
+## 3. Local Alignment
+- Use the existing `task.md` and project structure (frontend/backend separation) to integrate the verified content seamlessly.
+- Use `frontend/.env` to locate necessary backend keys (e.g., `SUPABASE_SERVICE_ROLE_KEY`) if needed for seeding content.

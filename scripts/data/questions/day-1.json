@@ -1,0 +1,262 @@
+[
+  {
+    "question_type": "mcq",
+    "text": "What is the correct way to assign the value 10 to a variable named 'score'?",
+    "options": [
+      "score == 10",
+      "score = 10",
+      "10 = score",
+      "int score = 10"
+    ],
+    "correct_index": 1,
+    "explanation": "In Python, '=' is the assignment operator. 'score = 10' assigns the value 10 to the variable score.",
+    "difficulty": "easy",
+    "topic_tag": "variables"
+  },
+  {
+    "question_type": "mcq",
+    "text": "Which function is used to display output in Python?",
+    "options": [
+      "echo()",
+      "display()",
+      "print()",
+      "output()"
+    ],
+    "correct_index": 2,
+    "explanation": "The print() function is used to display output to the console in Python.",
+    "difficulty": "easy",
+    "topic_tag": "print"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What will print('Hello' + ' ' + 'World') output?",
+    "options": [
+      "Hello World",
+      "HelloWorld",
+      "Hello + World",
+      "Error"
+    ],
+    "correct_index": 0,
+    "explanation": "The + operator concatenates strings. Adding 'Hello', ' ', and 'World' produces 'Hello World'.",
+    "difficulty": "easy",
+    "topic_tag": "strings"
+  },
+  {
+    "question_type": "mcq",
+    "text": "Which function is used to get user input in Python?",
+    "options": [
+      "get()",
+      "scan()",
+      "input()",
+      "read()"
+    ],
+    "correct_index": 2,
+    "explanation": "The input() function reads a line from user input and returns it as a string.",
+    "difficulty": "easy",
+    "topic_tag": "input"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the output of: print(len('Python'))?",
+    "options": [
+      "5",
+      "6",
+      "7",
+      "Error"
+    ],
+    "correct_index": 1,
+    "explanation": "len() returns the number of characters in a string. 'Python' has 6 characters.",
+    "difficulty": "easy",
+    "topic_tag": "strings"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What will be stored in x after: x = input('Enter: ')\\n(user types '42')?",
+    "options": [
+      "42 (integer)",
+      "'42' (string)",
+      "None",
+      "Error"
+    ],
+    "correct_index": 1,
+    "explanation": "input() always returns a string, even if the user enters numbers. To get an integer, use int(input()).",
+    "difficulty": "medium",
+    "topic_tag": "input"
+  },
+  {
+    "question_type": "mcq",
+    "text": "Which is a valid variable name in Python?",
+    "options": [
+      "2nd_place",
+      "my-variable",
+      "_private",
+      "class"
+    ],
+    "correct_index": 2,
+    "explanation": "Variable names can start with letters or underscores, but not numbers or hyphens. 'class' is a reserved keyword.",
+    "difficulty": "medium",
+    "topic_tag": "variables"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does the following code print?\\nname = 'Alice'\\nprint(f'Hello, {name}!')",
+    "options": [
+      "Hello, {name}!",
+      "Hello, Alice!",
+      "Hello, name!",
+      "Error"
+    ],
+    "correct_index": 1,
+    "explanation": "f-strings (formatted string literals) allow embedding expressions inside curly braces. {name} is replaced with 'Alice'.",
+    "difficulty": "medium",
+    "topic_tag": "strings"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is string concatenation?",
+    "options": [
+      "Comparing two strings",
+      "Joining strings together",
+      "Splitting a string",
+      "Reversing a string"
+    ],
+    "correct_index": 1,
+    "explanation": "String concatenation is the operation of joining two or more strings end-to-end using the + operator.",
+    "difficulty": "medium",
+    "topic_tag": "strings"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What will print('\\n') output?",
+    "options": [
+      "\\n",
+      "n",
+      "A blank line",
+      "Error"
+    ],
+    "correct_index": 2,
+    "explanation": "\\n is an escape sequence representing a newline character. Printing it creates a blank line.",
+    "difficulty": "medium",
+    "topic_tag": "strings"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the output of: print('Python'[1])?",
+    "options": [
+      "P",
+      "y",
+      "Py",
+      "Error"
+    ],
+    "correct_index": 1,
+    "explanation": "String indexing in Python is 0-based. Index 1 refers to the second character, which is 'y'.",
+    "difficulty": "hard",
+    "topic_tag": "strings"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What happens if you try to concatenate a string and an integer: 'Age: ' + 25?",
+    "options": [
+      "'Age: 25'",
+      "Age: 25",
+      "TypeError",
+      "'Age: ' + 25"
+    ],
+    "correct_index": 2,
+    "explanation": "Python raises a TypeError when trying to concatenate string and integer. Use str(25) to convert first.",
+    "difficulty": "hard",
+    "topic_tag": "strings"
+  },
+  {
+    "question_type": "coding",
+    "text": "Write a function called 'greet' that takes a name parameter and returns a greeting in the format 'Hello, [name]!'",
+    "starter_code": "def greet(name):\n    # Your code here\n    pass",
+    "test_cases": [
+      {
+        "function_call": "greet('Alice')",
+        "expected": "Hello, Alice!"
+      },
+      {
+        "function_call": "greet('Bob')",
+        "expected": "Hello, Bob!"
+      },
+      {
+        "function_call": "greet('World')",
+        "expected": "Hello, World!"
+      }
+    ],
+    "solution_code": "def greet(name):\n    return f'Hello, {name}!'",
+    "explanation": "Use an f-string to embed the name parameter in the greeting string.",
+    "difficulty": "easy",
+    "topic_tag": "functions"
+  },
+  {
+    "question_type": "coding",
+    "text": "Write a function called 'string_length' that returns the length of a given string.",
+    "starter_code": "def string_length(text):\n    # Your code here\n    pass",
+    "test_cases": [
+      {
+        "function_call": "string_length('hello')",
+        "expected": "5"
+      },
+      {
+        "function_call": "string_length('')",
+        "expected": "0"
+      },
+      {
+        "function_call": "string_length('Python')",
+        "expected": "6"
+      }
+    ],
+    "solution_code": "def string_length(text):\n    return len(text)",
+    "explanation": "Use the built-in len() function to get the length of a string.",
+    "difficulty": "easy",
+    "topic_tag": "strings"
+  },
+  {
+    "question_type": "coding",
+    "text": "Write a function called 'first_last' that takes a string and returns a new string with only the first and last characters.",
+    "starter_code": "def first_last(text):\n    # Your code here\n    pass",
+    "test_cases": [
+      {
+        "function_call": "first_last('hello')",
+        "expected": "ho"
+      },
+      {
+        "function_call": "first_last('Python')",
+        "expected": "Pn"
+      },
+      {
+        "function_call": "first_last('ab')",
+        "expected": "ab"
+      }
+    ],
+    "solution_code": "def first_last(text):\n    return text[0] + text[-1]",
+    "explanation": "Use index 0 for the first character and index -1 for the last character.",
+    "difficulty": "medium",
+    "topic_tag": "strings"
+  },
+  {
+    "question_type": "coding",
+    "text": "Write a function called 'combine_words' that takes two strings and returns them combined with a space between.",
+    "starter_code": "def combine_words(word1, word2):\n    # Your code here\n    pass",
+    "test_cases": [
+      {
+        "function_call": "combine_words('Hello', 'World')",
+        "expected": "Hello World"
+      },
+      {
+        "function_call": "combine_words('Good', 'Morning')",
+        "expected": "Good Morning"
+      },
+      {
+        "function_call": "combine_words('Python', 'Programming')",
+        "expected": "Python Programming"
+      }
+    ],
+    "solution_code": "def combine_words(word1, word2):\n    return word1 + ' ' + word2",
+    "explanation": "Concatenate the two words with a space in between using the + operator.",
+    "difficulty": "medium",
+    "topic_tag": "strings"
+  }
+]

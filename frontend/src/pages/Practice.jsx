@@ -9,12 +9,16 @@ import DeepDiveDay2 from '../components/content/DeepDive/Day2'
 import DeepDiveDay3 from '../components/content/DeepDive/Day3'
 import DeepDiveDay4 from '../components/content/DeepDive/Day4'
 import DeepDiveDay5 from '../components/content/DeepDive/Day5'
+import DeepDiveDay6 from '../components/content/DeepDive/Day6'
+import DeepDiveDay7 from '../components/content/DeepDive/Day7'
 
 import TranscriptsDay1 from '../components/content/Transcripts/Day1'
 import TranscriptsDay2 from '../components/content/Transcripts/Day2'
 import TranscriptsDay3 from '../components/content/Transcripts/Day3'
 import TranscriptsDay4 from '../components/content/Transcripts/Day4'
 import TranscriptsDay5 from '../components/content/Transcripts/Day5'
+import TranscriptsDay6 from '../components/content/Transcripts/Day6'
+import TranscriptsDay7 from '../components/content/Transcripts/Day7'
 
 const DAY_META = {
     'day-1': {
@@ -56,6 +60,22 @@ const DAY_META = {
         quizId: 'day-5-practice',
         level: 'beginner',
         topics: ['for-loops', 'range', 'code-blocks', 'algorithms']
+    },
+    'day-6': {
+        label: 'Day 6',
+        title: 'Day 6: Python Functions & Karel',
+        subtitle: 'Defining Functions, While Loops, and Algorithmic Thinking.',
+        quizId: 'day-6-practice',
+        level: 'Beginner',
+        topics: ['functions', 'while-loops', 'indentation', 'algorithms']
+    },
+    'day-7': {
+        label: 'Day 7',
+        title: 'Day 7: Hangman Project',
+        subtitle: 'Flowcharts, Lists, Strings, and Building a Complete Game.',
+        quizId: 'day-7-practice',
+        level: 'Beginner',
+        topics: ['flowcharts', 'lists', 'strings', 'modules']
     }
 }
 
@@ -144,7 +164,9 @@ function DeepDive({ activeDay }) {
         'day-2': DeepDiveDay2,
         'day-3': DeepDiveDay3,
         'day-4': DeepDiveDay4,
-        'day-5': DeepDiveDay5
+        'day-5': DeepDiveDay5,
+        'day-6': DeepDiveDay6,
+        'day-7': DeepDiveDay7
     }
     const Component = components[activeDay]
     if (!Component) {
@@ -539,7 +561,9 @@ function Transcripts({ activeDay }) {
         'day-2': TranscriptsDay2,
         'day-3': TranscriptsDay3,
         'day-4': TranscriptsDay4,
-        'day-5': TranscriptsDay5
+        'day-5': TranscriptsDay5,
+        'day-6': TranscriptsDay6,
+        'day-7': TranscriptsDay7
     }
     const Component = components[activeDay]
     if (!Component) {

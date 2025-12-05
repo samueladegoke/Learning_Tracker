@@ -1,0 +1,318 @@
+[
+  {
+    "text": "What does a `for` loop do in Python?",
+    "options": [
+      "Creates a variable that stores a list",
+      "Repeats a block of code for each item in a collection",
+      "Decides between two options based on a condition",
+      "Defines a new function"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "loops",
+    "explanation": "A for loop iterates over a sequence (like a list or range) and executes the block of code for each item."
+  },
+  {
+    "text": "What sequence of numbers does `range(1, 5)` generate?",
+    "options": [
+      "1, 2, 3, 4, 5",
+      "1, 2, 3, 4",
+      "0, 1, 2, 3, 4",
+      "2, 3, 4, 5"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "range",
+    "explanation": "The range function includes the start value (1) but excludes the stop value (5). So it gives 1, 2, 3, 4."
+  },
+  {
+    "text": "Which code snippet correctly prints 'Hello' 5 times?",
+    "options": [
+      "for i in range(5): print('Hello')",
+      "for i in range(1, 4): print('Hello')",
+      "print('Hello') * 5",
+      "loop 5: print('Hello')"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "loops",
+    "explanation": "`range(5)` generates numbers 0, 1, 2, 3, 4, which is 5 iterations."
+  },
+  {
+    "text": "What is the output of `range(0, 10, 3)`?",
+    "options": [
+      "0, 1, 2, 3, ... 9",
+      "0, 3, 6, 9",
+      "3, 6, 9",
+      "0, 3, 6, 9, 12"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "range",
+    "explanation": "It starts at 0, steps by 3 (0, 3, 6, 9). The next number 12 is >= 10, so it stops."
+  },
+  {
+    "text": "In `for item in items:`, what happens if `items` is an empty list?",
+    "options": [
+      "The loop runs once with None",
+      "It raises an error",
+      "The loop body never executes",
+      "The loop runs infinitely"
+    ],
+    "correct_index": 2,
+    "difficulty": "medium",
+    "topic_tag": "loops",
+    "explanation": "If the collection is empty, there are no items to iterate over, so the loop body is skipped entirely."
+  },
+  {
+    "text": "How do you calculate the sum of a list `numbers` without using `sum()`?",
+    "options": [
+      "total = 0\nfor n in numbers: total += n",
+      "total = 0\nfor n in numbers: total = n",
+      "for n in numbers: total += n",
+      "total = numbers[0] + numbers[-1]"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "algorithms",
+    "explanation": "You need to initialize an accumulator variable (`total = 0`) and add each number to it in the loop."
+  },
+  {
+    "text": "Which indentation is correct for the code inside a for loop?",
+    "options": [
+      "No indentation needed",
+      "2 spaces",
+      "4 spaces (or 1 tab)",
+      "Align with the for keyword"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "code-blocks",
+    "explanation": "Standard Python indentation is 4 spaces. The code block inside the loop MUST be indented."
+  },
+  {
+    "text": "What does `break` do inside a loop?",
+    "options": [
+      "Pauses the loop",
+      "Exits the loop immediately",
+      "Skips the current iteration",
+      "Breaks the computer"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "control-flow",
+    "explanation": "`break` stops the loop execution entirely and moves to the code after the loop."
+  },
+  {
+    "text": "If `fruits = ['Apple', 'Pear']`, what does `for f in fruits` print?",
+    "options": [
+      "Apple, then Pear",
+      "0, then 1",
+      "['Apple', 'Pear']",
+      "f"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "loops",
+    "explanation": "The loop variable `f` takes on the value of each item in the list sequentially."
+  },
+  {
+    "text": "What is the maximum value in `range(1, 101)`?",
+    "options": [
+      "99",
+      "100",
+      "101",
+      "1"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "range",
+    "explanation": "The stop value 101 is exclusive, so the sequence goes up to 100."
+  },
+  {
+    "question_type": "coding",
+    "text": "Average Height\nWrite a program that calculates the average height from a list of heights.\nDO NOT use `sum()` or `len()`.\n\nExample Input:\nheights = [180, 124, 165, 173, 189, 169, 146]\nExample Output:\n163",
+    "starter_code": "def solve(heights):\n    # Write your code here\n    # Use a for loop to calculate total_height and number_of_students\n    return 0",
+    "test_cases": [
+      {
+        "input": [
+          [
+            180,
+            124,
+            165,
+            173,
+            189,
+            169,
+            146
+          ]
+        ],
+        "expected": 163
+      },
+      {
+        "input": [
+          [
+            150,
+            150,
+            150
+          ]
+        ],
+        "expected": 150
+      },
+      {
+        "input": [
+          [
+            200,
+            100
+          ]
+        ],
+        "expected": 150
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "algorithms",
+    "solution_code": "def solve(heights):\n    total_height = 0\n    count = 0\n    for h in heights:\n        total_height += h\n        count += 1\n    return round(total_height / count)"
+  },
+  {
+    "question_type": "coding",
+    "text": "Highest Score\nWrite a program that calculates the highest score from a list of scores.\nDO NOT use `max()`.\n\nExample Input:\nscores = [78, 65, 89, 86, 55, 91, 64, 89]\nExample Output:\n91",
+    "starter_code": "def solve(scores):\n    # Write your code here\n    return 0",
+    "test_cases": [
+      {
+        "input": [
+          [
+            78,
+            65,
+            89,
+            86,
+            55,
+            91,
+            64,
+            89
+          ]
+        ],
+        "expected": 91
+      },
+      {
+        "input": [
+          [
+            10,
+            20,
+            5
+          ]
+        ],
+        "expected": 20
+      },
+      {
+        "input": [
+          [
+            5,
+            4,
+            3
+          ]
+        ],
+        "expected": 5
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "algorithms",
+    "solution_code": "def solve(scores):\n    highest = 0\n    for score in scores:\n        if score > highest:\n            highest = score\n    return highest"
+  },
+  {
+    "question_type": "coding",
+    "text": "Adding Even Numbers\nCalculate the sum of all even numbers from 1 to 100 (including 100).\nRange should be `range(1, 101)` or similar logic.\n\nOutput should be the single integer sum.",
+    "starter_code": "def solve():\n    # Write your code here\n    return 0",
+    "test_cases": [
+      {
+        "input": [],
+        "expected": 2550
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "range",
+    "solution_code": "def solve():\n    total = 0\n    for number in range(2, 101, 2):\n        total += number\n    return total"
+  },
+  {
+    "question_type": "coding",
+    "text": "FizzBuzz\nWrite a function that returns a list of numbers from 1 to `n`.\nBut for multiples of 3, use 'Fizz' instead of the number.\nFor multiples of 5, use 'Buzz'.\nFor multiples of both 3 and 5, use 'FizzBuzz'.\n\nExample n=5: [1, 2, 'Fizz', 4, 'Buzz']",
+    "starter_code": "def solve(n):\n    result = []\n    # Write your code here\n    return result",
+    "test_cases": [
+      {
+        "input": [
+          5
+        ],
+        "expected": [
+          1,
+          2,
+          "Fizz",
+          4,
+          "Buzz"
+        ]
+      },
+      {
+        "input": [
+          15
+        ],
+        "expected": [
+          1,
+          2,
+          "Fizz",
+          4,
+          "Buzz",
+          "Fizz",
+          7,
+          8,
+          "Fizz",
+          "Buzz",
+          11,
+          "Fizz",
+          13,
+          14,
+          "FizzBuzz"
+        ]
+      }
+    ],
+    "difficulty": "hard",
+    "topic_tag": "algorithms",
+    "solution_code": "def solve(n):\n    result = []\n    for number in range(1, n + 1):\n        if number % 3 == 0 and number % 5 == 0:\n            result.append('FizzBuzz')\n        elif number % 3 == 0:\n            result.append('Fizz')\n        elif number % 5 == 0:\n            result.append('Buzz')\n        else:\n            result.append(number)\n    return result"
+  },
+  {
+    "question_type": "coding",
+    "text": "Simple Password Generator\nCreate a function that combines a list of letters, numbers, and symbols into a single string.\nInput: letters=['a', 'b'], numbers=['1'], symbols=['!']\nOutput: 'ab1!' (Order: letters, then symbols, then numbers - simplified for this check)",
+    "starter_code": "def solve(letters, numbers, symbols):\n    # Combine them all into one string in order: letters + symbols + numbers\n    return ''",
+    "test_cases": [
+      {
+        "input": [
+          [
+            "a",
+            "b"
+          ],
+          [
+            "1"
+          ],
+          [
+            "!"
+          ]
+        ],
+        "expected": "ab!1"
+      },
+      {
+        "input": [
+          [
+            "A"
+          ],
+          [
+            "9",
+            "8"
+          ],
+          [
+            "#"
+          ]
+        ],
+        "expected": "A#98"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "strings",
+    "solution_code": "def solve(letters, numbers, symbols):\n    password = ''\n    for char in letters:\n        password += char\n    for char in symbols:\n        password += char\n    for char in numbers:\n        password += char\n    return password"
+  }
+]

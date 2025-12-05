@@ -12,6 +12,7 @@ A gamified learning dashboard for tracking progress through the 100 Days of Code
 - [Frontend Guide](./frontend.md)
 - [Backend Guide](./backend.md)
 - [API Reference](./api.md)
+- [Project Rules](./project-rules.md)
 
 ---
 
