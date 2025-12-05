@@ -20,6 +20,14 @@ const DAY_META = {
         quizId: 'day-2-practice',
         level: 'beginner',
         topics: ['integers', 'floats', 'strings']
+    },
+    'day-3': {
+        label: 'Day 3',
+        title: 'Day 3: Control Flow & Logical Operators',
+        subtitle: 'Make decisions in code with if/else, conditionals, and logical operators.',
+        quizId: 'day-3-practice',
+        level: 'beginner',
+        topics: ['control-flow', 'logical-operators', 'modulo', 'conditionals']
     }
 }
 
@@ -79,8 +87,16 @@ function Practice() {
 }
 
 function DeepDive({ activeDay }) {
-    if (activeDay === 'day-1') return <DeepDiveDay1 />
-    return <DeepDiveDay2 />
+    const components = {
+        'day-1': DeepDiveDay1,
+        'day-2': DeepDiveDay2,
+        'day-3': DeepDiveDay3
+    }
+    const Component = components[activeDay]
+    if (!Component) {
+        return <div className="text-surface-400 p-8">Content for {activeDay} coming soon...</div>
+    }
+    return <Component />
 }
 
 function DeepDiveDay1() {
@@ -341,6 +357,183 @@ print(f"Each person pays: \${split:.2f}")  # always shows 2 decimal places`} />
     )
 }
 
+function DeepDiveDay3() {
+    return (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2 space-y-8 text-surface-200 leading-relaxed">
+
+                {/* Section 1: Control Flow with if/else */}
+                <section className="space-y-4">
+                    <h2 className="text-2xl font-bold text-surface-100 flex items-center gap-2">
+                        <span className="text-primary-400">01.</span> Control Flow with if/else
+                    </h2>
+                    <p>
+                        Control flow lets your program make decisions. Think of a bathtub overflow mechanism—when water
+                        reaches a certain level, it drains; otherwise, it keeps filling. This "&gt;if this, then that" logic
+                        is the foundation of conditional programming.
+                    </p>
+                    <CodeBlock code={`# Basic if/else structure
+height = 130
+
+if height >= 120:
+    print("You can ride the roller coaster!")
+else:
+    print("Sorry, you have to grow taller.")`} />
+
+                    <div className="bg-surface-800/50 p-6 rounded-xl border border-surface-700">
+                        <h3 className="text-lg font-semibold text-primary-400 mb-3">Comparison Operators</h3>
+                        <ul className="grid grid-cols-2 gap-3 text-surface-300">
+                            <li><code>&gt;</code> — Greater than</li>
+                            <li><code>&lt;</code> — Less than</li>
+                            <li><code>&gt;=</code> — Greater than or equal</li>
+                            <li><code>&lt;=</code> — Less than or equal</li>
+                            <li><code>==</code> — Equal to (comparison)</li>
+                            <li><code>!=</code> — Not equal to</li>
+                        </ul>
+                        <p className="text-surface-400 text-sm mt-3">
+                            <strong>Remember:</strong> <code>=</code> assigns a value, <code>==</code> compares values.
+                        </p>
+                    </div>
+                </section>
+
+                {/* Section 2: The Modulo Operator */}
+                <section className="space-y-4">
+                    <h2 className="text-2xl font-bold text-surface-100 flex items-center gap-2">
+                        <span className="text-primary-400">02.</span> The Modulo Operator
+                    </h2>
+                    <p>
+                        The modulo operator (<code>%</code>) returns the <em>remainder</em> after division.
+                        It's incredibly useful for checking if numbers are even/odd or for cycling through values.
+                    </p>
+                    <CodeBlock code={`# Modulo gives the remainder
+print(10 % 5)  # Output: 0 (divides evenly)
+print(10 % 3)  # Output: 1 (10 ÷ 3 = 3 remainder 1)
+
+# Classic use: check if even or odd
+number = 7
+if number % 2 == 0:
+    print("Even")
+else:
+    print("Odd")  # This prints`} />
+                </section>
+
+                {/* Section 3: Nested if and elif Statements */}
+                <section className="space-y-4">
+                    <h2 className="text-2xl font-bold text-surface-100 flex items-center gap-2">
+                        <span className="text-primary-400">03.</span> Nested if and elif Statements
+                    </h2>
+                    <p>
+                        Use <code>elif</code> (else-if) to check multiple conditions in sequence. Only the first
+                        matching condition runs. <strong>Nested</strong> if statements let you check conditions
+                        inside other conditions.
+                    </p>
+                    <CodeBlock code={`# Ticket pricing with elif
+age = 15
+
+if age < 12:
+    bill = 5
+    print("Child ticket: $5")
+elif age <= 18:
+    bill = 7
+    print("Youth ticket: $7")
+else:
+    bill = 12
+    print("Adult ticket: $12")`} />
+
+                    <div className="bg-surface-800/50 p-6 rounded-xl border border-surface-700">
+                        <h3 className="text-lg font-semibold text-primary-400 mb-3">if/elif/else vs Multiple if</h3>
+                        <ul className="space-y-2 list-disc list-inside text-surface-300">
+                            <li><code>if/elif/else</code> — Only ONE branch executes (first match wins)</li>
+                            <li>Multiple <code>if</code> statements — Each condition is checked independently</li>
+                        </ul>
+                    </div>
+                </section>
+
+                {/* Section 4: Logical Operators */}
+                <section className="space-y-4">
+                    <h2 className="text-2xl font-bold text-surface-100 flex items-center gap-2">
+                        <span className="text-primary-400">04.</span> Logical Operators
+                    </h2>
+                    <p>
+                        Combine multiple conditions using <code>and</code>, <code>or</code>, and <code>not</code>.
+                    </p>
+                    <CodeBlock code={`a = 12
+
+# AND: Both must be True
+print(a > 10 and a < 15)  # True
+
+# OR: At least one must be True
+print(a > 15 or a < 20)   # True
+
+# NOT: Reverses the condition
+print(not a > 15)         # True (because a > 15 is False)`} />
+
+                    <div className="bg-surface-800/50 p-6 rounded-xl border border-surface-700">
+                        <h3 className="text-lg font-semibold text-primary-400 mb-3">Truth Table Quick Reference</h3>
+                        <div className="grid grid-cols-3 gap-4 text-sm font-mono">
+                            <div>
+                                <p className="font-bold text-surface-200 mb-2">AND</p>
+                                <p className="text-green-400">T and T → T</p>
+                                <p className="text-red-400">T and F → F</p>
+                                <p className="text-red-400">F and T → F</p>
+                                <p className="text-red-400">F and F → F</p>
+                            </div>
+                            <div>
+                                <p className="font-bold text-surface-200 mb-2">OR</p>
+                                <p className="text-green-400">T or T → T</p>
+                                <p className="text-green-400">T or F → T</p>
+                                <p className="text-green-400">F or T → T</p>
+                                <p className="text-red-400">F or F → F</p>
+                            </div>
+                            <div>
+                                <p className="font-bold text-surface-200 mb-2">NOT</p>
+                                <p className="text-red-400">not T → F</p>
+                                <p className="text-green-400">not F → T</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            {/* Sidebar: Pro Tips */}
+            <div className="space-y-6">
+                <div className="bg-surface-800/30 p-6 rounded-xl border border-surface-700 sticky top-24">
+                    <h3 className="text-lg font-bold text-surface-100 mb-4 flex items-center gap-2">
+                        <span className="text-xl">💡</span> Pro Tips
+                    </h3>
+                    <div className="space-y-4">
+                        <div>
+                            <h4 className="font-medium text-primary-400 text-sm uppercase tracking-wider mb-1">Indentation Matters</h4>
+                            <p className="text-sm text-surface-400">
+                                Python uses indentation to define code blocks. Mixing tabs and spaces will cause <code>IndentationError</code>.
+                            </p>
+                        </div>
+                        <div className="w-full h-px bg-surface-700/50"></div>
+                        <div>
+                            <h4 className="font-medium text-primary-400 text-sm uppercase tracking-wider mb-1">Case-Insensitive Input</h4>
+                            <p className="text-sm text-surface-400">
+                                Use <code>.lower()</code> to normalize user input:
+                            </p>
+                            <CodeBlock code={`choice = input("Left or Right? ").lower()
+if choice == "left":
+    print("You continue...")`} />
+                        </div>
+                        <div className="w-full h-px bg-surface-700/50"></div>
+                        <div>
+                            <h4 className="font-medium text-primary-400 text-sm uppercase tracking-wider mb-1">Day 3 Project</h4>
+                            <p className="text-sm text-surface-400">
+                                <strong>Treasure Island</strong> — A text-based adventure game using nested conditionals.
+                                Players make choices (left/right, swim/wait) leading to different endings!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
 function Quiz({ quizId, activeDay }) {
     const [questions, setQuestions] = useState([])
     const [currentQ, setCurrentQ] = useState(0)
@@ -367,17 +560,17 @@ function Quiz({ quizId, activeDay }) {
             }
             setLoading(true)
             setError(null)
-            
+
             // Fetch questions from Supabase
             const data = await quizApi.getQuestions(targetQuizId)
             setQuestions(data || [])
-            
+
             // Get quiz stats
             if (data && data.length > 0) {
                 const stats = await quizApi.getQuizStats(targetQuizId)
                 setQuizStats(stats)
             }
-            
+
             // Reset state
             setCurrentQ(0)
             setAnswers({})
@@ -512,9 +705,8 @@ function Quiz({ quizId, activeDay }) {
                 </div>
                 <h3 className="text-3xl font-bold text-surface-100">Quiz Complete!</h3>
                 <div className="text-center">
-                    <p className={`text-5xl font-bold mb-2 ${
-                        isPerfect ? 'text-yellow-400' : isPassing ? 'text-primary-400' : 'text-amber-400'
-                    }`}>
+                    <p className={`text-5xl font-bold mb-2 ${isPerfect ? 'text-yellow-400' : isPassing ? 'text-primary-400' : 'text-amber-400'
+                        }`}>
                         {percentage}%
                     </p>
                     <p className="text-surface-400">
@@ -561,8 +753,8 @@ function Quiz({ quizId, activeDay }) {
     const isCoding = currentQuestion.question_type === 'coding'
 
     // Check if current question is answered
-    const isAnswered = isMCQ 
-        ? selectedOption !== undefined 
+    const isAnswered = isMCQ
+        ? selectedOption !== undefined
         : selectedOption?.code !== undefined
 
     return (
@@ -572,18 +764,16 @@ function Quiz({ quizId, activeDay }) {
                 <div className="flex justify-between items-center text-surface-400 text-sm font-medium mb-2">
                     <div className="flex items-center gap-4">
                         <span>Question {currentQ + 1} of {questions.length}</span>
-                        <span className={`px-2 py-1 rounded-full text-xs ${
-                            isMCQ ? 'bg-blue-500/10 text-blue-400 border border-blue-500/30' 
-                                  : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30'
-                        }`}>
+                        <span className={`px-2 py-1 rounded-full text-xs ${isMCQ ? 'bg-blue-500/10 text-blue-400 border border-blue-500/30'
+                            : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30'
+                            }`}>
                             {isMCQ ? 'Multiple Choice' : 'Coding Challenge'}
                         </span>
                         {currentQuestion.difficulty && (
-                            <span className={`px-2 py-1 rounded-full text-xs ${
-                                currentQuestion.difficulty === 'easy' ? 'bg-green-500/10 text-green-400' :
+                            <span className={`px-2 py-1 rounded-full text-xs ${currentQuestion.difficulty === 'easy' ? 'bg-green-500/10 text-green-400' :
                                 currentQuestion.difficulty === 'medium' ? 'bg-amber-500/10 text-amber-400' :
-                                'bg-red-500/10 text-red-400'
-                            }`}>
+                                    'bg-red-500/10 text-red-400'
+                                }`}>
                                 {currentQuestion.difficulty}
                             </span>
                         )}
@@ -593,7 +783,7 @@ function Quiz({ quizId, activeDay }) {
                     </span>
                 </div>
                 <div className="h-2 bg-surface-800 rounded-full overflow-hidden">
-                    <div 
+                    <div
                         className="h-full bg-gradient-to-r from-primary-600 to-primary-400 transition-all duration-300"
                         style={{ width: `${((currentQ + 1) / questions.length) * 100}%` }}
                     />
@@ -602,7 +792,19 @@ function Quiz({ quizId, activeDay }) {
 
             <div className="bg-surface-800 p-8 rounded-2xl border border-surface-700 shadow-xl">
                 <h3 className="text-xl font-medium text-surface-100 mb-6 leading-relaxed">
-                    {currentQuestion.text}
+                    {(() => {
+                        const text = currentQuestion?.text || ''
+                        if (!text.includes('\\n')) return text
+                        const [prompt, ...codeLines] = text.split('\\n')
+                        return (
+                            <div className="space-y-2">
+                                <span>{prompt}</span>
+                                <pre className="bg-surface-900 p-4 rounded-lg text-sm font-mono text-primary-300 overflow-x-auto">
+                                    {codeLines.join('\n')}
+                                </pre>
+                            </div>
+                        )
+                    })()}
                 </h3>
 
                 {/* MCQ Options */}
@@ -612,18 +814,16 @@ function Quiz({ quizId, activeDay }) {
                             <button
                                 key={idx}
                                 onClick={() => handleMCQAnswer(idx)}
-                                className={`w-full text-left p-4 rounded-xl border transition-all duration-200 flex justify-between items-center ${
-                                    selectedOption === idx
-                                        ? 'bg-primary-600/20 border-primary-500 text-primary-200'
-                                        : 'bg-surface-700/50 border-surface-600 hover:bg-surface-700 hover:border-surface-500 text-surface-200'
-                                }`}
+                                className={`w-full text-left p-4 rounded-xl border transition-all duration-200 flex justify-between items-center ${selectedOption === idx
+                                    ? 'bg-primary-600/20 border-primary-500 text-primary-200'
+                                    : 'bg-surface-700/50 border-surface-600 hover:bg-surface-700 hover:border-surface-500 text-surface-200'
+                                    }`}
                             >
                                 <div className="flex items-center gap-3">
-                                    <span className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm font-medium ${
-                                        selectedOption === idx
-                                            ? 'bg-primary-500 text-white'
-                                            : 'bg-surface-600 text-surface-300'
-                                    }`}>
+                                    <span className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm font-medium ${selectedOption === idx
+                                        ? 'bg-primary-500 text-white'
+                                        : 'bg-surface-600 text-surface-300'
+                                        }`}>
                                         {String.fromCharCode(65 + idx)}
                                     </span>
                                     <span className="font-mono text-sm">{opt}</span>
@@ -646,12 +846,11 @@ function Quiz({ quizId, activeDay }) {
                             questionId={currentQuestion.id}
                         />
                         {selectedOption?.allPassed !== undefined && (
-                            <div className={`mt-4 p-4 rounded-lg ${
-                                selectedOption.allPassed 
-                                    ? 'bg-emerald-500/10 border border-emerald-500/30 text-emerald-400'
-                                    : 'bg-amber-500/10 border border-amber-500/30 text-amber-400'
-                            }`}>
-                                {selectedOption.allPassed 
+                            <div className={`mt-4 p-4 rounded-lg ${selectedOption.allPassed
+                                ? 'bg-emerald-500/10 border border-emerald-500/30 text-emerald-400'
+                                : 'bg-amber-500/10 border border-amber-500/30 text-amber-400'
+                                }`}>
+                                {selectedOption.allPassed
                                     ? `✓ All ${selectedOption.total} test cases passed!`
                                     : `${selectedOption.passed} of ${selectedOption.total} test cases passed`
                                 }
@@ -665,11 +864,10 @@ function Quiz({ quizId, activeDay }) {
                     <button
                         onClick={prevQuestion}
                         disabled={currentQ === 0}
-                        className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                            currentQ === 0
-                                ? 'text-surface-600 cursor-not-allowed'
-                                : 'text-surface-400 hover:text-surface-200 hover:bg-surface-700'
-                        }`}
+                        className={`px-4 py-2 rounded-lg font-medium transition-colors ${currentQ === 0
+                            ? 'text-surface-600 cursor-not-allowed'
+                            : 'text-surface-400 hover:text-surface-200 hover:bg-surface-700'
+                            }`}
                     >
                         ← Previous
                     </button>
@@ -679,13 +877,12 @@ function Quiz({ quizId, activeDay }) {
                             <button
                                 key={idx}
                                 onClick={() => setCurrentQ(idx)}
-                                className={`w-8 h-8 rounded-lg text-sm font-medium transition-colors ${
-                                    idx === currentQ
-                                        ? 'bg-primary-600 text-white'
-                                        : answers[questions[idx].id] !== undefined
-                                            ? 'bg-primary-600/20 text-primary-400'
-                                            : 'bg-surface-700 text-surface-400 hover:bg-surface-600'
-                                }`}
+                                className={`w-8 h-8 rounded-lg text-sm font-medium transition-colors ${idx === currentQ
+                                    ? 'bg-primary-600 text-white'
+                                    : answers[questions[idx].id] !== undefined
+                                        ? 'bg-primary-600/20 text-primary-400'
+                                        : 'bg-surface-700 text-surface-400 hover:bg-surface-600'
+                                    }`}
                             >
                                 {idx + 1}
                             </button>
@@ -695,11 +892,10 @@ function Quiz({ quizId, activeDay }) {
                     <button
                         onClick={nextQuestion}
                         disabled={!isAnswered && isMCQ}
-                        className={`px-6 py-3 rounded-xl font-medium transition-colors ${
-                            isAnswered || !isMCQ
-                                ? 'bg-primary-600 hover:bg-primary-500 text-white'
-                                : 'bg-surface-700 text-surface-500 cursor-not-allowed'
-                        }`}
+                        className={`px-6 py-3 rounded-xl font-medium transition-colors ${isAnswered || !isMCQ
+                            ? 'bg-primary-600 hover:bg-primary-500 text-white'
+                            : 'bg-surface-700 text-surface-500 cursor-not-allowed'
+                            }`}
                     >
                         {currentQ < questions.length - 1 ? 'Next →' : 'Submit Quiz'}
                     </button>
@@ -718,8 +914,16 @@ function Quiz({ quizId, activeDay }) {
 }
 
 function Transcripts({ activeDay }) {
-    if (activeDay === 'day-1') return <TranscriptsDay1 />
-    return <TranscriptsDay2 />
+    const components = {
+        'day-1': TranscriptsDay1,
+        'day-2': TranscriptsDay2,
+        'day-3': TranscriptsDay3
+    }
+    const Component = components[activeDay]
+    if (!Component) {
+        return <div className="text-surface-400 p-8">Transcripts for {activeDay} coming soon...</div>
+    }
+    return <Component />
 }
 
 function TranscriptsDay1() {
@@ -795,6 +999,78 @@ function TranscriptsDay2() {
                 <div className="p-4 pt-0 text-surface-400 text-sm leading-relaxed border-t border-surface-700/50 mt-2">
                     Use math operators (<code>**</code>, <code>//</code>, <code>%</code>) and PEMDAS to shape calculations. F-strings make it easy to
                     embed values and format decimals (e.g., <code>{'{value:.2f}'}</code> for money).
+                </div>
+            </details>
+        </div>
+    )
+}
+
+function TranscriptsDay3() {
+    return (
+        <div className="space-y-4 max-w-3xl">
+            <details className="bg-surface-800/30 rounded-xl border border-surface-700 overflow-hidden group">
+                <summary className="p-4 cursor-pointer font-medium text-surface-200 hover:bg-surface-800/50 transition-colors flex items-center justify-between">
+                    1. Control Flow with if/else
+                    <span className="text-surface-500 group-open:rotate-180 transition-transform">▼</span>
+                </summary>
+                <div className="p-4 pt-0 text-surface-400 text-sm leading-relaxed border-t border-surface-700/50 mt-2">
+                    Think of a bathtub overflow mechanism—when water reaches above 80cm, it drains; otherwise, it keeps filling.
+                    This conditional logic is represented with <code>if</code> and <code>else</code> statements. The key syntax:
+                    the <code>if</code> keyword, a condition, a colon, and indented code blocks.
+                </div>
+            </details>
+            <details className="bg-surface-800/30 rounded-xl border border-surface-700 overflow-hidden group">
+                <summary className="p-4 cursor-pointer font-medium text-surface-200 hover:bg-surface-800/50 transition-colors flex items-center justify-between">
+                    2. The Modulo Operator
+                    <span className="text-surface-500 group-open:rotate-180 transition-transform">▼</span>
+                </summary>
+                <div className="p-4 pt-0 text-surface-400 text-sm leading-relaxed border-t border-surface-700/50 mt-2">
+                    The modulo operator (<code>%</code>) gives the remainder after division. <code>10 % 5 = 0</code> (divides evenly),
+                    <code>10 % 3 = 1</code> (remainder 1). Classic use: checking if a number is even (<code>num % 2 == 0</code>) or odd.
+                </div>
+            </details>
+            <details className="bg-surface-800/30 rounded-xl border border-surface-700 overflow-hidden group">
+                <summary className="p-4 cursor-pointer font-medium text-surface-200 hover:bg-surface-800/50 transition-colors flex items-center justify-between">
+                    3. Nested if and elif Statements
+                    <span className="text-surface-500 group-open:rotate-180 transition-transform">▼</span>
+                </summary>
+                <div className="p-4 pt-0 text-surface-400 text-sm leading-relaxed border-t border-surface-700/50 mt-2">
+                    Use <code>elif</code> (else-if) to check multiple conditions. First matching condition wins.
+                    Nested if statements let you check conditions inside other conditions—like checking age-based pricing
+                    only after confirming height requirements.
+                </div>
+            </details>
+            <details className="bg-surface-800/30 rounded-xl border border-surface-700 overflow-hidden group">
+                <summary className="p-4 cursor-pointer font-medium text-surface-200 hover:bg-surface-800/50 transition-colors flex items-center justify-between">
+                    4. Multiple If Statements
+                    <span className="text-surface-500 group-open:rotate-180 transition-transform">▼</span>
+                </summary>
+                <div className="p-4 pt-0 text-surface-400 text-sm leading-relaxed border-t border-surface-700/50 mt-2">
+                    Unlike <code>if/elif/else</code> where only ONE branch runs, multiple separate <code>if</code> statements
+                    are each checked independently. Use this when you need to check conditions that aren't mutually exclusive—
+                    like adding photo costs after determining ticket price.
+                </div>
+            </details>
+            <details className="bg-surface-800/30 rounded-xl border border-surface-700 overflow-hidden group">
+                <summary className="p-4 cursor-pointer font-medium text-surface-200 hover:bg-surface-800/50 transition-colors flex items-center justify-between">
+                    5. Logical Operators (and, or, not)
+                    <span className="text-surface-500 group-open:rotate-180 transition-transform">▼</span>
+                </summary>
+                <div className="p-4 pt-0 text-surface-400 text-sm leading-relaxed border-t border-surface-700/50 mt-2">
+                    Combine conditions: <code>and</code> requires both to be True, <code>or</code> requires at least one,
+                    <code>not</code> reverses the condition. Example: <code>age {'>'}= 45 and age {'<'}= 55</code> catches the
+                    "midlife crisis" age range for special pricing.
+                </div>
+            </details>
+            <details className="bg-surface-800/30 rounded-xl border border-surface-700 overflow-hidden group">
+                <summary className="p-4 cursor-pointer font-medium text-surface-200 hover:bg-surface-800/50 transition-colors flex items-center justify-between">
+                    6. Day 3 Project: Treasure Island
+                    <span className="text-surface-500 group-open:rotate-180 transition-transform">▼</span>
+                </summary>
+                <div className="p-4 pt-0 text-surface-400 text-sm leading-relaxed border-t border-surface-700/50 mt-2">
+                    Build a "Choose Your Own Adventure" game! Ask players to go left or right, swim or wait for a boat,
+                    and choose between colored doors. Use <code>.lower()</code> to handle case variations in input.
+                    ASCII art makes it fun—find creative art at ascii.co.uk/art!
                 </div>
             </details>
         </div>
