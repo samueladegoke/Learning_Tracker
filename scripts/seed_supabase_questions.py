@@ -553,8 +553,390 @@ DAY3_QUESTIONS = [
 ]
 
 
+# Day 4: Randomisation and Python Lists
+DAY4_QUESTIONS = [
+    # MCQ Questions - Easy
+    {
+        "question_type": "mcq",
+        "text": "What module do you import to generate random numbers in Python?",
+        "options": ["math", "random", "randint", "numbers"],
+        "correct_index": 1,
+        "explanation": "The 'random' module contains functions for generating random numbers.",
+        "difficulty": "easy",
+        "topic_tag": "random"
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the correct syntax to create a list in Python?",
+        "options": ["list = (1, 2, 3)", "list = {1, 2, 3}", "list = [1, 2, 3]", "list = <1, 2, 3>"],
+        "correct_index": 2,
+        "explanation": "Lists use square brackets [] to enclose items.",
+        "difficulty": "easy",
+        "topic_tag": "lists"
+    },
+    {
+        "question_type": "mcq",
+        "text": "What index is used to access the first item in a list?",
+        "options": ["1", "0", "-1", "first"],
+        "correct_index": 1,
+        "explanation": "Python uses 0-based indexing, so the first item is at index 0.",
+        "difficulty": "easy",
+        "topic_tag": "indexing"
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does random.randint(1, 10) return?",
+        "options": [
+            "A random float between 1 and 10",
+            "A random integer between 1 and 10 (inclusive)",
+            "A random integer between 1 and 9",
+            "Always returns 5"
+        ],
+        "correct_index": 1,
+        "explanation": "randint(a, b) returns a random integer N such that a <= N <= b.",
+        "difficulty": "easy",
+        "topic_tag": "random"
+    },
+    # MCQ Questions - Medium
+    {
+        "question_type": "mcq",
+        "text": "What does fruits[-1] return if fruits = ['apple', 'banana', 'cherry']?",
+        "options": ["'apple'", "'banana'", "'cherry'", "IndexError"],
+        "correct_index": 2,
+        "explanation": "Negative indexing starts from the end. -1 refers to the last item.",
+        "difficulty": "medium",
+        "topic_tag": "indexing"
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the difference between .append() and .extend()?",
+        "options": [
+            "They are the same",
+            "append() adds a single item; extend() adds items from an iterable",
+            "extend() adds a single item; append() adds items from an iterable",
+            "append() creates a new list; extend() modifies in place"
+        ],
+        "correct_index": 1,
+        "explanation": "append() adds one item to the end, while extend() adds each element from an iterable.",
+        "difficulty": "medium",
+        "topic_tag": "lists"
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does random.random() return?",
+        "options": [
+            "A random integer",
+            "A random float between 0 and 1 (0 inclusive, 1 exclusive)",
+            "A random float between 0 and 1 (both inclusive)",
+            "A random boolean"
+        ],
+        "correct_index": 1,
+        "explanation": "random.random() returns a float x where 0.0 <= x < 1.0.",
+        "difficulty": "medium",
+        "topic_tag": "random"
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is a Python module?",
+        "options": [
+            "A type of variable",
+            "A file containing Python code that can be imported",
+            "A special type of list",
+            "A built-in function"
+        ],
+        "correct_index": 1,
+        "explanation": "A module is a Python file (.py) containing functions, classes, and variables that can be imported.",
+        "difficulty": "medium",
+        "topic_tag": "modules"
+    },
+    # MCQ Questions - Hard
+    {
+        "question_type": "mcq",
+        "text": "What will this code print?\\nfruits = ['a', 'b', 'c']\\nfruits[1] = 'x'\\nprint(fruits)",
+        "options": ["['a', 'b', 'c']", "['x', 'b', 'c']", "['a', 'x', 'c']", "Error"],
+        "correct_index": 2,
+        "explanation": "Index 1 refers to the second item ('b'), which gets replaced with 'x'.",
+        "difficulty": "hard",
+        "topic_tag": "lists"
+    },
+    {
+        "question_type": "mcq",
+        "text": "What happens if you access an index that doesn't exist in a list?",
+        "options": ["Returns None", "Returns 0", "Raises IndexError", "Returns an empty string"],
+        "correct_index": 2,
+        "explanation": "Accessing an invalid index raises an IndexError exception.",
+        "difficulty": "hard",
+        "topic_tag": "indexing"
+    },
+    # Coding Challenges
+    {
+        "question_type": "coding",
+        "text": "Write a function called `coin_flip` that returns 'Heads' or 'Tails' randomly.",
+        "starter_code": "import random\n\ndef coin_flip():\n    # Your code here\n    pass",
+        "test_cases": [
+            {"input": "", "expected_pattern": "^(Heads|Tails)$"}
+        ],
+        "solution_code": "import random\n\ndef coin_flip():\n    if random.randint(0, 1) == 0:\n        return 'Heads'\n    else:\n        return 'Tails'",
+        "explanation": "Use random.randint(0, 1) to generate 0 or 1, then return 'Heads' or 'Tails' accordingly.",
+        "difficulty": "easy",
+        "topic_tag": "random"
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function called `get_last` that takes a list and returns the last item.",
+        "starter_code": "def get_last(my_list):\n    # Your code here\n    pass",
+        "test_cases": [
+            {"input": "[[1, 2, 3]]", "expected": "3"},
+            {"input": "[['a', 'b', 'c', 'd']]", "expected": "'d'"},
+            {"input": "[[42]]", "expected": "42"}
+        ],
+        "solution_code": "def get_last(my_list):\n    return my_list[-1]",
+        "explanation": "Use index -1 to access the last item in a list.",
+        "difficulty": "easy",
+        "topic_tag": "indexing"
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function called `random_choice` that takes a list and returns a random item from it.",
+        "starter_code": "import random\n\ndef random_choice(items):\n    # Your code here\n    pass",
+        "test_cases": [
+            {"input": "[['a', 'b', 'c']]", "expected_in": "['a', 'b', 'c']"}
+        ],
+        "solution_code": "import random\n\ndef random_choice(items):\n    return random.choice(items)",
+        "explanation": "random.choice(list) returns a random element from the list.",
+        "difficulty": "medium",
+        "topic_tag": "random"
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function called `add_to_list` that takes a list and an item, adds the item to the end, and returns the modified list.",
+        "starter_code": "def add_to_list(my_list, item):\n    # Your code here\n    pass",
+        "test_cases": [
+            {"input": "[[1, 2], 3]", "expected": "[1, 2, 3]"},
+            {"input": "[['a', 'b'], 'c']", "expected": "['a', 'b', 'c']"},
+            {"input": "[[], 'x']", "expected": "['x']"}
+        ],
+        "solution_code": "def add_to_list(my_list, item):\n    my_list.append(item)\n    return my_list",
+        "explanation": "Use .append() to add a single item to the end of a list.",
+        "difficulty": "easy",
+        "topic_tag": "lists"
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function called `swap_first_last` that takes a list and swaps the first and last items, returning the modified list.",
+        "starter_code": "def swap_first_last(my_list):\n    # Your code here\n    pass",
+        "test_cases": [
+            {"input": "[[1, 2, 3]]", "expected": "[3, 2, 1]"},
+            {"input": "[['a', 'b', 'c', 'd']]", "expected": "['d', 'b', 'c', 'a']"},
+            {"input": "[[5, 10]]", "expected": "[10, 5]"}
+        ],
+        "solution_code": "def swap_first_last(my_list):\n    my_list[0], my_list[-1] = my_list[-1], my_list[0]\n    return my_list",
+        "explanation": "Use tuple unpacking to swap values: a, b = b, a. Access first with [0] and last with [-1].",
+        "difficulty": "medium",
+        "topic_tag": "lists"
+    }
+]
+
+
+DAY5_QUESTIONS = [
+    # MCQs
+    {
+        "text": "What does a `for` loop do in Python?",
+        "options": [
+            "Creates a variable that stores a list",
+            "Repeats a block of code for each item in a collection",
+            "Decides between two options based on a condition",
+            "Defines a new function"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "loops",
+        "explanation": "A for loop iterates over a sequence (like a list or range) and executes the block of code for each item."
+    },
+    {
+        "text": "What sequence of numbers does `range(1, 5)` generate?",
+        "options": [
+            "1, 2, 3, 4, 5",
+            "1, 2, 3, 4",
+            "0, 1, 2, 3, 4",
+            "2, 3, 4, 5"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "range",
+        "explanation": "The range function includes the start value (1) but excludes the stop value (5). So it gives 1, 2, 3, 4."
+    },
+    {
+        "text": "Which code snippet correctly prints 'Hello' 5 times?",
+        "options": [
+            "for i in range(5): print('Hello')",
+            "for i in range(1, 4): print('Hello')",
+            "print('Hello') * 5",
+            "loop 5: print('Hello')"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "loops",
+        "explanation": "`range(5)` generates numbers 0, 1, 2, 3, 4, which is 5 iterations."
+    },
+    {
+        "text": "What is the output of `range(0, 10, 3)`?",
+        "options": [
+            "0, 1, 2, 3, ... 9",
+            "0, 3, 6, 9",
+            "3, 6, 9",
+            "0, 3, 6, 9, 12"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "range",
+        "explanation": "It starts at 0, steps by 3 (0, 3, 6, 9). The next number 12 is >= 10, so it stops."
+    },
+    {
+        "text": "In `for item in items:`, what happens if `items` is an empty list?",
+        "options": [
+            "The loop runs once with None",
+            "It raises an error",
+            "The loop body never executes",
+            "The loop runs infinitely"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "loops",
+        "explanation": "If the collection is empty, there are no items to iterate over, so the loop body is skipped entirely."
+    },
+    {
+        "text": "How do you calculate the sum of a list `numbers` without using `sum()`?",
+        "options": [
+            "total = 0\nfor n in numbers: total += n",
+            "total = 0\nfor n in numbers: total = n",
+            "for n in numbers: total += n",
+            "total = numbers[0] + numbers[-1]"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "algorithms",
+        "explanation": "You need to initialize an accumulator variable (`total = 0`) and add each number to it in the loop."
+    },
+    {
+        "text": "Which indentation is correct for the code inside a for loop?",
+        "options": [
+            "No indentation needed",
+            "2 spaces",
+            "4 spaces (or 1 tab)",
+            "Align with the for keyword"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "code-blocks",
+        "explanation": "Standard Python indentation is 4 spaces. The code block inside the loop MUST be indented."
+    },
+    {
+        "text": "What does `break` do inside a loop?",
+        "options": [
+            "Pauses the loop",
+            "Exits the loop immediately",
+            "Skips the current iteration",
+            "Breaks the computer"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "control-flow",
+        "explanation": "`break` stops the loop execution entirely and moves to the code after the loop."
+    },
+    {
+        "text": "If `fruits = ['Apple', 'Pear']`, what does `for f in fruits` print?",
+        "options": [
+            "Apple, then Pear",
+            "0, then 1",
+            "['Apple', 'Pear']",
+            "f"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "loops",
+        "explanation": "The loop variable `f` takes on the value of each item in the list sequentially."
+    },
+    {
+        "text": "What is the maximum value in `range(1, 101)`?",
+        "options": [
+            "99",
+            "100",
+            "101",
+            "1"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "range",
+        "explanation": "The stop value 101 is exclusive, so the sequence goes up to 100."
+    },
+
+    # Coding Challenges
+    {
+        "question_type": "coding",
+        "text": "Average Height\nWrite a program that calculates the average height from a list of heights.\nDO NOT use `sum()` or `len()`.\n\nExample Input:\nheights = [180, 124, 165, 173, 189, 169, 146]\nExample Output:\n163",
+        "starter_code": "def solve(heights):\n    # Write your code here\n    # Use a for loop to calculate total_height and number_of_students\n    return 0",
+        "test_cases": [
+            {"input": [[180, 124, 165, 173, 189, 169, 146]], "expected": 163},
+            {"input": [[150, 150, 150]], "expected": 150},
+            {"input": [[200, 100]], "expected": 150}
+        ],
+        "difficulty": "medium",
+        "topic_tag": "algorithms",
+        "solution_code": "def solve(heights):\n    total_height = 0\n    count = 0\n    for h in heights:\n        total_height += h\n        count += 1\n    return round(total_height / count)"
+    },
+    {
+        "question_type": "coding",
+        "text": "Highest Score\nWrite a program that calculates the highest score from a list of scores.\nDO NOT use `max()`.\n\nExample Input:\nscores = [78, 65, 89, 86, 55, 91, 64, 89]\nExample Output:\n91",
+        "starter_code": "def solve(scores):\n    # Write your code here\n    return 0",
+        "test_cases": [
+            {"input": [[78, 65, 89, 86, 55, 91, 64, 89]], "expected": 91},
+            {"input": [[10, 20, 5]], "expected": 20},
+            {"input": [[5, 4, 3]], "expected": 5}
+        ],
+        "difficulty": "medium",
+        "topic_tag": "algorithms",
+        "solution_code": "def solve(scores):\n    highest = 0\n    for score in scores:\n        if score > highest:\n            highest = score\n    return highest"
+    },
+    {
+        "question_type": "coding",
+        "text": "Adding Even Numbers\nCalculate the sum of all even numbers from 1 to 100 (including 100).\nRange should be `range(1, 101)` or similar logic.\n\nOutput should be the single integer sum.",
+        "starter_code": "def solve():\n    # Write your code here\n    return 0",
+        "test_cases": [
+            {"input": [], "expected": 2550}
+        ],
+        "difficulty": "easy",
+        "topic_tag": "range",
+        "solution_code": "def solve():\n    total = 0\n    for number in range(2, 101, 2):\n        total += number\n    return total"
+    },
+    {
+        "question_type": "coding",
+        "text": "FizzBuzz\nWrite a function that returns a list of numbers from 1 to `n`.\nBut for multiples of 3, use 'Fizz' instead of the number.\nFor multiples of 5, use 'Buzz'.\nFor multiples of both 3 and 5, use 'FizzBuzz'.\n\nExample n=5: [1, 2, 'Fizz', 4, 'Buzz']",
+        "starter_code": "def solve(n):\n    result = []\n    # Write your code here\n    return result",
+        "test_cases": [
+            {"input": [5], "expected": [1, 2, 'Fizz', 4, 'Buzz']},
+            {"input": [15], "expected": [1, 2, 'Fizz', 4, 'Buzz', 'Fizz', 7, 8, 'Fizz', 'Buzz', 11, 'Fizz', 13, 14, 'FizzBuzz']}
+        ],
+        "difficulty": "hard",
+        "topic_tag": "algorithms",
+        "solution_code": "def solve(n):\n    result = []\n    for number in range(1, n + 1):\n        if number % 3 == 0 and number % 5 == 0:\n            result.append('FizzBuzz')\n        elif number % 3 == 0:\n            result.append('Fizz')\n        elif number % 5 == 0:\n            result.append('Buzz')\n        else:\n            result.append(number)\n    return result"
+    },
+    {
+        "question_type": "coding",
+        "text": "Simple Password Generator\nCreate a function that combines a list of letters, numbers, and symbols into a single string.\nInput: letters=['a', 'b'], numbers=['1'], symbols=['!']\nOutput: 'ab1!' (Order: letters, then symbols, then numbers - simplified for this check)",
+        "starter_code": "def solve(letters, numbers, symbols):\n    # Combine them all into one string in order: letters + symbols + numbers\n    return ''",
+        "test_cases": [
+            {"input": [['a', 'b'], ['1'], ['!']], "expected": "ab!1"},
+            {"input": [['A'], ['9', '8'], ['#']], "expected": "A#98"}
+        ],
+        "difficulty": "medium",
+        "topic_tag": "strings",
+        "solution_code": "def solve(letters, numbers, symbols):\n    password = ''\n    for char in letters:\n        password += char\n    for char in symbols:\n        password += char\n    for char in numbers:\n        password += char\n    return password"
+    }
+]
+
 def seed_sample_questions():
-    """Seed the sample questions for Day 1, Day 2, and Day 3."""
+    """Seed the sample questions for Day 1, Day 2, Day 3, and Day 4."""
     print("Seeding sample questions to Supabase...")
     
     # Clear and seed Day 1
@@ -569,16 +951,35 @@ def seed_sample_questions():
     clear_quiz_questions('day-3-practice')
     seed_questions('day-3-practice', DAY3_QUESTIONS)
     
+    # Clear and seed Day 4
+    clear_quiz_questions('day-4-practice')
+    seed_questions('day-4-practice', DAY4_QUESTIONS)
+    
+    # Clear and seed Day 5
+    clear_quiz_questions('day-5-practice')
+    seed_questions('day-5-practice', DAY5_QUESTIONS)
+    
     print("\nDone! Sample questions have been seeded.")
 
 
 if __name__ == '__main__':
+    import argparse
     import sys
+
+    parser = argparse.ArgumentParser(description='Seed Supabase with quiz questions.')
+    parser.add_argument('--all', action='store_true', help='Seed from all JSON files in data/questions')
+    parser.add_argument('--force', action='store_true', help='Force deletion of existing questions')
     
-    if len(sys.argv) > 1 and sys.argv[1] == '--all':
-        # Seed all from JSON files
+    args = parser.parse_args()
+
+    if not args.force:
+        print("WARNING: This script will delete existing questions from the database.")
+        print("To proceed, please run with the --force flag:")
+        print(f"python {sys.argv[0]} {'--all ' if args.all else ''}--force")
+        sys.exit(1)
+
+    if args.all:
         seed_all_from_directory()
     else:
-        # Seed sample questions
         seed_sample_questions()
 

@@ -1,0 +1,44 @@
+# BMad Method Configuration
+# Project: 100 Days of Code Learning Dashboard
+
+# Project Information
+project_name: "100 Days of Code Learning Dashboard"
+project_type: "brownfield"
+project_level: "method"
+
+# User Configuration
+user_name: "Samuel"
+user_skill_level: "intermediate"
+communication_language: "English"
+document_output_language: "English"
+
+# Output Paths
+output_folder: ".bmad/docs"
+sprint_artifacts: ".bmad/docs/sprints"
+
+# Project Context
+project_description: |
+  A gamified learning dashboard for tracking progress through the 100 Days of Code Python bootcamp.
+  Features include:
+  - RPG-style progression with XP, levels, and achievements
+  - Interactive quizzes with code execution (Pyodide)
+  - Calendar-based task tracking
+  - Boss battles and daily challenges
+  - Practice pages with Deep Dive content and transcripts
+
+# Technology Stack
+tech_stack:
+  frontend:
+    - React 18 with Vite
+    - TailwindCSS
+    - Pyodide for in-browser Python
+  backend:
+    - FastAPI (Python)
+    - Supabase (PostgreSQL + Auth)
+  infrastructure:
+    - Node.js
+    - Python 3.11+
+
+# Workflow Settings
+auto_advance: false
+require_checklist: true
