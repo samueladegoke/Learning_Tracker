@@ -1,62 +1,10 @@
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
+# Minimal netlifyignore
+.git/
 .venv/
 venv/
-# ENV/
-# env/
-*.egg-info/
+node_modules/
 dist/
 build/
-
-# Database
-*.db
-!backend/learning_tracker_rpg_v2.db
-*.sqlite
-*.sqlite3
-
-# IDE
-.idea/
-.vscode/
-*.swp
-*.swo
-*~
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Node.js
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Frontend build
 frontend/dist/
 frontend/build/
-
-# Environment variables
-#.env
-#.env.local
-#.env.*.local
-
-# Logs
-logs/
-*.log
-
-# Plan files
-*.plan.md
-
-# Course Files/Resources
 Udemy - 100 Days of Code The Complete Python Pro Bootcamp 2025-8/
-
-# Allow shared workspace settings
-!.vscode/settings.json
-
-# Netlify
-# netlify/functions/api.py is required!
-
