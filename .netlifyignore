@@ -58,4 +58,5 @@ Udemy - 100 Days of Code The Complete Python Pro Bootcamp 2025-8/
 !.vscode/settings.json
 
 # Netlify
-netlify/functions/api.py
+# netlify/functions/api.py is required!
+

@@ -7,7 +7,7 @@ headers = []
 publish = "C:\\Users\\USER\\Documents\\Programming\\100 Days of Code\\frontend\\dist"
 publishOrigin = "config"
 commandOrigin = "config"
-command = "cd frontend && npm install && npm run build"
+command = "pip install -r requirements.txt && cd frontend && npm install && npm run build"
 functions = "C:\\Users\\USER\\Documents\\Programming\\100 Days of Code\\netlify\\functions"
 
 [build.environment]

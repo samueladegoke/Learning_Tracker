@@ -22,6 +22,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.middleware("http")
+async def add_debug_headers(request, call_next):
+    response = await call_next(request)
+    response.headers["X-Debug-Path"] = request.url.path
+    response.headers["X-Debug-Root-Path"] = request.scope.get("root_path", "")
+    return response
+
 # Include routers
 app.include_router(weeks.router, prefix="/weeks", tags=["weeks"])
 app.include_router(tasks.router, prefix="/tasks", tags=["tasks"])
