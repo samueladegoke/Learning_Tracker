@@ -1,14 +1,13 @@
 functionsDirectory = "C:\\Users\\USER\\Documents\\Programming\\100 Days of Code\\netlify\\functions"
 functionsDirectoryOrigin = "config"
 redirectsOrigin = "config"
-plugins = []
 headers = []
 
 [build]
 publish = "C:\\Users\\USER\\Documents\\Programming\\100 Days of Code\\frontend\\dist"
 publishOrigin = "config"
 commandOrigin = "config"
-command = "npm run build"
+command = "cd frontend && npm install && npm run build"
 functions = "C:\\Users\\USER\\Documents\\Programming\\100 Days of Code\\netlify\\functions"
 
 [build.environment]
@@ -30,6 +29,12 @@ PYTHON_VERSION = "3.9"
 [functions]
 
 [functions."*"]
+
+[[plugins]]
+origin = "ui"
+package = "@netlify/plugin-lighthouse"
+
+[plugins.inputs]
 
 [[redirects]]
 from = "/api/*"
