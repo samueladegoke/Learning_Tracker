@@ -10,8 +10,6 @@ if SQLALCHEMY_DATABASE_URL:
     print(f"DEBUG: Found DATABASE_URL: {SQLALCHEMY_DATABASE_URL[:10]}...", flush=True)
 else:
     print("DEBUG: DATABASE_URL not found in env vars.", flush=True)
-    # Debug: print all keys to see if it's there under a different name or just missing
-    print(f"DEBUG: Env vars keys: {list(os.environ.keys())}", flush=True)
 
 if SQLALCHEMY_DATABASE_URL and SQLALCHEMY_DATABASE_URL.startswith("postgres://"):
     # Fix for SQLAlchemy requiring postgresql:// scheme
