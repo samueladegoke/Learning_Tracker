@@ -28,22 +28,30 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Include routers
-app.include_router(weeks.router, prefix="/weeks", tags=["weeks"])
-app.include_router(tasks.router, prefix="/tasks", tags=["tasks"])
-app.include_router(reflections.router, prefix="/reflections", tags=["reflections"])
-app.include_router(progress.router, prefix="/progress", tags=["progress"])
-app.include_router(badges.router, prefix="/badges", tags=["badges"])
-app.include_router(rpg.router, prefix="/rpg", tags=["rpg"])
-app.include_router(achievements.router, prefix="/achievements", tags=["achievements"])
+# Include routers with /api prefix for Vercel compatibility
+app.include_router(weeks.router, prefix="/api/weeks", tags=["weeks"])
+app.include_router(tasks.router, prefix="/api/tasks", tags=["tasks"])
+app.include_router(reflections.router, prefix="/api/reflections", tags=["reflections"])
+app.include_router(progress.router, prefix="/api/progress", tags=["progress"])
+app.include_router(badges.router, prefix="/api/badges", tags=["badges"])
+app.include_router(rpg.router, prefix="/api/rpg", tags=["rpg"])
+app.include_router(achievements.router, prefix="/api/achievements", tags=["achievements"])
 from .routers import quizzes
-app.include_router(quizzes.router, prefix="/quizzes", tags=["quizzes"])
+app.include_router(quizzes.router, prefix="/api/quizzes", tags=["quizzes"])
 
+
+@app.get("/api")
+def root_api():
+    return {"message": "Learning Tracker API", "docs": "/api/docs"}
 
 @app.get("/")
 def root():
-    return {"message": "Learning Tracker API", "docs": "/docs"}
+    return {"message": "Learning Tracker API (Use /api)", "docs": "/docs"}
 
+
+@app.get("/api/health")
+def health_check_api():
+    return {"status": "healthy"}
 
 @app.get("/health")
 def health_check():
