@@ -7,10 +7,16 @@ from .routers import weeks, tasks, reflections, progress, badges, rpg, achieveme
 # Create database tables
 Base.metadata.create_all(bind=engine)
 
+# Determine root path (essential for Vercel routing)
+# Vercel rewrites /api/... to /api/index.py, so we need to tell FastAPI that /api is the root
+import os
+root_path = "/api" if os.environ.get("VERCEL") else ""
+
 app = FastAPI(
     title="Learning Tracker API",
     description="API for the AI Learning Roadmap Tracker",
-    version="1.0.0"
+    version="1.0.0",
+    root_path=root_path
 )
 
 # CORS middleware for frontend
