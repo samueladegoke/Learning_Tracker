@@ -76,3 +76,16 @@ seed_data.json
 .cursor/
 .windsurf/
 
+# Large/External Content
+Udemy - 100 Days of Code The Complete Python Pro Bootcamp 2025-8/
+
+# Testing & Reports
+playwright-report/
+test-results/
+frontend/playwright-report/
+frontend/test-results/
+
+# Legacy/Misc
+bmad-custom-modules-src/
+bmad-custom-src/
+

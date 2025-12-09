@@ -1,17 +1,17 @@
-# Frameworks & Agent Configs
-.bmad
-.agent
-.agentvibes
-.claude
-.codex
-.cursor
-.windsurf
-.vscode
-.idea
-.windsurf
+# --- Frameworks & Agent Configs ---
+.bmad/
+.agent/
+.agentvibes/
+.claude/
+.codex/
+.cursor/
+.windsurf/
+.vscode/
+.idea/
+.git/
 
-# Documentation & Assets
-docs
+# --- Documentation & Assets ---
+docs/
 *.md
 !README.md
 *.pdf
@@ -19,23 +19,43 @@ ETD_Visual_Proposal_PremiumEdition_v2.pdf
 100_DAYS_OF_CODE_CURRICULUM.md
 DEPLOYMENT_GUIDE.md
 
-# Scripts & Data Tools
-scripts
-bmad-custom-modules-src
-bmad-custom-src
-generate_day1.py
+# --- Scripts, Data & Tools ---
+scripts/
+bmad-custom-modules-src/
+bmad-custom-src/
 extract_day1_content.py
+generate_day1.py
 day1_extracted_content.json
 seed_data.json
+data/
 
-# Local Configs
+# --- Testing & Reports ---
+e2e/
+playwright-report/
+test-results/
+frontend/e2e/
+frontend/playwright-report/
+frontend/test-results/
+backend/test_boss_logic.py
+backend/seed.py
+
+# --- Local & Dev Configs ---
 .env
 .env.local
-.venv
-venv
-__pycache__
+.venv/
+venv/
+__pycache__/
 *.pyc
 
-# Database
+# --- Database ---
 *.db
 *.sqlite
+backend/*.db
+
+# --- External Content ---
+Udemy - 100 Days of Code The Complete Python Pro Bootcamp 2025-8/
+
+# --- Netlify Legacy ---
+netlify/
+netlify.toml
+.netlify/
