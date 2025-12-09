@@ -1,0 +1,41 @@
+# Frameworks & Agent Configs
+.bmad
+.agent
+.agentvibes
+.claude
+.codex
+.cursor
+.windsurf
+.vscode
+.idea
+.windsurf
+
+# Documentation & Assets
+docs
+*.md
+!README.md
+*.pdf
+ETD_Visual_Proposal_PremiumEdition_v2.pdf
+100_DAYS_OF_CODE_CURRICULUM.md
+DEPLOYMENT_GUIDE.md
+
+# Scripts & Data Tools
+scripts
+bmad-custom-modules-src
+bmad-custom-src
+generate_day1.py
+extract_day1_content.py
+day1_extracted_content.json
+seed_data.json
+
+# Local Configs
+.env
+.env.local
+.venv
+venv
+__pycache__
+*.pyc
+
+# Database
+*.db
+*.sqlite

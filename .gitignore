@@ -61,3 +61,18 @@ netlify/functions/api.py
 
 # Local Netlify folder
 .netlify
+
+# Large Files & Data
+*.pdf
+day1_extracted_content.json
+seed_data.json
+
+# Agent & Tool Configs
+.bmad/
+.agent/
+.agentvibes/
+.claude/
+.codex/
+.cursor/
+.windsurf/
+
