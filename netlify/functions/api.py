@@ -14,16 +14,32 @@ sys.path.insert(0, os.path.join(root_path, 'backend'))
 # Import the FastAPI app
 try:
     from backend.app.main import app
-except ImportError:
+except ImportError as e:
+    import traceback
+    # Try importing from app.main directly if backend.app.main failed
+    # This might happen if the backend directory itself is added to path,
+    # and app.main is directly inside it.
     try:
         from app.main import app
-    except ImportError as e:
         print(f"Failed to import app: {e}")
         # Create a fallback app to show error in browser
         from fastapi import FastAPI
         app = FastAPI()
+        
         @app.get("/{path:path}")
-        def catch_all(path: str):
-            return {"error": f"Import failed: {str(e)}", "sys_path": sys.path}
+        async def catch_all(path: str):
+            error_trace = traceback.format_exc()
+            return {
+                "status": "error",
+                "message": "Failed to import backend app",
+                "cwd": os.getcwd(),
+                "root_path": root_path,
+                "sys_path": sys.path,
+                "backend_dir_exists": os.path.exists(os.path.join(root_path, 'backend')),
+                "backend_contents": os.listdir(os.path.join(root_path, 'backend')) if os.path.exists(os.path.join(root_path, 'backend')) else "N/A",
+                "root_contents": os.listdir(root_path),
+                "error": str(e),
+                "traceback": error_trace
+            }
 
 handler = Mangum(app)
