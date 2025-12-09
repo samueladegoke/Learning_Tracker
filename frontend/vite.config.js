@@ -12,10 +12,6 @@ export default defineConfig({
         // rewrite: (path) => path.replace(/^\/api/, '') // Removed to match Vercel behavior
       }
     }
-  },
-  build: {
-    outDir: '../dist',
-    emptyOutDir: true
   }
 })
 
