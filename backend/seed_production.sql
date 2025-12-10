@@ -1,12 +1,12 @@
 -- Seed weeks
-INSERT INTO weeks (week_number, label, notes) VALUES (1, 'Week 1 – Bootcamp Days 1–11', 'Review-heavy week (you may batch 2–3 bootcamp days per study session).');
-INSERT INTO weeks (week_number, label, notes) VALUES (2, 'Week 2 – Bootcamp Days 12–25', 'Review-heavy week (you may batch 2–3 bootcamp days per study session). OOP Coffee/Quiz days get slightly more focus.');
-INSERT INTO weeks (week_number, label, notes) VALUES (3, 'Week 3 – Bootcamp Days 26–35', 'Review-heavy but transitioning to more complex GUI + API work. Still 2 bootcamp days per study session.');
-INSERT INTO weeks (week_number, label, notes) VALUES (4, 'Week 4 – Bootcamp Days 36–45', 'Mixed week: regular pace (mostly 2 bootcamp days per study session). Focus on APIs, automation, and first larger data/HTML projects.');
-INSERT INTO weeks (week_number, label, notes) VALUES (5, 'Week 5 – Bootcamp Days 46–55', 'Mixed week: regular pace (~2 bootcamp days per study session). Focus on scraping + Selenium bots + Flask intro.');
-INSERT INTO weeks (week_number, label, notes) VALUES (6, 'Week 6 – Bootcamp Days 56–65', 'Heavy project week: advanced Flask/web; keep pace at ~2 bootcamp days per study session, no 3-day batches.');
-INSERT INTO weeks (week_number, label, notes) VALUES (7, 'Week 7 – Bootcamp Days 66–75', 'Heavy project week: REST APIs, auth, multi-user blogs, and data science intro. Still ~2 bootcamp days per session.');
-INSERT INTO weeks (week_number, label, notes) VALUES (8, 'Week 8 – Bootcamp Days 76–80', 'Capstone & portfolio week: 1 bootcamp day per session with extra time for polishing and reflection.');
+INSERT INTO weeks (week_number, label, notes) VALUES (1, 'Week 1 - Bootcamp Days 1-11', 'Review-heavy week (you may batch 2–3 bootcamp days per study session).');
+INSERT INTO weeks (week_number, label, notes) VALUES (2, 'Week 2 - Bootcamp Days 12-25', 'Review-heavy week (you may batch 2–3 bootcamp days per study session). OOP Coffee/Quiz days get slightly more focus.');
+INSERT INTO weeks (week_number, label, notes) VALUES (3, 'Week 3 - Bootcamp Days 26-35', 'Review-heavy but transitioning to more complex GUI + API work. Still 2 bootcamp days per study session.');
+INSERT INTO weeks (week_number, label, notes) VALUES (4, 'Week 4 - Bootcamp Days 36-45', 'Mixed week: regular pace (mostly 2 bootcamp days per study session). Focus on APIs, automation, and first larger data/HTML projects.');
+INSERT INTO weeks (week_number, label, notes) VALUES (5, 'Week 5 - Bootcamp Days 46-55', 'Mixed week: regular pace (~2 bootcamp days per study session). Focus on scraping + Selenium bots + Flask intro.');
+INSERT INTO weeks (week_number, label, notes) VALUES (6, 'Week 6 - Bootcamp Days 56-65', 'Heavy project week: advanced Flask/web; keep pace at ~2 bootcamp days per study session, no 3-day batches.');
+INSERT INTO weeks (week_number, label, notes) VALUES (7, 'Week 7 - Bootcamp Days 66-75', 'Heavy project week: REST APIs, auth, multi-user blogs, and data science intro. Still ~2 bootcamp days per session.');
+INSERT INTO weeks (week_number, label, notes) VALUES (8, 'Week 8 - Bootcamp Days 76-80', 'Capstone & portfolio week: 1 bootcamp day per session with extra time for polishing and reflection.');
 
 -- Seed tasks
 INSERT INTO tasks (task_id, week_number, calendar_slot, bootcamp_days, bootcamp_day_titles, type, xp_reward, description) 

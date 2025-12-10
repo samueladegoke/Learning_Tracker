@@ -1,30 +1,10 @@
 import React from 'react'
 import ProgressBar from './ProgressBar'
 import { Heart, Flame, Coins, Zap } from 'lucide-react'
+import { calculateXpProgress } from '../utils/xpUtils'
 
 const CharacterCard = ({ rpgState, progress }) => {
     if (!rpgState) return null
-
-    const xpNeededForLevel = (level) => Math.floor(100 * Math.pow(level, 1.2))
-
-    const calculateXpProgress = (totalXp = 0, currentLevel = 1, nextLevelCost) => {
-        const level = Math.max(currentLevel || 1, 1)
-        const levelCost = nextLevelCost || xpNeededForLevel(level)
-
-        let xpSpent = 0
-        for (let lvl = 1; lvl < level; lvl += 1) {
-            xpSpent += xpNeededForLevel(lvl)
-        }
-
-        const xpIntoLevel = Math.max(Math.min(totalXp - xpSpent, levelCost || 0), 0)
-        const percent = levelCost ? Math.min(Math.max((xpIntoLevel / levelCost) * 100, 0), 100) : 0
-
-        return {
-            percent,
-            xpIntoLevel,
-            levelCost: levelCost || 1,
-        }
-    }
 
     const xpProgress = calculateXpProgress(rpgState.xp, rpgState.level, rpgState.next_level_xp)
     const xpPercent = xpProgress.percent

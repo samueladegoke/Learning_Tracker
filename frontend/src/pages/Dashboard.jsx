@@ -20,7 +20,6 @@ import {
   Trophy
 } from 'lucide-react'
 import { progressAPI, weeksAPI, tasksAPI, rpgAPI, badgesAPI } from '../api/client'
-import { calculateXpProgress } from '../utils/xpUtils'
 import ProgressRing from '../components/ProgressRing'
 import StatCard from '../components/StatCard'
 import ProgressBar from '../components/ProgressBar'
