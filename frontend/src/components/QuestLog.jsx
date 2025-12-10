@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { motion, AnimatePresence } from 'framer-motion'
 import TaskCard from './TaskCard'
 
 const QuestLog = ({ tasks, onToggle }) => {
@@ -25,35 +26,58 @@ const QuestLog = ({ tasks, onToggle }) => {
                     <h4 className="text-xs font-bold text-surface-500 uppercase tracking-widest mb-3 pl-1">Active Quests</h4>
                     {activeTasks.length > 0 ? (
                         <div className="space-y-3">
-                            {activeTasks.map((task) => (
-                                <TaskCard
-                                    key={task.task_id}
-                                    task={task}
-                                    onToggle={onToggle}
-                                />
-                            ))}
+                            <AnimatePresence mode='popLayout'>
+                                {activeTasks.map((task) => (
+                                    <motion.div
+                                        key={task.task_id}
+                                        layout
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
+                                        transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                                    >
+                                        <TaskCard
+                                            task={task}
+                                            onToggle={onToggle}
+                                        />
+                                    </motion.div>
+                                ))}
+                            </AnimatePresence>
                         </div>
                     ) : (
-                        <div className="text-center py-6 border-2 border-dashed border-surface-800 rounded-xl bg-surface-800/20">
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            className="text-center py-6 border-2 border-dashed border-surface-800 rounded-xl bg-surface-800/20"
+                        >
                             <p className="text-surface-500 text-sm">No active quests. Time to rest or find more!</p>
-                        </div>
+                        </motion.div>
                     )}
                 </div>
 
                 {/* Completed Quests (Collapsed or smaller) */}
                 {completedTasks.length > 0 && (
-                    <div>
+                    <motion.div layout>
                         <h4 className="text-xs font-bold text-surface-600 uppercase tracking-widest mb-3 pl-1">Completed Today</h4>
                         <div className="space-y-2 opacity-60 hover:opacity-100 transition-opacity">
-                            {completedTasks.map((task) => (
-                                <TaskCard
-                                    key={task.task_id}
-                                    task={task}
-                                    onToggle={onToggle}
-                                />
-                            ))}
+                            <AnimatePresence mode='popLayout'>
+                                {completedTasks.map((task) => (
+                                    <motion.div
+                                        key={task.task_id}
+                                        layout
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, scale: 0.9 }}
+                                    >
+                                        <TaskCard
+                                            task={task}
+                                            onToggle={onToggle}
+                                        />
+                                    </motion.div>
+                                ))}
+                            </AnimatePresence>
                         </div>
-                    </div>
+                    </motion.div>
                 )}
             </div>
         </div>

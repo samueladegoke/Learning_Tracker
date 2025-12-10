@@ -6,8 +6,8 @@
   body {
     @apply bg-surface-950 text-surface-100 font-body antialiased;
     background-image:
-      radial-gradient(ellipse at top, rgba(34, 197, 94, 0.08) 0%, transparent 50%),
-      radial-gradient(ellipse at bottom right, rgba(217, 70, 239, 0.05) 0%, transparent 50%);
+      radial-gradient(circle at 15% 50%, rgba(34, 197, 94, 0.08), transparent 25%),
+      radial-gradient(circle at 85% 30%, rgba(217, 70, 239, 0.08), transparent 25%);
     min-height: 100vh;
   }
 
@@ -17,7 +17,7 @@
   h4,
   h5,
   h6 {
-    @apply font-display font-semibold;
+    @apply font-display font-semibold tracking-tight;
   }
 
   code {
@@ -27,45 +27,53 @@
 
 @layer components {
   .btn-primary {
-    @apply px-4 py-2 bg-primary-600 hover:bg-primary-500 text-white rounded-lg font-medium transition-all duration-200 shadow-lg shadow-primary-900/30 hover:shadow-primary-900/50 active:scale-95 flex items-center gap-2;
+    @apply relative overflow-hidden px-5 py-2.5 bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 text-white rounded-xl font-medium transition-all duration-300 shadow-lg shadow-primary-900/20 hover:shadow-primary-900/40 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 flex items-center justify-center gap-2;
   }
 
   .btn-secondary {
-    @apply px-4 py-2 bg-surface-800 hover:bg-surface-700 text-surface-100 rounded-lg font-medium transition-all duration-200 border border-surface-700 active:scale-95;
+    @apply px-5 py-2.5 bg-surface-800/80 hover:bg-surface-700/80 text-surface-100 rounded-xl font-medium transition-all duration-200 border border-surface-700/50 hover:border-surface-600 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 backdrop-blur-sm;
   }
 
+  /* Deep Glass Card */
   .card {
-    @apply bg-surface-900/80 backdrop-blur-sm rounded-xl border border-surface-800 shadow-xl shadow-black/20;
+    @apply bg-surface-900/60 backdrop-blur-xl rounded-2xl border border-white/5 shadow-xl shadow-black/20 relative;
+  }
+
+  .card::before {
+    content: "";
+    @apply absolute inset-0 rounded-2xl pointer-events-none border border-white/5;
+    mask-image: linear-gradient(to bottom, black, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, black, transparent);
   }
 
   .card-hover {
-    @apply card hover:border-primary-700/50 hover:shadow-primary-900/10 transition-all duration-300;
+    @apply card hover:bg-surface-800/60 hover:border-primary-500/20 hover:shadow-2xl hover:shadow-primary-900/10 transition-all duration-300 hover:-translate-y-1;
   }
 
   .input {
-    @apply w-full px-4 py-3 bg-surface-800 border border-surface-700 rounded-lg text-surface-100 placeholder-surface-500 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500 transition-all duration-200;
+    @apply w-full px-4 py-3 bg-surface-900/50 border border-surface-700/50 rounded-xl text-surface-100 placeholder-surface-500 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500/50 transition-all duration-200 backdrop-blur-sm;
   }
 
   .badge {
-    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+    @apply inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold tracking-wide uppercase;
   }
 
   .badge-primary {
-    @apply badge bg-primary-900/50 text-primary-300 border border-primary-700/50;
+    @apply badge bg-primary-500/10 text-primary-400 border border-primary-500/20 shadow-md shadow-primary-500/20;
   }
 
   .badge-accent {
-    @apply badge bg-accent-900/50 text-accent-300 border border-accent-700/50;
+    @apply badge bg-accent-500/10 text-accent-400 border border-accent-500/20 shadow-md shadow-accent-500/20;
   }
 
   .badge-surface {
-    @apply badge bg-surface-800 text-surface-300 border border-surface-700;
+    @apply badge bg-surface-700/30 text-surface-300 border border-surface-600/30;
   }
 }
 
 /* RPG Custom Styles */
 .rpg-card {
-  @apply relative overflow-hidden border border-primary-500/20 bg-surface-900/80 backdrop-blur-sm;
+  @apply card overflow-hidden border-primary-500/10;
 }
 
 @keyframes pulse-slow {
@@ -81,24 +89,40 @@
 }
 
 .animate-pulse-slow {
-  animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-surface-900;
+  @apply bg-transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-surface-700 rounded-full hover:bg-surface-600;
+  @apply bg-surface-700/50 rounded-full hover:bg-surface-600/80 transition-colors;
 }
 
 /* Selection */
 ::selection {
-  @apply bg-primary-600/30 text-primary-100;
+  @apply bg-primary-500/30 text-primary-200;
 }
