@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Diamond } from 'lucide-react'
 import TaskCard from './TaskCard'
 import ProgressBar from './ProgressBar'
 
