@@ -1,262 +1,420 @@
 [
   {
     "question_type": "mcq",
-    "text": "What is the correct way to assign the value 10 to a variable named 'score'?",
+    "text": "What is the correct syntax for the print() function in Python?",
     "options": [
-      "score == 10",
-      "score = 10",
-      "10 = score",
-      "int score = 10"
+      "print Hello world",
+      "print(\"Hello world\")",
+      "Print(\"Hello world\")",
+      "PRINT('Hello world')"
     ],
     "correct_index": 1,
-    "explanation": "In Python, '=' is the assignment operator. 'score = 10' assigns the value 10 to the variable score.",
-    "difficulty": "easy",
-    "topic_tag": "variables"
-  },
-  {
-    "question_type": "mcq",
-    "text": "Which function is used to display output in Python?",
-    "options": [
-      "echo()",
-      "display()",
-      "print()",
-      "output()"
-    ],
-    "correct_index": 2,
-    "explanation": "The print() function is used to display output to the console in Python.",
+    "explanation": "The print() function requires lowercase 'print' followed by parentheses. The text to print goes inside quotes within the parentheses.",
     "difficulty": "easy",
     "topic_tag": "print"
   },
   {
     "question_type": "mcq",
-    "text": "What will print('Hello' + ' ' + 'World') output?",
+    "text": "What does the text inside the parentheses of a print() statement need to be wrapped in?",
     "options": [
-      "Hello World",
+      "Parentheses ()",
+      "Square brackets []",
+      "Quotation marks \"\" or ''",
+      "Curly braces {}"
+    ],
+    "correct_index": 2,
+    "explanation": "Text (strings) in Python must be wrapped in quotation marks - either double quotes \"\" or single quotes '' - to tell Python it's text, not code.",
+    "difficulty": "easy",
+    "topic_tag": "strings"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What error do you get when you forget a closing quotation mark in Python?",
+    "options": [
+      "IndentationError",
+      "NameError",
+      "SyntaxError",
+      "TypeError"
+    ],
+    "correct_index": 2,
+    "explanation": "Missing quotation marks cause a SyntaxError because Python cannot properly parse the code structure. The error message often shows 'unterminated string literal'.",
+    "difficulty": "medium",
+    "topic_tag": "debugging"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does \\n do inside a string?",
+    "options": [
+      "Prints the letter 'n'",
+      "Creates a new line",
+      "Prints a backslash",
+      "Causes an error"
+    ],
+    "correct_index": 1,
+    "explanation": "\\n is an escape sequence that creates a new line. It allows you to print multiple lines using a single print() statement.",
+    "difficulty": "easy",
+    "topic_tag": "strings"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What will print(\"Hello\\nWorld\") output?",
+    "options": [
+      "Hello\\nWorld on one line",
       "HelloWorld",
-      "Hello + World",
-      "Error"
-    ],
-    "correct_index": 0,
-    "explanation": "The + operator concatenates strings. Adding 'Hello', ' ', and 'World' produces 'Hello World'.",
-    "difficulty": "easy",
-    "topic_tag": "strings"
-  },
-  {
-    "question_type": "mcq",
-    "text": "Which function is used to get user input in Python?",
-    "options": [
-      "get()",
-      "scan()",
-      "input()",
-      "read()"
+      "Hello on one line, World on the next line",
+      "Hello nWorld"
     ],
     "correct_index": 2,
-    "explanation": "The input() function reads a line from user input and returns it as a string.",
+    "explanation": "The \\n escape sequence creates a line break, so 'Hello' prints on one line and 'World' prints on the next line.",
     "difficulty": "easy",
-    "topic_tag": "input"
-  },
-  {
-    "question_type": "mcq",
-    "text": "What is the output of: print(len('Python'))?",
-    "options": [
-      "5",
-      "6",
-      "7",
-      "Error"
-    ],
-    "correct_index": 1,
-    "explanation": "len() returns the number of characters in a string. 'Python' has 6 characters.",
-    "difficulty": "easy",
-    "topic_tag": "strings"
-  },
-  {
-    "question_type": "mcq",
-    "text": "What will be stored in x after: x = input('Enter: ')\\n(user types '42')?",
-    "options": [
-      "42 (integer)",
-      "'42' (string)",
-      "None",
-      "Error"
-    ],
-    "correct_index": 1,
-    "explanation": "input() always returns a string, even if the user enters numbers. To get an integer, use int(input()).",
-    "difficulty": "medium",
-    "topic_tag": "input"
-  },
-  {
-    "question_type": "mcq",
-    "text": "Which is a valid variable name in Python?",
-    "options": [
-      "2nd_place",
-      "my-variable",
-      "_private",
-      "class"
-    ],
-    "correct_index": 2,
-    "explanation": "Variable names can start with letters or underscores, but not numbers or hyphens. 'class' is a reserved keyword.",
-    "difficulty": "medium",
-    "topic_tag": "variables"
-  },
-  {
-    "question_type": "mcq",
-    "text": "What does the following code print?\\nname = 'Alice'\\nprint(f'Hello, {name}!')",
-    "options": [
-      "Hello, {name}!",
-      "Hello, Alice!",
-      "Hello, name!",
-      "Error"
-    ],
-    "correct_index": 1,
-    "explanation": "f-strings (formatted string literals) allow embedding expressions inside curly braces. {name} is replaced with 'Alice'.",
-    "difficulty": "medium",
     "topic_tag": "strings"
   },
   {
     "question_type": "mcq",
     "text": "What is string concatenation?",
     "options": [
+      "Splitting a string into parts",
       "Comparing two strings",
-      "Joining strings together",
-      "Splitting a string",
+      "Combining multiple strings into one",
       "Reversing a string"
     ],
+    "correct_index": 2,
+    "explanation": "String concatenation is the process of combining or joining multiple strings together using the + operator, like \"Hello\" + \" \" + \"World\" becomes \"Hello World\".",
+    "difficulty": "easy",
+    "topic_tag": "strings"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What will print(\"Hello\" + \"Angela\") output?",
+    "options": [
+      "Hello Angela",
+      "HelloAngela",
+      "Hello + Angela",
+      "Error"
+    ],
     "correct_index": 1,
-    "explanation": "String concatenation is the operation of joining two or more strings end-to-end using the + operator.",
+    "explanation": "String concatenation with + joins strings exactly as they are - no space is automatically added. To get a space, you need to explicitly include it.",
     "difficulty": "medium",
     "topic_tag": "strings"
   },
   {
     "question_type": "mcq",
-    "text": "What will print('\\n') output?",
+    "text": "What error do you get if you add an unexpected space at the beginning of a line in Python?",
     "options": [
-      "\\n",
-      "n",
-      "A blank line",
-      "Error"
-    ],
-    "correct_index": 2,
-    "explanation": "\\n is an escape sequence representing a newline character. Printing it creates a blank line.",
-    "difficulty": "medium",
-    "topic_tag": "strings"
-  },
-  {
-    "question_type": "mcq",
-    "text": "What is the output of: print('Python'[1])?",
-    "options": [
-      "P",
-      "y",
-      "Py",
-      "Error"
+      "SyntaxError",
+      "IndentationError",
+      "NameError",
+      "ValueError"
     ],
     "correct_index": 1,
-    "explanation": "String indexing in Python is 0-based. Index 1 refers to the second character, which is 'y'.",
-    "difficulty": "hard",
+    "explanation": "Python is sensitive to indentation. An unexpected space or tab at the beginning of a line causes an IndentationError with the message 'unexpected indent'.",
+    "difficulty": "medium",
+    "topic_tag": "debugging"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does the input() function do?",
+    "options": [
+      "Prints text to the console",
+      "Waits for user input and returns it",
+      "Creates a new variable",
+      "Calculates the length of a string"
+    ],
+    "correct_index": 1,
+    "explanation": "The input() function displays a prompt, pauses the program, and waits for the user to type something and press Enter. It returns whatever the user typed as a string.",
+    "difficulty": "easy",
+    "topic_tag": "input"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What data type does input() always return?",
+    "options": [
+      "Integer",
+      "Float",
+      "String",
+      "Depends on what the user types"
+    ],
+    "correct_index": 2,
+    "explanation": "The input() function always returns a string, even if the user types numbers like '42'. To use it as a number, you must convert it using int() or float().",
+    "difficulty": "medium",
+    "topic_tag": "input"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the purpose of a variable in Python?",
+    "options": [
+      "To execute a function",
+      "To store and reference data by name",
+      "To create an error message",
+      "To print output to the console"
+    ],
+    "correct_index": 1,
+    "explanation": "A variable gives a name to a piece of data so you can store it and refer to it later. It's like a label attached to a value.",
+    "difficulty": "easy",
+    "topic_tag": "variables"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the correct syntax to assign the value 'Angela' to a variable called name?",
+    "options": [
+      "'Angela' = name",
+      "name = 'Angela'",
+      "name == 'Angela'",
+      "var name = 'Angela'"
+    ],
+    "correct_index": 1,
+    "explanation": "In Python, assignment uses a single equals sign =, with the variable name on the left and the value on the right: name = 'Angela'",
+    "difficulty": "easy",
+    "topic_tag": "variables"
+  },
+  {
+    "question_type": "mcq",
+    "text": "Can a variable's value be changed after it's been assigned?",
+    "options": [
+      "No, variables are constant",
+      "Yes, you can reassign a new value anytime",
+      "Only if you use a special keyword",
+      "Only for numbers, not strings"
+    ],
+    "correct_index": 1,
+    "explanation": "Variables can be changed (that's why they're called 'variable'). You can reassign a new value at any point, and the variable will hold the new value from that point forward.",
+    "difficulty": "easy",
+    "topic_tag": "variables"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does len('Python') return?",
+    "options": [
+      "5",
+      "6",
+      "7",
+      "'Python'"
+    ],
+    "correct_index": 1,
+    "explanation": "The len() function returns the number of characters in a string. 'Python' has 6 characters: P-y-t-h-o-n.",
+    "difficulty": "easy",
     "topic_tag": "strings"
   },
   {
     "question_type": "mcq",
-    "text": "What happens if you try to concatenate a string and an integer: 'Age: ' + 25?",
+    "text": "Which variable naming convention is correct in Python for multi-word names?",
     "options": [
-      "'Age: 25'",
-      "Age: 25",
-      "TypeError",
-      "'Age: ' + 25"
+      "userName (camelCase)",
+      "user name (space)",
+      "user_name (snake_case)",
+      "user-name (kebab-case)"
     ],
     "correct_index": 2,
-    "explanation": "Python raises a TypeError when trying to concatenate string and integer. Use str(25) to convert first.",
+    "explanation": "Python uses snake_case for variable names - words are separated by underscores. Spaces and hyphens are not allowed in variable names.",
+    "difficulty": "medium",
+    "topic_tag": "variables"
+  },
+  {
+    "question_type": "mcq",
+    "text": "Why can't you start a variable name with a number?",
+    "options": [
+      "Numbers are reserved for constants",
+      "Python thinks it's a number literal instead of a name",
+      "It's allowed but bad practice",
+      "Numbers can only appear at the end"
+    ],
+    "correct_index": 1,
+    "explanation": "Variable names starting with numbers cause a SyntaxError because Python interprets them as number literals. Variables must start with a letter or underscore.",
+    "difficulty": "medium",
+    "topic_tag": "variables"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What error do you get when you misspell a variable name?",
+    "options": [
+      "SyntaxError",
+      "IndentationError",
+      "NameError",
+      "SpellingError"
+    ],
+    "correct_index": 2,
+    "explanation": "A NameError with the message 'name is not defined' occurs when you reference a variable that doesn't exist, often due to a typo.",
+    "difficulty": "medium",
+    "topic_tag": "debugging"
+  },
+  {
+    "question_type": "mcq",
+    "text": "Why shouldn't you use 'print' or 'input' as variable names?",
+    "options": [
+      "It will cause an immediate error",
+      "It overwrites the built-in function and causes confusion",
+      "These words can never be used",
+      "It slows down the program"
+    ],
+    "correct_index": 1,
+    "explanation": "Using built-in function names as variables 'shadows' them, making the original function inaccessible. It's very confusing and bad practice.",
     "difficulty": "hard",
-    "topic_tag": "strings"
+    "topic_tag": "variables"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does the # symbol do in Python?",
+    "options": [
+      "Creates a new line",
+      "Starts a comment that is ignored by Python",
+      "Multiplies numbers",
+      "References a variable"
+    ],
+    "correct_index": 1,
+    "explanation": "The # symbol creates a comment. Everything after # on that line is completely ignored by Python, allowing you to leave notes in your code.",
+    "difficulty": "easy",
+    "topic_tag": "comments"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the purpose of Stack Overflow for programmers?",
+    "options": [
+      "A place to store your code",
+      "A Q&A website for programming questions and error solutions",
+      "A tool to run Python code",
+      "A website for downloading Python"
+    ],
+    "correct_index": 1,
+    "explanation": "Stack Overflow is a Q&A website where programmers ask questions and share solutions. When you get an error, searching for it on Stack Overflow often leads to helpful answers.",
+    "difficulty": "easy",
+    "topic_tag": "debugging"
   },
   {
     "question_type": "coding",
-    "text": "Write a function called 'greet' that takes a name parameter and returns a greeting in the format 'Hello, [name]!'",
-    "starter_code": "def greet(name):\n    # Your code here\n    pass",
+    "text": "Create a greeting function that takes a name and returns 'Hello, [name]!' using string concatenation.",
+    "starter_code": "def greet(name):\n    # Use string concatenation with +\n    pass",
     "test_cases": [
       {
-        "function_call": "greet('Alice')",
-        "expected": "Hello, Alice!"
+        "function_call": "greet('Angela')",
+        "expected": "Hello, Angela!"
       },
       {
-        "function_call": "greet('Bob')",
-        "expected": "Hello, Bob!"
+        "function_call": "greet('Jack')",
+        "expected": "Hello, Jack!"
       },
       {
         "function_call": "greet('World')",
         "expected": "Hello, World!"
       }
     ],
-    "solution_code": "def greet(name):\n    return f'Hello, {name}!'",
-    "explanation": "Use an f-string to embed the name parameter in the greeting string.",
+    "solution_code": "def greet(name):\n    return 'Hello, ' + name + '!'",
+    "explanation": "Use the + operator to concatenate 'Hello, ', the name parameter, and '!' together.",
     "difficulty": "easy",
-    "topic_tag": "functions"
+    "topic_tag": "strings"
   },
   {
     "question_type": "coding",
-    "text": "Write a function called 'string_length' that returns the length of a given string.",
-    "starter_code": "def string_length(text):\n    # Your code here\n    pass",
+    "text": "Write a function that calculates and returns the number of characters in a given string using len().",
+    "starter_code": "def count_characters(text):\n    # Use the len() function\n    pass",
     "test_cases": [
       {
-        "function_call": "string_length('hello')",
-        "expected": "5"
-      },
-      {
-        "function_call": "string_length('')",
-        "expected": "0"
-      },
-      {
-        "function_call": "string_length('Python')",
+        "function_call": "count_characters('Angela')",
         "expected": "6"
+      },
+      {
+        "function_call": "count_characters('Hello World')",
+        "expected": "11"
+      },
+      {
+        "function_call": "count_characters('')",
+        "expected": "0"
       }
     ],
-    "solution_code": "def string_length(text):\n    return len(text)",
-    "explanation": "Use the built-in len() function to get the length of a string.",
+    "solution_code": "def count_characters(text):\n    return len(text)",
+    "explanation": "The len() function returns the number of characters in a string, including spaces.",
     "difficulty": "easy",
     "topic_tag": "strings"
   },
   {
     "question_type": "coding",
-    "text": "Write a function called 'first_last' that takes a string and returns a new string with only the first and last characters.",
-    "starter_code": "def first_last(text):\n    # Your code here\n    pass",
+    "text": "Write a function that takes two strings and combines them with a space in between.",
+    "starter_code": "def combine_strings(first, second):\n    # Concatenate with a space\n    pass",
     "test_cases": [
       {
-        "function_call": "first_last('hello')",
-        "expected": "ho"
-      },
-      {
-        "function_call": "first_last('Python')",
-        "expected": "Pn"
-      },
-      {
-        "function_call": "first_last('ab')",
-        "expected": "ab"
-      }
-    ],
-    "solution_code": "def first_last(text):\n    return text[0] + text[-1]",
-    "explanation": "Use index 0 for the first character and index -1 for the last character.",
-    "difficulty": "medium",
-    "topic_tag": "strings"
-  },
-  {
-    "question_type": "coding",
-    "text": "Write a function called 'combine_words' that takes two strings and returns them combined with a space between.",
-    "starter_code": "def combine_words(word1, word2):\n    # Your code here\n    pass",
-    "test_cases": [
-      {
-        "function_call": "combine_words('Hello', 'World')",
+        "function_call": "combine_strings('Hello', 'World')",
         "expected": "Hello World"
       },
       {
-        "function_call": "combine_words('Good', 'Morning')",
+        "function_call": "combine_strings('Good', 'Morning')",
         "expected": "Good Morning"
       },
       {
-        "function_call": "combine_words('Python', 'Programming')",
+        "function_call": "combine_strings('Python', 'Programming')",
         "expected": "Python Programming"
       }
     ],
-    "solution_code": "def combine_words(word1, word2):\n    return word1 + ' ' + word2",
-    "explanation": "Concatenate the two words with a space in between using the + operator.",
+    "solution_code": "def combine_strings(first, second):\n    return first + ' ' + second",
+    "explanation": "Use + to concatenate: first string + a space string + second string.",
+    "difficulty": "easy",
+    "topic_tag": "strings"
+  },
+  {
+    "question_type": "coding",
+    "text": "Write a function that returns only the first and last characters of a string.",
+    "starter_code": "def first_and_last(text):\n    # Use string indexing [0] and [-1]\n    pass",
+    "test_cases": [
+      {
+        "function_call": "first_and_last('Hello')",
+        "expected": "Ho"
+      },
+      {
+        "function_call": "first_and_last('Python')",
+        "expected": "Pn"
+      },
+      {
+        "function_call": "first_and_last('ab')",
+        "expected": "ab"
+      }
+    ],
+    "solution_code": "def first_and_last(text):\n    return text[0] + text[-1]",
+    "explanation": "Use index [0] for the first character and [-1] for the last character, then concatenate them.",
     "difficulty": "medium",
     "topic_tag": "strings"
+  },
+  {
+    "question_type": "coding",
+    "text": "Write a function that takes a string and returns it with the character count appended, like 'Hello' becomes 'Hello has 5 characters'.",
+    "starter_code": "def describe_string(text):\n    # Use len() and string concatenation\n    # Remember to convert the number to a string!\n    pass",
+    "test_cases": [
+      {
+        "function_call": "describe_string('Hello')",
+        "expected": "Hello has 5 characters"
+      },
+      {
+        "function_call": "describe_string('Python')",
+        "expected": "Python has 6 characters"
+      },
+      {
+        "function_call": "describe_string('Hi')",
+        "expected": "Hi has 2 characters"
+      }
+    ],
+    "solution_code": "def describe_string(text):\n    return text + ' has ' + str(len(text)) + ' characters'",
+    "explanation": "Calculate length with len(), convert to string with str(), then concatenate all parts together.",
+    "difficulty": "medium",
+    "topic_tag": "strings"
+  },
+  {
+    "question_type": "coding",
+    "text": "Write a function that swaps two variable values and returns them as a tuple. Given a=1, b=2, return (b, a) so the result is (2, 1).",
+    "starter_code": "def swap_values(a, b):\n    # Swap the values\n    # Return as tuple (new_a, new_b)\n    pass",
+    "test_cases": [
+      {
+        "function_call": "swap_values(1, 2)",
+        "expected": "(2, 1)"
+      },
+      {
+        "function_call": "swap_values('hello', 'world')",
+        "expected": "('world', 'hello')"
+      },
+      {
+        "function_call": "swap_values(10, 20)",
+        "expected": "(20, 10)"
+      }
+    ],
+    "solution_code": "def swap_values(a, b):\n    return (b, a)",
+    "explanation": "Python allows easy swapping by returning a tuple with the values in reversed order.",
+    "difficulty": "medium",
+    "topic_tag": "variables"
   }
 ]

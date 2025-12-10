@@ -1,77 +1,189 @@
 [
   {
     "question_type": "mcq",
-    "text": "What is the data type of: 3.14?",
+    "text": "What are the four primitive data types covered in Day 2?",
     "options": [
-      "int",
-      "float",
-      "str",
-      "double"
+      "String, Integer, Float, Boolean",
+      "String, Number, Decimal, Boolean",
+      "Text, Integer, Double, Bool",
+      "Str, Int, Float, List"
     ],
-    "correct_index": 1,
-    "explanation": "Numbers with decimal points are floating-point numbers (float) in Python.",
+    "correct_index": 0,
+    "explanation": "Python's four primitive data types are String (text), Integer (whole numbers), Float (decimal numbers), and Boolean (True/False).",
     "difficulty": "easy",
-    "topic_tag": "floats"
+    "topic_tag": "data_types"
   },
   {
     "question_type": "mcq",
-    "text": "What function converts a string '42' to an integer?",
+    "text": "What is the result of \"Hello\"[0]?",
     "options": [
-      "str()",
-      "int()",
-      "float()",
-      "num()"
-    ],
-    "correct_index": 1,
-    "explanation": "The int() function converts a string or float to an integer.",
-    "difficulty": "easy",
-    "topic_tag": "integers"
-  },
-  {
-    "question_type": "mcq",
-    "text": "What is the result of: 10 / 3?",
-    "options": [
-      "3",
-      "3.0",
-      "3.333...",
+      "\"Hello\"",
+      "H",
+      "e",
       "Error"
+    ],
+    "correct_index": 1,
+    "explanation": "String subscripting uses [] to access individual characters. Index 0 is the first character, so \"Hello\"[0] returns 'H'. Programmers always start counting from zero.",
+    "difficulty": "easy",
+    "topic_tag": "strings"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does \"Hello\"[-1] return?",
+    "options": [
+      "H",
+      "e",
+      "o",
+      "Error - negative indices not allowed"
     ],
     "correct_index": 2,
-    "explanation": "The / operator performs true division and returns a float, approximately 3.333...",
-    "difficulty": "easy",
-    "topic_tag": "floats"
+    "explanation": "Negative indices count from the end of the string. -1 refers to the last character, so \"Hello\"[-1] returns 'o'.",
+    "difficulty": "medium",
+    "topic_tag": "strings"
   },
   {
     "question_type": "mcq",
-    "text": "What is the result of: 10 // 3?",
+    "text": "What is the difference between an Integer and a Float?",
     "options": [
-      "3",
-      "3.0",
-      "3.333...",
+      "Integers are larger than floats",
+      "Integers are whole numbers, floats have decimal places",
+      "Floats are faster to compute",
+      "There is no difference"
+    ],
+    "correct_index": 1,
+    "explanation": "Integers (int) are whole numbers like 5, -10. Floats are floating point numbers with decimal places like 3.14, 2.5.",
+    "difficulty": "easy",
+    "topic_tag": "data_types"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does print(\"123\" + \"456\") output?",
+    "options": [
+      "579",
+      "123456",
+      "\"123\" + \"456\"",
       "Error"
     ],
-    "correct_index": 0,
-    "explanation": "The // operator performs floor division, returning the integer part of the division.",
+    "correct_index": 1,
+    "explanation": "When both operands are strings, the + operator performs concatenation, not addition. \"123\" + \"456\" becomes \"123456\".",
     "difficulty": "medium",
-    "topic_tag": "integers"
+    "topic_tag": "strings"
   },
   {
     "question_type": "mcq",
-    "text": "What is the result of: 10 % 3?",
+    "text": "What function checks the data type of a value in Python?",
     "options": [
-      "1",
-      "3",
-      "3.333...",
-      "0"
+      "check()",
+      "datatype()",
+      "type()",
+      "typeof()"
     ],
-    "correct_index": 0,
-    "explanation": "The % operator returns the remainder of division. 10 divided by 3 is 3 with remainder 1.",
-    "difficulty": "medium",
-    "topic_tag": "integers"
+    "correct_index": 2,
+    "explanation": "The type() function returns the data type of any value. For example, type(42) returns <class 'int'>.",
+    "difficulty": "easy",
+    "topic_tag": "type_checking"
   },
   {
     "question_type": "mcq",
-    "text": "What is the result of: 2 ** 3?",
+    "text": "What does print(type(3.14)) output?",
+    "options": [
+      "<class 'int'>",
+      "<class 'float'>",
+      "<class 'str'>",
+      "3.14"
+    ],
+    "correct_index": 1,
+    "explanation": "3.14 has a decimal point, making it a floating point number. type(3.14) returns <class 'float'>.",
+    "difficulty": "easy",
+    "topic_tag": "type_checking"
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you convert the string \"42\" to an integer?",
+    "options": [
+      "integer(\"42\")",
+      "int(\"42\")",
+      "toInt(\"42\")",
+      "\"42\".toInteger()"
+    ],
+    "correct_index": 1,
+    "explanation": "Use int() to convert a value to an integer. int(\"42\") returns the integer 42.",
+    "difficulty": "easy",
+    "topic_tag": "type_conversion"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What happens when you run int(\"abc\")?",
+    "options": [
+      "Returns 0",
+      "Returns None",
+      "Raises a ValueError",
+      "Returns \"abc\""
+    ],
+    "correct_index": 2,
+    "explanation": "You cannot convert non-numeric text to an integer. int(\"abc\") raises a ValueError with message 'invalid literal for int()'.",
+    "difficulty": "medium",
+    "topic_tag": "type_conversion"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the result of int(3.9)?",
+    "options": [
+      "4 (rounds up)",
+      "3 (truncates/floors)",
+      "3.9",
+      "Error"
+    ],
+    "correct_index": 1,
+    "explanation": "int() truncates (floors) the number by removing all decimal places. int(3.9) returns 3, not 4. It does NOT round.",
+    "difficulty": "medium",
+    "topic_tag": "type_conversion"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What symbol is used for multiplication in Python?",
+    "options": [
+      "x",
+      "×",
+      "*",
+      "•"
+    ],
+    "correct_index": 2,
+    "explanation": "Python uses the asterisk (*) for multiplication. For example, 3 * 4 equals 12.",
+    "difficulty": "easy",
+    "topic_tag": "operators"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the result of 6 / 3 in Python?",
+    "options": [
+      "2",
+      "2.0",
+      "2.00",
+      "Error"
+    ],
+    "correct_index": 1,
+    "explanation": "Division with / always returns a float in Python, even when the result is a whole number. 6 / 3 returns 2.0, not 2.",
+    "difficulty": "medium",
+    "topic_tag": "operators"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does the // operator do?",
+    "options": [
+      "Regular division",
+      "Integer (floor) division - removes decimal places",
+      "Modulo/remainder",
+      "Exponentiation"
+    ],
+    "correct_index": 1,
+    "explanation": "The // operator performs integer division, which floors the result to the nearest whole number. 7 // 3 returns 2, not 2.33.",
+    "difficulty": "medium",
+    "topic_tag": "operators"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the result of 2 ** 3?",
     "options": [
       "5",
       "6",
@@ -79,9 +191,37 @@
       "9"
     ],
     "correct_index": 2,
-    "explanation": "The ** operator performs exponentiation. 2 ** 3 means 2 to the power of 3 = 8.",
+    "explanation": "** is the exponent/power operator. 2 ** 3 means 2 to the power of 3, which is 2 × 2 × 2 = 8.",
+    "difficulty": "easy",
+    "topic_tag": "operators"
+  },
+  {
+    "question_type": "mcq",
+    "text": "According to PEMDAS, which operation has the highest priority?",
+    "options": [
+      "Addition",
+      "Multiplication",
+      "Exponents",
+      "Parentheses"
+    ],
+    "correct_index": 3,
+    "explanation": "PEMDAS: Parentheses, Exponents, Multiplication/Division, Addition/Subtraction. Parentheses have the highest priority.",
     "difficulty": "medium",
-    "topic_tag": "integers"
+    "topic_tag": "operators"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the result of 3 * 3 + 3 / 3 - 3?",
+    "options": [
+      "3",
+      "7",
+      "10",
+      "0"
+    ],
+    "correct_index": 1,
+    "explanation": "Following PEMDAS: First 3*3=9, then 3/3=1.0, then 9+1.0=10.0, finally 10.0-3=7.0.",
+    "difficulty": "hard",
+    "topic_tag": "operators"
   },
   {
     "question_type": "mcq",
@@ -89,95 +229,221 @@
     "options": [
       "3",
       "4",
-      "3.0",
+      "3.7",
       "4.0"
     ],
     "correct_index": 1,
-    "explanation": "round() returns the nearest integer. 3.7 rounds up to 4.",
-    "difficulty": "medium",
-    "topic_tag": "floats"
+    "explanation": "round() performs traditional mathematical rounding. Since .7 is >= .5, 3.7 rounds up to 4.",
+    "difficulty": "easy",
+    "topic_tag": "functions"
   },
   {
     "question_type": "mcq",
-    "text": "What is type(5 + 3.0)?",
+    "text": "What does round(3.14159, 2) return?",
     "options": [
-      "<class 'int'>",
-      "<class 'float'>",
-      "<class 'str'>",
-      "Error"
+      "3.14",
+      "3.1",
+      "3",
+      "3.142"
+    ],
+    "correct_index": 0,
+    "explanation": "round() accepts a second argument specifying decimal places. round(3.14159, 2) rounds to 2 decimal places: 3.14.",
+    "difficulty": "medium",
+    "topic_tag": "functions"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does score += 5 do if score is currently 10?",
+    "options": [
+      "Sets score to 5",
+      "Sets score to 15",
+      "Compares score to 5",
+      "Causes an error"
     ],
     "correct_index": 1,
-    "explanation": "When mixing int and float in arithmetic, Python converts the result to float.",
-    "difficulty": "hard",
-    "topic_tag": "floats"
-  },
-  {
-    "question_type": "coding",
-    "text": "Write a function called 'to_celsius' that converts Fahrenheit to Celsius using the formula: (F - 32) * 5/9",
-    "starter_code": "def to_celsius(fahrenheit):\n    # Your code here\n    pass",
-    "test_cases": [
-      {
-        "function_call": "to_celsius(32)",
-        "expected": "0.0"
-      },
-      {
-        "function_call": "to_celsius(212)",
-        "expected": "100.0"
-      },
-      {
-        "function_call": "to_celsius(98.6)",
-        "expected": "37.0"
-      }
-    ],
-    "solution_code": "def to_celsius(fahrenheit):\n    return (fahrenheit - 32) * 5/9",
-    "explanation": "Apply the Fahrenheit to Celsius conversion formula.",
-    "difficulty": "easy",
-    "topic_tag": "floats"
-  },
-  {
-    "question_type": "coding",
-    "text": "Write a function called 'is_even' that returns True if a number is even, False otherwise.",
-    "starter_code": "def is_even(num):\n    # Your code here\n    pass",
-    "test_cases": [
-      {
-        "function_call": "is_even(4)",
-        "expected": "True"
-      },
-      {
-        "function_call": "is_even(7)",
-        "expected": "False"
-      },
-      {
-        "function_call": "is_even(0)",
-        "expected": "True"
-      }
-    ],
-    "solution_code": "def is_even(num):\n    return num % 2 == 0",
-    "explanation": "Use the modulo operator % to check if there's no remainder when divided by 2.",
-    "difficulty": "easy",
-    "topic_tag": "integers"
-  },
-  {
-    "question_type": "coding",
-    "text": "Write a function called 'sum_digits' that takes a two-digit number and returns the sum of its digits.",
-    "starter_code": "def sum_digits(num):\n    # Your code here\n    pass",
-    "test_cases": [
-      {
-        "function_call": "sum_digits(35)",
-        "expected": "8"
-      },
-      {
-        "function_call": "sum_digits(99)",
-        "expected": "18"
-      },
-      {
-        "function_call": "sum_digits(10)",
-        "expected": "1"
-      }
-    ],
-    "solution_code": "def sum_digits(num):\n    return num // 10 + num % 10",
-    "explanation": "Use floor division to get tens digit and modulo to get ones digit, then add them.",
+    "explanation": "The += assignment operator adds to the existing value. score += 5 is shorthand for score = score + 5. So 10 + 5 = 15.",
     "difficulty": "medium",
-    "topic_tag": "integers"
+    "topic_tag": "operators"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is an f-string in Python?",
+    "options": [
+      "A string that starts with 'f' and allows embedding variables in curly braces",
+      "A floating point string",
+      "A formatted file string",
+      "A string function"
+    ],
+    "correct_index": 0,
+    "explanation": "An f-string starts with 'f' before the quotes and lets you embed variables directly using {variable_name}. Example: f\"Hello, {name}!\"",
+    "difficulty": "easy",
+    "topic_tag": "f_strings"
+  },
+  {
+    "question_type": "mcq",
+    "text": "Given score = 100, what does f\"Your score is {score}\" produce?",
+    "options": [
+      "Your score is {score}",
+      "Your score is score",
+      "Your score is 100",
+      "Error"
+    ],
+    "correct_index": 2,
+    "explanation": "F-strings replace {variable_name} with the variable's value. {score} becomes 100, producing \"Your score is 100\".",
+    "difficulty": "easy",
+    "topic_tag": "f_strings"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What error occurs when you try: \"Score: \" + 42?",
+    "options": [
+      "SyntaxError",
+      "NameError",
+      "TypeError",
+      "ValueError"
+    ],
+    "correct_index": 2,
+    "explanation": "You cannot concatenate a string and integer directly. This raises TypeError: can only concatenate str to str. Use str(42) or f-strings instead.",
+    "difficulty": "medium",
+    "topic_tag": "type_conversion"
+  },
+  {
+    "question_type": "mcq",
+    "text": "How can you make large numbers more readable in Python?",
+    "options": [
+      "Use commas: 1,000,000",
+      "Use underscores: 1_000_000",
+      "Use spaces: 1 000 000",
+      "You cannot"
+    ],
+    "correct_index": 1,
+    "explanation": "Python allows underscores in numbers for readability. 1_000_000 is equivalent to 1000000. The underscores are ignored by Python.",
+    "difficulty": "easy",
+    "topic_tag": "data_types"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What must Boolean values (True/False) start with?",
+    "options": [
+      "Lowercase (true/false)",
+      "Capital letter (True/False)",
+      "All caps (TRUE/FALSE)",
+      "Any case works"
+    ],
+    "correct_index": 1,
+    "explanation": "Boolean values in Python must have a capital first letter: True and False. Lowercase 'true' would be treated as a variable name.",
+    "difficulty": "easy",
+    "topic_tag": "data_types"
+  },
+  {
+    "question_type": "coding",
+    "text": "Write a function that takes two strings of digits and returns their sum as an integer. For example, add_string_numbers(\"10\", \"5\") should return 15.",
+    "starter_code": "def add_string_numbers(a, b):\n    # Convert strings to integers and add them\n    pass",
+    "test_cases": [
+      {
+        "function_call": "add_string_numbers('10', '5')",
+        "expected": "15"
+      },
+      {
+        "function_call": "add_string_numbers('100', '200')",
+        "expected": "300"
+      },
+      {
+        "function_call": "add_string_numbers('0', '0')",
+        "expected": "0"
+      }
+    ],
+    "solution_code": "def add_string_numbers(a, b):\n    return int(a) + int(b)",
+    "explanation": "Use int() to convert each string to an integer, then add them together.",
+    "difficulty": "easy",
+    "topic_tag": "type_conversion"
+  },
+  {
+    "question_type": "coding",
+    "text": "Write a function that calculates BMI (weight / height²) and returns it rounded to 2 decimal places.",
+    "starter_code": "def calculate_bmi(weight, height):\n    # Calculate BMI and round to 2 decimal places\n    pass",
+    "test_cases": [
+      {
+        "function_call": "calculate_bmi(70, 1.75)",
+        "expected": "22.86"
+      },
+      {
+        "function_call": "calculate_bmi(80, 1.8)",
+        "expected": "24.69"
+      },
+      {
+        "function_call": "calculate_bmi(60, 1.6)",
+        "expected": "23.44"
+      }
+    ],
+    "solution_code": "def calculate_bmi(weight, height):\n    bmi = weight / (height ** 2)\n    return round(bmi, 2)",
+    "explanation": "Calculate BMI using the formula weight / height². Use ** for exponent and round(value, 2) for 2 decimal places.",
+    "difficulty": "medium",
+    "topic_tag": "operators"
+  },
+  {
+    "question_type": "coding",
+    "text": "Write a function that returns the first and last character of a string using indexing.",
+    "starter_code": "def first_and_last(text):\n    # Use [0] and [-1] indexing\n    pass",
+    "test_cases": [
+      {
+        "function_call": "first_and_last('Hello')",
+        "expected": "'Ho'"
+      },
+      {
+        "function_call": "first_and_last('Python')",
+        "expected": "'Pn'"
+      },
+      {
+        "function_call": "first_and_last('AB')",
+        "expected": "'AB'"
+      }
+    ],
+    "solution_code": "def first_and_last(text):\n    return text[0] + text[-1]",
+    "explanation": "Use [0] for the first character and [-1] for the last character (negative indexing counts from the end).",
+    "difficulty": "easy",
+    "topic_tag": "strings"
+  },
+  {
+    "question_type": "coding",
+    "text": "Write a function that returns a formatted string using f-strings: 'Hello, [name]! You are [age] years old.'",
+    "starter_code": "def greet_with_age(name, age):\n    # Use an f-string to format the greeting\n    pass",
+    "test_cases": [
+      {
+        "function_call": "greet_with_age('Alice', 25)",
+        "expected": "'Hello, Alice! You are 25 years old.'"
+      },
+      {
+        "function_call": "greet_with_age('Bob', 30)",
+        "expected": "'Hello, Bob! You are 30 years old.'"
+      }
+    ],
+    "solution_code": "def greet_with_age(name, age):\n    return f'Hello, {name}! You are {age} years old.'",
+    "explanation": "Use an f-string with 'f' before the quotes and embed variables with {variable_name}.",
+    "difficulty": "easy",
+    "topic_tag": "f_strings"
+  },
+  {
+    "question_type": "coding",
+    "text": "Write a function that takes a number and returns its data type as a string (like 'int', 'float', 'str').",
+    "starter_code": "def get_type_name(value):\n    # Use type() and extract the name\n    pass",
+    "test_cases": [
+      {
+        "function_call": "get_type_name(42)",
+        "expected": "'int'"
+      },
+      {
+        "function_call": "get_type_name(3.14)",
+        "expected": "'float'"
+      },
+      {
+        "function_call": "get_type_name('hello')",
+        "expected": "'str'"
+      }
+    ],
+    "solution_code": "def get_type_name(value):\n    return type(value).__name__",
+    "explanation": "Use type() to get the type, then access __name__ to get just the type name as a string.",
+    "difficulty": "hard",
+    "topic_tag": "type_checking"
   }
 ]

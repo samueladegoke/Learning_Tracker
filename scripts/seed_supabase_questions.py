@@ -32,16 +32,17 @@ def seed_questions(quiz_id: str, questions: list) -> dict:
     records = []
     
     for q in questions:
+        # Ensure options is never null - use empty array for coding questions
+        options = q.get('options') or []
+        
         record = {
             'quiz_id': quiz_id,
             'question_type': q.get('question_type', 'mcq'),
             'text': q['text'],
-            'options': q.get('options'),
-            'correct_index': q.get('correct_index'),
+            'options': json.dumps(options),
+            'correct_index': q.get('correct_index', 0),
             'starter_code': q.get('starter_code'),
-            'expected_output': q.get('expected_output'),
-            'test_cases': q.get('test_cases'),
-            'solution_code': q.get('solution_code'),
+            'test_cases': json.dumps(q.get('test_cases')) if q.get('test_cases') else None,
             'explanation': q.get('explanation'),
             'difficulty': q.get('difficulty', 'medium'),
             'topic_tag': q.get('topic_tag')

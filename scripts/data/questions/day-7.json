@@ -1,5 +1,6 @@
 [
   {
+    "question_type": "mcq",
     "text": "What is the purpose of a Flowchart in programming?",
     "options": [
       "To draw pretty pictures",
@@ -10,10 +11,11 @@
     "correct_index": 1,
     "difficulty": "easy",
     "topic_tag": "flowcharts",
-    "explanation": "Flowcharts are visual representations used to plan and break down the logic of a program."
+    "explanation": "Flowcharts are visual representations used to plan and break down the logic of a program before coding."
   },
   {
-    "text": "How do you pick a random item from a list `fruits`?",
+    "question_type": "mcq",
+    "text": "How do you pick a random item from a list called 'fruits'?",
     "options": [
       "random.pick(fruits)",
       "random.choice(fruits)",
@@ -23,9 +25,10 @@
     "correct_index": 1,
     "difficulty": "easy",
     "topic_tag": "random",
-    "explanation": "`random.choice(list)` returns a random element from the non-empty sequence."
+    "explanation": "random.choice(list) returns a random element from a non-empty sequence."
   },
   {
+    "question_type": "mcq",
     "text": "Which operator checks if a value exists inside a list or string?",
     "options": [
       "exists",
@@ -36,10 +39,11 @@
     "correct_index": 2,
     "difficulty": "easy",
     "topic_tag": "logic",
-    "explanation": "The `in` keyword checks for membership. E.g., `'a' in 'apple'` is True."
+    "explanation": "The 'in' keyword checks for membership. E.g., 'a' in 'apple' returns True."
   },
   {
-    "text": "How do you import only `logo` from `hangman_art.py`?",
+    "question_type": "mcq",
+    "text": "How do you import only 'logo' from a file called 'hangman_art.py'?",
     "options": [
       "import logo from hangman_art",
       "from hangman_art import logo",
@@ -49,10 +53,11 @@
     "correct_index": 1,
     "difficulty": "medium",
     "topic_tag": "modules",
-    "explanation": "The syntax is `from module_name import item_name`."
+    "explanation": "The syntax is 'from module_name import item_name' to import specific items."
   },
   {
-    "text": "What happens if you try to assign `word[0] = 'a'` where `word` is a string?",
+    "question_type": "mcq",
+    "text": "What happens if you try word[0] = 'a' where word is a string?",
     "options": [
       "It changes the first letter",
       "It creates a new string",
@@ -62,10 +67,11 @@
     "correct_index": 2,
     "difficulty": "medium",
     "topic_tag": "strings",
-    "explanation": "Strings in Python are immutable. You cannot change characters in place; you must create a new string or list."
+    "explanation": "Strings in Python are immutable. You cannot change characters in place. Use a list instead!"
   },
   {
-    "text": "If `lives = 6`, what logic checks if the player has lost?",
+    "question_type": "mcq",
+    "text": "If lives = 6, what condition checks if the player has lost?",
     "options": [
       "lives > 0",
       "lives == 0",
@@ -75,32 +81,150 @@
     "correct_index": 1,
     "difficulty": "easy",
     "topic_tag": "flowcharts",
-    "explanation": "If lives reach 0, the game is over and the player has lost."
+    "explanation": "When lives reach 0, the game is over and the player has lost."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the difference between 'import random' and 'from random import choice'?",
+    "options": [
+      "They are exactly the same",
+      "First imports entire module, second imports just choice function",
+      "Second is faster",
+      "First doesn't work"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "modules",
+    "explanation": "'import random' gives you the whole module (use random.choice). 'from random import choice' gives you just choice (use it directly)."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Why use a list instead of a string for tracking guessed letters in Hangman?",
+    "options": [
+      "Lists look nicer",
+      "Lists are mutable - you can change individual elements",
+      "Strings are slower",
+      "Python requires it"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "strings",
+    "explanation": "Lists are mutable so you can update display[i] = letter. Strings are immutable and can't be changed in place."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does 'for i in range(len(word))' allow you to do?",
+    "options": [
+      "Access only the first letter",
+      "Loop through each index position in the word",
+      "Count the total letters",
+      "Reverse the word"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "loops",
+    "explanation": "range(len(word)) gives you indices 0, 1, 2... so you can access both position AND letter with word[i]."
+  },
+  {
+    "question_type": "mcq",
+    "text": "In Hangman, why subtract 1 from lives when the guess is wrong?",
+    "options": [
+      "To end the game immediately",
+      "To track incorrect guesses and eventually end the game",
+      "Because Python requires it",
+      "To display the hangman art"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "flowcharts",
+    "explanation": "Each wrong guess costs a life. When lives reach 0, the player loses."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does 'letter not in word' check?",
+    "options": [
+      "If the letter is at the end of the word",
+      "If the letter does NOT exist anywhere in the word",
+      "If the letter is lowercase",
+      "If the letter is a vowel"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "logic",
+    "explanation": "'not in' returns True if the item is NOT found in the sequence."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does '_'.join(['a', '_', 'c']) produce?",
+    "options": [
+      "'a_c'",
+      "'a _ _ c'",
+      "'a___c'",
+      "'a _ c'"
+    ],
+    "correct_index": 3,
+    "difficulty": "hard",
+    "topic_tag": "strings",
+    "explanation": "join() puts the separator (' ') between each element: 'a' + ' ' + '_' + ' ' + 'c' = 'a _ c'."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Why track already guessed letters in Hangman?",
+    "options": [
+      "To display them nicely",
+      "To prevent the player from losing a life for the same wrong guess",
+      "Python requires it",
+      "To speed up the game"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "flowcharts",
+    "explanation": "Without tracking, players could accidentally guess the same wrong letter and lose extra lives."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is ASCII art?",
+    "options": [
+      "A type of image file",
+      "Pictures created using text characters",
+      "A Python module",
+      "Colored graphics"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "strings",
+    "explanation": "ASCII art uses keyboard characters to create visual images, like the Hangman stages."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you check if all blanks have been filled in ['a', 'p', 'p', 'l', 'e']?",
+    "options": [
+      "Check if list is empty",
+      "Check if '_' not in display",
+      "Count the letters",
+      "Compare lengths"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "logic",
+    "explanation": "If there are no more underscores in the display list, all letters have been guessed correctly."
   },
   {
     "question_type": "coding",
-    "text": "Check Membership\nWrite a function `check_in_list(item, my_list)` that returns True if `item` is in `my_list`.",
+    "text": "Check Membership\\nReturn True if item exists in the list, False otherwise.",
     "starter_code": "def check_in_list(item, my_list):\n    # Use 'in' keyword\n    pass",
     "test_cases": [
       {
-        "input": [
-          "a",
-          [
-            "a",
-            "b"
-          ]
-        ],
-        "expected": true
+        "function_call": "check_in_list('a', ['a', 'b', 'c'])",
+        "expected": "True"
       },
       {
-        "input": [
-          "z",
-          [
-            "a",
-            "b"
-          ]
-        ],
-        "expected": false
+        "function_call": "check_in_list('z', ['a', 'b', 'c'])",
+        "expected": "False"
+      },
+      {
+        "function_call": "check_in_list(1, [1, 2, 3])",
+        "expected": "True"
       }
     ],
     "difficulty": "easy",
@@ -109,54 +233,90 @@
   },
   {
     "question_type": "coding",
-    "text": "Update Blanks\nGiven a word \"apple\" and a list of blanks `['_', '_', '_', '_', '_']`,\nupdate the blanks to show 'p' at the correct indices.",
-    "starter_code": "def update_blanks(word, blanks, guess):\n    # Loop through word by index (range(len(word)))\n    # If letter matches guess, update blanks matched index\n    return blanks",
+    "text": "Update Display\\nGiven a word, a display list of blanks, and a guess, update the display to show the letter at correct positions.",
+    "starter_code": "def update_display(word, display, guess):\n    # Loop through word by index\n    # If letter matches guess, update display\n    return display",
     "test_cases": [
       {
-        "input": [
-          "apple",
-          [
-            "_",
-            "_",
-            "_",
-            "_",
-            "_"
-          ],
-          "p"
-        ],
-        "expected": [
-          "_",
-          "p",
-          "p",
-          "_",
-          "_"
-        ]
+        "function_call": "update_display('apple', ['_', '_', '_', '_', '_'], 'p')",
+        "expected": "['_', 'p', 'p', '_', '_']"
+      },
+      {
+        "function_call": "update_display('apple', ['_', '_', '_', '_', '_'], 'a')",
+        "expected": "['a', '_', '_', '_', '_']"
+      },
+      {
+        "function_call": "update_display('apple', ['a', '_', '_', '_', 'e'], 'l')",
+        "expected": "['a', '_', '_', 'l', 'e']"
       }
     ],
     "difficulty": "hard",
     "topic_tag": "loops",
-    "solution_code": "def update_blanks(word, blanks, guess):\n    for i in range(len(word)):\n        if word[i] == guess:\n            blanks[i] = guess\n    return blanks"
+    "solution_code": "def update_display(word, display, guess):\n    for i in range(len(word)):\n        if word[i] == guess:\n            display[i] = guess\n    return display"
   },
   {
     "question_type": "coding",
-    "text": "Game Over Logic\nWrite a function `is_game_over(lives)` that returns True if lives are 0.",
-    "starter_code": "def is_game_over(lives):\n    # Return True if 0\n    pass",
+    "text": "Game Over Logic\\nReturn True if lives are 0, False otherwise.",
+    "starter_code": "def is_game_over(lives):\n    # Check if lives are 0\n    pass",
     "test_cases": [
       {
-        "input": [
-          0
-        ],
-        "expected": true
+        "function_call": "is_game_over(0)",
+        "expected": "True"
       },
       {
-        "input": [
-          1
-        ],
-        "expected": false
+        "function_call": "is_game_over(1)",
+        "expected": "False"
+      },
+      {
+        "function_call": "is_game_over(6)",
+        "expected": "False"
       }
     ],
     "difficulty": "easy",
     "topic_tag": "flowcharts",
     "solution_code": "def is_game_over(lives):\n    return lives == 0"
+  },
+  {
+    "question_type": "coding",
+    "text": "Check Win Condition\\nReturn True if there are no underscores left in the display list.",
+    "starter_code": "def has_won(display):\n    # Check if '_' is not in display\n    pass",
+    "test_cases": [
+      {
+        "function_call": "has_won(['a', 'p', 'p', 'l', 'e'])",
+        "expected": "True"
+      },
+      {
+        "function_call": "has_won(['a', '_', 'p', 'l', 'e'])",
+        "expected": "False"
+      },
+      {
+        "function_call": "has_won(['_', '_', '_'])",
+        "expected": "False"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "logic",
+    "solution_code": "def has_won(display):\n    return '_' not in display"
+  },
+  {
+    "question_type": "coding",
+    "text": "Create Display\\nGiven a word, return a list of underscores with the same length.",
+    "starter_code": "def create_display(word):\n    # Create a list of '_' for each letter\n    pass",
+    "test_cases": [
+      {
+        "function_call": "create_display('cat')",
+        "expected": "['_', '_', '_']"
+      },
+      {
+        "function_call": "create_display('python')",
+        "expected": "['_', '_', '_', '_', '_', '_']"
+      },
+      {
+        "function_call": "create_display('a')",
+        "expected": "['_']"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "lists",
+    "solution_code": "def create_display(word):\n    display = []\n    for _ in word:\n        display.append('_')\n    return display"
   }
 ]

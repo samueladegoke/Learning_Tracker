@@ -1,133 +1,203 @@
 [
   {
     "question_type": "mcq",
-    "text": "What will the following code evaluate to?\\nnot 5 == 5",
+    "text": "What is the correct syntax for an if statement in Python?",
     "options": [
-      "True",
-      "False",
-      "5",
-      "Error"
+      "if (condition) { }",
+      "if condition:",
+      "if condition then",
+      "IF condition:"
     ],
     "correct_index": 1,
-    "explanation": "5 == 5 is True, but 'not' reverses it, so it becomes False.",
+    "explanation": "Python if statements use the keyword 'if' followed by a condition and a colon. No parentheses or braces are required. Python is case-sensitive, so 'if' must be lowercase.",
     "difficulty": "easy",
-    "topic_tag": "logical-operators"
+    "topic_tag": "control_flow"
   },
   {
     "question_type": "mcq",
-    "text": "Which operator is used to check if two values are equal in Python?",
+    "text": "Which comparison operator checks if two values are equal?",
     "options": [
       "=",
       "==",
-      "!=",
-      ":="
+      "===",
+      "equals"
     ],
     "correct_index": 1,
-    "explanation": "The == operator checks equality. A single = is for assignment, != checks inequality.",
+    "explanation": "The == operator checks equality. A single = is for assignment. Python doesn't use === like JavaScript.",
     "difficulty": "easy",
-    "topic_tag": "comparison-operators"
+    "topic_tag": "operators"
   },
   {
     "question_type": "mcq",
-    "text": "What is the result of: 10 % 3?",
+    "text": "What does the modulo operator (%) return?",
     "options": [
-      "3",
-      "1",
-      "3.33",
-      "0"
+      "The quotient of division",
+      "The percentage of a number",
+      "The remainder after division",
+      "The power of a number"
     ],
-    "correct_index": 1,
-    "explanation": "The modulo operator % returns the remainder. 10 \u00f7 3 = 3 remainder 1.",
+    "correct_index": 2,
+    "explanation": "The modulo operator (%) returns the remainder after division. For example, 10 % 3 = 1 because 10 divided by 3 is 3 with 1 left over.",
     "difficulty": "easy",
     "topic_tag": "modulo"
   },
   {
     "question_type": "mcq",
-    "text": "Which keyword is used to check an additional condition if the first is False?",
+    "text": "What is 10 % 5?",
     "options": [
-      "else if",
-      "elseif",
-      "elif",
-      "otherwise"
-    ],
-    "correct_index": 2,
-    "explanation": "Python uses 'elif' (short for else-if) to check additional conditions.",
-    "difficulty": "easy",
-    "topic_tag": "conditionals"
-  },
-  {
-    "question_type": "mcq",
-    "text": "What will the following code evaluate to?\\nFalse or True or False",
-    "options": [
-      "True",
-      "False",
-      "SyntaxError",
-      "None"
-    ],
-    "correct_index": 0,
-    "explanation": "Evaluating left to right: False or True \u2192 True, then True or False \u2192 True.",
-    "difficulty": "medium",
-    "topic_tag": "logical-operators"
-  },
-  {
-    "question_type": "mcq",
-    "text": "What does this code print?\\na = 5\\nb = 7\\nif a >= b and a != b:\\n    print('A')\\nelif not a >= b and a != b:\\n    print('B')\\nelse:\\n    print('C')",
-    "options": [
-      "A",
-      "B",
-      "C",
-      "Error"
+      "2",
+      "0",
+      "5",
+      "50"
     ],
     "correct_index": 1,
-    "explanation": "a >= b is False (5 >= 7 is False). So first condition fails. In elif: not False = True, and 5 != 7 is True. Both True, so 'B' prints.",
-    "difficulty": "medium",
-    "topic_tag": "logical-operators"
+    "explanation": "10 divided by 5 is exactly 2 with no remainder. Therefore 10 % 5 = 0 (clean division).",
+    "difficulty": "easy",
+    "topic_tag": "modulo"
   },
   {
     "question_type": "mcq",
     "text": "How do you check if a number is even using modulo?",
     "options": [
-      "num % 2 == 1",
-      "num % 2 == 0",
-      "num / 2 == 0",
-      "num // 2 == 0"
+      "number % 2 == 1",
+      "number % 2 == 0",
+      "number / 2 == 0",
+      "number % 0 == 2"
     ],
     "correct_index": 1,
-    "explanation": "An even number divided by 2 has no remainder, so num % 2 == 0.",
+    "explanation": "An even number divided by 2 has no remainder. So if number % 2 == 0, the number is even. If number % 2 == 1, it's odd.",
     "difficulty": "medium",
     "topic_tag": "modulo"
   },
   {
     "question_type": "mcq",
-    "text": "What is the difference between if/elif/else and multiple if statements?",
+    "text": "What is the result of 17 % 5?",
     "options": [
-      "They are exactly the same",
-      "if/elif/else runs only one branch; multiple ifs check each independently",
-      "Multiple ifs run only one branch; if/elif/else check each independently",
-      "elif cannot have conditions"
+      "2",
+      "3",
+      "3.4",
+      "12"
     ],
-    "correct_index": 1,
-    "explanation": "In if/elif/else, once a condition matches, others are skipped. Multiple separate if statements are each checked independently.",
+    "correct_index": 0,
+    "explanation": "17 divided by 5 is 3 with remainder 2 (5×3=15, 17-15=2). So 17 % 5 = 2.",
     "difficulty": "medium",
-    "topic_tag": "conditionals"
+    "topic_tag": "modulo"
   },
   {
     "question_type": "mcq",
-    "text": "What will this print?\\nx = 15\\nif x > 10:\\n    print('A')\\nif x > 5:\\n    print('B')\\nelse:\\n    print('C')",
+    "text": "What is a nested if statement?",
     "options": [
-      "A",
-      "B",
-      "A\\nB",
-      "A\\nC"
+      "An if statement inside another if statement",
+      "Multiple elif statements",
+      "An if statement with no else",
+      "A loop inside an if statement"
+    ],
+    "correct_index": 0,
+    "explanation": "A nested if statement is an if statement placed inside another if statement's code block. This allows checking additional conditions after the first condition passes.",
+    "difficulty": "medium",
+    "topic_tag": "control_flow"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does 'elif' stand for?",
+    "options": [
+      "else if",
+      "elif statement",
+      "else in form",
+      "element if"
+    ],
+    "correct_index": 0,
+    "explanation": "elif is short for 'else if'. It allows you to check additional conditions if the previous if/elif conditions were False.",
+    "difficulty": "easy",
+    "topic_tag": "control_flow"
+  },
+  {
+    "question_type": "mcq",
+    "text": "How many elif statements can you have between an if and else?",
+    "options": [
+      "Only one",
+      "Maximum of three",
+      "As many as you need",
+      "None, elif is not valid"
     ],
     "correct_index": 2,
-    "explanation": "These are separate if statements. First prints 'A' (15 > 10). Second prints 'B' (15 > 5). The else only applies to the second if.",
-    "difficulty": "hard",
-    "topic_tag": "conditionals"
+    "explanation": "You can have as many elif statements as you need between the if and else. Each checks an additional condition.",
+    "difficulty": "easy",
+    "topic_tag": "control_flow"
   },
   {
     "question_type": "mcq",
-    "text": "What does (True and False) or (not False) evaluate to?",
+    "text": "What are the three logical operators in Python?",
+    "options": [
+      "AND, OR, NOT (uppercase)",
+      "and, or, not (lowercase)",
+      "&&, ||, !",
+      "+, -, *"
+    ],
+    "correct_index": 1,
+    "explanation": "Python uses lowercase 'and', 'or', and 'not' as logical operators. Unlike some languages, Python doesn't use &&, ||, or !.",
+    "difficulty": "easy",
+    "topic_tag": "logical_operators"
+  },
+  {
+    "question_type": "mcq",
+    "text": "When using 'and', when does the whole expression evaluate to True?",
+    "options": [
+      "When at least one condition is True",
+      "When both conditions are True",
+      "When at least one condition is False",
+      "When neither condition is True"
+    ],
+    "correct_index": 1,
+    "explanation": "With 'and', BOTH conditions must be True for the result to be True. If either condition is False, the whole expression is False.",
+    "difficulty": "medium",
+    "topic_tag": "logical_operators"
+  },
+  {
+    "question_type": "mcq",
+    "text": "When using 'or', when does the whole expression evaluate to True?",
+    "options": [
+      "When both conditions are True",
+      "When at least one condition is True",
+      "When both conditions are False",
+      "When neither condition is True"
+    ],
+    "correct_index": 1,
+    "explanation": "With 'or', only ONE condition needs to be True for the result to be True. The expression is only False when BOTH conditions are False.",
+    "difficulty": "medium",
+    "topic_tag": "logical_operators"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does the 'not' operator do?",
+    "options": [
+      "Checks if a value doesn't exist",
+      "Reverses the boolean value (True becomes False, False becomes True)",
+      "Deletes a variable",
+      "Negates a number"
+    ],
+    "correct_index": 1,
+    "explanation": "The 'not' operator reverses a boolean value. not True = False, and not False = True.",
+    "difficulty": "easy",
+    "topic_tag": "logical_operators"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the result of: True and False?",
+    "options": [
+      "True",
+      "False",
+      "None",
+      "Error"
+    ],
+    "correct_index": 1,
+    "explanation": "With 'and', both must be True. Since one is False, the result is False.",
+    "difficulty": "easy",
+    "topic_tag": "logical_operators"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the result of: True or False?",
     "options": [
       "True",
       "False",
@@ -135,123 +205,193 @@
       "Error"
     ],
     "correct_index": 0,
-    "explanation": "(True and False) = False. (not False) = True. False or True = True.",
-    "difficulty": "hard",
-    "topic_tag": "logical-operators"
+    "explanation": "With 'or', at least one must be True. Since True is True, the result is True.",
+    "difficulty": "easy",
+    "topic_tag": "logical_operators"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the result of: not True?",
+    "options": [
+      "True",
+      "False",
+      "None",
+      "Error"
+    ],
+    "correct_index": 1,
+    "explanation": "The 'not' operator reverses the boolean. not True = False.",
+    "difficulty": "easy",
+    "topic_tag": "logical_operators"
+  },
+  {
+    "question_type": "mcq",
+    "text": "How would you check if age is between 18 and 65 (inclusive)?",
+    "options": [
+      "age >= 18 and age <= 65",
+      "age > 18 or age < 65",
+      "18 < age > 65",
+      "age between 18 and 65"
+    ],
+    "correct_index": 0,
+    "explanation": "Use 'and' to combine two conditions: age must be greater than or equal to 18 AND less than or equal to 65.",
+    "difficulty": "medium",
+    "topic_tag": "logical_operators"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What comparison operator means 'not equal to'?",
+    "options": [
+      "=/=",
+      "!=",
+      "<>",
+      "not="
+    ],
+    "correct_index": 1,
+    "explanation": "The != operator checks if two values are NOT equal. For example, 5 != 3 returns True.",
+    "difficulty": "easy",
+    "topic_tag": "operators"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the output of: print(5 > 3)?",
+    "options": [
+      "5",
+      "3",
+      "True",
+      "False"
+    ],
+    "correct_index": 2,
+    "explanation": "Comparison operators return boolean values. 5 is greater than 3, so 5 > 3 evaluates to True.",
+    "difficulty": "easy",
+    "topic_tag": "operators"
+  },
+  {
+    "question_type": "mcq",
+    "text": "In an if/elif/else chain, how many blocks will execute?",
+    "options": [
+      "All of them",
+      "At least one",
+      "At most one",
+      "Exactly two"
+    ],
+    "correct_index": 2,
+    "explanation": "In an if/elif/else chain, AT MOST one block executes. Once a condition is True, that block runs and the rest are skipped. If none are True, only else runs (if present).",
+    "difficulty": "medium",
+    "topic_tag": "control_flow"
   },
   {
     "question_type": "coding",
-    "text": "Write a function called 'is_even' that returns True if the number is even, False otherwise. Use the modulo operator.",
-    "starter_code": "def is_even(num):\\n    # Your code here\\n    pass",
+    "text": "Write a function that checks if a number is even or odd. Return 'even' if even, 'odd' if odd.",
+    "starter_code": "def check_even_odd(number):\n    # Use modulo to check\n    pass",
     "test_cases": [
       {
-        "function_call": "is_even(4)",
-        "expected": "True"
+        "function_call": "check_even_odd(4)",
+        "expected": "'even'"
       },
       {
-        "function_call": "is_even(7)",
-        "expected": "False"
+        "function_call": "check_even_odd(7)",
+        "expected": "'odd'"
       },
       {
-        "function_call": "is_even(0)",
-        "expected": "True"
+        "function_call": "check_even_odd(0)",
+        "expected": "'even'"
       }
     ],
-    "solution_code": "def is_even(num):\\n    return num % 2 == 0",
-    "explanation": "Use modulo 2. If remainder is 0, the number is even.",
+    "solution_code": "def check_even_odd(number):\n    if number % 2 == 0:\n        return 'even'\n    else:\n        return 'odd'",
+    "explanation": "Use modulo 2. If the remainder is 0, the number is even; otherwise it's odd.",
     "difficulty": "easy",
     "topic_tag": "modulo"
   },
   {
     "question_type": "coding",
-    "text": "Write a function called 'absolute_value' that returns the absolute value of a number (positive version). Use an if/else statement, not the built-in abs().",
-    "starter_code": "def absolute_value(num):\\n    # Your code here\\n    pass",
+    "text": "Write a function that returns 'child' if age < 12, 'teen' if 12-17, 'adult' if 18+.",
+    "starter_code": "def age_category(age):\n    # Use if/elif/else\n    pass",
     "test_cases": [
       {
-        "function_call": "absolute_value(-5)",
-        "expected": "5"
+        "function_call": "age_category(8)",
+        "expected": "'child'"
       },
       {
-        "function_call": "absolute_value(3)",
-        "expected": "3"
+        "function_call": "age_category(15)",
+        "expected": "'teen'"
       },
       {
-        "function_call": "absolute_value(0)",
-        "expected": "0"
+        "function_call": "age_category(25)",
+        "expected": "'adult'"
       }
     ],
-    "solution_code": "def absolute_value(num):\\n    if num < 0:\\n        return -num\\n    else:\\n        return num",
-    "explanation": "If negative, return the negation (making it positive). Otherwise return as-is.",
-    "difficulty": "easy",
-    "topic_tag": "conditionals"
-  },
-  {
-    "question_type": "coding",
-    "text": "Write a function called 'ticket_price' that takes an age and returns the ticket price: under 12 \u2192 $5, 12-18 \u2192 $7, over 18 \u2192 $12.",
-    "starter_code": "def ticket_price(age):\\n    # Your code here\\n    pass",
-    "test_cases": [
-      {
-        "function_call": "ticket_price(10)",
-        "expected": "5"
-      },
-      {
-        "function_call": "ticket_price(15)",
-        "expected": "7"
-      },
-      {
-        "function_call": "ticket_price(25)",
-        "expected": "12"
-      }
-    ],
-    "solution_code": "def ticket_price(age):\\n    if age < 12:\\n        return 5\\n    elif age <= 18:\\n        return 7\\n    else:\\n        return 12",
-    "explanation": "Use elif to check age ranges in order. First match wins.",
+    "solution_code": "def age_category(age):\n    if age < 12:\n        return 'child'\n    elif age < 18:\n        return 'teen'\n    else:\n        return 'adult'",
+    "explanation": "Use if/elif/else to check age ranges. Check from youngest first, then use elif for the middle range, else for adults.",
     "difficulty": "medium",
-    "topic_tag": "conditionals"
+    "topic_tag": "control_flow"
   },
   {
     "question_type": "coding",
-    "text": "Write a function called 'in_range' that returns True if a number is between 10 and 20 (inclusive), False otherwise. Use the 'and' operator.",
-    "starter_code": "def in_range(num):\\n    # Your code here\\n    pass",
+    "text": "Write a function that checks if a number is divisible by both 3 and 5. Return True or False.",
+    "starter_code": "def divisible_by_3_and_5(number):\n    # Use modulo and logical operators\n    pass",
     "test_cases": [
       {
-        "function_call": "in_range(15)",
+        "function_call": "divisible_by_3_and_5(15)",
         "expected": "True"
       },
       {
-        "function_call": "in_range(10)",
+        "function_call": "divisible_by_3_and_5(9)",
+        "expected": "False"
+      },
+      {
+        "function_call": "divisible_by_3_and_5(30)",
+        "expected": "True"
+      }
+    ],
+    "solution_code": "def divisible_by_3_and_5(number):\n    return number % 3 == 0 and number % 5 == 0",
+    "explanation": "Use modulo to check divisibility. A number is divisible by n if number % n == 0. Use 'and' to require both conditions.",
+    "difficulty": "medium",
+    "topic_tag": "logical_operators"
+  },
+  {
+    "question_type": "coding",
+    "text": "Write a function that returns True if a person can ride a rollercoaster (height >= 120 and age >= 6).",
+    "starter_code": "def can_ride(height, age):\n    # Check both conditions\n    pass",
+    "test_cases": [
+      {
+        "function_call": "can_ride(130, 10)",
         "expected": "True"
       },
       {
-        "function_call": "in_range(5)",
+        "function_call": "can_ride(100, 10)",
+        "expected": "False"
+      },
+      {
+        "function_call": "can_ride(130, 5)",
         "expected": "False"
       }
     ],
-    "solution_code": "def in_range(num):\\n    return num >= 10 and num <= 20",
-    "explanation": "Both conditions must be True: num >= 10 AND num <= 20.",
-    "difficulty": "medium",
-    "topic_tag": "logical-operators"
+    "solution_code": "def can_ride(height, age):\n    return height >= 120 and age >= 6",
+    "explanation": "Use 'and' to combine both requirements. Both must be True for the person to ride.",
+    "difficulty": "easy",
+    "topic_tag": "logical_operators"
   },
   {
     "question_type": "coding",
-    "text": "Write a function called 'grade' that takes a score (0-100) and returns: 'A' for 90+, 'B' for 80-89, 'C' for 70-79, 'D' for 60-69, 'F' for below 60.",
-    "starter_code": "def grade(score):\\n    # Your code here\\n    pass",
+    "text": "Write a function that calculates ticket price: $5 if age < 12, $7 if 12-17, $12 if 18+. Add $3 if wants_photo is True.",
+    "starter_code": "def calculate_ticket(age, wants_photo):\n    # Calculate base price with if/elif/else\n    # Add photo cost if needed\n    pass",
     "test_cases": [
       {
-        "function_call": "grade(95)",
-        "expected": "A"
+        "function_call": "calculate_ticket(10, False)",
+        "expected": "5"
       },
       {
-        "function_call": "grade(82)",
-        "expected": "B"
+        "function_call": "calculate_ticket(15, True)",
+        "expected": "10"
       },
       {
-        "function_call": "grade(55)",
-        "expected": "F"
+        "function_call": "calculate_ticket(25, True)",
+        "expected": "15"
       }
     ],
-    "solution_code": "def grade(score):\\n    if score >= 90:\\n        return 'A'\\n    elif score >= 80:\\n        return 'B'\\n    elif score >= 70:\\n        return 'C'\\n    elif score >= 60:\\n        return 'D'\\n    else:\\n        return 'F'",
-    "explanation": "Check from highest to lowest. First matching condition returns immediately.",
-    "difficulty": "medium",
-    "topic_tag": "conditionals"
+    "solution_code": "def calculate_ticket(age, wants_photo):\n    if age < 12:\n        price = 5\n    elif age < 18:\n        price = 7\n    else:\n        price = 12\n    if wants_photo:\n        price += 3\n    return price",
+    "explanation": "Use if/elif/else for base price, then a separate if statement to add photo cost if requested.",
+    "difficulty": "hard",
+    "topic_tag": "control_flow"
   }
 ]

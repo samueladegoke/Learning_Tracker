@@ -519,21 +519,73 @@ function Quiz({ quizId, activeDay }) {
                         <ArrowLeft className="w-4 h-4" /> Previous
                     </button>
 
-                    <div className="flex gap-2">
-                        {questions.map((_, idx) => (
-                            <button
-                                key={idx}
-                                onClick={() => setCurrentQ(idx)}
-                                className={`w-8 h-8 rounded-lg text-sm font-medium transition-colors ${idx === currentQ
-                                    ? 'bg-primary-600 text-white'
-                                    : answers[questions[idx].id] !== undefined
-                                        ? 'bg-primary-600/20 text-primary-400'
-                                        : 'bg-surface-700 text-surface-400 hover:bg-surface-600'
-                                    }`}
-                            >
-                                {idx + 1}
-                            </button>
-                        ))}
+                    <div className="flex gap-1 items-center overflow-x-auto max-w-md scrollbar-none">
+                        {(() => {
+                            const totalQ = questions.length
+                            const current = currentQ
+                            const maxVisible = 7
+
+                            // If few questions, show all
+                            if (totalQ <= maxVisible) {
+                                return questions.map((_, idx) => (
+                                    <button
+                                        key={idx}
+                                        onClick={() => setCurrentQ(idx)}
+                                        className={`w-8 h-8 rounded-lg text-sm font-medium transition-colors flex-shrink-0 ${idx === current
+                                            ? 'bg-primary-600 text-white'
+                                            : answers[questions[idx].id] !== undefined
+                                                ? 'bg-primary-600/20 text-primary-400'
+                                                : 'bg-surface-700 text-surface-400 hover:bg-surface-600'
+                                            }`}
+                                    >
+                                        {idx + 1}
+                                    </button>
+                                ))
+                            }
+
+                            // Smart pagination: show first, last, and neighbors around current
+                            const pages = []
+                            const showDots = (key) => (
+                                <span key={key} className="text-surface-500 px-1">...</span>
+                            )
+                            const pageBtn = (idx) => (
+                                <button
+                                    key={idx}
+                                    onClick={() => setCurrentQ(idx)}
+                                    className={`w-8 h-8 rounded-lg text-sm font-medium transition-colors flex-shrink-0 ${idx === current
+                                        ? 'bg-primary-600 text-white'
+                                        : answers[questions[idx].id] !== undefined
+                                            ? 'bg-primary-600/20 text-primary-400'
+                                            : 'bg-surface-700 text-surface-400 hover:bg-surface-600'
+                                        }`}
+                                >
+                                    {idx + 1}
+                                </button>
+                            )
+
+                            // Always show first page
+                            pages.push(pageBtn(0))
+
+                            // Calculate range around current
+                            const start = Math.max(1, current - 1)
+                            const end = Math.min(totalQ - 2, current + 1)
+
+                            // Dots before middle section
+                            if (start > 1) pages.push(showDots('dots-start'))
+
+                            // Middle pages around current
+                            for (let i = start; i <= end; i++) {
+                                pages.push(pageBtn(i))
+                            }
+
+                            // Dots after middle section
+                            if (end < totalQ - 2) pages.push(showDots('dots-end'))
+
+                            // Always show last page
+                            if (totalQ > 1) pages.push(pageBtn(totalQ - 1))
+
+                            return pages
+                        })()}
                     </div>
 
                     <button

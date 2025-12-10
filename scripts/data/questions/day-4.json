@@ -1,7 +1,7 @@
 [
   {
     "question_type": "mcq",
-    "text": "What module do you import to generate random numbers in Python?",
+    "text": "What module do you need to import for generating random numbers?",
     "options": [
       "math",
       "random",
@@ -9,8 +9,22 @@
       "numbers"
     ],
     "correct_index": 1,
-    "explanation": "The 'random' module contains functions for generating random numbers.",
+    "explanation": "The 'random' module contains all the functions for generating random numbers. You import it with 'import random'.",
     "difficulty": "easy",
+    "topic_tag": "random"
+  },
+  {
+    "question_type": "mcq",
+    "text": "Why do computers use Pseudo-Random Number Generators instead of true randomness?",
+    "options": [
+      "True randomness is too slow",
+      "Computers are deterministic and perform predictable actions",
+      "Pseudo-random is more accurate",
+      "Python doesn't support true randomness"
+    ],
+    "correct_index": 1,
+    "explanation": "Computers are deterministic machines - they perform repeatable actions in fully predictable ways. Pseudo-random generators use mathematical algorithms to simulate randomness.",
+    "difficulty": "medium",
     "topic_tag": "random"
   },
   {
@@ -19,11 +33,11 @@
     "options": [
       "list = (1, 2, 3)",
       "list = {1, 2, 3}",
-      "list = [1, 2, 3]",
+      "my_list = [1, 2, 3]",
       "list = <1, 2, 3>"
     ],
     "correct_index": 2,
-    "explanation": "Lists use square brackets [] to enclose items.",
+    "explanation": "Lists use square brackets [] to enclose items. Note: avoid using 'list' as a variable name as it shadows the built-in.",
     "difficulty": "easy",
     "topic_tag": "lists"
   },
@@ -37,7 +51,7 @@
       "first"
     ],
     "correct_index": 1,
-    "explanation": "Python uses 0-based indexing, so the first item is at index 0.",
+    "explanation": "Python uses 0-based indexing, so the first item is at index 0. Programmers always start counting from zero!",
     "difficulty": "easy",
     "topic_tag": "indexing"
   },
@@ -46,12 +60,12 @@
     "text": "What does random.randint(1, 10) return?",
     "options": [
       "A random float between 1 and 10",
-      "A random integer between 1 and 10 (inclusive)",
+      "A random integer between 1 and 10 (inclusive of both)",
       "A random integer between 1 and 9",
       "Always returns 5"
     ],
     "correct_index": 1,
-    "explanation": "randint(a, b) returns a random integer N such that a <= N <= b.",
+    "explanation": "randint(a, b) returns a random integer N such that a <= N <= b. Both endpoints are INCLUDED.",
     "difficulty": "easy",
     "topic_tag": "random"
   },
@@ -65,7 +79,7 @@
       "IndexError"
     ],
     "correct_index": 2,
-    "explanation": "Negative indexing starts from the end. -1 refers to the last item.",
+    "explanation": "Negative indexing starts from the end. -1 refers to the last item, so fruits[-1] is 'cherry'.",
     "difficulty": "medium",
     "topic_tag": "indexing"
   },
@@ -79,7 +93,7 @@
       "append() creates a new list; extend() modifies in place"
     ],
     "correct_index": 1,
-    "explanation": "append() adds one item to the end, while extend() adds each element from an iterable.",
+    "explanation": "append() adds ONE item to the end. extend() adds EACH element from an iterable (like another list).",
     "difficulty": "medium",
     "topic_tag": "lists"
   },
@@ -88,12 +102,12 @@
     "text": "What does random.random() return?",
     "options": [
       "A random integer",
-      "A random float between 0 and 1 (0 inclusive, 1 exclusive)",
+      "A random float between 0 (inclusive) and 1 (exclusive)",
       "A random float between 0 and 1 (both inclusive)",
       "A random boolean"
     ],
     "correct_index": 1,
-    "explanation": "random.random() returns a float x where 0.0 <= x < 1.0.",
+    "explanation": "random.random() returns a float x where 0.0 <= x < 1.0. Zero is possible, but 1.0 is never returned.",
     "difficulty": "medium",
     "topic_tag": "random"
   },
@@ -107,9 +121,23 @@
       "A built-in function"
     ],
     "correct_index": 1,
-    "explanation": "A module is a Python file (.py) containing functions, classes, and variables that can be imported.",
+    "explanation": "A module is a Python file (.py) containing functions, classes, and variables that can be imported and used in other files.",
     "difficulty": "medium",
     "topic_tag": "modules"
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you get a random float between 0 and 5?",
+    "options": [
+      "random.random(5)",
+      "random.random() * 5",
+      "random.float(5)",
+      "random.randint(0.0, 5.0)"
+    ],
+    "correct_index": 1,
+    "explanation": "random.random() returns 0-1. Multiply by 5 to expand the range to 0-5.",
+    "difficulty": "medium",
+    "topic_tag": "random"
   },
   {
     "question_type": "mcq",
@@ -121,7 +149,7 @@
       "Error"
     ],
     "correct_index": 2,
-    "explanation": "Index 1 refers to the second item ('b'), which gets replaced with 'x'.",
+    "explanation": "Index 1 refers to the second item ('b'), which gets replaced with 'x'. Lists are mutable!",
     "difficulty": "hard",
     "topic_tag": "lists"
   },
@@ -135,107 +163,206 @@
       "Returns an empty string"
     ],
     "correct_index": 2,
-    "explanation": "Accessing an invalid index raises an IndexError exception.",
+    "explanation": "Accessing an invalid index (e.g., index 5 in a 3-item list) raises an IndexError exception.",
     "difficulty": "hard",
     "topic_tag": "indexing"
   },
   {
+    "question_type": "mcq",
+    "text": "What is a nested list?",
+    "options": [
+      "A list with only numbers",
+      "A list inside another list",
+      "A list with duplicate values",
+      "A sorted list"
+    ],
+    "correct_index": 1,
+    "explanation": "A nested list is a list that contains other lists as elements, like [[1, 2], [3, 4]].",
+    "difficulty": "easy",
+    "topic_tag": "lists"
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you access the element 'target' in matrix = [['a', 'b'], ['c', 'target']]?",
+    "options": [
+      "matrix[1][1]",
+      "matrix[2][2]",
+      "matrix[1, 1]",
+      "matrix['target']"
+    ],
+    "correct_index": 0,
+    "explanation": "First access the second list (index 1), then the second element of that list (index 1). So matrix[1][1].",
+    "difficulty": "hard",
+    "topic_tag": "lists"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does random.choice(['rock', 'paper', 'scissors']) do?",
+    "options": [
+      "Returns all three options",
+      "Returns a random item from the list",
+      "Returns the first item",
+      "Returns the list sorted randomly"
+    ],
+    "correct_index": 1,
+    "explanation": "random.choice() picks and returns one random element from a non-empty sequence.",
+    "difficulty": "easy",
+    "topic_tag": "random"
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you import your own module called 'my_module'?",
+    "options": [
+      "include my_module",
+      "import my_module",
+      "require my_module",
+      "use my_module"
+    ],
+    "correct_index": 1,
+    "explanation": "Use 'import module_name' to import any Python module. The module must be a .py file in the same directory or Python path.",
+    "difficulty": "easy",
+    "topic_tag": "modules"
+  },
+  {
+    "question_type": "mcq",
+    "text": "After 'import my_module', how do you access a variable 'pi' defined in my_module?",
+    "options": [
+      "pi",
+      "my_module.pi",
+      "my_module->pi",
+      "get(my_module, pi)"
+    ],
+    "correct_index": 1,
+    "explanation": "Use dot notation: module_name.variable_name. So my_module.pi accesses the pi variable.",
+    "difficulty": "medium",
+    "topic_tag": "modules"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does random.uniform(1, 10) return?",
+    "options": [
+      "A random integer between 1 and 10",
+      "A random float between 1 and 10 (inclusive of both)",
+      "Always returns 1 or 10",
+      "A list of random numbers"
+    ],
+    "correct_index": 1,
+    "explanation": "random.uniform(a, b) returns a random floating point number N such that a <= N <= b.",
+    "difficulty": "medium",
+    "topic_tag": "random"
+  },
+  {
     "question_type": "coding",
-    "text": "Write a function called `coin_flip` that returns 'Heads' or 'Tails' randomly.",
-    "starter_code": "import random\n\ndef coin_flip():\n    # Your code here\n    pass",
+    "text": "Write a function called coin_flip that returns 'Heads' or 'Tails' randomly.",
+    "starter_code": "import random\n\ndef coin_flip():\n    # Use random.randint to choose between 0 and 1\n    pass",
     "test_cases": [
       {
-        "input": "",
-        "expected_pattern": "^(Heads|Tails)$"
+        "function_call": "coin_flip() in ['Heads', 'Tails']",
+        "expected": "True"
       }
     ],
     "solution_code": "import random\n\ndef coin_flip():\n    if random.randint(0, 1) == 0:\n        return 'Heads'\n    else:\n        return 'Tails'",
-    "explanation": "Use random.randint(0, 1) to generate 0 or 1, then return 'Heads' or 'Tails' accordingly.",
+    "explanation": "Use random.randint(0, 1) to generate either 0 or 1, then return 'Heads' or 'Tails' accordingly.",
     "difficulty": "easy",
     "topic_tag": "random"
   },
   {
     "question_type": "coding",
-    "text": "Write a function called `get_last` that takes a list and returns the last item.",
-    "starter_code": "def get_last(my_list):\n    # Your code here\n    pass",
+    "text": "Write a function called get_last that takes a list and returns the last item using negative indexing.",
+    "starter_code": "def get_last(my_list):\n    # Use negative indexing\n    pass",
     "test_cases": [
       {
-        "input": "[[1, 2, 3]]",
+        "function_call": "get_last([1, 2, 3])",
         "expected": "3"
       },
       {
-        "input": "[['a', 'b', 'c', 'd']]",
+        "function_call": "get_last(['a', 'b', 'c', 'd'])",
         "expected": "'d'"
       },
       {
-        "input": "[[42]]",
+        "function_call": "get_last([42])",
         "expected": "42"
       }
     ],
     "solution_code": "def get_last(my_list):\n    return my_list[-1]",
-    "explanation": "Use index -1 to access the last item in a list.",
+    "explanation": "Use index -1 to access the last item in any list, regardless of length.",
     "difficulty": "easy",
     "topic_tag": "indexing"
   },
   {
     "question_type": "coding",
-    "text": "Write a function called `random_choice` that takes a list and returns a random item from it.",
-    "starter_code": "import random\n\ndef random_choice(items):\n    # Your code here\n    pass",
+    "text": "Write a function called random_choice that takes a list and returns a random item from it.",
+    "starter_code": "import random\n\ndef random_choice(items):\n    # Return a random item\n    pass",
     "test_cases": [
       {
-        "input": "[['a', 'b', 'c']]",
-        "expected_in": "['a', 'b', 'c']"
+        "function_call": "random_choice(['a', 'b', 'c']) in ['a', 'b', 'c']",
+        "expected": "True"
       }
     ],
     "solution_code": "import random\n\ndef random_choice(items):\n    return random.choice(items)",
-    "explanation": "random.choice(list) returns a random element from the list.",
+    "explanation": "random.choice(list) is the simplest way to get a random element from a list.",
     "difficulty": "medium",
     "topic_tag": "random"
   },
   {
     "question_type": "coding",
-    "text": "Write a function called `add_to_list` that takes a list and an item, adds the item to the end, and returns the modified list.",
-    "starter_code": "def add_to_list(my_list, item):\n    # Your code here\n    pass",
+    "text": "Write a function to add an item to a list and return the modified list.",
+    "starter_code": "def add_to_list(my_list, item):\n    # Add item to my_list and return it\n    pass",
     "test_cases": [
       {
-        "input": "[[1, 2], 3]",
+        "function_call": "add_to_list([1, 2], 3)",
         "expected": "[1, 2, 3]"
       },
       {
-        "input": "[['a', 'b'], 'c']",
+        "function_call": "add_to_list(['a', 'b'], 'c')",
         "expected": "['a', 'b', 'c']"
       },
       {
-        "input": "[[], 'x']",
+        "function_call": "add_to_list([], 'x')",
         "expected": "['x']"
       }
     ],
     "solution_code": "def add_to_list(my_list, item):\n    my_list.append(item)\n    return my_list",
-    "explanation": "Use .append() to add a single item to the end of a list.",
+    "explanation": "Use .append(item) to add a single item to the end of a list.",
     "difficulty": "easy",
     "topic_tag": "lists"
   },
   {
     "question_type": "coding",
-    "text": "Write a function called `swap_first_last` that takes a list and swaps the first and last items, returning the modified list.",
-    "starter_code": "def swap_first_last(my_list):\n    # Your code here\n    pass",
+    "text": "Write a function that swaps the first and last items of a list.",
+    "starter_code": "def swap_first_last(my_list):\n    # Swap items at index 0 and -1\n    pass",
     "test_cases": [
       {
-        "input": "[[1, 2, 3]]",
+        "function_call": "swap_first_last([1, 2, 3])",
         "expected": "[3, 2, 1]"
       },
       {
-        "input": "[['a', 'b', 'c', 'd']]",
+        "function_call": "swap_first_last(['a', 'b', 'c', 'd'])",
         "expected": "['d', 'b', 'c', 'a']"
       },
       {
-        "input": "[[5, 10]]",
+        "function_call": "swap_first_last([5, 10])",
         "expected": "[10, 5]"
       }
     ],
     "solution_code": "def swap_first_last(my_list):\n    my_list[0], my_list[-1] = my_list[-1], my_list[0]\n    return my_list",
-    "explanation": "Use tuple unpacking to swap values: a, b = b, a. Access first with [0] and last with [-1].",
+    "explanation": "Use tuple unpacking for simultaneous assignment: a, b = b, a swaps values.",
     "difficulty": "medium",
     "topic_tag": "lists"
+  },
+  {
+    "question_type": "coding",
+    "text": "Write a function that returns a random float between 0 and 100.",
+    "starter_code": "import random\n\ndef random_percentage():\n    # Generate random float 0-100\n    pass",
+    "test_cases": [
+      {
+        "function_call": "0 <= random_percentage() < 100",
+        "expected": "True"
+      }
+    ],
+    "solution_code": "import random\n\ndef random_percentage():\n    return random.random() * 100",
+    "explanation": "random.random() gives 0-1. Multiply by 100 to get 0-100.",
+    "difficulty": "easy",
+    "topic_tag": "random"
   }
 ]

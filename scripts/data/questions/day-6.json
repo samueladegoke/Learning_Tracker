@@ -1,5 +1,6 @@
 [
   {
+    "question_type": "mcq",
     "text": "Which keyword is used to define a function in Python?",
     "options": [
       "function",
@@ -10,22 +11,38 @@
     "correct_index": 1,
     "difficulty": "easy",
     "topic_tag": "functions",
-    "explanation": "The `def` keyword is used to define a new function."
+    "explanation": "The 'def' keyword is used to define a new function in Python."
   },
   {
-    "text": "What is the correct way to call a function named `move`?",
+    "question_type": "mcq",
+    "text": "What is the correct way to call a function named 'greet'?",
     "options": [
-      "move",
-      "call move",
-      "move()",
-      "run move()"
+      "greet",
+      "call greet",
+      "greet()",
+      "run greet()"
     ],
     "correct_index": 2,
     "difficulty": "easy",
     "topic_tag": "functions",
-    "explanation": "You call a function by writing its name followed by parentheses `()`."
+    "explanation": "Call a function by writing its name followed by parentheses (). The parentheses are required!"
   },
   {
+    "question_type": "mcq",
+    "text": "What happens if you define a function but never call it?",
+    "options": [
+      "Python error",
+      "The function runs automatically",
+      "Nothing - the code inside never executes",
+      "The function deletes itself"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "functions",
+    "explanation": "Defining a function just creates it. You must call the function for its code to execute."
+  },
+  {
+    "question_type": "mcq",
     "text": "What happens if you mix tabs and spaces for indentation in Python 3?",
     "options": [
       "It works fine",
@@ -36,22 +53,24 @@
     "correct_index": 1,
     "difficulty": "medium",
     "topic_tag": "indentation",
-    "explanation": "Python 3 disallows mixing tabs and spaces for indentation. You should stick to 4 spaces."
+    "explanation": "Python 3 disallows mixing tabs and spaces. Stick to 4 spaces for consistent indentation."
   },
   {
-    "text": "When does a `while` loop stop running?",
+    "question_type": "mcq",
+    "text": "When does a while loop stop running?",
     "options": [
       "When the condition becomes False",
       "When the condition becomes True",
       "After 10 iterations",
-      "Never"
+      "Never - all while loops run forever"
     ],
     "correct_index": 0,
     "difficulty": "easy",
     "topic_tag": "loops",
-    "explanation": "A while loop runs *while* the condition is True, and stops when it becomes False."
+    "explanation": "A while loop runs WHILE the condition is True, and stops when it becomes False."
   },
   {
+    "question_type": "mcq",
     "text": "What is an infinite loop?",
     "options": [
       "A loop that runs very fast",
@@ -62,30 +81,128 @@
     "correct_index": 1,
     "difficulty": "easy",
     "topic_tag": "loops",
-    "explanation": "An infinite loop occurs when the loop's condition never becomes False."
+    "explanation": "An infinite loop occurs when the loop's condition never becomes False. Often a bug!"
   },
   {
+    "question_type": "mcq",
+    "text": "What is the difference between 'for' and 'while' loops?",
+    "options": [
+      "They are exactly the same",
+      "for loops iterate a known number of times; while loops run until a condition is False",
+      "while loops are faster than for loops",
+      "for loops can only use numbers"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "loops",
+    "explanation": "Use 'for' when you know how many iterations (or have a collection to iterate). Use 'while' when you don't know in advance."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does 'while True:' create?",
+    "options": [
+      "A syntax error",
+      "A loop that never runs",
+      "An infinite loop (unless broken with 'break')",
+      "A conditional statement"
+    ],
+    "correct_index": 2,
+    "difficulty": "medium",
+    "topic_tag": "loops",
+    "explanation": "'while True:' creates an infinite loop since True never becomes False. Use 'break' to exit when needed."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Why is code organization with functions beneficial?",
+    "options": [
+      "It makes code run faster",
+      "It reduces code duplication and improves readability",
+      "Python requires it",
+      "It uses less memory"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "functions",
+    "explanation": "Functions help organize code into reusable blocks, reducing duplication and making code easier to understand."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the purpose of proper indentation in Python?",
+    "options": [
+      "Just for visual appearance",
+      "To define code blocks and structure",
+      "To make code run faster",
+      "It's optional in Python"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "indentation",
+    "explanation": "Python uses indentation to define code blocks. Incorrect indentation changes the meaning or causes errors!"
+  },
+  {
+    "question_type": "mcq",
     "text": "In the Right-Hand Rule maze algorithm, what do you do if the right is clear?",
     "options": [
       "Go straight",
       "Turn left",
-      "Turn right and move",
+      "Turn right and move forward",
       "Stop"
     ],
     "correct_index": 2,
     "difficulty": "medium",
     "topic_tag": "algorithms",
-    "explanation": "If the right is clear, you turn right to follow the wall."
+    "explanation": "The right-hand rule: if right is clear, turn right and move. Keep your hand on the right wall!"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What happens to variables defined inside a function?",
+    "options": [
+      "They are accessible everywhere",
+      "They only exist inside that function (local scope)",
+      "They become global automatically",
+      "They are saved to a file"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "functions",
+    "explanation": "Variables defined inside a function are 'local' - they only exist within that function's scope."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you prevent an infinite loop in a while loop?",
+    "options": [
+      "Use 'for' instead",
+      "Make sure the condition can eventually become False",
+      "Add a timer",
+      "Python prevents them automatically"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "loops",
+    "explanation": "Ensure your while condition can eventually become False, or use 'break' to exit the loop."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the minimum number of times a while loop will execute?",
+    "options": [
+      "At least once",
+      "Zero (if condition is False initially)",
+      "Exactly once",
+      "Depends on the loop variable"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "loops",
+    "explanation": "If the condition is False from the start, the while loop body never executes (0 times)."
   },
   {
     "question_type": "coding",
-    "text": "Define a Function\nWrite a function named `greet` that simply prints 'Hello World'.\nDo not call it, just define it.",
+    "text": "Define a Function\\nWrite a function named 'greet' that prints 'Hello World'.",
     "starter_code": "# Define your function here\n",
     "test_cases": [
       {
-        "input": [],
-        "expected": "Hello World",
-        "code_check": "def greet"
+        "function_call": "greet()",
+        "expected_output": "Hello World"
       }
     ],
     "difficulty": "easy",
@@ -94,74 +211,90 @@
   },
   {
     "question_type": "coding",
-    "text": "While Loop Countdown\nWrite a function `countdown` that prints numbers from `n` down to 1 using a `while` loop.\nExample n=3 outputs:\n3\n2\n1",
-    "starter_code": "def countdown(n):\n    # Write your while loop here\n    pass",
+    "text": "While Loop Countdown\\nPrint numbers from n down to 1 using a while loop. Return a list of the numbers.",
+    "starter_code": "def countdown(n):\n    result = []\n    # Use while loop\n    return result",
     "test_cases": [
       {
-        "input": [
-          3
-        ],
-        "expected": "3\n2\n1"
+        "function_call": "countdown(3)",
+        "expected": "[3, 2, 1]"
       },
       {
-        "input": [
-          1
-        ],
-        "expected": "1"
+        "function_call": "countdown(5)",
+        "expected": "[5, 4, 3, 2, 1]"
+      },
+      {
+        "function_call": "countdown(1)",
+        "expected": "[1]"
       }
     ],
     "difficulty": "medium",
     "topic_tag": "loops",
-    "solution_code": "def countdown(n):\n    while n > 0:\n        print(n)\n        n -= 1"
+    "solution_code": "def countdown(n):\n    result = []\n    while n > 0:\n        result.append(n)\n        n -= 1\n    return result"
   },
   {
     "question_type": "coding",
-    "text": "Is It Clear?\nWrite a function `check_path` that returns True if `obstacle` is False, and False otherwise.\nLogic: while obstacle is True, return False. If we exit/skip loop, return True.",
-    "starter_code": "def check_path(obstacle):\n    # Use a while loop or if check\n    return False",
+    "text": "Sum Until Limit\\nAdd numbers 1, 2, 3... until the sum would EXCEED the limit. Return the sum.",
+    "starter_code": "def sum_until(limit):\n    total = 0\n    num = 1\n    # Use while loop\n    return total",
     "test_cases": [
       {
-        "input": [
-          false
-        ],
-        "expected": true
+        "function_call": "sum_until(10)",
+        "expected": "10"
       },
       {
-        "input": [
-          true
-        ],
-        "expected": false
+        "function_call": "sum_until(15)",
+        "expected": "15"
+      },
+      {
+        "function_call": "sum_until(5)",
+        "expected": "3"
       }
     ],
-    "difficulty": "easy",
-    "topic_tag": "logic",
-    "solution_code": "def check_path(obstacle):\n    if obstacle:\n        return False\n    return True"
+    "difficulty": "medium",
+    "topic_tag": "loops",
+    "solution_code": "def sum_until(limit):\n    total = 0\n    num = 1\n    while total + num <= limit:\n        total += num\n        num += 1\n    return total"
   },
   {
     "question_type": "coding",
-    "text": "Factorial with While\nCalculate the factorial of `n` using a `while` loop.\nfactorial(5) = 5 * 4 * 3 * 2 * 1 = 120",
+    "text": "Factorial with While\\nCalculate factorial of n using a while loop. factorial(5) = 5*4*3*2*1 = 120",
     "starter_code": "def factorial(n):\n    result = 1\n    # Use while loop\n    return result",
     "test_cases": [
       {
-        "input": [
-          5
-        ],
-        "expected": 120
+        "function_call": "factorial(5)",
+        "expected": "120"
       },
       {
-        "input": [
-          3
-        ],
-        "expected": 6
+        "function_call": "factorial(3)",
+        "expected": "6"
       },
       {
-        "input": [
-          1
-        ],
-        "expected": 1
+        "function_call": "factorial(1)",
+        "expected": "1"
       }
     ],
     "difficulty": "medium",
     "topic_tag": "algorithms",
     "solution_code": "def factorial(n):\n    result = 1\n    while n > 0:\n        result *= n\n        n -= 1\n    return result"
+  },
+  {
+    "question_type": "coding",
+    "text": "Find First Negative\\nReturn the first negative number in a list. Return None if no negatives.",
+    "starter_code": "def first_negative(numbers):\n    # Loop through and return first negative\n    pass",
+    "test_cases": [
+      {
+        "function_call": "first_negative([1, 2, -3, 4])",
+        "expected": "-3"
+      },
+      {
+        "function_call": "first_negative([1, 2, 3])",
+        "expected": "None"
+      },
+      {
+        "function_call": "first_negative([-1, -2, -3])",
+        "expected": "-1"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "loops",
+    "solution_code": "def first_negative(numbers):\n    for num in numbers:\n        if num < 0:\n            return num\n    return None"
   }
 ]
