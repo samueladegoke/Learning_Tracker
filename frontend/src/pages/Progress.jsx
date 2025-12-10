@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { AlertTriangle } from 'lucide-react'
 import { progressAPI, badgesAPI, achievementsAPI, weeksAPI } from '../api/client'
 import ProgressRing from '../components/ProgressRing'
 import ProgressBar from '../components/ProgressBar'
@@ -51,7 +52,7 @@ function Progress() {
   if (error) {
     return (
       <div className="card p-8 text-center">
-        <div className="text-4xl mb-4">⚠️</div>
+        <AlertTriangle className="w-12 h-12 text-yellow-500 mx-auto mb-4" />
         <h2 className="text-xl font-semibold text-surface-100 mb-2">Failed to load progress</h2>
         <p className="text-surface-500 mb-4">{error}</p>
         <button onClick={fetchData} className="btn-primary">
@@ -153,20 +154,20 @@ function Progress() {
         <h2 className="text-lg font-semibold text-surface-100 mb-4">Weekly Progress</h2>
         <div className="grid grid-cols-4 sm:grid-cols-8 md:grid-cols-10 lg:grid-cols-16 gap-2">
           {weeks.map((week) => {
-            const percent = week.tasks_total > 0 
-              ? (week.tasks_completed / week.tasks_total) * 100 
+            const percent = week.tasks_total > 0
+              ? (week.tasks_completed / week.tasks_total) * 100
               : 0
             const isComplete = percent === 100
             const hasStarted = week.tasks_completed > 0
-            
+
             return (
               <div
                 key={week.id}
                 className={`aspect-square rounded-lg flex items-center justify-center text-xs font-medium
-                  ${isComplete 
-                    ? 'bg-primary-600 text-white' 
-                    : hasStarted 
-                      ? 'bg-primary-900/50 text-primary-300 border border-primary-700/50' 
+                  ${isComplete
+                    ? 'bg-primary-600 text-white'
+                    : hasStarted
+                      ? 'bg-primary-900/50 text-primary-300 border border-primary-700/50'
                       : 'bg-surface-800 text-surface-500'
                   }`}
                 title={`Week ${week.week_number}: ${week.tasks_completed}/${week.tasks_total} tasks`}
@@ -214,11 +215,10 @@ function Progress() {
                 {achievements.map((ach) => (
                   <div
                     key={ach.id}
-                    className={`p-3 rounded-lg border text-sm ${
-                      ach.unlocked
-                        ? 'border-primary-700/50 bg-primary-900/20 text-surface-100'
-                        : 'border-surface-800 bg-surface-900/40 text-surface-400'
-                    }`}
+                    className={`p-3 rounded-lg border text-sm ${ach.unlocked
+                      ? 'border-primary-700/50 bg-primary-900/20 text-surface-100'
+                      : 'border-surface-800 bg-surface-900/40 text-surface-400'
+                      }`}
                   >
                     <div className="flex items-center justify-between">
                       <div>

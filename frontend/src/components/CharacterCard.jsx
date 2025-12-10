@@ -1,5 +1,6 @@
 import React from 'react'
 import ProgressBar from './ProgressBar'
+import { Heart, Flame, Coins, Zap } from 'lucide-react'
 
 const CharacterCard = ({ rpgState, progress }) => {
     if (!rpgState) return null
@@ -63,7 +64,7 @@ const CharacterCard = ({ rpgState, progress }) => {
                             <div className="flex items-center gap-1 justify-end mb-1">
                                 {Array.from({ length: 3 }).map((_, i) => (
                                     <span key={i} className={`text-xl ${i < (rpgState.hearts ?? 3) ? 'grayscale-0' : 'grayscale opacity-30'}`}>
-                                        ❤️
+                                        <Heart className="w-5 h-5 text-red-500 fill-red-500 inline-block" />
                                     </span>
                                 ))}
                             </div>
@@ -94,17 +95,17 @@ const CharacterCard = ({ rpgState, progress }) => {
                     {/* Quick Stats Grid */}
                     <div className="grid grid-cols-3 gap-3">
                         <div className="bg-surface-800/50 rounded-lg p-2 text-center border border-surface-700/30">
-                            <div className="text-lg mb-1">🔥</div>
+                            <div className="mb-1 flex justify-center"><Flame className="w-5 h-5 text-orange-500 fill-orange-500" /></div>
                             <div className="text-xs text-surface-400">Streak</div>
                             <div className="font-bold text-surface-200">{rpgState.streak}</div>
                         </div>
                         <div className="bg-surface-800/50 rounded-lg p-2 text-center border border-surface-700/30">
-                            <div className="text-lg mb-1">💰</div>
+                            <div className="mb-1 flex justify-center"><Coins className="w-5 h-5 text-yellow-500" /></div>
                             <div className="text-xs text-surface-400">Gold</div>
                             <div className="font-bold text-yellow-500">{rpgState.gold}</div>
                         </div>
                         <div className="bg-surface-800/50 rounded-lg p-2 text-center border border-surface-700/30">
-                            <div className="text-lg mb-1">⚡</div>
+                            <div className="mb-1 flex justify-center"><Zap className="w-5 h-5 text-blue-400 fill-blue-400" /></div>
                             <div className="text-xs text-surface-400">Focus</div>
                             <div className="font-bold text-blue-400">{rpgState.focus_points}/{rpgState.focus_cap}</div>
                         </div>

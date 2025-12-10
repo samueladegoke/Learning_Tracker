@@ -1,10 +1,12 @@
+import { ChevronDown } from 'lucide-react'
+
 export default function TranscriptsDay5() {
     return (
         <div className="space-y-4">
             <details className="bg-surface-800/30 rounded-xl border border-surface-700 overflow-hidden group" open>
                 <summary className="p-4 cursor-pointer font-medium text-surface-200 hover:bg-surface-800/50 transition-colors flex items-center justify-between">
                     1. Using the for loop with Python Lists
-                    <span className="text-surface-500 group-open:rotate-180 transition-transform">▼</span>
+                    <ChevronDown className="w-4 h-4 text-surface-500 group-open:rotate-180 transition-transform" />
                 </summary>
                 <div className="p-4 pt-0 text-surface-400 text-sm leading-relaxed border-t border-surface-700/50 mt-2">
                     A for loop iterates through a list, assigning each item to a variable name you choose.
@@ -15,7 +17,7 @@ export default function TranscriptsDay5() {
             <details className="bg-surface-800/30 rounded-xl border border-surface-700 overflow-hidden group">
                 <summary className="p-4 cursor-pointer font-medium text-surface-200 hover:bg-surface-800/50 transition-colors flex items-center justify-between">
                     2. The range() function
-                    <span className="text-surface-500 group-open:rotate-180 transition-transform">▼</span>
+                    <ChevronDown className="w-4 h-4 text-surface-500 group-open:rotate-180 transition-transform" />
                 </summary>
                 <div className="p-4 pt-0 text-surface-400 text-sm leading-relaxed border-t border-surface-700/50 mt-2">
                     <code>range(start, stop, step)</code> is useful for generating number sequences.
@@ -26,7 +28,7 @@ export default function TranscriptsDay5() {
             <details className="bg-surface-800/30 rounded-xl border border-surface-700 overflow-hidden group">
                 <summary className="p-4 cursor-pointer font-medium text-surface-200 hover:bg-surface-800/50 transition-colors flex items-center justify-between">
                     3. Day 5 Project: Create a Password Generator
-                    <span className="text-surface-500 group-open:rotate-180 transition-transform">▼</span>
+                    <ChevronDown className="w-4 h-4 text-surface-500 group-open:rotate-180 transition-transform" />
                 </summary>
                 <div className="p-4 pt-0 text-surface-400 text-sm leading-relaxed border-t border-surface-700/50 mt-2">
                     Create a program that asks for number of letters, symbols, and numbers, then generates a random password.

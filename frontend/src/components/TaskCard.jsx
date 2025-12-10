@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Check } from 'lucide-react'
 
 function TaskCard({ task, onToggle }) {
   const [isLoading, setIsLoading] = useState(false)
@@ -38,17 +39,15 @@ function TaskCard({ task, onToggle }) {
           disabled={isLoading}
           className={`flex-shrink-0 w-6 h-6 rounded-md border-2 transition-all duration-200
             flex items-center justify-center mt-0.5
-            ${task.completed 
-              ? 'bg-primary-600 border-primary-600 text-white' 
+            ${task.completed
+              ? 'bg-primary-600 border-primary-600 text-white'
               : 'border-surface-600 hover:border-primary-500'
             }
             ${isLoading ? 'opacity-50 cursor-wait' : 'cursor-pointer'}
           `}
         >
           {task.completed && (
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-            </svg>
+            <Check className="w-4 h-4" strokeWidth={3} />
           )}
         </button>
 

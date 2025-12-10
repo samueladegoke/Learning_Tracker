@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { AlertTriangle, BookX } from 'lucide-react'
 import { weeksAPI, tasksAPI } from '../api/client'
 import WeekAccordion from '../components/WeekAccordion'
 import ProgressBar from '../components/ProgressBar'
@@ -15,7 +16,7 @@ function Planner() {
       setLoading(true)
       const data = await weeksAPI.getAll()
       setWeeks(data)
-      
+
       // Find first incomplete week to expand
       const firstIncomplete = data.find(w => w.tasks_completed < w.tasks_total)
       if (firstIncomplete) {
@@ -37,7 +38,7 @@ function Planner() {
 
   const loadWeekTasks = async (weekId) => {
     if (weekTasks[weekId]) return // Already loaded
-    
+
     try {
       const weekData = await weeksAPI.getById(weekId)
       setWeekTasks(prev => ({ ...prev, [weekId]: weekData.tasks }))
@@ -53,11 +54,11 @@ function Planner() {
       } else {
         await tasksAPI.uncomplete(taskId)
       }
-      
+
       // Refresh weeks and the affected week's tasks
       const data = await weeksAPI.getAll()
       setWeeks(data)
-      
+
       // Refresh loaded week tasks
       for (const weekId of Object.keys(weekTasks)) {
         const weekData = await weeksAPI.getById(parseInt(weekId))
@@ -86,7 +87,7 @@ function Planner() {
   if (error) {
     return (
       <div className="card p-8 text-center">
-        <div className="text-4xl mb-4">⚠️</div>
+        <AlertTriangle className="w-12 h-12 text-yellow-500 mx-auto mb-4" />
         <h2 className="text-xl font-semibold text-surface-100 mb-2">Failed to load roadmap</h2>
         <p className="text-surface-500 mb-4">{error}</p>
         <button onClick={fetchWeeks} className="btn-primary">
@@ -140,7 +141,7 @@ function Planner() {
 
       {weeks.length === 0 && (
         <div className="card p-8 text-center">
-          <div className="text-4xl mb-4">📚</div>
+          <BookX className="w-12 h-12 text-surface-400 mx-auto mb-4" />
           <h2 className="text-xl font-semibold text-surface-100 mb-2">No weeks found</h2>
           <p className="text-surface-500">Run the seed script to populate the database with the roadmap.</p>
         </div>

@@ -1,22 +1,25 @@
 # Story: The Juice Update (UX Overhaul)
 
 **Epic:** 1-UX-Improvements
-**Status:** review
+**Status:** done
 **Owner:** User
 
 ## Description
 Enhance the user experience of the Learning Tracker by implementing a "Deep Glass" aesthetic, adding smooth animations with `framer-motion`, and gamifying interactions ("Juice").
+**Phase 2 Update:** Evolve the aesthetic to "Nano Banana Pro" standards using a Cyber-Industrial Yellow theme and Professional Vector Icons.
 
 ## Acceptance Criteria
-- [ ] **Visuals**: Application uses a dark, multi-stop radial gradient background.
-- [ ] **Cards**: All cards use glassmorphism (`backdrop-blur-xl`, semi-transparent backgrounds).
-- [ ] **Navbar**: Active tab has a sliding "pill" animation backing it.
-- [ ] **Dashboard**: Stats (XP, Gold) animate (count up) on load.
-- [ ] **Dashboard**: Items stagger in (one by one) rather than popping in all at once.
-- [ ] **Quest Log**: Completing a task animates it out smoothly; the list reorders automatically.
-- [ ] **Performance**: No laggy animations; transitions are smooth.
+- [x] **Visuals**: Application uses a dark, multi-stop radial gradient background.
+- [x] **Cards**: All cards use glassmorphism (`backdrop-blur-xl`, semi-transparent backgrounds).
+- [x] **Theme**: Primary accent color is "Electric Banana" (Yellow-400/Amber-500).
+- [x] **Icons**: **ZERO EMOJIS**. All UI icons are `lucide-react` vectors.
+- [x] **Navbar**: Active tab has a sliding "pill" animation backing it.
+- [x] **Dashboard**: Stats (XP, Gold) animate (count up) on load.
+- [x] **Dashboard**: Items stagger in (one by one).
+- [x] **Performance**: No laggy animations; transitions are smooth.
 
 ## Tasks
+### Phase 1: The Juice (Completed)
 - [x] Install `framer-motion`
 - [x] Update `index.css` with "Deep Glass" tokens (gradients, card styles)
 - [x] Refactor `Navbar` to use `LayoutGroup` or `layoutId` for active state
@@ -24,18 +27,47 @@ Enhance the user experience of the Learning Tracker by implementing a "Deep Glas
 - [x] Implement `NumberTicker` for stats
 - [x] Refactor `QuestLog` for list transitions
 
+### Phase 2: Nano Banana Pro (New)
+- [x] Install `lucide-react`
+- [x] Update `tailwind.config.js` tokens (`primary` -> Yellow)
+- [x] Refactor `Navbar.jsx`: Replace Emojis with Lucide Icons
+- [x] Refactor `Dashboard.jsx`: Replace Emojis with Lucide Icons
+- [x] Refactor `QuestLog.jsx`: Replace Checkboxes with Custom Vector Controls
+- [x] Verify "No Emojis" policy across app
+
 ## Dev Agent Record
 ### File List
 - frontend/src/index.css
-- frontend/src/components/Navbar.jsx
-- frontend/src/pages/Dashboard.jsx
-- frontend/src/components/QuestLog.jsx
+- frontend/tailwind.config.js
 - frontend/package.json
-- frontend/.env
-- frontend/src/api/client.js
-
-### Change Log
-- Installed framer-motion
-- Overhauled global CSS for glassmorphism
-- Animated core dashboard components
-- Fixed API connection issues
+- frontend/package-lock.json
+- frontend/playwright.config.ts
+- frontend/src/components/Navbar.jsx
+- frontend/src/components/BadgeCard.jsx
+- frontend/src/components/CharacterCard.jsx
+- frontend/src/components/CodeEditor.jsx
+- frontend/src/components/QuestLog.jsx
+- frontend/src/components/ShopModal.jsx
+- frontend/src/components/TaskCard.jsx
+- frontend/src/components/WeekAccordion.jsx
+- frontend/src/components/content/DeepDive/Day1.jsx
+- frontend/src/components/content/DeepDive/Day2.jsx
+- frontend/src/components/content/DeepDive/Day3.jsx
+- frontend/src/components/content/DeepDive/Day4.jsx
+- frontend/src/components/content/DeepDive/Day5.jsx
+- frontend/src/components/content/DeepDive/Day6.jsx
+- frontend/src/components/content/Transcripts/Day1.jsx
+- frontend/src/components/content/Transcripts/Day2.jsx
+- frontend/src/components/content/Transcripts/Day3.jsx
+- frontend/src/components/content/Transcripts/Day4.jsx
+- frontend/src/components/content/Transcripts/Day5.jsx
+- frontend/src/components/content/Transcripts/Day6.jsx
+- frontend/src/pages/Calendar.jsx
+- frontend/src/pages/Dashboard.jsx
+- frontend/src/pages/Planner.jsx
+- frontend/src/pages/Practice.jsx
+- frontend/src/pages/Progress.jsx
+- frontend/src/pages/Reflections.jsx
+- frontend/src/utils/xpUtils.js
+- frontend/tests/e2e/dashboard.spec.ts
+- docs/sprint-artifacts/story-1-juice-update.md

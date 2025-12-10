@@ -84,6 +84,7 @@ playwright-report/
 test-results/
 frontend/playwright-report/
 frontend/test-results/
+frontend/test_output*.txt
 
 # Legacy/Misc
 bmad-custom-modules-src/

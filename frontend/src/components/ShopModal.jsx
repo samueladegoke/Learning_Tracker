@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+import { motion } from 'framer-motion'
+import { X, ShoppingBag, Snowflake, Zap, Heart, Coins } from 'lucide-react'
 import { soundManager } from '../utils/SoundManager'
 
 const ShopModal = ({ isOpen, onClose, rpgState, onPurchase }) => {
@@ -10,7 +12,7 @@ const ShopModal = ({ isOpen, onClose, rpgState, onPurchase }) => {
         {
             id: 'streak_freeze',
             name: 'Streak Freeze',
-            icon: '❄️',
+            icon: <Snowflake className="w-8 h-8 text-cyan-300" />,
             cost: 50,
             description: 'Protects your streak for one missed day',
             owned: rpgState?.streak_freeze_count || 0,
@@ -18,7 +20,7 @@ const ShopModal = ({ isOpen, onClose, rpgState, onPurchase }) => {
         {
             id: 'potion_focus',
             name: 'Potion of Focus',
-            icon: '⚡',
+            icon: <Zap className="w-8 h-8 text-yellow-400 fill-yellow-400" />,
             cost: 20,
             description: 'Instantly refills all Focus Points',
             disabled: rpgState?.focus_points === rpgState?.focus_cap,
@@ -26,7 +28,7 @@ const ShopModal = ({ isOpen, onClose, rpgState, onPurchase }) => {
         {
             id: 'heart_refill',
             name: 'Heart Refill',
-            icon: '❤️',
+            icon: <Heart className="w-8 h-8 text-red-500 fill-red-500" />,
             cost: 100,
             description: 'Restore one lost heart',
             disabled: rpgState?.hearts >= 3,
@@ -58,14 +60,15 @@ const ShopModal = ({ isOpen, onClose, rpgState, onPurchase }) => {
                         <p className="text-surface-400 text-sm">Spend your hard-earned Gold</p>
                     </div>
                     <div className="flex items-center gap-3">
-                        <div className="bg-surface-800 px-4 py-2 rounded-lg border border-surface-700">
-                            <span className="text-yellow-500 font-bold text-lg">💰 {rpgState?.gold || 0}</span>
+                        <div className="bg-surface-800 px-4 py-2 rounded-lg border border-surface-700 flex items-center gap-2">
+                            <Coins className="w-5 h-5 text-yellow-500" />
+                            <span className="text-yellow-500 font-bold text-lg">{rpgState?.gold || 0}</span>
                         </div>
                         <button
                             onClick={onClose}
                             className="w-8 h-8 rounded-lg bg-surface-800 hover:bg-surface-700 text-surface-400 hover:text-surface-100 transition-colors flex items-center justify-center"
                         >
-                            ✕
+                            <X className="w-5 h-5" />
                         </button>
                     </div>
                 </div>
@@ -80,8 +83,8 @@ const ShopModal = ({ isOpen, onClose, rpgState, onPurchase }) => {
                             <div
                                 key={item.id}
                                 className={`bg-surface-800/50 rounded-xl p-4 border transition-all ${disabled
-                                        ? 'border-surface-700/30 opacity-60'
-                                        : 'border-surface-700 hover:border-primary-500/50 hover:bg-surface-800'
+                                    ? 'border-surface-700/30 opacity-60'
+                                    : 'border-surface-700 hover:border-primary-500/50 hover:bg-surface-800'
                                     }`}
                             >
                                 <div className="flex items-center justify-between">
@@ -105,12 +108,13 @@ const ShopModal = ({ isOpen, onClose, rpgState, onPurchase }) => {
                                         onClick={() => handleBuy(item.id)}
                                         disabled={disabled}
                                         className={`px-6 py-2 rounded-lg font-medium transition-all ${disabled
-                                                ? 'bg-surface-700 text-surface-500 cursor-not-allowed'
-                                                : 'bg-primary-600 hover:bg-primary-500 text-white shadow-lg shadow-primary-900/30 hover:shadow-primary-900/50 active:scale-95'
+                                            ? 'bg-surface-700 text-surface-500 cursor-not-allowed'
+                                            : 'bg-primary-600 hover:bg-primary-500 text-white shadow-lg shadow-primary-900/30 hover:shadow-primary-900/50 active:scale-95'
                                             }`}
                                     >
                                         <div className="flex items-center gap-2">
-                                            <span>💰 {item.cost}</span>
+                                            <Coins className="w-4 h-4" />
+                                            <span>{item.cost}</span>
                                             <span>Buy</span>
                                         </div>
                                     </button>

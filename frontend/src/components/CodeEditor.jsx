@@ -1,12 +1,13 @@
 import { useState, useEffect, useRef } from 'react'
+import { Check, X } from 'lucide-react'
 import { usePythonRunner } from '../hooks/usePythonRunner'
 
-function CodeEditor({ 
-  starterCode = '', 
-  testCases = [], 
+function CodeEditor({
+  starterCode = '',
+  testCases = [],
   onResult,
   questionId,
-  readOnly = false 
+  readOnly = false
 }) {
   const [code, setCode] = useState(starterCode)
   const [output, setOutput] = useState('')
@@ -14,7 +15,7 @@ function CodeEditor({
   const [testResults, setTestResults] = useState(null)
   const [activeTab, setActiveTab] = useState('code') // 'code' | 'output' | 'tests'
   const textareaRef = useRef(null)
-  
+
   const { runCode, runTestCases, isLoading, loadingProgress, isReady, error: pyError } = usePythonRunner()
 
   // Reset code when starter code changes
@@ -41,14 +42,14 @@ function CodeEditor({
 
   const handleRun = async () => {
     if (!isReady) return
-    
+
     setIsRunning(true)
     setOutput('')
     setActiveTab('output')
-    
+
     try {
       const result = await runCode(code)
-      
+
       if (result.error) {
         setOutput(`Error:\n${result.error}`)
       } else {
@@ -63,24 +64,24 @@ function CodeEditor({
 
   const handleSubmit = async () => {
     if (!isReady || testCases.length === 0) return
-    
+
     setIsRunning(true)
     setTestResults(null)
     setActiveTab('tests')
-    
+
     try {
       const results = await runTestCases(code, testCases)
       setTestResults(results)
-      
+
       const passed = results.filter(r => r.passed).length
       const total = results.length
-      
+
       // Report result to parent
       if (onResult) {
-        onResult({ 
+        onResult({
           questionId,
-          code, 
-          passed, 
+          code,
+          passed,
           total,
           allPassed: passed === total
         })
@@ -111,38 +112,35 @@ function CodeEditor({
         <div className="flex gap-1">
           <button
             onClick={() => setActiveTab('code')}
-            className={`px-3 py-1 text-xs font-medium rounded transition-colors ${
-              activeTab === 'code' 
-                ? 'bg-primary-600 text-white' 
-                : 'text-surface-400 hover:text-surface-200 hover:bg-surface-700'
-            }`}
+            className={`px-3 py-1 text-xs font-medium rounded transition-colors ${activeTab === 'code'
+              ? 'bg-primary-600 text-white'
+              : 'text-surface-400 hover:text-surface-200 hover:bg-surface-700'
+              }`}
           >
             Code
           </button>
           <button
             onClick={() => setActiveTab('output')}
-            className={`px-3 py-1 text-xs font-medium rounded transition-colors ${
-              activeTab === 'output' 
-                ? 'bg-primary-600 text-white' 
-                : 'text-surface-400 hover:text-surface-200 hover:bg-surface-700'
-            }`}
+            className={`px-3 py-1 text-xs font-medium rounded transition-colors ${activeTab === 'output'
+              ? 'bg-primary-600 text-white'
+              : 'text-surface-400 hover:text-surface-200 hover:bg-surface-700'
+              }`}
           >
             Output
           </button>
           {testCases.length > 0 && (
             <button
               onClick={() => setActiveTab('tests')}
-              className={`px-3 py-1 text-xs font-medium rounded transition-colors ${
-                activeTab === 'tests' 
-                  ? 'bg-primary-600 text-white' 
-                  : 'text-surface-400 hover:text-surface-200 hover:bg-surface-700'
-              }`}
+              className={`px-3 py-1 text-xs font-medium rounded transition-colors ${activeTab === 'tests'
+                ? 'bg-primary-600 text-white'
+                : 'text-surface-400 hover:text-surface-200 hover:bg-surface-700'
+                }`}
             >
               Tests {testResults && `(${testResults.filter(r => r.passed).length}/${testResults.length})`}
             </button>
           )}
         </div>
-        
+
         <div className="flex items-center gap-2">
           {!isReady && (
             <span className="text-xs text-surface-400">
@@ -168,7 +166,7 @@ function CodeEditor({
               <div key={num} className="leading-6">{num}</div>
             ))}
           </div>
-          
+
           {/* Code textarea */}
           <textarea
             ref={textareaRef}
@@ -213,31 +211,28 @@ function CodeEditor({
           ) : testResults ? (
             <>
               {/* Summary */}
-              <div className={`p-3 rounded-lg ${
-                testResults.every(r => r.passed) 
-                  ? 'bg-emerald-500/10 border border-emerald-500/30' 
-                  : 'bg-amber-500/10 border border-amber-500/30'
-              }`}>
-                <span className={`font-medium ${
-                  testResults.every(r => r.passed) ? 'text-emerald-400' : 'text-amber-400'
+              <div className={`p-3 rounded-lg ${testResults.every(r => r.passed)
+                ? 'bg-emerald-500/10 border border-emerald-500/30'
+                : 'bg-amber-500/10 border border-amber-500/30'
                 }`}>
+                <span className={`font-medium ${testResults.every(r => r.passed) ? 'text-emerald-400' : 'text-amber-400'
+                  }`}>
                   {testResults.filter(r => r.passed).length} of {testResults.length} tests passed
                 </span>
               </div>
-              
+
               {/* Individual test results */}
               {testResults.map((result, idx) => (
-                <div 
+                <div
                   key={idx}
-                  className={`p-3 rounded-lg border ${
-                    result.passed 
-                      ? 'bg-surface-800 border-surface-700' 
-                      : 'bg-red-500/5 border-red-500/30'
-                  }`}
+                  className={`p-3 rounded-lg border ${result.passed
+                    ? 'bg-surface-800 border-surface-700'
+                    : 'bg-red-500/5 border-red-500/30'
+                    }`}
                 >
                   <div className="flex items-center gap-2 mb-2">
                     <span className={`text-lg ${result.passed ? 'text-emerald-400' : 'text-red-400'}`}>
-                      {result.passed ? '✓' : '✗'}
+                      {result.passed ? <Check className="w-4 h-4 text-emerald-400" /> : <X className="w-4 h-4 text-red-400" />}
                     </span>
                     <span className="text-sm font-medium text-surface-200">
                       Test {idx + 1}

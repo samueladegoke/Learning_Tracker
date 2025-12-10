@@ -1,10 +1,12 @@
+import { ChevronDown } from 'lucide-react'
+
 export default function TranscriptsDay4() {
     return (
         <div className="space-y-4">
             <details className="bg-surface-800/30 rounded-xl border border-surface-700 overflow-hidden group" open>
                 <summary className="p-4 cursor-pointer font-medium text-surface-200 hover:bg-surface-800/50 transition-colors flex items-center justify-between">
                     1. Random Module & Pseudorandom Numbers
-                    <span className="text-surface-500 group-open:rotate-180 transition-transform">▼</span>
+                    <ChevronDown className="w-4 h-4 text-surface-500 group-open:rotate-180 transition-transform" />
                 </summary>
                 <div className="p-4 pt-0 text-surface-400 text-sm leading-relaxed border-t border-surface-700/50 mt-2">
                     Computers are deterministic—they perform repeatable actions predictably. Python uses the Mersenne Twister
@@ -15,7 +17,7 @@ export default function TranscriptsDay4() {
             <details className="bg-surface-800/30 rounded-xl border border-surface-700 overflow-hidden group">
                 <summary className="p-4 cursor-pointer font-medium text-surface-200 hover:bg-surface-800/50 transition-colors flex items-center justify-between">
                     2. Creating and Importing Modules
-                    <span className="text-surface-500 group-open:rotate-180 transition-transform">▼</span>
+                    <ChevronDown className="w-4 h-4 text-surface-500 group-open:rotate-180 transition-transform" />
                 </summary>
                 <div className="p-4 pt-0 text-surface-400 text-sm leading-relaxed border-t border-surface-700/50 mt-2">
                     Modules split code into reusable pieces. Create <code>my_module.py</code> with variables/functions,
@@ -25,7 +27,7 @@ export default function TranscriptsDay4() {
             <details className="bg-surface-800/30 rounded-xl border border-surface-700 overflow-hidden group">
                 <summary className="p-4 cursor-pointer font-medium text-surface-200 hover:bg-surface-800/50 transition-colors flex items-center justify-between">
                     3. Python Lists: Data Structures
-                    <span className="text-surface-500 group-open:rotate-180 transition-transform">▼</span>
+                    <ChevronDown className="w-4 h-4 text-surface-500 group-open:rotate-180 transition-transform" />
                 </summary>
                 <div className="p-4 pt-0 text-surface-400 text-sm leading-relaxed border-t border-surface-700/50 mt-2">
                     Lists store ordered, related data in square brackets: <code>["Cherry", "Apple", "Pear"]</code>.
@@ -35,7 +37,7 @@ export default function TranscriptsDay4() {
             <details className="bg-surface-800/30 rounded-xl border border-surface-700 overflow-hidden group">
                 <summary className="p-4 cursor-pointer font-medium text-surface-200 hover:bg-surface-800/50 transition-colors flex items-center justify-between">
                     4. List Indexing & the Offset Concept
-                    <span className="text-surface-500 group-open:rotate-180 transition-transform">▼</span>
+                    <ChevronDown className="w-4 h-4 text-surface-500 group-open:rotate-180 transition-transform" />
                 </summary>
                 <div className="p-4 pt-0 text-surface-400 text-sm leading-relaxed border-t border-surface-700/50 mt-2">
                     Think of indices as <em>offsets from the start</em>. First item is at 0 (no offset). Use negative
@@ -45,7 +47,7 @@ export default function TranscriptsDay4() {
             <details className="bg-surface-800/30 rounded-xl border border-surface-700 overflow-hidden group">
                 <summary className="p-4 cursor-pointer font-medium text-surface-200 hover:bg-surface-800/50 transition-colors flex items-center justify-between">
                     5. Modifying Lists
-                    <span className="text-surface-500 group-open:rotate-180 transition-transform">▼</span>
+                    <ChevronDown className="w-4 h-4 text-surface-500 group-open:rotate-180 transition-transform" />
                 </summary>
                 <div className="p-4 pt-0 text-surface-400 text-sm leading-relaxed border-t border-surface-700/50 mt-2">
                     Lists are mutable: assign new values with <code>list[i] = new_value</code>.
@@ -56,7 +58,7 @@ export default function TranscriptsDay4() {
             <details className="bg-surface-800/30 rounded-xl border border-surface-700 overflow-hidden group">
                 <summary className="p-4 cursor-pointer font-medium text-surface-200 hover:bg-surface-800/50 transition-colors flex items-center justify-between">
                     6. Day 4 Project: Rock Paper Scissors
-                    <span className="text-surface-500 group-open:rotate-180 transition-transform">▼</span>
+                    <ChevronDown className="w-4 h-4 text-surface-500 group-open:rotate-180 transition-transform" />
                 </summary>
                 <div className="p-4 pt-0 text-surface-400 text-sm leading-relaxed border-t border-surface-700/50 mt-2">
                     Use <code>random.randint(0, 2)</code> for computer choice (0=Rock, 1=Paper, 2=Scissors).

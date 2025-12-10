@@ -4,7 +4,7 @@ import ProgressBar from './ProgressBar'
 
 function WeekAccordion({ week, tasks, onTaskToggle, initialOpen = false }) {
   const [isOpen, setIsOpen] = useState(initialOpen)
-  
+
   const tasksCompleted = tasks
     ? tasks.filter((t) => t.completed).length
     : week.tasks_completed ?? 0
@@ -21,8 +21,8 @@ function WeekAccordion({ week, tasks, onTaskToggle, initialOpen = false }) {
       >
         {/* Week number badge */}
         <div className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center font-display font-bold
-          ${isComplete 
-            ? 'bg-primary-600 text-white' 
+          ${isComplete
+            ? 'bg-primary-600 text-white'
             : 'bg-surface-800 text-surface-300'
           }`}
         >
@@ -62,7 +62,7 @@ function WeekAccordion({ week, tasks, onTaskToggle, initialOpen = false }) {
           {/* Milestone */}
           {week.milestone && (
             <div className="flex items-start gap-2 text-sm text-surface-400 mb-4">
-              <span className="text-primary-500">◆</span>
+              <Diamond className="w-3 h-3 text-primary-500 fill-primary-500" />
               <span>Milestone: {week.milestone}</span>
             </div>
           )}

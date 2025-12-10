@@ -1,10 +1,12 @@
+import { ChevronDown } from 'lucide-react'
+
 export default function TranscriptsDay3() {
     return (
         <div className="space-y-4 max-w-3xl">
             <details className="bg-surface-800/30 rounded-xl border border-surface-700 overflow-hidden group">
                 <summary className="p-4 cursor-pointer font-medium text-surface-200 hover:bg-surface-800/50 transition-colors flex items-center justify-between">
                     1. Control Flow with if/else
-                    <span className="text-surface-500 group-open:rotate-180 transition-transform">▼</span>
+                    <ChevronDown className="w-4 h-4 text-surface-500 group-open:rotate-180 transition-transform" />
                 </summary>
                 <div className="p-4 pt-0 text-surface-400 text-sm leading-relaxed border-t border-surface-700/50 mt-2">
                     Think of a bathtub overflow mechanism—when water reaches above 80cm, it drains; otherwise, it keeps filling.
@@ -15,7 +17,7 @@ export default function TranscriptsDay3() {
             <details className="bg-surface-800/30 rounded-xl border border-surface-700 overflow-hidden group">
                 <summary className="p-4 cursor-pointer font-medium text-surface-200 hover:bg-surface-800/50 transition-colors flex items-center justify-between">
                     2. The Modulo Operator
-                    <span className="text-surface-500 group-open:rotate-180 transition-transform">▼</span>
+                    <ChevronDown className="w-4 h-4 text-surface-500 group-open:rotate-180 transition-transform" />
                 </summary>
                 <div className="p-4 pt-0 text-surface-400 text-sm leading-relaxed border-t border-surface-700/50 mt-2">
                     The modulo operator (<code>%</code>) gives the remainder after division. <code>10 % 5 = 0</code> (divides evenly),
@@ -25,7 +27,7 @@ export default function TranscriptsDay3() {
             <details className="bg-surface-800/30 rounded-xl border border-surface-700 overflow-hidden group">
                 <summary className="p-4 cursor-pointer font-medium text-surface-200 hover:bg-surface-800/50 transition-colors flex items-center justify-between">
                     3. Nested if and elif Statements
-                    <span className="text-surface-500 group-open:rotate-180 transition-transform">▼</span>
+                    <ChevronDown className="w-4 h-4 text-surface-500 group-open:rotate-180 transition-transform" />
                 </summary>
                 <div className="p-4 pt-0 text-surface-400 text-sm leading-relaxed border-t border-surface-700/50 mt-2">
                     Use <code>elif</code> (else-if) to check multiple conditions. First matching condition wins.
@@ -36,7 +38,7 @@ export default function TranscriptsDay3() {
             <details className="bg-surface-800/30 rounded-xl border border-surface-700 overflow-hidden group">
                 <summary className="p-4 cursor-pointer font-medium text-surface-200 hover:bg-surface-800/50 transition-colors flex items-center justify-between">
                     4. Multiple If Statements
-                    <span className="text-surface-500 group-open:rotate-180 transition-transform">▼</span>
+                    <ChevronDown className="w-4 h-4 text-surface-500 group-open:rotate-180 transition-transform" />
                 </summary>
                 <div className="p-4 pt-0 text-surface-400 text-sm leading-relaxed border-t border-surface-700/50 mt-2">
                     Unlike <code>if/elif/else</code> where only ONE branch runs, multiple separate <code>if</code> statements
@@ -47,7 +49,7 @@ export default function TranscriptsDay3() {
             <details className="bg-surface-800/30 rounded-xl border border-surface-700 overflow-hidden group">
                 <summary className="p-4 cursor-pointer font-medium text-surface-200 hover:bg-surface-800/50 transition-colors flex items-center justify-between">
                     5. Logical Operators (and, or, not)
-                    <span className="text-surface-500 group-open:rotate-180 transition-transform">▼</span>
+                    <ChevronDown className="w-4 h-4 text-surface-500 group-open:rotate-180 transition-transform" />
                 </summary>
                 <div className="p-4 pt-0 text-surface-400 text-sm leading-relaxed border-t border-surface-700/50 mt-2">
                     Combine conditions: <code>and</code> requires both to be True, <code>or</code> requires at least one,
@@ -58,7 +60,7 @@ export default function TranscriptsDay3() {
             <details className="bg-surface-800/30 rounded-xl border border-surface-700 overflow-hidden group">
                 <summary className="p-4 cursor-pointer font-medium text-surface-200 hover:bg-surface-800/50 transition-colors flex items-center justify-between">
                     6. Day 3 Project: Treasure Island
-                    <span className="text-surface-500 group-open:rotate-180 transition-transform">▼</span>
+                    <ChevronDown className="w-4 h-4 text-surface-500 group-open:rotate-180 transition-transform" />
                 </summary>
                 <div className="p-4 pt-0 text-surface-400 text-sm leading-relaxed border-t border-surface-700/50 mt-2">
                     Build a "Choose Your Own Adventure" game! Ask players to go left or right, swim or wait for a boat,

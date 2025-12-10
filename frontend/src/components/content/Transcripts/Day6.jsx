@@ -1,4 +1,5 @@
 import React from 'react';
+import { ArrowRight } from 'lucide-react';
 
 function TranscriptsDay6() {
     return (
@@ -79,9 +80,9 @@ function TranscriptsDay6() {
                         <h4 className="font-semibold text-surface-100 mb-3">The Algorithm</h4>
                         <ol className="list-decimal pl-5 space-y-2 text-sm text-surface-300">
                             <li><span className="text-primary-300">While</span> not at goal:</li>
-                            <li><span className="text-blue-300">If</span> right is clear → Turn right and move.</li>
-                            <li><span className="text-blue-300">Elif</span> front is clear → Move forward.</li>
-                            <li><span className="text-blue-300">Else</span> → Turn left (wall is blocking both right and front).</li>
+                            <li><span className="text-blue-300">If</span> right is clear <ArrowRight className="w-4 h-4 text-surface-400 inline mx-1" /> Turn right and move.</li>
+                            <li><span className="text-blue-300">Elif</span> front is clear <ArrowRight className="w-4 h-4 text-surface-400 inline mx-1" /> Move forward.</li>
+                            <li><span className="text-blue-300">Else</span> <ArrowRight className="w-4 h-4 text-surface-400 inline mx-1" /> Turn left (wall is blocking both right and front).</li>
                         </ol>
                     </div>
                     <div className="bg-surface-800/50 p-6 rounded-lg border border-surface-700">

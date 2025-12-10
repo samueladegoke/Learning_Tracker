@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { AlertTriangle, Trophy, PartyPopper, BookOpen, Check, Lightbulb, ArrowLeft, ArrowRight } from 'lucide-react'
 import { quizApi } from '../api/quizApi'
 import { rpgAPI } from '../api/client'
 import CodeBlock from '../components/CodeBlock'
@@ -342,8 +343,13 @@ function Quiz({ quizId, activeDay }) {
 
         return (
             <div className="flex flex-col items-center justify-center min-h-[400px] space-y-6 bg-surface-800/30 rounded-2xl border border-surface-700 p-8">
-                <div className={`text-6xl ${isPerfect ? 'animate-bounce' : ''}`}>
-                    {isPerfect ? '🏆' : isPassing ? '🎉' : '📚'}
+                <div className={`${isPerfect ? 'animate-bounce' : ''} flex justify-center`}>
+                    {isPerfect
+                        ? <Trophy className="w-16 h-16 text-yellow-400" />
+                        : isPassing
+                            ? <PartyPopper className="w-16 h-16 text-primary-400" />
+                            : <BookOpen className="w-16 h-16 text-amber-400" />
+                    }
                 </div>
                 <h3 className="text-3xl font-bold text-surface-100">Quiz Complete!</h3>
                 <div className="text-center">
@@ -357,8 +363,8 @@ function Quiz({ quizId, activeDay }) {
                     <p className="text-sm text-primary-300 mt-2">
                         +{resultData.xp_gained} XP Earned!
                         {!resultData.xp_saved && (
-                            <span className="block text-amber-400 text-xs mt-1">
-                                ⚠️ XP not saved to profile
+                            <span className="flex items-center gap-2 text-amber-400 text-xs mt-1 justify-center">
+                                <AlertTriangle className="w-3 h-3" /> XP not saved to profile
                             </span>
                         )}
                     </p>
@@ -471,7 +477,7 @@ function Quiz({ quizId, activeDay }) {
                                     <span className="font-mono text-sm">{opt}</span>
                                 </div>
                                 {selectedOption === idx && (
-                                    <span className="text-primary-400">✓</span>
+                                    <Check className="w-5 h-5 text-primary-400" />
                                 )}
                             </button>
                         ))}
@@ -493,7 +499,7 @@ function Quiz({ quizId, activeDay }) {
                                 : 'bg-amber-500/10 border border-amber-500/30 text-amber-400'
                                 }`}>
                                 {selectedOption.allPassed
-                                    ? `✓ All ${selectedOption.total} test cases passed!`
+                                    ? <div className="flex items-center gap-2"><Check className="w-4 h-4" /> All {selectedOption.total} test cases passed!</div>
                                     : `${selectedOption.passed} of ${selectedOption.total} test cases passed`
                                 }
                             </div>
@@ -501,17 +507,16 @@ function Quiz({ quizId, activeDay }) {
                     </div>
                 )}
 
-                {/* Navigation */}
                 <div className="mt-8 flex justify-between items-center">
                     <button
                         onClick={prevQuestion}
                         disabled={currentQ === 0}
-                        className={`px-4 py-2 rounded-lg font-medium transition-colors ${currentQ === 0
+                        className={`px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-2 ${currentQ === 0
                             ? 'text-surface-600 cursor-not-allowed'
                             : 'text-surface-400 hover:text-surface-200 hover:bg-surface-700'
                             }`}
                     >
-                        ← Previous
+                        <ArrowLeft className="w-4 h-4" /> Previous
                     </button>
 
                     <div className="flex gap-2">
@@ -534,12 +539,12 @@ function Quiz({ quizId, activeDay }) {
                     <button
                         onClick={nextQuestion}
                         disabled={!isAnswered && isMCQ}
-                        className={`px-6 py-3 rounded-xl font-medium transition-colors ${isAnswered || !isMCQ
+                        className={`px-6 py-3 rounded-xl font-medium transition-colors flex items-center gap-2 ${isAnswered || !isMCQ
                             ? 'bg-primary-600 hover:bg-primary-500 text-white'
                             : 'bg-surface-700 text-surface-500 cursor-not-allowed'
                             }`}
                     >
-                        {currentQ < questions.length - 1 ? 'Next →' : 'Submit Quiz'}
+                        {currentQ < questions.length - 1 ? <>Next <ArrowRight className="w-4 h-4" /></> : 'Submit Quiz'}
                     </button>
                 </div>
             </div>
@@ -547,7 +552,7 @@ function Quiz({ quizId, activeDay }) {
             {/* Explanation (shown after answering) */}
             {currentQuestion.explanation && isAnswered && (
                 <div className="mt-4 p-4 bg-surface-800/50 rounded-xl border border-surface-700">
-                    <h4 className="text-sm font-medium text-primary-400 mb-2">💡 Explanation</h4>
+                    <h4 className="text-sm font-medium text-primary-400 mb-2 flex items-center gap-2"><Lightbulb className="w-4 h-4" /> Explanation</h4>
                     <p className="text-surface-300 text-sm">{currentQuestion.explanation}</p>
                 </div>
             )}

@@ -1,7 +1,26 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence, useInView, useMotionValue, useSpring } from 'framer-motion'
+import {
+  Calendar,
+  Clock,
+  ShoppingBag,
+  Coins,
+  Swords,
+  Heart,
+  Gift,
+  Flag,
+  Map,
+  Award,
+  Compass,
+  AlertTriangle,
+  Check,
+  Scroll,
+  Timer,
+  Trophy
+} from 'lucide-react'
 import { progressAPI, weeksAPI, tasksAPI, rpgAPI, badgesAPI } from '../api/client'
+import { calculateXpProgress } from '../utils/xpUtils'
 import ProgressRing from '../components/ProgressRing'
 import StatCard from '../components/StatCard'
 import ProgressBar from '../components/ProgressBar'
@@ -49,17 +68,7 @@ const itemVariants = {
   show: { opacity: 1, y: 0, transition: { type: "spring", bounce: 0.3 } }
 }
 
-const calculateXpProgress = (totalXp = 0, currentLevel = 1, nextLevelCost) => {
-  // ... existing logic ...
-  // Note: Re-implementing simplified version as the original helper was outside component
-  // Assuming standard exponential curve if not provided
-  const xpNeeded = nextLevelCost || Math.floor(100 * Math.pow(currentLevel, 1.2))
-  // We'll rely on what the API returns mainly, but this is a fallback visual calculation
-  return {
-    percent: 0, // Placeholder, logic usually handled in CharacterCard or backend
-    levelCost: xpNeeded
-  }
-}
+// calculateXpProgress logic removed - imported from utils
 
 // Isolated component to prevent full Dashboard re-renders on every second tick
 const CurrentSyncStatus = () => {
@@ -96,7 +105,7 @@ const CurrentSyncStatus = () => {
           <div className="text-sm text-primary-400 font-mono">{formattedTime}</div>
         </div>
         <div className="p-3 bg-surface-800/50 rounded-xl border border-white/5">
-          <span className="text-2xl">📅</span>
+          <Calendar className="w-6 h-6 text-primary-400" />
         </div>
       </div>
     </motion.div>
@@ -223,7 +232,9 @@ function Dashboard() {
         animate={{ opacity: 1, scale: 1 }}
         className="card p-8 text-center max-w-md mx-auto mt-20"
       >
-        <div className="text-4xl mb-4">⚠️</div>
+        <div className="flex justify-center mb-4">
+          <AlertTriangle className="w-12 h-12 text-rose-500" />
+        </div>
         <h2 className="text-xl font-semibold text-surface-100 mb-2">Sync Failure</h2>
         <p className="text-surface-500 mb-6">{error}</p>
         <button onClick={() => fetchData(true)} className="btn-primary w-full">
@@ -274,10 +285,10 @@ function Dashboard() {
           onClick={() => setShopOpen(true)}
           className="px-6 py-3 bg-gradient-to-r from-yellow-600/90 to-yellow-500/90 hover:from-yellow-500 hover:to-yellow-400 text-white rounded-xl font-medium transition-all shadow-lg shadow-yellow-900/20 flex items-center gap-3 backdrop-blur-md border border-white/10"
         >
-          <span className="text-xl">🛒</span>
+          <ShoppingBag className="w-6 h-6" />
           <span className="font-display">Quest Shop</span>
-          <span className="bg-black/20 px-3 py-1 rounded-full text-xs font-mono border border-white/10">
-            💰 <NumberTicker value={rpgState?.gold || 0} />
+          <span className="bg-black/20 px-3 py-1 rounded-full text-xs font-mono border border-white/10 flex items-center gap-1">
+            <Coins className="w-3 h-3 text-yellow-300" /> <NumberTicker value={rpgState?.gold || 0} />
           </span>
         </motion.button>
       </motion.div>
@@ -295,7 +306,9 @@ function Dashboard() {
                 className="rpg-card p-6 min-h-[200px]"
                 layout
               >
-                <div className="absolute top-0 right-0 p-8 opacity-5 text-8xl pointer-events-none select-none filter blur-sm">🐉</div>
+                <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none select-none">
+                  <Swords className="w-32 h-32" />
+                </div>
                 <div className="relative z-10">
                   <div className="flex items-center justify-between mb-4">
                     <div>
@@ -326,8 +339,8 @@ function Dashboard() {
                       Complete tasks to deal damage!
                     </span>
                     {activeQuest.reward_badge_id && (
-                      <span className="text-primary-400 bg-primary-900/20 px-2 py-1 rounded border border-primary-500/20">
-                        🎁 Reward: {getBadgeName(activeQuest.reward_badge_id)}
+                      <span className="text-primary-400 bg-primary-900/20 px-2 py-1 rounded border border-primary-500/20 flex items-center gap-1">
+                        <Gift className="w-3 h-3" /> Reward: {getBadgeName(activeQuest.reward_badge_id)}
                       </span>
                     )}
                   </div>
@@ -364,7 +377,7 @@ function Dashboard() {
 
               {currentWeek.milestone && (
                 <div className="flex items-center gap-3 text-sm p-4 bg-surface-950/30 rounded-xl border border-primary-500/10 shadow-inner">
-                  <span className="text-2xl">🚩</span>
+                  <Flag className="w-6 h-6 text-primary-500" />
                   <div>
                     <span className="text-primary-500 font-bold uppercase text-xs tracking-wider block mb-0.5">Current Objective</span>
                     <span className="text-surface-200">{currentWeek.milestone}</span>
@@ -381,20 +394,20 @@ function Dashboard() {
           {/* Quick Actions */}
           <motion.div variants={itemVariants} className="card p-6">
             <h3 className="text-lg font-semibold text-surface-100 mb-4 flex items-center gap-2">
-              <span>🧭</span> Navigation
+              <Compass className="w-5 h-5 text-primary-400" /> Navigation
             </h3>
             <div className="space-y-2">
               {[
-                { to: "/planner", icon: "🗺️", title: "World Map", subtitle: "View full roadmap" },
-                { to: "/reflections", icon: "📜", title: "Chronicles", subtitle: "Write reflections" },
-                { to: "/progress", icon: "🏆", title: "Hall of Fame", subtitle: "View badges" }
+                { to: "/planner", icon: Map, title: "World Map", subtitle: "View full roadmap" },
+                { to: "/reflections", icon: Scroll, title: "Chronicles", subtitle: "Write reflections" },
+                { to: "/progress", icon: Trophy, title: "Hall of Fame", subtitle: "View badges" }
               ].map((item) => (
                 <Link
                   key={item.to}
                   to={item.to}
                   className="flex items-center gap-4 p-4 rounded-xl bg-surface-800/30 hover:bg-surface-800/60 transition-all border border-transparent hover:border-surface-700 group relative overflow-hidden"
                 >
-                  <span className="text-2xl group-hover:scale-110 transition-transform duration-300 relative z-10">{item.icon}</span>
+                  <item.icon className="w-6 h-6 text-surface-500 group-hover:text-primary-400 group-hover:scale-110 transition-all duration-300" />
                   <div className="relative z-10">
                     <p className="font-bold text-surface-200 group-hover:text-white transition-colors">{item.title}</p>
                     <p className="text-xs text-surface-500 group-hover:text-surface-400 transition-colors uppercase tracking-wide">{item.subtitle}</p>
@@ -422,7 +435,7 @@ function Dashboard() {
               <ProgressBar progress={challengeProgress} showLabel={false} colorClass="bg-accent-500" />
               {activeChallenge.ends_at && (
                 <div className="flex items-center gap-2 mt-4 text-xs text-surface-500 bg-surface-950/30 p-2 rounded">
-                  <span>⏱️</span>
+                  <Timer className="w-3 h-3" />
                   <span>Ends: {new Date(activeChallenge.ends_at).toLocaleString()}</span>
                 </div>
               )}
@@ -445,7 +458,7 @@ function Dashboard() {
               </ProgressRing>
             </div>
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-surface-800/50 rounded-full border border-surface-700/50 text-sm text-surface-400">
-              <span>✓</span>
+              <Check className="w-4 h-4 text-primary-500" />
               <span>
                 <strong className="text-surface-200">{progress?.tasks_completed || 0}</strong> of {progress?.tasks_total || 0} quests completed
               </span>

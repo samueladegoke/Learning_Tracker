@@ -1,14 +1,22 @@
 import { NavLink } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import {
+  LayoutDashboard,
+  Map,
+  Calendar,
+  BookOpen,
+  TrendingUp,
+  Swords
+} from 'lucide-react'
 
 function Navbar() {
   const navItems = [
-    { to: '/', label: 'Dashboard', icon: '◉' },
-    { to: '/planner', label: 'Planner', icon: '☰' },
-    { to: '/calendar', label: 'Calendar', icon: '📅' },
-    { to: '/reflections', label: 'Reflections', icon: '✎' },
-    { to: '/progress', label: 'Progress', icon: '◈' },
-    { to: '/practice', label: 'Practice', icon: '⚡' },
+    { to: '/', label: 'Dashboard', icon: LayoutDashboard },
+    { to: '/planner', label: 'Planner', icon: Map },
+    { to: '/calendar', label: 'Calendar', icon: Calendar },
+    { to: '/reflections', label: 'Reflections', icon: BookOpen },
+    { to: '/progress', label: 'Progress', icon: TrendingUp },
+    { to: '/practice', label: 'Practice', icon: Swords },
   ]
 
   return (
@@ -53,7 +61,7 @@ function Navbar() {
                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
                       />
                     )}
-                    <span className="text-base">{item.icon}</span>
+                    <item.icon className={`w-4 h-4 ${isActive ? 'stroke-[2.5px]' : 'stroke-2'}`} />
                     <span className="hidden md:inline">{item.label}</span>
                   </>
                 )}

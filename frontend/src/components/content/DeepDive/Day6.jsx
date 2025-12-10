@@ -1,5 +1,6 @@
 import React from 'react';
-import CodeBlock from '../../CodeBlock';
+import CodeBlock from '../../CodeBlock'
+import { ChevronRight } from 'lucide-react';
 
 function DeepDiveDay6() {
     return (
@@ -82,15 +83,15 @@ function DeepDiveDay6() {
                     <h3 className="text-lg font-semibold text-primary-400 mb-4">Pro Tips</h3>
                     <ul className="space-y-3 text-sm text-surface-300">
                         <li className="flex gap-2">
-                            <span>🔹</span>
+                            <ChevronRight className="w-4 h-4 text-primary-400 inline mr-1" />
                             <span><strong>Naming:</strong> Use <code>snake_case</code> for function names.</span>
                         </li>
                         <li className="flex gap-2">
-                            <span>🔹</span>
+                            <ChevronRight className="w-4 h-4 text-primary-400 inline mr-1" />
                             <span><strong>Don't Repeat Yourself (DRY):</strong> If you copy-paste code 3 times, make it a function.</span>
                         </li>
                         <li className="flex gap-2">
-                            <span>🔹</span>
+                            <ChevronRight className="w-4 h-4 text-primary-400 inline mr-1" />
                             <span><strong>Indentation:</strong> Python relies on spaces. Use <strong className="text-white">4 spaces</strong> (not tabs!).</span>
                         </li>
                     </ul>

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Scroll } from 'lucide-react'
 import TaskCard from './TaskCard'
 
 const QuestLog = ({ tasks, onToggle }) => {
@@ -12,7 +13,7 @@ const QuestLog = ({ tasks, onToggle }) => {
             {/* Header */}
             <div className="p-4 border-b border-surface-800 bg-surface-800/30 flex justify-between items-center">
                 <div className="flex items-center gap-2">
-                    <span className="text-xl">📜</span>
+                    <Scroll className="w-5 h-5 text-primary-400" />
                     <h3 className="font-display font-bold text-surface-100">Quest Log</h3>
                 </div>
                 <Link to="/planner" className="text-xs text-primary-400 hover:text-primary-300 uppercase tracking-wider font-bold">

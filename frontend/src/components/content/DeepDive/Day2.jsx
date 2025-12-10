@@ -1,4 +1,5 @@
 import CodeBlock from '../../CodeBlock'
+import { Lightbulb } from 'lucide-react'
 
 export default function DeepDiveDay2() {
     return (
@@ -58,7 +59,7 @@ export default function DeepDiveDay2() {
             <div className="space-y-6">
                 <div className="bg-surface-800/30 p-6 rounded-xl border border-surface-700 sticky top-24">
                     <h3 className="text-lg font-bold text-surface-100 mb-4 flex items-center gap-2">
-                        <span className="text-xl">💡</span> Pro Tips
+                        <Lightbulb className="w-5 h-5 text-yellow-500 inline mr-2" /> Pro Tips
                     </h3>
                     <div className="space-y-4">
                         <div>

@@ -7,18 +7,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Custom color palette for dark theme
+        // Electric Banana Theme (Yellow/Amber High Contrast)
         'primary': {
-          50: '#f0fdf4',
-          100: '#dcfce7',
-          200: '#bbf7d0',
-          300: '#86efac',
-          400: '#4ade80',
-          500: '#22c55e',
-          600: '#16a34a',
-          700: '#15803d',
-          800: '#166534',
-          900: '#14532d',
+          50: '#fefce8',
+          100: '#fef9c3',
+          200: '#fef08a',
+          300: '#fde047',
+          400: '#facc15', // Electric Banana
+          500: '#eab308',
+          600: '#ca8a04',
+          700: '#a16207',
+          800: '#854d0e',
+          900: '#713f12',
+          950: '#422006',
         },
         'accent': {
           50: '#fdf4ff',
@@ -62,8 +63,8 @@ export default {
           '50%': { transform: 'translateY(-10px)' },
         },
         glow: {
-          '0%': { boxShadow: '0 0 5px rgb(34 197 94 / 0.4), 0 0 20px rgb(34 197 94 / 0.2)' },
-          '100%': { boxShadow: '0 0 10px rgb(34 197 94 / 0.6), 0 0 40px rgb(34 197 94 / 0.3)' },
+          '0%': { boxShadow: '0 0 5px rgb(250 204 21 / 0.4), 0 0 20px rgb(250 204 21 / 0.2)' },
+          '100%': { boxShadow: '0 0 10px rgb(250 204 21 / 0.6), 0 0 40px rgb(250 204 21 / 0.3)' },
         }
       }
     },

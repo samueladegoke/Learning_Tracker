@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { reflectionsAPI, weeksAPI } from '../api/client'
+import { AlertTriangle, PenTool } from 'lucide-react'
 
 function Reflections() {
   const [reflections, setReflections] = useState([])
@@ -20,13 +21,13 @@ function Reflections() {
       ])
       setReflections(reflectionsData)
       setWeeks(weeksData)
-      
+
       // Select first week with tasks completed but no reflection
       const weeksWithReflections = new Set(reflectionsData.map(r => r.week_id))
-      const weekToSelect = weeksData.find(w => 
+      const weekToSelect = weeksData.find(w =>
         w.tasks_completed > 0 && !weeksWithReflections.has(w.id)
       ) || weeksData[0]
-      
+
       if (weekToSelect) {
         setSelectedWeek(weekToSelect)
         // Check if there's an existing reflection
@@ -47,7 +48,7 @@ function Reflections() {
   const handleWeekChange = (weekId) => {
     const week = weeks.find(w => w.id === parseInt(weekId))
     setSelectedWeek(week)
-    
+
     // Load existing reflection if any
     const existing = reflections.find(r => r.week_id === parseInt(weekId))
     setContent(existing?.content || '')
@@ -56,19 +57,19 @@ function Reflections() {
 
   const handleSave = async () => {
     if (!selectedWeek || !content.trim()) return
-    
+
     try {
       setSaving(true)
       await reflectionsAPI.create({
         week_id: selectedWeek.id,
         content: content.trim()
       })
-      
+
       // Refresh reflections
       const data = await reflectionsAPI.getAll()
       setReflections(data)
       setSavedMessage('Reflection saved!')
-      
+
       setTimeout(() => setSavedMessage(''), 3000)
     } catch (err) {
       console.error('Failed to save reflection:', err)
@@ -92,7 +93,7 @@ function Reflections() {
   if (error) {
     return (
       <div className="card p-8 text-center">
-        <div className="text-4xl mb-4">⚠️</div>
+        <AlertTriangle className="w-12 h-12 text-yellow-500 mx-auto mb-4" />
         <h2 className="text-xl font-semibold text-surface-100 mb-2">Failed to load data</h2>
         <p className="text-surface-500 mb-4">{error}</p>
         <button onClick={fetchData} className="btn-primary">
@@ -115,7 +116,7 @@ function Reflections() {
         <div className="lg:col-span-2">
           <div className="card p-6">
             <h2 className="text-lg font-semibold text-surface-100 mb-4">Write a Reflection</h2>
-            
+
             {/* Week Selector */}
             <div className="mb-4">
               <label htmlFor="week-select" className="block text-sm text-surface-400 mb-2">Select Week</label>
@@ -176,7 +177,7 @@ function Reflections() {
         <div>
           <div className="card p-6">
             <h2 className="text-lg font-semibold text-surface-100 mb-4">Past Reflections</h2>
-            
+
             {reflections.length > 0 ? (
               <div className="space-y-3 max-h-[500px] overflow-y-auto pr-2">
                 {reflections.map((ref) => (
@@ -184,8 +185,8 @@ function Reflections() {
                     key={ref.id}
                     onClick={() => handleWeekChange(ref.week_id)}
                     className={`w-full text-left p-3 rounded-lg border transition-colors
-                      ${selectedWeek?.id === ref.week_id 
-                        ? 'bg-primary-900/30 border-primary-700/50' 
+                      ${selectedWeek?.id === ref.week_id
+                        ? 'bg-primary-900/30 border-primary-700/50'
                         : 'bg-surface-800/50 border-surface-700 hover:border-surface-600'
                       }`}
                   >
@@ -201,7 +202,7 @@ function Reflections() {
               </div>
             ) : (
               <div className="text-center py-8">
-                <div className="text-3xl mb-2">✎</div>
+                <PenTool className="w-12 h-12 text-surface-500 mx-auto mb-2" />
                 <p className="text-surface-500 text-sm">No reflections yet.</p>
                 <p className="text-surface-600 text-xs">Write your first one!</p>
               </div>

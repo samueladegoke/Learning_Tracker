@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
+import { AlertTriangle, Flame, Check, X, ArrowLeft, ArrowRight } from 'lucide-react'
 import { progressAPI, rpgAPI } from '../api/client'
 
 function Calendar() {
@@ -112,7 +113,7 @@ function Calendar() {
   if (error) {
     return (
       <div className="card p-8 text-center">
-        <div className="text-4xl mb-4">⚠️</div>
+        <AlertTriangle className="w-12 h-12 text-yellow-500 mx-auto mb-4" />
         <h2 className="text-xl font-semibold text-surface-100 mb-2">Failed to load calendar</h2>
         <p className="text-surface-500 mb-4">{error}</p>
         <button onClick={fetchData} className="btn-primary">
@@ -138,7 +139,9 @@ function Calendar() {
           <div className="flex items-center gap-4">
             <div className="text-right">
               <div className="text-sm text-surface-500">Current Streak</div>
-              <div className="text-2xl font-bold text-primary-400">{rpgState?.streak || 0} 🔥</div>
+              <div className="text-2xl font-bold text-primary-400 flex items-center justify-end gap-2">
+                {rpgState?.streak || 0} <Flame className="w-6 h-6 text-orange-500 fill-orange-500" />
+              </div>
             </div>
           </div>
         </div>
@@ -147,16 +150,16 @@ function Calendar() {
         <div className="flex items-center justify-between mb-4">
           <button
             onClick={() => navigateMonth(-1)}
-            className="px-4 py-2 bg-surface-800 hover:bg-surface-700 text-surface-100 rounded-lg transition-colors"
+            className="px-4 py-2 bg-surface-800 hover:bg-surface-700 text-surface-100 rounded-lg transition-colors flex items-center gap-2"
           >
-            ← Previous
+            <ArrowLeft className="w-4 h-4" /> Previous
           </button>
           <h2 className="text-xl font-semibold text-surface-100">{monthName}</h2>
           <button
             onClick={() => navigateMonth(1)}
-            className="px-4 py-2 bg-surface-800 hover:bg-surface-700 text-surface-100 rounded-lg transition-colors"
+            className="px-4 py-2 bg-surface-800 hover:bg-surface-700 text-surface-100 rounded-lg transition-colors flex items-center gap-2"
           >
-            Next →
+            Next <ArrowRight className="w-4 h-4" />
           </button>
         </div>
         <div className="flex justify-center">
@@ -221,11 +224,14 @@ function Calendar() {
                 </span>
                 {status?.type === 'completed' && (
                   <span className="text-xs text-primary-300 mt-0.5">
-                    {status.isStreakDay ? '🔥' : '✓'}
+                    {status.isStreakDay
+                      ? <Flame className="w-3 h-3 text-orange-500 fill-orange-500" />
+                      : <Check className="w-3 h-3" />
+                    }
                   </span>
                 )}
                 {status?.type === 'missed' && (
-                  <span className="text-xs text-red-400 mt-0.5">✗</span>
+                  <span className="text-xs text-red-400 mt-0.5"><X className="w-3 h-3" /></span>
                 )}
               </div>
             )
@@ -239,7 +245,7 @@ function Calendar() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-primary-600/30 border-2 border-primary-500 flex items-center justify-center">
-              <span className="text-xs text-primary-300">✓</span>
+              <Check className="w-4 h-4 text-primary-300" />
             </div>
             <div>
               <div className="text-sm font-medium text-surface-200">Completed</div>
@@ -248,7 +254,7 @@ function Calendar() {
           </div>
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-primary-600/30 border-2 border-primary-500 flex items-center justify-center">
-              <span className="text-xs text-primary-300">🔥</span>
+              <Flame className="w-4 h-4 text-orange-500 fill-orange-500" />
             </div>
             <div>
               <div className="text-sm font-medium text-surface-200">Streak Day</div>
@@ -257,7 +263,7 @@ function Calendar() {
           </div>
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-red-900/20 border-2 border-surface-700 flex items-center justify-center">
-              <span className="text-xs text-red-400">✗</span>
+              <X className="w-4 h-4 text-red-400" />
             </div>
             <div>
               <div className="text-sm font-medium text-surface-200">Missed</div>
