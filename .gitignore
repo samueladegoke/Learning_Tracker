@@ -69,7 +69,7 @@ seed_data.json
 
 # Agent & Tool Configs
 .bmad/
-.agent/
+#.agent/
 .agentvibes/
 .claude/
 .codex/

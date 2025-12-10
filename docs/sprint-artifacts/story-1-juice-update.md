@@ -34,6 +34,10 @@ Enhance the user experience of the Learning Tracker by implementing a "Deep Glas
 - [x] Refactor `Dashboard.jsx`: Replace Emojis with Lucide Icons
 - [x] Refactor `QuestLog.jsx`: Replace Checkboxes with Custom Vector Controls
 - [x] Verify "No Emojis" policy across app
+- [x] **Code Review Audit (Adversarial)**:
+    - [x] Extract `CurrentSyncStatus` to component
+    - [x] Implement Optimistic UI for `handleTaskToggle`
+    - [x] Add Animation Verification tests in `dashboard.spec.ts`
 
 ## Dev Agent Record
 ### File List

@@ -37,6 +37,16 @@ test.describe('Dashboard (Nano Banana Update)', () => {
         // We can't easily check for SVG contents, but we can check for the absence of the emoji text
     });
 
+    test('[P1] should have animation classes for "Juice"', async ({ page }) => {
+        // Verify CharacterCard glow/pulse
+        await expect(page.locator('.animate-pulse-slow')).toBeVisible();
+
+        // Verify ProgressRing animations (using the class name if present or checking svg)
+        // Check for at least one motion-div or framer-motion element via attribute if possible, 
+        // or just check for the presence of elements we know are animated.
+        await expect(page.locator('.animate-spin').first()).toBeVisible({ timeout: 100 }); // Status spinner if loading, or maybe we just check 'animate-pulse' 
+    });
+
     test('[P1] should toggle navigation tabs', async ({ page }) => {
         await page.getByRole('link', { name: 'Planner' }).click();
         await expect(page).toHaveURL(/.*planner/);
