@@ -1,0 +1,45 @@
+# Alembic Migrations
+
+This directory contains database migrations managed by Alembic.
+
+## Quick Reference
+
+### Generate a new migration after changing models.py:
+```bash
+cd backend
+alembic revision --autogenerate -m "Description of changes"
+```
+
+### Apply all pending migrations:
+```bash
+alembic upgrade head
+```
+
+### Rollback one migration:
+```bash
+alembic downgrade -1
+```
+
+### Check current migration status:
+```bash
+alembic current
+```
+
+### View migration history:
+```bash
+alembic history
+```
+
+## Production Deployment
+
+To run migrations on Supabase production:
+
+1. Set the DATABASE_URL environment variable:
+   ```bash
+   export DATABASE_URL="postgresql://postgres.xxx:password@aws-0-region.pooler.supabase.com:6543/postgres"
+   ```
+
+2. Run migrations:
+   ```bash
+   alembic upgrade head
+   ```
