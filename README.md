@@ -166,6 +166,7 @@ Initially for a single user (you), but architecture should support scaling to mu
 # Clone the repository
 git clone https://github.com/samueladegoke/Learning_Tracker.git
 cd Learning_Tracker
+# Learning Tracker 🚀
 
 # ========== BACKEND SETUP ==========
 # Create virtual environment
