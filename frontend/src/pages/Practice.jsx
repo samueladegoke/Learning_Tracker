@@ -4,6 +4,7 @@ import { quizApi } from '../api/quizApi'
 import { rpgAPI } from '../api/client'
 import CodeBlock from '../components/CodeBlock'
 import CodeEditor from '../components/CodeEditor'
+import { InlineCode } from '../components/InlineCode'
 
 import DeepDiveDay1 from '../components/content/DeepDive/Day1'
 import DeepDiveDay2 from '../components/content/DeepDive/Day2'
@@ -442,11 +443,11 @@ function Quiz({ quizId, activeDay }) {
                 <h3 className="text-xl font-medium text-surface-100 mb-6 leading-relaxed">
                     {(() => {
                         const text = currentQuestion?.text || ''
-                        if (!text.includes('\\n')) return text
+                        if (!text.includes('\\n')) return <InlineCode text={text} />
                         const [prompt, ...codeLines] = text.split('\\n')
                         return (
                             <div className="space-y-2">
-                                <span>{prompt}</span>
+                                <InlineCode text={prompt} />
                                 <pre className="bg-surface-900 p-4 rounded-lg text-sm font-mono text-primary-300 overflow-x-auto">
                                     {codeLines.join('\n')}
                                 </pre>
