@@ -69,8 +69,8 @@ def extract_code_from_transcript(transcript: str) -> list:
     return list(set(found))[:10]  # Return unique, max 10
 
 
-def extract_topics_from_transcripts(transcripts: list) -> list:
-    """Extract key Python topics mentioned in transcripts."""
+def extract_topics(text_content: list) -> list:
+    """Extract key Python topics mentioned in text content."""
     topic_keywords = {
         'variables': ['variable', 'assign', 'assignment', '='],
         'print': ['print', 'output', 'display'],
@@ -90,8 +90,9 @@ def extract_topics_from_transcripts(transcripts: list) -> list:
     }
     
     found_topics = set()
-    for t in transcripts:
-        text = t['transcript'].lower()
+    for item in text_content:
+        # Handle both transcript dicts and simple text/content dicts
+        text = item.get('transcript', item.get('content', '')).lower()
         for topic, keywords in topic_keywords.items():
             for kw in keywords:
                 if kw in text:
@@ -133,17 +134,50 @@ def extract_day_metadata(day_folder: Path) -> Optional[dict]:
     all_text = ' '.join([t['transcript'] for t in transcripts])
     code_examples = extract_code_from_transcript(all_text)
     
+    # NEW: Extract content from other text files (txt, html, md, pdf)
+    additional_content = []
+    for f in sorted(day_folder.iterdir()):
+        if f.suffix in ['.txt', '.html', '.md', '.pdf']:
+            try:
+                content = ""
+                file_type = f.suffix[1:]
+                
+                if f.suffix == '.pdf':
+                    try:
+                        import pypdf
+                        reader = pypdf.PdfReader(f)
+                        for page in reader.pages:
+                            content += page.extract_text() + "\n"
+                    except ImportError:
+                        print(f"Warning: pypdf not installed. Skipping PDF content: {f.name}")
+                        continue
+                    except Exception as e:
+                        print(f"Error reading PDF {f.name}: {e}")
+                        continue
+                else:
+                     # Read text content
+                    content = f.read_text(encoding='utf-8', errors='ignore')
+
+                additional_content.append({
+                    'filename': f.name,
+                    'type': file_type,
+                    'content': content
+                })
+            except Exception as e:
+                print(f"Error reading {f.name}: {e}")
+
     return {
         'folder_number': folder_num,
         'day_number': day_num,
         'level': level,
         'title': title,
         'quiz_id': f'day-{day_num}-practice',
-        'lessons': lessons[:10],  # Max 10 lessons
-        'topics': extract_topics_from_transcripts(transcripts),
+        'lessons': lessons[:15],  # Increased limit
+        'topics': extract_topics(transcripts + additional_content),
         'code_examples': code_examples,
         'transcript_count': len(transcripts),
-        'total_transcript_length': len(all_text)
+        'total_transcript_length': len(all_text),
+        'additional_resources': additional_content
     }
 
 

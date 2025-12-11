@@ -13,14 +13,9 @@ import DeepDiveDay4 from '../components/content/DeepDive/Day4'
 import DeepDiveDay5 from '../components/content/DeepDive/Day5'
 import DeepDiveDay6 from '../components/content/DeepDive/Day6'
 import DeepDiveDay7 from '../components/content/DeepDive/Day7'
+import DeepDiveDay8 from '../components/content/DeepDive/Day8'
 
-import TranscriptsDay1 from '../components/content/Transcripts/Day1'
-import TranscriptsDay2 from '../components/content/Transcripts/Day2'
-import TranscriptsDay3 from '../components/content/Transcripts/Day3'
-import TranscriptsDay4 from '../components/content/Transcripts/Day4'
-import TranscriptsDay5 from '../components/content/Transcripts/Day5'
-import TranscriptsDay6 from '../components/content/Transcripts/Day6'
-import TranscriptsDay7 from '../components/content/Transcripts/Day7'
+
 
 const DAY_META = {
     'day-1': {
@@ -78,6 +73,14 @@ const DAY_META = {
         quizId: 'day-7-practice',
         level: 'Beginner',
         topics: ['flowcharts', 'lists', 'strings', 'modules']
+    },
+    'day-8': {
+        label: 'Day 8',
+        title: 'Day 8: Function Parameters & Caesar Cipher',
+        subtitle: 'Learn about inputs, arguments, parameters, and encryption with the Caesar Cipher.',
+        quizId: 'day-8-practice',
+        level: 'beginner',
+        topics: ['functions', 'parameters', 'arguments', 'caesar-cipher']
     }
 }
 
@@ -139,22 +142,14 @@ function Practice() {
                 >
                     Quiz
                 </button>
-                <button
-                    onClick={() => setActiveTab('transcripts')}
-                    className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${activeTab === 'transcripts'
-                        ? 'border-primary-500 text-primary-400'
-                        : 'border-transparent text-surface-400 hover:text-surface-200'
-                        }`}
-                >
-                    Transcripts
-                </button>
+
             </div>
 
             {/* Content */}
             <div className="min-h-[400px]">
                 {activeTab === 'deep-dive' && <DeepDive activeDay={activeDay} />}
                 {activeTab === 'practice' && <Quiz quizId={currentDay.quizId} activeDay={activeDay} />}
-                {activeTab === 'transcripts' && <Transcripts activeDay={activeDay} />}
+
             </div>
         </div>
     )
@@ -168,7 +163,8 @@ function DeepDive({ activeDay }) {
         'day-4': DeepDiveDay4,
         'day-5': DeepDiveDay5,
         'day-6': DeepDiveDay6,
-        'day-7': DeepDiveDay7
+        'day-7': DeepDiveDay7,
+        'day-8': DeepDiveDay8
     }
     const Component = components[activeDay]
     if (!Component) {
@@ -443,7 +439,15 @@ function Quiz({ quizId, activeDay }) {
                 <h3 className="text-xl font-medium text-surface-100 mb-6 leading-relaxed">
                     {(() => {
                         const text = currentQuestion?.text || ''
-                        if (!text.includes('\\n')) return <InlineCode text={text} />
+                        // Only use newline splitting for coding challenges (empty options array)
+                        // MCQ questions should always use InlineCode for proper escape handling
+                        const isCodingChallenge = !currentQuestion?.options || currentQuestion.options.length === 0
+
+                        if (!isCodingChallenge || !text.includes('\\n')) {
+                            return <InlineCode text={text} />
+                        }
+
+                        // Coding challenge: split title from description
                         const [prompt, ...codeLines] = text.split('\\n')
                         return (
                             <div className="space-y-2">
@@ -613,22 +617,7 @@ function Quiz({ quizId, activeDay }) {
     )
 }
 
-function Transcripts({ activeDay }) {
-    const components = {
-        'day-1': TranscriptsDay1,
-        'day-2': TranscriptsDay2,
-        'day-3': TranscriptsDay3,
-        'day-4': TranscriptsDay4,
-        'day-5': TranscriptsDay5,
-        'day-6': TranscriptsDay6,
-        'day-7': TranscriptsDay7
-    }
-    const Component = components[activeDay]
-    if (!Component) {
-        return <div className="text-surface-400 p-8">Transcripts for {activeDay} coming soon...</div>
-    }
-    return <Component />
-}
+
 
 
 export default Practice
