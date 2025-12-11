@@ -61,6 +61,7 @@ export function usePythonRunner() {
     }
 
     const results = []
+    const RESULT_DELIMITER = '___RESULT_DELIMITER___'
 
     for (const test of testCases) {
       // Validate test case structure before use
@@ -76,7 +77,6 @@ export function usePythonRunner() {
       }
 
       // Basic sanitization: ensure it looks like a function call
-      // We allow nested parentheses to support calls like round(func(x), 2)
       const safeCallPattern = /^[a-zA-Z_][a-zA-Z0-9_]*\(.*\)$/
       if (!safeCallPattern.test(test.function_call)) {
         results.push({
@@ -89,20 +89,33 @@ export function usePythonRunner() {
         continue
       }
 
-      // Construct test code: user code + print(function_call)
-      const testCode = `${code}\n__result__ = ${test.function_call}\nprint(__result__)`
+      // Construct test code: user code + print delimiter + print(function_call)
+      // Use repr() for strings to handle quotes correctly, or strictly cast to str
+      // We interpret the DB expected values as strings mostly
+      const testCode = `${code}
+__result__ = ${test.function_call}
+print("${RESULT_DELIMITER}")
+print(__result__)`
 
       const result = await runCode(testCode)
 
-      // Compare output with expected value (trim whitespace)
-      const actualOutput = result.output?.trim()
+      // Separate user output (stdout) from test result (the last print)
+      const fullOutput = result.output || ''
+      const parts = fullOutput.split(RESULT_DELIMITER)
+
+      // If split found the delimiter, the second part is our result (with potential newline trim)
+      // If not found, something went wrong or user printed the delimiter (unlikely)
+      const actualReturnValue = parts.length > 1 ? parts[1].trim() : fullOutput.trim()
+
       const expectedOutput = String(test.expected)
-      const passed = actualOutput === expectedOutput
+
+      // Compare only the return value
+      const passed = actualReturnValue === expectedOutput
 
       results.push({
         passed,
         expected: test.expected,
-        actual: actualOutput,
+        actual: actualReturnValue,
         input: test.function_call,
         error: result.error
       })
