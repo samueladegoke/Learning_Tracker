@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Scroll } from 'lucide-react'
+import { Scroll, Sparkles } from 'lucide-react'
 import TaskCard from './TaskCard'
 
 const QuestLog = ({ tasks, onToggle }) => {
@@ -51,7 +51,12 @@ const QuestLog = ({ tasks, onToggle }) => {
                             animate={{ opacity: 1 }}
                             className="text-center py-6 border-2 border-dashed border-surface-800 rounded-xl bg-surface-800/20"
                         >
-                            <p className="text-surface-500 text-sm">No active quests. Time to rest or find more!</p>
+                            <div className="flex flex-col items-center gap-3">
+                                <div className="p-3 bg-surface-800/50 rounded-full animate-float">
+                                    <Sparkles className="w-6 h-6 text-primary-400" />
+                                </div>
+                                <p className="text-surface-400 text-sm font-medium">No active quests. Time to rest or find more!</p>
+                            </div>
                         </motion.div>
                     )}
                 </div>

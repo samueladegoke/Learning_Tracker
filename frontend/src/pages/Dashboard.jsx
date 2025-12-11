@@ -239,7 +239,7 @@ function Dashboard() {
     return badge ? badge.name : badgeId
   }
 
-  // formatDateTime helper removed as logic moved to CurrentSyncStatus
+
 
   return (
     <motion.div

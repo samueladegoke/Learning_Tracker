@@ -1,0 +1,70 @@
+# generated: 2025-12-10
+# project: 100 Days of Code
+# project_key: 100-days
+# tracking_system: file-system
+# story_location: docs/sprint-artifacts
+
+# STATUS DEFINITIONS:
+# ==================
+# Epic Status:
+#   - backlog: Epic not yet started
+#   - in-progress: Epic actively being worked on
+#   - done: All stories in epic completed
+#
+# Epic Status Transitions:
+#   - backlog → in-progress: Automatically when first story is created (via create-story)
+#   - in-progress → done: Manually when all stories reach 'done' status
+#
+# Story Status:
+#   - backlog: Story only exists in epic file
+#   - drafted: Story file created in stories folder
+#   - ready-for-dev: Draft approved and story context created
+#   - in-progress: Developer actively working on implementation
+#   - review: Ready for code review (via Dev's code-review workflow)
+#   - done: Story completed
+#
+# Retrospective Status:
+#   - optional: Can be completed but not required
+#   - completed: Retrospective has been completed
+#
+# WORKFLOW NOTES:
+# ===============
+# - Epic transitions to 'in-progress' automatically when first story is created
+# - Stories can be worked in parallel if team capacity allows
+# - SM typically drafts next story after previous one is 'done' to incorporate learnings
+# - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
+
+generated: "2025-12-10"
+project: "100 Days of Code"
+project_key: "100-days"
+tracking_system: "file-system"
+story_location: "docs/sprint-artifacts"
+
+development_status:
+  # Epic 1: The Resilient Learning Core (Offline-First)
+  epic-1: in-progress
+  1-1-local-persistence-layer: backlog
+  1-2-offline-content-access: backlog
+  1-3-streak-and-xp-calculation-logic: backlog
+  1-4-state-restoration-boot-sequence: backlog
+  epic-1-retrospective: optional
+
+  # Epic 2: The Browser Runtime (Pyodide Hardening)
+  epic-2: backlog
+  2-1-web-worker-infrastructure: backlog
+  2-2-runtime-version-pinning: backlog
+  2-3-safe-code-execution-and-output-capture: backlog
+  2-4-instant-syntax-feedback: backlog
+  epic-2-retrospective: optional
+
+  # Epic 3: Cloud Synchronization & Resilience
+  epic-3: backlog
+  3-1-background-sync-loop: backlog
+  3-2-last-write-wins-conflict-resolution: backlog
+  epic-3-retrospective: optional
+
+  # Epic 4: Maintenance & Observability
+  epic-4: backlog
+  4-1-non-destructive-schema-migrations: backlog
+  4-2-hard-reset-and-debug-panel: backlog
+  epic-4-retrospective: optional

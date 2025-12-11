@@ -96,7 +96,7 @@ const ShopModal = ({ isOpen, onClose, rpgState, onPurchase }) => {
                                             <h3 className="font-bold text-surface-100 mb-1">
                                                 {item.name}
                                                 {item.owned > 0 && (
-                                                    <span className="ml-2 text-xs bg-primary-900/50 text-primary-300 px-2 py-0.5 rounded-full">
+                                                    <span className="ml-2 text-xs bg-primary-950/80 text-primary-100 border border-primary-500/20 px-2 py-0.5 rounded-full">
                                                         Owned: {item.owned}
                                                     </span>
                                                 )}

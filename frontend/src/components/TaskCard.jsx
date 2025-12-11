@@ -45,6 +45,7 @@ function TaskCard({ task, onToggle }) {
             }
             ${isLoading ? 'opacity-50 cursor-wait' : 'cursor-pointer'}
           `}
+          aria-label={task.completed ? "Mark task as incomplete" : "Mark task as complete"}
         >
           {task.completed && (
             <Check className="w-4 h-4" strokeWidth={3} />

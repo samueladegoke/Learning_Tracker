@@ -40,7 +40,7 @@ const CurrentSyncStatus = () => {
                     <div className="text-lg font-display font-semibold text-surface-100">{formattedDate}</div>
                     <div className="text-sm text-primary-400 font-mono">{formattedTime}</div>
                 </div>
-                <div className="p-3 bg-surface-800/50 rounded-xl border border-white/5">
+                <div className="p-3 bg-surface-800/50 rounded-xl border border-white/5 animate-float">
                     <Calendar className="w-6 h-6 text-primary-400" />
                 </div>
             </div>
