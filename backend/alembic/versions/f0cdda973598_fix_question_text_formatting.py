@@ -21,8 +21,8 @@ depends_on: Union[str, Sequence[str], None] = None
 def upgrade() -> None:
     # Fix formatting for Question 137
     # Original: What does \n do inside a string?
-    # Target: What does `\n` do inside a string?
-    op.execute("UPDATE questions SET text = 'What does `\\n` do inside a string?' WHERE id = 137")
+    # Target: What does the escape sequence backslash-n do inside a string?
+    op.execute("UPDATE questions SET text = 'What does the escape sequence backslash-n do inside a string?' WHERE id = 137")
     
     # Fix formatting for Question 134
     # Original: What is the correct syntax for the print() function in Python?
