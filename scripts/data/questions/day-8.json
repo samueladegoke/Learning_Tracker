@@ -307,7 +307,6 @@
     },
     {
         "question_type": "coding",
-        "text": "Combine Strings",
         "text": "Double Params\\nWrite a function that takes two numbers, x and y, and returns their difference (x - y).",
         "starter_code": "def diff(x, y):\n    pass",
         "test_cases": [

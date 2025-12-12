@@ -1,0 +1,328 @@
+[
+   {
+     "question_type": "mcq",
+     "text": "Which line correctly adds the key `\"c\"` with value `7` to `starting_dictionary`?",
+     "options": [
+       "final_dictionary = starting_dictionary.append({\"c\": 7})",
+       "final_dictionary = starting_dictionary += {\"c\": 7}",
+       "final_dictionary = starting_dictionary[\"c\"]: 7",
+       "final_dictionary = starting_dictionary[\"c\"] = 7",
+       "starting_dictionary[\"c\"] = 7\nfinal_dictionary = starting_dictionary"
+     ],
+     "correct_index": 4,
+     "difficulty": "medium",
+     "topic_tag": "dictionaries",
+     "explanation": "To add a new entry to a dictionary, assign to a new key (e.g., starting_dictionary[\"c\"] = 7)."
+   },
+   {
+     "question_type": "mcq",
+     "text": "Given `d = {\"a\": 1, \"b\": 2, \"c\": 3}`, which line will produce an error?",
+     "options": [
+       "d[\"c\"] = [1, 2, 3]",
+       "for key in d: d[key] += 1",
+       "d[1] = 4",
+       "print(d[1])"
+     ],
+     "correct_index": 3,
+     "difficulty": "medium",
+     "topic_tag": "errors",
+     "explanation": "`print(d[1])` raises a KeyError because 1 is not an existing key (unless you add it first)."
+   },
+   {
+     "question_type": "mcq",
+     "text": "Which line will correctly print `\"Steak\"` from the nested structure `order[\"main\"] = {2: [\"Steak\"]}`?",
+     "options": [
+       "print(order[\"main\"][2])",
+       "print(order[\"dessert\" - 1][2][0])",
+       "print(order[main][2][0])",
+       "print(order[\"main\"][2][0])",
+       "print(order[\"main\"][1][0])"
+     ],
+     "correct_index": 3,
+     "difficulty": "hard",
+     "topic_tag": "nesting",
+     "explanation": "`order[\"main\"]` is a dict; key 2 gives a list like [\"Steak\"], and [0] selects the first item."
+   },
+   {
+     "question_type": "mcq",
+     "text": "What happens if you try to access a missing key using `my_dict[\"missing\"]`?",
+     "options": [
+       "It returns `None`",
+       "It creates the key automatically",
+       "It raises a `KeyError`",
+       "It returns an empty string"
+     ],
+     "correct_index": 2,
+     "difficulty": "easy",
+     "topic_tag": "errors",
+     "explanation": "Square bracket access raises a KeyError when the key is not present."
+   },
+   {
+     "question_type": "mcq",
+     "text": "Which expression safely returns the value for key `\"x\"` or `0` if the key is missing?",
+     "options": [
+       "d[\"x\"] or 0",
+       "d.get(\"x\", 0)",
+       "d[\"x\", 0]",
+       "d.fetch(\"x\", 0)"
+     ],
+     "correct_index": 1,
+     "difficulty": "easy",
+     "topic_tag": "dictionaries",
+     "explanation": "`dict.get(key, default)` returns the default without crashing if the key is missing."
+   },
+   {
+     "question_type": "mcq",
+     "text": "In `for k in d:`, what is `k`?",
+     "options": [
+       "A value from the dictionary",
+       "A key from the dictionary",
+       "A (key, value) tuple",
+       "An index number"
+     ],
+     "correct_index": 1,
+     "difficulty": "easy",
+     "topic_tag": "loops",
+     "explanation": "Looping directly over a dictionary iterates over its keys."
+   },
+   {
+     "question_type": "mcq",
+     "text": "Which method lets you iterate over BOTH keys and values?",
+     "options": [
+       "d.keys()",
+       "d.values()",
+       "d.items()",
+       "d.pairs()"
+     ],
+     "correct_index": 2,
+     "difficulty": "easy",
+     "topic_tag": "dictionaries",
+     "explanation": "`d.items()` returns an iterable of (key, value) pairs."
+   },
+   {
+     "question_type": "mcq",
+     "text": "How do you check if `\"a\"` is a key in dictionary `d`?",
+     "options": [
+       "\"a\" in d",
+       "d.has(\"a\")",
+       "\"a\" in d.values()",
+       "d.contains(\"a\")"
+     ],
+     "correct_index": 0,
+     "difficulty": "easy",
+     "topic_tag": "dictionaries",
+     "explanation": "The `in` keyword checks membership in dictionary KEYS by default."
+   },
+   {
+     "question_type": "mcq",
+     "text": "Which of these can be used as a dictionary key?",
+     "options": [
+       "[1, 2]",
+       "{\"a\": 1}",
+       "{1, 2}",
+       "(1, 2)"
+     ],
+     "correct_index": 3,
+     "difficulty": "medium",
+     "topic_tag": "dictionaries",
+     "explanation": "Dictionary keys must be hashable (immutable). Tuples are hashable; lists, dicts, and sets are not."
+   },
+   {
+     "question_type": "mcq",
+     "text": "Which line correctly merges `other` into dictionary `d`?",
+     "options": [
+       "d.update(other)",
+       "d.append(other)",
+       "d += other",
+       "d.merge(other)"
+     ],
+     "correct_index": 0,
+     "difficulty": "medium",
+     "topic_tag": "dictionaries",
+     "explanation": "`update()` adds/overwrites keys from another mapping or iterable of pairs."
+   },
+   {
+     "question_type": "mcq",
+     "text": "What does `len(d)` return for a dictionary `d`?",
+     "options": [
+       "The number of key/value pairs",
+       "The number of characters in the keys",
+       "The number of values (counting duplicates)",
+       "Always 0"
+     ],
+     "correct_index": 0,
+     "difficulty": "easy",
+     "topic_tag": "dictionaries",
+     "explanation": "`len(d)` returns the number of entries (key/value pairs)."
+   },
+   {
+     "question_type": "mcq",
+     "text": "In the Grading Program, what should be the KEYS of the `student_grades` dictionary?",
+     "options": [
+       "The students' numeric scores",
+       "The students' names",
+       "The grade strings (e.g., `\"Outstanding\"`) ",
+       "The index positions (0, 1, 2, ...)"
+     ],
+     "correct_index": 1,
+     "difficulty": "easy",
+     "topic_tag": "dictionaries",
+     "explanation": "The grading program maps student name (key) to grade (value)."
+   },
+   {
+     "question_type": "mcq",
+     "text": "In the Secret Auction project, what data structure is best for storing bids?",
+     "options": [
+       "A list of bid amounts only",
+       "A dictionary mapping bidder name to bid amount",
+       "A single string containing all bids",
+       "A tuple of (name, bid) for every bidder"
+     ],
+     "correct_index": 1,
+     "difficulty": "easy",
+     "topic_tag": "project",
+     "explanation": "A dictionary makes it easy to look up and compare bids by bidder name."
+   },
+   {
+     "question_type": "mcq",
+     "text": "Why should you convert the bid input to an integer (e.g., `int(input(...))`)?",
+     "options": [
+       "So it prints with quotes",
+       "So bids can be compared numerically (e.g., highest bid)",
+       "To avoid a `KeyError`",
+       "To make the bidder name lowercase"
+     ],
+     "correct_index": 1,
+     "difficulty": "easy",
+     "topic_tag": "input",
+     "explanation": "User input is a string; converting to int allows numeric comparisons like 121 > 53."
+   },
+   {
+     "question_type": "mcq",
+     "text": "Given `travel_log = {\"France\": {\"cities_visited\": [\"Paris\", \"Lille\", \"Dijon\"]}}`, how do you access `\"Lille\"`?",
+     "options": [
+       "travel_log[\"France\"][\"cities_visited\"][1]",
+       "travel_log[\"France\"][1]",
+       "travel_log[\"cities_visited\"][\"France\"][1]",
+       "travel_log[\"France\"][\"cities_visited\"][\"Lille\"]"
+     ],
+     "correct_index": 0,
+     "difficulty": "medium",
+     "topic_tag": "nesting",
+     "explanation": "You access the country dict, then the list, then the list index."
+   },
+   {
+     "question_type": "coding",
+     "text": "Safe Lookup\\nWrite a function `safe_lookup(d, key, default)` that returns the value for `key` in `d`, or `default` if the key is missing.",
+     "starter_code": "def safe_lookup(d, key, default=None):\n    # Use dict.get() for safe lookup\n    pass",
+     "test_cases": [
+       {
+         "function_call": "safe_lookup({'a': 1}, 'a', 0)",
+         "expected": "1"
+       },
+       {
+         "function_call": "safe_lookup({'a': 1}, 'b', 0)",
+         "expected": "0"
+       },
+       {
+         "function_call": "safe_lookup({}, 'x', 'missing')",
+         "expected": "missing"
+       }
+     ],
+     "difficulty": "easy",
+     "topic_tag": "dictionaries",
+     "solution_code": "def safe_lookup(d, key, default=None):\n    return d.get(key, default)"
+   },
+   {
+     "question_type": "coding",
+     "text": "Score to Grade\\nWrite a function `score_to_grade(score)` that returns a grade string using these rules: 91-100 Outstanding, 81-90 Exceeds Expectations, 71-80 Acceptable, 70 or lower Fail.",
+     "starter_code": "def score_to_grade(score):\n    # Use if/elif/else based on the score\n    pass",
+     "test_cases": [
+       {
+         "function_call": "score_to_grade(95)",
+         "expected": "Outstanding"
+       },
+       {
+         "function_call": "score_to_grade(90)",
+         "expected": "Exceeds Expectations"
+       },
+       {
+         "function_call": "score_to_grade(80)",
+         "expected": "Acceptable"
+       },
+       {
+         "function_call": "score_to_grade(70)",
+         "expected": "Fail"
+       }
+     ],
+     "difficulty": "medium",
+     "topic_tag": "conditionals",
+     "solution_code": "def score_to_grade(score):\n    if score > 90:\n        return 'Outstanding'\n    elif score > 80:\n        return 'Exceeds Expectations'\n    elif score > 70:\n        return 'Acceptable'\n    else:\n        return 'Fail'"
+   },
+   {
+     "question_type": "coding",
+     "text": "Nested Lookup\\nWrite a function `get_city(travel_log, country, index)` that returns the city at `travel_log[country]['cities_visited'][index]`.",
+     "starter_code": "def get_city(travel_log, country, index):\n    # Return the requested city from the nested structure\n    pass",
+     "test_cases": [
+       {
+         "function_call": "get_city({'France': {'cities_visited': ['Paris', 'Lille', 'Dijon']}}, 'France', 1)",
+         "expected": "Lille"
+       },
+       {
+         "function_call": "get_city({'Germany': {'cities_visited': ['Berlin', 'Hamburg', 'Stuttgart']}}, 'Germany', 2)",
+         "expected": "Stuttgart"
+       },
+       {
+         "function_call": "get_city({'France': {'cities_visited': ['Paris', 'Lille', 'Dijon']}}, 'France', 0)",
+         "expected": "Paris"
+       }
+     ],
+     "difficulty": "hard",
+     "topic_tag": "nesting",
+     "solution_code": "def get_city(travel_log, country, index):\n    return travel_log[country]['cities_visited'][index]"
+   },
+   {
+     "question_type": "coding",
+     "text": "Build Grades Dictionary\\nWrite a function `build_student_grades(student_scores)` that returns a new dictionary mapping each student name to their grade string (using the same rules as the Day 9 Grading Program).",
+     "starter_code": "def build_student_grades(student_scores):\n    # Create a new dictionary and fill it\n    # Return the new dictionary\n    pass",
+     "test_cases": [
+       {
+         "function_call": "build_student_grades({'Harry': 81, 'Ron': 78, 'Hermione': 99})",
+         "expected": "{'Harry': 'Exceeds Expectations', 'Ron': 'Acceptable', 'Hermione': 'Outstanding'}"
+       },
+       {
+         "function_call": "build_student_grades({'A': 91, 'B': 70})",
+         "expected": "{'A': 'Outstanding', 'B': 'Fail'}"
+       },
+       {
+         "function_call": "build_student_grades({})",
+         "expected": "{}"
+       }
+     ],
+     "difficulty": "hard",
+     "topic_tag": "loops",
+     "solution_code": "def build_student_grades(student_scores):\n    student_grades = {}\n    for student in student_scores:\n        score = student_scores[student]\n        if score > 90:\n            student_grades[student] = 'Outstanding'\n        elif score > 80:\n            student_grades[student] = 'Exceeds Expectations'\n        elif score > 70:\n            student_grades[student] = 'Acceptable'\n        else:\n            student_grades[student] = 'Fail'\n    return student_grades"
+   },
+   {
+     "question_type": "coding",
+     "text": "Highest Bidder\\nWrite a function `find_highest_bidder(bids)` that returns a tuple `(winner_name, highest_bid)`. ",
+     "starter_code": "def find_highest_bidder(bids):\n    # Loop over bids and track the highest\n    # Return (winner_name, highest_bid)\n    pass",
+     "test_cases": [
+       {
+         "function_call": "find_highest_bidder({'Angela': 53, 'James': 32, 'Jenny': 121})",
+         "expected": "('Jenny', 121)"
+       },
+       {
+         "function_call": "find_highest_bidder({'A': 10})",
+         "expected": "('A', 10)"
+       },
+       {
+         "function_call": "find_highest_bidder({'Bob': 50, 'Alice': 75})",
+         "expected": "('Alice', 75)"
+       }
+     ],
+     "difficulty": "medium",
+     "topic_tag": "project",
+     "solution_code": "def find_highest_bidder(bids):\n    highest_bid = -1\n    winner = ''\n    for bidder in bids:\n        bid_amount = bids[bidder]\n        if bid_amount > highest_bid:\n            highest_bid = bid_amount\n            winner = bidder\n    return (winner, highest_bid)"
+   }
+ ]

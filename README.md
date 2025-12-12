@@ -119,6 +119,21 @@ Initially for a single user (you), but architecture should support scaling to mu
 - **Testing:** Playwright 1.57.0 (E2E)
 - **State:** React Hooks & Context API
 
+### Pyodide / SharedArrayBuffer (Cross-Origin Isolation)
+
+Pyodide may require `SharedArrayBuffer`, which is only available when the page is **cross-origin isolated**.
+
+- **Local dev/preview**
+  - Vite is configured to send these headers (see `frontend/vite.config.js`):
+    - `Cross-Origin-Opener-Policy: same-origin`
+    - `Cross-Origin-Embedder-Policy: require-corp`
+  - You can verify in the browser console with `window.crossOriginIsolated === true`.
+  - There is an E2E guard test in `frontend/tests/e2e/cross-origin-isolation.spec.ts`.
+
+- **Production (Netlify)**
+  - The same headers are configured in `netlify.toml` under `[[headers]]`.
+  - If you add new third-party scripts/fonts/assets later, they must be served with appropriate CORS/CORP headers or they may be blocked under `COEP: require-corp`.
+
 ### Deployment & DevOps
 - **Containerization:** Docker (optional)
 - **Version Control:** Git

@@ -14,8 +14,7 @@ import DeepDiveDay5 from '../components/content/DeepDive/Day5'
 import DeepDiveDay6 from '../components/content/DeepDive/Day6'
 import DeepDiveDay7 from '../components/content/DeepDive/Day7'
 import DeepDiveDay8 from '../components/content/DeepDive/Day8'
-
-
+import DeepDiveDay9 from '../components/content/DeepDive/Day9'
 
 const DAY_META = {
     'day-1': {
@@ -81,6 +80,14 @@ const DAY_META = {
         quizId: 'day-8-practice',
         level: 'beginner',
         topics: ['functions', 'parameters', 'arguments', 'caesar-cipher']
+    },
+    'day-9': {
+        label: 'Day 9',
+        title: 'Day 9: Dictionaries, Nesting & the Secret Auction',
+        subtitle: 'Use key/value data structures, nest lists and dicts, and build the Secret Auction project.',
+        quizId: 'day-9-practice',
+        level: 'beginner',
+        topics: ['dictionaries', 'nesting', 'loops', 'conditionals']
     }
 }
 
@@ -164,7 +171,8 @@ function DeepDive({ activeDay }) {
         'day-5': DeepDiveDay5,
         'day-6': DeepDiveDay6,
         'day-7': DeepDiveDay7,
-        'day-8': DeepDiveDay8
+        'day-8': DeepDiveDay8,
+        'day-9': DeepDiveDay9
     }
     const Component = components[activeDay]
     if (!Component) {
@@ -172,7 +180,6 @@ function DeepDive({ activeDay }) {
     }
     return <Component />
 }
-
 
 function Quiz({ quizId, activeDay }) {
     const [questions, setQuestions] = useState([])
@@ -479,7 +486,7 @@ function Quiz({ quizId, activeDay }) {
                                         }`}>
                                         {String.fromCharCode(65 + idx)}
                                     </span>
-                                    <span className="font-mono text-sm">{opt}</span>
+                                    <span className="font-mono text-sm whitespace-pre-wrap">{opt}</span>
                                 </div>
                                 {selectedOption === idx && (
                                     <Check className="w-5 h-5 text-primary-400" />
