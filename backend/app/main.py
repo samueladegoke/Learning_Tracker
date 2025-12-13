@@ -20,9 +20,13 @@ app = FastAPI(
 )
 
 # CORS middleware for frontend
+# Restrict to known development and production origins
+import os
+ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173,http://localhost:5174,http://localhost:5175,http://localhost:8000,https://learning-tracker-nu-tan.vercel.app").split(",")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

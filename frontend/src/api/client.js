@@ -71,6 +71,8 @@ export const rpgAPI = {
 // Quizzes API
 export const quizzesAPI = {
   getQuestions: (quizId) => fetchAPI(`/quizzes/${quizId}/questions`),
+  getCompleted: () => fetchAPI('/quizzes/completed'),
+  getLeaderboard: (limit = 20) => fetchAPI(`/quizzes/leaderboard?limit=${limit}`),
   submit: (data) => fetchAPI('/quizzes/submit', {
     method: 'POST',
     body: JSON.stringify(data),

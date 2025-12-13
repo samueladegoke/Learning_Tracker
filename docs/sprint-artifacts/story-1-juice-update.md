@@ -27,17 +27,12 @@ Enhance the user experience of the Learning Tracker by implementing a "Deep Glas
 - [x] Implement `NumberTicker` for stats
 - [x] Refactor `QuestLog` for list transitions
 
-### Phase 2: Nano Banana Pro (New)
-- [x] Install `lucide-react`
-- [x] Update `tailwind.config.js` tokens (`primary` -> Yellow)
-- [x] Refactor `Navbar.jsx`: Replace Emojis with Lucide Icons
-- [x] Refactor `Dashboard.jsx`: Replace Emojis with Lucide Icons
-- [x] Refactor `QuestLog.jsx`: Replace Checkboxes with Custom Vector Controls
-- [x] Verify "No Emojis" policy across app
-- [x] **Code Review Audit (Adversarial)**:
-    - [x] Extract `CurrentSyncStatus` to component
-    - [x] Implement Optimistic UI for `handleTaskToggle`
-    - [x] Add Animation Verification tests in `dashboard.spec.ts`
+### Phase 3: MVP Enhancements (Gamification)
+- [x] Backend: `GET /api/quizzes/completed`
+- [x] Backend: `GET /api/quizzes/leaderboard`
+- [x] Backend: Dynamic XP for Quiz Achievements
+- [x] Frontend: Day Progress Indicators
+- [x] Frontend: Leaderboard Component
 
 ## Dev Agent Record
 ### File List
@@ -50,6 +45,7 @@ Enhance the user experience of the Learning Tracker by implementing a "Deep Glas
 - frontend/src/components/BadgeCard.jsx
 - frontend/src/components/CharacterCard.jsx
 - frontend/src/components/CodeEditor.jsx
+- frontend/src/components/Leaderboard.jsx
 - frontend/src/components/QuestLog.jsx
 - frontend/src/components/ShopModal.jsx
 - frontend/src/components/TaskCard.jsx
@@ -75,9 +71,12 @@ Enhance the user experience of the Learning Tracker by implementing a "Deep Glas
 - frontend/src/utils/xpUtils.js
 - frontend/tests/e2e/dashboard.spec.ts
 - frontend/src/components/CurrentSyncStatus.jsx
+- backend/app/routers/quizzes.py
+- backend/seed.py
 - docs/sprint-artifacts/story-1-juice-update.md
 
 ### Review Fixes (Auto-Applied)
 - [x] Fix Accessibility in TaskCard (aria-label)
 - [x] Enhance Dashboard tests
 - [x] Clean up Dashboard dead code
+- [x] Refactor Quiz XP Logic (Dynamic from DB)

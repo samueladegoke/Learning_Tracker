@@ -1,7 +1,11 @@
 import os
+import logging
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
+
+# Configure logging
+logger = logging.getLogger(__name__)
 
 # Load environment variables from .env file
 load_dotenv()
@@ -9,11 +13,11 @@ load_dotenv()
 # Check for DATABASE_URL environment variable (used by Render/Supabase)
 SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL")
 
-print(f"DEBUG: Checking DATABASE_URL...", flush=True)
+logger.info("Checking DATABASE_URL...")
 if SQLALCHEMY_DATABASE_URL:
-    print(f"DEBUG: Found DATABASE_URL: {SQLALCHEMY_DATABASE_URL[:10]}...", flush=True)
+    logger.info(f"Found DATABASE_URL: {SQLALCHEMY_DATABASE_URL[:10]}...")
 else:
-    print("DEBUG: DATABASE_URL not found in env vars.", flush=True)
+    logger.info("DATABASE_URL not found in env vars, using SQLite fallback.")
 
 if SQLALCHEMY_DATABASE_URL and SQLALCHEMY_DATABASE_URL.startswith("postgres://"):
     # Fix for SQLAlchemy requiring postgresql:// scheme

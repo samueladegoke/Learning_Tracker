@@ -115,6 +115,8 @@ class ProgressResponse(BaseModel):
     badges_total: int
     achievements_earned: int = 0
     achievements_total: int = 0
+    xp_to_next_level: int = 100
+    level_progress: float = 0.0
 
 
 # RPG schemas

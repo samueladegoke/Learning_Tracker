@@ -53,9 +53,33 @@ def get_progress(db: Session = Depends(get_db)):
         UserAchievement.user_id == DEFAULT_USER_ID
     ).count()
     
+    from ..utils.gamification import xp_for_next_level, level_from_xp
+    
+    current_level = level_from_xp(user.xp)
+    xp_required = xp_for_next_level(current_level)
+    
+    # Calculate XP at the start of current level (to normalize progress bar)
+    def cumulative_xp_to_level(lvl):
+        if lvl <= 1: return 0
+        total = 0
+        for i in range(1, lvl):
+            total += xp_for_next_level(i)
+        return total
+    
+    xp_start_of_level = cumulative_xp_to_level(current_level)
+    xp_into_level = max(0, user.xp - xp_start_of_level)
+    xp_needed_for_level = xp_required # This is XP needed to complete *this* level
+    
+    progress_percent = (
+        min(100.0, (xp_into_level / xp_needed_for_level * 100))
+        if xp_needed_for_level > 0 else 0.0
+    )
+    
+    xp_remaining = max(0, xp_needed_for_level - xp_into_level)
+
     return {
         "total_xp": user.xp,
-        "level": level_from_xp(user.xp),
+        "level": current_level,
         "streak": user.streak,
         "current_week": user.current_week,
         "tasks_completed": tasks_completed,
@@ -65,6 +89,8 @@ def get_progress(db: Session = Depends(get_db)):
         "badges_total": badges_total,
         "achievements_earned": achievements_earned,
         "achievements_total": achievements_total,
+        "xp_to_next_level": int(xp_remaining),
+        "level_progress": round(progress_percent, 1),
     }
 
 

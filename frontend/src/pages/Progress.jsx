@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
-import { AlertTriangle } from 'lucide-react'
+import { Trophy, Target, Flame, Calendar as CalendarIcon, AlertTriangle } from 'lucide-react'
 import { progressAPI, badgesAPI, achievementsAPI, weeksAPI } from '../api/client'
+import Leaderboard from '../components/Leaderboard'
 import ProgressRing from '../components/ProgressRing'
 import ProgressBar from '../components/ProgressBar'
 import BadgeCard from '../components/BadgeCard'
@@ -62,28 +63,9 @@ function Progress() {
     )
   }
 
-  // Mirror backend xp_needed_for_level(level) to keep UI in sync with server
-  const xpNeededForLevel = (level) => Math.floor(100 * Math.pow(level, 1.2))
-  const cumulativeXpToLevel = (level) => {
-    if (level <= 1) return 0
-
-    let total = 0
-    for (let i = 1; i < level; i += 1) {
-      total += xpNeededForLevel(i)
-    }
-    return total
-  }
-
-  const currentLevel = Math.max(1, progress?.level || 1)
-  const totalXp = progress?.total_xp || 0
-  const xpForCurrentLevel = xpNeededForLevel(currentLevel)
-  const xpAtLevelStart = cumulativeXpToLevel(currentLevel)
-  const xpIntoCurrentLevel = Math.max(0, totalXp - xpAtLevelStart)
-
-  const levelProgress = xpForCurrentLevel
-    ? Math.min(100, (xpIntoCurrentLevel / xpForCurrentLevel) * 100)
-    : 0
-  const xpToNextLevel = Math.max(0, Math.ceil(xpForCurrentLevel - xpIntoCurrentLevel))
+  // Level progress is now calculated on the server
+  const levelProgress = progress?.level_progress || 0
+  const xpToNextLevel = progress?.xp_to_next_level || 100
 
   return (
     <div className="space-y-8">
@@ -148,6 +130,8 @@ function Progress() {
           </div>
         </div>
       </div>
+
+      <Leaderboard />
 
       {/* Weekly Progress Overview */}
       <div className="card p-6">

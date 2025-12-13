@@ -319,6 +319,12 @@ def seed_database():
             {"achievement_id": "a-hundred-tasks", "name": "Century Club", "description": "Complete 100 tasks", "xp_value": 100, "difficulty": "epic"},
             {"achievement_id": "a-boss-first", "name": "First Boss Down", "description": "Defeat any quest boss", "xp_value": 30, "difficulty": "hard"},
             {"achievement_id": "a-all-weeks", "name": "Roadmap Master", "description": "Complete all weeks in the roadmap", "xp_value": 120, "difficulty": "epic"},
+            # Quiz achievements
+            {"achievement_id": "a-quiz-master", "name": "Quiz Master", "description": "Score 100% on any quiz", "xp_value": 50, "difficulty": "hard"},
+            {"achievement_id": "a-quiz-streak", "name": "Quiz Streak", "description": "Complete 5 quizzes", "xp_value": 30, "difficulty": "normal"},
+            {"achievement_id": "a-code-ninja", "name": "Code Ninja", "description": "Get 25 coding questions correct", "xp_value": 40, "difficulty": "hard"},
+            # Streak achievements
+            {"achievement_id": "a-streak-legend", "name": "Streak Legend", "description": "Maintain a 30-day streak", "xp_value": 100, "difficulty": "epic"},
         ]
         for a in achievements:
             db.add(

@@ -46,15 +46,13 @@ optimized_for_llm: true
 - **Hooks Usage:** Encapsulate complex logic (like Pyodide interaction) in custom hooks (`usePythonRunner`).
 - **State Management:** Use `React Context` + `useMemo` for global services. Avoid Redux for this scale.
 - **Styling:** TailwindCSS classes ONLY.
-- **Directory Structure:** Adoption of Feature-Sliced Design (`src/features/{domain}`) is MANDATORY.
+- **Directory Structure:** Components in `src/components/`, pages in `src/pages/`, API clients in `src/api/`.
 
-### Data & Persistence Rules (NEW)
-- **LocalStorage:** ALL keys must be prefixed with `app_v1:{domain}:`.
-    - *Allowed:* `app_v1:learning:progress`
-    - *Forbidden:* `progress`, `config`
-- **Sync Pattern:** ALL data mutations must go through `useSync()`.
-    - *Forbidden:* Direct `fetch()` calls or `useMutation()` without Queue integration.
-- **Offline First:** UI must function 100% without network (Optimistic Updates).
+### Data & Persistence Rules
+- **API Client:** ALL API calls must go through `src/api/client.js` (centralized fetch wrapper).
+- **Server-First:** Data is fetched from backend on page load. No localStorage caching currently implemented.
+- **Error Handling:** Display user-friendly error states when API calls fail.
+- **Future Consideration:** Local-First/Offline patterns are documented in `architecture.md` as Phase 2 goals.
 
 ### Testing Rules
 
@@ -107,10 +105,10 @@ optimized_for_llm: true
 
 #### Edge Cases
 - **Pyodide Loading:** Always handle `isReady` state. The Python runtime takes seconds to load; UI must reflect this.
-- **Data Sync:** Frontend Optimistic UI updates MUST ideally revert on API failure (though currently simple `toast` error is standard).
+- **Data Sync:** API errors should display user-friendly messages. Toast notifications are the current standard.
 
 #### Security & Env
-- **CORS:** `["*"]` is currently allowed. For production, this MUST be restricted to the Vercel domain.
+- **CORS:** Restricted to localhost dev ports and production Vercel URL (`https://learning-tracker-nu-tan.vercel.app`).
 - **Secrets:** `.env` variables are the ONLY place for keys.
 
 ---
@@ -131,7 +129,7 @@ optimized_for_llm: true
 - Review quarterly for outdated rules
 - Remove rules that become obvious over time
 
-Last Updated: 2025-12-10
+Last Updated: 2025-12-13
 
 
 

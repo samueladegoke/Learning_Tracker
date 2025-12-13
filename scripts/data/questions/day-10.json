@@ -1,0 +1,357 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What keyword is used to send a value back from a function?",
+        "options": [
+            "output",
+            "return",
+            "send",
+            "print"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "return-statement",
+        "explanation": "The 'return' keyword is used to output a value from a function. The returned value replaces the function call in your code."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What happens when Python encounters a `return` statement inside a function?",
+        "options": [
+            "The function continues executing the next line",
+            "The function immediately exits and returns the value",
+            "Python throws a SyntaxError",
+            "Nothing happens until the function ends"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "return-statement",
+        "explanation": "When Python hits a return statement, it immediately exits the function and sends back the specified value. Any code after the return will not execute."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does `\"hello world\".title()` return?",
+        "options": [
+            "HELLO WORLD",
+            "hello world",
+            "Hello World",
+            "Hello world"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "string-methods",
+        "explanation": "The title() method capitalizes the first letter of every word in a string, returning 'Hello World'."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the difference between `print()` and `return`?",
+        "options": [
+            "There is no difference",
+            "print() displays output to console; return sends a value back to the caller",
+            "return displays output to console; print() sends a value back",
+            "print() only works with strings; return works with all types"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "return-vs-print",
+        "explanation": "print() displays data to the console but returns None. return sends a value back to wherever the function was called, allowing that value to be used in further code."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What will be printed?\n```python\ndef my_func():\n    return 5\n    print(\"Hello\")\n\nprint(my_func())\n```",
+        "options": [
+            "Hello\\n5",
+            "5\\nHello",
+            "5",
+            "Hello"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "return-statement",
+        "explanation": "The return statement exits the function immediately. The print('Hello') after return is unreachable code and will never execute. Only 5 is printed."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is a docstring?",
+        "options": [
+            "A type of variable that stores documentation",
+            "A comment using the # symbol",
+            "A triple-quoted string placed after a function definition to document it",
+            "A string that gets printed when running Python files"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "docstrings",
+        "explanation": "A docstring is a triple-quoted string that appears as the first statement in a function. It documents what the function does and shows up in IDE hints."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you store a function in a variable without calling it?",
+        "options": [
+            "my_var = my_function()",
+            "my_var = my_function",
+            "my_var = call(my_function)",
+            "my_var = &my_function"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "first-class-functions",
+        "explanation": "To store a function reference, use the function name without parentheses. Adding parentheses would call the function and store its return value instead."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What will this code output?\n```python\ndef add(n1, n2):\n    return n1 + n2\n\noperations = {\"+\": add}\nresult = operations[\"+\"](3, 7)\nprint(result)\n```",
+        "options": [
+            "add",
+            "10",
+            "Error: cannot call dictionary value",
+            "+"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "first-class-functions",
+        "explanation": "operations[\"+\"] retrieves the add function. Adding (3, 7) calls it with those arguments. add(3, 7) returns 10."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does an empty `return` statement (just `return` with no value) give back?",
+        "options": [
+            "0",
+            "An empty string",
+            "None",
+            "False"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "return-statement",
+        "explanation": "An empty return statement (or reaching the end of a function without return) returns None. This is Python's way of representing no value."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What will be printed?\n```python\ndef echo(text):\n    return text + text\n\ndef shout(text):\n    return text.upper()\n\nprint(shout(echo(\"hi\")))\n```",
+        "options": [
+            "hihi",
+            "HIHI",
+            "HI",
+            "hiHI"
+        ],
+        "correct_index": 1,
+        "difficulty": "hard",
+        "topic_tag": "chaining-functions",
+        "explanation": "echo('hi') returns 'hihi'. That becomes the input to shout(), which returns 'hihi'.upper() = 'HIHI'."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why do we wrap `input()` in `float()` for the calculator project?",
+        "options": [
+            "To make the numbers bigger",
+            "Because input() returns a string, and we need numbers for math",
+            "To prevent division by zero",
+            "Because Python requires it for all functions"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "type-conversion",
+        "explanation": "The input() function always returns a string. To perform mathematical operations, we must convert the string to a number using int() or float()."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What will this code output?\n```python\ndef outer_function(a, b):\n    def inner_function(c, d):\n        return c + d\n    return inner_function(a, b)\n\nresult = outer_function(5, 10)\nprint(result)\n```",
+        "options": [
+            "SyntaxError",
+            "15",
+            "10",
+            "(5, 10)"
+        ],
+        "correct_index": 1,
+        "difficulty": "hard",
+        "topic_tag": "nested-functions",
+        "explanation": "inner_function is defined inside outer_function. outer_function calls inner_function(5, 10), which returns 5 + 10 = 15."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What will be printed in the console?\n```python\ndef my_function(a):\n    if a < 40:\n        return\n        print(\"Terrible\")\n    if a < 80:\n        return \"Pass\"\n    else:\n        return \"Great\"\nprint(my_function(25))\n```",
+        "options": [
+            "NameError",
+            "SyntaxError",
+            "None",
+            "Pass",
+            "Great"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "return-statement",
+        "explanation": "25 < 40 is True, so the empty return executes immediately. An empty return gives None. The print('Terrible') after it never runs."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Without running the code, what will be printed?\n```python\ndef add(n1, n2):\n    return n1 + n2\n\ndef multiply(n1, n2):\n    return n1 * n2\n\ndef divide(n1, n2):\n    return n1 / n2\n\nprint(add(2, multiply(5, divide(8, 4))))\n```",
+        "options": [
+            "10",
+            "12.0",
+            "0.21",
+            "14"
+        ],
+        "correct_index": 1,
+        "difficulty": "hard",
+        "topic_tag": "chaining-functions",
+        "explanation": "Functions are called from innermost to outermost: divide(8, 4) = 2.0, multiply(5, 2.0) = 10.0, add(2, 10.0) = 12.0."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which of these correctly defines a docstring?",
+        "options": [
+            "# This is documentation",
+            "def func(): 'Docstring here'",
+            "def func(): \"\"\"Docstring here\"\"\"",
+            "def func(): /* Docstring here */"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "docstrings",
+        "explanation": "A docstring uses triple quotes (\"\"\" or ''') immediately after the function definition. Regular comments (#) and single quotes don't create accessible docstrings."
+    },
+    {
+        "question_type": "coding",
+        "text": "Create Function with Return\\nWrite a function `double` that takes a number and returns that number multiplied by 2.",
+        "starter_code": "def double(num):\n    # Your code here\n    pass",
+        "test_cases": [
+            {
+                "function_call": "double(5)",
+                "expected": "10"
+            },
+            {
+                "function_call": "double(0)",
+                "expected": "0"
+            },
+            {
+                "function_call": "double(-3)",
+                "expected": "-6"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "return-statement",
+        "solution_code": "def double(num):\n    return num * 2"
+    },
+    {
+        "question_type": "coding",
+        "text": "Format Name\\nWrite a function `format_name` that takes a first name and last name and returns them formatted in title case with a space between.",
+        "starter_code": "def format_name(first, last):\n    # Your code here\n    pass",
+        "test_cases": [
+            {
+                "function_call": "format_name('JOHN', 'doe')",
+                "expected": "'John Doe'"
+            },
+            {
+                "function_call": "format_name('jane', 'SMITH')",
+                "expected": "'Jane Smith'"
+            },
+            {
+                "function_call": "format_name('Alice', 'Bob')",
+                "expected": "'Alice Bob'"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "string-methods",
+        "solution_code": "def format_name(first, last):\n    return f\"{first.title()} {last.title()}\""
+    },
+    {
+        "question_type": "coding",
+        "text": "Early Return Validation\\nWrite a function `get_grade` that takes a score. If the score is negative, return 'Invalid'. Otherwise return 'Pass' if score >= 50, else 'Fail'.",
+        "starter_code": "def get_grade(score):\n    # Your code here\n    pass",
+        "test_cases": [
+            {
+                "function_call": "get_grade(-5)",
+                "expected": "'Invalid'"
+            },
+            {
+                "function_call": "get_grade(75)",
+                "expected": "'Pass'"
+            },
+            {
+                "function_call": "get_grade(30)",
+                "expected": "'Fail'"
+            },
+            {
+                "function_call": "get_grade(50)",
+                "expected": "'Pass'"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "return-statement",
+        "solution_code": "def get_grade(score):\n    if score < 0:\n        return 'Invalid'\n    if score >= 50:\n        return 'Pass'\n    return 'Fail'"
+    },
+    {
+        "question_type": "coding",
+        "text": "Calculator Function\\nWrite a function `calculate` that takes two numbers and an operator string (+, -, *, /). Return the result of applying that operator.",
+        "starter_code": "def calculate(n1, n2, operator):\n    # Your code here\n    pass",
+        "test_cases": [
+            {
+                "function_call": "calculate(10, 5, '+')",
+                "expected": "15"
+            },
+            {
+                "function_call": "calculate(10, 5, '-')",
+                "expected": "5"
+            },
+            {
+                "function_call": "calculate(10, 5, '*')",
+                "expected": "50"
+            },
+            {
+                "function_call": "calculate(10, 5, '/')",
+                "expected": "2.0"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "calculator-project",
+        "solution_code": "def calculate(n1, n2, operator):\n    if operator == '+':\n        return n1 + n2\n    elif operator == '-':\n        return n1 - n2\n    elif operator == '*':\n        return n1 * n2\n    elif operator == '/':\n        return n1 / n2"
+    },
+    {
+        "question_type": "coding",
+        "text": "Leap Year\\nWrite a function `is_leap_year` that takes a year and returns True if it's a leap year, False otherwise. A leap year is divisible by 4, except for years divisible by 100 unless also divisible by 400.",
+        "starter_code": "def is_leap_year(year):\n    # Your code here\n    pass",
+        "test_cases": [
+            {
+                "function_call": "is_leap_year(2000)",
+                "expected": "True"
+            },
+            {
+                "function_call": "is_leap_year(2100)",
+                "expected": "False"
+            },
+            {
+                "function_call": "is_leap_year(2024)",
+                "expected": "True"
+            },
+            {
+                "function_call": "is_leap_year(1989)",
+                "expected": "False"
+            }
+        ],
+        "difficulty": "hard",
+        "topic_tag": "conditional-logic",
+        "solution_code": "def is_leap_year(year):\n    if year % 4 == 0:\n        if year % 100 == 0:\n            if year % 400 == 0:\n                return True\n            else:\n                return False\n        else:\n            return True\n    else:\n        return False"
+    },
+    {
+        "question_type": "coding",
+        "text": "Function Chaining\\nWrite a function `shout_double` that takes a string and returns it doubled and uppercase. Use two helper functions: `double_text(text)` that returns text + text, and `shout(text)` that returns text.upper().",
+        "starter_code": "def double_text(text):\n    # Return text + text\n    pass\n\ndef shout(text):\n    # Return text.upper()\n    pass\n\ndef shout_double(text):\n    # Use both functions to return doubled uppercase text\n    pass",
+        "test_cases": [
+            {
+                "function_call": "shout_double('hi')",
+                "expected": "'HIHI'"
+            },
+            {
+                "function_call": "shout_double('code')",
+                "expected": "'CODECODE'"
+            },
+            {
+                "function_call": "shout_double('')",
+                "expected": "''"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "chaining-functions",
+        "solution_code": "def double_text(text):\n    return text + text\n\ndef shout(text):\n    return text.upper()\n\ndef shout_double(text):\n    return shout(double_text(text))"
+    }
+]

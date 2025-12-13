@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import { AlertTriangle, Trophy, PartyPopper, BookOpen, Check, Lightbulb, ArrowLeft, ArrowRight } from 'lucide-react'
+import { AlertTriangle, Trophy, PartyPopper, BookOpen, Check, Lightbulb, ArrowLeft, ArrowRight, CheckCircle } from 'lucide-react'
 import { quizApi } from '../api/quizApi'
-import { rpgAPI } from '../api/client'
+import { rpgAPI, quizzesAPI } from '../api/client'
 import CodeBlock from '../components/CodeBlock'
 import CodeEditor from '../components/CodeEditor'
 import { InlineCode } from '../components/InlineCode'
@@ -15,6 +15,7 @@ import DeepDiveDay6 from '../components/content/DeepDive/Day6'
 import DeepDiveDay7 from '../components/content/DeepDive/Day7'
 import DeepDiveDay8 from '../components/content/DeepDive/Day8'
 import DeepDiveDay9 from '../components/content/DeepDive/Day9'
+import DeepDiveDay10 from '../components/content/DeepDive/Day10'
 
 const DAY_META = {
     'day-1': {
@@ -88,14 +89,30 @@ const DAY_META = {
         quizId: 'day-9-practice',
         level: 'beginner',
         topics: ['dictionaries', 'nesting', 'loops', 'conditionals']
+    },
+    'day-10': {
+        label: 'Day 10',
+        title: 'Day 10: Functions with Outputs',
+        subtitle: 'Master return statements, docstrings, and build a Calculator using functions as first-class values.',
+        quizId: 'day-10-practice',
+        level: 'beginner',
+        topics: ['return', 'docstrings', 'first-class-functions', 'calculator']
     }
 }
 
 function Practice() {
     const [activeTab, setActiveTab] = useState('deep-dive')
     const [activeDay, setActiveDay] = useState('day-5')
+    const [completedQuizzes, setCompletedQuizzes] = useState([])
 
     const currentDay = DAY_META[activeDay]
+
+    // Fetch completed quizzes on mount
+    useEffect(() => {
+        quizzesAPI.getCompleted()
+            .then(setCompletedQuizzes)
+            .catch(err => console.error('Failed to load completed quizzes:', err))
+    }, [])
 
     return (
         <div className="space-y-8 pb-12">
@@ -114,18 +131,24 @@ function Practice() {
 
                 {/* Day Selector */}
                 <div className="flex gap-2 mt-6 overflow-x-auto pb-2 scrollbar-hide">
-                    {Object.entries(DAY_META).map(([key, data]) => (
-                        <button
-                            key={key}
-                            onClick={() => setActiveDay(key)}
-                            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${activeDay === key
-                                ? 'bg-primary-500/10 text-primary-400 border border-primary-500/20'
-                                : 'text-surface-400 hover:text-surface-200 hover:bg-surface-800/50'
-                                }`}
-                        >
-                            {data.label}
-                        </button>
-                    ))}
+                    {Object.entries(DAY_META).map(([key, data]) => {
+                        const isCompleted = completedQuizzes.includes(data.quizId)
+                        return (
+                            <button
+                                key={key}
+                                onClick={() => setActiveDay(key)}
+                                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap flex items-center gap-2 ${activeDay === key
+                                    ? 'bg-primary-500/10 text-primary-400 border border-primary-500/20'
+                                    : 'text-surface-400 hover:text-surface-200 hover:bg-surface-800/50'
+                                    }`}
+                            >
+                                {data.label}
+                                {isCompleted && (
+                                    <CheckCircle className="w-4 h-4 text-green-500" />
+                                )}
+                            </button>
+                        )
+                    })}
                 </div>
             </header>
 
@@ -172,7 +195,8 @@ function DeepDive({ activeDay }) {
         'day-6': DeepDiveDay6,
         'day-7': DeepDiveDay7,
         'day-8': DeepDiveDay8,
-        'day-9': DeepDiveDay9
+        'day-9': DeepDiveDay9,
+        'day-10': DeepDiveDay10
     }
     const Component = components[activeDay]
     if (!Component) {
