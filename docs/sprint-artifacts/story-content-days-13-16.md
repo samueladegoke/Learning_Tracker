@@ -1,7 +1,7 @@
 ---
 key: CONTENT-13-16
 title: Content Ingestion Days 13-16
-status: review
+status: done
 ---
 
 # Story: Content Ingestion Days 13-16
@@ -37,6 +37,7 @@ status: review
 - Generative creation of Quiz JSONs.
 - Manual router update in Practice.jsx.
 - Fixed .env variable naming (`SUPABASE_SERVICE_ROLE_KEY` -> `SUPABASE_SERVICE_KEY`).
+- **Code Review Update**: All files committed to git. Story marked as DONE.
 
 ## Tasks/Subtasks
 - [x] Day 13 Content & Quiz

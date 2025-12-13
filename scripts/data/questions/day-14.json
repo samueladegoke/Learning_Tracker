@@ -1,268 +1,288 @@
 [
-    {
-        "id": "day-14-1",
-        "type": "multiple-choice",
-        "question": "In the Higher Lower game data, we used a 'List of Dictionaries'. How do you access the first item?",
-        "options": [
-            "data{0}",
-            "data[0]",
-            "data.first()",
-            "data['0']"
-        ],
-        "correctAnswer": 1,
-        "explanation": "The outer structure is a list, so you use list indexing `[]` with an integer."
-    },
-    {
-        "id": "day-14-2",
-        "type": "code-correction",
-        "question": "How do you access the 'name' from this dictionary inside a list?",
-        "code": "data = [{'name': 'Instagram', 'count': 500}]\nitem = data[0]\n# Get the name",
-        "options": [
-            "item.name",
-            "item[name]",
-            "item['name']",
-            "data['name']"
-        ],
-        "correctAnswer": 2,
-        "explanation": "Once you have the dictionary `item`, you access its values using the key as a string: `item['name']`."
-    },
-    {
-        "id": "day-14-3",
-        "type": "multiple-choice",
-        "question": "What module do we need to import to pick a random account from our data?",
-        "options": [
-            "math",
-            "random",
-            "os",
-            "sys"
-        ],
-        "correctAnswer": 1,
-        "explanation": "The `random` module contains `choice()`, `randint()`, and other useful functions for randomization."
-    },
-    {
-        "id": "day-14-4",
-        "type": "code-correction",
-        "question": "Which function picks a single random element from a non-empty list?",
-        "code": "import random\nmy_list = [1, 2, 3]",
-        "options": [
-            "random.rand(my_list)",
-            "random.choice(my_list)",
-            "random.pick(my_list)",
-            "random.one(my_list)"
-        ],
-        "correctAnswer": 1,
-        "explanation": "`random.choice(sequence)` returns a random element from the non-empty sequence."
-    },
-    {
-        "id": "day-14-5",
-        "type": "multiple-choice",
-        "question": "In the game loop, if the user guesses correctly, what happens to Account B?",
-        "options": [
-            "It is discarded and never used again",
-            "It becomes Account A for the next round",
-            "It stays as Account B",
-            "The game ends"
-        ],
-        "correctAnswer": 1,
-        "explanation": "To make the game continuous, the 'winner' or the second option (B) usually moves to position A to be compared against a new challenger."
-    },
-    {
-        "id": "day-14-6",
-        "type": "code-correction",
-        "question": "Fix the logic to check if account A has more followers than B.",
-        "code": "if a['follower_count'] > b['follower_count']:\n    return 'a'\nelse:\n    return 'b'",
-        "options": [
-            "It returns the lower one",
-            "It correctly returns 'a' if A is bigger, else 'b'",
-            "It crashes because strings cannot be compared",
-            "Follower counts are always equal"
-        ],
-        "correctAnswer": 1,
-        "explanation": "The logic compares the counts correctly and returns the identifier string ('a' or 'b') of the higher account."
-    },
-    {
-        "id": "day-14-7",
-        "type": "multiple-choice",
-        "question": "Why would we define a function `format_data(account)`?",
-        "options": [
-            "To change the data in the list",
-            "To return a readable string string like 'Name, a Description, from Country'",
-            "Because Python requires it",
-            "To calculate the score"
-        ],
-        "correctAnswer": 1,
-        "explanation": "Creating a helper function to format the output string keeps the main game loop clean and readable (DRY principle)."
-    },
-    {
-        "id": "day-14-8",
-        "type": "code-correction",
-        "question": "What is wrong with this import?",
-        "code": "import game_data",
-        "options": [
-            "It should be `from game_data import data` if we want to use `data` directly",
-            "Imports must be at the bottom",
-            "You cannot import local files",
-            "Nothing is wrong, but you must use `game_data.data`"
-        ],
-        "correctAnswer": 3,
-        "explanation": "Importing the module is fine, but accessing the variable requires dot notation `game_data.data`. Or use `from game_data import data`."
-    },
-    {
-        "id": "day-14-9",
-        "type": "multiple-choice",
-        "question": "How do we clear the console screen in Python (cross-platform way often used in tutorials)?",
-        "options": [
-            "print('\\n' * 100) or os.system('cls'/'clear')",
-            "screen.clear()",
-            "delete_history()",
-            "There is no way to clear screen"
-        ],
-        "correctAnswer": 0,
-        "explanation": "Printing many newlines is a simple hack. Using `os.system` commands is the more robust way to interact with the terminal."
-    },
-    {
-        "id": "day-14-10",
-        "type": "multiple-choice",
-        "question": "If `account_a == account_b`, what should we do?",
-        "options": [
-            "Let the user guess anyway",
-            "Pick a new `account_b` until they are different",
-            "End the game",
-            "Crash"
-        ],
-        "correctAnswer": 1,
-        "explanation": "Comparing the same account to itself is confusing. We should loop to pick a new random account B until `account_a != account_b`."
-    },
-    {
-        "id": "day-14-11",
-        "type": "multiple-choice",
-        "question": "What is the purpose of the `while game_should_continue:` loop?",
-        "options": [
-            "To run the game exactly once",
-            "To keep the game running as long as the user answers correctly",
-            "To pause the game",
-            "To loading the data"
-        ],
-        "correctAnswer": 1,
-        "explanation": "This loop structure allows the game to continue indefinitely until the exit condition (wrong answer) sets the flag to False."
-    },
-    {
-        "id": "day-14-12",
-        "type": "code-correction",
-        "question": "Why might this score update fail?",
-        "code": "score = 0\ndef increase_score():\n    score += 1",
-        "options": [
-            "score is defined",
-            "UnboundLocalError: local variable 'score' referenced before assignment (need 'global score')",
-            "You cannot add 1 to 0",
-            "Functions cannot access variables"
-        ],
-        "correctAnswer": 1,
-        "explanation": "To modify a global immutable variable (like an integer) inside a function, you must declare `global score`."
-    },
-    {
-        "id": "day-14-13",
-        "type": "multiple-choice",
-        "question": "What data type is `follower_count` in our data?",
-        "options": [
-            "String",
-            "Integer (millions)",
-            "List",
-            "Boolean"
-        ],
-        "correctAnswer": 1,
-        "explanation": "Requirements state it's an integer representing millions of followers, which allows for numerical comparison."
-    },
-    {
-        "id": "day-14-14",
-        "type": "multiple-choice",
-        "question": "What is the best way to handle user input case sensitivity (A vs a)?",
-        "options": [
-            "Force user to type uppercase",
-            "Use `.lower()` on the input string",
-            "Check both 'A' and 'a'",
-            "Ignore it"
-        ],
-        "correctAnswer": 1,
-        "explanation": "`input().lower()` converts the user's keystroke to lowercase, making comparison easier (e.g., always check against 'a')."
-    },
-    {
-        "id": "day-14-15",
-        "type": "multiple-choice",
-        "question": "How do we display the ASCII art logo?",
-        "options": [
-            "print(logo)",
-            "display(logo)",
-            "show(logo)",
-            "render(logo)"
-        ],
-        "correctAnswer": 0,
-        "explanation": "ASCII art is just a multi-line string. `print(logo)` sends it to standard output."
-    },
-    {
-        "id": "day-14-16",
-        "type": "code-correction",
-        "question": "What does this code print?",
-        "code": "score = 5\nprint(f'Current score: {score}')",
-        "options": [
-            "Current score: score",
-            "Current score: {5}",
-            "Current score: 5",
-            "Error"
-        ],
-        "correctAnswer": 2,
-        "explanation": "F-strings interpolate the value of the variable into the string."
-    },
-    {
-        "id": "day-14-17",
-        "type": "multiple-choice",
-        "question": "If the user is wrong, what should happen?",
-        "options": [
-            "Print Game Over and their final score",
-            "Let them try again",
-            "Subtract 1 from score",
-            "Restart computer"
-        ],
-        "correctAnswer": 0,
-        "explanation": "Standard Higher Lower rules: one mistake ends the game immediately."
-    },
-    {
-        "id": "day-14-18",
-        "type": "multiple-choice",
-        "question": "Where is the best place to check if the user is correct?",
-        "options": [
-            "Inside the print statement",
-            "In a separate function or if/else block after getting input",
-            "In the random module",
-            "At the end of the file"
-        ],
-        "correctAnswer": 1,
-        "explanation": "Checking logic should be explicit, typically in a dedicated block that compares the choice with the data."
-    },
-    {
-        "id": "day-14-19",
-        "type": "multiple-choice",
-        "question": "If we want to create a 'VS' visual between the two accounts, where do we put it?",
-        "options": [
-            "Before printing Account A",
-            "Between printing Account A and Account B",
-            "After Account B",
-            "At the top"
-        ],
-        "correctAnswer": 1,
-        "explanation": "Logically: Show A -> Show VS -> Show B. This mimics the visual layout of the comparison."
-    },
-    {
-        "id": "day-14-20",
-        "type": "multiple-choice",
-        "question": "What is a main benefit of breaking this large project into small TODOs?",
-        "options": [
-            "It makes the code run faster",
-            "It prevents feeling overwhelmed and allows verifying small pieces one at a time",
-            "It makes the files smaller",
-            "It is required by Python"
-        ],
-        "correctAnswer": 1,
-        "explanation": "Decomposition is a key engineering skill. Solving 'Generate Random Number' is easier than 'Build Whole Game'."
-    }
+  {
+    "text": "In the Higher Lower game data, we used a 'List of Dictionaries'. How do you access the first item?",
+    "options": [
+      "data{0}",
+      "data[0]",
+      "data.first()",
+      "data['0']"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "higher-lower",
+    "explanation": "The outer structure is a list, so you use list indexing `[]` with an integer.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "How do you access the 'name' from this dictionary inside a list?",
+    "options": [
+      "item.name",
+      "item[name]",
+      "item['name']",
+      "data['name']"
+    ],
+    "correct_index": 2,
+    "difficulty": "medium",
+    "topic_tag": "higher-lower",
+    "explanation": "Once you have the dictionary `item`, you access its values using the key as a string: `item['name']`.",
+    "question_type": "mcq",
+    "starter_code": "data = [{'name': 'Instagram', 'count': 500}]\nitem = data[0]\n# Get the name"
+  },
+  {
+    "text": "What module do we need to import to pick a random account from our data?",
+    "options": [
+      "math",
+      "random",
+      "os",
+      "sys"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "higher-lower",
+    "explanation": "The `random` module contains `choice()`, `randint()`, and other useful functions for randomization.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Which function picks a single random element from a non-empty list?",
+    "options": [
+      "random.rand(my_list)",
+      "random.choice(my_list)",
+      "random.pick(my_list)",
+      "random.one(my_list)"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "higher-lower",
+    "explanation": "`random.choice(sequence)` returns a random element from the non-empty sequence.",
+    "question_type": "mcq",
+    "starter_code": "import random\nmy_list = [1, 2, 3]"
+  },
+  {
+    "text": "In the game loop, if the user guesses correctly, what happens to Account B?",
+    "options": [
+      "It is discarded and never used again",
+      "It becomes Account A for the next round",
+      "It stays as Account B",
+      "The game ends"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "higher-lower",
+    "explanation": "To make the game continuous, the 'winner' or the second option (B) usually moves to position A to be compared against a new challenger.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Fix the logic to check if account A has more followers than B.",
+    "options": [
+      "It returns the lower one",
+      "It correctly returns 'a' if A is bigger, else 'b'",
+      "It crashes because strings cannot be compared",
+      "Follower counts are always equal"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "higher-lower",
+    "explanation": "The logic compares the counts correctly and returns the identifier string ('a' or 'b') of the higher account.",
+    "question_type": "mcq",
+    "starter_code": "if a['follower_count'] > b['follower_count']:\n    return 'a'\nelse:\n    return 'b'"
+  },
+  {
+    "text": "Why would we define a function `format_data(account)`?",
+    "options": [
+      "To change the data in the list",
+      "To return a readable string string like 'Name, a Description, from Country'",
+      "Because Python requires it",
+      "To calculate the score"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "higher-lower",
+    "explanation": "Creating a helper function to format the output string keeps the main game loop clean and readable (DRY principle).",
+    "question_type": "mcq"
+  },
+  {
+    "text": "What is wrong with this import?",
+    "options": [
+      "It should be `from game_data import data` if we want to use `data` directly",
+      "Imports must be at the bottom",
+      "You cannot import local files",
+      "Nothing is wrong, but you must use `game_data.data`"
+    ],
+    "correct_index": 3,
+    "difficulty": "medium",
+    "topic_tag": "higher-lower",
+    "explanation": "Importing the module is fine, but accessing the variable requires dot notation `game_data.data`. Or use `from game_data import data`.",
+    "question_type": "mcq",
+    "starter_code": "import game_data"
+  },
+  {
+    "text": "How do we clear the console screen in Python (cross-platform way often used in tutorials)?",
+    "options": [
+      "print('\\n' * 100) or os.system('cls'/'clear')",
+      "screen.clear()",
+      "delete_history()",
+      "There is no way to clear screen"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "higher-lower",
+    "explanation": "Printing many newlines is a simple hack. Using `os.system` commands is the more robust way to interact with the terminal.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "If `account_a == account_b`, what should we do?",
+    "options": [
+      "Let the user guess anyway",
+      "Pick a new `account_b` until they are different",
+      "End the game",
+      "Crash"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "higher-lower",
+    "explanation": "Comparing the same account to itself is confusing. We should loop to pick a new random account B until `account_a != account_b`.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "What is the purpose of the `while game_should_continue:` loop?",
+    "options": [
+      "To run the game exactly once",
+      "To keep the game running as long as the user answers correctly",
+      "To pause the game",
+      "To loading the data"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "higher-lower",
+    "explanation": "This loop structure allows the game to continue indefinitely until the exit condition (wrong answer) sets the flag to False.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Why might this score update fail?",
+    "options": [
+      "score is defined",
+      "UnboundLocalError: local variable 'score' referenced before assignment (need 'global score')",
+      "You cannot add 1 to 0",
+      "Functions cannot access variables"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "higher-lower",
+    "explanation": "To modify a global immutable variable (like an integer) inside a function, you must declare `global score`.",
+    "question_type": "mcq",
+    "starter_code": "score = 0\ndef increase_score():\n    score += 1"
+  },
+  {
+    "text": "What data type is `follower_count` in our data?",
+    "options": [
+      "String",
+      "Integer (millions)",
+      "List",
+      "Boolean"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "higher-lower",
+    "explanation": "Requirements state it's an integer representing millions of followers, which allows for numerical comparison.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "What is the best way to handle user input case sensitivity (A vs a)?",
+    "options": [
+      "Force user to type uppercase",
+      "Use `.lower()` on the input string",
+      "Check both 'A' and 'a'",
+      "Ignore it"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "higher-lower",
+    "explanation": "`input().lower()` converts the user's keystroke to lowercase, making comparison easier (e.g., always check against 'a').",
+    "question_type": "mcq"
+  },
+  {
+    "text": "How do we display the ASCII art logo?",
+    "options": [
+      "print(logo)",
+      "display(logo)",
+      "show(logo)",
+      "render(logo)"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "higher-lower",
+    "explanation": "ASCII art is just a multi-line string. `print(logo)` sends it to standard output.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "What does this code print?",
+    "options": [
+      "Current score: score",
+      "Current score: {5}",
+      "Current score: 5",
+      "Error"
+    ],
+    "correct_index": 2,
+    "difficulty": "medium",
+    "topic_tag": "higher-lower",
+    "explanation": "F-strings interpolate the value of the variable into the string.",
+    "question_type": "mcq",
+    "starter_code": "score = 5\nprint(f'Current score: {score}')"
+  },
+  {
+    "text": "If the user is wrong, what should happen?",
+    "options": [
+      "Print Game Over and their final score",
+      "Let them try again",
+      "Subtract 1 from score",
+      "Restart computer"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "higher-lower",
+    "explanation": "Standard Higher Lower rules: one mistake ends the game immediately.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Where is the best place to check if the user is correct?",
+    "options": [
+      "Inside the print statement",
+      "In a separate function or if/else block after getting input",
+      "In the random module",
+      "At the end of the file"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "higher-lower",
+    "explanation": "Checking logic should be explicit, typically in a dedicated block that compares the choice with the data.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "If we want to create a 'VS' visual between the two accounts, where do we put it?",
+    "options": [
+      "Before printing Account A",
+      "Between printing Account A and Account B",
+      "After Account B",
+      "At the top"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "higher-lower",
+    "explanation": "Logically: Show A -> Show VS -> Show B. This mimics the visual layout of the comparison.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "What is a main benefit of breaking this large project into small TODOs?",
+    "options": [
+      "It makes the code run faster",
+      "It prevents feeling overwhelmed and allows verifying small pieces one at a time",
+      "It makes the files smaller",
+      "It is required by Python"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "higher-lower",
+    "explanation": "Decomposition is a key engineering skill. Solving 'Generate Random Number' is easier than 'Build Whole Game'.",
+    "question_type": "mcq"
+  }
 ]

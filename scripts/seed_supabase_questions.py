@@ -14,14 +14,35 @@ except ImportError:
     print("Please install supabase-py: pip install supabase")
     exit(1)
 
-# Supabase credentials - MUST be set via environment variables
-SUPABASE_URL = os.environ.get("SUPABASE_URL", "https://lhdpiawslfpngmehafdo.supabase.co")
+
+def load_env_from_file():
+    """Load environment variables from frontend/.env if not already set."""
+    script_dir = Path(__file__).parent.parent  # Go up from scripts/ to project root
+    env_path = script_dir / 'frontend' / '.env'
+    
+    if env_path.exists():
+        with open(env_path, 'r') as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    key, _, value = line.partition('=')
+                    key = key.strip()
+                    value = value.strip()
+                    # Only set if not already in environment
+                    if key not in os.environ:
+                        os.environ[key] = value
+
+
+# Attempt to load from frontend/.env
+load_env_from_file()
+
+# Supabase credentials - loaded from environment or frontend/.env
+SUPABASE_URL = os.environ.get("SUPABASE_URL") or os.environ.get("VITE_SUPABASE_URL", "https://lhdpiawslfpngmehafdo.supabase.co")
 SUPABASE_KEY = os.environ.get("SUPABASE_SERVICE_KEY")
 
 if not SUPABASE_KEY:
-    print("ERROR: SUPABASE_SERVICE_KEY environment variable is required.")
-    print("Set it with: export SUPABASE_SERVICE_KEY='your-service-role-key'")
-    print("You can find this in your Supabase Dashboard > Settings > API > service_role key")
+    print("ERROR: SUPABASE_SERVICE_KEY not found.")
+    print("Ensure frontend/.env contains SUPABASE_SERVICE_KEY=your-key")
     exit(1)
 
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)

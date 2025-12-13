@@ -35,7 +35,9 @@ story_location: "docs/sprint-artifacts"
 development_status:
   # Content Ingestion (Workflow-based)
   content-day-8: done
+
   content-day-9: done
+  CONTENT-13-16: done
 
   # MVP Core Features (Implemented)
   mvp-dashboard: done           # Dashboard with XP, Gold, Streak, Hearts, Boss

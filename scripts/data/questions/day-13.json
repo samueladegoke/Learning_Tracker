@@ -1,269 +1,289 @@
 [
-    {
-        "id": "day-13-1",
-        "type": "multiple-choice",
-        "question": "What is the very first step in debugging a problem?",
-        "options": [
-            "Start changing random lines of code",
-            "Describe the problem clearly and untangle the logic",
-            "Ask a friend to fix it for you",
-            "Copy paste the code into a new file"
-        ],
-        "correctAnswer": 1,
-        "explanation": "Describing the problem allows you to understand what is actually happening versus what you expect to happen, which is crucial before making changes."
-    },
-    {
-        "id": "day-13-2",
-        "type": "multiple-choice",
-        "question": "Why is 'reproducing the bug' important?",
-        "options": [
-            "It allows you to create more bugs",
-            "It confirms that the code is completely broken",
-            "It helps you identify the specific conditions under which the bug occurs",
-            "It is not important if the bug only happens sometimes"
-        ],
-        "correctAnswer": 2,
-        "explanation": "If you can't consistently reproduce a bug, you can't verify if your fix actually works. You need to know the 'when' and 'why'."
-    },
-    {
-        "id": "day-13-3",
-        "type": "code-correction",
-        "question": "This loop is supposed to print numbers 1 through 20. Does it work?",
-        "code": "for i in range(1, 20):\n    print(i)",
-        "options": [
-            "Yes, it prints 1 to 20",
-            "No, it prints 1 to 19",
-            "No, it prints 0 to 19",
-            "No, it crashes"
-        ],
-        "correctAnswer": 1,
-        "explanation": "The range(start, stop) function in Python is exclusive of the stop value. range(1, 20) produces numbers 1 up to 19."
-    },
-    {
-        "id": "day-13-4",
-        "type": "multiple-choice",
-        "question": "What is the technique 'Play Computer'?",
-        "options": [
-            "Letting the computer solve the problem for you",
-            "Manually walking through your code line-by-line and tracking variable values logically",
-            "Playing a video game on the computer",
-            "Writing a simulation script"
-        ],
-        "correctAnswer": 1,
-        "explanation": "Playing computer involves simulating the execution of the code in your mind or on paper to uncover logical flaws."
-    },
-    {
-        "id": "day-13-5",
-        "type": "code-correction",
-        "question": "Identfy the bug: This code should check if a user is 18 or older.",
-        "code": "age = int(input('Age: '))\nif age > 18:\n    print('You can vote.')",
-        "options": [
-            "It crashes if age is 18",
-            "It says 18 year olds cannot vote (logic error)",
-            "It uses string comparison instead of integer",
-            "There is no bug"
-        ],
-        "correctAnswer": 1,
-        "explanation": "The condition `age > 18` is False for someone who is exactly 18. It should be `age >= 18`."
-    },
-    {
-        "id": "day-13-6",
-        "type": "multiple-choice",
-        "question": "When debugging, what does 'Red Underline' usually indicate in an IDE?",
-        "options": [
-            "Logic Error",
-            "Runtime Error",
-            "Syntax warning or error (like typos or missing indentation)",
-            "The code is perfect"
-        ],
-        "correctAnswer": 2,
-        "explanation": "Red squiggly lines typically highlight syntax errors or static analysis issues that will prevent the code from running or violate PEP8."
-    },
-    {
-        "id": "day-13-7",
-        "type": "multiple-choice",
-        "question": "Which function is described as 'your best friend' for debugging variable states?",
-        "options": [
-            "input()",
-            "print()",
-            "len()",
-            "def()"
-        ],
-        "correctAnswer": 1,
-        "explanation": "Adding print statements lets you see the actual value of variables at different points in execution, revealing where assumptions fail."
-    },
-    {
-        "id": "day-13-8",
-        "type": "code-correction",
-        "question": "Why does this print 0?",
-        "code": "pages = 45\nwords_per_page = 0\nwords_per_page == 250\ntotal = pages * words_per_page\nprint(total)",
-        "options": [
-            "pages is 0",
-            "The multiplication is wrong",
-            "words_per_page == 250 is a comparison, not an assignment",
-            "Python cannot multiply integers"
-        ],
-        "correctAnswer": 2,
-        "explanation": "The double equals `==` checks for equality and returns True/False, it does NOT assign the value 250 to `words_per_page`."
-    },
-    {
-        "id": "day-13-9",
-        "type": "multiple-choice",
-        "question": "What is a 'Breakpoint' in a debugger?",
-        "options": [
-            "A point where the code crashes",
-            "A designated line where the debugger pauses execution so you can inspect the state",
-            "A syntax error",
-            "The end of the program"
-        ],
-        "correctAnswer": 1,
-        "explanation": "A breakpoint stops the program flow at a specific line, allowing you to examine variables and step through subsequent code manually."
-    },
-    {
-        "id": "day-13-10",
-        "type": "multiple-choice",
-        "question": "What does 'Step Over' do in a debugger?",
-        "options": [
-            "Skips the current line entirely",
-            "Executes the current line and pauses at the next line in the current scope",
-            "Goes inside the function call on the current line",
-            "Restarts the program"
-        ],
-        "correctAnswer": 1,
-        "explanation": "Step Over executes the line. If the line contains a function call, it runs the function completely and returns, staying in the current context."
-    },
-    {
-        "id": "day-13-11",
-        "type": "multiple-choice",
-        "question": "What does 'Step Into' do in a debugger?",
-        "options": [
-            "Executes the current line and moves to the next",
-            "If the current line has a function call, it enters that function's code",
-            "Exits the current function",
-            "Stops the debugger"
-        ],
-        "correctAnswer": 1,
-        "explanation": "Step Into allows you to dive deeper into the code by entering the function being called to see exactly how it executes."
-    },
-    {
-        "id": "day-13-12",
-        "type": "code-correction",
-        "question": "This code crashes occasionally. Why?",
-        "code": "import random\nitems = ['a', 'b', 'c']\nrand_idx = random.randint(0, 3)\nprint(items[rand_idx])",
-        "options": [
-            "items list is empty",
-            "rand_idx can be 3, but valid indices are 0, 1, 2",
-            "randint does not include the endpoint",
-            "It never crashes"
-        ],
-        "correctAnswer": 1,
-        "explanation": "randint(0, 3) includes both 0 and 3. The list only has indices 0, 1, 2. Accessing items[3] raises an IndexError."
-    },
-    {
-        "id": "day-13-13",
-        "type": "multiple-choice",
-        "question": "If you are stuck on a bug for an hour, what is a recommended strategy?",
-        "options": [
-            "Keep staring at the screen",
-            "Rewrite the entire program from scratch",
-            "Take a break, walk away, or explain it to a 'rubber duck'",
-            "Delete the code"
-        ],
-        "correctAnswer": 2,
-        "explanation": "Taking a break refreshes your mind. 'Rubber ducking' (explaining code line-by-line) forces you to slow down and often reveals the error."
-    },
-    {
-        "id": "day-13-14",
-        "type": "multiple-choice",
-        "question": "What is the best way to handle a confusing error message?",
-        "options": [
-            "Ignore it and run the code again",
-            "Copy and paste the error into Google or Stack Overflow",
-            "Delete the line causing the error",
-            "Assume the computer is broken"
-        ],
-        "correctAnswer": 1,
-        "explanation": "Error messages are often specific. Searching for them usually leads to someone else who has solved the exact same problem."
-    },
-    {
-        "id": "day-13-15",
-        "type": "code-correction",
-        "question": "Fix the indentation error.",
-        "code": "def my_func():\nprint('Hello')",
-        "options": [
-            "Add a colon after print",
-            "Indent the print statement",
-            "Remove the def",
-            "Add parenthesis"
-        ],
-        "correctAnswer": 1,
-        "explanation": "Python relies on indentation to define code blocks. The body of the function must be indented."
-    },
-    {
-        "id": "day-13-16",
-        "type": "code-correction",
-        "question": "Why does this input code fail to add numbers?",
-        "code": "num1 = input('Num 1: ')\nnum2 = input('Num 2: ')\nprint(num1 + num2) # If inputs are 5 and 3, output is 53",
-        "options": [
-            "Input returns integers",
-            "Input returns strings in Python 3, so + concatenates instead of adding",
-            "Print cannot add numbers",
-            "There is no error"
-        ],
-        "correctAnswer": 1,
-        "explanation": "`input()` always returns a string. '5' + '3' results in '53'. You must wrap input in `int()` or `float()` to do math."
-    },
-    {
-        "id": "day-13-17",
-        "type": "multiple-choice",
-        "question": "Which of these is a TypeError?",
-        "options": [
-            "print(5 + '5')",
-            "print(5 / 0)",
-            "prnt('hello')",
-            "lst[10] = 5"
-        ],
-        "correctAnswer": 0,
-        "explanation": "Adding an integer and a string is not allowed and raises a TypeError. 5/0 is ZeroDivisionError. prnt is NameError. lst[10] is IndexError."
-    },
-    {
-        "id": "day-13-18",
-        "type": "code-correction",
-        "question": "Fix the loop logic to catch the year 1994.",
-        "code": "year = 1994\nif year > 1980 and year < 1994:\n    print('A')\nelif year > 1994:\n    print('B')",
-        "options": [
-            "Change input to 1995",
-            "Use >= 1994 or <= 1994 to include the boundary year",
-            "Use or instead of and",
-            "Add an else statement"
-        ],
-        "correctAnswer": 1,
-        "explanation": "The current logic excludes 1994 completely. Using inclusive operators (`<=`, `>=`) fixes the boundary condition."
-    },
-    {
-        "id": "day-13-19",
-        "type": "multiple-choice",
-        "question": "What is correct about mutating lists inside a loop?",
-        "options": [
-            "It is always safe",
-            "It often leads to bugs; it's better to create a new list or be very careful with indices",
-            "Lists usually cannot be mutated",
-            "The loop automatically fixes it"
-        ],
-        "correctAnswer": 1,
-        "explanation": "Modifying the list you are currently iterating over can confuse the loop's internal index tracking, leading to skipped items or errors."
-    },
-    {
-        "id": "day-13-20",
-        "type": "multiple-choice",
-        "question": "What is 'Step Out' used for?",
-        "options": [
-            "To exit the debugger",
-            "To run the rest of the current function and pause when it returns to the caller",
-            "To skip the next line",
-            "To go back one line"
-        ],
-        "correctAnswer": 1,
-        "explanation": "Step Out executes the remainder of the current function's code and then pauses immediately after the function returns."
-    }
+  {
+    "text": "What is the very first step in debugging a problem?",
+    "options": [
+      "Start changing random lines of code",
+      "Describe the problem clearly and untangle the logic",
+      "Ask a friend to fix it for you",
+      "Copy paste the code into a new file"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "debugging",
+    "explanation": "Describing the problem allows you to understand what is actually happening versus what you expect to happen, which is crucial before making changes.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Why is 'reproducing the bug' important?",
+    "options": [
+      "It allows you to create more bugs",
+      "It confirms that the code is completely broken",
+      "It helps you identify the specific conditions under which the bug occurs",
+      "It is not important if the bug only happens sometimes"
+    ],
+    "correct_index": 2,
+    "difficulty": "medium",
+    "topic_tag": "debugging",
+    "explanation": "If you can't consistently reproduce a bug, you can't verify if your fix actually works. You need to know the 'when' and 'why'.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "This loop is supposed to print numbers 1 through 20. Does it work?",
+    "options": [
+      "Yes, it prints 1 to 20",
+      "No, it prints 1 to 19",
+      "No, it prints 0 to 19",
+      "No, it crashes"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "debugging",
+    "explanation": "The range(start, stop) function in Python is exclusive of the stop value. range(1, 20) produces numbers 1 up to 19.",
+    "question_type": "mcq",
+    "starter_code": "for i in range(1, 20):\n    print(i)"
+  },
+  {
+    "text": "What is the technique 'Play Computer'?",
+    "options": [
+      "Letting the computer solve the problem for you",
+      "Manually walking through your code line-by-line and tracking variable values logically",
+      "Playing a video game on the computer",
+      "Writing a simulation script"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "debugging",
+    "explanation": "Playing computer involves simulating the execution of the code in your mind or on paper to uncover logical flaws.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Identfy the bug: This code should check if a user is 18 or older.",
+    "options": [
+      "It crashes if age is 18",
+      "It says 18 year olds cannot vote (logic error)",
+      "It uses string comparison instead of integer",
+      "There is no bug"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "debugging",
+    "explanation": "The condition `age > 18` is False for someone who is exactly 18. It should be `age >= 18`.",
+    "question_type": "mcq",
+    "starter_code": "age = int(input('Age: '))\nif age > 18:\n    print('You can vote.')"
+  },
+  {
+    "text": "When debugging, what does 'Red Underline' usually indicate in an IDE?",
+    "options": [
+      "Logic Error",
+      "Runtime Error",
+      "Syntax warning or error (like typos or missing indentation)",
+      "The code is perfect"
+    ],
+    "correct_index": 2,
+    "difficulty": "medium",
+    "topic_tag": "debugging",
+    "explanation": "Red squiggly lines typically highlight syntax errors or static analysis issues that will prevent the code from running or violate PEP8.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Which function is described as 'your best friend' for debugging variable states?",
+    "options": [
+      "input()",
+      "print()",
+      "len()",
+      "def()"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "debugging",
+    "explanation": "Adding print statements lets you see the actual value of variables at different points in execution, revealing where assumptions fail.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Why does this print 0?",
+    "options": [
+      "pages is 0",
+      "The multiplication is wrong",
+      "words_per_page == 250 is a comparison, not an assignment",
+      "Python cannot multiply integers"
+    ],
+    "correct_index": 2,
+    "difficulty": "medium",
+    "topic_tag": "debugging",
+    "explanation": "The double equals `==` checks for equality and returns True/False, it does NOT assign the value 250 to `words_per_page`.",
+    "question_type": "mcq",
+    "starter_code": "pages = 45\nwords_per_page = 0\nwords_per_page == 250\ntotal = pages * words_per_page\nprint(total)"
+  },
+  {
+    "text": "What is a 'Breakpoint' in a debugger?",
+    "options": [
+      "A point where the code crashes",
+      "A designated line where the debugger pauses execution so you can inspect the state",
+      "A syntax error",
+      "The end of the program"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "debugging",
+    "explanation": "A breakpoint stops the program flow at a specific line, allowing you to examine variables and step through subsequent code manually.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "What does 'Step Over' do in a debugger?",
+    "options": [
+      "Skips the current line entirely",
+      "Executes the current line and pauses at the next line in the current scope",
+      "Goes inside the function call on the current line",
+      "Restarts the program"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "debugging",
+    "explanation": "Step Over executes the line. If the line contains a function call, it runs the function completely and returns, staying in the current context.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "What does 'Step Into' do in a debugger?",
+    "options": [
+      "Executes the current line and moves to the next",
+      "If the current line has a function call, it enters that function's code",
+      "Exits the current function",
+      "Stops the debugger"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "debugging",
+    "explanation": "Step Into allows you to dive deeper into the code by entering the function being called to see exactly how it executes.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "This code crashes occasionally. Why?",
+    "options": [
+      "items list is empty",
+      "rand_idx can be 3, but valid indices are 0, 1, 2",
+      "randint does not include the endpoint",
+      "It never crashes"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "debugging",
+    "explanation": "randint(0, 3) includes both 0 and 3. The list only has indices 0, 1, 2. Accessing items[3] raises an IndexError.",
+    "question_type": "mcq",
+    "starter_code": "import random\nitems = ['a', 'b', 'c']\nrand_idx = random.randint(0, 3)\nprint(items[rand_idx])"
+  },
+  {
+    "text": "If you are stuck on a bug for an hour, what is a recommended strategy?",
+    "options": [
+      "Keep staring at the screen",
+      "Rewrite the entire program from scratch",
+      "Take a break, walk away, or explain it to a 'rubber duck'",
+      "Delete the code"
+    ],
+    "correct_index": 2,
+    "difficulty": "medium",
+    "topic_tag": "debugging",
+    "explanation": "Taking a break refreshes your mind. 'Rubber ducking' (explaining code line-by-line) forces you to slow down and often reveals the error.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "What is the best way to handle a confusing error message?",
+    "options": [
+      "Ignore it and run the code again",
+      "Copy and paste the error into Google or Stack Overflow",
+      "Delete the line causing the error",
+      "Assume the computer is broken"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "debugging",
+    "explanation": "Error messages are often specific. Searching for them usually leads to someone else who has solved the exact same problem.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Fix the indentation error.",
+    "options": [
+      "Add a colon after print",
+      "Indent the print statement",
+      "Remove the def",
+      "Add parenthesis"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "debugging",
+    "explanation": "Python relies on indentation to define code blocks. The body of the function must be indented.",
+    "question_type": "mcq",
+    "starter_code": "def my_func():\nprint('Hello')"
+  },
+  {
+    "text": "Why does this input code fail to add numbers?",
+    "options": [
+      "Input returns integers",
+      "Input returns strings in Python 3, so + concatenates instead of adding",
+      "Print cannot add numbers",
+      "There is no error"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "debugging",
+    "explanation": "`input()` always returns a string. '5' + '3' results in '53'. You must wrap input in `int()` or `float()` to do math.",
+    "question_type": "mcq",
+    "starter_code": "num1 = input('Num 1: ')\nnum2 = input('Num 2: ')\nprint(num1 + num2) # If inputs are 5 and 3, output is 53"
+  },
+  {
+    "text": "Which of these is a TypeError?",
+    "options": [
+      "print(5 + '5')",
+      "print(5 / 0)",
+      "prnt('hello')",
+      "lst[10] = 5"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "debugging",
+    "explanation": "Adding an integer and a string is not allowed and raises a TypeError. 5/0 is ZeroDivisionError. prnt is NameError. lst[10] is IndexError.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Fix the loop logic to catch the year 1994.",
+    "options": [
+      "Change input to 1995",
+      "Use >= 1994 or <= 1994 to include the boundary year",
+      "Use or instead of and",
+      "Add an else statement"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "debugging",
+    "explanation": "The current logic excludes 1994 completely. Using inclusive operators (`<=`, `>=`) fixes the boundary condition.",
+    "question_type": "mcq",
+    "starter_code": "year = 1994\nif year > 1980 and year < 1994:\n    print('A')\nelif year > 1994:\n    print('B')"
+  },
+  {
+    "text": "What is correct about mutating lists inside a loop?",
+    "options": [
+      "It is always safe",
+      "It often leads to bugs; it's better to create a new list or be very careful with indices",
+      "Lists usually cannot be mutated",
+      "The loop automatically fixes it"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "debugging",
+    "explanation": "Modifying the list you are currently iterating over can confuse the loop's internal index tracking, leading to skipped items or errors.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "What is 'Step Out' used for?",
+    "options": [
+      "To exit the debugger",
+      "To run the rest of the current function and pause when it returns to the caller",
+      "To skip the next line",
+      "To go back one line"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "debugging",
+    "explanation": "Step Out executes the remainder of the current function's code and then pauses immediately after the function returns.",
+    "question_type": "mcq"
+  }
 ]

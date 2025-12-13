@@ -1,269 +1,289 @@
 [
-    {
-        "id": "day-15-1",
-        "type": "multiple-choice",
-        "question": "What is an IDE?",
-        "options": [
-            "Internet Data Exchange",
-            "Integrated Development Environment",
-            "Internal Debugging Engine",
-            "Isolated Developer Environment"
-        ],
-        "correctAnswer": 1,
-        "explanation": "An Integrated Development Environment (IDE) like PyCharm or VS Code combines a code editor, build tools, and a debugger in a single GUI."
-    },
-    {
-        "id": "day-15-2",
-        "type": "multiple-choice",
-        "question": "Why would we move from Repl.it to a local IDE?",
-        "options": [
-            "To work offline, use more powerful debugging tools, and manage files better",
-            "Because Repl.it is broken",
-            "Because Python only runs locally",
-            "Local IDEs are always faster to set up"
-        ],
-        "correctAnswer": 0,
-        "explanation": "Local development mimics a professional workflow, offering better performance, offline capability, and advanced features."
-    },
-    {
-        "id": "day-15-3",
-        "type": "code-correction",
-        "question": "How do you access the amount of water in this nested dictionary?",
-        "code": "MENU = {\n    'espresso': {\n        'ingredients': {'water': 50, 'coffee': 18}\n    }\n}",
-        "options": [
-            "MENU['espresso']['ingredients']['water']",
-            "MENU['espresso']['water']",
-            "MENU.espresso.ingredients.water",
-            "MENU['ingredients']['water']"
-        ],
-        "correctAnswer": 0,
-        "explanation": "You must traverse the hierarchy key by key: first 'espresso', then 'ingredients', then 'water'."
-    },
-    {
-        "id": "day-15-4",
-        "type": "multiple-choice",
-        "question": "What is a 'TODO' comment used for in most IDEs?",
-        "options": [
-            "It stops the code from running",
-            "It is a special syntax error",
-            "It marks a task to be done, which the IDE usually lists in a special window",
-            "It automatically writes the code for you"
-        ],
-        "correctAnswer": 2,
-        "explanation": "Comments starting with `# TODO` are indexed by IDEs to help developers track pending tasks."
-    },
-    {
-        "id": "day-15-5",
-        "type": "code-correction",
-        "question": "If quarters = 4, dimes = 2, nickels = 1, pennies = 5. What is the total?",
-        "code": "total = 4*0.25 + 2*0.10 + 1*0.05 + 5*0.01",
-        "options": [
-            "$1.25",
-            "$1.30",
-            "$1.50",
-            "$1.00"
-        ],
-        "correctAnswer": 1,
-        "explanation": "1.00 + 0.20 + 0.05 + 0.05 = 1.30"
-    },
-    {
-        "id": "day-15-6",
-        "type": "code-correction",
-        "question": "How do we round 3.14159 to 2 decimal places?",
-        "code": "pi = 3.14159",
-        "options": [
-            "round(pi, 2)",
-            "round(pi, 1)",
-            "floor(pi)",
-            "pi.round(2)"
-        ],
-        "correctAnswer": 0,
-        "explanation": "`round(number, digits)` allows you to specify the precision."
-    },
-    {
-        "id": "day-15-7",
-        "type": "multiple-choice",
-        "question": "In the Coffee Machine project, if resources are insufficient, what should happen?",
-        "options": [
-            "Make the coffee anyway",
-            "Print 'Sorry there is not enough [resource]' and do NOT make coffee",
-            "Crash the program",
-            "Order more supplies online automatically"
-        ],
-        "correctAnswer": 1,
-        "explanation": "A key requirement is to check resources *before* processing payment or making the drink."
-    },
-    {
-        "id": "day-15-8",
-        "type": "code-correction",
-        "question": "Why does this fail to update the global `profit`?",
-        "code": "profit = 0\ndef transaction():\n    profit += 1.5",
-        "options": [
-            "profit is 0",
-            "UnboundLocalError: profit is immutable in global scope, need 'global profit'",
-            "You cannot add floats to integers",
-            "Functions cannot see global variables"
-        ],
-        "correctAnswer": 1,
-        "explanation": "To modify a global variable inside a function, you must declare it with `global profit`."
-    },
-    {
-        "id": "day-15-9",
-        "type": "multiple-choice",
-        "question": "What is the correct logical order for the coffee machine steps?",
-        "options": [
-            "Make Coffee -> Check Resources -> Process Coins",
-            "Process Coins -> Make Coffee -> Check Resources",
-            "Check Resources -> Process Coins -> Check Transaction -> Make Coffee",
-            "Take Money -> Run Away"
-        ],
-        "correctAnswer": 2,
-        "explanation": "You shouldn't take money if you can't make the drink (check resources first). You shouldn't make the drink if they didn't pay enough (check transaction)."
-    },
-    {
-        "id": "day-15-10",
-        "type": "multiple-choice",
-        "question": "What command allows the user to turn off the machine?",
-        "options": [
-            "Typing 'off'",
-            "Unplugging the computer",
-            "Ctrl+C",
-            "Typing 'shutdown'"
-        ],
-        "correctAnswer": 0,
-        "explanation": "The requirements specify a secret 'off' command for maintenance (or ending the loop)."
-    },
-    {
-        "id": "day-15-11",
-        "type": "code-correction",
-        "question": "If `MENU['espresso']['cost']` is 1.5, and user pays 2.0. What is the change?",
-        "code": "change = payment - cost",
-        "options": [
-            "0.5",
-            "-0.5",
-            "1.5",
-            "2.0"
-        ],
-        "correctAnswer": 0,
-        "explanation": "2.0 - 1.5 = 0.5. Simple subtraction."
-    },
-    {
-        "id": "day-15-12",
-        "type": "multiple-choice",
-        "question": "Which keyboard shortcut on Windows usually opens the Emoji picker?",
-        "options": [
-            "Windows Key + . (Period)",
-            "Alt + F4",
-            "Ctrl + C",
-            "Shift + Enter"
-        ],
-        "correctAnswer": 0,
-        "explanation": "Win + . opens the emoji panel on Windows 10/11."
-    },
-    {
-        "id": "day-15-13",
-        "type": "code-correction",
-        "question": "How do you check if user input is 'report'?",
-        "code": "choice = input('What would you like?')",
-        "options": [
-            "if choice == 'report':",
-            "if choice = 'report':",
-            "if input == report:",
-            "if 'report' in choice:"
-        ],
-        "correctAnswer": 0,
-        "explanation": "Use `==` for comparison. `choice` is the variable holding the string."
-    },
-    {
-        "id": "day-15-14",
-        "type": "multiple-choice",
-        "question": "If `resources['water']` is 300 and we use 50, how do we update it?",
-        "options": [
-            "resources['water'] = 50",
-            "resources['water'] -= 50",
-            "resources['water'] += 50",
-            "resources['water'] == 250"
-        ],
-        "correctAnswer": 1,
-        "explanation": "Subtract the used amount from the current amount: `resources['water'] -= 50`."
-    },
-    {
-        "id": "day-15-15",
-        "type": "multiple-choice",
-        "question": "What happens if the user inserts insufficient funds?",
-        "options": [
-            "Keep the money and give no coffee",
-            "Refund the money and print 'Sorry that's not enough money. Money refunded.'",
-            "Give them the coffee anyway (charity mode)",
-            "Ask for more money endlessly"
-        ],
-        "correctAnswer": 1,
-        "explanation": "Requirements state the machine should refund the money if it's insufficient."
-    },
-    {
-        "id": "day-15-16",
-        "type": "code-correction",
-        "question": "Why is `while True:` useful here?",
-        "code": "is_on = True\nwhile is_on:\n   choice = input()\n   if choice == 'off':\n       is_on = False",
-        "options": [
-            "It creates an infinite loop that can be controlled by a flag, allowing the machine to serve multiple customers",
-            "It is bad practice",
-            "It consumes all CPU power",
-            "It is required for functions"
-        ],
-        "correctAnswer": 0,
-        "explanation": "A vending machine waits for the next customer indefinitely. A controlled infinite loop models this state."
-    },
-    {
-        "id": "day-15-17",
-        "type": "multiple-choice",
-        "question": "What is the return type of `input()`?",
-        "options": [
-            "Integer",
-            "String",
-            "Float",
-            "List"
-        ],
-        "correctAnswer": 1,
-        "explanation": "`input()` always returns a string. If you need numbers (for coins), you must convert them."
-    },
-    {
-        "id": "day-15-18",
-        "type": "multiple-choice",
-        "question": "How can we iterate through ingredients to deduct them?",
-        "options": [
-            "for item in order_ingredients: resources[item] -= order_ingredients[item]",
-            "resources -= order_ingredients",
-            "ingredients.remove()",
-            "Cannot be done"
-        ],
-        "correctAnswer": 0,
-        "explanation": "You iterate through the keys (like 'water', 'coffee') and subtract the required amount from the resource dictionary."
-    },
-    {
-        "id": "day-15-19",
-        "type": "multiple-choice",
-        "question": "Why use specific variable names like `pennies` instead of `p`?",
-        "options": [
-            "Readability: It makes the math formula (pennies * 0.01) self-explanatory",
-            "Python creates errors for single letters",
-            "It's faster",
-            "It uses more memory"
-        ],
-        "correctAnswer": 0,
-        "explanation": "Clear variable names reduce cognitive load and make bugs easier to spot."
-    },
-    {
-        "id": "day-15-20",
-        "type": "multiple-choice",
-        "question": "In the requirements, what does the 'report' command do?",
-        "options": [
-            "Reports the user to the police",
-            "Prints the current state of resources (Water, Milk, Coffee, Money)",
-            "Prints the menu",
-            "Turns off the machine"
-        ],
-        "correctAnswer": 1,
-        "explanation": "The report feature outputs the current inventory levels."
-    }
+  {
+    "text": "What is an IDE?",
+    "options": [
+      "Internet Data Exchange",
+      "Integrated Development Environment",
+      "Internal Debugging Engine",
+      "Isolated Developer Environment"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "coffee-machine",
+    "explanation": "An Integrated Development Environment (IDE) like PyCharm or VS Code combines a code editor, build tools, and a debugger in a single GUI.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Why would we move from Repl.it to a local IDE?",
+    "options": [
+      "To work offline, use more powerful debugging tools, and manage files better",
+      "Because Repl.it is broken",
+      "Because Python only runs locally",
+      "Local IDEs are always faster to set up"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "coffee-machine",
+    "explanation": "Local development mimics a professional workflow, offering better performance, offline capability, and advanced features.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "How do you access the amount of water in this nested dictionary?",
+    "options": [
+      "MENU['espresso']['ingredients']['water']",
+      "MENU['espresso']['water']",
+      "MENU.espresso.ingredients.water",
+      "MENU['ingredients']['water']"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "coffee-machine",
+    "explanation": "You must traverse the hierarchy key by key: first 'espresso', then 'ingredients', then 'water'.",
+    "question_type": "mcq",
+    "starter_code": "MENU = {\n    'espresso': {\n        'ingredients': {'water': 50, 'coffee': 18}\n    }\n}"
+  },
+  {
+    "text": "What is a 'TODO' comment used for in most IDEs?",
+    "options": [
+      "It stops the code from running",
+      "It is a special syntax error",
+      "It marks a task to be done, which the IDE usually lists in a special window",
+      "It automatically writes the code for you"
+    ],
+    "correct_index": 2,
+    "difficulty": "medium",
+    "topic_tag": "coffee-machine",
+    "explanation": "Comments starting with `# TODO` are indexed by IDEs to help developers track pending tasks.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "If quarters = 4, dimes = 2, nickels = 1, pennies = 5. What is the total?",
+    "options": [
+      "$1.25",
+      "$1.30",
+      "$1.50",
+      "$1.00"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "coffee-machine",
+    "explanation": "1.00 + 0.20 + 0.05 + 0.05 = 1.30",
+    "question_type": "mcq",
+    "starter_code": "total = 4*0.25 + 2*0.10 + 1*0.05 + 5*0.01"
+  },
+  {
+    "text": "How do we round 3.14159 to 2 decimal places?",
+    "options": [
+      "round(pi, 2)",
+      "round(pi, 1)",
+      "floor(pi)",
+      "pi.round(2)"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "coffee-machine",
+    "explanation": "`round(number, digits)` allows you to specify the precision.",
+    "question_type": "mcq",
+    "starter_code": "pi = 3.14159"
+  },
+  {
+    "text": "In the Coffee Machine project, if resources are insufficient, what should happen?",
+    "options": [
+      "Make the coffee anyway",
+      "Print 'Sorry there is not enough [resource]' and do NOT make coffee",
+      "Crash the program",
+      "Order more supplies online automatically"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "coffee-machine",
+    "explanation": "A key requirement is to check resources *before* processing payment or making the drink.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Why does this fail to update the global `profit`?",
+    "options": [
+      "profit is 0",
+      "UnboundLocalError: profit is immutable in global scope, need 'global profit'",
+      "You cannot add floats to integers",
+      "Functions cannot see global variables"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "coffee-machine",
+    "explanation": "To modify a global variable inside a function, you must declare it with `global profit`.",
+    "question_type": "mcq",
+    "starter_code": "profit = 0\ndef transaction():\n    profit += 1.5"
+  },
+  {
+    "text": "What is the correct logical order for the coffee machine steps?",
+    "options": [
+      "Make Coffee -> Check Resources -> Process Coins",
+      "Process Coins -> Make Coffee -> Check Resources",
+      "Check Resources -> Process Coins -> Check Transaction -> Make Coffee",
+      "Take Money -> Run Away"
+    ],
+    "correct_index": 2,
+    "difficulty": "medium",
+    "topic_tag": "coffee-machine",
+    "explanation": "You shouldn't take money if you can't make the drink (check resources first). You shouldn't make the drink if they didn't pay enough (check transaction).",
+    "question_type": "mcq"
+  },
+  {
+    "text": "What command allows the user to turn off the machine?",
+    "options": [
+      "Typing 'off'",
+      "Unplugging the computer",
+      "Ctrl+C",
+      "Typing 'shutdown'"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "coffee-machine",
+    "explanation": "The requirements specify a secret 'off' command for maintenance (or ending the loop).",
+    "question_type": "mcq"
+  },
+  {
+    "text": "If `MENU['espresso']['cost']` is 1.5, and user pays 2.0. What is the change?",
+    "options": [
+      "0.5",
+      "-0.5",
+      "1.5",
+      "2.0"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "coffee-machine",
+    "explanation": "2.0 - 1.5 = 0.5. Simple subtraction.",
+    "question_type": "mcq",
+    "starter_code": "change = payment - cost"
+  },
+  {
+    "text": "Which keyboard shortcut on Windows usually opens the Emoji picker?",
+    "options": [
+      "Windows Key + . (Period)",
+      "Alt + F4",
+      "Ctrl + C",
+      "Shift + Enter"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "coffee-machine",
+    "explanation": "Win + . opens the emoji panel on Windows 10/11.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "How do you check if user input is 'report'?",
+    "options": [
+      "if choice == 'report':",
+      "if choice = 'report':",
+      "if input == report:",
+      "if 'report' in choice:"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "coffee-machine",
+    "explanation": "Use `==` for comparison. `choice` is the variable holding the string.",
+    "question_type": "mcq",
+    "starter_code": "choice = input('What would you like?')"
+  },
+  {
+    "text": "If `resources['water']` is 300 and we use 50, how do we update it?",
+    "options": [
+      "resources['water'] = 50",
+      "resources['water'] -= 50",
+      "resources['water'] += 50",
+      "resources['water'] == 250"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "coffee-machine",
+    "explanation": "Subtract the used amount from the current amount: `resources['water'] -= 50`.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "What happens if the user inserts insufficient funds?",
+    "options": [
+      "Keep the money and give no coffee",
+      "Refund the money and print 'Sorry that's not enough money. Money refunded.'",
+      "Give them the coffee anyway (charity mode)",
+      "Ask for more money endlessly"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "coffee-machine",
+    "explanation": "Requirements state the machine should refund the money if it's insufficient.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Why is `while True:` useful here?",
+    "options": [
+      "It creates an infinite loop that can be controlled by a flag, allowing the machine to serve multiple customers",
+      "It is bad practice",
+      "It consumes all CPU power",
+      "It is required for functions"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "coffee-machine",
+    "explanation": "A vending machine waits for the next customer indefinitely. A controlled infinite loop models this state.",
+    "question_type": "mcq",
+    "starter_code": "is_on = True\nwhile is_on:\n   choice = input()\n   if choice == 'off':\n       is_on = False"
+  },
+  {
+    "text": "What is the return type of `input()`?",
+    "options": [
+      "Integer",
+      "String",
+      "Float",
+      "List"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "coffee-machine",
+    "explanation": "`input()` always returns a string. If you need numbers (for coins), you must convert them.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "How can we iterate through ingredients to deduct them?",
+    "options": [
+      "for item in order_ingredients: resources[item] -= order_ingredients[item]",
+      "resources -= order_ingredients",
+      "ingredients.remove()",
+      "Cannot be done"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "coffee-machine",
+    "explanation": "You iterate through the keys (like 'water', 'coffee') and subtract the required amount from the resource dictionary.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Why use specific variable names like `pennies` instead of `p`?",
+    "options": [
+      "Readability: It makes the math formula (pennies * 0.01) self-explanatory",
+      "Python creates errors for single letters",
+      "It's faster",
+      "It uses more memory"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "coffee-machine",
+    "explanation": "Clear variable names reduce cognitive load and make bugs easier to spot.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "In the requirements, what does the 'report' command do?",
+    "options": [
+      "Reports the user to the police",
+      "Prints the current state of resources (Water, Milk, Coffee, Money)",
+      "Prints the menu",
+      "Turns off the machine"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "coffee-machine",
+    "explanation": "The report feature outputs the current inventory levels.",
+    "question_type": "mcq"
+  }
 ]

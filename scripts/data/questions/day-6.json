@@ -296,5 +296,19 @@
     "difficulty": "easy",
     "topic_tag": "loops",
     "solution_code": "def first_negative(numbers):\n    for num in numbers:\n        if num < 0:\n            return num\n    return None"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the purpose of the `break` statement in a loop?",
+    "options": [
+      "To pause the loop for 1 second",
+      "To skip the current iteration and continue to the next",
+      "To exit the loop immediately, regardless of the loop condition",
+      "To break the code into smaller functions"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "loops",
+    "explanation": "The 'break' statement immediately terminates the loop and resumes execution at the next statement after the loop."
   }
 ]

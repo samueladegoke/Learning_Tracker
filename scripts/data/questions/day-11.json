@@ -1,358 +1,275 @@
 [
-    {
-        "question_type": "mcq",
-        "text": "In Blackjack, what happens if your hand totals more than 21?",
-        "options": [
-            "You win automatically",
-            "You bust and lose immediately",
-            "The dealer must draw again",
-            "You get one more chance"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "blackjack-rules",
-        "explanation": "If your cards add up to more than 21, you 'bust' and lose immediately, regardless of what the dealer has."
-    },
-    {
-        "question_type": "mcq",
-        "text": "In our simplified Blackjack deck, what value does an Ace start with?",
-        "options": [
-            "1",
-            "10",
-            "11",
-            "21"
-        ],
-        "correct_index": 2,
-        "difficulty": "easy",
-        "topic_tag": "blackjack-rules",
-        "explanation": "In our simplified version, Ace starts as 11 and only counts as 1 if the player would bust otherwise."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Why are there four 10s in our simplified card list `[11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]`?",
-        "options": [
-            "It's a bug in the code",
-            "To represent 10, Jack, Queen, and King (all worth 10)",
-            "To make the game harder",
-            "Because 10 is the most common card"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "blackjack-rules",
-        "explanation": "Jack, Queen, and King each count as 10, plus the actual 10 card, giving four 10-value cards in the deck."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does `random.choice(cards)` do?",
-        "options": [
-            "Returns a random integer between 0 and len(cards)",
-            "Returns a randomly selected item from the list",
-            "Shuffles the list randomly",
-            "Removes a random item from the list"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "random-module",
-        "explanation": "random.choice() picks and returns a random item from the given list. Unlike randint(), it works with any sequence."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the difference between `list.append(item)` and `list.extend(items)`?",
-        "options": [
-            "There is no difference",
-            "append() adds one item; extend() adds multiple items from an iterable",
-            "extend() adds one item; append() adds multiple items",
-            "append() is for strings; extend() is for numbers"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "list-methods",
-        "explanation": "append() adds a single item to the list. extend() takes an iterable (like another list) and adds all its elements one by one."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What error occurs when you try `my_list += 5` instead of `my_list.append(5)`?",
-        "options": [
-            "ValueError",
-            "TypeError: 'int' object is not iterable",
-            "SyntaxError",
-            "IndexError"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "list-methods",
-        "explanation": "+= with lists uses extend() internally, which requires an iterable. An integer is not iterable, causing a TypeError."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does the underscore in `for _ in range(2):` signify?",
-        "options": [
-            "It creates a private variable",
-            "It indicates the loop variable won't be used",
-            "It makes the loop run faster",
-            "It's a syntax error"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "python-conventions",
-        "explanation": "Using _ as a loop variable is a Python convention indicating you only care about the iteration count, not the value itself."
-    },
-    {
-        "question_type": "mcq",
-        "text": "In our calculate_score() function, why do we return 0 for a Blackjack?",
-        "options": [
-            "Because 0 is the actual score for Blackjack",
-            "To use as a special sentinel value that's easy to check for",
-            "Because the sum is always 0",
-            "To reset the game"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "calculate-score",
-        "explanation": "Returning 0 for Blackjack is a design choice making it easy to check with `if score == 0:`. It's a sentinel value representing a special case."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do we handle an Ace when the score would exceed 21?",
-        "options": [
-            "Remove the Ace from the hand",
-            "Use remove(11) and append(1) to change Ace from 11 to 1",
-            "Subtract 10 from the total",
-            "End the game immediately"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "calculate-score",
-        "explanation": "We find the Ace (value 11), remove it, and add back a 1. This effectively changes the Ace from 11 to 1."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does `while not is_game_over:` mean?",
-        "options": [
-            "Loop while is_game_over is True",
-            "Loop while is_game_over is False",
-            "Loop forever",
-            "Loop exactly once"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "game-loop",
-        "explanation": "The 'not' keyword inverts the boolean. So 'while not is_game_over' means 'while is_game_over is False' - the loop continues until the game ends."
-    },
-    {
-        "question_type": "mcq",
-        "text": "According to standard Blackjack rules, when must the dealer draw another card?",
-        "options": [
-            "When their score is 17 or higher",
-            "When their score is less than 17",
-            "When the player stands",
-            "Only on the first turn"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "computer-ai",
-        "explanation": "The dealer must keep drawing cards until their score reaches at least 17. This is a standard Blackjack rule."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Why do we check `computer_score != 0` before letting the computer draw?",
-        "options": [
-            "To prevent division by zero",
-            "Because 0 means Blackjack, and they shouldn't draw more cards",
-            "To reset the game",
-            "It's not necessary"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "computer-ai",
-        "explanation": "Since 0 represents Blackjack in our game, and 0 < 17 is True, we must explicitly check for Blackjack to prevent the computer from drawing unnecessary cards."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is a docstring and where should it be placed?",
-        "options": [
-            "A comment at the end of a function",
-            "A triple-quoted string immediately after the function definition",
-            "A variable containing documentation",
-            "A separate .doc file"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "docstrings",
-        "explanation": "A docstring is a triple-quoted string placed as the first statement in a function. It documents what the function does and appears in IDE hints."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What will this code print?\\n```python\\nuser_cards = [10, 5]\\nuser_cards.append(deal_card())\\nprint(len(user_cards))\\n```",
-        "options": [
-            "2",
-            "3",
-            "Error",
-            "10"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "list-methods",
-        "explanation": "The list starts with 2 cards, and append() adds one more card, making the total length 3."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Why do we initialize `user_score = -1` before the game loop?",
-        "options": [
-            "Because -1 is the starting score in Blackjack",
-            "To avoid 'variable undefined' warnings and signal uninitialized state",
-            "To make the score negative",
-            "It's a random choice"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "variable-initialization",
-        "explanation": "Initializing with -1 (a sentinel value) prevents warnings and makes debugging easier since -1 clearly indicates the variable hasn't been properly assigned yet."
-    },
-    {
-        "question_type": "coding",
-        "text": "Deal Card Function\\nWrite a function `deal_card` that returns a random card from the list [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]. Import random at the top.",
-        "starter_code": "import random\\n\\ndef deal_card():\\n    # Your code here\\n    pass",
-        "test_cases": [
-            {
-                "function_call": "deal_card() in [11, 2, 3, 4, 5, 6, 7, 8, 9, 10]",
-                "expected": "True"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "deal-card-function",
-        "solution_code": "import random\\n\\ndef deal_card():\\n    cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]\\n    return random.choice(cards)"
-    },
-    {
-        "question_type": "coding",
-        "text": "Sum Cards\\nWrite a function `sum_cards` that takes a list of card values and returns their sum.",
-        "starter_code": "def sum_cards(cards):\\n    # Your code here\\n    pass",
-        "test_cases": [
-            {
-                "function_call": "sum_cards([10, 5, 6])",
-                "expected": "21"
-            },
-            {
-                "function_call": "sum_cards([11, 10])",
-                "expected": "21"
-            },
-            {
-                "function_call": "sum_cards([2, 3, 4])",
-                "expected": "9"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "list-operations",
-        "solution_code": "def sum_cards(cards):\\n    return sum(cards)"
-    },
-    {
-        "question_type": "coding",
-        "text": "Check for Bust\\nWrite a function `is_bust` that takes a list of cards and returns True if the total exceeds 21, False otherwise.",
-        "starter_code": "def is_bust(cards):\\n    # Your code here\\n    pass",
-        "test_cases": [
-            {
-                "function_call": "is_bust([10, 10, 5])",
-                "expected": "True"
-            },
-            {
-                "function_call": "is_bust([10, 5, 3])",
-                "expected": "False"
-            },
-            {
-                "function_call": "is_bust([11, 10])",
-                "expected": "False"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "blackjack-logic",
-        "solution_code": "def is_bust(cards):\\n    return sum(cards) > 21"
-    },
-    {
-        "question_type": "coding",
-        "text": "Check for Blackjack\\nWrite a function `is_blackjack` that takes a list of cards and returns True if it's exactly 2 cards totaling 21.",
-        "starter_code": "def is_blackjack(cards):\\n    # Your code here\\n    pass",
-        "test_cases": [
-            {
-                "function_call": "is_blackjack([11, 10])",
-                "expected": "True"
-            },
-            {
-                "function_call": "is_blackjack([10, 10, 1])",
-                "expected": "False"
-            },
-            {
-                "function_call": "is_blackjack([7, 7, 7])",
-                "expected": "False"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "blackjack-logic",
-        "solution_code": "def is_blackjack(cards):\\n    return len(cards) == 2 and sum(cards) == 21"
-    },
-    {
-        "question_type": "coding",
-        "text": "Compare Scores\\nWrite a function `compare` that takes user_score and computer_score. Return 'win' if user wins, 'lose' if computer wins, 'draw' if equal. Assume neither busted.",
-        "starter_code": "def compare(user_score, computer_score):\\n    # Your code here\\n    pass",
-        "test_cases": [
-            {
-                "function_call": "compare(20, 18)",
-                "expected": "'win'"
-            },
-            {
-                "function_call": "compare(17, 20)",
-                "expected": "'lose'"
-            },
-            {
-                "function_call": "compare(19, 19)",
-                "expected": "'draw'"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "compare-function",
-        "solution_code": "def compare(user_score, computer_score):\\n    if user_score > computer_score:\\n        return 'win'\\n    elif user_score < computer_score:\\n        return 'lose'\\n    else:\\n        return 'draw'"
-    },
-    {
-        "question_type": "coding",
-        "text": "Adjust Ace\\nWrite a function `adjust_ace` that takes a list of cards. If 11 is in the list and the sum exceeds 21, replace 11 with 1. Return the modified list.",
-        "starter_code": "def adjust_ace(cards):\\n    # Your code here\\n    pass",
-        "test_cases": [
-            {
-                "function_call": "sum(adjust_ace([11, 10, 5]))",
-                "expected": "16"
-            },
-            {
-                "function_call": "adjust_ace([10, 5])",
-                "expected": "[10, 5]"
-            },
-            {
-                "function_call": "sum(adjust_ace([11, 11]))",
-                "expected": "12"
-            }
-        ],
-        "difficulty": "hard",
-        "topic_tag": "calculate-score",
-        "solution_code": "def adjust_ace(cards):\\n    while 11 in cards and sum(cards) > 21:\\n        cards.remove(11)\\n        cards.append(1)\\n    return cards"
-    },
-    {
-        "question_type": "coding",
-        "text": "Should Dealer Draw\\nWrite a function `should_dealer_draw` that takes dealer_score. Return True if score is less than 17 (and not 0 which means blackjack), False otherwise.",
-        "starter_code": "def should_dealer_draw(dealer_score):\\n    # Your code here\\n    pass",
-        "test_cases": [
-            {
-                "function_call": "should_dealer_draw(15)",
-                "expected": "True"
-            },
-            {
-                "function_call": "should_dealer_draw(17)",
-                "expected": "False"
-            },
-            {
-                "function_call": "should_dealer_draw(0)",
-                "expected": "False"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "computer-ai",
-        "solution_code": "def should_dealer_draw(dealer_score):\\n    return dealer_score != 0 and dealer_score < 17"
-    }
+  {
+    "text": "In Blackjack, what happens if your hand totals more than 21?",
+    "options": [
+      "You win automatically",
+      "You bust and lose immediately",
+      "The dealer must draw again",
+      "You get one more chance"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "blackjack-rules",
+    "explanation": "If your cards add up to more than 21, you 'bust' and lose immediately, regardless of what the dealer has.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "In our simplified Blackjack deck, what value does an Ace start with?",
+    "options": [
+      "1",
+      "10",
+      "11",
+      "21"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "blackjack-rules",
+    "explanation": "In our simplified version, Ace starts as 11 and only counts as 1 if the player would bust otherwise.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Why are there four 10s in our simplified card list `[11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]`?",
+    "options": [
+      "It's a bug in the code",
+      "To represent 10, Jack, Queen, and King (all worth 10)",
+      "To make the game harder",
+      "Because 10 is the most common card"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "blackjack-rules",
+    "explanation": "Jack, Queen, and King each count as 10, plus the actual 10 card, giving four 10-value cards in the deck.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "What does `random.choice(cards)` do?",
+    "options": [
+      "Returns a random integer between 0 and len(cards)",
+      "Returns a randomly selected item from the list",
+      "Shuffles the list randomly",
+      "Removes a random item from the list"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "random-module",
+    "explanation": "random.choice() picks and returns a random item from the given list. Unlike randint(), it works with any sequence.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "What is the difference between `list.append(item)` and `list.extend(items)`?",
+    "options": [
+      "There is no difference",
+      "append() adds one item; extend() adds multiple items from an iterable",
+      "extend() adds one item; append() adds multiple items",
+      "append() is for strings; extend() is for numbers"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "list-methods",
+    "explanation": "append() adds a single item to the list. extend() takes an iterable (like another list) and adds all its elements one by one.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "What error occurs when you try `my_list += 5` instead of `my_list.append(5)`?",
+    "options": [
+      "ValueError",
+      "TypeError: 'int' object is not iterable",
+      "SyntaxError",
+      "IndexError"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "list-methods",
+    "explanation": "+= with lists uses extend() internally, which requires an iterable. An integer is not iterable, causing a TypeError.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "What does the underscore in `for _ in range(2):` signify?",
+    "options": [
+      "It creates a private variable",
+      "It indicates the loop variable won't be used",
+      "It makes the loop run faster",
+      "It's a syntax error"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "python-conventions",
+    "explanation": "Using _ as a loop variable is a Python convention indicating you only care about the iteration count, not the value itself.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "In our calculate_score() function, why do we return 0 for a Blackjack?",
+    "options": [
+      "Because 0 is the actual score for Blackjack",
+      "To use as a special sentinel value that's easy to check for",
+      "Because the sum is always 0",
+      "To reset the game"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "calculate-score",
+    "explanation": "Returning 0 for Blackjack is a design choice making it easy to check with `if score == 0:`. It's a sentinel value representing a special case.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "How do we handle an Ace when the score would exceed 21?",
+    "options": [
+      "Remove the Ace from the hand",
+      "Use remove(11) and append(1) to change Ace from 11 to 1",
+      "Subtract 10 from the total",
+      "End the game immediately"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "calculate-score",
+    "explanation": "We find the Ace (value 11), remove it, and add back a 1. This effectively changes the Ace from 11 to 1.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "What does `while not is_game_over:` mean?",
+    "options": [
+      "Loop while is_game_over is True",
+      "Loop while is_game_over is False",
+      "Loop forever",
+      "Loop exactly once"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "game-loop",
+    "explanation": "The 'not' keyword inverts the boolean. So 'while not is_game_over' means 'while is_game_over is False' - the loop continues until the game ends.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "According to standard Blackjack rules, when must the dealer draw another card?",
+    "options": [
+      "When their score is 17 or higher",
+      "When their score is less than 17",
+      "When the player stands",
+      "Only on the first turn"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "computer-ai",
+    "explanation": "The dealer must keep drawing cards until their score reaches at least 17. This is a standard Blackjack rule.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Why do we check `computer_score != 0` before letting the computer draw?",
+    "options": [
+      "To prevent division by zero",
+      "Because 0 means Blackjack, and they shouldn't draw more cards",
+      "To reset the game",
+      "It's not necessary"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "computer-ai",
+    "explanation": "Since 0 represents Blackjack in our game, and 0 < 17 is True, we must explicitly check for Blackjack to prevent the computer from drawing unnecessary cards.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "What is a docstring and where should it be placed?",
+    "options": [
+      "A comment at the end of a function",
+      "A triple-quoted string immediately after the function definition",
+      "A variable containing documentation",
+      "A separate .doc file"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "docstrings",
+    "explanation": "A docstring is a triple-quoted string placed as the first statement in a function. It documents what the function does and appears in IDE hints.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "What will this code print?\\n```python\\nuser_cards = [10, 5]\\nuser_cards.append(deal_card())\\nprint(len(user_cards))\\n```",
+    "options": [
+      "2",
+      "3",
+      "Error",
+      "10"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "list-methods",
+    "explanation": "The list starts with 2 cards, and append() adds one more card, making the total length 3.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Why do we initialize `user_score = -1` before the game loop?",
+    "options": [
+      "Because -1 is the starting score in Blackjack",
+      "To avoid 'variable undefined' warnings and signal uninitialized state",
+      "To make the score negative",
+      "It's a random choice"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "variable-initialization",
+    "explanation": "Initializing with -1 (a sentinel value) prevents warnings and makes debugging easier since -1 clearly indicates the variable hasn't been properly assigned yet.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Deal Card Function\\nWrite a function `deal_card` that returns a random card from the list [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]. Import random at the top.",
+    "options": [],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "deal-card-function",
+    "explanation": "",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Sum Cards\\nWrite a function `sum_cards` that takes a list of card values and returns their sum.",
+    "options": [],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "list-operations",
+    "explanation": "",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Check for Bust\\nWrite a function `is_bust` that takes a list of cards and returns True if the total exceeds 21, False otherwise.",
+    "options": [],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "blackjack-logic",
+    "explanation": "",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Check for Blackjack\\nWrite a function `is_blackjack` that takes a list of cards and returns True if it's exactly 2 cards totaling 21.",
+    "options": [],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "blackjack-logic",
+    "explanation": "",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Compare Scores\\nWrite a function `compare` that takes user_score and computer_score. Return 'win' if user wins, 'lose' if computer wins, 'draw' if equal. Assume neither busted.",
+    "options": [],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "compare-function",
+    "explanation": "",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Adjust Ace\\nWrite a function `adjust_ace` that takes a list of cards. If 11 is in the list and the sum exceeds 21, replace 11 with 1. Return the modified list.",
+    "options": [],
+    "correct_index": 0,
+    "difficulty": "hard",
+    "topic_tag": "calculate-score",
+    "explanation": "",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Should Dealer Draw\\nWrite a function `should_dealer_draw` that takes dealer_score. Return True if score is less than 17 (and not 0 which means blackjack), False otherwise.",
+    "options": [],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "computer-ai",
+    "explanation": "",
+    "question_type": "mcq"
+  }
 ]

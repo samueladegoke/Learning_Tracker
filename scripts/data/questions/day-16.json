@@ -1,268 +1,288 @@
 [
-    {
-        "id": "day-16-1",
-        "type": "multiple-choice",
-        "question": "What is the main limitation of Procedural Programming for large projects?",
-        "options": [
-            "It is too fast",
-            "It becomes 'spaghetti code' with complex relationships that are hard to manage",
-            "It cannot do math",
-            "It requires expensive computers"
-        ],
-        "correctAnswer": 1,
-        "explanation": "As complexity grows, procedural code often develops tangled dependencies that are difficult to debug and maintain."
-    },
-    {
-        "id": "day-16-2",
-        "type": "multiple-choice",
-        "question": "What is a Class in OOP?",
-        "options": [
-            "A specific instance of data",
-            "A blueprint or template for creating objects",
-            "A classroom",
-            "A function"
-        ],
-        "correctAnswer": 1,
-        "explanation": "A Class defines the properties (attributes) and behaviors (methods) that objects created from it will have."
-    },
-    {
-        "id": "day-16-3",
-        "type": "multiple-choice",
-        "question": "What is an Object in OOP?",
-        "options": [
-            "The blueprint",
-            "An actual instance created from a Class",
-            "A variable name",
-            "A syntax error"
-        ],
-        "correctAnswer": 1,
-        "explanation": "If 'Car' is the blueprint, the specific red Ferrari in your driveway is the Object."
-    },
-    {
-        "id": "day-16-4",
-        "type": "code-correction",
-        "question": "Which is the correct syntax to create a new object from the `Turtle` class?",
-        "code": "timmy = Turtle",
-        "options": [
-            "timmy = Turtle()",
-            "timmy = new Turtle()",
-            "timmy = Turtle.new()",
-            "timmy = create(Turtle)"
-        ],
-        "correctAnswer": 0,
-        "explanation": "In Python, you call the class like a function `Class()` to initialize a new object."
-    },
-    {
-        "id": "day-16-5",
-        "type": "multiple-choice",
-        "question": "What are 'Attributes'?",
-        "options": [
-            "The functions attached to an object",
-            "The variables/data attached to an object",
-            "The name of the file",
-            "The imports"
-        ],
-        "correctAnswer": 1,
-        "explanation": "Attributes represent the state or data of the object (e.g., color, speed, fuel)."
-    },
-    {
-        "id": "day-16-6",
-        "type": "multiple-choice",
-        "question": "What are 'Methods'?",
-        "options": [
-            "Variables attached to an object",
-            "Functions attached to an object (what it does)",
-            "Mathematical formulas",
-            "Comments"
-        ],
-        "correctAnswer": 1,
-        "explanation": "Methods define the behavior of an object (e.g., drive(), stop(), draw())."
-    },
-    {
-        "id": "day-16-7",
-        "type": "code-correction",
-        "question": "How do you access the `battery` attribute of a `car` object?",
-        "code": "print(car-battery)",
-        "options": [
-            "car.battery",
-            "car[battery]",
-            "car->battery",
-            "battery(car)"
-        ],
-        "correctAnswer": 0,
-        "explanation": "Python uses dot notation `object.attribute` to access data."
-    },
-    {
-        "id": "day-16-8",
-        "type": "code-correction",
-        "question": "How do you call the `move` method of a `robot` object?",
-        "code": "robot.move",
-        "options": [
-            "robot.move()",
-            "move(robot)",
-            "robot->move()",
-            "call robot.move"
-        ],
-        "correctAnswer": 0,
-        "explanation": "Methods are functions, so they require parentheses `()` to execute."
-    },
-    {
-        "id": "day-16-9",
-        "type": "multiple-choice",
-        "question": "What casing convention is standard for Class names in Python?",
-        "options": [
-            "snake_case",
-            "camelCase",
-            "PascalCase (CapitalizeEveryWord)",
-            "UPPERCASE"
-        ],
-        "correctAnswer": 2,
-        "explanation": "PEP 8 recommends PascalCase for class names (e.g., `MyTurtle`) to distinguish them from variables/functions."
-    },
-    {
-        "id": "day-16-10",
-        "type": "multiple-choice",
-        "question": "What casing convention is standard for variable and function names?",
-        "options": [
-            "PascalCase",
-            "snake_case (all_lower_with_underscores)",
-            "camelCase",
-            "kebab-case"
-        ],
-        "correctAnswer": 1,
-        "explanation": "PEP 8 recommends snake_case for variables, functions, and method names."
-    },
-    {
-        "id": "day-16-11",
-        "type": "code-correction",
-        "question": "How do we import the `Turtle` class from the `turtle` module?",
-        "code": "import Turtle from turtle",
-        "options": [
-            "from turtle import Turtle",
-            "import turtle.Turtle",
-            "use turtle class Turtle",
-            "get Turtle from turtle"
-        ],
-        "correctAnswer": 0,
-        "explanation": "The syntax is `from [module] import [Class]`."
-    },
-    {
-        "id": "day-16-12",
-        "type": "multiple-choice",
-        "question": "What is PyPi?",
-        "options": [
-            "Python Pizza",
-            "The Python Package Index (a repository of software for Python)",
-            "A math constant",
-            "A snake"
-        ],
-        "correctAnswer": 1,
-        "explanation": "PyPi (pypi.org) is the official repository for third-party Python code."
-    },
-    {
-        "id": "day-16-13",
-        "type": "multiple-choice",
-        "question": "Which Object attribute would you change to make a turtle red?",
-        "options": [
-            "turtle.color('red')",
-            "turtle.paint = 'red'",
-            "turtle.red()",
-            "turtle.set_red"
-        ],
-        "correctAnswer": 0,
-        "explanation": "In the turtle module, `color()` is actually a method (function) that sets the pen color."
-    },
-    {
-        "id": "day-16-14",
-        "type": "code-correction",
-        "question": "How do you align text to the left in a PrettyTable object named `table`?",
-        "code": "table.align = left",
-        "options": [
-            "table.align = 'l'",
-            "table.left()",
-            "table.set_align('left')",
-            "table.align('l')"
-        ],
-        "correctAnswer": 0,
-        "explanation": "The `align` attribute takes a string character ('l', 'r', 'c')."
-    },
-    {
-        "id": "day-16-15",
-        "type": "multiple-choice",
-        "question": "Why do we say OOP makes code 'reusable'?",
-        "options": [
-            "Because you can copy paste it",
-            "Because once a Class is written (like `Turtle`), anyone can create infinite objects from it without rewriting the logic",
-            "Because it recycles memory",
-            "It is environmentally friendly"
-        ],
-        "correctAnswer": 1,
-        "explanation": "One class definition serves as a factory for endless distinct objects, encapsulating the complexity."
-    },
-    {
-        "id": "day-16-16",
-        "type": "multiple-choice",
-        "question": "What is the `Screen` object in the turtle module?",
-        "options": [
-            "Your computer monitor",
-            "The window in which the turtle graphics are drawn",
-            "A filter",
-            "A method"
-        ],
-        "correctAnswer": 1,
-        "explanation": "The Screen object controls the window properties, background color, and event listeners."
-    },
-    {
-        "id": "day-16-17",
-        "type": "code-correction",
-        "question": "How do you check the width of the canvas using the screen object?",
-        "code": "print(screen.width)",
-        "options": [
-            "print(screen.canvwidth)",
-            "print(screen.get_width())",
-            "print(screen.window_width())",
-            "All of the above (module dependent, but canvwidth is the attribute)"
-        ],
-        "correctAnswer": 3,
-        "explanation": "Usually attributes like `canvwidth` store the state, though `window_width()` is a method. The context implies accessing an attribute."
-    },
-    {
-        "id": "day-16-18",
-        "type": "multiple-choice",
-        "question": "What does `my_screen.exitonclick()` do?",
-        "options": [
-            "Closes the window immediately",
-            "Keeps the window open until the user clicks on it",
-            "Crashes the program",
-            "Saves the image"
-        ],
-        "correctAnswer": 1,
-        "explanation": "It creates a blocking loop that waits for a mouse click event to terminate the script cleanly."
-    },
-    {
-        "id": "day-16-19",
-        "type": "multiple-choice",
-        "question": "How do you add a new package to your project?",
-        "options": [
-            "Download a zip file",
-            "Use the command `pip install [package_name]`",
-            "Write it yourself",
-            "Email the author"
-        ],
-        "correctAnswer": 1,
-        "explanation": "`pip` is the standard package manager for Python."
-    },
-    {
-        "id": "day-16-20",
-        "type": "multiple-choice",
-        "question": "If you have a `Car` class and make two cars, `car1` and `car2`. Can `car1` be red and `car2` be blue?",
-        "options": [
-            "No, they must be the same",
-            "Yes, each object (instance) has its own independent data (attributes)",
-            "Only if you make a new Class",
-            "Colors are not supported"
-        ],
-        "correctAnswer": 1,
-        "explanation": "Instances are independent. Modifying one object's state does not affect others created from the same class."
-    }
+  {
+    "text": "What is the main limitation of Procedural Programming for large projects?",
+    "options": [
+      "It is too fast",
+      "It becomes 'spaghetti code' with complex relationships that are hard to manage",
+      "It cannot do math",
+      "It requires expensive computers"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "oop",
+    "explanation": "As complexity grows, procedural code often develops tangled dependencies that are difficult to debug and maintain.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "What is a Class in OOP?",
+    "options": [
+      "A specific instance of data",
+      "A blueprint or template for creating objects",
+      "A classroom",
+      "A function"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "oop",
+    "explanation": "A Class defines the properties (attributes) and behaviors (methods) that objects created from it will have.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "What is an Object in OOP?",
+    "options": [
+      "The blueprint",
+      "An actual instance created from a Class",
+      "A variable name",
+      "A syntax error"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "oop",
+    "explanation": "If 'Car' is the blueprint, the specific red Ferrari in your driveway is the Object.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Which is the correct syntax to create a new object from the `Turtle` class?",
+    "options": [
+      "timmy = Turtle()",
+      "timmy = new Turtle()",
+      "timmy = Turtle.new()",
+      "timmy = create(Turtle)"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "oop",
+    "explanation": "In Python, you call the class like a function `Class()` to initialize a new object.",
+    "question_type": "mcq",
+    "starter_code": "timmy = Turtle"
+  },
+  {
+    "text": "What are 'Attributes'?",
+    "options": [
+      "The functions attached to an object",
+      "The variables/data attached to an object",
+      "The name of the file",
+      "The imports"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "oop",
+    "explanation": "Attributes represent the state or data of the object (e.g., color, speed, fuel).",
+    "question_type": "mcq"
+  },
+  {
+    "text": "What are 'Methods'?",
+    "options": [
+      "Variables attached to an object",
+      "Functions attached to an object (what it does)",
+      "Mathematical formulas",
+      "Comments"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "oop",
+    "explanation": "Methods define the behavior of an object (e.g., drive(), stop(), draw()).",
+    "question_type": "mcq"
+  },
+  {
+    "text": "How do you access the `battery` attribute of a `car` object?",
+    "options": [
+      "car.battery",
+      "car[battery]",
+      "car->battery",
+      "battery(car)"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "oop",
+    "explanation": "Python uses dot notation `object.attribute` to access data.",
+    "question_type": "mcq",
+    "starter_code": "print(car-battery)"
+  },
+  {
+    "text": "How do you call the `move` method of a `robot` object?",
+    "options": [
+      "robot.move()",
+      "move(robot)",
+      "robot->move()",
+      "call robot.move"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "oop",
+    "explanation": "Methods are functions, so they require parentheses `()` to execute.",
+    "question_type": "mcq",
+    "starter_code": "robot.move"
+  },
+  {
+    "text": "What casing convention is standard for Class names in Python?",
+    "options": [
+      "snake_case",
+      "camelCase",
+      "PascalCase (CapitalizeEveryWord)",
+      "UPPERCASE"
+    ],
+    "correct_index": 2,
+    "difficulty": "medium",
+    "topic_tag": "oop",
+    "explanation": "PEP 8 recommends PascalCase for class names (e.g., `MyTurtle`) to distinguish them from variables/functions.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "What casing convention is standard for variable and function names?",
+    "options": [
+      "PascalCase",
+      "snake_case (all_lower_with_underscores)",
+      "camelCase",
+      "kebab-case"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "oop",
+    "explanation": "PEP 8 recommends snake_case for variables, functions, and method names.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "How do we import the `Turtle` class from the `turtle` module?",
+    "options": [
+      "from turtle import Turtle",
+      "import turtle.Turtle",
+      "use turtle class Turtle",
+      "get Turtle from turtle"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "oop",
+    "explanation": "The syntax is `from [module] import [Class]`.",
+    "question_type": "mcq",
+    "starter_code": "import Turtle from turtle"
+  },
+  {
+    "text": "What is PyPi?",
+    "options": [
+      "Python Pizza",
+      "The Python Package Index (a repository of software for Python)",
+      "A math constant",
+      "A snake"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "oop",
+    "explanation": "PyPi (pypi.org) is the official repository for third-party Python code.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Which Object attribute would you change to make a turtle red?",
+    "options": [
+      "turtle.color('red')",
+      "turtle.paint = 'red'",
+      "turtle.red()",
+      "turtle.set_red"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "oop",
+    "explanation": "In the turtle module, `color()` is actually a method (function) that sets the pen color.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "How do you align text to the left in a PrettyTable object named `table`?",
+    "options": [
+      "table.align = 'l'",
+      "table.left()",
+      "table.set_align('left')",
+      "table.align('l')"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "oop",
+    "explanation": "The `align` attribute takes a string character ('l', 'r', 'c').",
+    "question_type": "mcq",
+    "starter_code": "table.align = left"
+  },
+  {
+    "text": "Why do we say OOP makes code 'reusable'?",
+    "options": [
+      "Because you can copy paste it",
+      "Because once a Class is written (like `Turtle`), anyone can create infinite objects from it without rewriting the logic",
+      "Because it recycles memory",
+      "It is environmentally friendly"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "oop",
+    "explanation": "One class definition serves as a factory for endless distinct objects, encapsulating the complexity.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "What is the `Screen` object in the turtle module?",
+    "options": [
+      "Your computer monitor",
+      "The window in which the turtle graphics are drawn",
+      "A filter",
+      "A method"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "oop",
+    "explanation": "The Screen object controls the window properties, background color, and event listeners.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "How do you check the width of the canvas using the screen object?",
+    "options": [
+      "print(screen.canvwidth)",
+      "print(screen.get_width())",
+      "print(screen.window_width())",
+      "All of the above (module dependent, but canvwidth is the attribute)"
+    ],
+    "correct_index": 3,
+    "difficulty": "medium",
+    "topic_tag": "oop",
+    "explanation": "Usually attributes like `canvwidth` store the state, though `window_width()` is a method. The context implies accessing an attribute.",
+    "question_type": "mcq",
+    "starter_code": "print(screen.width)"
+  },
+  {
+    "text": "What does `my_screen.exitonclick()` do?",
+    "options": [
+      "Closes the window immediately",
+      "Keeps the window open until the user clicks on it",
+      "Crashes the program",
+      "Saves the image"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "oop",
+    "explanation": "It creates a blocking loop that waits for a mouse click event to terminate the script cleanly.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "How do you add a new package to your project?",
+    "options": [
+      "Download a zip file",
+      "Use the command `pip install [package_name]`",
+      "Write it yourself",
+      "Email the author"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "oop",
+    "explanation": "`pip` is the standard package manager for Python.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "If you have a `Car` class and make two cars, `car1` and `car2`. Can `car1` be red and `car2` be blue?",
+    "options": [
+      "No, they must be the same",
+      "Yes, each object (instance) has its own independent data (attributes)",
+      "Only if you make a new Class",
+      "Colors are not supported"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "oop",
+    "explanation": "Instances are independent. Modifying one object's state does not affect others created from the same class.",
+    "question_type": "mcq"
+  }
 ]

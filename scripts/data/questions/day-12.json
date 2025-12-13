@@ -1,360 +1,289 @@
 [
-    {
-        "question_type": "mcq",
-        "text": "What is 'scope' in programming?",
-        "options": [
-            "The speed at which code runs",
-            "The region of code where a variable or function is accessible",
-            "The number of lines in a function",
-            "A type of loop"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "scope-basics",
-        "explanation": "Scope determines where in your code a variable or function can be accessed. Think of it like boundaries defining where names are valid."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is 'local scope' in Python?",
-        "options": [
-            "Variables defined anywhere in the file",
-            "Variables defined inside a function, only accessible within that function",
-            "Variables defined at the top of the file",
-            "Variables that can be accessed from any file"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "local-scope",
-        "explanation": "Local scope means the variable exists only inside the function where it was created. Outside that function, it doesn't exist."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is 'global scope' in Python?",
-        "options": [
-            "Variables defined inside functions",
-            "Variables defined at the top level of a file, accessible everywhere",
-            "Variables that work across multiple files",
-            "Variables that never change"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "global-scope",
-        "explanation": "Global scope means the variable is defined outside all functions (at the top level) and can be accessed from anywhere in the file."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What will this code print?\\n```python\\nenemies = 1\\ndef increase():\\n    enemies = 2\\nincrease()\\nprint(enemies)\\n```",
-        "options": [
-            "1",
-            "2",
-            "Error",
-            "None"
-        ],
-        "correct_index": 0,
-        "difficulty": "medium",
-        "topic_tag": "scope-behavior",
-        "explanation": "Setting enemies = 2 inside the function creates a NEW local variable. It doesn't modify the global 'enemies'. The global remains 1."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What error occurs when accessing a local variable outside its function?",
-        "options": [
-            "SyntaxError",
-            "TypeError",
-            "NameError",
-            "ValueError"
-        ],
-        "correct_index": 2,
-        "difficulty": "easy",
-        "topic_tag": "local-scope",
-        "explanation": "Trying to access a local variable outside its function raises a NameError because the name is not defined in that scope."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Can you READ a global variable from inside a function?",
-        "options": [
-            "No, never",
-            "Yes, reading global variables is always allowed",
-            "Only if you use the global keyword",
-            "Only if the function has no parameters"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "global-scope",
-        "explanation": "You can always read (access) global variables from inside functions. The global keyword is only needed if you want to MODIFY them."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What keyword allows you to modify a global variable from inside a function?",
-        "options": [
-            "local",
-            "global",
-            "modify",
-            "extern"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "global-keyword",
-        "explanation": "The 'global' keyword tells Python to use the global variable instead of creating a new local one with the same name."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Why is using the `global` keyword generally discouraged?",
-        "options": [
-            "It makes code run slower",
-            "It can lead to bugs and makes code harder to understand",
-            "Python doesn't actually support it",
-            "It only works with integers"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "global-keyword",
-        "explanation": "Modifying global variables creates hidden dependencies between functions, making bugs hard to track and code difficult to maintain."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is a better alternative to using `global` for returning values from functions?",
-        "options": [
-            "Use print() instead",
-            "Use the return statement and capture the value",
-            "Create multiple functions",
-            "Use class variables"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "return-alternative",
-        "explanation": "Using return makes functions self-contained. The caller can capture the returned value and assign it to a variable explicitly."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the naming convention for constants in Python?",
-        "options": [
-            "camelCase",
-            "ALL_CAPS_WITH_UNDERSCORES",
-            "lowercase_with_underscores",
-            "PascalCase"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "constants",
-        "explanation": "Constants use ALL_CAPS_WITH_UNDERSCORES (like PI or MAX_SIZE). This signals to other developers that the value shouldn't be changed."
-    },
-    {
-        "question_type": "mcq",
-        "text": "When is it acceptable to use global variables?",
-        "options": [
-            "Never, they should always be avoided",
-            "For constants that never change (like PI or configuration values)",
-            "For all variables to make code simpler",
-            "Only inside classes"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "constants",
-        "explanation": "Global constants (values you define once and never modify) are a valid use case. They're easy to find at the top of your file and update in one place."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Does Python have block scope (like inside if/for blocks)?",
-        "options": [
-            "Yes, variables in if blocks are local to that block",
-            "No, only functions create a new scope in Python",
-            "Yes, but only for loops",
-            "It depends on the Python version"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "block-scope",
-        "explanation": "Unlike some languages, Python doesn't have block scope. Variables defined inside if, for, or while blocks are accessible outside those blocks."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is a 'namespace' in Python?",
-        "options": [
-            "A file extension",
-            "A collection of names (variables, functions) and their corresponding objects",
-            "A type of list",
-            "A special string format"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "namespace",
-        "explanation": "A namespace is like a dictionary mapping names to objects. Each scope has its own namespace, determining which names are valid."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does `from random import randint` do?",
-        "options": [
-            "Imports the entire random module",
-            "Imports only the randint function from the random module",
-            "Creates a random integer",
-            "Defines a new function called randint"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "imports",
-        "explanation": "This imports only the randint function directly, so you can use randint() instead of random.randint()."
-    },
-    {
-        "question_type": "mcq",
-        "text": "In the Number Guessing Game, why wrap the game logic in a `game()` function?",
-        "options": [
-            "To make the code run faster",
-            "To keep variables local and avoid polluting global scope",
-            "Because Python requires it",
-            "To enable debugging"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "code-organization",
-        "explanation": "Wrapping game logic in a function keeps all game variables local to that function, preventing them from accidentally having global scope."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What will this print?\\n```python\\nx = 10\\ndef change_x():\\n    global x\\n    x = 20\\nchange_x()\\nprint(x)\\n```",
-        "options": [
-            "10",
-            "20",
-            "Error",
-            "None"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "global-keyword",
-        "explanation": "The 'global x' statement allows the function to modify the global x. After calling change_x(), the global x is now 20."
-    },
-    {
-        "question_type": "coding",
-        "text": "Local Variable\\nWrite a function `get_greeting` that creates a local variable `message` set to 'Hello!' and returns it.",
-        "starter_code": "def get_greeting():\\n    # Your code here\\n    pass",
-        "test_cases": [
-            {
-                "function_call": "get_greeting()",
-                "expected": "'Hello!'"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "local-scope",
-        "solution_code": "def get_greeting():\\n    message = 'Hello!'\\n    return message"
-    },
-    {
-        "question_type": "coding",
-        "text": "Return Instead of Global\\nWrite a function `add_one` that takes a number and returns that number plus 1. Don't use the global keyword.",
-        "starter_code": "def add_one(num):\\n    # Your code here\\n    pass",
-        "test_cases": [
-            {
-                "function_call": "add_one(5)",
-                "expected": "6"
-            },
-            {
-                "function_call": "add_one(0)",
-                "expected": "1"
-            },
-            {
-                "function_call": "add_one(-3)",
-                "expected": "-2"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "return-alternative",
-        "solution_code": "def add_one(num):\\n    return num + 1"
-    },
-    {
-        "question_type": "coding",
-        "text": "Set Difficulty\\nWrite a function `set_difficulty` that takes a level string ('easy' or 'hard'). Return 10 if easy, 5 if hard.",
-        "starter_code": "def set_difficulty(level):\\n    # Your code here\\n    pass",
-        "test_cases": [
-            {
-                "function_call": "set_difficulty('easy')",
-                "expected": "10"
-            },
-            {
-                "function_call": "set_difficulty('hard')",
-                "expected": "5"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "number-guessing-game",
-        "solution_code": "def set_difficulty(level):\\n    if level == 'easy':\\n        return 10\\n    else:\\n        return 5"
-    },
-    {
-        "question_type": "coding",
-        "text": "Check Guess\\nWrite a function `check_guess` that takes guess and answer. Return 'Too high' if guess > answer, 'Too low' if guess < answer, 'Correct!' if equal.",
-        "starter_code": "def check_guess(guess, answer):\\n    # Your code here\\n    pass",
-        "test_cases": [
-            {
-                "function_call": "check_guess(50, 30)",
-                "expected": "'Too high'"
-            },
-            {
-                "function_call": "check_guess(20, 30)",
-                "expected": "'Too low'"
-            },
-            {
-                "function_call": "check_guess(30, 30)",
-                "expected": "'Correct!'"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "number-guessing-game",
-        "solution_code": "def check_guess(guess, answer):\\n    if guess > answer:\\n        return 'Too high'\\n    elif guess < answer:\\n        return 'Too low'\\n    else:\\n        return 'Correct!'"
-    },
-    {
-        "question_type": "coding",
-        "text": "Use Constant\\nGiven the constant MAX_ATTEMPTS = 10 at the top of your code, write a function `has_attempts` that takes current_attempts and returns True if current_attempts < MAX_ATTEMPTS.",
-        "starter_code": "MAX_ATTEMPTS = 10\\n\\ndef has_attempts(current_attempts):\\n    # Your code here\\n    pass",
-        "test_cases": [
-            {
-                "function_call": "has_attempts(5)",
-                "expected": "True"
-            },
-            {
-                "function_call": "has_attempts(10)",
-                "expected": "False"
-            },
-            {
-                "function_call": "has_attempts(0)",
-                "expected": "True"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "constants",
-        "solution_code": "MAX_ATTEMPTS = 10\\n\\ndef has_attempts(current_attempts):\\n    return current_attempts < MAX_ATTEMPTS"
-    },
-    {
-        "question_type": "coding",
-        "text": "Random Number in Range\\nWrite a function `random_number` that returns a random integer between 1 and 100 (inclusive). Import randint from random.",
-        "starter_code": "from random import randint\\n\\ndef random_number():\\n    # Your code here\\n    pass",
-        "test_cases": [
-            {
-                "function_call": "1 <= random_number() <= 100",
-                "expected": "True"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "random-module",
-        "solution_code": "from random import randint\\n\\ndef random_number():\\n    return randint(1, 100)"
-    },
-    {
-        "question_type": "coding",
-        "text": "Game Over Check\\nWrite a function `is_game_over` that takes guess, answer, and turns. Return True if guess equals answer OR turns is 0, False otherwise.",
-        "starter_code": "def is_game_over(guess, answer, turns):\\n    # Your code here\\n    pass",
-        "test_cases": [
-            {
-                "function_call": "is_game_over(50, 50, 5)",
-                "expected": "True"
-            },
-            {
-                "function_call": "is_game_over(30, 50, 0)",
-                "expected": "True"
-            },
-            {
-                "function_call": "is_game_over(30, 50, 3)",
-                "expected": "False"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "number-guessing-game",
-        "solution_code": "def is_game_over(guess, answer, turns):\\n    return guess == answer or turns == 0"
-    }
+  {
+    "text": "What is 'scope' in programming?",
+    "options": [
+      "The speed at which code runs",
+      "The region of code where a variable or function is accessible",
+      "The number of lines in a function",
+      "A type of loop"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "scope-basics",
+    "explanation": "Scope determines where in your code a variable or function can be accessed. Think of it like boundaries defining where names are valid.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "What is 'local scope' in Python?",
+    "options": [
+      "Variables defined anywhere in the file",
+      "Variables defined inside a function, only accessible within that function",
+      "Variables defined at the top of the file",
+      "Variables that can be accessed from any file"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "local-scope",
+    "explanation": "Local scope means the variable exists only inside the function where it was created. Outside that function, it doesn't exist.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "What is 'global scope' in Python?",
+    "options": [
+      "Variables defined inside functions",
+      "Variables defined at the top level of a file, accessible everywhere",
+      "Variables that work across multiple files",
+      "Variables that never change"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "global-scope",
+    "explanation": "Global scope means the variable is defined outside all functions (at the top level) and can be accessed from anywhere in the file.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "What will this code print?\\n```python\\nenemies = 1\\ndef increase():\\n    enemies = 2\\nincrease()\\nprint(enemies)\\n```",
+    "options": [
+      "1",
+      "2",
+      "Error",
+      "None"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "scope-behavior",
+    "explanation": "Setting enemies = 2 inside the function creates a NEW local variable. It doesn't modify the global 'enemies'. The global remains 1.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "What error occurs when accessing a local variable outside its function?",
+    "options": [
+      "SyntaxError",
+      "TypeError",
+      "NameError",
+      "ValueError"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "local-scope",
+    "explanation": "Trying to access a local variable outside its function raises a NameError because the name is not defined in that scope.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Can you READ a global variable from inside a function?",
+    "options": [
+      "No, never",
+      "Yes, reading global variables is always allowed",
+      "Only if you use the global keyword",
+      "Only if the function has no parameters"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "global-scope",
+    "explanation": "You can always read (access) global variables from inside functions. The global keyword is only needed if you want to MODIFY them.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "What keyword allows you to modify a global variable from inside a function?",
+    "options": [
+      "local",
+      "global",
+      "modify",
+      "extern"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "global-keyword",
+    "explanation": "The 'global' keyword tells Python to use the global variable instead of creating a new local one with the same name.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Why is using the `global` keyword generally discouraged?",
+    "options": [
+      "It makes code run slower",
+      "It can lead to bugs and makes code harder to understand",
+      "Python doesn't actually support it",
+      "It only works with integers"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "global-keyword",
+    "explanation": "Modifying global variables creates hidden dependencies between functions, making bugs hard to track and code difficult to maintain.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "What is a better alternative to using `global` for returning values from functions?",
+    "options": [
+      "Use print() instead",
+      "Use the return statement and capture the value",
+      "Create multiple functions",
+      "Use class variables"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "return-alternative",
+    "explanation": "Using return makes functions self-contained. The caller can capture the returned value and assign it to a variable explicitly.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "What is the naming convention for constants in Python?",
+    "options": [
+      "camelCase",
+      "ALL_CAPS_WITH_UNDERSCORES",
+      "lowercase_with_underscores",
+      "PascalCase"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "constants",
+    "explanation": "Constants use ALL_CAPS_WITH_UNDERSCORES (like PI or MAX_SIZE). This signals to other developers that the value shouldn't be changed.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "When is it acceptable to use global variables?",
+    "options": [
+      "Never, they should always be avoided",
+      "For constants that never change (like PI or configuration values)",
+      "For all variables to make code simpler",
+      "Only inside classes"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "constants",
+    "explanation": "Global constants (values you define once and never modify) are a valid use case. They're easy to find at the top of your file and update in one place.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Does Python have block scope (like inside if/for blocks)?",
+    "options": [
+      "Yes, variables in if blocks are local to that block",
+      "No, only functions create a new scope in Python",
+      "Yes, but only for loops",
+      "It depends on the Python version"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "block-scope",
+    "explanation": "Unlike some languages, Python doesn't have block scope. Variables defined inside if, for, or while blocks are accessible outside those blocks.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "What is a 'namespace' in Python?",
+    "options": [
+      "A file extension",
+      "A collection of names (variables, functions) and their corresponding objects",
+      "A type of list",
+      "A special string format"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "namespace",
+    "explanation": "A namespace is like a dictionary mapping names to objects. Each scope has its own namespace, determining which names are valid.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "What does `from random import randint` do?",
+    "options": [
+      "Imports the entire random module",
+      "Imports only the randint function from the random module",
+      "Creates a random integer",
+      "Defines a new function called randint"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "imports",
+    "explanation": "This imports only the randint function directly, so you can use randint() instead of random.randint().",
+    "question_type": "mcq"
+  },
+  {
+    "text": "In the Number Guessing Game, why wrap the game logic in a `game()` function?",
+    "options": [
+      "To make the code run faster",
+      "To keep variables local and avoid polluting global scope",
+      "Because Python requires it",
+      "To enable debugging"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "code-organization",
+    "explanation": "Wrapping game logic in a function keeps all game variables local to that function, preventing them from accidentally having global scope.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "What will this print?\\n```python\\nx = 10\\ndef change_x():\\n    global x\\n    x = 20\\nchange_x()\\nprint(x)\\n```",
+    "options": [
+      "10",
+      "20",
+      "Error",
+      "None"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "global-keyword",
+    "explanation": "The 'global x' statement allows the function to modify the global x. After calling change_x(), the global x is now 20.",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Local Variable\\nWrite a function `get_greeting` that creates a local variable `message` set to 'Hello!' and returns it.",
+    "options": [],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "local-scope",
+    "explanation": "",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Return Instead of Global\\nWrite a function `add_one` that takes a number and returns that number plus 1. Don't use the global keyword.",
+    "options": [],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "return-alternative",
+    "explanation": "",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Set Difficulty\\nWrite a function `set_difficulty` that takes a level string ('easy' or 'hard'). Return 10 if easy, 5 if hard.",
+    "options": [],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "number-guessing-game",
+    "explanation": "",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Check Guess\\nWrite a function `check_guess` that takes guess and answer. Return 'Too high' if guess > answer, 'Too low' if guess < answer, 'Correct!' if equal.",
+    "options": [],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "number-guessing-game",
+    "explanation": "",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Use Constant\\nGiven the constant MAX_ATTEMPTS = 10 at the top of your code, write a function `has_attempts` that takes current_attempts and returns True if current_attempts < MAX_ATTEMPTS.",
+    "options": [],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "constants",
+    "explanation": "",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Random Number in Range\\nWrite a function `random_number` that returns a random integer between 1 and 100 (inclusive). Import randint from random.",
+    "options": [],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "random-module",
+    "explanation": "",
+    "question_type": "mcq"
+  },
+  {
+    "text": "Game Over Check\\nWrite a function `is_game_over` that takes guess, answer, and turns. Return True if guess equals answer OR turns is 0, False otherwise.",
+    "options": [],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "number-guessing-game",
+    "explanation": "",
+    "question_type": "mcq"
+  }
 ]
