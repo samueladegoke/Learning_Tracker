@@ -1,0 +1,284 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What is a higher-order function?",
+        "options": [
+            "A function that runs faster",
+            "A function that takes or returns other functions",
+            "A function with many parameters",
+            "A function inside a class"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "higher-order",
+        "explanation": "Higher-order functions take functions as arguments or return functions as results."
+    },
+    {
+        "question_type": "mcq",
+        "text": "When passing a function as an argument, how do you write it?",
+        "options": [
+            "function_name()",
+            "call(function_name)",
+            "function_name",
+            "&function_name"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "higher-order",
+        "explanation": "Pass just the function name without parentheses; parentheses would call it immediately."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does screen.listen() do?",
+        "options": [
+            "Plays audio",
+            "Enables keyboard/mouse event detection",
+            "Closes the window",
+            "Prints to console"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "events",
+        "explanation": "listen() tells the screen to start listening for keyboard and mouse events."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does screen.onkey() do?",
+        "options": [
+            "Creates a new key",
+            "Binds a function to a key press event",
+            "Locks the keyboard",
+            "Returns the pressed key"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "events",
+        "explanation": "onkey() binds a callback function to be triggered when a specific key is pressed."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix this event listener binding:",
+        "code": "screen.onkey(move_forwards(), 'space')",
+        "options": [
+            "screen.onkey(move_forwards, 'space')",
+            "screen.onkey('space', move_forwards)",
+            "screen.bind(move_forwards, 'space')",
+            "screen.key('space', move_forwards())"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "events",
+        "explanation": "Remove the parentheses from move_forwards to pass the function, not call it."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is an 'instance' in OOP?",
+        "options": [
+            "A class definition",
+            "A specific object created from a class",
+            "A method",
+            "A module"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "instances",
+        "explanation": "An instance is an individual object created from a class blueprint."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is 'state' in the context of objects?",
+        "options": [
+            "The class name",
+            "The current values of an object's attributes",
+            "The methods available",
+            "The file location"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "state",
+        "explanation": "State refers to the current data/attribute values stored in an object at any moment."
+    },
+    {
+        "question_type": "mcq",
+        "text": "If timmy and tommy are both Turtle instances, what happens when timmy.forward(100) is called?",
+        "options": [
+            "Both move forward",
+            "Only timmy moves forward",
+            "Tommy moves forward",
+            "Neither moves"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "instances",
+        "explanation": "Each instance is independent; only the object whose method is called is affected."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does screen.textinput() return?",
+        "options": [
+            "An integer",
+            "A boolean",
+            "The text entered by the user (or None if cancelled)",
+            "Nothing"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "screen",
+        "explanation": "textinput() returns the user's input as a string, or None if they cancelled."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "How do you get a turtle's current x position?",
+        "code": "position = turtle.x",
+        "options": [
+            "position = turtle.xcor()",
+            "position = turtle.getx()",
+            "position = turtle.pos_x()",
+            "position = x(turtle)"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "turtle",
+        "explanation": "xcor() returns the turtle's current x coordinate."
+    },
+    {
+        "question_type": "mcq",
+        "text": "In a turtle race, how do multiple turtles move independently?",
+        "options": [
+            "They share the same method calls",
+            "Each is a separate instance with its own state",
+            "Only one turtle can exist",
+            "They move in sync automatically"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "instances",
+        "explanation": "Each turtle is a separate instance that can be controlled independently."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What key parameter does screen.onkey() accept?",
+        "options": [
+            "Key codes only",
+            "String names like 'space', 'Up', 'a'",
+            "Numbers 0-9",
+            "ASCII values"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "events",
+        "explanation": "onkey() accepts key names as strings like 'space', 'Up', 'Down', or letter keys."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What happens if screen.listen() is not called before screen.onkey()?",
+        "options": [
+            "Error is raised",
+            "Key presses won't be detected",
+            "It works normally",
+            "The program crashes"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "events",
+        "explanation": "Without listen(), the screen isn't listening for events so onkey() won't trigger."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why use keyword arguments with onkey() like key='space'?",
+        "options": [
+            "It's required by Python",
+            "For better readability and to avoid position errors",
+            "It makes code run faster",
+            "To use multiple keys"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "events",
+        "explanation": "Keyword arguments make code clearer and prevent errors from wrong argument order."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is turtle.home() used for?",
+        "options": [
+            "Exits the program",
+            "Returns turtle to origin (0, 0) facing right",
+            "Creates a new turtle",
+            "Saves the current position"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "turtle",
+        "explanation": "home() moves the turtle back to its starting position and heading."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you create a pop-up asking the user to pick a color?",
+        "options": [
+            "input('Pick color')",
+            "screen.textinput('Title', 'Pick a color')",
+            "screen.ask('color')",
+            "print('Pick color')"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "screen",
+        "explanation": "textinput() creates a GUI dialog box for user text input."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does turtle.clear() do?",
+        "options": [
+            "Deletes the turtle",
+            "Erases the turtle's drawings",
+            "Clears the screen background",
+            "Resets all turtles"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "turtle",
+        "explanation": "clear() erases the lines drawn by that specific turtle."
+    },
+    {
+        "question_type": "mcq",
+        "text": "In the turtle race, how is the winner determined?",
+        "options": [
+            "Random selection",
+            "First turtle to cross the finish line (xcor() > threshold)",
+            "Fastest speed setting",
+            "User choice"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "turtle-race",
+        "explanation": "Check each turtle's x position; the first to cross the finish line wins."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is turtle.pencolor() used for in the race example?",
+        "options": [
+            "To move the turtle",
+            "To identify/return the turtle's color",
+            "To change the background",
+            "To set speed"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "turtle",
+        "explanation": "pencolor() returns or sets the turtle's pen color, useful for identifying winners."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does random.randint(0, 10) return?",
+        "options": [
+            "Always 5",
+            "A random float between 0-10",
+            "A random integer between 0 and 10 inclusive",
+            "A list of numbers"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "random",
+        "explanation": "randint(a, b) returns a random integer N where a <= N <= b."
+    }
+]

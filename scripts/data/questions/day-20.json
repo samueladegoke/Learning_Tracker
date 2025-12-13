@@ -1,0 +1,284 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What does screen.tracer(0) do?",
+        "options": [
+            "Speeds up the turtle",
+            "Turns off automatic screen updates",
+            "Closes the window",
+            "Creates a trace file"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "animation",
+        "explanation": "tracer(0) disables automatic animation so you can control when screens refresh."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you manually refresh the screen when tracer is off?",
+        "options": [
+            "screen.refresh()",
+            "screen.update()",
+            "screen.redraw()",
+            "screen.paint()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "animation",
+        "explanation": "screen.update() forces the screen to redraw with all pending changes."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does time.sleep(0.1) do?",
+        "options": [
+            "Speeds up the program",
+            "Pauses execution for 0.1 seconds",
+            "Closes the program",
+            "Saves the game"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "timing",
+        "explanation": "time.sleep() pauses the program for the specified number of seconds."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which module provides the sleep() function?",
+        "options": [
+            "turtle",
+            "time",
+            "random",
+            "math"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "timing",
+        "explanation": "The time module provides sleep() for adding delays."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What shape is used for snake segments?",
+        "options": [
+            "circle",
+            "turtle",
+            "square",
+            "triangle"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "snake",
+        "explanation": "Turtle('square') creates square-shaped segments for the snake body."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why must segments be moved in reverse order (tail to head)?",
+        "options": [
+            "It's faster",
+            "So each segment moves to where the one in front was",
+            "To prevent errors",
+            "It doesn't matter"
+        ],
+        "correct_index": 1,
+        "difficulty": "hard",
+        "topic_tag": "movement",
+        "explanation": "Moving tail-to-head ensures each segment takes the position of the segment ahead of it."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "How do you iterate backwards from 2 to 0?",
+        "code": "range(0, 2, 1)",
+        "options": [
+            "range(2, -1, -1)",
+            "range(2, 0, 1)",
+            "range(0, 2, -1)",
+            "reverse(0, 2)"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "range",
+        "explanation": "range(start, stop, step) with negative step goes backwards. range(2, -1, -1) gives 2, 1, 0."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does turtle.penup() prevent?",
+        "options": [
+            "Movement",
+            "Drawing lines when the turtle moves",
+            "Color changes",
+            "Shape changes"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "turtle",
+        "explanation": "penup() lifts the pen so movement doesn't leave a trail."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What are constants like MOVE_DISTANCE used for?",
+        "options": [
+            "Required by Python",
+            "Easy configuration at the top of files",
+            "To slow down code",
+            "For security"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "constants",
+        "explanation": "Constants at the top make values easy to find and modify."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How are Python constants conventionally named?",
+        "options": [
+            "camelCase",
+            "snake_case",
+            "UPPERCASE_WITH_UNDERSCORES",
+            "PascalCase"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "naming",
+        "explanation": "Constants use ALL_CAPS_WITH_UNDERSCORES by convention."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why create a separate Snake class instead of scripted code?",
+        "options": [
+            "It runs faster",
+            "Better organization, reusability, and debugging",
+            "Required by turtle module",
+            "To use less memory"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "oop",
+        "explanation": "Classes organize related code, making it easier to maintain and debug."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Where should class constants like STARTING_POSITIONS be defined?",
+        "code": "def __init__(self): STARTING_POSITIONS = []",
+        "options": [
+            "At the top of the file, outside the class",
+            "Inside each method",
+            "In main.py only",
+            "Inside the for loop"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "constants",
+        "explanation": "Constants are typically defined at module level (top of file) for easy access."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does screen.setup(width=600, height=600) do?",
+        "options": [
+            "Creates a turtle",
+            "Sets the window dimensions",
+            "Changes the background",
+            "Starts the game"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "screen",
+        "explanation": "setup() configures the window size before the game starts."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the 'head' of the snake in terms of the segments list?",
+        "options": [
+            "segments[-1]",
+            "segments[0]",
+            "segments[len(segments)]",
+            "segments.head"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "snake",
+        "explanation": "The head is the first segment, at index 0."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What would happen if segments moved head-to-tail instead of tail-to-head?",
+        "options": [
+            "Snake moves faster",
+            "All segments stack on the head position",
+            "Snake stretches out",
+            "No difference"
+        ],
+        "correct_index": 1,
+        "difficulty": "hard",
+        "topic_tag": "movement",
+        "explanation": "If head moves first, segment 1 moves to head's NEW position (not old), causing stacking."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does turtle.setheading(90) do?",
+        "options": [
+            "Moves forward 90 pixels",
+            "Sets turtle to face North (up)",
+            "Turns right 90 degrees",
+            "Sets speed to 90"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "heading",
+        "explanation": "setheading() sets absolute direction: 0=East, 90=North, 180=West, 270=South."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why check heading before changing direction (e.g., if heading != 270)?",
+        "options": [
+            "To go faster",
+            "To prevent the snake from reversing into itself",
+            "Required by Python",
+            "To save memory"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "controls",
+        "explanation": "Prevents 180° turns that would cause the snake to crash into its own body."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you get a turtle's current x coordinate?",
+        "options": [
+            "turtle.x",
+            "turtle.xcor()",
+            "turtle.position_x()",
+            "x(turtle)"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "turtle",
+        "explanation": "xcor() returns the turtle's current x position."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the purpose of the game_is_on variable?",
+        "options": [
+            "To count score",
+            "To control the main game loop",
+            "To move the snake",
+            "To set the screen size"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "game-loop",
+        "explanation": "game_is_on is a boolean that controls whether the while loop continues running."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the animation technique used in the Snake game similar to?",
+        "options": [
+            "Vector graphics",
+            "GIF animation with frame-by-frame updates",
+            "3D rendering",
+            "Live streaming"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "animation",
+        "explanation": "Like GIFs, we update the screen frame-by-frame with tracer(0) + update()."
+    }
+]

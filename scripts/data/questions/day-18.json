@@ -1,0 +1,286 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What module provides turtle graphics in Python?",
+        "options": [
+            "graphics",
+            "turtle",
+            "draw",
+            "canvas"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "turtle",
+        "explanation": "The 'turtle' module is Python's built-in graphics library for drawing."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which method keeps the turtle window open until clicked?",
+        "options": [
+            "screen.wait()",
+            "screen.exitonclick()",
+            "screen.pause()",
+            "screen.hold()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "screen",
+        "explanation": "exitonclick() waits for a mouse click before closing the window."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "How do you change the turtle's shape to a turtle?",
+        "code": "timmy.shape = 'turtle'",
+        "options": [
+            "timmy.shape('turtle')",
+            "timmy.set_shape('turtle')",
+            "timmy.form('turtle')",
+            "shape(timmy, 'turtle')"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "turtle",
+        "explanation": "shape() is a method, called with parentheses: timmy.shape('turtle')"
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does turtle.forward(100) do?",
+        "options": [
+            "Moves backward 100 pixels",
+            "Moves forward 100 pixels",
+            "Turns right 100 degrees",
+            "Sets speed to 100"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "movement",
+        "explanation": "forward() moves the turtle in the direction it's facing by the given distance."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the input to turtle.right()?",
+        "options": [
+            "Distance in pixels",
+            "Angle in degrees",
+            "Speed value",
+            "Color name"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "movement",
+        "explanation": "right() and left() take an angle (0-360) in degrees to turn the turtle."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is a Python tuple?",
+        "options": [
+            "A mutable sequence",
+            "An immutable ordered sequence using parentheses",
+            "A dictionary",
+            "A function"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "tuples",
+        "explanation": "Tuples are like lists but immutable, defined with () instead of []."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Which correctly creates a tuple?",
+        "code": "my_tuple = [1, 2, 3]",
+        "options": [
+            "my_tuple = (1, 2, 3)",
+            "my_tuple = {1, 2, 3}",
+            "my_tuple = tuple[1, 2, 3]",
+            "my_tuple = <1, 2, 3>"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "tuples",
+        "explanation": "Tuples use parentheses: (1, 2, 3)"
+    },
+    {
+        "question_type": "mcq",
+        "text": "What happens if you try to modify a tuple element?",
+        "options": [
+            "It works fine",
+            "It creates a new tuple",
+            "You get a TypeError",
+            "It converts to a list"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "tuples",
+        "explanation": "Tuples are immutable - attempting to change them raises TypeError."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does screen.colormode(255) enable?",
+        "options": [
+            "256 colors only",
+            "RGB values from 0-255",
+            "Black and white mode",
+            "Gradient colors"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "colors",
+        "explanation": "colormode(255) allows using RGB values from 0-255 instead of 0.0-1.0."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "How do you set a turtle's color using RGB?",
+        "code": "timmy.color([255, 0, 0])",
+        "options": [
+            "timmy.color((255, 0, 0))",
+            "timmy.rgb(255, 0, 0)",
+            "timmy.set_color(255, 0, 0)",
+            "timmy.color = (255, 0, 0)"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "colors",
+        "explanation": "Pass RGB as a tuple: timmy.color((255, 0, 0)) or timmy.color(255, 0, 0)"
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does turtle.penup() do?",
+        "options": [
+            "Raises an error",
+            "Stops the turtle from drawing when moving",
+            "Lifts the turtle off screen",
+            "Increases pen size"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "pen",
+        "explanation": "penup() lifts the pen so movements don't leave a trail."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is turtle.goto(x, y) used for?",
+        "options": [
+            "Sets the speed",
+            "Moves turtle to absolute coordinates (x, y)",
+            "Returns current position",
+            "Creates a new turtle"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "movement",
+        "explanation": "goto() moves the turtle to specific x, y coordinates on the canvas."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What package is used to extract colors from images?",
+        "options": [
+            "imagecolor",
+            "colorgram",
+            "pillow",
+            "colorpicker"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "colorgram",
+        "explanation": "colorgram.py extracts dominant colors from images as RGB values."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What speed value makes the turtle draw instantly?",
+        "options": [
+            "10",
+            "100",
+            "0 or 'fastest'",
+            "1"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "speed",
+        "explanation": "speed(0) or speed('fastest') makes drawing instant with no animation."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does turtle.hideturtle() do?",
+        "options": [
+            "Deletes the turtle",
+            "Makes the arrow/turtle invisible",
+            "Pauses the program",
+            "Resets position"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "turtle",
+        "explanation": "hideturtle() hides the turtle cursor for a cleaner final drawing."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the turtle's default heading (direction)?",
+        "options": [
+            "North (up)",
+            "East (right)",
+            "South (down)",
+            "West (left)"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "heading",
+        "explanation": "Turtle starts facing East (heading = 0 degrees, right side of screen)."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "How do you draw a circle with radius 50?",
+        "code": "timmy.circle = 50",
+        "options": [
+            "timmy.circle(50)",
+            "timmy.draw_circle(50)",
+            "circle(timmy, 50)",
+            "timmy.arc(50)"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "shapes",
+        "explanation": "circle() is a method that takes radius as argument: timmy.circle(50)"
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is tkinter?",
+        "options": [
+            "A web framework",
+            "A GUI toolkit that turtle uses internally",
+            "A color library",
+            "A testing framework"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "gui",
+        "explanation": "tkinter is Python's standard GUI library, which turtle uses under the hood."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does turtle.setheading(90) do?",
+        "options": [
+            "Moves to position 90",
+            "Sets speed to 90",
+            "Points the turtle at 90 degrees (North)",
+            "Draws 90 lines"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "heading",
+        "explanation": "setheading() sets the turtle's direction: 0=East, 90=North, 180=West, 270=South."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is a Random Walk in turtle graphics?",
+        "options": [
+            "A specific algorithm",
+            "Moving in random directions to create unpredictable paths",
+            "A built-in function",
+            "A speed setting"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "random",
+        "explanation": "Random walk involves randomly choosing directions to create organic, unpredictable patterns."
+    }
+]

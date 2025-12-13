@@ -22,6 +22,10 @@ import DeepDiveDay13 from '../components/content/DeepDive/Day13'
 import DeepDiveDay14 from '../components/content/DeepDive/Day14'
 import DeepDiveDay15 from '../components/content/DeepDive/Day15'
 import DeepDiveDay16 from '../components/content/DeepDive/Day16'
+import DeepDiveDay17 from '../components/content/DeepDive/Day17'
+import DeepDiveDay18 from '../components/content/DeepDive/Day18'
+import DeepDiveDay19 from '../components/content/DeepDive/Day19'
+import DeepDiveDay20 from '../components/content/DeepDive/Day20'
 
 
 const DAY_META = {
@@ -152,6 +156,38 @@ const DAY_META = {
         quizId: 'day-16-practice',
         level: 'intermediate',
         topics: ['oop', 'classes', 'objects', 'turtle']
+    },
+    'day-17': {
+        label: 'Day 17',
+        title: 'Day 17: Quiz Project & OOP Benefits',
+        subtitle: 'Create custom classes, constructors, methods, and build the Quiz Brain project.',
+        quizId: 'day-17-practice',
+        level: 'intermediate',
+        topics: ['classes', 'init', 'self', 'methods', 'oop']
+    },
+    'day-18': {
+        label: 'Day 18',
+        title: 'Day 18: Turtle & GUI',
+        subtitle: 'Draw graphics with Turtle, use RGB colors, tuples, and create a Hirst painting.',
+        quizId: 'day-18-practice',
+        level: 'intermediate',
+        topics: ['turtle', 'tuples', 'rgb', 'graphics']
+    },
+    'day-19': {
+        label: 'Day 19',
+        title: 'Day 19: Higher Order Functions & Event Listeners',
+        subtitle: 'Pass functions as arguments, listen for key events, and build a Turtle Race.',
+        quizId: 'day-19-practice',
+        level: 'intermediate',
+        topics: ['higher-order', 'events', 'instances', 'state']
+    },
+    'day-20': {
+        label: 'Day 20',
+        title: 'Day 20: Snake Game Part 1',
+        subtitle: 'Control animation with tracer/update, move segments, and refactor to a Snake class.',
+        quizId: 'day-20-practice',
+        level: 'intermediate',
+        topics: ['animation', 'game-loop', 'oop', 'snake']
     }
 }
 
@@ -257,7 +293,11 @@ function DeepDive({ activeDay }) {
         'day-13': DeepDiveDay13,
         'day-14': DeepDiveDay14,
         'day-15': DeepDiveDay15,
-        'day-16': DeepDiveDay16
+        'day-16': DeepDiveDay16,
+        'day-17': DeepDiveDay17,
+        'day-18': DeepDiveDay18,
+        'day-19': DeepDiveDay19,
+        'day-20': DeepDiveDay20
     }
     const Component = components[activeDay]
     if (!Component) {

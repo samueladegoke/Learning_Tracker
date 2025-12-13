@@ -1,0 +1,286 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What keyword is used to define a class in Python?",
+        "options": [
+            "function",
+            "class",
+            "def",
+            "object"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "classes",
+        "explanation": "The 'class' keyword is used to define a new class in Python."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What naming convention is used for class names in Python?",
+        "options": [
+            "snake_case",
+            "camelCase",
+            "PascalCase",
+            "UPPERCASE"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "naming",
+        "explanation": "PascalCase (CapWords) is the standard convention for naming classes in Python."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does the 'pass' keyword do in an empty class?",
+        "options": [
+            "Deletes the class",
+            "Creates a syntax error",
+            "Acts as a placeholder so the class is valid",
+            "Runs the class automatically"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "classes",
+        "explanation": "'pass' is a placeholder that allows you to create an empty class or function without errors."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the purpose of the __init__() method?",
+        "options": [
+            "To delete an object",
+            "To initialize attributes when an object is created",
+            "To print the object",
+            "To create a new class"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "init",
+        "explanation": "__init__() is the constructor that initializes an object's attributes when it's created."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does 'self' refer to inside a class?",
+        "options": [
+            "The class itself",
+            "The current object instance being created or used",
+            "A global variable",
+            "The previous object"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "self",
+        "explanation": "'self' refers to the specific instance of the object that is calling the method."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is a class attribute?",
+        "options": [
+            "A function inside a class",
+            "A variable associated with an object",
+            "A class name",
+            "A module"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "attributes",
+        "explanation": "An attribute is a variable that holds data associated with an object."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is a method?",
+        "options": [
+            "A variable attached to an object",
+            "A function defined inside a class",
+            "A class name",
+            "An import statement"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "methods",
+        "explanation": "A method is a function that is defined inside a class and operates on objects."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Which is the correct way to define a class constructor?",
+        "code": "def init(self):",
+        "options": [
+            "def __init__(self):",
+            "def constructor(self):",
+            "def _init_(self):",
+            "def Init(self):"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "init",
+        "explanation": "The constructor in Python uses double underscores: __init__(self)"
+    },
+    {
+        "question_type": "code-correction",
+        "text": "How do you create an object from a class named 'Car'?",
+        "code": "my_car = Car",
+        "options": [
+            "my_car = Car()",
+            "my_car = new Car()",
+            "my_car = create Car",
+            "my_car = Car.new()"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "objects",
+        "explanation": "In Python, you create an object by calling the class like a function: ClassName()"
+    },
+    {
+        "question_type": "mcq",
+        "text": "What happens if you don't provide required parameters when creating an object?",
+        "options": [
+            "Nothing",
+            "Python uses default values",
+            "You get a TypeError",
+            "The object is created empty"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "init",
+        "explanation": "If required parameters are missing, Python raises a TypeError for missing arguments."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you set a default value for an attribute in __init__?",
+        "options": [
+            "default = value",
+            "self.attribute = value (without parameter)",
+            "attribute := value",
+            "set(attribute, value)"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "init",
+        "explanation": "Set self.attribute = value directly in __init__ without making it a parameter."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "How do you access an object's attribute called 'username'?",
+        "code": "print(user[username])",
+        "options": [
+            "print(user.username)",
+            "print(user->username)",
+            "print(user::username)",
+            "print(get(user, username))"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "attributes",
+        "explanation": "Use dot notation: object.attribute"
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why must 'self' be the first parameter in instance methods?",
+        "options": [
+            "It's optional",
+            "So Python knows which object is calling the method",
+            "It defines the class name",
+            "It creates a new object"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "self",
+        "explanation": "'self' allows the method to access and modify the specific object's attributes."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the relationship between a class and an object?",
+        "options": [
+            "They are the same thing",
+            "A class is an instance of an object",
+            "An object is an instance created from a class",
+            "Objects create classes"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "oop",
+        "explanation": "A class is the blueprint; an object is a specific instance created from that blueprint."
+    },
+    {
+        "question_type": "mcq",
+        "text": "In the Quiz project, what does the QuizBrain class manage?",
+        "options": [
+            "User interface",
+            "Question navigation, scoring, and game state",
+            "File storage",
+            "Network requests"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "quiz-project",
+        "explanation": "QuizBrain handles showing questions, tracking score, and managing game progress."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the Question class responsible for in the Quiz project?",
+        "options": [
+            "Storing question text and answer",
+            "Displaying questions",
+            "Calculating scores",
+            "Loading from API"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "quiz-project",
+        "explanation": "The Question class is a simple data model that holds the text and answer for each question."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "How do you call a method 'follow' on object 'user_1' passing 'user_2'?",
+        "code": "follow(user_1, user_2)",
+        "options": [
+            "user_1.follow(user_2)",
+            "User.follow(user_1, user_2)",
+            "call user_1.follow with user_2",
+            "user_1->follow(user_2)"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "methods",
+        "explanation": "Call methods using dot notation: object.method(arguments)"
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the benefit of using classes over procedural code?",
+        "options": [
+            "Faster execution",
+            "Better organization, reusability, and encapsulation",
+            "Less code",
+            "Automatic testing"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "oop",
+        "explanation": "OOP provides better code organization, reusability, and keeps related data and functions together."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does the still_has_questions() method check in QuizBrain?",
+        "options": [
+            "If the user is logged in",
+            "If there are more questions to ask",
+            "If the score is high enough",
+            "If the file exists"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "quiz-project",
+        "explanation": "It checks if question_number is less than the total number of questions."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Where does the Open Trivia Database come into play?",
+        "options": [
+            "It provides the Quiz Brain logic",
+            "It provides real trivia questions via API",
+            "It stores user scores",
+            "It validates answers"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "quiz-project",
+        "explanation": "Open Trivia DB is an API that provides trivia questions to make the quiz dynamic."
+    }
+]
