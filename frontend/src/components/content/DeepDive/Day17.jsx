@@ -1,19 +1,23 @@
-import CodeBlock from '../../CodeBlock';
-import InlineCode from '../../InlineCode';
+import React from 'react'
+import CodeBlock from '../../CodeBlock'
+import { Lightbulb, Boxes, Code2 } from 'lucide-react'
 
 export default function DeepDiveDay17() {
     return (
-        <div className="space-y-8">
-            {/* Main Content */}
-            <div className="prose prose-invert max-w-none">
-                {/* Section 1: Creating Your Own Classes */}
-                <section className="mb-8">
-                    <h3 className="text-xl font-semibold text-primary-400 mb-4">🏗️ Creating Your Own Classes</h3>
-                    <p className="text-surface-300 mb-4">
-                        A <strong>class</strong> is a blueprint for creating objects. Use the <InlineCode>class</InlineCode> keyword
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Main Content Area */}
+            <div className="lg:col-span-2 space-y-8 text-surface-200 leading-relaxed">
+
+                {/* Intro */}
+                <section className="space-y-4">
+                    <h2 className="text-2xl font-bold text-surface-100 flex items-center gap-2">
+                        <Boxes className="w-6 h-6 text-primary-400" /> Creating Your Own Classes
+                    </h2>
+                    <p>
+                        A <strong>class</strong> is a blueprint for creating objects. Use the <code>class</code> keyword
                         followed by the class name in <strong>PascalCase</strong> (every word capitalized).
                     </p>
-                    <CodeBlock language="python" code={`class User:
+                    <CodeBlock code={`class User:
     pass  # Empty class placeholder
 
 # Create objects from the class
@@ -22,20 +26,18 @@ user_2 = User()
 
 # Add attributes dynamically
 user_1.id = "001"
-user_1.username = "angela"`} />
-                    <p className="text-surface-400 text-sm mt-2">
-                        The <InlineCode>pass</InlineCode> keyword creates an empty placeholder when you don't have code yet.
-                    </p>
+user_1.username = "angela"`} language="python" />
                 </section>
 
-                {/* Section 2: The __init__ Constructor */}
-                <section className="mb-8">
-                    <h3 className="text-xl font-semibold text-primary-400 mb-4">⚙️ The __init__() Constructor</h3>
-                    <p className="text-surface-300 mb-4">
-                        The <InlineCode>__init__()</InlineCode> method is called automatically when creating a new object.
+                <section className="space-y-4">
+                    <h2 className="text-2xl font-bold text-surface-100 flex items-center gap-2">
+                        <span className="text-primary-400">01.</span> The __init__() Constructor
+                    </h2>
+                    <p>
+                        The <code>__init__()</code> method is called automatically when creating a new object.
                         It <strong>initializes</strong> the object's starting attributes.
                     </p>
-                    <CodeBlock language="python" code={`class User:
+                    <CodeBlock code={`class User:
     def __init__(self, user_id, username):
         self.id = user_id           # Required attribute
         self.username = username     # Required attribute
@@ -45,32 +47,32 @@ user_1.username = "angela"`} />
 # Now creation is simpler:
 user_1 = User("001", "angela")
 print(user_1.username)  # angela
-print(user_1.followers) # 0`} />
+print(user_1.followers) # 0`} language="python" />
                 </section>
 
-                {/* Section 3: The self Keyword */}
-                <section className="mb-8">
-                    <h3 className="text-xl font-semibold text-accent-400 mb-4">🔗 Understanding 'self'</h3>
-                    <p className="text-surface-300 mb-4">
-                        <InlineCode>self</InlineCode> refers to the <strong>current object instance</strong>.
+                <section className="space-y-4">
+                    <h2 className="text-2xl font-bold text-surface-100 flex items-center gap-2">
+                        <span className="text-primary-400">02.</span> Understanding 'self'
+                    </h2>
+                    <p>
+                        <code>self</code> refers to the <strong>current object instance</strong>.
                         Use it inside the class to access attributes and methods of that specific object.
                     </p>
-                    <div className="bg-surface-800/50 rounded-lg p-4 border border-surface-700">
-                        <ul className="list-disc list-inside text-surface-300 space-y-2">
-                            <li><InlineCode>self.attribute</InlineCode> – access/set an object's data</li>
-                            <li><InlineCode>self.method()</InlineCode> – call another method on the same object</li>
-                            <li>Always the <strong>first parameter</strong> in any method definition</li>
-                        </ul>
-                    </div>
+                    <ul className="list-disc list-inside text-surface-300 space-y-2 ml-4">
+                        <li><code>self.attribute</code> – access/set an object's data</li>
+                        <li><code>self.method()</code> – call another method on the same object</li>
+                        <li>Always the <strong>first parameter</strong> in any method definition</li>
+                    </ul>
                 </section>
 
-                {/* Section 4: Adding Methods */}
-                <section className="mb-8">
-                    <h3 className="text-xl font-semibold text-primary-400 mb-4">🔧 Adding Methods to a Class</h3>
-                    <p className="text-surface-300 mb-4">
+                <section className="space-y-4">
+                    <h2 className="text-2xl font-bold text-surface-100 flex items-center gap-2">
+                        <span className="text-primary-400">03.</span> Adding Methods to a Class
+                    </h2>
+                    <p>
                         <strong>Methods</strong> are functions attached to a class. They define what objects can <em>do</em>.
                     </p>
-                    <CodeBlock language="python" code={`class User:
+                    <CodeBlock code={`class User:
     def __init__(self, user_id, username):
         self.id = user_id
         self.username = username
@@ -88,16 +90,17 @@ user_2 = User("002", "jack")
 
 user_1.follow(user_2)
 print(user_2.followers)  # 1
-print(user_1.following)  # 1`} />
+print(user_1.following)  # 1`} language="python" />
                 </section>
 
-                {/* Section 5: Quiz Brain Project Pattern */}
-                <section className="mb-8">
-                    <h3 className="text-xl font-semibold text-accent-400 mb-4">🧠 Quiz Brain Project Pattern</h3>
-                    <p className="text-surface-300 mb-4">
+                <section className="space-y-4">
+                    <h2 className="text-2xl font-bold text-surface-100 flex items-center gap-2">
+                        <span className="text-primary-400">04.</span> Quiz Brain Project Pattern
+                    </h2>
+                    <p>
                         The Quiz project demonstrates OOP by separating concerns into multiple classes:
                     </p>
-                    <CodeBlock language="python" code={`# question_model.py
+                    <CodeBlock code={`# question_model.py
 class Question:
     def __init__(self, text, answer):
         self.text = text
@@ -117,39 +120,47 @@ class QuizBrain:
         current = self.question_list[self.question_number]
         self.question_number += 1
         answer = input(f"Q.{self.question_number}: {current.text} (True/False): ")
-        self.check_answer(answer, current.answer)
-
-    def check_answer(self, user_answer, correct_answer):
-        if user_answer.lower() == correct_answer.lower():
-            self.score += 1
-            print("Correct!")
-        else:
-            print("Wrong!")`} />
+        self.check_answer(answer, current.answer)`} language="python" />
                 </section>
+            </div>
 
-                {/* Pro Tips Sidebar */}
-                <aside className="bg-gradient-to-br from-primary-900/30 to-accent-900/30 rounded-xl p-6 border border-primary-700/30">
-                    <h4 className="text-lg font-semibold text-primary-300 mb-3">💡 Pro Tips</h4>
-                    <ul className="space-y-3 text-surface-300 text-sm">
-                        <li>
-                            <strong>Naming:</strong> Class names use <strong>PascalCase</strong>,
-                            everything else uses <strong>snake_case</strong>.
-                        </li>
-                        <li>
-                            <strong>Default Values:</strong> Set <InlineCode>self.attr = 0</InlineCode> in
-                            <InlineCode>__init__</InlineCode> for attributes that don't need input.
-                        </li>
-                        <li>
-                            <strong>Separation of Concerns:</strong> Put each class in its own file
-                            (e.g., <InlineCode>question_model.py</InlineCode>, <InlineCode>quiz_brain.py</InlineCode>).
-                        </li>
-                        <li>
-                            <strong>Open Trivia DB:</strong> The project uses the Open Trivia Database API
-                            to fetch real quiz questions dynamically.
-                        </li>
-                    </ul>
-                </aside>
+            {/* Sidebar Area */}
+            <div className="space-y-6">
+                <div className="bg-surface-800/30 p-6 rounded-xl border border-surface-700 sticky top-24">
+                    <h3 className="text-lg font-bold text-surface-100 mb-4 flex items-center gap-2">
+                        <Lightbulb className="w-5 h-5 text-yellow-500 inline mr-2" /> Pro Tips
+                    </h3>
+                    <div className="space-y-4">
+                        <div>
+                            <h4 className="font-medium text-primary-400 text-sm uppercase tracking-wider mb-1">Naming Conventions</h4>
+                            <p className="text-sm text-surface-400">
+                                Class names use <strong>PascalCase</strong>, everything else uses <strong>snake_case</strong>.
+                            </p>
+                        </div>
+                        <div className="w-full h-px bg-surface-700/50"></div>
+                        <div>
+                            <h4 className="font-medium text-primary-400 text-sm uppercase tracking-wider mb-1">Default Values</h4>
+                            <p className="text-sm text-surface-400">
+                                Set <code>self.attr = 0</code> in <code>__init__</code> for attributes that don't need input.
+                            </p>
+                        </div>
+                        <div className="w-full h-px bg-surface-700/50"></div>
+                        <div>
+                            <h4 className="font-medium text-primary-400 text-sm uppercase tracking-wider mb-1">Separation of Concerns</h4>
+                            <p className="text-sm text-surface-400">
+                                Put each class in its own file (e.g., <code>question_model.py</code>, <code>quiz_brain.py</code>).
+                            </p>
+                        </div>
+                        <div className="w-full h-px bg-surface-700/50"></div>
+                        <div>
+                            <h4 className="font-medium text-primary-400 text-sm uppercase tracking-wider mb-1">Open Trivia DB</h4>
+                            <p className="text-sm text-surface-400">
+                                The project uses the Open Trivia Database API to fetch real quiz questions dynamically.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    );
+    )
 }

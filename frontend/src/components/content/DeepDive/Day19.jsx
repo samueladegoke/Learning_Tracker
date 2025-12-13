@@ -1,19 +1,23 @@
-import CodeBlock from '../../CodeBlock';
-import InlineCode from '../../InlineCode';
+import React from 'react'
+import CodeBlock from '../../CodeBlock'
+import { Lightbulb, Zap, Gamepad2 } from 'lucide-react'
 
 export default function DeepDiveDay19() {
     return (
-        <div className="space-y-8">
-            {/* Main Content */}
-            <div className="prose prose-invert max-w-none">
-                {/* Section 1: Higher-Order Functions */}
-                <section className="mb-8">
-                    <h3 className="text-xl font-semibold text-primary-400 mb-4">🔄 Higher-Order Functions</h3>
-                    <p className="text-surface-300 mb-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Main Content Area */}
+            <div className="lg:col-span-2 space-y-8 text-surface-200 leading-relaxed">
+
+                {/* Intro */}
+                <section className="space-y-4">
+                    <h2 className="text-2xl font-bold text-surface-100 flex items-center gap-2">
+                        <Zap className="w-6 h-6 text-primary-400" /> Higher-Order Functions
+                    </h2>
+                    <p>
                         A <strong>higher-order function</strong> is a function that takes another function as an
                         argument or returns a function. In Python, functions are <em>first-class objects</em>.
                     </p>
-                    <CodeBlock language="python" code={`def add(n1, n2):
+                    <CodeBlock code={`def add(n1, n2):
     return n1 + n2
 
 def multiply(n1, n2):
@@ -25,24 +29,24 @@ def calculator(n1, n2, func):
 
 # Pass function NAME (without parentheses!)
 result = calculator(2, 3, add)      # 5
-result = calculator(2, 3, multiply) # 6`} />
-                    <div className="bg-yellow-900/20 border border-yellow-600/30 rounded-lg p-4 mt-4">
+result = calculator(2, 3, multiply) # 6`} language="python" />
+                    <div className="bg-yellow-900/20 border border-yellow-600/30 rounded-lg p-4">
                         <p className="text-yellow-300 text-sm">
                             ⚠️ <strong>Key Point:</strong> When passing a function as an argument, use just the
-                            name <InlineCode>add</InlineCode> not <InlineCode>add()</InlineCode>.
-                            Parentheses would <em>call</em> the function immediately.
+                            name <code>add</code> not <code>add()</code>. Parentheses would <em>call</em> the function immediately.
                         </p>
                     </div>
                 </section>
 
-                {/* Section 2: Event Listeners */}
-                <section className="mb-8">
-                    <h3 className="text-xl font-semibold text-primary-400 mb-4">🎧 Event Listeners</h3>
-                    <p className="text-surface-300 mb-4">
+                <section className="space-y-4">
+                    <h2 className="text-2xl font-bold text-surface-100 flex items-center gap-2">
+                        <span className="text-primary-400">01.</span> Event Listeners
+                    </h2>
+                    <p>
                         Event listeners wait for user actions (key presses, clicks) and trigger functions when
                         those events occur.
                     </p>
-                    <CodeBlock language="python" code={`from turtle import Turtle, Screen
+                    <CodeBlock code={`from turtle import Turtle, Screen
 
 tim = Turtle()
 screen = Screen()
@@ -54,21 +58,21 @@ def move_forwards():
 screen.listen()  # Start listening for events
 screen.onkey(key="space", fun=move_forwards)
 
-screen.exitonclick()`} />
-                    <p className="text-surface-400 text-sm mt-2">
-                        <InlineCode>screen.listen()</InlineCode> must be called before <InlineCode>onkey()</InlineCode>
-                        for event listeners to work.
+screen.exitonclick()`} language="python" />
+                    <p className="text-surface-400 text-sm">
+                        <code>screen.listen()</code> must be called before <code>onkey()</code> for event listeners to work.
                     </p>
                 </section>
 
-                {/* Section 3: Instances and State */}
-                <section className="mb-8">
-                    <h3 className="text-xl font-semibold text-accent-400 mb-4">🎭 Instances and State</h3>
-                    <p className="text-surface-300 mb-4">
+                <section className="space-y-4">
+                    <h2 className="text-2xl font-bold text-surface-100 flex items-center gap-2">
+                        <span className="text-primary-400">02.</span> Instances and State
+                    </h2>
+                    <p>
                         <strong>Instance</strong>: Each object created from a class is a separate instance.
                         <strong>State</strong>: The current values of an object's attributes at any moment.
                     </p>
-                    <CodeBlock language="python" code={`from turtle import Turtle
+                    <CodeBlock code={`from turtle import Turtle
 
 # Multiple instances from same class
 timmy = Turtle()
@@ -79,22 +83,21 @@ timmy.color("green")
 tommy.color("purple")
 
 timmy.forward(100)  # Timmy moves, Tommy stays
-# They are independent!`} />
-                    <div className="bg-surface-800/50 rounded-lg p-4 border border-surface-700 mt-4">
-                        <p className="text-surface-300 text-sm">
-                            Think of instances like people: You and I are both "human objects" but we have
-                            different names, heights, and locations. Same blueprint, different state.
-                        </p>
-                    </div>
+# They are independent!`} language="python" />
+                    <p className="text-surface-400 text-sm">
+                        Think of instances like people: You and I are both "human objects" but we have
+                        different names, heights, and locations. Same blueprint, different state.
+                    </p>
                 </section>
 
-                {/* Section 4: Etch-A-Sketch Example */}
-                <section className="mb-8">
-                    <h3 className="text-xl font-semibold text-primary-400 mb-4">✏️ Etch-A-Sketch Project</h3>
-                    <p className="text-surface-300 mb-4">
+                <section className="space-y-4">
+                    <h2 className="text-2xl font-bold text-surface-100 flex items-center gap-2">
+                        <span className="text-primary-400">03.</span> Etch-A-Sketch Project
+                    </h2>
+                    <p>
                         Control a turtle with keyboard keys using multiple event listeners:
                     </p>
-                    <CodeBlock language="python" code={`from turtle import Turtle, Screen
+                    <CodeBlock code={`from turtle import Turtle, Screen
 
 tim = Turtle()
 screen = Screen()
@@ -124,16 +127,17 @@ screen.onkey(fun=turn_left, key="a")
 screen.onkey(fun=turn_right, key="d")
 screen.onkey(fun=clear, key="c")
 
-screen.exitonclick()`} />
+screen.exitonclick()`} language="python" />
                 </section>
 
-                {/* Section 5: Turtle Race */}
-                <section className="mb-8">
-                    <h3 className="text-xl font-semibold text-accent-400 mb-4">🏁 Turtle Race Project</h3>
-                    <p className="text-surface-300 mb-4">
+                <section className="space-y-4">
+                    <h2 className="text-2xl font-bold text-surface-100 flex items-center gap-2">
+                        <Gamepad2 className="w-6 h-6 text-primary-400" /> Turtle Race Project
+                    </h2>
+                    <p>
                         Create multiple turtle instances, place them at starting positions, and race them:
                     </p>
-                    <CodeBlock language="python" code={`from turtle import Turtle, Screen
+                    <CodeBlock code={`from turtle import Turtle, Screen
 import random
 
 screen = Screen()
@@ -166,31 +170,47 @@ while is_race_on:
             break
         turtle.forward(random.randint(0, 10))
 
-screen.exitonclick()`} />
+screen.exitonclick()`} language="python" />
                 </section>
+            </div>
 
-                {/* Pro Tips */}
-                <aside className="bg-gradient-to-br from-primary-900/30 to-accent-900/30 rounded-xl p-6 border border-primary-700/30">
-                    <h4 className="text-lg font-semibold text-primary-300 mb-3">💡 Pro Tips</h4>
-                    <ul className="space-y-3 text-surface-300 text-sm">
-                        <li>
-                            <strong>No Parentheses:</strong> When passing functions as arguments, use the
-                            name only: <InlineCode>onkey(fun=move, key="w")</InlineCode>
-                        </li>
-                        <li>
-                            <strong>Keyword Arguments:</strong> For clarity, use keyword arguments with
-                            event listeners: <InlineCode>key="space"</InlineCode>
-                        </li>
-                        <li>
-                            <strong>textinput():</strong> <InlineCode>screen.textinput(title, prompt)</InlineCode>
-                            shows a pop-up dialog for user input.
-                        </li>
-                        <li>
-                            <strong>xcor() / ycor():</strong> Returns the turtle's current x or y coordinate.
-                        </li>
-                    </ul>
-                </aside>
+            {/* Sidebar Area */}
+            <div className="space-y-6">
+                <div className="bg-surface-800/30 p-6 rounded-xl border border-surface-700 sticky top-24">
+                    <h3 className="text-lg font-bold text-surface-100 mb-4 flex items-center gap-2">
+                        <Lightbulb className="w-5 h-5 text-yellow-500 inline mr-2" /> Pro Tips
+                    </h3>
+                    <div className="space-y-4">
+                        <div>
+                            <h4 className="font-medium text-primary-400 text-sm uppercase tracking-wider mb-1">No Parentheses</h4>
+                            <p className="text-sm text-surface-400">
+                                When passing functions as arguments, use the name only: <code>onkey(fun=move, key="w")</code>
+                            </p>
+                        </div>
+                        <div className="w-full h-px bg-surface-700/50"></div>
+                        <div>
+                            <h4 className="font-medium text-primary-400 text-sm uppercase tracking-wider mb-1">Keyword Arguments</h4>
+                            <p className="text-sm text-surface-400">
+                                For clarity, use keyword arguments with event listeners: <code>key="space"</code>
+                            </p>
+                        </div>
+                        <div className="w-full h-px bg-surface-700/50"></div>
+                        <div>
+                            <h4 className="font-medium text-primary-400 text-sm uppercase tracking-wider mb-1">textinput()</h4>
+                            <p className="text-sm text-surface-400">
+                                <code>screen.textinput(title, prompt)</code> shows a pop-up dialog for user input.
+                            </p>
+                        </div>
+                        <div className="w-full h-px bg-surface-700/50"></div>
+                        <div>
+                            <h4 className="font-medium text-primary-400 text-sm uppercase tracking-wider mb-1">xcor() / ycor()</h4>
+                            <p className="text-sm text-surface-400">
+                                Returns the turtle's current x or y coordinate for position checks.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    );
+    )
 }
