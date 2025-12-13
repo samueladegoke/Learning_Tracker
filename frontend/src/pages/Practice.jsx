@@ -16,6 +16,13 @@ import DeepDiveDay7 from '../components/content/DeepDive/Day7'
 import DeepDiveDay8 from '../components/content/DeepDive/Day8'
 import DeepDiveDay9 from '../components/content/DeepDive/Day9'
 import DeepDiveDay10 from '../components/content/DeepDive/Day10'
+import DeepDiveDay11 from '../components/content/DeepDive/Day11'
+import DeepDiveDay12 from '../components/content/DeepDive/Day12'
+import DeepDiveDay13 from '../components/content/DeepDive/Day13'
+import DeepDiveDay14 from '../components/content/DeepDive/Day14'
+import DeepDiveDay15 from '../components/content/DeepDive/Day15'
+import DeepDiveDay16 from '../components/content/DeepDive/Day16'
+
 
 const DAY_META = {
     'day-1': {
@@ -97,6 +104,54 @@ const DAY_META = {
         quizId: 'day-10-practice',
         level: 'beginner',
         topics: ['return', 'docstrings', 'first-class-functions', 'calculator']
+    },
+    'day-11': {
+        label: 'Day 11',
+        title: 'Day 11: Blackjack Capstone Project',
+        subtitle: 'Apply everything: lists, loops, functions, and conditionals to build a complete Blackjack game.',
+        quizId: 'day-11-practice',
+        level: 'beginner',
+        topics: ['capstone', 'lists', 'functions', 'game-logic']
+    },
+    'day-12': {
+        label: 'Day 12',
+        title: 'Day 12: Scope & Number Guessing Game',
+        subtitle: 'Understand local vs global scope, constants, and build an interactive Number Guessing Game.',
+        quizId: 'day-12-practice',
+        level: 'beginner',
+        topics: ['scope', 'global', 'local', 'constants']
+    },
+    'day-13': {
+        label: 'Day 13',
+        title: 'Day 13: Debugging',
+        subtitle: 'Learn systematic strategies to find and fix errors in your code.',
+        quizId: 'day-13-practice',
+        level: 'beginner',
+        topics: ['debugging', 'trace', 'print', 'debugger']
+    },
+    'day-14': {
+        label: 'Day 14',
+        title: 'Day 14: Higher Lower Game',
+        subtitle: 'Build a data-driven comparison game using lists of dictionaries.',
+        quizId: 'day-14-practice',
+        level: 'beginner',
+        topics: ['game-logic', 'dictionaries', 'lists', 'random']
+    },
+    'day-15': {
+        label: 'Day 15',
+        title: 'Day 15: Coffee Machine',
+        subtitle: 'Local Development Setup and the Coffee Machine project.',
+        quizId: 'day-15-practice',
+        level: 'intermediate',
+        topics: ['ide', 'setup', 'game-loop', 'resources']
+    },
+    'day-16': {
+        label: 'Day 16',
+        title: 'Day 16: OOP',
+        subtitle: 'Introduction to Object Oriented Programming, Classes, Objects, and the Turtle module.',
+        quizId: 'day-16-practice',
+        level: 'intermediate',
+        topics: ['oop', 'classes', 'objects', 'turtle']
     }
 }
 
@@ -196,7 +251,13 @@ function DeepDive({ activeDay }) {
         'day-7': DeepDiveDay7,
         'day-8': DeepDiveDay8,
         'day-9': DeepDiveDay9,
-        'day-10': DeepDiveDay10
+        'day-10': DeepDiveDay10,
+        'day-11': DeepDiveDay11,
+        'day-12': DeepDiveDay12,
+        'day-13': DeepDiveDay13,
+        'day-14': DeepDiveDay14,
+        'day-15': DeepDiveDay15,
+        'day-16': DeepDiveDay16
     }
     const Component = components[activeDay]
     if (!Component) {
