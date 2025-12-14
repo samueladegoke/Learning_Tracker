@@ -1,8 +1,9 @@
+import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from .database import engine, Base
-from .routers import weeks, tasks, reflections, progress, badges, rpg, achievements
+from .routers import weeks, tasks, reflections, progress, badges, rpg, achievements, quizzes
 
 # Create database tables
 Base.metadata.create_all(bind=engine)
@@ -19,10 +20,43 @@ app = FastAPI(
     root_path=root_path
 )
 
-# CORS middleware for frontend
+# =============================================================================
+# CORS Configuration
+# =============================================================================
 # Restrict to known development and production origins
-import os
-ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173,http://localhost:5174,http://localhost:5175,http://localhost:8000,https://learning-tracker-nu-tan.vercel.app").split(",")
+# ALLOWED_ORIGINS can be set as a comma-separated list in environment variables
+
+DEFAULT_ORIGINS = (
+    "http://localhost:5173,"
+    "http://localhost:5174,"
+    "http://localhost:5175,"
+    "http://localhost:8000,"
+    "https://learning-tracker-nu-tan.vercel.app"
+)
+
+def get_allowed_origins():
+    """
+    Parse and validate CORS origins from environment variable.
+    Filters out empty strings and validates URL format.
+    """
+    origins_str = os.getenv("ALLOWED_ORIGINS", DEFAULT_ORIGINS)
+    origins = [origin.strip() for origin in origins_str.split(",")]
+    
+    # Filter out empty strings and validate basic URL structure
+    valid_origins = []
+    for origin in origins:
+        if not origin:
+            continue
+        # Basic validation: must start with http:// or https://
+        if origin.startswith("http://") or origin.startswith("https://"):
+            valid_origins.append(origin)
+        else:
+            # Log warning for invalid origins (only in development)
+            print(f"[CORS Warning] Invalid origin ignored: {origin}")
+    
+    return valid_origins if valid_origins else ["http://localhost:5173"]
+
+ALLOWED_ORIGINS = get_allowed_origins()
 
 app.add_middleware(
     CORSMiddleware,
@@ -40,13 +74,13 @@ app.include_router(progress.router, prefix="/api/progress", tags=["progress"])
 app.include_router(badges.router, prefix="/api/badges", tags=["badges"])
 app.include_router(rpg.router, prefix="/api/rpg", tags=["rpg"])
 app.include_router(achievements.router, prefix="/api/achievements", tags=["achievements"])
-from .routers import quizzes
 app.include_router(quizzes.router, prefix="/api/quizzes", tags=["quizzes"])
 
 
 @app.get("/api")
 def root_api():
     return {"message": "Learning Tracker API", "docs": "/api/docs"}
+
 
 @app.get("/")
 def root():
@@ -57,8 +91,7 @@ def root():
 def health_check_api():
     return {"status": "healthy"}
 
+
 @app.get("/health")
 def health_check():
     return {"status": "healthy"}
-
-

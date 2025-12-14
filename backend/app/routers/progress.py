@@ -9,7 +9,19 @@ from ..schemas import ProgressResponse
 
 router = APIRouter()
 
-DEFAULT_USER_ID = 1
+# =============================================================================
+# SECURITY NOTE: Single-User MVP Mode
+# =============================================================================
+# This application currently operates in single-user mode without authentication.
+# All API endpoints use a hardcoded user ID. This is intentional for the MVP phase.
+#
+# BEFORE PRODUCTION DEPLOYMENT:
+# 1. Implement proper authentication (e.g., Supabase Auth, JWT)
+# 2. Replace DEFAULT_USER_ID with authenticated user from request context
+# 3. Add authorization checks for user-owned resources
+# 4. See docs/architecture.md for auth implementation guidance
+# =============================================================================
+DEFAULT_USER_ID = 1  # TODO: Replace with authenticated user ID from auth middleware
 
 
 from ..utils.gamification import level_from_xp

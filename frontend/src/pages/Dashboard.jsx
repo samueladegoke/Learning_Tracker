@@ -84,10 +84,22 @@ function Dashboard() {
   const fetchData = async (force = false) => {
     try {
       const now = Date.now()
-      const cached = sessionStorage.getItem('dashboard_cache')
+      
+      // Try to read from cache (with error handling for storage issues)
+      let cached = null
+      try {
+        const cachedStr = sessionStorage.getItem('dashboard_cache')
+        if (cachedStr) {
+          cached = JSON.parse(cachedStr)
+        }
+      } catch (storageError) {
+        // Storage read failed (quota exceeded, parsing error, etc.)
+        // Continue without cache - this is not a fatal error
+        console.warn('[Dashboard] Cache read failed:', storageError.message)
+      }
 
       if (!force && cached) {
-        const { data, timestamp } = JSON.parse(cached)
+        const { data, timestamp } = cached
         if (now - timestamp < CACHE_DURATION) {
           setProgress(data.progress)
           setWeekCount(data.weekCount)
@@ -121,16 +133,23 @@ function Dashboard() {
       setRpgState(rpgData)
       setBadges(badgesData)
 
-      sessionStorage.setItem('dashboard_cache', JSON.stringify({
-        data: {
-          progress: progressData,
-          weekCount: weeksData.length,
-          rpgState: rpgData,
-          badges: badgesData,
-          currentWeek: weekDetails
-        },
-        timestamp: now
-      }))
+      // Try to save to cache (with error handling for storage issues)
+      try {
+        sessionStorage.setItem('dashboard_cache', JSON.stringify({
+          data: {
+            progress: progressData,
+            weekCount: weeksData.length,
+            rpgState: rpgData,
+            badges: badgesData,
+            currentWeek: weekDetails
+          },
+          timestamp: now
+        }))
+      } catch (storageError) {
+        // Storage write failed (quota exceeded, private mode, etc.)
+        // This is not a fatal error - the app works fine without caching
+        console.warn('[Dashboard] Cache write failed:', storageError.message)
+      }
 
     } catch (err) {
       setError(err.message)

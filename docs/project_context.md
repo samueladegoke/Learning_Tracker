@@ -78,8 +78,6 @@ optimized_for_llm: true
 - `frontend/src/components`: UI components only.
 - `backend/app/routers`: Logic split by domain (weeks, tasks, rpg).
 
-- `backend/app/routers`: Logic split by domain (weeks, tasks, rpg).
-
 ### Development Workflow Rules
 
 #### Project Management
@@ -92,8 +90,6 @@ optimized_for_llm: true
 
 #### Deployment
 - **Supabase:** DB changes in production require `alembic` migrations (never direct mutations).
-- **Vercel:** Frontend rewrites `/api/*` to backend. Maintain this contract.
-
 - **Vercel:** Frontend rewrites `/api/*` to backend. Maintain this contract.
 
 ### Critical Don't-Miss Rules

@@ -1,102 +1,38 @@
-from datetime import datetime, date
+from datetime import datetime
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session, joinedload
 
 from ..database import get_db
 from ..models import (
     User,
-    Task,
-    UserTaskStatus,
     UserQuest,
-    Quest,
     UserChallenge,
-    Challenge,
 )
 from ..schemas import RPGState, RPGQuestState, RPGChallengeState
+from ..utils.gamification import (
+    level_from_xp,
+    xp_for_next_level as xp_needed_for_level,
+    next_level_requirement,
+    refresh_focus_points,
+    check_penalty,
+    FOCUS_CAP,
+)
 
 router = APIRouter()
 
-DEFAULT_USER_ID = 1
-FOCUS_CAP = 5
-
-
-def xp_needed_for_level(level: int) -> int:
-    """Soft exponential XP curve."""
-    return int(100 * (level ** 1.2))
-
-
-def level_from_xp(xp: int) -> int:
-    level = 1
-    remaining = xp
-    while remaining >= xp_needed_for_level(level):
-        remaining -= xp_needed_for_level(level)
-        level += 1
-    return level
-
-
-def next_level_requirement(xp: int) -> int:
-    level = level_from_xp(xp)
-    return xp_needed_for_level(level)
-
-
-def refresh_focus_points(user: User) -> None:
-    """Refresh focus points once per day."""
-    today = date.today()
-    if not user.focus_refreshed_at or user.focus_refreshed_at.date() < today:
-        user.focus_points = FOCUS_CAP
-        user.focus_refreshed_at = datetime.utcnow()
-
-
-def update_streak(user: User) -> None:
-    """Update streak based on last_checkin_at."""
-    today = date.today()
-    if user.last_checkin_at:
-        last = user.last_checkin_at.date()
-        if last == today:
-            return
-        if (today - last).days == 1:
-            user.streak += 1
-        else:
-            user.streak = 1
-    else:
-        user.streak = 1
-
-    user.best_streak = max(user.best_streak, user.streak)
-    user.last_checkin_at = datetime.utcnow()
-
-
-def check_penalty(user: User) -> None:
-    """Check if user missed a day and deduct hearts. Uses streak freeze if available."""
-    today = date.today()
-    
-    # If never checked in, no penalty yet (grace period)
-    if not user.last_checkin_at:
-        return
-
-    last_checkin_date = user.last_checkin_at.date()
-    days_since_checkin = (today - last_checkin_date).days
-
-    # If missed more than 1 day (yesterday), apply penalty
-    if days_since_checkin > 1:
-        # Only penalize once per inactive period:
-        # If last_heart_loss occurred AFTER last_checkin_at, we already penalized for this absence
-        if user.last_heart_loss and user.last_heart_loss >= user.last_checkin_at:
-            return
-
-        # Check if user has a streak freeze to consume
-        if user.streak_freeze_count > 0:
-            user.streak_freeze_count -= 1
-            # Streak freeze protects the streak but we still mark the penalty time
-            # to prevent multiple freeze consumptions in the same inactive period
-            user.last_heart_loss = datetime.utcnow()
-            return
-
-        # No streak freeze available - apply full penalty
-        if user.hearts > 0:
-            user.hearts -= 1
-            user.last_heart_loss = datetime.utcnow()
-            # Reset streak on penalty
-            user.streak = 0
+# =============================================================================
+# SECURITY NOTE: Single-User MVP Mode
+# =============================================================================
+# This application currently operates in single-user mode without authentication.
+# All API endpoints use a hardcoded user ID. This is intentional for the MVP phase.
+#
+# BEFORE PRODUCTION DEPLOYMENT:
+# 1. Implement proper authentication (e.g., Supabase Auth, JWT)
+# 2. Replace DEFAULT_USER_ID with authenticated user from request context
+# 3. Add authorization checks for user-owned resources
+# 4. See docs/architecture.md for auth implementation guidance
+# =============================================================================
+DEFAULT_USER_ID = 1  # TODO: Replace with authenticated user ID from auth middleware
 
 
 def get_active_quest(db: Session) -> UserQuest | None:

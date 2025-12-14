@@ -20,7 +20,19 @@ from ..schemas import TaskResponse, TaskCompletionResult
 
 router = APIRouter()
 
-DEFAULT_USER_ID = 1
+# =============================================================================
+# SECURITY NOTE: Single-User MVP Mode
+# =============================================================================
+# This application currently operates in single-user mode without authentication.
+# All API endpoints use a hardcoded user ID. This is intentional for the MVP phase.
+#
+# BEFORE PRODUCTION DEPLOYMENT:
+# 1. Implement proper authentication (e.g., Supabase Auth, JWT)
+# 2. Replace DEFAULT_USER_ID with authenticated user from request context
+# 3. Add authorization checks for user-owned resources
+# 4. See docs/architecture.md for auth implementation guidance
+# =============================================================================
+DEFAULT_USER_ID = 1  # TODO: Replace with authenticated user ID from auth middleware
 FOCUS_CAP = 5
 DIFFICULTY_MULTIPLIER = {
     "trivial": 0.5,
@@ -42,31 +54,13 @@ REWARD_MULTIPLIER = {
 }
 
 
-from ..utils.gamification import level_from_xp, xp_for_next_level as xp_needed_for_level
-
-
-def refresh_focus_points(user: User) -> None:
-    today = date.today()
-    if not user.focus_refreshed_at or user.focus_refreshed_at.date() < today:
-        user.focus_points = FOCUS_CAP
-        user.focus_refreshed_at = datetime.utcnow()
-
-
-def update_streak(user: User) -> None:
-    today = date.today()
-    if user.last_checkin_at:
-        last = user.last_checkin_at.date()
-        if last == today:
-            return
-        if (today - last).days == 1:
-            user.streak += 1
-        else:
-            user.streak = 1
-    else:
-        user.streak = 1
-
-    user.best_streak = max(user.best_streak, user.streak)
-    user.last_checkin_at = datetime.utcnow()
+# Import shared gamification utilities (consolidated to avoid duplication)
+from ..utils.gamification import (
+    level_from_xp,
+    xp_for_next_level as xp_needed_for_level,
+    refresh_focus_points,
+    update_streak,
+)
 
 
 def active_user_quest(db: Session) -> UserQuest | None:
