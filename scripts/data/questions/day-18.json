@@ -282,5 +282,115 @@
         "difficulty": "medium",
         "topic_tag": "random",
         "explanation": "Random walk involves randomly choosing directions to create organic, unpredictable patterns."
+    },
+    {
+        "question_type": "coding",
+        "text": "Draw a Square\\nWrite a function that returns a list of turtle commands to draw a square. Each command is a tuple of (action, value).\\n\\nCommands: ('forward', 100), ('right', 90) repeated 4 times.",
+        "starter_code": "def draw_square_commands():\\n    # Return list of commands to draw a square\\n    # Each command is (action, value)\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "len(draw_square_commands())",
+                "expected": "8"
+            },
+            {
+                "function_call": "draw_square_commands()[0]",
+                "expected": "('forward', 100)"
+            },
+            {
+                "function_call": "draw_square_commands()[1]",
+                "expected": "('right', 90)"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "turtle",
+        "solution_code": "def draw_square_commands():\\n    commands = []\\n    for _ in range(4):\\n        commands.append(('forward', 100))\\n        commands.append(('right', 90))\\n    return commands"
+    },
+    {
+        "question_type": "coding",
+        "text": "Generate Random RGB\\nWrite a function that returns a tuple of 3 random integers between 0 and 255 representing an RGB color.\\n\\nExample: random_rgb() might return (128, 64, 255).",
+        "starter_code": "import random\\n\\ndef random_rgb():\\n    # Return tuple of 3 random 0-255 values\\n    pass\\n\\ndef test_rgb():\\n    rgb = random_rgb()\\n    return len(rgb) == 3 and all(0 <= v <= 255 for v in rgb)",
+        "test_cases": [
+            {
+                "function_call": "test_rgb()",
+                "expected": "True"
+            },
+            {
+                "function_call": "type(random_rgb()).__name__",
+                "expected": "'tuple'"
+            },
+            {
+                "function_call": "len(random_rgb())",
+                "expected": "3"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "colors",
+        "solution_code": "import random\\n\\ndef random_rgb():\\n    r = random.randint(0, 255)\\n    g = random.randint(0, 255)\\n    b = random.randint(0, 255)\\n    return (r, g, b)\\n\\ndef test_rgb():\\n    rgb = random_rgb()\\n    return len(rgb) == 3 and all(0 <= v <= 255 for v in rgb)"
+    },
+    {
+        "question_type": "coding",
+        "text": "Calculate Polygon Angle\\nWrite a function that calculates the exterior angle for a regular polygon with n sides.\\n\\nFormula: exterior_angle = 360 / n\\n\\nExample: polygon_angle(4) returns 90.0 for a square.",
+        "starter_code": "def polygon_angle(sides):\\n    # Return exterior angle for polygon\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "polygon_angle(4)",
+                "expected": "90.0"
+            },
+            {
+                "function_call": "polygon_angle(3)",
+                "expected": "120.0"
+            },
+            {
+                "function_call": "polygon_angle(6)",
+                "expected": "60.0"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "shapes",
+        "solution_code": "def polygon_angle(sides):\\n    return 360 / sides"
+    },
+    {
+        "question_type": "coding",
+        "text": "Random Direction\\nWrite a function that returns a random direction from a list of choices: [0, 90, 180, 270] representing East, North, West, South.\\n\\nVerify it always returns one of these values.",
+        "starter_code": "import random\\n\\ndef random_direction():\\n    # Return random choice from [0, 90, 180, 270]\\n    pass\\n\\ndef test_direction():\\n    d = random_direction()\\n    return d in [0, 90, 180, 270]",
+        "test_cases": [
+            {
+                "function_call": "test_direction()",
+                "expected": "True"
+            },
+            {
+                "function_call": "random_direction() in [0, 90, 180, 270]",
+                "expected": "True"
+            },
+            {
+                "function_call": "type(random_direction()).__name__",
+                "expected": "'int'"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "random",
+        "solution_code": "import random\\n\\ndef random_direction():\\n    directions = [0, 90, 180, 270]\\n    return random.choice(directions)\\n\\ndef test_direction():\\n    d = random_direction()\\n    return d in [0, 90, 180, 270]"
+    },
+    {
+        "question_type": "coding",
+        "text": "Spirograph Angle\\nFor a spirograph, calculate the gap size needed to create a specific number of circles. The gap = 360 / num_circles.\\n\\nExample: spirograph_gap(36) returns 10.0 degrees per step.",
+        "starter_code": "def spirograph_gap(num_circles):\\n    # Return the angle gap for spirograph\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "spirograph_gap(36)",
+                "expected": "10.0"
+            },
+            {
+                "function_call": "spirograph_gap(4)",
+                "expected": "90.0"
+            },
+            {
+                "function_call": "spirograph_gap(12)",
+                "expected": "30.0"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "shapes",
+        "solution_code": "def spirograph_gap(num_circles):\\n    return 360 / num_circles"
     }
 ]

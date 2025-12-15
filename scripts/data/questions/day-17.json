@@ -282,5 +282,115 @@
         "difficulty": "medium",
         "topic_tag": "quiz-project",
         "explanation": "Open Trivia DB is an API that provides trivia questions to make the quiz dynamic."
+    },
+    {
+        "question_type": "coding",
+        "text": "Create Question Class\\nCreate a `Question` class that stores a `text` and an `answer` attribute. Both are passed as parameters to `__init__`.\\n\\nExample: q = Question('Is Python fun?', 'True') stores the question and answer.",
+        "starter_code": "class Question:\\n    def __init__(self, text, answer):\\n        # Store text and answer as attributes\\n        pass\\n\\ndef test_question(text, answer):\\n    q = Question(text, answer)\\n    return f'{q.text} -> {q.answer}'",
+        "test_cases": [
+            {
+                "function_call": "test_question('Is Python fun?', 'True')",
+                "expected": "'Is Python fun? -> True'"
+            },
+            {
+                "function_call": "test_question('Is 2+2=5?', 'False')",
+                "expected": "'Is 2+2=5? -> False'"
+            },
+            {
+                "function_call": "test_question('Is the sky blue?', 'True')",
+                "expected": "'Is the sky blue? -> True'"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "quiz-project",
+        "solution_code": "class Question:\\n    def __init__(self, text, answer):\\n        self.text = text\\n        self.answer = answer\\n\\ndef test_question(text, answer):\\n    q = Question(text, answer)\\n    return f'{q.text} -> {q.answer}'"
+    },
+    {
+        "question_type": "coding",
+        "text": "Check Answer Method\\nCreate a `check_answer` function that takes a Question object and a user response. Return True if the user's answer (case-insensitive) matches the question's answer.\\n\\nExample: check_answer(question, 'true') returns True if question.answer is 'True'.",
+        "starter_code": "class Question:\\n    def __init__(self, text, answer):\\n        self.text = text\\n        self.answer = answer\\n\\ndef check_answer(question, user_answer):\\n    # Compare user_answer to question.answer (case insensitive)\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "check_answer(Question('Test?', 'True'), 'true')",
+                "expected": "True"
+            },
+            {
+                "function_call": "check_answer(Question('Test?', 'False'), 'True')",
+                "expected": "False"
+            },
+            {
+                "function_call": "check_answer(Question('Test?', 'Yes'), 'YES')",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "quiz-project",
+        "solution_code": "class Question:\\n    def __init__(self, text, answer):\\n        self.text = text\\n        self.answer = answer\\n\\ndef check_answer(question, user_answer):\\n    return user_answer.lower() == question.answer.lower()"
+    },
+    {
+        "question_type": "coding",
+        "text": "Still Has Questions\\nWrite a function that takes a current question number and a list of questions. Return True if there are still questions left to ask (question_number < len(questions)).\\n\\nExample: still_has_questions(2, [q1, q2, q3]) returns True (index 2 is valid).",
+        "starter_code": "def still_has_questions(question_number, question_list):\\n    # Return True if more questions remain\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "still_has_questions(0, ['q1', 'q2', 'q3'])",
+                "expected": "True"
+            },
+            {
+                "function_call": "still_has_questions(3, ['q1', 'q2', 'q3'])",
+                "expected": "False"
+            },
+            {
+                "function_call": "still_has_questions(2, ['q1', 'q2', 'q3'])",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "quiz-project",
+        "solution_code": "def still_has_questions(question_number, question_list):\\n    return question_number < len(question_list)"
+    },
+    {
+        "question_type": "coding",
+        "text": "Quiz Scorer\\nCreate a function that takes a list of Question objects and a list of user answers. Return the score as 'X/Y' where X is correct answers and Y is total questions.\\n\\nExample: quiz_score([q1, q2], ['True', 'False']) where q1.answer='True' and q2.answer='True' returns '1/2'.",
+        "starter_code": "class Question:\\n    def __init__(self, text, answer):\\n        self.text = text\\n        self.answer = answer\\n\\ndef quiz_score(questions, user_answers):\\n    # Count correct answers and return 'X/Y' format\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "quiz_score([Question('Q1', 'True'), Question('Q2', 'False')], ['True', 'False'])",
+                "expected": "'2/2'"
+            },
+            {
+                "function_call": "quiz_score([Question('Q1', 'True'), Question('Q2', 'True')], ['True', 'False'])",
+                "expected": "'1/2'"
+            },
+            {
+                "function_call": "quiz_score([Question('Q1', 'A')], ['B'])",
+                "expected": "'0/1'"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "quiz-project",
+        "solution_code": "class Question:\\n    def __init__(self, text, answer):\\n        self.text = text\\n        self.answer = answer\\n\\ndef quiz_score(questions, user_answers):\\n    correct = 0\\n    for i, q in enumerate(questions):\\n        if user_answers[i].lower() == q.answer.lower():\\n            correct += 1\\n    return f'{correct}/{len(questions)}'"
+    },
+    {
+        "question_type": "coding",
+        "text": "Build Question Bank\\nWrite a function that takes a list of dictionaries with 'text' and 'answer' keys and returns a list of Question objects.\\n\\nExample: build_question_bank([{'text': 'Q1?', 'answer': 'True'}]) returns [Question('Q1?', 'True')].",
+        "starter_code": "class Question:\\n    def __init__(self, text, answer):\\n        self.text = text\\n        self.answer = answer\\n\\ndef build_question_bank(question_data):\\n    # Create Question objects from dictionaries\\n    pass\\n\\ndef test_build(data):\\n    questions = build_question_bank(data)\\n    return len(questions)",
+        "test_cases": [
+            {
+                "function_call": "test_build([{'text': 'Q1?', 'answer': 'True'}])",
+                "expected": "1"
+            },
+            {
+                "function_call": "test_build([{'text': 'Q1?', 'answer': 'True'}, {'text': 'Q2?', 'answer': 'False'}])",
+                "expected": "2"
+            },
+            {
+                "function_call": "test_build([])",
+                "expected": "0"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "quiz-project",
+        "solution_code": "class Question:\\n    def __init__(self, text, answer):\\n        self.text = text\\n        self.answer = answer\\n\\ndef build_question_bank(question_data):\\n    question_bank = []\\n    for item in question_data:\\n        q = Question(item['text'], item['answer'])\\n        question_bank.append(q)\\n    return question_bank\\n\\ndef test_build(data):\\n    questions = build_question_bank(data)\\n    return len(questions)"
     }
 ]

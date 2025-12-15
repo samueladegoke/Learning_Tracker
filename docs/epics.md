@@ -59,7 +59,10 @@ FR14: Epic 1 - Gamification logic.
 
 ## 3. Epics
 
-### Epic 1: The Resilient Learning Core (Offline-First)
+### Epic 1: The Resilient Learning Core (Offline-First) — `[PHASE 2 - DEFERRED]`
+
+> 🚧 **STATUS: NOT IMPLEMENTED.** Current MVP uses Server-First architecture. See `architecture.md` for details.
+
 **Goal:** Enable users to seamlessly access content, track completions, and earn XP with zero latency, regardless of network status.
 **Value:** Users trust the app to never lose their progress or block them from learning due to bad internet.
 **FRs covered:** FR1, FR2, FR3, FR7, FR8, FR14
@@ -110,7 +113,10 @@ So that I don't have to find my place again.
 **And** if `lastVisitedUrl` exists, redirect the user there
 **And** show the correct "Completed" state for all checkboxes
 
-### Epic 2: The Browser Runtime (Pyodide Hardening)
+### Epic 2: The Browser Runtime (Pyodide Hardening) — `[PARTIALLY IMPLEMENTED]`
+
+> 🟡 **STATUS: PARTIALLY IMPLEMENTED.** Pyodide execution works but runs on main thread (no Web Worker isolation). Runtime version pinning not enforced via config file.
+
 **Goal:** Provide a stable, safe, and reproducible Python execution environment in the browser.
 **Value:** Users get a "Real Python" experience that doesn't crash their tab or behave inconsistently across sessions.
 **FRs covered:** FR4, FR5, FR6, FR11, FR13
@@ -163,7 +169,10 @@ So that I can learn Python syntax faster.
 **And** red squiggles should appear under syntax errors
 **And** no execution context should be created (Static check only)
 
-### Epic 3: Cloud Synchronization & Resilience
+### Epic 3: Cloud Synchronization & Resilience — `[PHASE 2 - DEFERRED]`
+
+> 🚧 **STATUS: NOT IMPLEMENTED.** Current MVP uses direct API calls without background sync or conflict resolution.
+
 **Goal:** Securely backup local progress to the cloud without interrupting the user's flow.
 **Value:** Users have peace of mind that their hard work is backed up, without the app feeling "sluggish" or dependent on the server.
 **FRs covered:** FR9, FR12

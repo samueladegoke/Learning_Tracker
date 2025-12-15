@@ -1,0 +1,286 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What is the primary library used for data analysis in Python that we covered?",
+        "options": [
+            "Numpy",
+            "Pandas",
+            "Matplotlib",
+            "Requests"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "pandas",
+        "explanation": "Pandas is the most popular library for data manipulation and analysis in Python."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which Pandas data structure represents a whole table (2D)?",
+        "options": [
+            "Series",
+            "DataFrame",
+            "List",
+            "Dictionary"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "pandas",
+        "explanation": "A DataFrame is a 2-dimensional labeled data structure with columns of potentially different types, like a spreadsheet."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which Pandas data structure represents a single column (1D)?",
+        "options": [
+            "Series",
+            "DataFrame",
+            "Row",
+            "Array"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "pandas",
+        "explanation": "A Series is a one-dimensional labeled array capable of holding any data type."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you read a CSV file named 'data.csv' into a DataFrame?",
+        "options": [
+            "pd.open_csv('data.csv')",
+            "pd.read('data.csv')",
+            "pd.read_csv('data.csv')",
+            "pd.load_csv('data.csv')"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "pandas",
+        "explanation": "read_csv() is the standard function to load CSV data."
+    },
+    {
+        "question_type": "mcq",
+        "text": "If `data` is a DataFrame, how do you access the 'score' column?",
+        "options": [
+            "data.score",
+            "data['score']",
+            "Both A and B",
+            "None of the above"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "pandas",
+        "explanation": "Pandas allows accessing columns using both bracket notation (data['score']) and attribute notation (data.score)."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you calculate the average of the 'temp' column?",
+        "options": [
+            "data['temp'].average()",
+            "data['temp'].mean()",
+            "pd.mean(data['temp'])",
+            "data.mean('temp')"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "pandas",
+        "explanation": "The mean() method computes the arithmetic mean of the values in the Series."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does `data[data.day == 'Monday']` do?",
+        "options": [
+            "Returns True if Monday exists",
+            "Returns the row(s) where the 'day' column is 'Monday'",
+            "Sets the day to Monday",
+            "Errors out"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "pandas",
+        "explanation": "This is conditional selection (or filtering). It returns a new DataFrame containing only rows where the condition is true."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you convert a Series to a Python list?",
+        "options": [
+            ".to_list()",
+            ".convert_list()",
+            ".list()",
+            "list(series)"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "pandas",
+        "explanation": "The to_list() method (or tolist()) converts the Series values into a standard Python list."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you create a CSV file from a DataFrame?",
+        "options": [
+            "data.write_csv('file.csv')",
+            "data.to_csv('file.csv')",
+            "pd.write(data, 'file.csv')",
+            "data.save('file.csv')"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "pandas",
+        "explanation": "to_csv() writes the DataFrame to a CSV file."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is CSV short for?",
+        "options": [
+            "Computer Separated Values",
+            "Comma Separated Values",
+            "Character Separated Variables",
+            "Column Separated Values"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "general",
+        "explanation": "CSV stands for Comma Separated Values."
+    },
+    {
+        "question_type": "mcq",
+        "text": "If `data` has 5 rows and 2 columns, what is `len(data)`?",
+        "options": [
+            "2",
+            "5",
+            "10",
+            "7"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "pandas",
+        "explanation": "len(DataFrame) returns the number of rows."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you get the maximum value in the 'score' column?",
+        "options": [
+            "data.score.max()",
+            "data.score.highest()",
+            "max(data.score)",
+            "A and C"
+        ],
+        "correct_index": 3,
+        "difficulty": "medium",
+        "topic_tag": "pandas",
+        "explanation": "You can use the .max() method or Python's built-in max() function on the Series."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What library is Pandas built on top of?",
+        "options": [
+            "React",
+            "NumPy",
+            "Flask",
+            "Django"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "pandas",
+        "explanation": "Pandas relies heavily on NumPy (Numerical Python) for fast array operations."
+    },
+    {
+        "question_type": "mcq",
+        "text": "To create a DataFrame from scratch, you usually pass a ___ to `pd.DataFrame()`.",
+        "options": [
+            "String",
+            "Integer",
+            "Dictionary",
+            "Boolean"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "pandas",
+        "explanation": "A dictionary where keys are column names and values are lists of data is the most common way to create a DataFrame."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you access the row with the highest temperature?",
+        "options": [
+            "data.max('temp')",
+            "data[data.temp == data.temp.max()]",
+            "data.sort('temp').first()",
+            "data.get_max()"
+        ],
+        "correct_index": 1,
+        "difficulty": "hard",
+        "topic_tag": "pandas",
+        "explanation": "We filter the data where the temp column equals the maximum temp value."
+    },
+    {
+        "question_type": "coding",
+        "text": "Read CSV Check\\nWrite a function `load_data` that reads 'data.csv' and returns the DataFrame.",
+        "starter_code": "import pandas as pd\n\ndef load_data():\n    pass",
+        "test_cases": [
+            {
+                "function_call": "type(load_data()).__name__",
+                "expected": "\"DataFrame\""
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "pandas",
+        "solution_code": "import pandas as pd\ndef load_data():\n    return pd.read_csv('data.csv')"
+    },
+    {
+        "question_type": "coding",
+        "text": "Calculate Mean\\nWrite a function `get_mean` that takes a list of numbers and returns the mean (without using pandas for this exercise, just basic python).",
+        "starter_code": "def get_mean(numbers):\n    pass",
+        "test_cases": [
+            {
+                "function_call": "get_mean([1, 2, 3])",
+                "expected": "2.0"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "logic",
+        "solution_code": "def get_mean(numbers):\n    return sum(numbers) / len(numbers)"
+    },
+    {
+        "question_type": "coding",
+        "text": "Dict to DataFrame\\nWrite a function `make_df` that takes a dictionary `d` and returns a DataFrame.",
+        "starter_code": "import pandas as pd\ndef make_df(d):\n    pass",
+        "test_cases": [
+            {
+                "function_call": "type(make_df({'a':[1]})).__name__",
+                "expected": "\"DataFrame\""
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "pandas",
+        "solution_code": "import pandas as pd\ndef make_df(d):\n    return pd.DataFrame(d)"
+    },
+    {
+        "question_type": "coding",
+        "text": "Conditions\\nWrite a function `is_hot` that returns True if `temp` > 25, else False.",
+        "starter_code": "def is_hot(temp):\n    pass",
+        "test_cases": [
+            {
+                "function_call": "is_hot(30)",
+                "expected": "True"
+            },
+            {
+                "function_call": "is_hot(10)",
+                "expected": "False"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "logic",
+        "solution_code": "def is_hot(temp):\n    return temp > 25"
+    },
+    {
+        "question_type": "coding",
+        "text": "List Conversion\\nWrite a function `convert` that takes a pandas Series `s` and returns it as a list.",
+        "starter_code": "def convert(s):\n    pass",
+        "test_cases": [
+            {
+                "function_call": "convert(pd.Series([1, 2]))",
+                "expected": "[1, 2]"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "pandas",
+        "solution_code": "def convert(s):\n    return s.to_list()"
+    }
+]

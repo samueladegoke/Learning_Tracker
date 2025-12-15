@@ -25,6 +25,8 @@ date: '2025-12-10'
 
 This PRD serves a specific strategic purpose: **Architectural Hardening**. We are documenting the *existing* brownfield system (FastAPI/React) to establish a solid baseline for **scalability, standardization, and automated quality assurance**, enabling future expansion to multi-user support.
 
+> ⚠️ **IMPLEMENTATION STATUS NOTE (2025-12-15):** This PRD describes both **implemented MVP features** and **Phase 2 aspirational features**. The Local-First/Offline patterns (FRs 7-12, localStorage, SyncManager, Web Workers) are **NOT YET IMPLEMENTED**. The current MVP uses a Server-First architecture. See `architecture.md` for current implementation status.
+
 ### What Makes This Special
 
 **Curriculum-Coupled Gamification:** Unlike generic habit trackers, this application is context-aware. It understands that "Day 7" is "Hangman" and rewards the user not just for logging time, but for completing specific milestones.
@@ -192,10 +194,13 @@ We are prioritizing **Depth over Breadth**. Instead of adding half-baked multi-u
 *   **FR8 (Timeout Protection):** The System terminates execution if it exceeds 10 seconds (infinite loop protection).
 *   **FR9 (Output Capture):** The System captures `stdout` and `stderr` from the ephemeral runtime and displays it in the Console Component.
 
-### 3. Data Resilience (Local-First Sync)
-*   **FR10 (Offline Save):** The System saves all user progress to `localStorage` regardless of network status.
-*   **FR11 (State Restoration):** On application load, the System hydrates the Dashboard state from `localStorage` first (Optimistic UI).
-*   **FR12 (Conflict Resolution):** If Backend and Local states differ, the System prefers the state with the most recent timestamp (Last Write Wins).
+### 3. Data Resilience (Local-First Sync) — `[PHASE 2 - NOT IMPLEMENTED]`
+
+> 🚧 **The following requirements are DEFERRED to Phase 2. Current MVP uses Server-First architecture.**
+
+*   **FR10 (Offline Save):** `[DEFERRED]` The System saves all user progress to `localStorage` regardless of network status.
+*   **FR11 (State Restoration):** `[DEFERRED]` On application load, the System hydrates the Dashboard state from `localStorage` first (Optimistic UI).
+*   **FR12 (Conflict Resolution):** `[DEFERRED]` If Backend and Local states differ, the System prefers the state with the most recent timestamp (Last Write Wins).
 
 ### 4. System Integrity (Hardening)
 *   **FR13 (Migration Safety):** The Backend can apply schema migrations (Alembic) without data loss or downtime for the Default User.

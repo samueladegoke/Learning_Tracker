@@ -1,0 +1,290 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "How do we generate cars randomly but not every frame?",
+        "options": [
+            "Use a timer",
+            "Use random.randint() to create a 1 in 6 chance",
+            "Create 100 cars at the start",
+            "Use modulo operator on the loop counter"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "logic",
+        "explanation": "Generating a random number (e.g., 1-6) and checking if it equals 1 creates a roughly 1/6 probability per frame."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the best way to store multiple car objects?",
+        "options": [
+            "In separate variables car1, car2...",
+            "In a dictionary",
+            "In a list",
+            "In a string"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "types",
+        "explanation": "A list allows you to iterate over all cars easily to move them or check collisions."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does `car.shapesize(stretch_wid=1, stretch_len=2)` do to a default square (20x20)?",
+        "options": [
+            "Makes it 10x20 pixels",
+            "Makes it 20x40 pixels",
+            "Makes it 40x80 pixels",
+            "Makes it circular"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "turtle",
+        "explanation": "Default is 20px. Wid=1 -> 20*1=20px (Height). Len=2 -> 20*2=40px (Width/Length)."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you pick a random color from a list `COLORS`?",
+        "options": [
+            "random.pick(COLORS)",
+            "random.choice(COLORS)",
+            "COLORS.random()",
+            "random.item(COLORS)"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "random",
+        "explanation": "random.choice(sequence) returns a random element from the non-empty sequence."
+    },
+    {
+        "question_type": "mcq",
+        "text": "If `all_cars` is a list of turtle objects, how do you move them all?",
+        "options": [
+            "all_cars.move()",
+            "for car in all_cars: car.backward(distance)",
+            "move(all_cars)",
+            "all_cars.backward()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "logic",
+        "explanation": "You must iterate through the list and call the move method on each individual car object."
+    },
+    {
+        "question_type": "mcq",
+        "text": "When the player reaches the finish line, how should we increase difficulty?",
+        "options": [
+            "Add more players",
+            "Increase the car movement speed",
+            "Make cars invisible",
+            "Make the screen smaller"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "design",
+        "explanation": "Increasing the speed at which cars move effectively shortens the reaction time, making the level harder."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do we verify if the player has successfully crossed?",
+        "options": [
+            "Check if player.ycor() > 280",
+            "Check if player.xcor() > 280",
+            "Check if player.distance(finish_line) == 0",
+            "Check if player.is_dead()"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "logic",
+        "explanation": "Since the turtle moves vertically, reaching a Y-coordinate near the top edge (approx 280) indicates success."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why do constants like `STARTING_MOVE_DISTANCE` help?",
+        "options": [
+            "They make the code run faster",
+            "They allow easy tuning of game difficulty in one place",
+            "They are required by Python",
+            "They prevent bugs"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "design",
+        "explanation": "Constants defined at the top of the file allow you to tweak game balance numbers without searching through the code."
+    },
+    {
+        "question_type": "mcq",
+        "text": "In the CarManager class, `self.car_speed` should be an instance attribute because:",
+        "options": [
+            "It never changes",
+            "It changes as the game progresses (levels up)",
+            "It is a constant",
+            "It is global"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "classes",
+        "explanation": "Instance attributes are used for state that can change for that specific object instance (e.g., current game speed)."
+    },
+    {
+        "question_type": "mcq",
+        "text": "If a car is at x=300 and moves backward by 10, what is its new x?",
+        "options": [
+            "310",
+            "290",
+            "300",
+            "-10"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "coords",
+        "explanation": "Moving backward (assuming standard East-facing) decreases the X coordinate. 300 - 10 = 290."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What happens to the cars that go off the left side of the screen?",
+        "options": [
+            "They delete themselves automatically",
+            "They stay in memory and keep moving (unless explicitly removed)",
+            "They loop back to the right",
+            "The game crashes"
+        ],
+        "correct_index": 1,
+        "difficulty": "hard",
+        "topic_tag": "logic",
+        "explanation": "In separate simple implementations, they might just keep moving into negative infinity unless code is written to remove them from the list."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you detect collision with *any* car in the list?",
+        "options": [
+            "if player.distance(all_cars) < 20",
+            "for car in all_cars: if player.distance(car) < 20: ...",
+            "if player.collide(all_cars)",
+            "if all_cars.distance(player) < 20"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "logic",
+        "explanation": "You must check the distance between the player and *each individual car* in a loop."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What functionality should the Scoreboard class facilitate?",
+        "options": [
+            "Moving the player",
+            "Displaying the current level and Game Over message",
+            "Generating cars",
+            "Controlling collisions"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "design",
+        "explanation": "The Scoreboard is responsible for UI feedback: showing the level and endgame state."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why do we call `super().__init__()` in the Player class if it inherits from Turtle?",
+        "options": [
+            "To make it a distinct class",
+            "To initialize the underlying Turtle object correctly",
+            "It is optional",
+            "To reset the game"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "inheritance",
+        "explanation": "super().__init__() ensures the parent Turtle class sets up its internal state (like graphics, position) before we modify it."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the coordinate of the center of the screen?",
+        "options": [
+            "(0, 0)",
+            "(400, 300)",
+            "(100, 100)",
+            "None"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "coords",
+        "explanation": "In Turtle graphics, (0, 0) is the center of the canvas."
+    },
+    {
+        "question_type": "coding",
+        "text": "Random Choice\\nWrite a function `pick_color` that returns a random color from a given list.",
+        "starter_code": "import random\n\ndef pick_color(colors):\n    pass",
+        "test_cases": [
+            {
+                "function_call": "pick_color(['red'])",
+                "expected": "'red'"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "random",
+        "solution_code": "import random\ndef pick_color(colors):\n    return random.choice(colors)"
+    },
+    {
+        "question_type": "coding",
+        "text": "Level Increment\\nWrite a function `increase_speed` that adds `increment` to `current_speed`.",
+        "starter_code": "def increase_speed(current_speed, increment):\n    pass",
+        "test_cases": [
+            {
+                "function_call": "increase_speed(10, 5)",
+                "expected": "15"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "logic",
+        "solution_code": "def increase_speed(current_speed, increment):\n    return current_speed + increment"
+    },
+    {
+        "question_type": "coding",
+        "text": "Finish Line Check\\nWrite a function `is_finished` that returns True if `y_pos` > 280.",
+        "starter_code": "def is_finished(y_pos):\n    pass",
+        "test_cases": [
+            {
+                "function_call": "is_finished(290)",
+                "expected": "True"
+            },
+            {
+                "function_call": "is_finished(200)",
+                "expected": "False"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "logic",
+        "solution_code": "def is_finished(y_pos):\n    return y_pos > 280"
+    },
+    {
+        "question_type": "coding",
+        "text": "Create Car\\nImplement a `create_car` stub that returns 'New Car' if chance is 1, else None.",
+        "starter_code": "def create_car(chance):\n    pass",
+        "test_cases": [
+            {
+                "function_call": "create_car(1)",
+                "expected": "'New Car'"
+            },
+            {
+                "function_call": "create_car(5)",
+                "expected": "None"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "logic",
+        "solution_code": "def create_car(chance):\n    if chance == 1:\n        return 'New Car'\n    return None"
+    },
+    {
+        "question_type": "coding",
+        "text": "Move All\\nWrite a function `move_all` that decreases the x-coordinate of each dict in a list by `dist`.",
+        "starter_code": "def move_all(cars, dist):\n    pass",
+        "test_cases": [
+            {
+                "function_call": "move_all([{'x': 100}, {'x': 200}], 10)",
+                "expected": "[{'x': 90}, {'x': 190}]"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "logic",
+        "solution_code": "def move_all(cars, dist):\n    for car in cars:\n        car['x'] -= dist\n    return cars"
+    }
+]

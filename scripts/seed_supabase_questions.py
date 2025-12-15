@@ -60,6 +60,7 @@ def seed_questions(quiz_id: str, questions: list) -> dict:
             'quiz_id': quiz_id,
             'question_type': q.get('question_type', 'mcq'),
             'text': q['text'],
+            'code': q.get('code'),  # For code-correction questions
             'options': json.dumps(options),
             'correct_index': q.get('correct_index', 0),
             'starter_code': q.get('starter_code'),
@@ -98,9 +99,22 @@ def validate_question_schema(question: dict, index: int, filename: str):
     if q_type == 'mcq':
         if 'options' not in question or 'correct_index' not in question:
             raise ValueError(f"MCQ question missing 'options' or 'correct_index' in {filename} at index {index}")
+        # Warn about missing explanation (not a hard error, but logged)
+        if 'explanation' not in question:
+            print(f"  ⚠️ Warning: MCQ question missing 'explanation' in {filename} at index {index}")
+    elif q_type == 'code-correction':
+        if 'code' not in question:
+            raise ValueError(f"Code-correction question missing 'code' in {filename} at index {index}")
+        if 'options' not in question or 'correct_index' not in question:
+            raise ValueError(f"Code-correction question missing 'options' or 'correct_index' in {filename} at index {index}")
     elif q_type == 'coding':
         if 'solution_code' not in question:
             raise ValueError(f"Coding question missing 'solution_code' in {filename} at index {index}")
+        # Validate test_cases is present and non-empty
+        if 'test_cases' not in question or not question['test_cases']:
+            raise ValueError(f"Coding question missing 'test_cases' in {filename} at index {index}")
+        if 'starter_code' not in question:
+            print(f"  ⚠️ Warning: Coding question missing 'starter_code' in {filename} at index {index}")
 
 
 def load_questions_from_json(filepath: str) -> list:

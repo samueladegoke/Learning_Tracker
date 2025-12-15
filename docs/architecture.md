@@ -189,8 +189,7 @@ This is a brownfield project with a stable, functioning MVP. We are adopting the
 
 ### Complete Project Directory Structure
 
-**Target Architecture (Refactor Required):**
-*The following structure defines the target state for Feature-Sliced Design. Existing `src/components` should be migrated gradually.*
+**Current Implementation (MVP):**
 
 ```
 project-name/
@@ -202,33 +201,58 @@ project-name/
 │   │   ├── models.py         # SQLAlchemy Models
 │   │   ├── schemas.py        # Pydantic Schemas
 │   │   ├── routers/          # Domain Logic
-│   │   │   ├── auth.py
+│   │   │   ├── achievements.py
+│   │   │   ├── badges.py
+│   │   │   ├── progress.py
+│   │   │   ├── quizzes.py
+│   │   │   ├── reflections.py
+│   │   │   ├── rpg.py
 │   │   │   ├── tasks.py
-│   │   │   ├── sync.py       # [NEW] Sync Batch Endpoints
-│   │   │   └── quizzes.py
+│   │   │   └── weeks.py
 │   │   └── utils/
 │   ├── alembic/              # DB Migrations
 │   └── tests/                # Backend API Tests
 ├── frontend/                 # React/Vite Frontend
 │   ├── src/
-│   │   ├── api/              # API Client (Axios/Fetch)
-│   │   ├── components/       # Shared UI Atoms (Buttons, Cards)
-│   │   ├── contexts/         # Global State (User, Theme)
-│   │   ├── features/         # [NEW] Domain Modules
-│   │   │   ├── learning/     # Epic 1: Learning Loop
-│   │   │   │   ├── components/
-│   │   │   │   └── hooks/    # useTaskToggle, useDayProgress
-│   │   │   ├── ide/          # Epic 2: Pyodide Runtime
-│   │   │   │   ├── components/
-│   │   │   │   └── worker/   # pyodide.worker.js
-│   │   │   └── sync/         # Epic 3: Sync Logic
-│   │   │   │   ├── SyncManager.js
-│   │   │   │   └── useSyncQueue.js
-│   │   ├── pages/            # Route Pages (Composition roots)
-│   │   └── lib/              # Core Utilities
-│   │       ├── db.js         # IndexedDB Wrapper
-│   │       └── storage.js    # LocalStorage Adapter
+│   │   ├── api/              # API Clients (client.js, quizApi.js)
+│   │   ├── components/       # UI Components (40+ files)
+│   │   ├── contexts/         # Global State (PyodideContext)
+│   │   ├── hooks/            # Custom Hooks (usePythonRunner)
+│   │   ├── lib/              # Core Utilities (supabase.js)
+│   │   ├── pages/            # Route Pages (6 pages)
+│   │   └── utils/            # Helpers
 │   └── tests/                # E2E Tests (Playwright)
+├── scripts/                  # Utility Scripts
+│   ├── data/questions/       # Quiz JSON files (day-1 to day-25)
+│   └── seed_supabase_questions.py
+```
+
+**Phase 2 Target Architecture (NOT IMPLEMENTED):**
+
+> 🚧 The following Feature-Sliced Design structure is aspirational for Phase 2 when Local-First patterns are implemented.
+
+```
+frontend/src/
+├── features/         # [PHASE 2] Domain Modules
+│   ├── learning/     # Epic 1: Learning Loop
+│   │   ├── components/
+│   │   └── hooks/    # useTaskToggle, useDayProgress
+│   ├── ide/          # Epic 2: Pyodide Runtime
+│   │   ├── components/
+│   │   └── worker/   # pyodide.worker.js
+│   └── sync/         # Epic 3: Sync Logic
+│       ├── SyncManager.js
+│       └── useSyncQueue.js
+└── lib/
+    ├── db.js         # IndexedDB Wrapper
+    └── storage.js    # LocalStorage Adapter
+```
+
+**Backend Phase 2 (NOT IMPLEMENTED):**
+
+```
+backend/app/routers/
+└── sync.py           # [PHASE 2] Batch Sync Endpoints
 ```
 
 ### Architectural Boundaries
@@ -384,5 +408,49 @@ Reference the original Epic structure in `docs/epics.md` for Local-First impleme
 
 **Architecture Status:** MVP COMPLETE ✅ | Phase 2 DEFERRED
 
-**Last Updated:** 2025-12-13
+**Last Updated:** 2025-12-15
+
+---
+
+## System Diagrams
+
+### High-Level Architecture
+
+```mermaid
+graph TD
+    Client[React Frontend]
+    API[FastAPI Backend]
+    DB[(Supabase PostgreSQL)]
+    Pyodide[Pyodide WASM Runtime]
+    CDN[JSDelivr CDN]
+
+    Client -- REST/JSON --> API
+    API -- SQLAlchemy --> DB
+    Client -- Load --> Pyodide
+    Pyodide -- Fetch Assets --> CDN
+    Client -- Execute --> Pyodide
+```
+
+### Data Flow: Task Completion
+
+1. **User** clicks "Complete" on `TaskCard`.
+2. **Frontend** sends `POST /api/tasks/{id}/complete`.
+3. **API** verifies task existence and user status.
+4. **API** calculates rewards (XP, Gold, Badges, Quest Damage).
+5. **API** updates `User` and `UserTaskStatus` in **DB**.
+6. **API** returns `TaskCompletionResult` (including new level, streak, etc.).
+7. **Frontend** receives result and triggers animations (Level Up Modal, Confetti).
+8. **Frontend** updates local Context with new user stats.
+
+### Quiz Data Flow (Supabase Direct)
+
+1. **User** navigates to `/practice` and selects a Day.
+2. **Frontend** calls `quizApi.getQuestions(quizId)` → Supabase directly.
+3. **Frontend** renders questions (MCQ, Coding, Code-Correction).
+4. **User** submits answers.
+5. **Frontend** calls `quizApi.submitQuiz()` → Supabase directly.
+6. **Score** is calculated client-side and stored in Supabase.
+
+> Note: Quiz API bypasses FastAPI backend for performance. See `frontend/src/api/quizApi.js`.
+
 

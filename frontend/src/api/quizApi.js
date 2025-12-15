@@ -11,7 +11,7 @@ export const quizApi = {
   async getQuestions(quizId) {
     const { data, error } = await supabase
       .from('questions')
-      .select('id, quiz_id, question_type, text, options, starter_code, test_cases, explanation, difficulty, topic_tag')
+      .select('id, quiz_id, question_type, text, code, options, starter_code, test_cases, explanation, difficulty, topic_tag')
       .eq('quiz_id', quizId)
       .order('id')
 
@@ -90,8 +90,8 @@ export const quizApi = {
       const question = questionsMap[parseInt(qId)]
       if (!question) continue
 
-      if (question.question_type === 'mcq') {
-        // MCQ: answer is the selected index
+      if (question.question_type === 'mcq' || question.question_type === 'code-correction') {
+        // MCQ/Correction: answer is the selected index
         if (question.correct_index === answer) {
           score++
         }
@@ -164,7 +164,7 @@ export const quizApi = {
 
     const stats = {
       total: questions.length,
-      byType: { mcq: 0, coding: 0 },
+      byType: { mcq: 0, coding: 0, 'code-correction': 0 },
       byDifficulty: { easy: 0, medium: 0, hard: 0 }
     }
 

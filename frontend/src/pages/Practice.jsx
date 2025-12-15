@@ -26,6 +26,11 @@ import DeepDiveDay17 from '../components/content/DeepDive/Day17'
 import DeepDiveDay18 from '../components/content/DeepDive/Day18'
 import DeepDiveDay19 from '../components/content/DeepDive/Day19'
 import DeepDiveDay20 from '../components/content/DeepDive/Day20'
+import DeepDiveDay21 from '../components/content/DeepDive/Day21'
+import DeepDiveDay22 from '../components/content/DeepDive/Day22'
+import DeepDiveDay23 from '../components/content/DeepDive/Day23'
+import DeepDiveDay24 from '../components/content/DeepDive/Day24'
+import DeepDiveDay25 from '../components/content/DeepDive/Day25'
 
 
 const DAY_META = {
@@ -188,6 +193,46 @@ const DAY_META = {
         quizId: 'day-20-practice',
         level: 'intermediate',
         topics: ['animation', 'game-loop', 'oop', 'snake']
+    },
+    'day-21': {
+        label: 'Day 21',
+        title: 'Day 21: Snake Game Part 2 & Inheritance',
+        subtitle: 'Class Inheritance, super(), and List Slicing applied to the Snake Game.',
+        quizId: 'day-21-practice',
+        level: 'intermediate',
+        topics: ['inheritance', 'super', 'slicing', 'snake']
+    },
+    'day-22': {
+        label: 'Day 22',
+        title: 'Day 22: Pong Game',
+        subtitle: 'Review classes and build the classic Pong arcade game.',
+        quizId: 'day-22-practice',
+        level: 'intermediate',
+        topics: ['pong', 'game-logic', 'collision', 'physics']
+    },
+    'day-23': {
+        label: 'Day 23',
+        title: 'Day 23: Turtle Crossing',
+        subtitle: 'Build a Frogger-style game with car managers and random generation.',
+        quizId: 'day-23-practice',
+        level: 'intermediate',
+        topics: ['turtle-crossing', 'manager', 'random', 'logic']
+    },
+    'day-24': {
+        label: 'Day 24',
+        title: 'Day 24: Files & Paths',
+        subtitle: 'Read and write to local files, understand absolute vs relative paths.',
+        quizId: 'day-24-practice',
+        level: 'intermediate',
+        topics: ['files', 'paths', 'read', 'write']
+    },
+    'day-25': {
+        label: 'Day 25',
+        title: 'Day 25: CSV & Pandas',
+        subtitle: 'Analyze data with the powerful Pandas library.',
+        quizId: 'day-25-practice',
+        level: 'intermediate',
+        topics: ['pandas', 'csv', 'data-science', 'dataframes']
     }
 }
 
@@ -297,7 +342,12 @@ function DeepDive({ activeDay }) {
         'day-17': DeepDiveDay17,
         'day-18': DeepDiveDay18,
         'day-19': DeepDiveDay19,
-        'day-20': DeepDiveDay20
+        'day-20': DeepDiveDay20,
+        'day-21': DeepDiveDay21,
+        'day-22': DeepDiveDay22,
+        'day-23': DeepDiveDay23,
+        'day-24': DeepDiveDay24,
+        'day-25': DeepDiveDay25
     }
     const Component = components[activeDay]
     if (!Component) {
@@ -398,7 +448,7 @@ function Quiz({ quizId, activeDay }) {
                 if (answer === undefined) return
                 totalAnswered++
 
-                if (q.question_type === 'mcq') {
+                if (q.question_type === 'mcq' || q.question_type === 'code-correction') {
                     if (answer === q.correct_index) {
                         score++
                     }
@@ -528,9 +578,10 @@ function Quiz({ quizId, activeDay }) {
     const selectedOption = answers[currentQuestion.id]
     const isMCQ = currentQuestion.question_type === 'mcq'
     const isCoding = currentQuestion.question_type === 'coding'
+    const isCodeCorrection = currentQuestion.question_type === 'code-correction'
 
     // Check if current question is answered
-    const isAnswered = isMCQ
+    const isAnswered = (isMCQ || isCodeCorrection)
         ? selectedOption !== undefined
         : selectedOption?.code !== undefined
 
@@ -542,9 +593,10 @@ function Quiz({ quizId, activeDay }) {
                     <div className="flex items-center gap-4">
                         <span>Question {currentQ + 1} of {questions.length}</span>
                         <span className={`px-2 py-1 rounded-full text-xs ${isMCQ ? 'bg-blue-500/10 text-blue-400 border border-blue-500/30'
-                            : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30'
+                            : isCodeCorrection ? 'bg-orange-500/10 text-orange-400 border border-orange-500/30'
+                                : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30'
                             }`}>
-                            {isMCQ ? 'Multiple Choice' : 'Coding Challenge'}
+                            {isMCQ ? 'Multiple Choice' : isCodeCorrection ? 'Code Correction' : 'Coding Challenge'}
                         </span>
                         {currentQuestion.difficulty && (
                             <span className={`px-2 py-1 rounded-full text-xs ${currentQuestion.difficulty === 'easy' ? 'bg-green-500/10 text-green-400' :
@@ -618,6 +670,43 @@ function Quiz({ quizId, activeDay }) {
                                 )}
                             </button>
                         ))}
+                    </div>
+                )}
+
+                {/* Code Correction - Shows buggy code + MCQ options for fix */}
+                {isCodeCorrection && currentQuestion.code && (
+                    <div className="space-y-4">
+                        {/* Display the buggy code */}
+                        <div className="bg-surface-900 p-4 rounded-xl border border-orange-500/30">
+                            <div className="text-xs text-orange-400 mb-2 uppercase tracking-wider font-medium">Code to Fix:</div>
+                            <pre className="font-mono text-sm text-primary-300 whitespace-pre-wrap">{currentQuestion.code}</pre>
+                        </div>
+                        {/* Options for correction */}
+                        <div className="space-y-3">
+                            {currentQuestion.options?.map((opt, idx) => (
+                                <button
+                                    key={idx}
+                                    onClick={() => handleMCQAnswer(idx)}
+                                    className={`w-full text-left p-4 rounded-xl border transition-all duration-200 flex justify-between items-center ${selectedOption === idx
+                                        ? 'bg-orange-600/20 border-orange-500 text-orange-200'
+                                        : 'bg-surface-700/50 border-surface-600 hover:bg-surface-700 hover:border-surface-500 text-surface-200'
+                                        }`}
+                                >
+                                    <div className="flex items-center gap-3">
+                                        <span className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm font-medium ${selectedOption === idx
+                                            ? 'bg-orange-500 text-white'
+                                            : 'bg-surface-600 text-surface-300'
+                                            }`}>
+                                            {String.fromCharCode(65 + idx)}
+                                        </span>
+                                        <span className="font-mono text-sm whitespace-pre-wrap">{opt}</span>
+                                    </div>
+                                    {selectedOption === idx && (
+                                        <Check className="w-5 h-5 text-orange-400" />
+                                    )}
+                                </button>
+                            ))}
+                        </div>
                     </div>
                 )}
 
