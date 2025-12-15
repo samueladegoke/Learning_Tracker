@@ -1,6 +1,6 @@
 import React from 'react'
 import CodeBlock from '../../CodeBlock'
-import { Dumbbell, Table, MessageSquare, Database, Lightbulb } from 'lucide-react'
+import { Dumbbell, Lightbulb } from 'lucide-react'
 
 export default function DeepDiveDay38() {
     return (

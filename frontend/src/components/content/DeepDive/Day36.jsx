@@ -1,6 +1,6 @@
 import React from 'react'
 import CodeBlock from '../../CodeBlock'
-import { TrendingUp, Newspaper, Bell, DollarSign, Lightbulb } from 'lucide-react'
+import { TrendingUp, Lightbulb } from 'lucide-react'
 
 export default function DeepDiveDay36() {
     return (

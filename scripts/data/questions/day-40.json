@@ -189,6 +189,10 @@
             {
                 "function_call": "'Subject:' in format_email('Test', 'Body')",
                 "expected": "True"
+            },
+            {
+                "function_call": "'\\n\\n' in format_email('Hello', 'World')",
+                "expected": "True"
             }
         ],
         "difficulty": "easy",
@@ -249,6 +253,10 @@
             {
                 "function_call": "add_stopovers_flag({'price': 100}, 2).get('stops')",
                 "expected": "2"
+            },
+            {
+                "function_call": "add_stopovers_flag({'price': 100}, 0).get('stops')",
+                "expected": "None"
             }
         ],
         "difficulty": "medium",
