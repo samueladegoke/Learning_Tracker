@@ -16,6 +16,7 @@ build/
 *.db
 *.sqlite
 *.sqlite3
+*.bak
 
 # IDE
 .idea/

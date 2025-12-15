@@ -1,9 +1,13 @@
 import os
+import logging
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from .database import engine, Base
 from .routers import weeks, tasks, reflections, progress, badges, rpg, achievements, quizzes
+
+# Configure logger
+logger = logging.getLogger(__name__)
 
 # Create database tables
 Base.metadata.create_all(bind=engine)
