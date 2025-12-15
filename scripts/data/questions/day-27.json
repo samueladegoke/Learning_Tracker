@@ -1,0 +1,434 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What library is Python's standard GUI toolkit?",
+        "options": [
+            "PyQt",
+            "Tkinter",
+            "Kivy",
+            "wxPython"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "tkinter",
+        "explanation": "Tkinter (Tk interface) is Python's built-in standard GUI library."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which method must be called at the end of a Tkinter program to keep the window open?",
+        "options": [
+            "window.run()",
+            "window.start()",
+            "window.mainloop()",
+            "window.display()"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "tkinter",
+        "explanation": "mainloop() starts the event loop that keeps the window open and responsive."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you create a basic Tkinter window?",
+        "options": [
+            "tk.Window()",
+            "tk.Tk()",
+            "tk.create_window()",
+            "tk.GUI()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "tkinter",
+        "explanation": "tk.Tk() creates the main (root) window in Tkinter."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does a default argument value do in a function?",
+        "options": [
+            "Makes the parameter required",
+            "Makes the parameter optional with a fallback value",
+            "Prevents the function from being called",
+            "Creates a global variable"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "default-values",
+        "explanation": "Default values make parameters optional - if not provided, the default is used."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Where must default parameters appear in a function definition?",
+        "options": [
+            "Before required parameters",
+            "After required parameters",
+            "Anywhere in the parameter list",
+            "Only as the first parameter"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "default-values",
+        "explanation": "Default parameters must come after required parameters in Python."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What type of data structure does `*args` collect arguments into?",
+        "options": [
+            "List",
+            "Dictionary",
+            "Tuple",
+            "Set"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "args",
+        "explanation": "*args collects positional arguments into a tuple."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What type of data structure does `**kwargs` collect arguments into?",
+        "options": [
+            "List",
+            "Dictionary",
+            "Tuple",
+            "Set"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "kwargs",
+        "explanation": "**kwargs collects keyword arguments into a dictionary."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What will `kwargs['name']` return if 'name' was passed as `name='Alice'`?",
+        "options": [
+            "'name'",
+            "'Alice'",
+            "('name', 'Alice')",
+            "None"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "kwargs",
+        "explanation": "kwargs is a dictionary where the key is 'name' and the value is 'Alice'."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What advantage does `kwargs.get('key')` have over `kwargs['key']`?",
+        "options": [
+            "It's faster",
+            "It returns None instead of raising KeyError if key doesn't exist",
+            "It automatically converts types",
+            "It creates the key if missing"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "kwargs",
+        "explanation": "The .get() method returns None (or a default) if the key is missing, avoiding KeyError."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which Tkinter widget is used for single-line text input?",
+        "options": [
+            "Label",
+            "Button",
+            "Entry",
+            "Text"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "tkinter",
+        "explanation": "Entry is used for single-line text input in Tkinter."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you get the text from an Entry widget?",
+        "options": [
+            "entry.text",
+            "entry.get()",
+            "entry.read()",
+            "entry.value"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "tkinter",
+        "explanation": "The .get() method retrieves the current text from an Entry widget."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you make a Button call a function when clicked?",
+        "options": [
+            "button.onclick = my_function",
+            "button.click(my_function)",
+            "Button(command=my_function)",
+            "Button(action=my_function)"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "tkinter",
+        "explanation": "The command parameter takes a function reference to call when clicked."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which layout manager uses row and column positioning?",
+        "options": [
+            "pack()",
+            "place()",
+            "grid()",
+            "layout()"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "tkinter",
+        "explanation": "grid() positions widgets using row and column indices."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does `label.pack(side='left')` do?",
+        "options": [
+            "Places label at absolute left position",
+            "Stacks the label to the left of other packed widgets",
+            "Aligns text inside the label to the left",
+            "Creates a left margin"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "tkinter",
+        "explanation": "side='left' stacks the widget to the left of other widgets in the container."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why does Tkinter use **kw for many widget parameters?",
+        "options": [
+            "Python requires it",
+            "It was converted from Tk which has different syntax",
+            "It's more efficient",
+            "It prevents errors"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "tkinter",
+        "explanation": "Tkinter was ported from Tk (Tcl), and **kwargs was the most efficient way to handle all the Tk options."
+    },
+    {
+        "question_type": "coding",
+        "text": "Add Numbers\\nWrite a function `add_all` using *args that returns the sum of all arguments passed.",
+        "starter_code": "def add_all(*args):\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "add_all(1, 2, 3)",
+                "expected": "6"
+            },
+            {
+                "function_call": "add_all(5, 10, 15, 20)",
+                "expected": "50"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "args",
+        "solution_code": "def add_all(*args):\\n    return sum(args)"
+    },
+    {
+        "question_type": "coding",
+        "text": "Greet with Default\\nWrite a function `greet` that takes a name and an optional greeting (default 'Hello'). Return the formatted greeting.",
+        "starter_code": "def greet(name, greeting='Hello'):\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "greet('Alice')",
+                "expected": "\"Hello, Alice!\""
+            },
+            {
+                "function_call": "greet('Bob', 'Hi')",
+                "expected": "\"Hi, Bob!\""
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "default-values",
+        "solution_code": "def greet(name, greeting='Hello'):\\n    return f'{greeting}, {name}!'"
+    },
+    {
+        "question_type": "coding",
+        "text": "Get Kwarg Value\\nWrite a function `get_value` that accepts **kwargs and returns the value of key 'x' or 0 if not present.",
+        "starter_code": "def get_value(**kwargs):\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "get_value(x=5, y=10)",
+                "expected": "5"
+            },
+            {
+                "function_call": "get_value(a=1, b=2)",
+                "expected": "0"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "kwargs",
+        "solution_code": "def get_value(**kwargs):\\n    return kwargs.get('x', 0)"
+    },
+    {
+        "question_type": "coding",
+        "text": "Multiply Args\\nWrite a function `multiply_all` using *args that returns the product of all arguments. Return 1 if no args.",
+        "starter_code": "def multiply_all(*args):\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "multiply_all(2, 3, 4)",
+                "expected": "24"
+            },
+            {
+                "function_call": "multiply_all(5, 5)",
+                "expected": "25"
+            },
+            {
+                "function_call": "multiply_all()",
+                "expected": "1"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "args",
+        "solution_code": "def multiply_all(*args):\\n    result = 1\\n    for n in args:\\n        result *= n\\n    return result"
+    },
+    {
+        "question_type": "coding",
+        "text": "Build Profile\\nWrite a function `build_profile` that takes a name and **kwargs, returning a dict with name and all kwargs.",
+        "starter_code": "def build_profile(name, **kwargs):\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "build_profile('Alice', age=25)",
+                "expected": "{'name': 'Alice', 'age': 25}"
+            },
+            {
+                "function_call": "build_profile('Bob', city='NYC', job='Dev')",
+                "expected": "{'name': 'Bob', 'city': 'NYC', 'job': 'Dev'}"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "kwargs",
+        "solution_code": "def build_profile(name, **kwargs):\\n    return {'name': name, **kwargs}"
+    },
+    {
+        "question_type": "coding",
+        "text": "Count Args\\nWrite a function `count_args` that returns how many positional arguments were passed using *args.",
+        "starter_code": "def count_args(*args):\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "count_args(1, 2, 3)",
+                "expected": "3"
+            },
+            {
+                "function_call": "count_args('a', 'b')",
+                "expected": "2"
+            },
+            {
+                "function_call": "count_args()",
+                "expected": "0"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "args",
+        "solution_code": "def count_args(*args):\\n    return len(args)"
+    },
+    {
+        "question_type": "coding",
+        "text": "Calculate Expression\\nWrite a function `calculate` that takes n and **kwargs with 'add' and 'multiply' keys. Return (n + add) * multiply.",
+        "starter_code": "def calculate(n, **kwargs):\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "calculate(2, add=3, multiply=5)",
+                "expected": "25"
+            },
+            {
+                "function_call": "calculate(10, add=5, multiply=2)",
+                "expected": "30"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "kwargs",
+        "solution_code": "def calculate(n, **kwargs):\\n    n += kwargs['add']\\n    n *= kwargs['multiply']\\n    return n"
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the bug in this function with *args",
+        "code": "def add_all(args):\n    total = 0\n    for num in args:\n        total += num\n    return total\n\nprint(add_all(1, 2, 3))",
+        "options": [
+            "Change 'args' to '*args' in the function definition",
+            "Change 'for num in args' to 'for num in *args'",
+            "Add return args before the loop",
+            "Change add_all(1, 2, 3) to add_all([1, 2, 3])"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "args",
+        "explanation": "To accept unlimited positional arguments, use *args with an asterisk. Without it, 'args' is just one regular parameter."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the bug in this default parameter function",
+        "code": "def greet(greeting='Hello', name):\n    return f'{greeting}, {name}!'\n\nprint(greet('Alice'))",
+        "options": [
+            "Move the default parameter after the required parameter",
+            "Remove the default value from greeting",
+            "Add a default value to name",
+            "Change the order of arguments in the print"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "default-values",
+        "explanation": "In Python, parameters with default values must come AFTER parameters without defaults. Correct: def greet(name, greeting='Hello')."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the bug in this Tkinter button code",
+        "code": "import tkinter as tk\nwindow = tk.Tk()\n\ndef click():\n    print('Clicked!')\n\nbutton = tk.Button(text='Click Me', command=click())\nbutton.pack()\nwindow.mainloop()",
+        "options": [
+            "Remove parentheses from click() in command=click()",
+            "Change command to onclick",
+            "Add return to click function",
+            "Move mainloop() before pack()"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "tkinter",
+        "explanation": "command expects a function REFERENCE, not a function CALL. Using click() calls the function immediately. Use command=click (no parentheses)."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the bug in this **kwargs access",
+        "code": "def show_info(**kwargs):\n    # Get name or 'Unknown' if not provided\n    name = kwargs['name'] or 'Unknown'\n    return f'Name: {name}'\n\nprint(show_info(age=25))",
+        "options": [
+            "Use kwargs.get('name', 'Unknown') instead",
+            "Change **kwargs to *args",
+            "Add name='Unknown' as parameter",
+            "Remove 'or Unknown' from the line"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "kwargs",
+        "explanation": "kwargs['name'] raises KeyError if 'name' isn't passed. Use .get('name', 'Unknown') to safely return a default value."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the correct order of parameters in a function definition?",
+        "options": [
+            "*args, **kwargs, positional, default",
+            "positional, default, *args, **kwargs",
+            "**kwargs, *args, positional, default",
+            "positional, *args, default, **kwargs"
+        ],
+        "correct_index": 1,
+        "difficulty": "hard",
+        "topic_tag": "function-parameters",
+        "explanation": "The order must be: positional params, default params, *args, **kwargs. Violating this order causes SyntaxError."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What happens when you call `Button(command=my_func())` instead of `Button(command=my_func)`?",
+        "options": [
+            "The button works normally",
+            "The function runs immediately when the button is created, not when clicked",
+            "Python raises a SyntaxError",
+            "The button becomes unclickable"
+        ],
+        "correct_index": 1,
+        "difficulty": "hard",
+        "topic_tag": "tkinter",
+        "explanation": "Adding () calls the function immediately. command expects a function object (reference), not the result of calling it."
+    }
+]

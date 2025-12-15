@@ -1,14 +1,31 @@
 # Development Guide
-Generated: 2025-12-10
+Generated: 2025-12-10 | Updated: 2025-12-15
+
+## Quick Start (Recommended)
+From the project root, run both frontend and backend with a single command:
+```bash
+# Windows
+npm run dev
+
+# Linux/Mac
+npm run dev:unix
+```
+This opens the frontend and runs the backend concurrently.
+
+| Service | URL |
+|---------|-----|
+| Frontend | http://localhost:5173 |
+| Backend API | http://localhost:8000 |
+| Swagger Docs | http://localhost:8000/docs |
 
 ## Prerequisites
 - **Python**: 3.9+
 - **Node.js**: 16+
 - **Git**
 
-## Setup Instructions
+## Manual Setup (Individual Services)
 
-### 1. Backend (FastAPI)
+### Backend (FastAPI)
 ```bash
 cd backend
 python -m venv venv
@@ -19,18 +36,15 @@ source venv/bin/activate
 
 pip install -r requirements.txt
 python seed.py  # Initialize standard curriculum
-uvicorn app.main:app --reload --port 8000
+npm run dev:backend  # or: uvicorn app.main:app --reload --port 8000
 ```
-- **URL**: `http://localhost:8000`
-- **Swagger Docs**: `http://localhost:8000/docs`
 
-### 2. Frontend (React)
+### Frontend (React)
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
-- **URL**: `http://localhost:5173`
 
 ## Testing
 ### End-to-End (Playwright)

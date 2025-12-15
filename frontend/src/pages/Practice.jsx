@@ -31,7 +31,11 @@ import DeepDiveDay22 from '../components/content/DeepDive/Day22'
 import DeepDiveDay23 from '../components/content/DeepDive/Day23'
 import DeepDiveDay24 from '../components/content/DeepDive/Day24'
 import DeepDiveDay25 from '../components/content/DeepDive/Day25'
-
+import DeepDiveDay26 from '../components/content/DeepDive/Day26'
+import DeepDiveDay27 from '../components/content/DeepDive/Day27'
+import DeepDiveDay28 from '../components/content/DeepDive/Day28'
+import DeepDiveDay29 from '../components/content/DeepDive/Day29'
+import DeepDiveDay30 from '../components/content/DeepDive/Day30'
 
 const DAY_META = {
     'day-1': {
@@ -233,6 +237,46 @@ const DAY_META = {
         quizId: 'day-25-practice',
         level: 'intermediate',
         topics: ['pandas', 'csv', 'data-science', 'dataframes']
+    },
+    'day-26': {
+        label: 'Day 26',
+        title: 'Day 26: List Comprehension & NATO Alphabet',
+        subtitle: 'Create lists in one line and transform data efficiently.',
+        quizId: 'day-26-practice',
+        level: 'intermediate',
+        topics: ['list-comprehension', 'dictionary-comprehension', 'pandas-iteration']
+    },
+    'day-27': {
+        label: 'Day 27',
+        title: 'Day 27: Tkinter, *args & **kwargs',
+        subtitle: 'Build GUIs and master flexible function arguments.',
+        quizId: 'day-27-practice',
+        level: 'intermediate',
+        topics: ['tkinter', 'args', 'kwargs', 'gui']
+    },
+    'day-28': {
+        label: 'Day 28',
+        title: 'Day 28: Pomodoro Timer & Dynamic Typing',
+        subtitle: 'Canvas widgets, timer mechanism, and Pythons flexibility.',
+        quizId: 'day-28-practice',
+        level: 'intermediate',
+        topics: ['canvas', 'after-method', 'timer', 'dynamic-typing']
+    },
+    'day-29': {
+        label: 'Day 29',
+        title: 'Day 29: Password Manager GUI',
+        subtitle: 'Grid layouts, file I/O, and clipboard management.',
+        quizId: 'day-29-practice',
+        level: 'intermediate',
+        topics: ['grid-layout', 'file-io', 'messagebox', 'clipboard']
+    },
+    'day-30': {
+        label: 'Day 30',
+        title: 'Day 30: Errors, Exceptions & JSON',
+        subtitle: 'Handle errors gracefully and store data in JSON format.',
+        quizId: 'day-30-practice',
+        level: 'intermediate',
+        topics: ['exceptions', 'try-except', 'json', 'error-handling']
     }
 }
 
@@ -347,7 +391,12 @@ function DeepDive({ activeDay }) {
         'day-22': DeepDiveDay22,
         'day-23': DeepDiveDay23,
         'day-24': DeepDiveDay24,
-        'day-25': DeepDiveDay25
+        'day-25': DeepDiveDay25,
+        'day-26': DeepDiveDay26,
+        'day-27': DeepDiveDay27,
+        'day-28': DeepDiveDay28,
+        'day-29': DeepDiveDay29,
+        'day-30': DeepDiveDay30
     }
     const Component = components[activeDay]
     if (!Component) {

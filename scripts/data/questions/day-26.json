@@ -1,0 +1,426 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What is list comprehension?",
+        "options": [
+            "A way to compress list files",
+            "A way to create a new list from an existing sequence in a single line",
+            "A method to sort lists alphabetically",
+            "A function to merge multiple lists"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "list-comprehension",
+        "explanation": "List comprehension is a concise way to create a new list by iterating over a sequence and optionally applying conditions."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the basic syntax pattern for list comprehension?",
+        "options": [
+            "[item in list for new_item]",
+            "[for item in list: new_item]",
+            "[new_item for item in list]",
+            "list.comprehend(item for new_item)"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "list-comprehension",
+        "explanation": "The correct pattern is [new_item for item in list], where new_item is the expression applied to each item."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does `[n + 1 for n in [1, 2, 3]]` return?",
+        "options": [
+            "[1, 2, 3]",
+            "[2, 3, 4]",
+            "[0, 1, 2]",
+            "An error"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "list-comprehension",
+        "explanation": "Each number n is increased by 1: 1+1=2, 2+1=3, 3+1=4."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which sequences can be used in list comprehension?",
+        "options": [
+            "Only lists",
+            "Lists and tuples only",
+            "Any iterable: lists, strings, ranges, tuples",
+            "Only ranges"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "list-comprehension",
+        "explanation": "List comprehension works with any iterable sequence including lists, strings, ranges, and tuples."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does `[letter for letter in 'Python']` produce?",
+        "options": [
+            "['Python']",
+            "['P', 'y', 't', 'h', 'o', 'n']",
+            "'Python'",
+            "An error - strings are not iterable"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "list-comprehension",
+        "explanation": "Strings are iterable, so each character becomes a separate item in the resulting list."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you add a condition to filter items in list comprehension?",
+        "options": [
+            "[new_item for item in list where condition]",
+            "[new_item for item in list if condition]",
+            "[new_item if condition for item in list]",
+            "[for item in list if condition: new_item]"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "list-comprehension",
+        "explanation": "The 'if condition' is placed at the END of the comprehension to filter items."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does `[n for n in range(1, 10) if n % 2 == 0]` return?",
+        "options": [
+            "[1, 3, 5, 7, 9]",
+            "[2, 4, 6, 8]",
+            "[2, 4, 6, 8, 10]",
+            "[0, 2, 4, 6, 8]"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "list-comprehension",
+        "explanation": "This filters for even numbers (n % 2 == 0) in range 1-9, returning [2, 4, 6, 8]."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What brackets are used for dictionary comprehension?",
+        "options": [
+            "Square brackets []",
+            "Curly braces {}",
+            "Parentheses ()",
+            "Angle brackets <>"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "dictionary-comprehension",
+        "explanation": "Dictionary comprehension uses curly braces {}, just like regular dictionary literals."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the syntax for dictionary comprehension?",
+        "options": [
+            "{key: value for item in list}",
+            "[key: value for item in list]",
+            "{for item in list: key, value}",
+            "(key, value for item in list)"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "dictionary-comprehension",
+        "explanation": "Dictionary comprehension follows {key: value for item in list} pattern using curly braces."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does `{n: n**2 for n in range(1, 4)}` produce?",
+        "options": [
+            "[1, 4, 9]",
+            "{1: 1, 2: 4, 3: 9}",
+            "{1: 2, 2: 4, 3: 6}",
+            "[(1, 1), (2, 4), (3, 9)]"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "dictionary-comprehension",
+        "explanation": "This creates a dictionary where each number maps to its square: 1->1, 2->4, 3->9."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you iterate over both keys and values in a dictionary?",
+        "options": [
+            "for k, v in dict",
+            "for k, v in dict.all()",
+            "for k, v in dict.items()",
+            "for k, v in dict.keys_values()"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "dictionary-comprehension",
+        "explanation": "The .items() method returns key-value pairs that can be unpacked into two variables."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What method is used to iterate over rows in a Pandas DataFrame?",
+        "options": [
+            "df.rows()",
+            "df.iterate()",
+            "df.iterrows()",
+            "df.loop()"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "pandas-iteration",
+        "explanation": "iterrows() is the Pandas method that yields each row as (index, Series) pairs."
+    },
+    {
+        "question_type": "mcq",
+        "text": "In `for index, row in df.iterrows()`, what type is `row`?",
+        "options": [
+            "Python list",
+            "Python dictionary",
+            "Pandas Series",
+            "Pandas DataFrame"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "pandas-iteration",
+        "explanation": "Each row returned by iterrows() is a Pandas Series object."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you access the 'score' column from a row in iterrows?",
+        "options": [
+            "row('score')",
+            "row['score'] or row.score",
+            "row.get_score()",
+            "row->score"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "pandas-iteration",
+        "explanation": "Since row is a Series, you can access values using bracket notation or dot notation."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does `[x.upper() for x in ['a', 'b', 'c']]` return?",
+        "options": [
+            "['a', 'b', 'c']",
+            "['A', 'B', 'C']",
+            "['ABC']",
+            "An error"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "list-comprehension",
+        "explanation": "Each string is converted to uppercase, resulting in ['A', 'B', 'C']."
+    },
+    {
+        "question_type": "coding",
+        "text": "Square Numbers\\nWrite a function `square_list` that takes a list of numbers and returns a new list with each number squared using list comprehension.",
+        "starter_code": "def square_list(numbers):\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "square_list([1, 2, 3])",
+                "expected": "[1, 4, 9]"
+            },
+            {
+                "function_call": "square_list([4, 5])",
+                "expected": "[16, 25]"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "list-comprehension",
+        "solution_code": "def square_list(numbers):\\n    return [n ** 2 for n in numbers]"
+    },
+    {
+        "question_type": "coding",
+        "text": "Filter Evens\\nWrite a function `get_evens` that returns only even numbers from a list using list comprehension.",
+        "starter_code": "def get_evens(numbers):\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "get_evens([1, 2, 3, 4, 5, 6])",
+                "expected": "[2, 4, 6]"
+            },
+            {
+                "function_call": "get_evens([7, 8, 9, 10])",
+                "expected": "[8, 10]"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "list-comprehension",
+        "solution_code": "def get_evens(numbers):\\n    return [n for n in numbers if n % 2 == 0]"
+    },
+    {
+        "question_type": "coding",
+        "text": "String to Chars\\nWrite a function `to_chars` that takes a string and returns a list of its characters using list comprehension.",
+        "starter_code": "def to_chars(text):\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "to_chars('Hi')",
+                "expected": "['H', 'i']"
+            },
+            {
+                "function_call": "to_chars('abc')",
+                "expected": "['a', 'b', 'c']"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "list-comprehension",
+        "solution_code": "def to_chars(text):\\n    return [char for char in text]"
+    },
+    {
+        "question_type": "coding",
+        "text": "Number to Squared Dict\\nWrite a function `make_squares_dict` that takes a list of numbers and returns a dictionary where each number maps to its square.",
+        "starter_code": "def make_squares_dict(numbers):\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "make_squares_dict([1, 2, 3])",
+                "expected": "{1: 1, 2: 4, 3: 9}"
+            },
+            {
+                "function_call": "make_squares_dict([4, 5])",
+                "expected": "{4: 16, 5: 25}"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "dictionary-comprehension",
+        "solution_code": "def make_squares_dict(numbers):\\n    return {n: n ** 2 for n in numbers}"
+    },
+    {
+        "question_type": "coding",
+        "text": "Filter Dict by Value\\nWrite a function `filter_passing` that takes a dict of student:score pairs and returns a dict with only students who scored >= 60.",
+        "starter_code": "def filter_passing(scores):\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "filter_passing({'Alice': 85, 'Bob': 45, 'Carol': 60})",
+                "expected": "{'Alice': 85, 'Carol': 60}"
+            },
+            {
+                "function_call": "filter_passing({'Dan': 50, 'Eve': 70})",
+                "expected": "{'Eve': 70}"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "dictionary-comprehension",
+        "solution_code": "def filter_passing(scores):\\n    return {name: score for name, score in scores.items() if score >= 60}"
+    },
+    {
+        "question_type": "coding",
+        "text": "Double Range\\nWrite a function `double_range` that takes an integer n and returns a list of all numbers from 1 to n, doubled.",
+        "starter_code": "def double_range(n):\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "double_range(4)",
+                "expected": "[2, 4, 6, 8]"
+            },
+            {
+                "function_call": "double_range(3)",
+                "expected": "[2, 4, 6]"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "list-comprehension",
+        "solution_code": "def double_range(n):\\n    return [x * 2 for x in range(1, n + 1)]"
+    },
+    {
+        "question_type": "coding",
+        "text": "Short Names\\nWrite a function `get_short_names` that returns names with 4 or fewer characters from a list.",
+        "starter_code": "def get_short_names(names):\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "get_short_names(['Alex', 'Beth', 'Caroline', 'Dave'])",
+                "expected": "['Alex', 'Beth', 'Dave']"
+            },
+            {
+                "function_call": "get_short_names(['Ann', 'Elizabeth'])",
+                "expected": "['Ann']"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "list-comprehension",
+        "solution_code": "def get_short_names(names):\\n    return [name for name in names if len(name) <= 4]"
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the bug in this list comprehension",
+        "code": "# Get squares of numbers 1-5\nresult = [x ** 2 for x in range[1, 6]]\nprint(result)",
+        "options": [
+            "Change range[1, 6] to range(1, 6)",
+            "Change x ** 2 to x * x",
+            "Add return statement",
+            "Change [x ** 2...] to (x ** 2...)"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "list-comprehension",
+        "explanation": "range uses parentheses () for function calls, not square brackets []. Correct syntax is range(1, 6)."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the bug in this dictionary comprehension",
+        "code": "# Create dict mapping letters to their positions\nletters = 'abc'\nresult = [letter: i for i, letter in enumerate(letters)]\nprint(result)",
+        "options": [
+            "Change [] to {} for dictionary comprehension",
+            "Change enumerate(letters) to letters.items()",
+            "Swap letter: i to i: letter",
+            "Add return statement"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "dictionary-comprehension",
+        "explanation": "Dictionary comprehension requires curly braces {}, not square brackets []. Use {letter: i for i, letter in enumerate(letters)}."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the bug in this conditional list comprehension",
+        "code": "# Get even numbers from 1-10\nnumbers = range(1, 11)\nevens = [n if n % 2 == 0 for n in numbers]\nprint(evens)",
+        "options": [
+            "Move 'if' condition after 'for' clause",
+            "Change n % 2 == 0 to n // 2 == 0",
+            "Add else clause after the if",
+            "Remove the if condition"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "list-comprehension",
+        "explanation": "For filtering, the 'if' condition goes AFTER the for clause: [n for n in numbers if n % 2 == 0]. The syntax [expr if cond] requires an else clause."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the bug in this Pandas iteration code",
+        "code": "import pandas as pd\ndf = pd.DataFrame({'name': ['Alice', 'Bob'], 'age': [25, 30]})\nfor row in df.iterrows():\n    print(row.name, row.age)",
+        "options": [
+            "Unpack iterrows() into (index, row)",
+            "Change iterrows() to rows()",
+            "Add df.columns before iteration",
+            "Change row.name to row['names']"
+        ],
+        "correct_index": 0,
+        "difficulty": "hard",
+        "topic_tag": "pandas-iteration",
+        "explanation": "iterrows() yields (index, row) tuples, so you must unpack: for index, row in df.iterrows(). Then access row.name or row['name']."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What happens if you use `{x**2 for x in [1, 2, 2, 3]}` (note: no key:value)?",
+        "options": [
+            "Creates a dictionary {1: 1, 4: 2, 9: 3}",
+            "Creates a set {1, 4, 9}",
+            "Raises a SyntaxError",
+            "Creates a list [1, 4, 4, 9]"
+        ],
+        "correct_index": 1,
+        "difficulty": "hard",
+        "topic_tag": "set-comprehension",
+        "explanation": "Without key:value syntax, curly braces create a SET comprehension, which removes duplicates. Result is {1, 4, 9}."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does `{k.upper(): v*2 for k, v in {'a': 1, 'b': 2}.items()}` produce?",
+        "options": [
+            "{'a': 2, 'b': 4}",
+            "{'A': 2, 'B': 4}",
+            "{'AA': 1, 'BB': 2}",
+            "An error - can't modify keys"
+        ],
+        "correct_index": 1,
+        "difficulty": "hard",
+        "topic_tag": "dictionary-comprehension",
+        "explanation": "Keys are uppercased and values doubled. Result: {'A': 2, 'B': 4}. You CAN create new keys from existing ones."
+    }
+]

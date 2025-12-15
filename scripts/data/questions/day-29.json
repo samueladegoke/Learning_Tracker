@@ -1,0 +1,418 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What does `columnspan=2` do in grid layout?",
+        "options": [
+            "Creates 2 columns",
+            "Makes the widget span 2 columns",
+            "Sets column width to 2",
+            "Adds 2 pixel spacing"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "grid-layout",
+        "explanation": "columnspan makes a widget extend across multiple columns in the grid."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you get text from a Tkinter Entry widget?",
+        "options": [
+            "entry.text",
+            "entry.value",
+            "entry.get()",
+            "entry.read()"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "tkinter",
+        "explanation": "The get() method returns the current text content of an Entry widget."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you clear an Entry widget?",
+        "options": [
+            "entry.clear()",
+            "entry.delete(0, tk.END)",
+            "entry.empty()",
+            "entry.reset()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "tkinter",
+        "explanation": "delete(0, END) removes all text from index 0 to the end."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What file mode appends to a file without overwriting?",
+        "options": [
+            "\"r\"",
+            "\"w\"",
+            "\"a\"",
+            "\"x\""
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "file-io",
+        "explanation": "Mode 'a' (append) adds to the end of the file without overwriting existing content."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does `entry.focus()` do?",
+        "options": [
+            "Highlights the entry",
+            "Places the cursor in the entry",
+            "Locks the entry",
+            "Clears the entry"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "tkinter",
+        "explanation": "focus() places the text cursor inside the entry widget for immediate typing."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which module provides pop-up dialogs in Tkinter?",
+        "options": [
+            "tkinter.dialog",
+            "tkinter.messagebox",
+            "tkinter.popup",
+            "tkinter.alert"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "messagebox",
+        "explanation": "The messagebox module provides various dialog boxes like warnings and confirmations."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does `messagebox.askokcancel()` return?",
+        "options": [
+            "The button text",
+            "True if OK clicked, False if Cancel",
+            "A dialog object",
+            "Nothing"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "messagebox",
+        "explanation": "askokcancel returns True if user clicks OK, False if they click Cancel."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What library is used to copy text to the clipboard?",
+        "options": [
+            "clipboard",
+            "pyperclip",
+            "tkinter.copy",
+            "sys.clipboard"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "clipboard",
+        "explanation": "pyperclip is a third-party library that provides cross-platform clipboard access."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you copy text to clipboard with pyperclip?",
+        "options": [
+            "pyperclip.set(text)",
+            "pyperclip.copy(text)",
+            "pyperclip.write(text)",
+            "pyperclip.add(text)"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "clipboard",
+        "explanation": "pyperclip.copy() copies the given text to the system clipboard."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What's the difference between 'w' and 'a' file modes?",
+        "options": [
+            "'w' is faster",
+            "'w' overwrites, 'a' appends",
+            "'a' overwrites, 'w' appends",
+            "They are the same"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "file-io",
+        "explanation": "'w' (write) overwrites the file from scratch, 'a' (append) adds to the end."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you insert text into an Entry at position 0?",
+        "options": [
+            "entry.add(0, text)",
+            "entry.insert(0, text)",
+            "entry.put(0, text)",
+            "entry.set(0, text)"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "tkinter",
+        "explanation": "insert(index, text) adds text at the specified index position."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What type of dialog shows a warning icon?",
+        "options": [
+            "messagebox.showinfo()",
+            "messagebox.showwarning()",
+            "messagebox.showerror()",
+            "messagebox.showquestion()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "messagebox",
+        "explanation": "showwarning() displays a dialog with a warning icon."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What happens if you open a non-existent file with mode 'w'?",
+        "options": [
+            "Error is raised",
+            "The file is created",
+            "Nothing happens",
+            "Returns None"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "file-io",
+        "explanation": "Mode 'w' creates the file if it doesn't exist."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What happens if you open a non-existent file with mode 'r'?",
+        "options": [
+            "The file is created",
+            "FileNotFoundError is raised",
+            "Returns empty string",
+            "Silent failure"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "file-io",
+        "explanation": "Mode 'r' requires the file to exist; otherwise, FileNotFoundError is raised."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you validate that an entry is not empty?",
+        "options": [
+            "entry.get() != ''",
+            "len(entry.get()) > 0",
+            "Both A and B work",
+            "entry.is_empty() == False"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "tkinter",
+        "explanation": "You can check with an empty string comparison or by checking the length."
+    },
+    {
+        "question_type": "coding",
+        "text": "File Writer\\nWrite a function `append_line` that appends a line of text to 'data.txt' with a newline.",
+        "starter_code": "def append_line(text):\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "append_line('hello'); open('data.txt').read()[-6:]",
+                "expected": "\"hello\\n\""
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "file-io",
+        "solution_code": "def append_line(text):\\n    with open('data.txt', 'a') as f:\\n        f.write(text + '\\n')"
+    },
+    {
+        "question_type": "coding",
+        "text": "Validate Not Empty\\nWrite a function `is_valid` that returns True if both website and password are non-empty strings.",
+        "starter_code": "def is_valid(website, password):\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "is_valid('google.com', 'abc123')",
+                "expected": "True"
+            },
+            {
+                "function_call": "is_valid('', 'abc123')",
+                "expected": "False"
+            },
+            {
+                "function_call": "is_valid('google.com', '')",
+                "expected": "False"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "validation",
+        "solution_code": "def is_valid(website, password):\\n    return len(website) > 0 and len(password) > 0"
+    },
+    {
+        "question_type": "coding",
+        "text": "Format Entry\\nWrite a function `format_entry` that takes website and password and returns 'website | password'.",
+        "starter_code": "def format_entry(website, password):\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "format_entry('google.com', 'pass123')",
+                "expected": "\"google.com | pass123\""
+            },
+            {
+                "function_call": "format_entry('fb.com', 'secret')",
+                "expected": "\"fb.com | secret\""
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "password-manager",
+        "solution_code": "def format_entry(website, password):\\n    return f'{website} | {password}'"
+    },
+    {
+        "question_type": "coding",
+        "text": "Count Lines\\nWrite a function `count_lines` that returns the number of lines in 'data.txt'.",
+        "starter_code": "def count_lines():\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "open('data.txt','w').write('a\\nb\\nc'); count_lines()",
+                "expected": "3"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "file-io",
+        "solution_code": "def count_lines():\\n    with open('data.txt', 'r') as f:\\n        return len(f.readlines())"
+    },
+    {
+        "question_type": "coding",
+        "text": "Generate Password String\\nWrite a function `generate_password` that returns a string of n random lowercase letters.",
+        "starter_code": "import random\\nimport string\\n\\ndef generate_password(n):\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "len(generate_password(8))",
+                "expected": "8"
+            },
+            {
+                "function_call": "generate_password(5).islower()",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "password-manager",
+        "solution_code": "import random\\nimport string\\n\\ndef generate_password(n):\\n    return ''.join(random.choices(string.ascii_lowercase, k=n))"
+    },
+    {
+        "question_type": "coding",
+        "text": "Parse Entry\\nWrite a function `parse_entry` that takes a string 'website | password' and returns a tuple (website, password).",
+        "starter_code": "def parse_entry(entry):\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "parse_entry('google.com | pass123')",
+                "expected": "('google.com', 'pass123')"
+            },
+            {
+                "function_call": "parse_entry('fb.com | secret')",
+                "expected": "('fb.com', 'secret')"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "password-manager",
+        "solution_code": "def parse_entry(entry):\\n    parts = entry.split(' | ')\\n    return (parts[0], parts[1])"
+    },
+    {
+        "question_type": "coding",
+        "text": "Read First Line\\nWrite a function `read_first_line` that returns the first line of 'data.txt' stripped of newlines.",
+        "starter_code": "def read_first_line():\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "open('data.txt','w').write('hello\\nworld'); read_first_line()",
+                "expected": "\"hello\""
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "file-io",
+        "solution_code": "def read_first_line():\\n    with open('data.txt', 'r') as f:\\n        return f.readline().strip()"
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the bug in this file write code",
+        "code": "# Save password to file\nwith open('passwords.txt', 'r') as f:\n    f.write('google.com | pass123\\n')",
+        "options": [
+            "Change 'r' to 'a' or 'w' mode",
+            "Change f.write to f.read",
+            "Add f.close() after write",
+            "Change 'passwords.txt' to 'passwords'"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "file-io",
+        "explanation": "Mode 'r' is for reading only. To write, use 'w' (overwrite) or 'a' (append)."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the bug in this Entry deletion",
+        "code": "import tkinter as tk\nwindow = tk.Tk()\nentry = tk.Entry(window)\nentry.pack()\n\ndef clear():\n    entry.delete(tk.END)\n\ntk.Button(text='Clear', command=clear).pack()\nwindow.mainloop()",
+        "options": [
+            "Change delete(tk.END) to delete(0, tk.END)",
+            "Change tk.END to 'end'",
+            "Add entry.clear() before delete",
+            "Change delete to remove"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "tkinter",
+        "explanation": "delete() requires two arguments: start and end positions. Use delete(0, tk.END) to delete all content."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the bug in this messagebox confirmation",
+        "code": "from tkinter import messagebox\n\ndef save():\n    messagebox.askokcancel('Confirm', 'Save?')\n    # Proceeding with save regardless of user choice\n    print('Saving...')\n\nsave()",
+        "options": [
+            "Check the return value: if messagebox.askokcancel(...): ...",
+            "Change askokcancel to showinfo",
+            "Add return before messagebox",
+            "Change 'Confirm' to 'Save'"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "messagebox",
+        "explanation": "askokcancel returns True/False. You must check its return value to actually respond to user's choice."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the bug in this grid layout",
+        "code": "import tkinter as tk\nwindow = tk.Tk()\n\nlabel = tk.Label(text='Website:')\nlabel.grid(row=0, column=0)\n\nentry = tk.Entry()\nentry.pack()  # Mix of layout managers\n\nwindow.mainloop()",
+        "options": [
+            "Change entry.pack() to entry.grid(row=0, column=1)",
+            "Change label.grid to label.pack",
+            "Add master=window to Entry",
+            "Remove the window.mainloop()"
+        ],
+        "correct_index": 0,
+        "difficulty": "hard",
+        "topic_tag": "grid-layout",
+        "explanation": "Cannot mix pack() and grid() in the same container. Use grid() consistently: entry.grid(row=0, column=1)."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What error happens when you mix `pack()` and `grid()` layout managers in the same container?",
+        "options": [
+            "SyntaxError at import",
+            "TclError at runtime - cannot use geometry manager",
+            "The widgets overlap",
+            "Nothing, they work together"
+        ],
+        "correct_index": 1,
+        "difficulty": "hard",
+        "topic_tag": "grid-layout",
+        "explanation": "Tkinter raises TclError when mixing pack() and grid() in the same parent container. Choose one layout manager."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What's the critical difference between `messagebox.showinfo()` and `messagebox.askyesno()`?",
+        "options": [
+            "showinfo has an icon, askyesno doesn't",
+            "showinfo returns None, askyesno returns True/False based on user choice",
+            "showinfo is blocking, askyesno is not",
+            "There is no difference"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "messagebox",
+        "explanation": "showinfo just displays info (returns 'ok'/'None'). askyesno returns True if Yes clicked, False if No - allowing decision-based logic."
+    }
+]
