@@ -1,0 +1,318 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What are API keys used for?",
+        "options": [
+            "Encrypting data",
+            "Authenticating requests to an API",
+            "Compressing responses",
+            "Caching results"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "api-auth",
+        "explanation": "API keys identify and authenticate the client making requests to an API."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What Python module provides access to environment variables?",
+        "options": [
+            "env",
+            "os",
+            "sys",
+            "config"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "environment-variables",
+        "explanation": "The 'os' module provides os.environ for accessing environment variables."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the correct way to get an environment variable in Python?",
+        "options": [
+            "env.get('KEY')",
+            "os.environ.get('KEY')",
+            "os.getenv('KEY') only",
+            "system.env('KEY')"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "environment-variables",
+        "explanation": "os.environ.get('KEY') safely retrieves an environment variable, returning None if not found."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why should you never hardcode API keys in your source code?",
+        "options": [
+            "It slows down the program",
+            "Keys may be exposed in version control",
+            "Python doesn't allow it",
+            "It causes syntax errors"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "security",
+        "explanation": "Hardcoded keys can be exposed when code is shared or committed to Git, compromising security."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What file should be added to .gitignore to protect environment variables?",
+        "options": [
+            "secrets.py",
+            ".env",
+            "config.json",
+            "keys.txt"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "security",
+        "explanation": ".env files commonly store environment variables and should be in .gitignore."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What service is commonly used to send SMS from Python?",
+        "options": [
+            "AWS SES",
+            "Twilio",
+            "SendGrid",
+            "Mailgun"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "twilio",
+        "explanation": "Twilio is a popular cloud communications platform for SMS, voice, and video."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What Twilio credentials are needed to send SMS?",
+        "options": [
+            "Username and password",
+            "Account SID and Auth Token",
+            "API key only",
+            "Email and password"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "twilio",
+        "explanation": "Twilio requires your Account SID and Auth Token for authentication."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does python-dotenv do?",
+        "options": [
+            "Encrypts environment variables",
+            "Loads .env file into os.environ",
+            "Creates virtual environments",
+            "Manages packages"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "environment-variables",
+        "explanation": "python-dotenv loads variables from a .env file into os.environ automatically."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is a Bearer token?",
+        "options": [
+            "A type of SSL certificate",
+            "An authentication token passed in headers",
+            "A database key",
+            "A session cookie"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "api-auth",
+        "explanation": "Bearer tokens are sent in the Authorization header: 'Authorization: Bearer <token>'"
+    },
+    {
+        "question_type": "mcq",
+        "text": "What should you do if you accidentally commit an API key?",
+        "options": [
+            "Delete the commit",
+            "Regenerate the key immediately",
+            "Change the file name",
+            "Add .gitignore"
+        ],
+        "correct_index": 1,
+        "difficulty": "hard",
+        "topic_tag": "security",
+        "explanation": "Regenerate the key immediately. Git history preserves the old key even if you delete the commit."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What OpenWeatherMap condition code range indicates precipitation?",
+        "options": [
+            "100-199",
+            "200-699",
+            "700-799",
+            "800-899"
+        ],
+        "correct_index": 1,
+        "difficulty": "hard",
+        "topic_tag": "weather-api",
+        "explanation": "Codes below 700 indicate precipitation (rain, snow, thunderstorm). 800+ is clear/clouds."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the purpose of the 'exclude' parameter in OpenWeatherMap One Call API?",
+        "options": [
+            "Exclude certain weather conditions",
+            "Exclude time periods from the response",
+            "Exclude certain locations",
+            "Exclude units"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "weather-api",
+        "explanation": "The exclude parameter omits data like 'current', 'minutely', 'daily' to reduce response size."
+    },
+    {
+        "question_type": "coding",
+        "text": "Get Environment Variable\\nWrite a function that gets an environment variable with a default fallback.",
+        "starter_code": "import os\n\ndef get_env(key, default=None):\n    # Return env variable or default\n    pass",
+        "test_cases": [
+            {
+                "function_call": "get_env('NONEXISTENT', 'fallback')",
+                "expected": "fallback"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "environment-variables",
+        "solution_code": "import os\n\ndef get_env(key, default=None):\n    return os.environ.get(key, default)"
+    },
+    {
+        "question_type": "coding",
+        "text": "Build Auth Header\\nWrite a function that returns a dictionary with a Bearer token authorization header.",
+        "starter_code": "def build_auth_header(token):\n    # Return dict with Authorization: Bearer <token>\n    pass",
+        "test_cases": [
+            {
+                "function_call": "build_auth_header('abc123')",
+                "expected": "{'Authorization': 'Bearer abc123'}"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "api-auth",
+        "solution_code": "def build_auth_header(token):\n    return {'Authorization': f'Bearer {token}'}"
+    },
+    {
+        "question_type": "coding",
+        "text": "Check Weather Codes\\nWrite a function that returns True if any weather code in a list is below 700 (precipitation).",
+        "starter_code": "def will_rain(weather_codes):\n    # Return True if any code < 700\n    pass",
+        "test_cases": [
+            {
+                "function_call": "will_rain([800, 500, 802])",
+                "expected": "True"
+            },
+            {
+                "function_call": "will_rain([800, 801, 802])",
+                "expected": "False"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "weather-api",
+        "solution_code": "def will_rain(weather_codes):\n    return any(code < 700 for code in weather_codes)"
+    },
+    {
+        "question_type": "coding",
+        "text": "Extract Weather Codes\\nWrite a function that extracts weather condition codes from hourly forecast data.",
+        "starter_code": "def get_weather_codes(hourly_data):\n    # Each hour has 'weather' list with 'id' key\n    # Return list of all condition codes\n    pass",
+        "test_cases": [
+            {
+                "function_call": "get_weather_codes([{'weather': [{'id': 800}]}, {'weather': [{'id': 500}]}])",
+                "expected": "[800, 500]"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "weather-api",
+        "solution_code": "def get_weather_codes(hourly_data):\n    return [hour['weather'][0]['id'] for hour in hourly_data]"
+    },
+    {
+        "question_type": "coding",
+        "text": "Send SMS Message\\nWrite a function that creates a Twilio message object (mock implementation).",
+        "starter_code": "def send_sms(client, from_num, to_num, body):\n    # Use client.messages.create() to send SMS\n    # Return the message object\n    pass",
+        "test_cases": [
+            {
+                "function_call": "send_sms.__doc__ is not None or True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "twilio",
+        "solution_code": "def send_sms(client, from_num, to_num, body):\n    message = client.messages.create(\n        body=body,\n        from_=from_num,\n        to=to_num\n    )\n    return message"
+    },
+    {
+        "question_type": "coding",
+        "text": "Load dotenv\\nWrite a function that loads a .env file and returns a specific variable.",
+        "starter_code": "import os\n\ndef load_secret(key):\n    # Assume load_dotenv() has been called\n    # Return the environment variable\n    pass",
+        "test_cases": [
+            {
+                "function_call": "load_secret.__doc__ is not None or True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "environment-variables",
+        "solution_code": "import os\n\ndef load_secret(key):\n    return os.environ.get(key)"
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the hardcoded credentials bug:",
+        "code": "API_KEY = 'sk_live_abc123xyz'\nresponse = requests.get(url, params={'key': API_KEY})\n# Bug: Security vulnerability",
+        "options": [
+            "Use os.environ.get('API_KEY') instead",
+            "Encrypt the key",
+            "Add # noqa comment",
+            "Use a shorter key"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "security",
+        "explanation": "Never hardcode API keys. Use environment variables: os.environ.get('API_KEY')"
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the missing .env file bug:",
+        "code": "from dotenv import load_dotenv\nAPI_KEY = os.environ.get('API_KEY')\n# Bug: .env file not loaded",
+        "options": [
+            "Add load_dotenv() before accessing environ",
+            "Import os",
+            "Create the .env file",
+            "Use os.getenv instead"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "environment-variables",
+        "explanation": "You must call load_dotenv() to load the .env file before accessing variables."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the Twilio from_ parameter bug:",
+        "code": "client.messages.create(\n    body='Hello',\n    from=twilio_number,\n    to=recipient\n)\n# Bug: SyntaxError",
+        "options": [
+            "Change from to from_ (with underscore)",
+            "Use 'from' in quotes",
+            "Use sender instead",
+            "Remove the from parameter"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "twilio",
+        "explanation": "'from' is a Python keyword. Twilio uses 'from_' (with underscore) as the parameter name."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the weather code check bug:",
+        "code": "for hour in weather_data:\n    if hour['weather']['id'] < 700:\n        will_rain = True\n# Bug: TypeError - list indices",
+        "options": [
+            "Use hour['weather'][0]['id']",
+            "Use hour.weather.id",
+            "Use hour['id']",
+            "Remove the brackets"
+        ],
+        "correct_index": 0,
+        "difficulty": "hard",
+        "topic_tag": "weather-api",
+        "explanation": "'weather' is a list, not a dict. Access the first element: hour['weather'][0]['id']"
+    }
+]

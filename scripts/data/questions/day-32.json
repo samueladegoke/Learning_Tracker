@@ -1,0 +1,314 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What Python module is used to send emails?",
+        "options": [
+            "email",
+            "smtplib",
+            "mailsend",
+            "pymail"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "smtplib",
+        "explanation": "smtplib is Python's built-in module for sending emails using the SMTP protocol."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What port is typically used for SMTP with TLS?",
+        "options": [
+            "25",
+            "465",
+            "587",
+            "993"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "smtp",
+        "explanation": "Port 587 is the standard port for SMTP with STARTTLS encryption."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What method encrypts an SMTP connection?",
+        "options": [
+            "connection.encrypt()",
+            "connection.starttls()",
+            "connection.secure()",
+            "connection.ssl()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "smtplib",
+        "explanation": "starttls() upgrades the connection to use TLS encryption."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you separate the email subject from the body?",
+        "options": [
+            "Use a comma",
+            "Use \\n\\n (double newline)",
+            "Use a semicolon",
+            "Use Subject: header only"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "email-format",
+        "explanation": "Email format requires Subject:line followed by two newlines, then the body."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What type of password must you use with Gmail SMTP?",
+        "options": [
+            "Your regular Gmail password",
+            "An App Password",
+            "Any 16-character password",
+            "Your recovery code"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "gmail",
+        "explanation": "Gmail requires an App Password (generated in security settings) when using SMTP with 2FA enabled."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does datetime.now() return?",
+        "options": [
+            "Current date only",
+            "Current time only",
+            "Current date and time as datetime object",
+            "Unix timestamp"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "datetime",
+        "explanation": "datetime.now() returns a datetime object with current date and time."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does now.weekday() return for Monday?",
+        "options": [
+            "1",
+            "0",
+            "'Monday'",
+            "7"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "datetime",
+        "explanation": "weekday() returns 0 for Monday, 6 for Sunday."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What strftime code represents the full month name?",
+        "options": [
+            "%m",
+            "%M",
+            "%B",
+            "%b"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "datetime",
+        "explanation": "%B gives full month name (e.g., 'December'), %b gives abbreviated (e.g., 'Dec')."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the benefit of using 'with smtplib.SMTP() as connection:'?",
+        "options": [
+            "Faster sending",
+            "Automatic connection closing",
+            "Better encryption",
+            "Multiple recipients"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "smtplib",
+        "explanation": "The context manager ensures the connection is properly closed even if an error occurs."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you create a datetime object for a specific date?",
+        "options": [
+            "datetime.date(2025, 12, 25)",
+            "datetime.datetime(year=2025, month=12, day=25)",
+            "datetime.new(2025, 12, 25)",
+            "datetime.create('2025-12-25')"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "datetime",
+        "explanation": "datetime.datetime() accepts year, month, day (and optionally hour, minute, second) as arguments."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does %H represent in strftime?",
+        "options": [
+            "Hour (12-hour format)",
+            "Hour (24-hour format)",
+            "Minute",
+            "Month"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "datetime",
+        "explanation": "%H is 24-hour format (00-23), %I is 12-hour format (01-12)."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What happens if you hardcode email passwords in your Python file?",
+        "options": [
+            "Nothing, it's fine",
+            "Security risk if code is shared or committed",
+            "Python rejects it",
+            "Email won't send"
+        ],
+        "correct_index": 1,
+        "difficulty": "hard",
+        "topic_tag": "security",
+        "explanation": "Hardcoded credentials can be exposed in version control or when sharing code. Use environment variables."
+    },
+    {
+        "question_type": "coding",
+        "text": "Check if Today is Monday\\nWrite a function that returns True if today is Monday, False otherwise.",
+        "starter_code": "import datetime as dt\n\ndef is_monday():\n    # Return True if today is Monday\n    pass",
+        "test_cases": [
+            {
+                "function_call": "type(is_monday())",
+                "expected": "<class 'bool'>"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "datetime",
+        "solution_code": "import datetime as dt\n\ndef is_monday():\n    return dt.datetime.now().weekday() == 0"
+    },
+    {
+        "question_type": "coding",
+        "text": "Format Date\\nWrite a function that takes a datetime object and returns it formatted as 'Month Day, Year' (e.g., 'December 25, 2025').",
+        "starter_code": "def format_date(date_obj):\n    # Return formatted string\n    pass",
+        "test_cases": [
+            {
+                "function_call": "format_date.__doc__ is not None or True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "datetime",
+        "solution_code": "def format_date(date_obj):\n    return date_obj.strftime('%B %d, %Y')"
+    },
+    {
+        "question_type": "coding",
+        "text": "Email Message Builder\\nWrite a function that takes a subject and body, and returns a properly formatted email string.",
+        "starter_code": "def build_email(subject, body):\n    # Return formatted email string\n    pass",
+        "test_cases": [
+            {
+                "function_call": "'Subject:' in build_email('Test', 'Hello')",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "email-format",
+        "solution_code": "def build_email(subject, body):\n    return f'Subject:{subject}\\n\\n{body}'"
+    },
+    {
+        "question_type": "coding",
+        "text": "Check Birthday Match\\nWrite a function that takes a month and day, and returns True if they match today's date.",
+        "starter_code": "import datetime as dt\n\ndef is_birthday_today(month, day):\n    # Check if month and day match today\n    pass",
+        "test_cases": [
+            {
+                "function_call": "type(is_birthday_today(1, 1))",
+                "expected": "<class 'bool'>"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "datetime",
+        "solution_code": "import datetime as dt\n\ndef is_birthday_today(month, day):\n    now = dt.datetime.now()\n    return now.month == month and now.day == day"
+    },
+    {
+        "question_type": "coding",
+        "text": "Get Current Hour\\nWrite a function that returns the current hour as an integer (0-23).",
+        "starter_code": "import datetime as dt\n\ndef get_current_hour():\n    # Return current hour\n    pass",
+        "test_cases": [
+            {
+                "function_call": "0 <= get_current_hour() <= 23",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "datetime",
+        "solution_code": "import datetime as dt\n\ndef get_current_hour():\n    return dt.datetime.now().hour"
+    },
+    {
+        "question_type": "coding",
+        "text": "Random Quote Picker\\nWrite a function that reads quotes from a list and returns a random one.",
+        "starter_code": "import random\n\ndef pick_quote(quotes):\n    # Return random quote from list\n    pass",
+        "test_cases": [
+            {
+                "function_call": "pick_quote(['a', 'b']) in ['a', 'b']",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "random",
+        "solution_code": "import random\n\ndef pick_quote(quotes):\n    return random.choice(quotes)"
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the SMTP connection bug:",
+        "code": "connection = smtplib.SMTP('smtp.gmail.com', 587)\nconnection.login(email, password)\nconnection.sendmail(email, to, message)\n# Bug: Connection not secure",
+        "options": [
+            "Add connection.starttls() before login",
+            "Change port to 25",
+            "Add connection.secure()",
+            "Use smtplib.SMTP_SSL instead"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "smtplib",
+        "explanation": "starttls() must be called before login() to encrypt the connection with TLS."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the email format bug:",
+        "code": "message = f'Subject:{subject}\\n{body}'\n# Bug: Subject and body run together",
+        "options": [
+            "Use \\n\\n between subject and body",
+            "Use \\t instead of \\n",
+            "Remove the newline",
+            "Add 'Body:' prefix"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "email-format",
+        "explanation": "Email format requires double newline (\\n\\n) to separate headers from body."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the weekday check bug:",
+        "code": "if datetime.now().weekday() == 1:\n    print('Happy Monday!')\n# Bug: Wrong day number",
+        "options": [
+            "Change 1 to 0",
+            "Change 1 to 7",
+            "Use .day instead of .weekday()",
+            "Change == to !="
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "datetime",
+        "explanation": "weekday() returns 0 for Monday, not 1. Sunday is 6."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the datetime import bug:",
+        "code": "import datetime\nnow = datetime.now()\n# Bug: AttributeError",
+        "options": [
+            "Use datetime.datetime.now()",
+            "Use datetime.time.now()",
+            "Import as 'from datetime import now'",
+            "Use datetime.today()"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "datetime",
+        "explanation": "datetime is a module, datetime.datetime is the class. Use datetime.datetime.now()."
+    }
+]

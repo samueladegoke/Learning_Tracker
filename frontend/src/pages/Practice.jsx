@@ -36,6 +36,11 @@ import DeepDiveDay27 from '../components/content/DeepDive/Day27'
 import DeepDiveDay28 from '../components/content/DeepDive/Day28'
 import DeepDiveDay29 from '../components/content/DeepDive/Day29'
 import DeepDiveDay30 from '../components/content/DeepDive/Day30'
+import DeepDiveDay31 from '../components/content/DeepDive/Day31'
+import DeepDiveDay32 from '../components/content/DeepDive/Day32'
+import DeepDiveDay33 from '../components/content/DeepDive/Day33'
+import DeepDiveDay34 from '../components/content/DeepDive/Day34'
+import DeepDiveDay35 from '../components/content/DeepDive/Day35'
 
 const DAY_META = {
     'day-1': {
@@ -277,6 +282,46 @@ const DAY_META = {
         quizId: 'day-30-practice',
         level: 'intermediate',
         topics: ['exceptions', 'try-except', 'json', 'error-handling']
+    },
+    'day-31': {
+        label: 'Day 31',
+        title: 'Day 31: Flash Card App Capstone',
+        subtitle: 'Build a complete flash card app with Canvas, after(), and pandas.',
+        quizId: 'day-31-practice',
+        level: 'intermediate',
+        topics: ['tkinter-canvas', 'after', 'pandas', 'csv', 'json-save']
+    },
+    'day-32': {
+        label: 'Day 32',
+        title: 'Day 32: Email (SMTP) & datetime',
+        subtitle: 'Send automated emails and work with dates and times.',
+        quizId: 'day-32-practice',
+        level: 'intermediate+',
+        topics: ['smtplib', 'smtp', 'datetime', 'strftime', 'automation']
+    },
+    'day-33': {
+        label: 'Day 33',
+        title: 'Day 33: API Endpoints & Parameters',
+        subtitle: 'Make HTTP requests, handle responses, and work with JSON APIs.',
+        quizId: 'day-33-practice',
+        level: 'intermediate+',
+        topics: ['api', 'requests', 'http', 'json', 'parameters']
+    },
+    'day-34': {
+        label: 'Day 34',
+        title: 'Day 34: GUI Quiz App with API',
+        subtitle: 'Build a trivia quiz app that fetches questions from an API.',
+        quizId: 'day-34-practice',
+        level: 'intermediate+',
+        topics: ['trivia-api', 'html-entities', 'tkinter', 'quiz-logic']
+    },
+    'day-35': {
+        label: 'Day 35',
+        title: 'Day 35: API Authentication & SMS',
+        subtitle: 'Secure API keys with environment variables and send SMS with Twilio.',
+        quizId: 'day-35-practice',
+        level: 'intermediate+',
+        topics: ['api-auth', 'environment-variables', 'twilio', 'security']
     }
 }
 
@@ -396,7 +441,12 @@ function DeepDive({ activeDay }) {
         'day-27': DeepDiveDay27,
         'day-28': DeepDiveDay28,
         'day-29': DeepDiveDay29,
-        'day-30': DeepDiveDay30
+        'day-30': DeepDiveDay30,
+        'day-31': DeepDiveDay31,
+        'day-32': DeepDiveDay32,
+        'day-33': DeepDiveDay33,
+        'day-34': DeepDiveDay34,
+        'day-35': DeepDiveDay35
     }
     const Component = components[activeDay]
     if (!Component) {

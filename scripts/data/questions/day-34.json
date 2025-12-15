@@ -1,0 +1,326 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What API provides free trivia questions?",
+        "options": [
+            "Trivia API",
+            "Open Trivia Database",
+            "Quiz Master API",
+            "Question Bank API"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "trivia-api",
+        "explanation": "Open Trivia Database (opentdb.com) provides free trivia questions via their API."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What module is used to decode HTML entities in Python?",
+        "options": [
+            "entities",
+            "html",
+            "decode",
+            "unescape"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "html-entities",
+        "explanation": "The built-in 'html' module provides unescape() to decode HTML entities."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does html.unescape() convert '&quot;' to?",
+        "options": [
+            "&",
+            "\"",
+            "'",
+            "<"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "html-entities",
+        "explanation": "&quot; is the HTML entity for a double quote character (\")."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What design pattern separates data, logic, and UI?",
+        "options": [
+            "Singleton",
+            "Factory",
+            "Model-View-Controller (MVC)",
+            "Observer"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "architecture",
+        "explanation": "MVC separates an application into Model (data), View (UI), and Controller (logic)."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What parameter type does the Open Trivia API accept for True/False questions?",
+        "options": [
+            "type='tf'",
+            "type='boolean'",
+            "type='truefalse'",
+            "type='yesno'"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "trivia-api",
+        "explanation": "The API uses type='boolean' for True/False questions, type='multiple' for multiple choice."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you disable a Tkinter button?",
+        "options": [
+            "button.disable()",
+            "button.enabled = False",
+            "button.config(state='disabled')",
+            "button.active = False"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "tkinter",
+        "explanation": "Use config(state='disabled') to disable a button, config(state='normal') to enable."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What method schedules a function to run after a delay in Tkinter?",
+        "options": [
+            "window.delay()",
+            "window.after()",
+            "window.schedule()",
+            "window.timer()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "tkinter",
+        "explanation": "window.after(milliseconds, callback) schedules a function to run after a delay."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does &#039; decode to?",
+        "options": [
+            "Ampersand",
+            "Apostrophe/Single quote",
+            "Hash symbol",
+            "Zero"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "html-entities",
+        "explanation": "&#039; is the HTML character code for an apostrophe (single quote)."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why pass the QuizBrain to the UI class?",
+        "options": [
+            "It's required by Tkinter",
+            "To allow UI to access quiz logic and data",
+            "For performance optimization",
+            "Python requires it"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "architecture",
+        "explanation": "Dependency injection allows the UI to call quiz methods without tight coupling."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What Canvas method updates the text of a text item?",
+        "options": [
+            "canvas.set_text()",
+            "canvas.update()",
+            "canvas.itemconfig()",
+            "canvas.modify()"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "tkinter",
+        "explanation": "canvas.itemconfig(item_id, text='new text') updates canvas item properties."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What API parameter controls the number of questions returned?",
+        "options": [
+            "count",
+            "amount",
+            "num",
+            "total"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "trivia-api",
+        "explanation": "The Open Trivia API uses 'amount' parameter to specify the number of questions."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What happens when checking an answer in the QuizBrain?",
+        "options": [
+            "Returns the question",
+            "Returns True/False and updates score",
+            "Sends email",
+            "Saves to file"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "quiz-logic",
+        "explanation": "check_answer() compares the user's answer, updates the score if correct, and returns True/False."
+    },
+    {
+        "question_type": "coding",
+        "text": "Decode HTML Entities\\nWrite a function that takes a string with HTML entities and returns the decoded version.",
+        "starter_code": "import html\n\ndef decode_text(text):\n    # Decode HTML entities\n    pass",
+        "test_cases": [
+            {
+                "function_call": "decode_text('&quot;Hello&quot;')",
+                "expected": "\"Hello\""
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "html-entities",
+        "solution_code": "import html\n\ndef decode_text(text):\n    return html.unescape(text)"
+    },
+    {
+        "question_type": "coding",
+        "text": "Create Question Object\\nWrite a Question class with text and answer attributes.",
+        "starter_code": "class Question:\n    def __init__(self, text, answer):\n        # Store text and answer\n        pass",
+        "test_cases": [
+            {
+                "function_call": "Question('What?', 'Yes').answer",
+                "expected": "Yes"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "oop",
+        "solution_code": "class Question:\n    def __init__(self, text, answer):\n        self.text = text\n        self.answer = answer"
+    },
+    {
+        "question_type": "coding",
+        "text": "Check Answer\\nWrite a function that compares user_answer to correct_answer (case-insensitive).",
+        "starter_code": "def check_answer(user_answer, correct_answer):\n    # Return True if answers match (case-insensitive)\n    pass",
+        "test_cases": [
+            {
+                "function_call": "check_answer('True', 'true')",
+                "expected": "True"
+            },
+            {
+                "function_call": "check_answer('yes', 'no')",
+                "expected": "False"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "quiz-logic",
+        "solution_code": "def check_answer(user_answer, correct_answer):\n    return user_answer.lower() == correct_answer.lower()"
+    },
+    {
+        "question_type": "coding",
+        "text": "Still Has Questions\\nWrite a method that returns True if there are more questions to ask.",
+        "starter_code": "def still_has_questions(question_number, question_list):\n    # Return True if more questions remain\n    pass",
+        "test_cases": [
+            {
+                "function_call": "still_has_questions(0, [1,2,3])",
+                "expected": "True"
+            },
+            {
+                "function_call": "still_has_questions(3, [1,2,3])",
+                "expected": "False"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "quiz-logic",
+        "solution_code": "def still_has_questions(question_number, question_list):\n    return question_number < len(question_list)"
+    },
+    {
+        "question_type": "coding",
+        "text": "Convert API Response\\nWrite a function that converts API question data to Question objects.",
+        "starter_code": "def create_questions(api_data):\n    # Return list of Question objects from API response\n    # Assume api_data is list of dicts with 'question' and 'correct_answer'\n    pass",
+        "test_cases": [
+            {
+                "function_call": "len(create_questions([{'question': 'Q?', 'correct_answer': 'A'}]))",
+                "expected": "1"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "api-integration",
+        "solution_code": "def create_questions(api_data):\n    return [Question(item['question'], item['correct_answer']) for item in api_data]"
+    },
+    {
+        "question_type": "coding",
+        "text": "Calculate Score Percentage\\nWrite a function that returns the score as a percentage.",
+        "starter_code": "def score_percentage(score, total):\n    # Return percentage rounded to 1 decimal\n    pass",
+        "test_cases": [
+            {
+                "function_call": "score_percentage(7, 10)",
+                "expected": "70.0"
+            },
+            {
+                "function_call": "score_percentage(3, 4)",
+                "expected": "75.0"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "quiz-logic",
+        "solution_code": "def score_percentage(score, total):\n    return round((score / total) * 100, 1)"
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the HTML entity bug:",
+        "code": "question = data['question']\ncanvas.itemconfig(text_item, text=question)\n# Bug: Shows &quot; instead of quotes",
+        "options": [
+            "Use html.unescape(question) before displaying",
+            "Use question.decode()",
+            "Use str(question)",
+            "Use question.replace()"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "html-entities",
+        "explanation": "API responses often contain HTML entities. Use html.unescape() to decode them."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the quiz end check bug:",
+        "code": "def next_question(self):\n    q = self.questions[self.question_number]\n    self.question_number += 1\n    return q\n# Bug: IndexError at end of quiz",
+        "options": [
+            "Check still_has_questions() before accessing",
+            "Use try/except",
+            "Reset question_number to 0",
+            "Use modulo operator"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "quiz-logic",
+        "explanation": "Must check if questions remain before accessing the next one to avoid IndexError."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the button state bug:",
+        "code": "if not quiz.still_has_questions():\n    canvas.itemconfig(text, text='Quiz Complete!')\n# Bug: Buttons still clickable after quiz ends",
+        "options": [
+            "Add button.config(state='disabled') for both buttons",
+            "Remove the buttons",
+            "Hide the window",
+            "Clear the questions list"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "tkinter",
+        "explanation": "Disable buttons at quiz end to prevent further clicks: button.config(state='disabled')"
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the answer comparison bug:",
+        "code": "def check_answer(self, answer):\n    if answer == self.current_question.answer:\n        self.score += 1\n# Bug: 'True' != 'true'",
+        "options": [
+            "Compare answer.lower() == correct.lower()",
+            "Use == instead of is",
+            "Convert both to int",
+            "Use startswith()"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "quiz-logic",
+        "explanation": "Case-insensitive comparison is needed: 'True' from user should match 'true' from API."
+    }
+]

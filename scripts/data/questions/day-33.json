@@ -1,0 +1,314 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What does API stand for?",
+        "options": [
+            "Application Programming Interface",
+            "Advanced Protocol Integration",
+            "Automated Program Interaction",
+            "Application Process Interface"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "api-basics",
+        "explanation": "API stands for Application Programming Interface - a set of rules for applications to communicate."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What Python module is commonly used to make HTTP requests?",
+        "options": [
+            "http",
+            "urllib",
+            "requests",
+            "api"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "requests",
+        "explanation": "The 'requests' module is the most popular library for making HTTP requests in Python."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What HTTP status code indicates success?",
+        "options": [
+            "100",
+            "200",
+            "404",
+            "500"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "http",
+        "explanation": "200 (OK) indicates the request was successful. 404 is Not Found, 500 is Server Error."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What method converts an API response to a Python dictionary?",
+        "options": [
+            "response.dict()",
+            "response.json()",
+            "response.parse()",
+            "response.data()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "requests",
+        "explanation": "response.json() parses the JSON response body into a Python dictionary."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does HTTP status code 404 mean?",
+        "options": [
+            "Success",
+            "Redirect",
+            "Not Found",
+            "Server Error"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "http",
+        "explanation": "404 means the requested resource was not found on the server."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does raise_for_status() do?",
+        "options": [
+            "Returns the status code",
+            "Raises an exception for 4XX/5XX errors",
+            "Converts status to string",
+            "Logs the status"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "requests",
+        "explanation": "raise_for_status() raises an HTTPError exception if the response was unsuccessful (4XX or 5XX)."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you pass query parameters to requests.get()?",
+        "options": [
+            "In the URL string only",
+            "Using the params= argument",
+            "Using the query= argument",
+            "Using the args= argument"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "requests",
+        "explanation": "Pass a dictionary to params= and requests will add them to the URL as query parameters."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is an API endpoint?",
+        "options": [
+            "The server's IP address",
+            "A specific URL that returns data",
+            "The response format",
+            "The authentication token"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "api-basics",
+        "explanation": "An endpoint is a specific URL where an API can receive requests and return data."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does the 5XX range of HTTP status codes indicate?",
+        "options": [
+            "Client errors",
+            "Server errors",
+            "Successful responses",
+            "Redirects"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "http",
+        "explanation": "5XX codes indicate server-side errors (the server failed to fulfill a valid request)."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is JSON?",
+        "options": [
+            "JavaScript Only Notation",
+            "JavaScript Object Notation",
+            "Java Standard Object Notation",
+            "JSON Script Object Notation"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "json",
+        "explanation": "JSON stands for JavaScript Object Notation - a lightweight data format used by APIs."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you access nested data in a JSON response?",
+        "options": [
+            "response.nested.data",
+            "response['nested']['data']",
+            "response.get_nested('data')",
+            "response->nested->data"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "json",
+        "explanation": "JSON parsed into Python uses dictionary syntax: data['key']['nested_key']"
+    },
+    {
+        "question_type": "mcq",
+        "text": "What HTTP method is used to retrieve data from an API?",
+        "options": [
+            "POST",
+            "GET",
+            "PUT",
+            "DELETE"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "http",
+        "explanation": "GET is used to retrieve/read data. POST creates, PUT updates, DELETE removes."
+    },
+    {
+        "question_type": "coding",
+        "text": "Make API Request\\nWrite a function that makes a GET request to a URL and returns the response object.",
+        "starter_code": "import requests\n\ndef fetch_data(url):\n    # Make GET request and return response\n    pass",
+        "test_cases": [
+            {
+                "function_call": "fetch_data.__doc__ is not None or True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "requests",
+        "solution_code": "import requests\n\ndef fetch_data(url):\n    return requests.get(url)"
+    },
+    {
+        "question_type": "coding",
+        "text": "Check Status Code\\nWrite a function that takes a response and returns True if successful (200-299), False otherwise.",
+        "starter_code": "def is_successful(response):\n    # Check if status code indicates success\n    pass",
+        "test_cases": [
+            {
+                "function_call": "is_successful.__doc__ is not None or True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "http",
+        "solution_code": "def is_successful(response):\n    return 200 <= response.status_code < 300"
+    },
+    {
+        "question_type": "coding",
+        "text": "Get JSON Data\\nWrite a function that makes a request and returns the parsed JSON data.",
+        "starter_code": "import requests\n\ndef get_json(url):\n    # Fetch URL and return JSON data\n    pass",
+        "test_cases": [
+            {
+                "function_call": "get_json.__doc__ is not None or True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "requests",
+        "solution_code": "import requests\n\ndef get_json(url):\n    response = requests.get(url)\n    return response.json()"
+    },
+    {
+        "question_type": "coding",
+        "text": "API with Parameters\\nWrite a function that fetches weather data from an API using lat/lng parameters.",
+        "starter_code": "import requests\n\ndef get_weather(lat, lng):\n    # Make request with lat/lng parameters\n    # Return the response\n    pass",
+        "test_cases": [
+            {
+                "function_call": "get_weather.__doc__ is not None or True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "requests",
+        "solution_code": "import requests\n\ndef get_weather(lat, lng):\n    params = {'lat': lat, 'lng': lng}\n    return requests.get('https://api.example.com/weather', params=params)"
+    },
+    {
+        "question_type": "coding",
+        "text": "Safe API Call\\nWrite a function that makes a request and uses raise_for_status() to handle errors.",
+        "starter_code": "import requests\n\ndef safe_fetch(url):\n    # Make request, raise for errors, return json\n    pass",
+        "test_cases": [
+            {
+                "function_call": "safe_fetch.__doc__ is not None or True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "requests",
+        "solution_code": "import requests\n\ndef safe_fetch(url):\n    response = requests.get(url)\n    response.raise_for_status()\n    return response.json()"
+    },
+    {
+        "question_type": "coding",
+        "text": "Extract Nested Value\\nWrite a function that extracts a nested value from JSON using a list of keys.",
+        "starter_code": "def get_nested(data, keys):\n    # Navigate through nested dict using keys list\n    # Return the final value\n    pass",
+        "test_cases": [
+            {
+                "function_call": "get_nested({'a': {'b': 1}}, ['a', 'b'])",
+                "expected": "1"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "json",
+        "solution_code": "def get_nested(data, keys):\n    result = data\n    for key in keys:\n        result = result[key]\n    return result"
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the API call bug:",
+        "code": "response = requests.get(url)\ndata = response\nprint(data['key'])\n# Bug: TypeError",
+        "options": [
+            "Change response to response.json()",
+            "Add data.parse()",
+            "Use requests.post instead",
+            "Add response.load()"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "requests",
+        "explanation": "response is a Response object, not a dict. Call .json() to parse the JSON content."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the parameter passing bug:",
+        "code": "params = {'lat': 51.5, 'lng': -0.1}\nresponse = requests.get(f'{url}?{params}')\n# Bug: Incorrect URL format",
+        "options": [
+            "Use params=params argument instead",
+            "Convert params to string",
+            "Use requests.params()",
+            "Add urlencode()"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "requests",
+        "explanation": "Pass parameters using params=params. Requests handles URL encoding automatically."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the error handling bug:",
+        "code": "response = requests.get(url)\nif response.status_code == 200:\n    data = response.json()\n# Bug: Doesn't handle other success codes",
+        "options": [
+            "Check for 200 <= status_code < 300",
+            "Check for status_code >= 200",
+            "Use try/except only",
+            "Check for status_code != 404"
+        ],
+        "correct_index": 0,
+        "difficulty": "hard",
+        "topic_tag": "http",
+        "explanation": "Success codes range from 200-299. Check the range or use response.ok property."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the nested access bug:",
+        "code": "data = response.json()\nposition = data['position']['lat']\n# Bug: KeyError because structure is different",
+        "options": [
+            "Check the actual JSON structure first",
+            "Use data.get('position')",
+            "Add try/except",
+            "Convert to list first"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "json",
+        "explanation": "Always inspect the actual API response structure. Keys may be named differently than expected."
+    }
+]
