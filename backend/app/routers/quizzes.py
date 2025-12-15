@@ -37,12 +37,12 @@ def get_completed_quizzes(db: Session = Depends(get_db)):
 
 
 @router.get("/leaderboard")
-def get_quiz_leaderboard(limit: int = 20, db: Session = Depends(get_db)):
+def get_quiz_leaderboard(limit: int = 20, offset: int = 0, db: Session = Depends(get_db)):
     """Get top quiz scores for the leaderboard."""
     results = db.query(QuizResult).order_by(
         QuizResult.score.desc(),
         QuizResult.completed_at.desc()
-    ).limit(limit).all()
+    ).offset(offset).limit(limit).all()
     
     return [
         {
@@ -50,6 +50,7 @@ def get_quiz_leaderboard(limit: int = 20, db: Session = Depends(get_db)):
             "quiz_id": r.quiz_id,
             "score": r.score,
             "total_questions": r.total_questions,
+            "score_breakdown": f"{r.score}/{r.total_questions}",
             "percentage": round((r.score / r.total_questions) * 100, 1) if r.total_questions > 0 else 0,
             "completed_at": r.completed_at.isoformat() if r.completed_at else None
         }
@@ -66,8 +67,8 @@ def get_quiz_questions(quiz_id: str, db: Session = Depends(get_db)):
     response = []
     for q in questions:
         try:
-            options_list = json.loads(q.options)
-        except json.JSONDecodeError:
+            options_list = json.loads(q.options) if q.options else []
+        except (json.JSONDecodeError, TypeError):
             options_list = []
             
         response.append(QuestionResponse(
@@ -116,11 +117,28 @@ def submit_quiz(submission: QuizSubmission, db: Session = Depends(get_db)):
     score = 0
     total_questions = len(questions)
     
-    # Calculate score server-side
-    for q_id, selected_index in submission.answers.items():
-        question = questions_map.get(int(q_id))
-        if question and question.correct_index == selected_index:
-            score += 1
+    # Calculate score server-side - handle both MCQ and coding questions
+    for q_id_str, answer in submission.answers.items():
+        try:
+            q_id = int(q_id_str)
+        except ValueError:
+            continue
+            
+        question = questions_map.get(q_id)
+        if not question:
+            continue
+            
+        # Trust the model default; column is now guaranteed
+        question_type = question.question_type or 'mcq'
+        
+        if question_type in ('mcq', 'code-correction'):
+            # MCQ/Code-correction: answer is the selected index (int)
+            if isinstance(answer, int) and question.correct_index == answer:
+                score += 1
+        elif question_type == 'coding':
+            # Coding: answer is dict with allPassed flag
+            if isinstance(answer, dict) and answer.get('allPassed', False):
+                score += 1
 
     # Save result
     result = QuizResult(
@@ -165,6 +183,7 @@ def submit_quiz(submission: QuizSubmission, db: Session = Depends(get_db)):
         "xp_gained": xp_gained,
         "score": score,
         "total_questions": total_questions,
+        "score_breakdown": f"{score}/{total_questions}",
         "percentage": round((score / total_questions) * 100, 1) if total_questions > 0 else 0,
         "achievements_unlocked": achievements_unlocked
     }

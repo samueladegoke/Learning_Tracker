@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Optional, List
+from typing import Optional, List, Any
 from pydantic import BaseModel
 
 
@@ -192,4 +192,4 @@ class QuestionResponse(BaseModel):
 
 class QuizSubmission(BaseModel):
     quiz_id: str
-    answers: dict[int, int]  # question_id -> selected_option_index
+    answers: dict[str, Any]  # question_id -> answer (int for MCQ, dict for coding)

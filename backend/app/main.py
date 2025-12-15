@@ -52,7 +52,7 @@ def get_allowed_origins():
             valid_origins.append(origin)
         else:
             # Log warning for invalid origins (only in development)
-            print(f"[CORS Warning] Invalid origin ignored: {origin}")
+            logger.warning(f"[CORS] Invalid origin ignored: {origin}")
     
     return valid_origins if valid_origins else ["http://localhost:5173"]
 

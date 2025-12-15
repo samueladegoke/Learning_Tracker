@@ -336,7 +336,10 @@ function Practice() {
     useEffect(() => {
         quizzesAPI.getCompleted()
             .then(setCompletedQuizzes)
-            .catch(err => console.error('Failed to load completed quizzes:', err))
+            .catch(err => {
+                console.error('Failed to load completed quizzes:', err)
+                // Silently fail - completed quizzes is non-critical for page load
+            })
     }, [])
 
     return (
@@ -538,48 +541,28 @@ function Quiz({ quizId, activeDay }) {
     const finishQuiz = async () => {
         setIsSubmitting(true)
         try {
-            // Calculate score locally
-            let score = 0
-            let totalAnswered = 0
-
-            questions.forEach(q => {
-                const answer = answers[q.id]
-                if (answer === undefined) return
-                totalAnswered++
-
-                if (q.question_type === 'mcq' || q.question_type === 'code-correction') {
-                    if (answer === q.correct_index) {
-                        score++
-                    }
-                } else if (q.question_type === 'coding') {
-                    if (answer.allPassed) {
-                        score++
-                    }
-                }
+            // Submit quiz to backend - it handles scoring for both MCQ and coding
+            const result = await quizzesAPI.submit({
+                quiz_id: quizId,
+                answers: answers
             })
-
-            // Try to award XP via backend
-            const xpToAward = score * 10
-            let xpAwarded = false
-            try {
-                await rpgAPI.awardXP(xpToAward)
-                xpAwarded = true
-                setXpWarning(null)
-            } catch (xpError) {
-                console.warn('Could not award XP:', xpError)
-                setXpWarning(`XP could not be saved to your profile. ${xpError.message || 'Please check your connection.'}`)
-            }
 
             setResultData({
-                score,
-                total_questions: questions.length,
-                xp_gained: score * 10,
-                xp_saved: xpAwarded
+                score: result.score,
+                total_questions: result.total_questions,
+                score_breakdown: result.score_breakdown,
+                xp_gained: result.xp_gained,
+                percentage: result.percentage,
+                achievements_unlocked: result.achievements_unlocked || [],
+                xp_saved: true
             })
+            setXpWarning(null)
             setShowResult(true)
         } catch (error) {
-            console.error('Error submitting score:', error)
-            setError('Failed to submit quiz. Please try again.')
+            console.error('Error submitting quiz:', error)
+
+            setResultData(null)
+            setError(`Submission failed: ${error.message || 'Please check your connection.'}`)
         } finally {
             setIsSubmitting(false)
         }

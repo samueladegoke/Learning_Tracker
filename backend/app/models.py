@@ -247,7 +247,8 @@ class Question(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     quiz_id = Column(String(50), index=True, nullable=False)  # e.g., "day-1-practice"
+    question_type = Column(String(20), default="mcq")  # mcq, coding, code-correction
     text = Column(Text, nullable=False)
-    options = Column(Text, nullable=False)  # JSON string of options list
-    correct_index = Column(Integer, nullable=False)
+    options = Column(Text, nullable=True)  # JSON string of options list (for MCQ/code-correction)
+    correct_index = Column(Integer, nullable=True)  # For MCQ/code-correction
     explanation = Column(Text)
