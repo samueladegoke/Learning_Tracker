@@ -1,0 +1,326 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What API provides stock price data in this project?",
+        "options": [
+            "Yahoo Finance",
+            "Alpha Vantage",
+            "Bloomberg",
+            "Robinhood"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "stock-api",
+        "explanation": "Alpha Vantage provides free stock market data APIs for historical and real-time prices."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does the News API 'qInTitle' parameter do?",
+        "options": [
+            "Searches the full article",
+            "Searches only headlines",
+            "Filters by quality",
+            "Sorts by date"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "news-api",
+        "explanation": "qInTitle searches for keywords in article titles/headlines only, giving more relevant results."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why use abs() when comparing percentage change to a threshold?",
+        "options": [
+            "To round the number",
+            "To handle negative changes",
+            "To convert to integer",
+            "To format for display"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "percentage",
+        "explanation": "abs() returns the absolute value. A -5% drop is still a 5% change magnitude."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What key in Alpha Vantage response contains price data?",
+        "options": [
+            "prices",
+            "data",
+            "Time Series (Daily)",
+            "stock_data"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "stock-api",
+        "explanation": "Alpha Vantage uses 'Time Series (Daily)' as the key containing daily price data."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you get the closing price from Alpha Vantage data?",
+        "options": [
+            "data['close']",
+            "data['4. close']",
+            "data['closing_price']",
+            "data['price']"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "stock-api",
+        "explanation": "Alpha Vantage uses '4. close' as the key for closing price in each day's data."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What triggers a stock alert in this project?",
+        "options": [
+            "Daily at market open",
+            "When price changes > threshold %",
+            "Every hour",
+            "When volume spikes"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "alert-logic",
+        "explanation": "The alert triggers when the percentage change between two days exceeds a threshold (e.g., 5%)."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What symbol indicates stock price went up?",
+        "options": [
+            "📈",
+            "🔺",
+            "⬆️",
+            "↑"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "display",
+        "explanation": "The project uses 🔺 for price increase and 🔻 for decrease in SMS messages."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How many news articles are sent in each alert?",
+        "options": [
+            "1",
+            "3",
+            "5",
+            "10"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "news-api",
+        "explanation": "The code sends the top 3 most recent articles related to the company."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What's the formula for percentage change?",
+        "options": [
+            "(new - old) / old * 100",
+            "(old - new) / 100",
+            "new / old * 100",
+            "(new + old) / 2"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "percentage",
+        "explanation": "Percentage change = (new_value - old_value) / old_value * 100"
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the 'sortBy' parameter used for in News API?",
+        "options": [
+            "Sort by relevance",
+            "Sort by date",
+            "Sort by source",
+            "All of the above"
+        ],
+        "correct_index": 3,
+        "difficulty": "medium",
+        "topic_tag": "news-api",
+        "explanation": "sortBy accepts 'relevance', 'popularity', or 'publishedAt' to order results."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What service sends the SMS notifications?",
+        "options": [
+            "SendGrid",
+            "Twilio",
+            "AWS SNS",
+            "Vonage"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "twilio",
+        "explanation": "Twilio is used to send SMS notifications when stock alerts are triggered."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why store API keys in environment variables?",
+        "options": [
+            "Faster access",
+            "Security - not in code",
+            "Required by Python",
+            "Better performance"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "security",
+        "explanation": "Environment variables keep secrets out of source code and version control."
+    },
+    {
+        "question_type": "coding",
+        "text": "Calculate Percentage Change\nWrite a function that calculates the percentage change between two prices.",
+        "starter_code": "def percentage_change(old_price, new_price):\n    # Return percentage change rounded to 2 decimals\n    pass",
+        "test_cases": [
+            {
+                "function_call": "percentage_change(100, 110)",
+                "expected": "10.0"
+            },
+            {
+                "function_call": "percentage_change(100, 90)",
+                "expected": "-10.0"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "percentage",
+        "solution_code": "def percentage_change(old_price, new_price):\n    return round((new_price - old_price) / old_price * 100, 2)"
+    },
+    {
+        "question_type": "coding",
+        "text": "Direction Indicator\nWrite a function that returns '🔺' for positive change, '🔻' for negative.",
+        "starter_code": "def get_direction(change):\n    # Return up or down arrow emoji\n    pass",
+        "test_cases": [
+            {
+                "function_call": "get_direction(5.5)",
+                "expected": "🔺"
+            },
+            {
+                "function_call": "get_direction(-3.2)",
+                "expected": "🔻"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "display",
+        "solution_code": "def get_direction(change):\n    return '🔺' if change > 0 else '🔻'"
+    },
+    {
+        "question_type": "coding",
+        "text": "Check Threshold\nWrite a function that returns True if the absolute change exceeds the threshold.",
+        "starter_code": "def exceeds_threshold(change, threshold):\n    # Return True if |change| > threshold\n    pass",
+        "test_cases": [
+            {
+                "function_call": "exceeds_threshold(-6, 5)",
+                "expected": "True"
+            },
+            {
+                "function_call": "exceeds_threshold(3, 5)",
+                "expected": "False"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "alert-logic",
+        "solution_code": "def exceeds_threshold(change, threshold):\n    return abs(change) > threshold"
+    },
+    {
+        "question_type": "coding",
+        "text": "Extract Last Two Days\nWrite a function that converts a dict of dates to a list and returns the last two entries.",
+        "starter_code": "def get_last_two_days(time_series):\n    # Return list with last two days' data\n    pass",
+        "test_cases": [
+            {
+                "function_call": "len(get_last_two_days({'2024-01-01': 1, '2024-01-02': 2, '2024-01-03': 3}))",
+                "expected": "2"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "stock-api",
+        "solution_code": "def get_last_two_days(time_series):\n    data_list = [value for (key, value) in time_series.items()]\n    return data_list[:2]"
+    },
+    {
+        "question_type": "coding",
+        "text": "Format Article\nWrite a function that formats a news article dict into an alert string.",
+        "starter_code": "def format_article(article):\n    # Return formatted string with title and description\n    pass",
+        "test_cases": [
+            {
+                "function_call": "'Headline:' in format_article({'title': 'Test', 'description': 'Desc'})",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "news-api",
+        "solution_code": "def format_article(article):\n    return f\"Headline: {article['title']}\\nBrief: {article['description']}\""
+    },
+    {
+        "question_type": "coding",
+        "text": "Get Top Articles\nWrite a function that returns the first n articles from a list.",
+        "starter_code": "def get_top_articles(articles, n=3):\n    # Return first n articles\n    pass",
+        "test_cases": [
+            {
+                "function_call": "len(get_top_articles([1,2,3,4,5], 3))",
+                "expected": "3"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "news-api",
+        "solution_code": "def get_top_articles(articles, n=3):\n    return articles[:n]"
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the percentage calculation bug:",
+        "code": "change = (yesterday - day_before) * 100 / day_before\n# Bug: wrong order of operations",
+        "options": [
+            "Add parentheses: ((yesterday - day_before) / day_before) * 100",
+            "Use abs()",
+            "Swap yesterday and day_before",
+            "Remove * 100"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "percentage",
+        "explanation": "Order matters: divide first, then multiply by 100. Use parentheses to ensure correct calculation."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the API key exposure bug:",
+        "code": "API_KEY = 'sk_live_abc123'\nresponse = requests.get(url, params={'apikey': API_KEY})",
+        "options": [
+            "Use os.environ.get('API_KEY')",
+            "Encrypt the key",
+            "Use a shorter key",
+            "Remove the key"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "security",
+        "explanation": "Never hardcode API keys. Use environment variables for security."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the stock data access bug:",
+        "code": "data = response.json()\nprice = data['4. close']\n# Bug: KeyError",
+        "options": [
+            "Access via data['Time Series (Daily)'][date]['4. close']",
+            "Use data[0]",
+            "Use data.price",
+            "Use data['close']"
+        ],
+        "correct_index": 0,
+        "difficulty": "hard",
+        "topic_tag": "stock-api",
+        "explanation": "Alpha Vantage nests price data under 'Time Series (Daily)' with dates as keys."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the threshold comparison bug:",
+        "code": "if diff_percent > THRESHOLD:\n    send_alert()\n# Bug: Misses negative changes like -6%",
+        "options": [
+            "Use abs(diff_percent) > THRESHOLD",
+            "Use diff_percent >= THRESHOLD",
+            "Use diff_percent != 0",
+            "Use diff_percent < THRESHOLD"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "alert-logic",
+        "explanation": "Use abs() to catch both positive and negative significant changes."
+    }
+]

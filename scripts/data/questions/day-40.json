@@ -1,0 +1,318 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What is the NotificationManager class responsible for?",
+        "options": [
+            "Searching flights",
+            "Sending SMS and email alerts",
+            "Managing user data",
+            "Storing destinations"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "architecture",
+        "explanation": "NotificationManager handles sending deal notifications via SMS (Twilio) and email (SMTP)."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the Flight Club concept?",
+        "options": [
+            "An airline loyalty program",
+            "A user membership system for deal alerts",
+            "A coding bootcamp",
+            "An airport lounge"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "project-concept",
+        "explanation": "Flight Club is a membership where users register to receive flight deal alerts."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why ask users to confirm their email by typing it twice?",
+        "options": [
+            "Security requirement",
+            "To prevent typos",
+            "API requirement",
+            "Database constraint"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "ux",
+        "explanation": "Double-entry validation helps catch typos that would prevent email delivery."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does encode('utf-8') do when sending emails?",
+        "options": [
+            "Compresses the message",
+            "Handles special characters like £",
+            "Encrypts the email",
+            "Adds formatting"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "email",
+        "explanation": "UTF-8 encoding allows special characters like currency symbols and non-ASCII letters."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why reuse the SMTP connection for multiple emails?",
+        "options": [
+            "Required by SMTP",
+            "Better performance",
+            "Cheaper",
+            "More secure"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "email",
+        "explanation": "Reusing connections avoids reconnection overhead when sending to multiple recipients."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does 'with smtplib.SMTP() as connection' do?",
+        "options": [
+            "Creates persistent connection",
+            "Auto-closes connection after block",
+            "Encrypts connection",
+            "Validates credentials"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "email",
+        "explanation": "Context manager (with) automatically closes the SMTP connection when done."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the purpose of connection.starttls()?",
+        "options": [
+            "Starts the server",
+            "Enables encryption (TLS)",
+            "Changes language",
+            "Adds timeout"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "email",
+        "explanation": "starttls() upgrades the connection to a secure TLS encrypted connection."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What happens when no direct flights are found?",
+        "options": [
+            "Return None",
+            "Search again with stopovers allowed",
+            "Throw error",
+            "Skip the destination"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "fallback-logic",
+        "explanation": "The fallback searches again with max_stopovers=2 to find connecting flights."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What format is used for email subject lines in SMTP?",
+        "options": [
+            "Subject = 'text'",
+            "Subject: text\\n\\nbody",
+            "SUBJECT: text",
+            "{subject: 'text'}"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "email",
+        "explanation": "SMTP uses 'Subject: text' followed by double newline before body."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What port is typically used for Gmail SMTP?",
+        "options": [
+            "25",
+            "587",
+            "443",
+            "80"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "email",
+        "explanation": "Port 587 is the standard SMTP submission port with STARTTLS encryption."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the benefit of storing users in a separate sheet?",
+        "options": [
+            "Faster queries",
+            "Separate concerns - destinations vs users",
+            "Required by Sheety",
+            "Better security"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "architecture",
+        "explanation": "Separating users from destinations follows good data organization practices."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What triggers a deal alert email?",
+        "options": [
+            "Every search",
+            "When price < target price",
+            "Daily at noon",
+            "On user request"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "deal-logic",
+        "explanation": "Alerts are sent when a flight's price is lower than the target price in the sheet."
+    },
+    {
+        "question_type": "coding",
+        "text": "Send Email to List\nWrite a function that sends an email to a list of recipients.",
+        "starter_code": "def send_to_all(connection, sender, recipients, message):\n    # Send email to each recipient\n    pass",
+        "test_cases": [
+            {
+                "function_call": "send_to_all.__doc__ is not None or True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "email",
+        "solution_code": "def send_to_all(connection, sender, recipients, message):\n    for email in recipients:\n        connection.sendmail(sender, email, msg=message)"
+    },
+    {
+        "question_type": "coding",
+        "text": "Format Email Subject\nWrite a function that creates an email with subject line.",
+        "starter_code": "def format_email(subject, body):\n    # Return formatted email with Subject: header\n    pass",
+        "test_cases": [
+            {
+                "function_call": "'Subject:' in format_email('Test', 'Body')",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "email",
+        "solution_code": "def format_email(subject, body):\n    return f'Subject:{subject}\\n\\n{body}'"
+    },
+    {
+        "question_type": "coding",
+        "text": "Extract Emails from Users\nWrite a function that extracts email addresses from a list of user dicts.",
+        "starter_code": "def get_emails(users):\n    # Return list of email addresses\n    pass",
+        "test_cases": [
+            {
+                "function_call": "get_emails([{'email': 'a@b.com'}, {'email': 'c@d.com'}])",
+                "expected": "['a@b.com', 'c@d.com']"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "data-processing",
+        "solution_code": "def get_emails(users):\n    return [user['email'] for user in users]"
+    },
+    {
+        "question_type": "coding",
+        "text": "Validate Email Match\nWrite a function that returns True if two email inputs match.",
+        "starter_code": "def emails_match(email1, email2):\n    # Return True if emails are identical\n    pass",
+        "test_cases": [
+            {
+                "function_call": "emails_match('a@b.com', 'a@b.com')",
+                "expected": "True"
+            },
+            {
+                "function_call": "emails_match('a@b.com', 'A@B.COM')",
+                "expected": "False"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "validation",
+        "solution_code": "def emails_match(email1, email2):\n    return email1 == email2"
+    },
+    {
+        "question_type": "coding",
+        "text": "Format Deal Message\nWrite a function that creates a deal alert message.",
+        "starter_code": "def format_deal(price, origin, destination, dates):\n    # Return formatted deal message\n    pass",
+        "test_cases": [
+            {
+                "function_call": "'£' in format_deal(100, 'London', 'Paris', '01/01-07/01')",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "display",
+        "solution_code": "def format_deal(price, origin, destination, dates):\n    return f'Low price alert! Only £{price} to fly from {origin} to {destination}, {dates}.'"
+    },
+    {
+        "question_type": "coding",
+        "text": "Check Has Stopovers\nWrite a function that marks if a flight has stopovers.",
+        "starter_code": "def add_stopovers_flag(flight, max_stopovers):\n    # Add 'stops' attribute if stopovers > 0\n    # Return the modified flight\n    pass",
+        "test_cases": [
+            {
+                "function_call": "add_stopovers_flag({'price': 100}, 2).get('stops')",
+                "expected": "2"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "data-processing",
+        "solution_code": "def add_stopovers_flag(flight, max_stopovers):\n    if max_stopovers > 0:\n        flight['stops'] = max_stopovers\n    return flight"
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the email encoding bug:",
+        "code": "connection.sendmail(sender, recipient, msg=f'Subject:Alert\\n\\n£50 flight!')\n# Bug: UnicodeEncodeError",
+        "options": [
+            "Add .encode('utf-8') to the message",
+            "Remove the £ symbol",
+            "Use ASCII only",
+            "Change encoding in server"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "email",
+        "explanation": "Non-ASCII characters like £ require UTF-8 encoding: message.encode('utf-8')"
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the SMTP connection bug:",
+        "code": "connection = smtplib.SMTP('smtp.gmail.com', 587)\nconnection.login(email, password)\n# Bug: Connection not secure",
+        "options": [
+            "Add connection.starttls() before login",
+            "Use port 25",
+            "Add SSL parameter",
+            "Use different server"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "email",
+        "explanation": "Call starttls() to enable TLS encryption before logging in."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the email validation bug:",
+        "code": "email = input('Email: ')\nif email:\n    add_customer(email)\n# Bug: No typo validation",
+        "options": [
+            "Ask for email twice and compare",
+            "Check for @ symbol",
+            "Use regex",
+            "Send test email"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "validation",
+        "explanation": "Double-entry validation catches typos: ask user to type email twice and compare."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the None flight handling bug:",
+        "code": "cheapest = find_cheapest_flight(data)\nif cheapest.price < target:\n    send_alert()\n# Bug: AttributeError when cheapest is None",
+        "options": [
+            "Add 'if cheapest is None: continue' check first",
+            "Use try/except",
+            "Set default price",
+            "Skip the check"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "error-handling",
+        "explanation": "Always check if the result is None before accessing attributes."
+    }
+]

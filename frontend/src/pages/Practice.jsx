@@ -41,6 +41,11 @@ import DeepDiveDay32 from '../components/content/DeepDive/Day32'
 import DeepDiveDay33 from '../components/content/DeepDive/Day33'
 import DeepDiveDay34 from '../components/content/DeepDive/Day34'
 import DeepDiveDay35 from '../components/content/DeepDive/Day35'
+import DeepDiveDay36 from '../components/content/DeepDive/Day36'
+import DeepDiveDay37 from '../components/content/DeepDive/Day37'
+import DeepDiveDay38 from '../components/content/DeepDive/Day38'
+import DeepDiveDay39 from '../components/content/DeepDive/Day39'
+import DeepDiveDay40 from '../components/content/DeepDive/Day40'
 
 const DAY_META = {
     'day-1': {
@@ -322,6 +327,46 @@ const DAY_META = {
         quizId: 'day-35-practice',
         level: 'intermediate+',
         topics: ['api-auth', 'environment-variables', 'twilio', 'security']
+    },
+    'day-36': {
+        label: 'Day 36',
+        title: 'Day 36: Stock Trading News Alert',
+        subtitle: 'Monitor stock prices and send news alerts for significant changes.',
+        quizId: 'day-36-practice',
+        level: 'intermediate+',
+        topics: ['stock-api', 'news-api', 'percentage-change', 'sms-alerts']
+    },
+    'day-37': {
+        label: 'Day 37',
+        title: 'Day 37: Habit Tracking with Pixela',
+        subtitle: 'Use POST, PUT, DELETE requests to build a habit tracker.',
+        quizId: 'day-37-practice',
+        level: 'intermediate+',
+        topics: ['http-methods', 'pixela', 'headers', 'authentication']
+    },
+    'day-38': {
+        label: 'Day 38',
+        title: 'Day 38: Workout Tracking with Sheets',
+        subtitle: 'Use natural language APIs and log workouts to Google Sheets.',
+        quizId: 'day-38-practice',
+        level: 'intermediate+',
+        topics: ['nutritionix', 'sheety', 'google-sheets', 'nlp']
+    },
+    'day-39': {
+        label: 'Day 39',
+        title: 'Day 39: Flight Deal Finder (Part 1)',
+        subtitle: 'Build an OOP flight search system with Tequila and Sheety APIs.',
+        quizId: 'day-39-practice',
+        level: 'advanced',
+        topics: ['oop-architecture', 'tequila', 'iata-codes', 'flight-search']
+    },
+    'day-40': {
+        label: 'Day 40',
+        title: 'Day 40: Flight Deal Finder (Part 2)',
+        subtitle: 'Extend the Flight Club with user management and email notifications.',
+        quizId: 'day-40-practice',
+        level: 'advanced',
+        topics: ['email-smtp', 'user-management', 'notifications', 'stopovers']
     }
 }
 
@@ -449,7 +494,12 @@ function DeepDive({ activeDay }) {
         'day-32': DeepDiveDay32,
         'day-33': DeepDiveDay33,
         'day-34': DeepDiveDay34,
-        'day-35': DeepDiveDay35
+        'day-35': DeepDiveDay35,
+        'day-36': DeepDiveDay36,
+        'day-37': DeepDiveDay37,
+        'day-38': DeepDiveDay38,
+        'day-39': DeepDiveDay39,
+        'day-40': DeepDiveDay40
     }
     const Component = components[activeDay]
     if (!Component) {

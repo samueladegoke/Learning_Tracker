@@ -1,0 +1,314 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What HTTP method is used to create new resources?",
+        "options": [
+            "GET",
+            "POST",
+            "PUT",
+            "DELETE"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "http-methods",
+        "explanation": "POST creates new resources on the server. GET retrieves, PUT updates, DELETE removes."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What HTTP method is used to update existing resources?",
+        "options": [
+            "GET",
+            "POST",
+            "PUT",
+            "PATCH"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "http-methods",
+        "explanation": "PUT replaces an entire resource. PATCH partially updates. Both can update."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you pass data in the request body with requests?",
+        "options": [
+            "params=",
+            "json=",
+            "body=",
+            "data="
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "requests",
+        "explanation": "Use json= to send JSON data in the request body. params= adds URL query parameters."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is Pixela used for?",
+        "options": [
+            "Image editing",
+            "Habit tracking",
+            "Stock prices",
+            "Weather data"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "pixela",
+        "explanation": "Pixela is a habit tracking API that creates GitHub-style contribution graphs."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why use headers for authentication instead of URL parameters?",
+        "options": [
+            "Faster performance",
+            "Headers are more secure",
+            "Required by Python",
+            "Easier to type"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "security",
+        "explanation": "Headers aren't visible in URLs, browser history, or server access logs, making them more secure."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the Pixela header name for authentication token?",
+        "options": [
+            "Authorization",
+            "X-API-KEY",
+            "X-USER-TOKEN",
+            "Bearer"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "pixela",
+        "explanation": "Pixela uses a custom header 'X-USER-TOKEN' for authentication."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What date format does Pixela require?",
+        "options": [
+            "YYYY-MM-DD",
+            "yyyyMMdd",
+            "DD/MM/YYYY",
+            "MM-DD-YYYY"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "pixela",
+        "explanation": "Pixela requires dates in yyyyMMdd format, e.g., '20251215' for December 15, 2025."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What strftime format produces '20251215'?",
+        "options": [
+            "%Y-%m-%d",
+            "%Y%m%d",
+            "%d/%m/%Y",
+            "%m%d%Y"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "datetime",
+        "explanation": "%Y%m%d produces yyyyMMdd format without separators."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What type must Pixela quantity values be?",
+        "options": [
+            "Integer",
+            "Float",
+            "String",
+            "Boolean"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "pixela",
+        "explanation": "Pixela requires quantities as strings, even for numeric values: '2.5' not 2.5"
+    },
+    {
+        "question_type": "mcq",
+        "text": "What HTTP method removes a resource?",
+        "options": [
+            "POST",
+            "PUT",
+            "GET",
+            "DELETE"
+        ],
+        "correct_index": 3,
+        "difficulty": "easy",
+        "topic_tag": "http-methods",
+        "explanation": "DELETE removes the specified resource from the server."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does a DELETE request body typically contain?",
+        "options": [
+            "The resource to delete",
+            "Confirmation data",
+            "Nothing",
+            "The replacement"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "http-methods",
+        "explanation": "DELETE requests typically have no body. The URL specifies what to delete."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What Pixela parameter sets the graph color?",
+        "options": [
+            "color",
+            "theme",
+            "appearance",
+            "style"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "pixela",
+        "explanation": "The 'color' parameter sets the graph color (e.g., 'shibafu' for green, 'momiji' for red)."
+    },
+    {
+        "question_type": "coding",
+        "text": "Create Headers Dict\nWrite a function that returns a headers dictionary with the X-USER-TOKEN.",
+        "starter_code": "def create_headers(token):\n    # Return headers dict with X-USER-TOKEN\n    pass",
+        "test_cases": [
+            {
+                "function_call": "create_headers('abc123')['X-USER-TOKEN']",
+                "expected": "abc123"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "pixela",
+        "solution_code": "def create_headers(token):\n    return {'X-USER-TOKEN': token}"
+    },
+    {
+        "question_type": "coding",
+        "text": "Format Date for Pixela\nWrite a function that converts a datetime to Pixela's yyyyMMdd format.",
+        "starter_code": "import datetime as dt\n\ndef format_pixela_date(date):\n    # Return date string in yyyyMMdd format\n    pass",
+        "test_cases": [
+            {
+                "function_call": "format_pixela_date(dt.datetime(2025, 12, 15))",
+                "expected": "20251215"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "datetime",
+        "solution_code": "import datetime as dt\n\ndef format_pixela_date(date):\n    return date.strftime('%Y%m%d')"
+    },
+    {
+        "question_type": "coding",
+        "text": "Build Pixel Data\nWrite a function that creates the pixel data dict for Pixela.",
+        "starter_code": "def build_pixel_data(date_string, quantity):\n    # Return dict with date and quantity (as string)\n    pass",
+        "test_cases": [
+            {
+                "function_call": "build_pixel_data('20251215', 2.5)",
+                "expected": "{'date': '20251215', 'quantity': '2.5'}"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "pixela",
+        "solution_code": "def build_pixel_data(date_string, quantity):\n    return {'date': date_string, 'quantity': str(quantity)}"
+    },
+    {
+        "question_type": "coding",
+        "text": "Build Pixela Endpoint\nWrite a function that constructs the pixel endpoint URL.",
+        "starter_code": "def pixel_endpoint(username, graph_id):\n    # Return the endpoint URL\n    pass",
+        "test_cases": [
+            {
+                "function_call": "pixel_endpoint('user1', 'graph1')",
+                "expected": "https://pixe.la/v1/users/user1/graphs/graph1"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "pixela",
+        "solution_code": "def pixel_endpoint(username, graph_id):\n    return f'https://pixe.la/v1/users/{username}/graphs/{graph_id}'"
+    },
+    {
+        "question_type": "coding",
+        "text": "Build Update Endpoint\nWrite a function that returns the endpoint for updating a specific pixel.",
+        "starter_code": "def update_endpoint(username, graph_id, date):\n    # Return endpoint for specific pixel\n    pass",
+        "test_cases": [
+            {
+                "function_call": "'20251215' in update_endpoint('user1', 'graph1', '20251215')",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "pixela",
+        "solution_code": "def update_endpoint(username, graph_id, date):\n    return f'https://pixe.la/v1/users/{username}/graphs/{graph_id}/{date}'"
+    },
+    {
+        "question_type": "coding",
+        "text": "Get Today's Date String\nWrite a function that returns today's date in Pixela format.",
+        "starter_code": "import datetime as dt\n\ndef today_pixela():\n    # Return today in yyyyMMdd format\n    pass",
+        "test_cases": [
+            {
+                "function_call": "len(today_pixela())",
+                "expected": "8"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "datetime",
+        "solution_code": "import datetime as dt\n\ndef today_pixela():\n    return dt.datetime.now().strftime('%Y%m%d')"
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the headers parameter bug:",
+        "code": "response = requests.post(url, json=data, params=headers)\n# Bug: Headers not being sent correctly",
+        "options": [
+            "Change params=headers to headers=headers",
+            "Move headers into json",
+            "Use data= instead",
+            "Remove the headers"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "requests",
+        "explanation": "Headers should use the headers= parameter, not params=. params= is for URL query strings."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the quantity type bug:",
+        "code": "pixel_data = {'date': '20251215', 'quantity': 2.5}\nresponse = requests.post(url, json=pixel_data)\n# Bug: Pixela rejects the request",
+        "options": [
+            "Change 2.5 to '2.5' (string)",
+            "Change 2.5 to 3 (integer)",
+            "Add 'type': 'float'",
+            "Remove the quantity"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "pixela",
+        "explanation": "Pixela requires quantity to be a string, not a number: 'quantity': '2.5'"
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the date format bug:",
+        "code": "date_string = today.strftime('%Y-%m-%d')\npixel_data = {'date': date_string, 'quantity': '2'}\n# Bug: Pixela rejects the date",
+        "options": [
+            "Use strftime('%Y%m%d') without dashes",
+            "Use strftime('%d/%m/%Y')",
+            "Use strftime('%m%d%Y')",
+            "Convert to timestamp"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "datetime",
+        "explanation": "Pixela requires yyyyMMdd format without separators: '20251215' not '2025-12-15'."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the DELETE request bug:",
+        "code": "response = requests.delete(url, json={'confirm': True}, headers=headers)\n# Bug: Unnecessary body",
+        "options": [
+            "Remove json={'confirm': True}",
+            "Change to params=",
+            "Use headers only",
+            "Add auth parameter"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "http-methods",
+        "explanation": "DELETE requests typically don't need a body. The URL identifies what to delete."
+    }
+]
