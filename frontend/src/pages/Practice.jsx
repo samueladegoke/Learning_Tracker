@@ -1,51 +1,60 @@
-import { useState, useEffect } from 'react'
-import { AlertTriangle, Trophy, PartyPopper, BookOpen, Check, Lightbulb, ArrowLeft, ArrowRight, CheckCircle } from 'lucide-react'
+import { useState, useEffect, lazy, Suspense } from 'react'
+import { AlertTriangle, Trophy, PartyPopper, BookOpen, Check, Lightbulb, ArrowLeft, ArrowRight, CheckCircle, Loader2 } from 'lucide-react'
 import { quizApi } from '../api/quizApi'
 import { rpgAPI, quizzesAPI } from '../api/client'
 import CodeBlock from '../components/CodeBlock'
 import CodeEditor from '../components/CodeEditor'
 import { InlineCode } from '../components/InlineCode'
 
-import DeepDiveDay1 from '../components/content/DeepDive/Day1'
-import DeepDiveDay2 from '../components/content/DeepDive/Day2'
-import DeepDiveDay3 from '../components/content/DeepDive/Day3'
-import DeepDiveDay4 from '../components/content/DeepDive/Day4'
-import DeepDiveDay5 from '../components/content/DeepDive/Day5'
-import DeepDiveDay6 from '../components/content/DeepDive/Day6'
-import DeepDiveDay7 from '../components/content/DeepDive/Day7'
-import DeepDiveDay8 from '../components/content/DeepDive/Day8'
-import DeepDiveDay9 from '../components/content/DeepDive/Day9'
-import DeepDiveDay10 from '../components/content/DeepDive/Day10'
-import DeepDiveDay11 from '../components/content/DeepDive/Day11'
-import DeepDiveDay12 from '../components/content/DeepDive/Day12'
-import DeepDiveDay13 from '../components/content/DeepDive/Day13'
-import DeepDiveDay14 from '../components/content/DeepDive/Day14'
-import DeepDiveDay15 from '../components/content/DeepDive/Day15'
-import DeepDiveDay16 from '../components/content/DeepDive/Day16'
-import DeepDiveDay17 from '../components/content/DeepDive/Day17'
-import DeepDiveDay18 from '../components/content/DeepDive/Day18'
-import DeepDiveDay19 from '../components/content/DeepDive/Day19'
-import DeepDiveDay20 from '../components/content/DeepDive/Day20'
-import DeepDiveDay21 from '../components/content/DeepDive/Day21'
-import DeepDiveDay22 from '../components/content/DeepDive/Day22'
-import DeepDiveDay23 from '../components/content/DeepDive/Day23'
-import DeepDiveDay24 from '../components/content/DeepDive/Day24'
-import DeepDiveDay25 from '../components/content/DeepDive/Day25'
-import DeepDiveDay26 from '../components/content/DeepDive/Day26'
-import DeepDiveDay27 from '../components/content/DeepDive/Day27'
-import DeepDiveDay28 from '../components/content/DeepDive/Day28'
-import DeepDiveDay29 from '../components/content/DeepDive/Day29'
-import DeepDiveDay30 from '../components/content/DeepDive/Day30'
-import DeepDiveDay31 from '../components/content/DeepDive/Day31'
-import DeepDiveDay32 from '../components/content/DeepDive/Day32'
-import DeepDiveDay33 from '../components/content/DeepDive/Day33'
-import DeepDiveDay34 from '../components/content/DeepDive/Day34'
-import DeepDiveDay35 from '../components/content/DeepDive/Day35'
-import DeepDiveDay36 from '../components/content/DeepDive/Day36'
-import DeepDiveDay37 from '../components/content/DeepDive/Day37'
-import DeepDiveDay38 from '../components/content/DeepDive/Day38'
-import DeepDiveDay39 from '../components/content/DeepDive/Day39'
-import DeepDiveDay40 from '../components/content/DeepDive/Day40'
+// Lazy load DeepDive components for code splitting
+const DeepDiveDay1 = lazy(() => import('../components/content/DeepDive/Day1'))
+const DeepDiveDay2 = lazy(() => import('../components/content/DeepDive/Day2'))
+const DeepDiveDay3 = lazy(() => import('../components/content/DeepDive/Day3'))
+const DeepDiveDay4 = lazy(() => import('../components/content/DeepDive/Day4'))
+const DeepDiveDay5 = lazy(() => import('../components/content/DeepDive/Day5'))
+const DeepDiveDay6 = lazy(() => import('../components/content/DeepDive/Day6'))
+const DeepDiveDay7 = lazy(() => import('../components/content/DeepDive/Day7'))
+const DeepDiveDay8 = lazy(() => import('../components/content/DeepDive/Day8'))
+const DeepDiveDay9 = lazy(() => import('../components/content/DeepDive/Day9'))
+const DeepDiveDay10 = lazy(() => import('../components/content/DeepDive/Day10'))
+const DeepDiveDay11 = lazy(() => import('../components/content/DeepDive/Day11'))
+const DeepDiveDay12 = lazy(() => import('../components/content/DeepDive/Day12'))
+const DeepDiveDay13 = lazy(() => import('../components/content/DeepDive/Day13'))
+const DeepDiveDay14 = lazy(() => import('../components/content/DeepDive/Day14'))
+const DeepDiveDay15 = lazy(() => import('../components/content/DeepDive/Day15'))
+const DeepDiveDay16 = lazy(() => import('../components/content/DeepDive/Day16'))
+const DeepDiveDay17 = lazy(() => import('../components/content/DeepDive/Day17'))
+const DeepDiveDay18 = lazy(() => import('../components/content/DeepDive/Day18'))
+const DeepDiveDay19 = lazy(() => import('../components/content/DeepDive/Day19'))
+const DeepDiveDay20 = lazy(() => import('../components/content/DeepDive/Day20'))
+const DeepDiveDay21 = lazy(() => import('../components/content/DeepDive/Day21'))
+const DeepDiveDay22 = lazy(() => import('../components/content/DeepDive/Day22'))
+const DeepDiveDay23 = lazy(() => import('../components/content/DeepDive/Day23'))
+const DeepDiveDay24 = lazy(() => import('../components/content/DeepDive/Day24'))
+const DeepDiveDay25 = lazy(() => import('../components/content/DeepDive/Day25'))
+const DeepDiveDay26 = lazy(() => import('../components/content/DeepDive/Day26'))
+const DeepDiveDay27 = lazy(() => import('../components/content/DeepDive/Day27'))
+const DeepDiveDay28 = lazy(() => import('../components/content/DeepDive/Day28'))
+const DeepDiveDay29 = lazy(() => import('../components/content/DeepDive/Day29'))
+const DeepDiveDay30 = lazy(() => import('../components/content/DeepDive/Day30'))
+const DeepDiveDay31 = lazy(() => import('../components/content/DeepDive/Day31'))
+const DeepDiveDay32 = lazy(() => import('../components/content/DeepDive/Day32'))
+const DeepDiveDay33 = lazy(() => import('../components/content/DeepDive/Day33'))
+const DeepDiveDay34 = lazy(() => import('../components/content/DeepDive/Day34'))
+const DeepDiveDay35 = lazy(() => import('../components/content/DeepDive/Day35'))
+const DeepDiveDay36 = lazy(() => import('../components/content/DeepDive/Day36'))
+const DeepDiveDay37 = lazy(() => import('../components/content/DeepDive/Day37'))
+const DeepDiveDay38 = lazy(() => import('../components/content/DeepDive/Day38'))
+const DeepDiveDay39 = lazy(() => import('../components/content/DeepDive/Day39'))
+const DeepDiveDay40 = lazy(() => import('../components/content/DeepDive/Day40'))
+
+// Loading fallback component for lazy-loaded DeepDive content
+const DeepDiveLoader = () => (
+    <div className="flex items-center justify-center p-12">
+        <Loader2 className="w-8 h-8 text-primary-400 animate-spin" />
+        <span className="ml-3 text-surface-300">Loading content...</span>
+    </div>
+)
 
 const DAY_META = {
     'day-1': {
@@ -505,7 +514,11 @@ function DeepDive({ activeDay }) {
     if (!Component) {
         return <div className="text-surface-400 p-8">Deep Dive for {activeDay} coming soon...</div>
     }
-    return <Component />
+    return (
+        <Suspense fallback={<DeepDiveLoader />}>
+            <Component />
+        </Suspense>
+    )
 }
 
 function Quiz({ quizId, activeDay }) {
