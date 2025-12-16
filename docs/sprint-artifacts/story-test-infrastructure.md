@@ -10,7 +10,7 @@ Quality Assurance & Testing
 High
 
 ## Status
-`[ ] Ready for Development`
+`[x] Completed`
 
 ---
 
