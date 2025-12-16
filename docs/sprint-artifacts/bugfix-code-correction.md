@@ -1,13 +1,19 @@
+---
+key: BUGFIX-CODE-CORRECTION
+title: Bugfix Code Correction Rendering
+status: done
+---
+
 # Bugfix: Code Correction Rendering
 
 ## Story
 As a user, I want `code-correction` questions to render correctly in the Practice tab so I can learn from debugging exercises.
 
 ## Acceptance Criteria
-- [ ] Questions with `question_type: "code-correction"` display a distinct code block with the "buggy" code.
-- [ ] Options are displayed below the code block.
-- [ ] Selecting the correct option awards points correctly.
-- [ ] Backend API serves the questions with the `code` field populated.
+- [x] Questions with `question_type: "code-correction"` display a distinct code block with the "buggy" code.
+- [x] Options are displayed below the code block.
+- [x] Selecting the correct option awards points correctly.
+- [x] Backend API serves the questions with the `code` field populated.
 
 ## Tasks
 - [x] Revert JSON files (Days 17-20) to `code-correction` type.

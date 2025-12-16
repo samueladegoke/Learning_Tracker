@@ -144,6 +144,7 @@ def seed_all_from_directory(questions_dir: str = None):
     print(f"Scanning for questions in: {dir_path.absolute()}")
     for json_file in sorted(dir_path.glob('day-*.json')):
         # Extract day number from filename
+
         # Expected format: day-1.json, day-2.json
         match = json_file.stem  # e.g., "day-1"
         quiz_id = f"{match}-practice"

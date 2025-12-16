@@ -284,5 +284,92 @@
     "topic_tag": "higher-lower",
     "explanation": "Decomposition is a key engineering skill. Solving 'Generate Random Number' is easier than 'Build Whole Game'.",
     "question_type": "mcq"
+  },
+  {
+    "text": "Format Account Data\\nWrite a function that takes an account dictionary and returns a string in the format: 'Name, a Description, from Country'.",
+    "starter_code": "def format_data(account):\n    # account has keys: 'name', 'description', 'country'\n    name = account[\"name\"]\n    # Finish the function\n    return \"\"",
+    "solution_code": "def format_data(account):\n    name = account[\"name\"]\n    descr = account[\"description\"]\n    country = account[\"country\"]\n    return f\"{name}, a {descr}, from {country}\"",
+    "test_cases": [
+      {
+        "function_call": "format_data({'name': 'Instagram', 'description': 'Social media platform', 'country': 'United States'})",
+        "expected": "'Instagram, a Social media platform, from United States'"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "higher-lower-format",
+    "explanation": "Extract the values from the dictionary keys and use an f-string to format them correctly.",
+    "question_type": "coding"
+  },
+  {
+    "text": "Check User Guess\\nWrite a function that checks if the user's guess is correct. It takes the guess ('a' or 'b') and the follower counts of both accounts.",
+    "starter_code": "def check_answer(guess, a_followers, b_followers):\n    # Return True if they guessed correctly, else False\n    if a_followers > b_followers:\n        return guess == \"a\"\n    else:\n        return False",
+    "solution_code": "def check_answer(guess, a_followers, b_followers):\n    if a_followers > b_followers:\n        return guess == \"a\"\n    else:\n        return guess == \"b\"",
+    "test_cases": [
+      {
+        "function_call": "check_answer('a', 100, 50)",
+        "expected": "True"
+      },
+      {
+        "function_call": "check_answer('b', 100, 200)",
+        "expected": "True"
+      },
+      {
+        "function_call": "check_answer('a', 10, 20)",
+        "expected": "False"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "higher-lower-logic",
+    "explanation": "If A > B, correct answer is 'a'. Otherwise (B > A), correct answer is 'b'. Compare user guess to the correct answer.",
+    "question_type": "coding"
+  },
+  {
+    "text": "Get Follower Count\\nSimple helper: Write a function that extracts the 'follower_count' value from an account dictionary.",
+    "starter_code": "def get_follower_count(account):\n    pass",
+    "solution_code": "def get_follower_count(account):\n    return account['follower_count']",
+    "test_cases": [
+      {
+        "function_call": "get_follower_count({'follower_count': 500})",
+        "expected": "500"
+      },
+      {
+        "function_call": "get_follower_count({'follower_count': 0})",
+        "expected": "0"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "higher-lower-data",
+    "explanation": "Just access the dictionary value using the key 'follower_count'.",
+    "question_type": "coding"
+  },
+  {
+    "text": "Correct Winner\\nWrite a function that compares two accounts and returns the dictionary of the one with more followers.",
+    "starter_code": "def get_winner(account_a, account_b):\n    # Compare follower_count\n    pass",
+    "solution_code": "def get_winner(account_a, account_b):\n    if account_a['follower_count'] > account_b['follower_count']:\n        return account_a\n    else:\n        return account_b",
+    "test_cases": [
+      {
+        "function_call": "get_winner({'follower_count': 10}, {'follower_count': 20})",
+        "expected": "{'follower_count': 20}"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "higher-lower-compare",
+    "explanation": "Compare the integers. Return the entire object that wins.",
+    "question_type": "coding"
+  },
+  {
+    "text": "Pick Random Data\\nWrite a function that takes a list of data and returns a random item from it using the random module.",
+    "starter_code": "import random\n\ndef get_random_account(data_list):\n    # Use random.choice\n    pass",
+    "solution_code": "import random\n\ndef get_random_account(data_list):\n    return random.choice(data_list)",
+    "test_cases": [
+      {
+        "function_call": "get_random_account([1, 2, 3]) in [1, 2, 3]",
+        "expected": "True"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "higher-lower-random",
+    "explanation": "random.choice(seq) returns a random element from the non-empty sequence seq.",
+    "question_type": "coding"
   }
 ]

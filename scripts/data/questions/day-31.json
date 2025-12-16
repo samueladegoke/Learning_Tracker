@@ -310,5 +310,33 @@
         "difficulty": "hard",
         "topic_tag": "exceptions",
         "explanation": "Bare except catches all exceptions including keyboard interrupts. Catch FileNotFoundError specifically."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the purpose of `window.config(padx=50, pady=50)`?",
+        "options": [
+            "To make the window 50x50 pixels",
+            "To add 50 pixels of padding inside the window borders",
+            "To move the window to position (50, 50) on screen",
+            "To set the background color"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "tkinter-layout",
+        "explanation": "padx and pady in window.config() add internal padding around the key content."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you span a widget across 2 columns in grid layout?",
+        "options": [
+            "grid(span=2)",
+            "grid(columnspan=2)",
+            "grid(width=2)",
+            "grid(columns=2)"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "tkinter-layout",
+        "explanation": "The `columnspan` argument in grid() specifies how many columns the widget should occupy."
     }
 ]

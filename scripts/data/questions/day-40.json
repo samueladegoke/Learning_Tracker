@@ -15,6 +15,20 @@
     },
     {
         "question_type": "mcq",
+        "text": "Why might we separate the User Manager into its own class in the Flight Club project?",
+        "options": [
+            "To confuse the developer",
+            "To adhere to the Single Responsibility Principle (SRP)",
+            "Because Python requires it",
+            "To make the code run slower"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "oop",
+        "explanation": "Separating concerns (like user management vs. flight search) follows the Single Responsibility Principle, making code modular."
+    },
+    {
+        "question_type": "mcq",
         "text": "What is the Flight Club concept?",
         "options": [
             "An airline loyalty program",

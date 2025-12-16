@@ -310,5 +310,33 @@
         "difficulty": "medium",
         "topic_tag": "json",
         "explanation": "Always inspect the actual API response structure. Keys may be named differently than expected."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What property on a requests Response object returns True for 2XX status codes?",
+        "options": [
+            "response.success",
+            "response.ok",
+            "response.valid",
+            "response.good"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "requests",
+        "explanation": "response.ok is True if status_code is less than 400 (i.e., 2XX or 3XX)."
+    },
+    {
+        "question_type": "mcq",
+        "text": "In the ISS project, what API is used to get the current position of the space station?",
+        "options": [
+            "NASA Space API",
+            "Open Notify ISS API",
+            "SpaceX Tracker API",
+            "Google Maps Space API"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "api-basics",
+        "explanation": "Open Notify (api.open-notify.org) provides the real-time location of the ISS."
     }
 ]

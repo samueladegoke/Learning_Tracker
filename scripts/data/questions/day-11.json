@@ -211,65 +211,135 @@
   },
   {
     "text": "Deal Card Function\\nWrite a function `deal_card` that returns a random card from the list [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]. Import random at the top.",
-    "options": [],
-    "correct_index": 0,
+    "starter_code": "import random\n\ndef deal_card():\n    # Return a random card from the deck\n    pass",
+    "solution_code": "import random\n\ndef deal_card():\n    cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]\n    return random.choice(cards)",
+    "test_cases": [
+      {
+        "function_call": "deal_card() in [11, 2, 3, 4, 5, 6, 7, 8, 9, 10]",
+        "expected": "True"
+      }
+    ],
     "difficulty": "easy",
     "topic_tag": "deal-card-function",
-    "explanation": "",
-    "question_type": "mcq"
+    "explanation": "Use random.choice() to select a random item from a list.",
+    "question_type": "coding"
   },
   {
     "text": "Sum Cards\\nWrite a function `sum_cards` that takes a list of card values and returns their sum.",
-    "options": [],
-    "correct_index": 0,
+    "starter_code": "def sum_cards(cards):\n    # Return the sum of the list\n    pass",
+    "solution_code": "def sum_cards(cards):\n    return sum(cards)",
+    "test_cases": [
+      {
+        "function_call": "sum_cards([10, 5])",
+        "expected": "15"
+      },
+      {
+        "function_call": "sum_cards([11, 10, 5])",
+        "expected": "26"
+      }
+    ],
     "difficulty": "easy",
     "topic_tag": "list-operations",
-    "explanation": "",
-    "question_type": "mcq"
+    "explanation": "Use the sum() function to add up all elements in a list.",
+    "question_type": "coding"
   },
   {
     "text": "Check for Bust\\nWrite a function `is_bust` that takes a list of cards and returns True if the total exceeds 21, False otherwise.",
-    "options": [],
-    "correct_index": 0,
+    "starter_code": "def is_bust(cards):\n    # Return True if sum > 21\n    pass",
+    "solution_code": "def is_bust(cards):\n    return sum(cards) > 21",
+    "test_cases": [
+      {
+        "function_call": "is_bust([10, 10, 5])",
+        "expected": "True"
+      },
+      {
+        "function_call": "is_bust([10, 8])",
+        "expected": "False"
+      }
+    ],
     "difficulty": "easy",
     "topic_tag": "blackjack-logic",
-    "explanation": "",
-    "question_type": "mcq"
+    "explanation": "Calculate the sum and assume Ace is handled elsewhere or is strict > 21 check.",
+    "question_type": "coding"
   },
   {
     "text": "Check for Blackjack\\nWrite a function `is_blackjack` that takes a list of cards and returns True if it's exactly 2 cards totaling 21.",
-    "options": [],
-    "correct_index": 0,
+    "starter_code": "def is_blackjack(cards):\n    # Return True if len is 2 and sum is 21\n    pass",
+    "solution_code": "def is_blackjack(cards):\n    return len(cards) == 2 and sum(cards) == 21",
+    "test_cases": [
+      {
+        "function_call": "is_blackjack([11, 10])",
+        "expected": "True"
+      },
+      {
+        "function_call": "is_blackjack([10, 5, 6])",
+        "expected": "False"
+      }
+    ],
     "difficulty": "medium",
     "topic_tag": "blackjack-logic",
-    "explanation": "",
-    "question_type": "mcq"
+    "explanation": "Blackjack is specifically a 2-card hand that sums to 21 (Ace + 10/Face).",
+    "question_type": "coding"
   },
   {
     "text": "Compare Scores\\nWrite a function `compare` that takes user_score and computer_score. Return 'win' if user wins, 'lose' if computer wins, 'draw' if equal. Assume neither busted.",
-    "options": [],
-    "correct_index": 0,
+    "starter_code": "def compare(user_score, computer_score):\n    # Return 'win', 'lose', or 'draw'\n    pass",
+    "solution_code": "def compare(user_score, computer_score):\n    if user_score == computer_score:\n        return 'draw'\n    elif computer_score == 0:\n        return 'lose'\n    elif user_score == 0:\n        return 'win'\n    elif user_score > computer_score:\n        return 'win'\n    else:\n        return 'lose'",
+    "test_cases": [
+      {
+        "function_call": "compare(20, 18)",
+        "expected": "'win'"
+      },
+      {
+        "function_call": "compare(15, 18)",
+        "expected": "'lose'"
+      },
+      {
+        "function_call": "compare(18, 18)",
+        "expected": "'draw'"
+      }
+    ],
     "difficulty": "medium",
     "topic_tag": "compare-function",
-    "explanation": "",
-    "question_type": "mcq"
+    "explanation": "Compare the integers. Remember 0 might represent Blackjack in some implementations, but simple int comparison is fine here.",
+    "question_type": "coding"
   },
   {
     "text": "Adjust Ace\\nWrite a function `adjust_ace` that takes a list of cards. If 11 is in the list and the sum exceeds 21, replace 11 with 1. Return the modified list.",
-    "options": [],
-    "correct_index": 0,
+    "starter_code": "def adjust_ace(cards):\n    # Replace 11 with 1 if sum > 21\n    return cards",
+    "solution_code": "def adjust_ace(cards):\n    if 11 in cards and sum(cards) > 21:\n        cards.remove(11)\n        cards.append(1)\n    return cards",
+    "test_cases": [
+      {
+        "function_call": "adjust_ace([11, 10, 5])",
+        "expected": "[10, 5, 1]"
+      },
+      {
+        "function_call": "adjust_ace([11, 5])",
+        "expected": "[11, 5]"
+      }
+    ],
     "difficulty": "hard",
     "topic_tag": "calculate-score",
-    "explanation": "",
-    "question_type": "mcq"
+    "explanation": "Check condition '11 in cards' and 'sum(cards) > 21', then manipulate the list.",
+    "question_type": "coding"
   },
   {
     "text": "Should Dealer Draw\\nWrite a function `should_dealer_draw` that takes dealer_score. Return True if score is less than 17 (and not 0 which means blackjack), False otherwise.",
-    "options": [],
-    "correct_index": 0,
+    "starter_code": "def should_dealer_draw(dealer_score):\n    # Return True if dealer must draw another card\n    pass",
+    "solution_code": "def should_dealer_draw(dealer_score):\n    return dealer_score < 17 and dealer_score != 0",
+    "test_cases": [
+      {
+        "function_call": "should_dealer_draw(16)",
+        "expected": "True"
+      },
+      {
+        "function_call": "should_dealer_draw(17)",
+        "expected": "False"
+      }
+    ],
     "difficulty": "medium",
     "topic_tag": "computer-ai",
-    "explanation": "",
-    "question_type": "mcq"
+    "explanation": "Dealer must draw to 16 and stand on soft 17 (standard rule). Here we check < 17.",
+    "question_type": "coding"
   }
 ]

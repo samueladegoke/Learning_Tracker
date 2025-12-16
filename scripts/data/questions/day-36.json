@@ -15,6 +15,20 @@
     },
     {
         "question_type": "mcq",
+        "text": "In the Stock Trading Project, what is the primary purpose of the News API?",
+        "options": [
+            "To get the current stock price",
+            "To get historical stock data",
+            "To fetch relevant news articles when stock price fluctuates significantly",
+            "To send SMS alerts"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "apis",
+        "explanation": "The News API is used to find reasons (news) for major stock movements."
+    },
+    {
+        "question_type": "mcq",
         "text": "What does the News API 'qInTitle' parameter do?",
         "options": [
             "Searches the full article",

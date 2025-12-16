@@ -15,6 +15,20 @@
     },
     {
         "question_type": "mcq",
+        "text": "Which HTTP method is typically used to UPDATE an existing resource?",
+        "options": [
+            "GET",
+            "POST",
+            "PUT",
+            "DELETE"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "http-methods",
+        "explanation": "PUT is widely used for updating existing resources, while POST is for creating new ones."
+    },
+    {
+        "question_type": "mcq",
         "text": "What HTTP method is used to update existing resources?",
         "options": [
             "GET",

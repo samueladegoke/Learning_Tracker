@@ -225,65 +225,150 @@
   },
   {
     "text": "Local Variable\\nWrite a function `get_greeting` that creates a local variable `message` set to 'Hello!' and returns it.",
-    "options": [],
-    "correct_index": 0,
+    "starter_code": "def get_greeting():\n    # Create and return a local variable\n    pass",
+    "solution_code": "def get_greeting():\n    message = 'Hello!'\n    return message",
+    "test_cases": [
+      {
+        "function_call": "get_greeting()",
+        "expected": "'Hello!'"
+      }
+    ],
     "difficulty": "easy",
     "topic_tag": "local-scope",
-    "explanation": "",
-    "question_type": "mcq"
+    "explanation": "The variable 'message' is created inside the function, making it local. It's only accessible within `get_greeting`.",
+    "question_type": "coding"
+  },
+  {
+    "text": "Decrement Turns\\nWrite a function `decrease_turns` that takes `turns` and returns `turns - 1`.",
+    "starter_code": "def decrease_turns(turns):\n    # Return turns - 1\n    pass",
+    "solution_code": "def decrease_turns(turns):\n    return turns - 1",
+    "test_cases": [
+      {
+        "function_call": "decrease_turns(10)",
+        "expected": "9"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "variable-scope",
+    "explanation": "Return the modified value. Integers are immutable so we don't modify in place.",
+    "question_type": "coding"
   },
   {
     "text": "Return Instead of Global\\nWrite a function `add_one` that takes a number and returns that number plus 1. Don't use the global keyword.",
-    "options": [],
-    "correct_index": 0,
+    "starter_code": "def add_one(number):\n    # Return number + 1\n    pass",
+    "solution_code": "def add_one(number):\n    return number + 1",
+    "test_cases": [
+      {
+        "function_call": "add_one(5)",
+        "expected": "6"
+      },
+      {
+        "function_call": "add_one(0)",
+        "expected": "1"
+      }
+    ],
     "difficulty": "easy",
     "topic_tag": "return-alternative",
-    "explanation": "",
-    "question_type": "mcq"
+    "explanation": "Instead of modifying a global variable, functions should return values. The caller can then use this returned value.",
+    "question_type": "coding"
   },
   {
-    "text": "Set Difficulty\\nWrite a function `set_difficulty` that takes a level string ('easy' or 'hard'). Return 10 if easy, 5 if hard.",
-    "options": [],
-    "correct_index": 0,
+    "text": "Set Difficulty\\nWrite a function `set_turns` that takes `level`. Return 10 for 'easy' and 5 for 'hard'. Return 0 otherwise.",
+    "starter_code": "def set_turns(level):\n    # Return 10 or 5\n    pass",
+    "solution_code": "def set_turns(level):\n    if level == 'easy':\n        return 10\n    elif level == 'hard':\n        return 5\n    else:\n        return 0",
+    "test_cases": [
+      {
+        "function_call": "set_turns('easy')",
+        "expected": "10"
+      },
+      {
+        "function_call": "set_turns('hard')",
+        "expected": "5"
+      }
+    ],
     "difficulty": "easy",
-    "topic_tag": "number-guessing-game",
-    "explanation": "",
-    "question_type": "mcq"
+    "topic_tag": "game-difficulty",
+    "explanation": "Map string inputs to integer outputs.",
+    "question_type": "coding"
   },
   {
     "text": "Check Guess\\nWrite a function `check_guess` that takes guess and answer. Return 'Too high' if guess > answer, 'Too low' if guess < answer, 'Correct!' if equal.",
-    "options": [],
-    "correct_index": 0,
+    "starter_code": "def check_guess(guess, answer):\n    # Return string feedback\n    pass",
+    "solution_code": "def check_guess(guess, answer):\n    if guess > answer:\n        return 'Too high'\n    elif guess < answer:\n        return 'Too low'\n    else:\n        return 'Correct!'",
+    "test_cases": [
+      {
+        "function_call": "check_guess(50, 42)",
+        "expected": "'Too high'"
+      },
+      {
+        "function_call": "check_guess(42, 42)",
+        "expected": "'Correct!'"
+      },
+      {
+        "function_call": "check_guess(30, 42)",
+        "expected": "'Too low'"
+      }
+    ],
     "difficulty": "easy",
-    "topic_tag": "number-guessing-game",
-    "explanation": "",
-    "question_type": "mcq"
+    "topic_tag": "game-logic",
+    "explanation": "Simple comparison logic with if/elif/else strings.",
+    "question_type": "coding"
   },
   {
     "text": "Use Constant\\nGiven the constant MAX_ATTEMPTS = 10 at the top of your code, write a function `has_attempts` that takes current_attempts and returns True if current_attempts < MAX_ATTEMPTS.",
-    "options": [],
-    "correct_index": 0,
+    "starter_code": "MAX_ATTEMPTS = 10\n\ndef has_attempts(current_attempts):\n    # Return True if attempts < MAX\n    pass",
+    "solution_code": "MAX_ATTEMPTS = 10\n\ndef has_attempts(current_attempts):\n    return current_attempts < MAX_ATTEMPTS",
+    "test_cases": [
+      {
+        "function_call": "has_attempts(5)",
+        "expected": "True"
+      },
+      {
+        "function_call": "has_attempts(10)",
+        "expected": "False"
+      }
+    ],
     "difficulty": "medium",
     "topic_tag": "constants",
-    "explanation": "",
-    "question_type": "mcq"
+    "explanation": "Constants defined globally can be read inside functions to check conditions.",
+    "question_type": "coding"
   },
   {
     "text": "Random Number in Range\\nWrite a function `random_number` that returns a random integer between 1 and 100 (inclusive). Import randint from random.",
-    "options": [],
-    "correct_index": 0,
+    "starter_code": "from random import randint\n\ndef random_number():\n    # Return number 1-100\n    pass",
+    "solution_code": "from random import randint\n\ndef random_number():\n    return randint(1, 100)",
+    "test_cases": [
+      {
+        "function_call": "1 <= random_number() <= 100",
+        "expected": "True"
+      }
+    ],
     "difficulty": "easy",
     "topic_tag": "random-module",
-    "explanation": "",
-    "question_type": "mcq"
+    "explanation": "randint(a, b) returns a random integer N such that a <= N <= b.",
+    "question_type": "coding"
   },
   {
     "text": "Game Over Check\\nWrite a function `is_game_over` that takes guess, answer, and turns. Return True if guess equals answer OR turns is 0, False otherwise.",
-    "options": [],
-    "correct_index": 0,
+    "starter_code": "def is_game_over(guess, answer, turns):\n    # Return True if game over\n    pass",
+    "solution_code": "def is_game_over(guess, answer, turns):\n    return guess == answer or turns == 0",
+    "test_cases": [
+      {
+        "function_call": "is_game_over(42, 42, 5)",
+        "expected": "True"
+      },
+      {
+        "function_call": "is_game_over(10, 42, 0)",
+        "expected": "True"
+      },
+      {
+        "function_call": "is_game_over(10, 42, 5)",
+        "expected": "False"
+      }
+    ],
     "difficulty": "medium",
     "topic_tag": "number-guessing-game",
-    "explanation": "",
-    "question_type": "mcq"
+    "explanation": "Combine conditions with 'or' to check for multiple game-over states.",
+    "question_type": "coding"
   }
 ]

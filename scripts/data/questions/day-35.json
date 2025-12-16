@@ -15,6 +15,20 @@
     },
     {
         "question_type": "mcq",
+        "text": "What is the best practice for storing API keys in a local development environment?",
+        "options": [
+            "Write them on a sticky note",
+            "Store them in a .env file added to .gitignore",
+            "Embed them in the Python script",
+            "Save them in a public GitHub Gist"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "security",
+        "explanation": "Using a .env file kept out of version control prevents accidental exposure of credentials."
+    },
+    {
+        "question_type": "mcq",
         "text": "What Python module provides access to environment variables?",
         "options": [
             "env",

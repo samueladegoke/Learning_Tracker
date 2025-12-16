@@ -15,6 +15,20 @@
     },
     {
         "question_type": "mcq",
+        "text": "What is the role of the natural language processing (NLP) API in the Workout Tracker?",
+        "options": [
+            "To count calories burned",
+            "To convert plain text input (e.g., 'ran 3 miles') into structured data",
+            "To send emails",
+            "To login to Google Sheets"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "nlp",
+        "explanation": "The NLP API (like Nutritionix) parses natural language sentences into exercise type, duration, and calories."
+    },
+    {
+        "question_type": "mcq",
         "text": "What does Sheety do?",
         "options": [
             "Sends emails",

@@ -15,6 +15,20 @@
     },
     {
         "question_type": "mcq",
+        "text": "What is a 'stopover' in flight search terminology?",
+        "options": [
+            "The final destination",
+            "A layover or intermediate stop between origin and destination",
+            "The price of the ticket",
+            "The seat assignment"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flight-search",
+        "explanation": "A stopover is a break in the journey where you change planes or wait at an intermediate airport."
+    },
+    {
+        "question_type": "mcq",
         "text": "What is the purpose of the DataManager class?",
         "options": [
             "Search for flights",

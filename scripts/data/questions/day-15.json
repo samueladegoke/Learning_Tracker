@@ -285,5 +285,92 @@
     "topic_tag": "coffee-machine",
     "explanation": "The report feature outputs the current inventory levels.",
     "question_type": "mcq"
+  },
+  {
+    "text": "Process Coins\nWrite a function that calculates the total monetary value. It takes 4 arguments: number of quarters ($0.25), dimes ($0.10), nickels ($0.05), and pennies ($0.01). Return the total rounded to 2 decimal places.",
+    "starter_code": "def process_coins(quarters, dimes, nickels, pennies):\n    # Calculate total\n    pass",
+    "solution_code": "def process_coins(quarters, dimes, nickels, pennies):\n    total = quarters * 0.25 + dimes * 0.10 + nickels * 0.05 + pennies * 0.01\n    return round(total, 2)",
+    "test_cases": [
+      {
+        "function_call": "process_coins(4, 2, 0, 0)",
+        "expected": "1.2"
+      },
+      {
+        "function_call": "process_coins(0, 5, 5, 5)",
+        "expected": "0.8"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "coffee-machine-math",
+    "explanation": "Sum the value of all coins: (q * 0.25) + (d * 0.10) + (n * 0.05) + (p * 0.01).",
+    "question_type": "coding"
+  },
+  {
+    "text": "Check Resources\nWrite a function `is_resource_sufficient` that takes the drink's ingredients (dict) and available resources (dict). Return True if there are enough resources, else False.",
+    "starter_code": "def is_resource_sufficient(order_ingredients, current_resources):\n    # Check for each item in order_ingredients\n    for item in order_ingredients:\n        # Check if resource has enough\n        pass\n    return True",
+    "solution_code": "def is_resource_sufficient(order_ingredients, current_resources):\n    for item in order_ingredients:\n        if order_ingredients[item] > current_resources.get(item, 0):\n            return False\n    return True",
+    "test_cases": [
+      {
+        "function_call": "is_resource_sufficient({'water': 50}, {'water': 100})",
+        "expected": "True"
+      },
+      {
+        "function_call": "is_resource_sufficient({'water': 200}, {'water': 100})",
+        "expected": "False"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "coffee-machine-logic",
+    "explanation": "Loop through the order ingredients. If the required amount > available amount for any item, return False.",
+    "question_type": "coding"
+  },
+  {
+    "text": "Transaction Success\nWrite a function that checks if payment is sufficient. Takes `money_received` and `drink_cost`. If money >= cost, return True and print formatted change. If not, return False.",
+    "starter_code": "def check_transaction(money_received, drink_cost):\n    if money_received >= drink_cost:\n        change = round(money_received - drink_cost, 2)\n        print(f\"Here is ${change} in change.\")\n        return True\n    else:\n        # Print error and return False\n        pass",
+    "solution_code": "def check_transaction(money_received, drink_cost):\n    if money_received >= drink_cost:\n        change = round(money_received - drink_cost, 2)\n        print(f\"Here is ${change} in change.\")\n        return True\n    else:\n        print(\"Sorry that's not enough money. Money refunded.\")\n        return False",
+    "test_cases": [
+      {
+        "function_call": "check_transaction(2.0, 1.5)",
+        "expected": "True"
+      },
+      {
+        "function_call": "check_transaction(1.0, 1.5)",
+        "expected": "False"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "coffee-machine-logic",
+    "explanation": "Compare money vs cost. Calculate change if successful. Return boolean to control flow.",
+    "question_type": "coding"
+  },
+  {
+    "text": "Make Coffee (Deduct Resources)\nWrite a function that updates the resources dictionary by subtracting the ingredients required for the drink.",
+    "starter_code": "def make_coffee(drink_name, order_ingredients, resources):\n    # Loop and deduct\n    pass\n    print(f\"Here is your {drink_name} ☕️. Enjoy!\")",
+    "solution_code": "def make_coffee(drink_name, order_ingredients, resources):\n    for item in order_ingredients:\n        resources[item] -= order_ingredients[item]\n    print(f\"Here is your {drink_name} ☕️. Enjoy!\")\n    return resources",
+    "test_cases": [
+      {
+        "function_call": "make_coffee('Espresso', {'water': 50}, {'water': 200})['water']",
+        "expected": "150"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "coffee-machine-data",
+    "explanation": "Iterate through the order ingredients and subtract their amounts from the resources dictionary in-place (or return updated).",
+    "question_type": "coding"
+  },
+  {
+    "text": "Format Report\nWrite a function that takes the resources dict and 'money' value, and returns a formatted report string.",
+    "starter_code": "def get_report(resources, money):\n    # Format: Water: 100ml\\nMilk: 50ml\\nCoffee: 76g\\nMoney: $2.5\\n\n    pass",
+    "solution_code": "def get_report(resources, money):\n    return f\"Water: {resources['water']}ml\\nMilk: {resources['milk']}ml\\nCoffee: {resources['coffee']}g\\nMoney: ${money}\"",
+    "test_cases": [
+      {
+        "function_call": "'Water: 100ml' in get_report({'water': 100, 'milk': 50, 'coffee': 76}, 2.5)",
+        "expected": "True"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "coffee-machine-format",
+    "explanation": "Use f-strings to construct the multi-line report string matching the requirements.",
+    "question_type": "coding"
   }
 ]

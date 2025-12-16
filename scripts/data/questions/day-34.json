@@ -322,5 +322,33 @@
         "difficulty": "easy",
         "topic_tag": "quiz-logic",
         "explanation": "Case-insensitive comparison is needed: 'True' from user should match 'true' from API."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the purpose of the QuizBrain class in the Quiz App?",
+        "options": [
+            "To display the UI",
+            "To manage quiz logic, questions, and score",
+            "To fetch API data",
+            "To save results to file"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "architecture",
+        "explanation": "QuizBrain is the Controller in MVC, handling quiz flow, tracking score, and managing questions."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why do we create a separate Question class instead of using raw dictionaries?",
+        "options": [
+            "Python requires it",
+            "For type checking and cleaner attribute access",
+            "For performance optimization",
+            "To avoid API rate limits"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "oop",
+        "explanation": "Classes provide cleaner syntax, better IDE support, and encapsulate related data."
     }
 ]

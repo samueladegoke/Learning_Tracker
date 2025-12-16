@@ -310,5 +310,33 @@
         "difficulty": "easy",
         "topic_tag": "datetime",
         "explanation": "datetime is a module, datetime.datetime is the class. Use datetime.datetime.now()."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why do we use a cloud service like PythonAnywhere for the Birthday Wisher?",
+        "options": [
+            "Because Python doesn't run on Windows",
+            "To send emails faster",
+            "To run the code automatically every day without leaving our computer on",
+            "It is required by Gmail"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "deployment",
+        "explanation": "Cloud services allow us to schedule tasks or keep code running 24/7 independently of our personal machine."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does `datetime.datetime(year=2022, month=1, day=1)` create?",
+        "options": [
+            "A string '2022-01-01'",
+            "A datetime object representing midnight on Jan 1, 2022",
+            "A calendar event",
+            "The current time"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "datetime",
+        "explanation": "The constructor creates a precise point in time (defaulting to 00:00:00 time if not specified)."
     }
 ]
