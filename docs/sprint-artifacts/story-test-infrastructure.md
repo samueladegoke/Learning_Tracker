@@ -138,7 +138,7 @@ backend/
 ---
 
 ## Definition of Done
-- [ ] All tests passing locally
-- [ ] Coverage > 20% for initial setup
-- [ ] Documentation updated
-- [ ] No regressions in existing functionality
+- [x] All tests passing locally
+- [x] Coverage > 20% for initial setup
+- [x] Documentation updated
+- [x] No regressions in existing functionality
