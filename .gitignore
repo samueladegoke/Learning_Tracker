@@ -70,9 +70,9 @@ day1_extracted_content.json
 seed_data.json
 
 # Agent & Tool Configs
-_bmad/
 
-.agentvibes/
+
+
 .claude/
 .codex/
 .cursor/
