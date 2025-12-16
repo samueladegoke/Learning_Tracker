@@ -1,0 +1,359 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What is the purpose of the Day 49 automation project?",
+        "options": [
+            "Tracking workout calories",
+            "Automating gym class bookings",
+            "Creating workout plans",
+            "Analyzing exercise data"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "automation",
+        "explanation": "Day 49 builds a bot that automatically logs into a gym website and books exercise classes."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why might we use a Chrome profile in Selenium?",
+        "options": [
+            "To make the browser faster",
+            "To persist cookies, login sessions, and settings between runs",
+            "To change the browser theme",
+            "To block ads"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "selenium",
+        "explanation": "Chrome profiles save cookies and session data, so you don't have to re-login each time."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you specify a Chrome user profile in Selenium?",
+        "options": [
+            "driver = webdriver.Chrome(profile='Profile 1')",
+            "Using ChromeOptions with user-data-dir argument",
+            "driver.set_profile('Profile 1')",
+            "It's not possible"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "selenium",
+        "explanation": "Use ChromeOptions().add_argument('--user-data-dir=/path/to/profile') to load a Chrome profile."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is WebDriverWait used for?",
+        "options": [
+            "Slowing down the browser",
+            "Waiting until an element meets a condition before proceeding",
+            "Setting a timeout for the entire script",
+            "Waiting for downloads to complete"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "waits",
+        "explanation": "WebDriverWait pauses until an expected condition is met (element clickable, visible, etc.) or times out."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the difference between implicit and explicit waits?",
+        "options": [
+            "Implicit waits are faster",
+            "Implicit applies globally, explicit waits for specific conditions",
+            "Explicit waits are deprecated",
+            "They are the same"
+        ],
+        "correct_index": 1,
+        "difficulty": "hard",
+        "topic_tag": "waits",
+        "explanation": "Implicit wait sets a global timeout for all element finds. Explicit wait targets specific elements with specific conditions."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does `EC.element_to_be_clickable()` check?",
+        "options": [
+            "If element exists in DOM",
+            "If element is visible AND enabled so it can be clicked",
+            "If element has been clicked before",
+            "If element has an onclick handler"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "waits",
+        "explanation": "element_to_be_clickable checks that the element is visible, displayed, and enabled for clicking."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you handle a StaleElementReferenceException?",
+        "options": [
+            "Ignore it",
+            "Re-find the element before interacting",
+            "Restart the browser",
+            "Clear cookies"
+        ],
+        "correct_index": 1,
+        "difficulty": "hard",
+        "topic_tag": "exceptions",
+        "explanation": "Stale element means the DOM changed. Re-find the element to get a fresh reference."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What exception is raised when an element is not found?",
+        "options": [
+            "ElementNotFoundException",
+            "NoSuchElementException",
+            "ElementNotFoundError",
+            "MissingElementException"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "exceptions",
+        "explanation": "NoSuchElementException is raised when find_element cannot locate the specified element."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How can you handle network failures in Selenium?",
+        "options": [
+            "Use faster internet",
+            "Wrap operations in try/except and implement retry logic",
+            "Increase implicit wait",
+            "Use a different browser"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "exceptions",
+        "explanation": "Using try/except blocks with retry logic makes your automation resilient to temporary failures."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does `driver.switch_to.window(handle)` do?",
+        "options": [
+            "Opens a new window",
+            "Switches focus to a different browser window/tab",
+            "Closes other windows",
+            "Resizes the window"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "selenium",
+        "explanation": "When multiple windows/tabs are open, switch_to.window(handle) changes which one Selenium controls."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you get all window handles in Selenium?",
+        "options": [
+            "driver.windows",
+            "driver.window_handles",
+            "driver.get_handles()",
+            "driver.tabs"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "selenium",
+        "explanation": "driver.window_handles returns a list of all open window/tab handles."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the purpose of time.sleep() in automation?",
+        "options": [
+            "To save battery",
+            "To add fixed delays between actions",
+            "To speed up the script",
+            "To log timestamps"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "automation",
+        "explanation": "time.sleep(seconds) pauses execution—useful for waiting, but explicit waits are usually better."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why is time.sleep() less ideal than WebDriverWait?",
+        "options": [
+            "sleep() is slower",
+            "sleep() waits a fixed time even if element is ready sooner",
+            "sleep() crashes the browser",
+            "sleep() doesn't work in Python 3"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "waits",
+        "explanation": "WebDriverWait proceeds as soon as condition is met. time.sleep() always waits the full duration."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you check if an element has a specific class?",
+        "options": [
+            "element.has_class('name')",
+            "'name' in element.get_attribute('class')",
+            "element.class == 'name'",
+            "element.contains('name')"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "selenium",
+        "explanation": "Get the class attribute as a string and check if your class name is in it."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you scroll to an element?",
+        "options": [
+            "element.scroll_to()",
+            "driver.execute_script('arguments[0].scrollIntoView();', element)",
+            "driver.scroll(element)",
+            "element.focus()"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "selenium",
+        "explanation": "Use JavaScript scrollIntoView() via execute_script() to scroll an element into view."
+    },
+    {
+        "question_type": "coding",
+        "text": "Setup Chrome Options\\nCreate Chrome options with a custom profile",
+        "starter_code": "def get_chrome_options(profile_path):\\n    from selenium.webdriver.chrome.options import Options\\n    # Return options with user-data-dir set\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "type(get_chrome_options('/path/to/profile'))",
+                "expected": "<class 'selenium.webdriver.chrome.options.Options'>"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "selenium",
+        "solution_code": "def get_chrome_options(profile_path):\\n    from selenium.webdriver.chrome.options import Options\\n    options = Options()\\n    options.add_argument(f'--user-data-dir={profile_path}')\\n    return options"
+    },
+    {
+        "question_type": "coding",
+        "text": "Wait for Element\\nWait until element is clickable and return it",
+        "starter_code": "def wait_and_click(driver, locator, timeout=10):\\n    from selenium.webdriver.support.ui import WebDriverWait\\n    from selenium.webdriver.support import expected_conditions as EC\\n    # Wait for element and click it\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "wait_and_click(mock_driver, ('id', 'button')) is None",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "waits",
+        "solution_code": "def wait_and_click(driver, locator, timeout=10):\\n    from selenium.webdriver.support.ui import WebDriverWait\\n    from selenium.webdriver.support import expected_conditions as EC\\n    element = WebDriverWait(driver, timeout).until(\\n        EC.element_to_be_clickable(locator)\\n    )\\n    element.click()"
+    },
+    {
+        "question_type": "coding",
+        "text": "Retry on Failure\\nImplement retry logic for click operations",
+        "starter_code": "def click_with_retry(element, max_retries=3):\\n    import time\\n    # Try clicking, retry on exception\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "click_with_retry(mock_element) is None",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "hard",
+        "topic_tag": "exceptions",
+        "solution_code": "def click_with_retry(element, max_retries=3):\\n    import time\\n    for attempt in range(max_retries):\\n        try:\\n            element.click()\\n            return\\n        except Exception as e:\\n            if attempt == max_retries - 1:\\n                raise\\n            time.sleep(1)"
+    },
+    {
+        "question_type": "coding",
+        "text": "Check if Booked\\nCheck if a class is already booked based on text content",
+        "starter_code": "def is_already_booked(element):\\n    # Return True if element contains 'Booked' or 'Cancel'\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "is_already_booked(MockElement('Booked'))",
+                "expected": "True"
+            },
+            {
+                "function_call": "is_already_booked(MockElement('Book Now'))",
+                "expected": "False"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "automation",
+        "solution_code": "def is_already_booked(element):\\n    text = element.text.lower()\\n    return 'booked' in text or 'cancel' in text"
+    },
+    {
+        "question_type": "coding",
+        "text": "Count Bookings\\nCount how many classes are marked as booked",
+        "starter_code": "def count_booked_classes(class_elements):\\n    # Return count of elements containing 'Booked' text\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "count_booked_classes([MockElement('Booked'), MockElement('Book'), MockElement('Booked')])",
+                "expected": "2"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "automation",
+        "solution_code": "def count_booked_classes(class_elements):\\n    return sum(1 for el in class_elements if 'booked' in el.text.lower())"
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the wait import error:",
+        "code": "wait = WebDriverWait(driver, 10)\\nelement = wait.until(element_to_be_clickable((By.ID, 'btn')))\\n# NameError: name 'element_to_be_clickable' is not defined",
+        "options": [
+            "Import EC and use EC.element_to_be_clickable",
+            "Use driver.wait() instead",
+            "Remove the wait",
+            "Use time.sleep()"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "waits",
+        "explanation": "Import expected_conditions as EC: from selenium.webdriver.support import expected_conditions as EC"
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the timeout exception:",
+        "code": "WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.ID, 'slow-load')))\\n# TimeoutException after 5 seconds",
+        "options": [
+            "Increase the timeout value",
+            "Use find_element instead",
+            "Remove the wait",
+            "Change to implicit wait"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "waits",
+        "explanation": "If the page loads slowly, increase the timeout: WebDriverWait(driver, 30)"
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the stale element error:",
+        "code": "buttons = driver.find_elements(By.CLASS_NAME, 'book-btn')\\nfor btn in buttons:\\n    btn.click()\\n# StaleElementReferenceException on second click",
+        "options": [
+            "Re-find elements after each click",
+            "Use find_element instead",
+            "Add time.sleep()",
+            "Use XPath"
+        ],
+        "correct_index": 0,
+        "difficulty": "hard",
+        "topic_tag": "exceptions",
+        "explanation": "Clicking may change the DOM. Re-find elements after each interaction to get fresh references."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you handle pop-up alerts in Selenium?",
+        "options": [
+            "driver.close_alert()",
+            "driver.switch_to.alert.accept()",
+            "Alert.close()",
+            "driver.dismiss_popup()"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "selenium",
+        "explanation": "Use driver.switch_to.alert to access JavaScript alerts, then .accept() or .dismiss() them."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the benefit of using counters in automation scripts?",
+        "options": [
+            "Makes the script faster",
+            "Provides a summary of actions taken (booked, skipped, failed)",
+            "Required by Selenium",
+            "Saves memory"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "automation",
+        "explanation": "Counters help track how many items were processed, successful, skipped, or failed."
+    }
+]

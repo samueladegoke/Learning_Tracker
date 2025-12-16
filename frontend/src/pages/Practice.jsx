@@ -52,6 +52,11 @@ const DeepDiveDay42 = lazy(() => import('../components/content/DeepDive/Day42'))
 const DeepDiveDay43 = lazy(() => import('../components/content/DeepDive/Day43'))
 const DeepDiveDay44 = lazy(() => import('../components/content/DeepDive/Day44'))
 const DeepDiveDay45 = lazy(() => import('../components/content/DeepDive/Day45'))
+const DeepDiveDay46 = lazy(() => import('../components/content/DeepDive/Day46'))
+const DeepDiveDay47 = lazy(() => import('../components/content/DeepDive/Day47'))
+const DeepDiveDay48 = lazy(() => import('../components/content/DeepDive/Day48'))
+const DeepDiveDay49 = lazy(() => import('../components/content/DeepDive/Day49'))
+const DeepDiveDay50 = lazy(() => import('../components/content/DeepDive/Day50'))
 
 // Loading fallback component for lazy-loaded DeepDive content
 const DeepDiveLoader = () => (
@@ -421,6 +426,46 @@ const DAY_META = {
         quizId: 'day-45-practice',
         level: 'intermediate+',
         topics: ['beautifulsoup', 'web-scraping', 'find-all', 'css-selectors']
+    },
+    'day-46': {
+        label: 'Day 46',
+        title: 'Day 46: Musical Time Machine',
+        subtitle: 'Scrape Billboard charts and create Spotify playlists with OAuth.',
+        quizId: 'day-46-practice',
+        level: 'intermediate+',
+        topics: ['spotipy', 'oauth', 'billboard', 'web-scraping']
+    },
+    'day-47': {
+        label: 'Day 47',
+        title: 'Day 47: Amazon Price Tracker',
+        subtitle: 'Scrape prices, send email alerts, and automate monitoring.',
+        quizId: 'day-47-practice',
+        level: 'intermediate+',
+        topics: ['beautifulsoup', 'smtp', 'headers', 'price-tracking']
+    },
+    'day-48': {
+        label: 'Day 48',
+        title: 'Day 48: Selenium WebDriver',
+        subtitle: 'Automate browsers with Selenium, XPath, and build a Cookie Clicker bot.',
+        quizId: 'day-48-practice',
+        level: 'intermediate+',
+        topics: ['selenium', 'xpath', 'locators', 'automation']
+    },
+    'day-49': {
+        label: 'Day 49',
+        title: 'Day 49: Gym Booking Bot',
+        subtitle: 'Advanced Selenium with profiles, WebDriverWait, and error handling.',
+        quizId: 'day-49-practice',
+        level: 'intermediate+',
+        topics: ['selenium', 'waits', 'profiles', 'resilience']
+    },
+    'day-50': {
+        label: 'Day 50',
+        title: 'Day 50: Auto Swiping Bot',
+        subtitle: 'Handle iframes, popups, multi-window navigation, and OAuth logins.',
+        quizId: 'day-50-practice',
+        level: 'intermediate+',
+        topics: ['selenium', 'iframes', 'windows', 'popups']
     }
 }
 
@@ -558,7 +603,12 @@ function DeepDive({ activeDay }) {
         'day-42': DeepDiveDay42,
         'day-43': DeepDiveDay43,
         'day-44': DeepDiveDay44,
-        'day-45': DeepDiveDay45
+        'day-45': DeepDiveDay45,
+        'day-46': DeepDiveDay46,
+        'day-47': DeepDiveDay47,
+        'day-48': DeepDiveDay48,
+        'day-49': DeepDiveDay49,
+        'day-50': DeepDiveDay50
     }
     const Component = components[activeDay]
     if (!Component) {
