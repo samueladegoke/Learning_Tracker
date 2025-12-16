@@ -17,11 +17,12 @@ def test_get_quiz_questions(client, seed_test_user, seed_test_questions):
     data = response.json()
     assert len(data) == 2
     
-    # Check question structure (should not include correct answer)
+    # Check question structure (sensitive fields should be hidden)
     first_question = data[0]
     assert "text" in first_question
     assert "options" in first_question
     assert "correct_index" not in first_question  # Should be hidden
+    assert first_question.get("explanation") is None  # Should be None until answered
 
 
 def test_get_completed_quizzes_empty(client, seed_test_user):

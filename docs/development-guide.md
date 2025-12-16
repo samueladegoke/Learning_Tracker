@@ -47,13 +47,29 @@ npm run dev
 ```
 
 ## Testing
+
+### Unit Tests (Frontend - Vitest)
+```bash
+cd frontend
+npm test              # Run once
+npm run test:watch    # Watch mode  
+npm run test:coverage # With coverage report
+```
+
+### API Tests (Backend - pytest)
+```bash
+cd backend
+python -m pytest tests/ -v        # Verbose
+python -m pytest tests/ --cov=app # With coverage
+```
+
 ### End-to-End (Playwright)
 ```bash
 cd frontend
-npm test
+npm run test:e2e         # Run e2e tests
+npm run test:e2e:ui      # UI Mode
+npm run test:e2e:headed  # Headed browser
 ```
-- **UI Mode**: `npm run test:ui`
-- **Headed**: `npm run test:headed`
 
 ## Database
 - **Local**: SQLite (`backend/learning_tracker.db` by default or per `database.py` config).

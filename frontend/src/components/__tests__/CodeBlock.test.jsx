@@ -1,15 +1,24 @@
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
 import CodeBlock from '../CodeBlock'
 
-// Mock clipboard API
-Object.assign(navigator, {
-    clipboard: {
-        writeText: vi.fn(),
-    },
-})
-
 describe('CodeBlock', () => {
+    const originalClipboard = navigator.clipboard
+
+    beforeEach(() => {
+        // Mock clipboard API for each test
+        Object.assign(navigator, {
+            clipboard: {
+                writeText: vi.fn(),
+            },
+        })
+    })
+
+    afterEach(() => {
+        // Restore original clipboard
+        Object.assign(navigator, { clipboard: originalClipboard })
+    })
+
     it('renders code content correctly', () => {
         const code = 'print("Hello, World!")'
         render(<CodeBlock code={code} language="python" />)

@@ -32,57 +32,57 @@ Set up comprehensive test infrastructure for the Learning Tracker project. This 
 ## Acceptance Criteria
 
 ### AC1: Frontend Test Framework
-- [ ] Vitest configured and running
-- [ ] React Testing Library installed
-- [ ] At least 3 component tests passing
-- [ ] Test script in package.json (`npm test`)
+- [x] Vitest configured and running
+- [x] React Testing Library installed
+- [x] At least 3 component tests passing
+- [x] Test script in package.json (`npm test`)
 
 ### AC2: Backend Test Framework  
-- [ ] pytest configured with pytest-cov
-- [ ] Test database fixture (SQLite in-memory)
-- [ ] At least 3 API endpoint tests passing
-- [ ] Test script working (`pytest`)
+- [x] pytest configured with pytest-cov
+- [x] Test database fixture (SQLite in-memory)
+- [x] At least 3 API endpoint tests passing
+- [x] Test script working (`pytest`)
 
 ### AC3: CI Integration Ready
-- [ ] Tests can run in headless mode
-- [ ] Exit codes properly indicate pass/fail
-- [ ] Coverage reports generated
+- [x] Tests can run in headless mode
+- [x] Exit codes properly indicate pass/fail
+- [x] Coverage reports generated
 
 ---
 
 ## Tasks
 
 ### Task 1: Frontend Test Setup
-- [ ] 1.1 Install Vitest and dependencies
+- [x] 1.1 Install Vitest and dependencies
   ```bash
   npm install -D vitest @testing-library/react @testing-library/jest-dom jsdom
   ```
-- [ ] 1.2 Create `vitest.config.js`
-- [ ] 1.3 Add test script to `package.json`
-- [ ] 1.4 Create `frontend/src/__tests__/` directory
+- [x] 1.2 Create `vitest.config.js`
+- [x] 1.3 Add test script to `package.json`
+- [x] 1.4 Create `frontend/src/__tests__/` directory
 
 ### Task 2: Frontend Initial Tests
-- [ ] 2.1 Test `CodeBlock` component renders
-- [ ] 2.2 Test `InlineCode` component renders
-- [ ] 2.3 Test `quizApi` mock responses
+- [x] 2.1 Test `CodeBlock` component renders
+- [x] 2.2 Test `InlineCode` component renders
+- [x] 2.3 Test `quizApi` mock responses
 
 ### Task 3: Backend Test Setup
-- [ ] 3.1 Install pytest dependencies
+- [x] 3.1 Install pytest dependencies
   ```bash
   pip install pytest pytest-cov httpx pytest-asyncio
   ```
-- [ ] 3.2 Create `backend/tests/` directory
-- [ ] 3.3 Create `conftest.py` with fixtures
-- [ ] 3.4 Update `requirements.txt`
+- [x] 3.2 Create `backend/tests/` directory
+- [x] 3.3 Create `conftest.py` with fixtures
+- [x] 3.4 Update `requirements.txt`
 
 ### Task 4: Backend Initial Tests
-- [ ] 4.1 Test `/api/health` endpoint
-- [ ] 4.2 Test `/api/quizzes/{quiz_id}/questions` endpoint
-- [ ] 4.3 Test quiz submission logic
+- [x] 4.1 Test `/api/health` endpoint
+- [x] 4.2 Test `/api/quizzes/{quiz_id}/questions` endpoint
+- [x] 4.3 Test quiz submission logic
 
 ### Task 5: Documentation
-- [ ] 5.1 Add testing section to `development-guide.md`
-- [ ] 5.2 Document test commands
+- [x] 5.1 Add testing section to `development-guide.md`
+- [x] 5.2 Document test commands
 
 ---
 
