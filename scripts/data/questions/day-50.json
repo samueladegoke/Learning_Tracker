@@ -211,8 +211,8 @@
     },
     {
         "question_type": "coding",
-        "text": "Switch to Popup\\nSwitch to a popup window and return its title",
-        "starter_code": "def get_popup_title(driver):\\n    # Get all window handles\\n    # Switch to the new popup (not the original)\\n    # Return the title\\n    pass",
+        "text": "Switch to Popup\nSwitch to a popup window and return its title",
+        "starter_code": "def get_popup_title(driver):\n    # Get all window handles\n    # Switch to the new popup (not the original)\n    # Return the title\n    pass",
         "test_cases": [
             {
                 "function_call": "type(get_popup_title(mock_driver))",
@@ -221,12 +221,12 @@
         ],
         "difficulty": "medium",
         "topic_tag": "windows",
-        "solution_code": "def get_popup_title(driver):\\n    original = driver.current_window_handle\\n    for handle in driver.window_handles:\\n        if handle != original:\\n            driver.switch_to.window(handle)\\n            return driver.title\\n    return None"
+        "solution_code": "def get_popup_title(driver):\n    original = driver.current_window_handle\n    for handle in driver.window_handles:\n        if handle != original:\n            driver.switch_to.window(handle)\n            return driver.title\n    return None"
     },
     {
         "question_type": "coding",
-        "text": "Dismiss Modal\\nFind and click a dismiss button to close a modal",
-        "starter_code": "def dismiss_modal(driver):\\n    from selenium.webdriver.common.by import By\\n    # Try to find and click 'No Thanks' or 'Close' button\\n    # Return True if dismissed, False if no modal\\n    pass",
+        "text": "Dismiss Modal\nFind and click a dismiss button to close a modal",
+        "starter_code": "def dismiss_modal(driver):\n    from selenium.webdriver.common.by import By\n    # Try to find and click 'No Thanks' or 'Close' button\n    # Return True if dismissed, False if no modal\n    pass",
         "test_cases": [
             {
                 "function_call": "type(dismiss_modal(mock_driver))",
@@ -235,12 +235,12 @@
         ],
         "difficulty": "medium",
         "topic_tag": "selenium",
-        "solution_code": "def dismiss_modal(driver):\\n    from selenium.webdriver.common.by import By\\n    try:\\n        btn = driver.find_element(By.XPATH, '//button[contains(text(), \"No Thanks\") or contains(text(), \"Close\")]')\\n        btn.click()\\n        return True\\n    except:\\n        return False"
+        "solution_code": "def dismiss_modal(driver):\n    from selenium.webdriver.common.by import By\n    try:\n        btn = driver.find_element(By.XPATH, '//button[contains(text(), \"No Thanks\") or contains(text(), \"Close\")]')\n        btn.click()\n        return True\n    except:\n        return False"
     },
     {
         "question_type": "coding",
-        "text": "Handle Random Popup\\nSafely try to dismiss a popup if it exists",
-        "starter_code": "def safe_dismiss(driver, button_xpath):\\n    from selenium.webdriver.common.by import By\\n    from selenium.common.exceptions import NoSuchElementException\\n    # Try to click button, return True if clicked, False otherwise\\n    pass",
+        "text": "Handle Random Popup\nSafely try to dismiss a popup if it exists",
+        "starter_code": "def safe_dismiss(driver, button_xpath):\n    from selenium.webdriver.common.by import By\n    from selenium.common.exceptions import NoSuchElementException\n    # Try to click button, return True if clicked, False otherwise\n    pass",
         "test_cases": [
             {
                 "function_call": "safe_dismiss(mock_driver, '//button') in [True, False]",
@@ -249,12 +249,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "exceptions",
-        "solution_code": "def safe_dismiss(driver, button_xpath):\\n    from selenium.webdriver.common.by import By\\n    from selenium.common.exceptions import NoSuchElementException\\n    try:\\n        button = driver.find_element(By.XPATH, button_xpath)\\n        button.click()\\n        return True\\n    except NoSuchElementException:\\n        return False"
+        "solution_code": "def safe_dismiss(driver, button_xpath):\n    from selenium.webdriver.common.by import By\n    from selenium.common.exceptions import NoSuchElementException\n    try:\n        button = driver.find_element(By.XPATH, button_xpath)\n        button.click()\n        return True\n    except NoSuchElementException:\n        return False"
     },
     {
         "question_type": "coding",
-        "text": "Swipe Loop\\nPerform multiple swipe actions with delay",
-        "starter_code": "def swipe_loop(driver, like_button_locator, count=10):\\n    import time\\n    from selenium.webdriver.common.by import By\\n    # Click the like button 'count' times with 1 second delay\\n    pass",
+        "text": "Swipe Loop\nPerform multiple swipe actions with delay",
+        "starter_code": "def swipe_loop(driver, like_button_locator, count=10):\n    import time\n    from selenium.webdriver.common.by import By\n    # Click the like button 'count' times with 1 second delay\n    pass",
         "test_cases": [
             {
                 "function_call": "swipe_loop(mock_driver, ('id', 'like'), 5)",
@@ -263,12 +263,12 @@
         ],
         "difficulty": "medium",
         "topic_tag": "automation",
-        "solution_code": "def swipe_loop(driver, like_button_locator, count=10):\\n    import time\\n    from selenium.webdriver.common.by import By\\n    for _ in range(count):\\n        try:\\n            button = driver.find_element(like_button_locator[0], like_button_locator[1])\\n            button.click()\\n            time.sleep(1)\\n        except:\\n            pass"
+        "solution_code": "def swipe_loop(driver, like_button_locator, count=10):\n    import time\n    from selenium.webdriver.common.by import By\n    for _ in range(count):\n        try:\n            button = driver.find_element(like_button_locator[0], like_button_locator[1])\n            button.click()\n            time.sleep(1)\n        except:\n            pass"
     },
     {
         "question_type": "coding",
-        "text": "Switch to IFrame\\nSwitch to an iframe by its name",
-        "starter_code": "def enter_iframe(driver, frame_name):\\n    # Switch to iframe with given name\\n    # Return True if successful, False otherwise\\n    pass",
+        "text": "Switch to IFrame\nSwitch to an iframe by its name",
+        "starter_code": "def enter_iframe(driver, frame_name):\n    # Switch to iframe with given name\n    # Return True if successful, False otherwise\n    pass",
         "test_cases": [
             {
                 "function_call": "enter_iframe(mock_driver, 'login-frame') in [True, False]",
@@ -277,12 +277,12 @@
         ],
         "difficulty": "medium",
         "topic_tag": "iframes",
-        "solution_code": "def enter_iframe(driver, frame_name):\\n    try:\\n        driver.switch_to.frame(frame_name)\\n        return True\\n    except:\\n        return False"
+        "solution_code": "def enter_iframe(driver, frame_name):\n    try:\n        driver.switch_to.frame(frame_name)\n        return True\n    except:\n        return False"
     },
     {
         "question_type": "code-correction",
         "text": "Fix the popup window switch:",
-        "code": "driver.click('#login-facebook')\\ndriver.find_element(By.ID, 'email').send_keys('test')\\n# Element not found - click opened a popup",
+        "code": "driver.click('#login-facebook')\ndriver.find_element(By.ID, 'email').send_keys('test')\n# Element not found - click opened a popup",
         "options": [
             "Switch to the popup window first using window_handles",
             "Wait longer for the element",
@@ -297,7 +297,7 @@
     {
         "question_type": "code-correction",
         "text": "Fix the iframe element access:",
-        "code": "driver.get(url)  # Page has an iframe\\nelement = driver.find_element(By.ID, 'input-in-iframe')\\n# NoSuchElementException",
+        "code": "driver.get(url)  # Page has an iframe\nelement = driver.find_element(By.ID, 'input-in-iframe')\n# NoSuchElementException",
         "options": [
             "Switch to the iframe first with switch_to.frame()",
             "Use XPath instead",
@@ -312,7 +312,7 @@
     {
         "question_type": "code-correction",
         "text": "Fix the click intercepted error:",
-        "code": "like_button.click()\\n# ElementClickInterceptedException: element click intercepted\\n# another element would receive the click",
+        "code": "like_button.click()\n# ElementClickInterceptedException: element click intercepted\n# another element would receive the click",
         "options": [
             "Wait for overlay to disappear or dismiss it first",
             "Use find_element again",

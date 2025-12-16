@@ -211,8 +211,8 @@
     },
     {
         "question_type": "coding",
-        "text": "Create Spotify Auth\\nInitialize Spotipy with OAuth authentication",
-        "starter_code": "def get_spotify_client(client_id, client_secret, redirect_uri):\\n    import spotipy\\n    from spotipy.oauth2 import SpotifyOAuth\\n    # Return authenticated Spotify client\\n    pass",
+        "text": "Create Spotify Auth\nInitialize Spotipy with OAuth authentication",
+        "starter_code": "def get_spotify_client(client_id, client_secret, redirect_uri):\n    import spotipy\n    from spotipy.oauth2 import SpotifyOAuth\n    # Return authenticated Spotify client\n    pass",
         "test_cases": [
             {
                 "function_call": "type(get_spotify_client('id', 'secret', 'http://localhost'))",
@@ -221,12 +221,12 @@
         ],
         "difficulty": "medium",
         "topic_tag": "spotify-api",
-        "solution_code": "def get_spotify_client(client_id, client_secret, redirect_uri):\\n    import spotipy\\n    from spotipy.oauth2 import SpotifyOAuth\\n    auth_manager = SpotifyOAuth(\\n        client_id=client_id,\\n        client_secret=client_secret,\\n        redirect_uri=redirect_uri,\\n        scope='playlist-modify-public'\\n    )\\n    return spotipy.Spotify(auth_manager=auth_manager)"
+        "solution_code": "def get_spotify_client(client_id, client_secret, redirect_uri):\n    import spotipy\n    from spotipy.oauth2 import SpotifyOAuth\n    auth_manager = SpotifyOAuth(\n        client_id=client_id,\n        client_secret=client_secret,\n        redirect_uri=redirect_uri,\n        scope='playlist-modify-public'\n    )\n    return spotipy.Spotify(auth_manager=auth_manager)"
     },
     {
         "question_type": "coding",
-        "text": "Search for Track\\nReturn the Spotify URI of the first matching track",
-        "starter_code": "def search_track(sp, song_name, artist=None):\\n    # Search and return URI of first result\\n    # Return None if not found\\n    pass",
+        "text": "Search for Track\nReturn the Spotify URI of the first matching track",
+        "starter_code": "def search_track(sp, song_name, artist=None):\n    # Search and return URI of first result\n    # Return None if not found\n    pass",
         "test_cases": [
             {
                 "function_call": "search_track(mock_sp, 'Blinding Lights', 'The Weeknd') is not None",
@@ -235,12 +235,12 @@
         ],
         "difficulty": "medium",
         "topic_tag": "spotify-api",
-        "solution_code": "def search_track(sp, song_name, artist=None):\\n    query = f'{song_name} artist:{artist}' if artist else song_name\\n    results = sp.search(q=query, type='track', limit=1)\\n    tracks = results.get('tracks', {}).get('items', [])\\n    if tracks:\\n        return tracks[0]['uri']\\n    return None"
+        "solution_code": "def search_track(sp, song_name, artist=None):\n    query = f'{song_name} artist:{artist}' if artist else song_name\n    results = sp.search(q=query, type='track', limit=1)\n    tracks = results.get('tracks', {}).get('items', [])\n    if tracks:\n        return tracks[0]['uri']\n    return None"
     },
     {
         "question_type": "coding",
-        "text": "Create Playlist\\nCreate a new public playlist and return its ID",
-        "starter_code": "def create_playlist(sp, user_id, name, description=''):\\n    # Create playlist and return its ID\\n    pass",
+        "text": "Create Playlist\nCreate a new public playlist and return its ID",
+        "starter_code": "def create_playlist(sp, user_id, name, description=''):\n    # Create playlist and return its ID\n    pass",
         "test_cases": [
             {
                 "function_call": "len(create_playlist(mock_sp, 'user123', 'My Playlist', 'Test')) > 0",
@@ -249,12 +249,12 @@
         ],
         "difficulty": "medium",
         "topic_tag": "spotify-api",
-        "solution_code": "def create_playlist(sp, user_id, name, description=''):\\n    playlist = sp.user_playlist_create(\\n        user=user_id,\\n        name=name,\\n        public=True,\\n        description=description\\n    )\\n    return playlist['id']"
+        "solution_code": "def create_playlist(sp, user_id, name, description=''):\n    playlist = sp.user_playlist_create(\n        user=user_id,\n        name=name,\n        public=True,\n        description=description\n    )\n    return playlist['id']"
     },
     {
         "question_type": "coding",
-        "text": "Scrape Billboard Songs\\nExtract song titles from Billboard HTML",
-        "starter_code": "def get_billboard_songs(soup):\\n    from bs4 import BeautifulSoup\\n    # Return list of song titles from chart\\n    # Songs are in h3 tags with id='title-of-a-story'\\n    pass",
+        "text": "Scrape Billboard Songs\nExtract song titles from Billboard HTML",
+        "starter_code": "def get_billboard_songs(soup):\n    from bs4 import BeautifulSoup\n    # Return list of song titles from chart\n    # Songs are in h3 tags with id='title-of-a-story'\n    pass",
         "test_cases": [
             {
                 "function_call": "len(get_billboard_songs(mock_soup)) > 0",
@@ -263,12 +263,12 @@
         ],
         "difficulty": "hard",
         "topic_tag": "web-scraping",
-        "solution_code": "def get_billboard_songs(soup):\\n    song_elements = soup.select('li h3#title-of-a-story')\\n    songs = [song.getText().strip() for song in song_elements]\\n    return songs"
+        "solution_code": "def get_billboard_songs(soup):\n    song_elements = soup.select('li h3#title-of-a-story')\n    songs = [song.getText().strip() for song in song_elements]\n    return songs"
     },
     {
         "question_type": "coding",
-        "text": "Build Music Playlist\\nCombine scraping and Spotify to build a playlist",
-        "starter_code": "def build_time_machine_playlist(sp, song_list, playlist_name):\\n    # 1. Get current user ID\\n    # 2. Create playlist\\n    # 3. Search and add each song\\n    # Return number of songs added\\n    pass",
+        "text": "Build Music Playlist\nCombine scraping and Spotify to build a playlist",
+        "starter_code": "def build_time_machine_playlist(sp, song_list, playlist_name):\n    # 1. Get current user ID\n    # 2. Create playlist\n    # 3. Search and add each song\n    # Return number of songs added\n    pass",
         "test_cases": [
             {
                 "function_call": "build_time_machine_playlist(mock_sp, ['Blinding Lights', 'Circles'], '2020 Hits') >= 0",
@@ -277,12 +277,12 @@
         ],
         "difficulty": "hard",
         "topic_tag": "spotify-api",
-        "solution_code": "def build_time_machine_playlist(sp, song_list, playlist_name):\\n    user_id = sp.current_user()['id']\\n    playlist = sp.user_playlist_create(user_id, playlist_name)\\n    uris = []\\n    for song in song_list:\\n        result = sp.search(q=song, type='track', limit=1)\\n        tracks = result.get('tracks', {}).get('items', [])\\n        if tracks:\\n            uris.append(tracks[0]['uri'])\\n    if uris:\\n        sp.playlist_add_items(playlist['id'], uris)\\n    return len(uris)"
+        "solution_code": "def build_time_machine_playlist(sp, song_list, playlist_name):\n    user_id = sp.current_user()['id']\n    playlist = sp.user_playlist_create(user_id, playlist_name)\n    uris = []\n    for song in song_list:\n        result = sp.search(q=song, type='track', limit=1)\n        tracks = result.get('tracks', {}).get('items', [])\n        if tracks:\n            uris.append(tracks[0]['uri'])\n    if uris:\n        sp.playlist_add_items(playlist['id'], uris)\n    return len(uris)"
     },
     {
         "question_type": "code-correction",
         "text": "Fix the Spotify search query:",
-        "code": "result = sp.search(song_name, type='track')\\n# Returns empty results",
+        "code": "result = sp.search(song_name, type='track')\n# Returns empty results",
         "options": [
             "Change to `sp.search(q=song_name, type='track')`",
             "Remove the type parameter",
@@ -297,7 +297,7 @@
     {
         "question_type": "code-correction",
         "text": "Fix the OAuth scope error:",
-        "code": "auth = SpotifyOAuth(client_id, client_secret, redirect_uri)\\nsp.user_playlist_create(user, 'My Playlist')\\n# Error: Insufficient client scope",
+        "code": "auth = SpotifyOAuth(client_id, client_secret, redirect_uri)\nsp.user_playlist_create(user, 'My Playlist')\n# Error: Insufficient client scope",
         "options": [
             "Add scope='playlist-modify-public' to SpotifyOAuth",
             "Use a different method",
@@ -312,7 +312,7 @@
     {
         "question_type": "code-correction",
         "text": "Fix the track URI extraction:",
-        "code": "results = sp.search(q='Blinding Lights', type='track')\\nuri = results['uri']\\n# KeyError: 'uri'",
+        "code": "results = sp.search(q='Blinding Lights', type='track')\nuri = results['uri']\n# KeyError: 'uri'",
         "options": [
             "Access via results['tracks']['items'][0]['uri']",
             "Use results.uri",

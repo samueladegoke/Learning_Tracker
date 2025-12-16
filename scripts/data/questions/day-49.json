@@ -211,8 +211,8 @@
     },
     {
         "question_type": "coding",
-        "text": "Setup Chrome Options\\nCreate Chrome options with a custom profile",
-        "starter_code": "def get_chrome_options(profile_path):\\n    from selenium.webdriver.chrome.options import Options\\n    # Return options with user-data-dir set\\n    pass",
+        "text": "Setup Chrome Options\nCreate Chrome options with a custom profile",
+        "starter_code": "def get_chrome_options(profile_path):\n    from selenium.webdriver.chrome.options import Options\n    # Return options with user-data-dir set\n    pass",
         "test_cases": [
             {
                 "function_call": "type(get_chrome_options('/path/to/profile'))",
@@ -221,12 +221,12 @@
         ],
         "difficulty": "medium",
         "topic_tag": "selenium",
-        "solution_code": "def get_chrome_options(profile_path):\\n    from selenium.webdriver.chrome.options import Options\\n    options = Options()\\n    options.add_argument(f'--user-data-dir={profile_path}')\\n    return options"
+        "solution_code": "def get_chrome_options(profile_path):\n    from selenium.webdriver.chrome.options import Options\n    options = Options()\n    options.add_argument(f'--user-data-dir={profile_path}')\n    return options"
     },
     {
         "question_type": "coding",
-        "text": "Wait for Element\\nWait until element is clickable and return it",
-        "starter_code": "def wait_and_click(driver, locator, timeout=10):\\n    from selenium.webdriver.support.ui import WebDriverWait\\n    from selenium.webdriver.support import expected_conditions as EC\\n    # Wait for element and click it\\n    pass",
+        "text": "Wait for Element\nWait until element is clickable and return it",
+        "starter_code": "def wait_and_click(driver, locator, timeout=10):\n    from selenium.webdriver.support.ui import WebDriverWait\n    from selenium.webdriver.support import expected_conditions as EC\n    # Wait for element and click it\n    pass",
         "test_cases": [
             {
                 "function_call": "wait_and_click(mock_driver, ('id', 'button')) is None",
@@ -235,12 +235,12 @@
         ],
         "difficulty": "medium",
         "topic_tag": "waits",
-        "solution_code": "def wait_and_click(driver, locator, timeout=10):\\n    from selenium.webdriver.support.ui import WebDriverWait\\n    from selenium.webdriver.support import expected_conditions as EC\\n    element = WebDriverWait(driver, timeout).until(\\n        EC.element_to_be_clickable(locator)\\n    )\\n    element.click()"
+        "solution_code": "def wait_and_click(driver, locator, timeout=10):\n    from selenium.webdriver.support.ui import WebDriverWait\n    from selenium.webdriver.support import expected_conditions as EC\n    element = WebDriverWait(driver, timeout).until(\n        EC.element_to_be_clickable(locator)\n    )\n    element.click()"
     },
     {
         "question_type": "coding",
-        "text": "Retry on Failure\\nImplement retry logic for click operations",
-        "starter_code": "def click_with_retry(element, max_retries=3):\\n    import time\\n    # Try clicking, retry on exception\\n    pass",
+        "text": "Retry on Failure\nImplement retry logic for click operations",
+        "starter_code": "def click_with_retry(element, max_retries=3):\n    import time\n    # Try clicking, retry on exception\n    pass",
         "test_cases": [
             {
                 "function_call": "click_with_retry(mock_element) is None",
@@ -249,12 +249,12 @@
         ],
         "difficulty": "hard",
         "topic_tag": "exceptions",
-        "solution_code": "def click_with_retry(element, max_retries=3):\\n    import time\\n    for attempt in range(max_retries):\\n        try:\\n            element.click()\\n            return\\n        except Exception as e:\\n            if attempt == max_retries - 1:\\n                raise\\n            time.sleep(1)"
+        "solution_code": "def click_with_retry(element, max_retries=3):\n    import time\n    for attempt in range(max_retries):\n        try:\n            element.click()\n            return\n        except Exception as e:\n            if attempt == max_retries - 1:\n                raise\n            time.sleep(1)"
     },
     {
         "question_type": "coding",
-        "text": "Check if Booked\\nCheck if a class is already booked based on text content",
-        "starter_code": "def is_already_booked(element):\\n    # Return True if element contains 'Booked' or 'Cancel'\\n    pass",
+        "text": "Check if Booked\nCheck if a class is already booked based on text content",
+        "starter_code": "def is_already_booked(element):\n    # Return True if element contains 'Booked' or 'Cancel'\n    pass",
         "test_cases": [
             {
                 "function_call": "is_already_booked(MockElement('Booked'))",
@@ -267,12 +267,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "automation",
-        "solution_code": "def is_already_booked(element):\\n    text = element.text.lower()\\n    return 'booked' in text or 'cancel' in text"
+        "solution_code": "def is_already_booked(element):\n    text = element.text.lower()\n    return 'booked' in text or 'cancel' in text"
     },
     {
         "question_type": "coding",
-        "text": "Count Bookings\\nCount how many classes are marked as booked",
-        "starter_code": "def count_booked_classes(class_elements):\\n    # Return count of elements containing 'Booked' text\\n    pass",
+        "text": "Count Bookings\nCount how many classes are marked as booked",
+        "starter_code": "def count_booked_classes(class_elements):\n    # Return count of elements containing 'Booked' text\n    pass",
         "test_cases": [
             {
                 "function_call": "count_booked_classes([MockElement('Booked'), MockElement('Book'), MockElement('Booked')])",
@@ -281,12 +281,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "automation",
-        "solution_code": "def count_booked_classes(class_elements):\\n    return sum(1 for el in class_elements if 'booked' in el.text.lower())"
+        "solution_code": "def count_booked_classes(class_elements):\n    return sum(1 for el in class_elements if 'booked' in el.text.lower())"
     },
     {
         "question_type": "code-correction",
         "text": "Fix the wait import error:",
-        "code": "wait = WebDriverWait(driver, 10)\\nelement = wait.until(element_to_be_clickable((By.ID, 'btn')))\\n# NameError: name 'element_to_be_clickable' is not defined",
+        "code": "wait = WebDriverWait(driver, 10)\nelement = wait.until(element_to_be_clickable((By.ID, 'btn')))\n# NameError: name 'element_to_be_clickable' is not defined",
         "options": [
             "Import EC and use EC.element_to_be_clickable",
             "Use driver.wait() instead",
@@ -301,7 +301,7 @@
     {
         "question_type": "code-correction",
         "text": "Fix the timeout exception:",
-        "code": "WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.ID, 'slow-load')))\\n# TimeoutException after 5 seconds",
+        "code": "WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.ID, 'slow-load')))\n# TimeoutException after 5 seconds",
         "options": [
             "Increase the timeout value",
             "Use find_element instead",
@@ -316,7 +316,7 @@
     {
         "question_type": "code-correction",
         "text": "Fix the stale element error:",
-        "code": "buttons = driver.find_elements(By.CLASS_NAME, 'book-btn')\\nfor btn in buttons:\\n    btn.click()\\n# StaleElementReferenceException on second click",
+        "code": "buttons = driver.find_elements(By.CLASS_NAME, 'book-btn')\nfor btn in buttons:\n    btn.click()\n# StaleElementReferenceException on second click",
         "options": [
             "Re-find elements after each click",
             "Use find_element instead",

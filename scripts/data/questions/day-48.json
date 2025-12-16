@@ -211,8 +211,8 @@
     },
     {
         "question_type": "coding",
-        "text": "Setup Chrome Driver\\nInitialize and return a Chrome WebDriver",
-        "starter_code": "def get_driver():\\n    from selenium import webdriver\\n    # Return a Chrome browser instance\\n    pass",
+        "text": "Setup Chrome Driver\nInitialize and return a Chrome WebDriver",
+        "starter_code": "def get_driver():\n    from selenium import webdriver\n    # Return a Chrome browser instance\n    pass",
         "test_cases": [
             {
                 "function_call": "type(get_driver()).__name__",
@@ -221,12 +221,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "selenium",
-        "solution_code": "def get_driver():\\n    from selenium import webdriver\\n    return webdriver.Chrome()"
+        "solution_code": "def get_driver():\n    from selenium import webdriver\n    return webdriver.Chrome()"
     },
     {
         "question_type": "coding",
-        "text": "Find by ID\\nReturn the text of an element with the given ID",
-        "starter_code": "def get_text_by_id(driver, element_id):\\n    from selenium.webdriver.common.by import By\\n    # Find element by ID and return its text\\n    pass",
+        "text": "Find by ID\nReturn the text of an element with the given ID",
+        "starter_code": "def get_text_by_id(driver, element_id):\n    from selenium.webdriver.common.by import By\n    # Find element by ID and return its text\n    pass",
         "test_cases": [
             {
                 "function_call": "get_text_by_id(mock_driver, 'title') is not None",
@@ -235,12 +235,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "locators",
-        "solution_code": "def get_text_by_id(driver, element_id):\\n    from selenium.webdriver.common.by import By\\n    element = driver.find_element(By.ID, element_id)\\n    return element.text"
+        "solution_code": "def get_text_by_id(driver, element_id):\n    from selenium.webdriver.common.by import By\n    element = driver.find_element(By.ID, element_id)\n    return element.text"
     },
     {
         "question_type": "coding",
-        "text": "Fill Form Field\\nType text into an input field",
-        "starter_code": "def fill_input(driver, input_id, text):\\n    from selenium.webdriver.common.by import By\\n    # Find input by ID and type text into it\\n    pass",
+        "text": "Fill Form Field\nType text into an input field",
+        "starter_code": "def fill_input(driver, input_id, text):\n    from selenium.webdriver.common.by import By\n    # Find input by ID and type text into it\n    pass",
         "test_cases": [
             {
                 "function_call": "fill_input(mock_driver, 'email', '[email protected]')",
@@ -249,12 +249,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "selenium",
-        "solution_code": "def fill_input(driver, input_id, text):\\n    from selenium.webdriver.common.by import By\\n    element = driver.find_element(By.ID, input_id)\\n    element.send_keys(text)"
+        "solution_code": "def fill_input(driver, input_id, text):\n    from selenium.webdriver.common.by import By\n    element = driver.find_element(By.ID, input_id)\n    element.send_keys(text)"
     },
     {
         "question_type": "coding",
-        "text": "Get All Links\\nReturn a list of all href values on the page",
-        "starter_code": "def get_all_links(driver):\\n    from selenium.webdriver.common.by import By\\n    # Find all anchor tags and return their href attributes\\n    pass",
+        "text": "Get All Links\nReturn a list of all href values on the page",
+        "starter_code": "def get_all_links(driver):\n    from selenium.webdriver.common.by import By\n    # Find all anchor tags and return their href attributes\n    pass",
         "test_cases": [
             {
                 "function_call": "type(get_all_links(mock_driver))",
@@ -263,12 +263,12 @@
         ],
         "difficulty": "medium",
         "topic_tag": "selenium",
-        "solution_code": "def get_all_links(driver):\\n    from selenium.webdriver.common.by import By\\n    links = driver.find_elements(By.TAG_NAME, 'a')\\n    return [link.get_attribute('href') for link in links]"
+        "solution_code": "def get_all_links(driver):\n    from selenium.webdriver.common.by import By\n    links = driver.find_elements(By.TAG_NAME, 'a')\n    return [link.get_attribute('href') for link in links]"
     },
     {
         "question_type": "coding",
-        "text": "XPath Selector\\nFind element by XPath and return its text",
-        "starter_code": "def get_by_xpath(driver, xpath):\\n    from selenium.webdriver.common.by import By\\n    # Find element using XPath and return text\\n    pass",
+        "text": "XPath Selector\nFind element by XPath and return its text",
+        "starter_code": "def get_by_xpath(driver, xpath):\n    from selenium.webdriver.common.by import By\n    # Find element using XPath and return text\n    pass",
         "test_cases": [
             {
                 "function_call": "get_by_xpath(mock_driver, '//h1') is not None",
@@ -277,12 +277,12 @@
         ],
         "difficulty": "medium",
         "topic_tag": "xpath",
-        "solution_code": "def get_by_xpath(driver, xpath):\\n    from selenium.webdriver.common.by import By\\n    element = driver.find_element(By.XPATH, xpath)\\n    return element.text"
+        "solution_code": "def get_by_xpath(driver, xpath):\n    from selenium.webdriver.common.by import By\n    element = driver.find_element(By.XPATH, xpath)\n    return element.text"
     },
     {
         "question_type": "code-correction",
         "text": "Fix the deprecated locator method:",
-        "code": "element = driver.find_element_by_id('submit')\\n# DeprecationWarning: find_element_by_* is deprecated",
+        "code": "element = driver.find_element_by_id('submit')\n# DeprecationWarning: find_element_by_* is deprecated",
         "options": [
             "Use driver.find_element(By.ID, 'submit')",
             "Use driver.get_element('submit')",
@@ -297,7 +297,7 @@
     {
         "question_type": "code-correction",
         "text": "Fix the missing import:",
-        "code": "element = driver.find_element(By.ID, 'button')\\n# NameError: name 'By' is not defined",
+        "code": "element = driver.find_element(By.ID, 'button')\n# NameError: name 'By' is not defined",
         "options": [
             "Add: from selenium.webdriver.common.by import By",
             "Use 'id' instead of By.ID",
@@ -312,7 +312,7 @@
     {
         "question_type": "code-correction",
         "text": "Fix the element not found error:",
-        "code": "driver.get(url)\\nelement = driver.find_element(By.ID, 'dynamic-content')\\n# NoSuchElementException: element not found",
+        "code": "driver.get(url)\nelement = driver.find_element(By.ID, 'dynamic-content')\n# NoSuchElementException: element not found",
         "options": [
             "Add WebDriverWait to wait for element to load",
             "Use find_elements instead",
