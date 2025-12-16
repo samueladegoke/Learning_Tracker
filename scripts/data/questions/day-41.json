@@ -211,8 +211,8 @@
     },
     {
         "question_type": "coding",
-        "text": "Create Heading\\nReturn HTML for an h1 heading with the text 'Welcome'",
-        "starter_code": "def create_heading():\\n    # Return the HTML string for an h1 heading\\n    pass",
+        "text": "Create Heading\nReturn HTML for an h1 heading with the text 'Welcome'",
+        "starter_code": "def create_heading():\n    # Return the HTML string for an h1 heading\n    pass",
         "test_cases": [
             {
                 "function_call": "'<h1>' in create_heading() and '</h1>' in create_heading()",
@@ -225,12 +225,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "headings",
-        "solution_code": "def create_heading():\\n    return '<h1>Welcome</h1>'"
+        "solution_code": "def create_heading():\n    return '<h1>Welcome</h1>'"
     },
     {
         "question_type": "coding",
-        "text": "Create Paragraph\\nReturn HTML for a paragraph with the given text",
-        "starter_code": "def create_paragraph(text):\\n    # Return a paragraph element with the text\\n    pass",
+        "text": "Create Paragraph\nReturn HTML for a paragraph with the given text",
+        "starter_code": "def create_paragraph(text):\n    # Return a paragraph element with the text\n    pass",
         "test_cases": [
             {
                 "function_call": "create_paragraph('Hello')",
@@ -243,12 +243,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "paragraphs",
-        "solution_code": "def create_paragraph(text):\\n    return f'<p>{text}</p>'"
+        "solution_code": "def create_paragraph(text):\n    return f'<p>{text}</p>'"
     },
     {
         "question_type": "coding",
-        "text": "Heading Level\\nReturn an HTML heading of the specified level (1-6) with the given text",
-        "starter_code": "def create_heading_level(level, text):\\n    # Return heading at specified level\\n    pass",
+        "text": "Heading Level\nReturn an HTML heading of the specified level (1-6) with the given text",
+        "starter_code": "def create_heading_level(level, text):\n    # Return heading at specified level\n    pass",
         "test_cases": [
             {
                 "function_call": "create_heading_level(1, 'Title')",
@@ -261,12 +261,12 @@
         ],
         "difficulty": "medium",
         "topic_tag": "headings",
-        "solution_code": "def create_heading_level(level, text):\\n    return f'<h{level}>{text}</h{level}>'"
+        "solution_code": "def create_heading_level(level, text):\n    return f'<h{level}>{text}</h{level}>'"
     },
     {
         "question_type": "coding",
-        "text": "Count Elements\\nCount how many times a specific HTML tag appears in a string",
-        "starter_code": "def count_elements(html, tag):\\n    # Count occurrences of the opening tag\\n    pass",
+        "text": "Count Elements\nCount how many times a specific HTML tag appears in a string",
+        "starter_code": "def count_elements(html, tag):\n    # Count occurrences of the opening tag\n    pass",
         "test_cases": [
             {
                 "function_call": "count_elements('<p>A</p><p>B</p>', 'p')",
@@ -279,12 +279,12 @@
         ],
         "difficulty": "medium",
         "topic_tag": "html-basics",
-        "solution_code": "def count_elements(html, tag):\\n    return html.count(f'<{tag}>')"
+        "solution_code": "def count_elements(html, tag):\n    return html.count(f'<{tag}>')"
     },
     {
         "question_type": "coding",
-        "text": "Extract Text\\nExtract the text content from inside an HTML element",
-        "starter_code": "def extract_text(element):\\n    # Extract text between opening and closing tags\\n    pass",
+        "text": "Extract Text\nExtract the text content from inside an HTML element",
+        "starter_code": "def extract_text(element):\n    # Extract text between opening and closing tags\n    pass",
         "test_cases": [
             {
                 "function_call": "extract_text('<h1>Hello World</h1>')",
@@ -297,12 +297,12 @@
         ],
         "difficulty": "medium",
         "topic_tag": "html-basics",
-        "solution_code": "def extract_text(element):\\n    start = element.find('>') + 1\\n    end = element.rfind('<')\\n    return element[start:end]"
+        "solution_code": "def extract_text(element):\n    start = element.find('>') + 1\n    end = element.rfind('<')\n    return element[start:end]"
     },
     {
         "question_type": "coding",
-        "text": "Is Void Element\\nReturn True if the tag name is a void element (br, hr, img, input, meta, link)",
-        "starter_code": "def is_void_element(tag):\\n    # Check if tag is a void element\\n    pass",
+        "text": "Is Void Element\nReturn True if the tag name is a void element (br, hr, img, input, meta, link)",
+        "starter_code": "def is_void_element(tag):\n    # Check if tag is a void element\n    pass",
         "test_cases": [
             {
                 "function_call": "is_void_element('br')",
@@ -319,12 +319,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "void-elements",
-        "solution_code": "def is_void_element(tag):\\n    void_elements = ['br', 'hr', 'img', 'input', 'meta', 'link']\\n    return tag.lower() in void_elements"
+        "solution_code": "def is_void_element(tag):\n    void_elements = ['br', 'hr', 'img', 'input', 'meta', 'link']\n    return tag.lower() in void_elements"
     },
     {
         "question_type": "code-correction",
         "text": "Fix the heading hierarchy issue:",
-        "code": "<h1>My Website</h1>\\n<h3>About Me</h3>  <!-- Problem here -->\\n<p>Some content...</p>",
+        "code": "<h1>My Website</h1>\n<h3>About Me</h3>  <!-- Problem here -->\n<p>Some content...</p>",
         "options": [
             "Change h3 to h2 to follow proper hierarchy",
             "Change h1 to h2",
@@ -339,7 +339,7 @@
     {
         "question_type": "code-correction",
         "text": "Fix the missing closing tag:",
-        "code": "<h1>Welcome to my site\\n<p>This is a paragraph.</p>",
+        "code": "<h1>Welcome to my site\n<p>This is a paragraph.</p>",
         "options": [
             "Add </h1> after 'site'",
             "Remove the <h1> tag",
@@ -354,7 +354,7 @@
     {
         "question_type": "code-correction",
         "text": "Fix this attempt to create a line break:",
-        "code": "<p>First line\\nSecond line</p>\\n<!-- Bug: newline in code doesn't create visible line break -->",
+        "code": "<p>First line\nSecond line</p>\n<!-- Bug: newline in code doesn't create visible line break -->",
         "options": [
             "Use <br> between the lines",
             "Add more spaces",

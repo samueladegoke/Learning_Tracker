@@ -211,7 +211,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Random Choice\\nWrite a function `pick_color` that returns a random color from a given list.",
+        "text": "Random Choice\nWrite a function `pick_color` that returns a random color from a given list.",
         "starter_code": "import random\n\ndef pick_color(colors):\n    pass",
         "test_cases": [
             {
@@ -225,7 +225,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Level Increment\\nWrite a function `increase_speed` that adds `increment` to `current_speed`.",
+        "text": "Level Increment\nWrite a function `increase_speed` that adds `increment` to `current_speed`.",
         "starter_code": "def increase_speed(current_speed, increment):\n    pass",
         "test_cases": [
             {
@@ -239,7 +239,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Finish Line Check\\nWrite a function `is_finished` that returns True if `y_pos` > 280.",
+        "text": "Finish Line Check\nWrite a function `is_finished` that returns True if `y_pos` > 280.",
         "starter_code": "def is_finished(y_pos):\n    pass",
         "test_cases": [
             {
@@ -257,7 +257,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Create Car\\nImplement a `create_car` stub that returns 'New Car' if chance is 1, else None.",
+        "text": "Create Car\nImplement a `create_car` stub that returns 'New Car' if chance is 1, else None.",
         "starter_code": "def create_car(chance):\n    pass",
         "test_cases": [
             {
@@ -275,7 +275,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Move All\\nWrite a function `move_all` that decreases the x-coordinate of each dict in a list by `dist`.",
+        "text": "Move All\nWrite a function `move_all` that decreases the x-coordinate of each dict in a list by `dist`.",
         "starter_code": "def move_all(cars, dist):\n    pass",
         "test_cases": [
             {

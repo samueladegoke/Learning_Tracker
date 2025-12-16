@@ -211,7 +211,7 @@
   },
   {
     "question_type": "coding",
-    "text": "Average Height\\nCalculate the average height from a list. DO NOT use sum() or len().",
+    "text": "Average Height\nCalculate the average height from a list. DO NOT use sum() or len().",
     "starter_code": "def solve(heights):\n    # Use a for loop to find total and count\n    return 0",
     "test_cases": [
       {
@@ -233,7 +233,7 @@
   },
   {
     "question_type": "coding",
-    "text": "Highest Score\\nFind the highest score from a list. DO NOT use max().",
+    "text": "Highest Score\nFind the highest score from a list. DO NOT use max().",
     "starter_code": "def solve(scores):\n    # Find the maximum value\n    return 0",
     "test_cases": [
       {
@@ -255,7 +255,7 @@
   },
   {
     "question_type": "coding",
-    "text": "Sum of Even Numbers\\nCalculate the sum of all even numbers from 1 to 100 (inclusive).",
+    "text": "Sum of Even Numbers\nCalculate the sum of all even numbers from 1 to 100 (inclusive).",
     "starter_code": "def solve():\n    # Use range and check for even numbers\n    return 0",
     "test_cases": [
       {
@@ -269,7 +269,7 @@
   },
   {
     "question_type": "coding",
-    "text": "FizzBuzz\\nReturn a list from 1 to n: multiples of 3 become 'Fizz', multiples of 5 become 'Buzz', multiples of both become 'FizzBuzz'.",
+    "text": "FizzBuzz\nReturn a list from 1 to n: multiples of 3 become 'Fizz', multiples of 5 become 'Buzz', multiples of both become 'FizzBuzz'.",
     "starter_code": "def solve(n):\n    result = []\n    # Use modulo to check divisibility\n    return result",
     "test_cases": [
       {
@@ -287,7 +287,7 @@
   },
   {
     "question_type": "coding",
-    "text": "Count Items\\nCount how many times a target appears in a list. DO NOT use .count().",
+    "text": "Count Items\nCount how many times a target appears in a list. DO NOT use .count().",
     "starter_code": "def count_items(items, target):\n    # Count occurrences of target\n    return 0",
     "test_cases": [
       {

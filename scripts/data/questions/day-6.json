@@ -197,7 +197,7 @@
   },
   {
     "question_type": "coding",
-    "text": "Define a Function\\nWrite a function named 'greet' that prints 'Hello World'.",
+    "text": "Define a Function\nWrite a function named 'greet' that prints 'Hello World'.",
     "starter_code": "# Define your function here\n",
     "test_cases": [
       {
@@ -211,7 +211,7 @@
   },
   {
     "question_type": "coding",
-    "text": "While Loop Countdown\\nPrint numbers from n down to 1 using a while loop. Return a list of the numbers.",
+    "text": "While Loop Countdown\nPrint numbers from n down to 1 using a while loop. Return a list of the numbers.",
     "starter_code": "def countdown(n):\n    result = []\n    # Use while loop\n    return result",
     "test_cases": [
       {
@@ -233,7 +233,7 @@
   },
   {
     "question_type": "coding",
-    "text": "Sum Until Limit\\nAdd numbers 1, 2, 3... until the sum would EXCEED the limit. Return the sum.",
+    "text": "Sum Until Limit\nAdd numbers 1, 2, 3... until the sum would EXCEED the limit. Return the sum.",
     "starter_code": "def sum_until(limit):\n    total = 0\n    num = 1\n    # Use while loop\n    return total",
     "test_cases": [
       {
@@ -255,7 +255,7 @@
   },
   {
     "question_type": "coding",
-    "text": "Factorial with While\\nCalculate factorial of n using a while loop. factorial(5) = 5*4*3*2*1 = 120",
+    "text": "Factorial with While\nCalculate factorial of n using a while loop. factorial(5) = 5*4*3*2*1 = 120",
     "starter_code": "def factorial(n):\n    result = 1\n    # Use while loop\n    return result",
     "test_cases": [
       {
@@ -277,7 +277,7 @@
   },
   {
     "question_type": "coding",
-    "text": "Find First Negative\\nReturn the first negative number in a list. Return None if no negatives.",
+    "text": "Find First Negative\nReturn the first negative number in a list. Return None if no negatives.",
     "starter_code": "def first_negative(numbers):\n    # Loop through and return first negative\n    pass",
     "test_cases": [
       {

@@ -43,7 +43,7 @@
   },
   {
     "question_type": "mcq",
-    "text": "What does \\n do inside a string?",
+    "text": "What does \n do inside a string?",
     "options": [
       "Prints the letter 'n'",
       "Creates a new line",
@@ -51,21 +51,21 @@
       "Causes an error"
     ],
     "correct_index": 1,
-    "explanation": "\\n is an escape sequence that creates a new line. It allows you to print multiple lines using a single print() statement.",
+    "explanation": "\n is an escape sequence that creates a new line. It allows you to print multiple lines using a single print() statement.",
     "difficulty": "easy",
     "topic_tag": "strings"
   },
   {
     "question_type": "mcq",
-    "text": "What will print(\"Hello\\nWorld\") output?",
+    "text": "What will print(\"Hello\nWorld\") output?",
     "options": [
-      "Hello\\nWorld on one line",
+      "Hello\nWorld on one line",
       "HelloWorld",
       "Hello on one line, World on the next line",
       "Hello nWorld"
     ],
     "correct_index": 2,
-    "explanation": "The \\n escape sequence creates a line break, so 'Hello' prints on one line and 'World' prints on the next line.",
+    "explanation": "The \n escape sequence creates a line break, so 'Hello' prints on one line and 'World' prints on the next line.",
     "difficulty": "easy",
     "topic_tag": "strings"
   },

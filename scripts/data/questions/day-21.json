@@ -197,7 +197,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Subclass Definition\\nDefine a class `Dog` that inherits from `Animal`. The `Animal` class has been initialized for you.",
+        "text": "Subclass Definition\nDefine a class `Dog` that inherits from `Animal`. The `Animal` class has been initialized for you.",
         "starter_code": "class Animal:\n    def speak(self):\n        return \"Sound\"\n\n# Define Dog class here\n",
         "test_cases": [
             {
@@ -211,7 +211,7 @@
     },
     {
         "question_type": "coding",
-        "text": "List Slicing: First 3\\nWrite a function `first_three` that returns the first 3 elements of a list.",
+        "text": "List Slicing: First 3\nWrite a function `first_three` that returns the first 3 elements of a list.",
         "starter_code": "def first_three(lst):\n    pass",
         "test_cases": [
             {
@@ -229,7 +229,7 @@
     },
     {
         "question_type": "coding",
-        "text": "List Slicing: Last Item\\nWrite a function `last_item` that returns a list containing only the last item of the input list (do not return the item itself, return a list).",
+        "text": "List Slicing: Last Item\nWrite a function `last_item` that returns a list containing only the last item of the input list (do not return the item itself, return a list).",
         "starter_code": "def last_item(lst):\n    pass",
         "test_cases": [
             {
@@ -243,7 +243,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Reverse List\\nWrite a function `reverse_list` that returns the reversed version of a list using slicing.",
+        "text": "Reverse List\nWrite a function `reverse_list` that returns the reversed version of a list using slicing.",
         "starter_code": "def reverse_list(lst):\n    pass",
         "test_cases": [
             {
@@ -257,7 +257,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Every Other Item\\nWrite a function `every_other` that returns every second element from the list starting from the first.",
+        "text": "Every Other Item\nWrite a function `every_other` that returns every second element from the list starting from the first.",
         "starter_code": "def every_other(lst):\n    pass",
         "test_cases": [
             {
@@ -271,7 +271,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Method Override\\nCreate a `Cat` class that inherits from `Animal` and overrides `speak` to return \"Meow\".",
+        "text": "Method Override\nCreate a `Cat` class that inherits from `Animal` and overrides `speak` to return \"Meow\".",
         "starter_code": "class Animal:\n    def speak(self):\n        return \"Sound\"\n\n# Define Cat class here\n",
         "test_cases": [
             {

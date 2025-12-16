@@ -141,7 +141,7 @@
   },
   {
     "question_type": "mcq",
-    "text": "What will this code print?\\nfruits = ['a', 'b', 'c']\\nfruits[1] = 'x'\\nprint(fruits)",
+    "text": "What will this code print?\nfruits = ['a', 'b', 'c']\nfruits[1] = 'x'\nprint(fruits)",
     "options": [
       "['a', 'b', 'c']",
       "['x', 'b', 'c']",

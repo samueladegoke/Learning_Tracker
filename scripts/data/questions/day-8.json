@@ -183,7 +183,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Simple Greeting\\nWrite a function named 'greet' that prints 'Hello ' followed by the name provided as a parameter.",
+        "text": "Simple Greeting\nWrite a function named 'greet' that prints 'Hello ' followed by the name provided as a parameter.",
         "starter_code": "def greet(name):\n    # Print the greeting\n    pass",
         "test_cases": [
             {
@@ -201,7 +201,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Caesar Shift\\nWrite a function that shifts a single letter by a given amount. Assume inputs are lowercase and shifting 'z' wraps around to 'a'.",
+        "text": "Caesar Shift\nWrite a function that shifts a single letter by a given amount. Assume inputs are lowercase and shifting 'z' wraps around to 'a'.",
         "starter_code": "def shift_letter(letter, shift):\n    alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']\n    # Your logic here to find index, add shift, and handle wrap around\n    pass",
         "test_cases": [
             {
@@ -223,7 +223,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Paint Area Calculator\\nYou are painting a wall. The instructions say 1 can of paint covers 5 square meters. Given height and width of the wall, calculate how many cans of paint you need to buy (rounded up).",
+        "text": "Paint Area Calculator\nYou are painting a wall. The instructions say 1 can of paint covers 5 square meters. Given height and width of the wall, calculate how many cans of paint you need to buy (rounded up).",
         "starter_code": "import math\n\ndef paint_calc(height, width, cover):\n    # Calculate number of cans\n    # Remember to round UP to the nearest whole number\n    pass",
         "test_cases": [
             {
@@ -245,7 +245,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Prime Number Checker\\nWrite a function that checks if a number is prime.",
+        "text": "Prime Number Checker\nWrite a function that checks if a number is prime.",
         "starter_code": "def prime_checker(number):\n    is_prime = True\n    # Check for divisibility\n    # If number is <= 1, it's not prime\n    return is_prime",
         "test_cases": [
             {
@@ -271,25 +271,25 @@
     },
     {
         "question_type": "coding",
-        "text": "Keyword Greeter\\nCreate a function called 'greet_with' that takes 'name' and 'location' and prints exactly: 'Hello {name}\\nWhat is it like in {location}?'",
+        "text": "Keyword Greeter\nCreate a function called 'greet_with' that takes 'name' and 'location' and prints exactly: 'Hello {name}\nWhat is it like in {location}?'",
         "starter_code": "def greet_with(name, location):\n    # Print the specific lines\n    pass",
         "test_cases": [
             {
                 "function_call": "greet_with('Jack', 'London')",
-                "expected": "Hello Jack\\nWhat is it like in London?"
+                "expected": "Hello Jack\nWhat is it like in London?"
             },
             {
                 "function_call": "greet_with(location='Nowhere', name='Nobody')",
-                "expected": "Hello Nobody\\nWhat is it like in Nowhere?"
+                "expected": "Hello Nobody\nWhat is it like in Nowhere?"
             }
         ],
         "difficulty": "easy",
         "topic_tag": "parameters",
-        "solution_code": "def greet_with(name, location):\n    print(f'Hello {name}\\nWhat is it like in {location}?')"
+        "solution_code": "def greet_with(name, location):\n    print(f'Hello {name}\nWhat is it like in {location}?')"
     },
     {
         "question_type": "coding",
-        "text": "Decode Function\\nWrite a function 'decode' that takes 'cipher_text' and 'shift' and returns the plain text.",
+        "text": "Decode Function\nWrite a function 'decode' that takes 'cipher_text' and 'shift' and returns the plain text.",
         "starter_code": "def decode(cipher_text, shift):\n    alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']\n    # Decrypt the text\n    pass",
         "test_cases": [
             {
@@ -307,7 +307,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Double Params\\nWrite a function that takes two numbers, x and y, and returns their difference (x - y).",
+        "text": "Double Params\nWrite a function that takes two numbers, x and y, and returns their difference (x - y).",
         "starter_code": "def diff(x, y):\n    pass",
         "test_cases": [
             {

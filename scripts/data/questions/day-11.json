@@ -182,7 +182,7 @@
     "question_type": "mcq"
   },
   {
-    "text": "What will this code print?\\n```python\\nuser_cards = [10, 5]\\nuser_cards.append(deal_card())\\nprint(len(user_cards))\\n```",
+    "text": "What will this code print?\n```python\nuser_cards = [10, 5]\nuser_cards.append(deal_card())\nprint(len(user_cards))\n```",
     "options": [
       "2",
       "3",
@@ -210,7 +210,7 @@
     "question_type": "mcq"
   },
   {
-    "text": "Deal Card Function\\nWrite a function `deal_card` that returns a random card from the list [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]. Import random at the top.",
+    "text": "Deal Card Function\nWrite a function `deal_card` that returns a random card from the list [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]. Import random at the top.",
     "starter_code": "import random\n\ndef deal_card():\n    # Return a random card from the deck\n    pass",
     "solution_code": "import random\n\ndef deal_card():\n    cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]\n    return random.choice(cards)",
     "test_cases": [
@@ -225,7 +225,7 @@
     "question_type": "coding"
   },
   {
-    "text": "Sum Cards\\nWrite a function `sum_cards` that takes a list of card values and returns their sum.",
+    "text": "Sum Cards\nWrite a function `sum_cards` that takes a list of card values and returns their sum.",
     "starter_code": "def sum_cards(cards):\n    # Return the sum of the list\n    pass",
     "solution_code": "def sum_cards(cards):\n    return sum(cards)",
     "test_cases": [
@@ -244,7 +244,7 @@
     "question_type": "coding"
   },
   {
-    "text": "Check for Bust\\nWrite a function `is_bust` that takes a list of cards and returns True if the total exceeds 21, False otherwise.",
+    "text": "Check for Bust\nWrite a function `is_bust` that takes a list of cards and returns True if the total exceeds 21, False otherwise.",
     "starter_code": "def is_bust(cards):\n    # Return True if sum > 21\n    pass",
     "solution_code": "def is_bust(cards):\n    return sum(cards) > 21",
     "test_cases": [
@@ -263,7 +263,7 @@
     "question_type": "coding"
   },
   {
-    "text": "Check for Blackjack\\nWrite a function `is_blackjack` that takes a list of cards and returns True if it's exactly 2 cards totaling 21.",
+    "text": "Check for Blackjack\nWrite a function `is_blackjack` that takes a list of cards and returns True if it's exactly 2 cards totaling 21.",
     "starter_code": "def is_blackjack(cards):\n    # Return True if len is 2 and sum is 21\n    pass",
     "solution_code": "def is_blackjack(cards):\n    return len(cards) == 2 and sum(cards) == 21",
     "test_cases": [
@@ -282,7 +282,7 @@
     "question_type": "coding"
   },
   {
-    "text": "Compare Scores\\nWrite a function `compare` that takes user_score and computer_score. Return 'win' if user wins, 'lose' if computer wins, 'draw' if equal. Assume neither busted.",
+    "text": "Compare Scores\nWrite a function `compare` that takes user_score and computer_score. Return 'win' if user wins, 'lose' if computer wins, 'draw' if equal. Assume neither busted.",
     "starter_code": "def compare(user_score, computer_score):\n    # Return 'win', 'lose', or 'draw'\n    pass",
     "solution_code": "def compare(user_score, computer_score):\n    if user_score == computer_score:\n        return 'draw'\n    elif computer_score == 0:\n        return 'lose'\n    elif user_score == 0:\n        return 'win'\n    elif user_score > computer_score:\n        return 'win'\n    else:\n        return 'lose'",
     "test_cases": [
@@ -305,7 +305,7 @@
     "question_type": "coding"
   },
   {
-    "text": "Adjust Ace\\nWrite a function `adjust_ace` that takes a list of cards. If 11 is in the list and the sum exceeds 21, replace 11 with 1. Return the modified list.",
+    "text": "Adjust Ace\nWrite a function `adjust_ace` that takes a list of cards. If 11 is in the list and the sum exceeds 21, replace 11 with 1. Return the modified list.",
     "starter_code": "def adjust_ace(cards):\n    # Replace 11 with 1 if sum > 21\n    return cards",
     "solution_code": "def adjust_ace(cards):\n    if 11 in cards and sum(cards) > 21:\n        cards.remove(11)\n        cards.append(1)\n    return cards",
     "test_cases": [
@@ -324,7 +324,7 @@
     "question_type": "coding"
   },
   {
-    "text": "Should Dealer Draw\\nWrite a function `should_dealer_draw` that takes dealer_score. Return True if score is less than 17 (and not 0 which means blackjack), False otherwise.",
+    "text": "Should Dealer Draw\nWrite a function `should_dealer_draw` that takes dealer_score. Return True if score is less than 17 (and not 0 which means blackjack), False otherwise.",
     "starter_code": "def should_dealer_draw(dealer_score):\n    # Return True if dealer must draw another card\n    pass",
     "solution_code": "def should_dealer_draw(dealer_score):\n    return dealer_score < 17 and dealer_score != 0",
     "test_cases": [

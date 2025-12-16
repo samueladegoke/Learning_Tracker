@@ -211,7 +211,7 @@
   },
   {
     "question_type": "coding",
-    "text": "Check Membership\\nReturn True if item exists in the list, False otherwise.",
+    "text": "Check Membership\nReturn True if item exists in the list, False otherwise.",
     "starter_code": "def check_in_list(item, my_list):\n    # Use 'in' keyword\n    pass",
     "test_cases": [
       {
@@ -233,7 +233,7 @@
   },
   {
     "question_type": "coding",
-    "text": "Update Display\\nGiven a word, a display list of blanks, and a guess, update the display to show the letter at correct positions.",
+    "text": "Update Display\nGiven a word, a display list of blanks, and a guess, update the display to show the letter at correct positions.",
     "starter_code": "def update_display(word, display, guess):\n    # Loop through word by index\n    # If letter matches guess, update display\n    return display",
     "test_cases": [
       {
@@ -255,7 +255,7 @@
   },
   {
     "question_type": "coding",
-    "text": "Game Over Logic\\nReturn True if lives are 0, False otherwise.",
+    "text": "Game Over Logic\nReturn True if lives are 0, False otherwise.",
     "starter_code": "def is_game_over(lives):\n    # Check if lives are 0\n    pass",
     "test_cases": [
       {
@@ -277,7 +277,7 @@
   },
   {
     "question_type": "coding",
-    "text": "Check Win Condition\\nReturn True if there are no underscores left in the display list.",
+    "text": "Check Win Condition\nReturn True if there are no underscores left in the display list.",
     "starter_code": "def has_won(display):\n    # Check if '_' is not in display\n    pass",
     "test_cases": [
       {
@@ -299,7 +299,7 @@
   },
   {
     "question_type": "coding",
-    "text": "Create Display\\nGiven a word, return a list of underscores with the same length.",
+    "text": "Create Display\nGiven a word, return a list of underscores with the same length.",
     "starter_code": "def create_display(word):\n    # Create a list of '_' for each letter\n    pass",
     "test_cases": [
       {

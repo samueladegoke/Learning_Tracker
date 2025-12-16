@@ -253,7 +253,7 @@
         ],
         "difficulty": "medium",
         "topic_tag": "smtp",
-        "solution_code": "def send_alert(email, password, to_email, subject, body):\n    import smtplib\n    try:\n        with smtplib.SMTP('smtp.gmail.com', 587) as connection:\n            connection.starttls()\n            connection.login(email, password)\n            connection.sendmail(email, to_email, f'Subject:{subject}\\\n\\\n{body}')\n        return True\n    except:\n        return False"
+        "solution_code": "def send_alert(email, password, to_email, subject, body):\n    import smtplib\n    try:\n        with smtplib.SMTP('smtp.gmail.com', 587) as connection:\n            connection.starttls()\n            connection.login(email, password)\n            connection.sendmail(email, to_email, f'Subject:{subject}\\n\\n{body}')\n        return True\n    except:\n        return False"
     },
     {
         "question_type": "coding",

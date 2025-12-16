@@ -265,7 +265,7 @@
         ],
         "difficulty": "medium",
         "topic_tag": "news-api",
-        "solution_code": "def format_article(article):\n    return f\"Headline: {article['title']}\\nBrief: {article['description']}\""
+        "solution_code": "def format_article(article):\n    return f\"Headline: {article['title']}\nBrief: {article['description']}\""
     },
     {
         "question_type": "coding",

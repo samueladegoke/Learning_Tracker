@@ -46,7 +46,7 @@
         "text": "How do you separate the email subject from the body?",
         "options": [
             "Use a comma",
-            "Use \\n\\n (double newline)",
+            "Use \n\n (double newline)",
             "Use a semicolon",
             "Use Subject: header only"
         ],
@@ -169,7 +169,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Check if Today is Monday\\nWrite a function that returns True if today is Monday, False otherwise.",
+        "text": "Check if Today is Monday\nWrite a function that returns True if today is Monday, False otherwise.",
         "starter_code": "import datetime as dt\n\ndef is_monday():\n    # Return True if today is Monday\n    pass",
         "test_cases": [
             {
@@ -183,7 +183,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Format Date\\nWrite a function that takes a datetime object and returns it formatted as 'Month Day, Year' (e.g., 'December 25, 2025').",
+        "text": "Format Date\nWrite a function that takes a datetime object and returns it formatted as 'Month Day, Year' (e.g., 'December 25, 2025').",
         "starter_code": "def format_date(date_obj):\n    # Return formatted string\n    pass",
         "test_cases": [
             {
@@ -197,7 +197,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Email Message Builder\\nWrite a function that takes a subject and body, and returns a properly formatted email string.",
+        "text": "Email Message Builder\nWrite a function that takes a subject and body, and returns a properly formatted email string.",
         "starter_code": "def build_email(subject, body):\n    # Return formatted email string\n    pass",
         "test_cases": [
             {
@@ -207,11 +207,11 @@
         ],
         "difficulty": "easy",
         "topic_tag": "email-format",
-        "solution_code": "def build_email(subject, body):\n    return f'Subject:{subject}\\n\\n{body}'"
+        "solution_code": "def build_email(subject, body):\n    return f'Subject:{subject}\n\n{body}'"
     },
     {
         "question_type": "coding",
-        "text": "Check Birthday Match\\nWrite a function that takes a month and day, and returns True if they match today's date.",
+        "text": "Check Birthday Match\nWrite a function that takes a month and day, and returns True if they match today's date.",
         "starter_code": "import datetime as dt\n\ndef is_birthday_today(month, day):\n    # Check if month and day match today\n    pass",
         "test_cases": [
             {
@@ -225,7 +225,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Get Current Hour\\nWrite a function that returns the current hour as an integer (0-23).",
+        "text": "Get Current Hour\nWrite a function that returns the current hour as an integer (0-23).",
         "starter_code": "import datetime as dt\n\ndef get_current_hour():\n    # Return current hour\n    pass",
         "test_cases": [
             {
@@ -239,7 +239,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Random Quote Picker\\nWrite a function that reads quotes from a list and returns a random one.",
+        "text": "Random Quote Picker\nWrite a function that reads quotes from a list and returns a random one.",
         "starter_code": "import random\n\ndef pick_quote(quotes):\n    # Return random quote from list\n    pass",
         "test_cases": [
             {
@@ -269,17 +269,17 @@
     {
         "question_type": "code-correction",
         "text": "Fix the email format bug:",
-        "code": "message = f'Subject:{subject}\\n{body}'\n# Bug: Subject and body run together",
+        "code": "message = f'Subject:{subject}\n{body}'\n# Bug: Subject and body run together",
         "options": [
-            "Use \\n\\n between subject and body",
-            "Use \\t instead of \\n",
+            "Use \n\n between subject and body",
+            "Use \\t instead of \n",
             "Remove the newline",
             "Add 'Body:' prefix"
         ],
         "correct_index": 0,
         "difficulty": "easy",
         "topic_tag": "email-format",
-        "explanation": "Email format requires double newline (\\n\\n) to separate headers from body."
+        "explanation": "Email format requires double newline (\n\n) to separate headers from body."
     },
     {
         "question_type": "code-correction",

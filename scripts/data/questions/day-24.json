@@ -81,7 +81,7 @@
         "correct_index": 1,
         "difficulty": "easy",
         "topic_tag": "strings",
-        "explanation": "strip() is commonly used when reading lines from a file to remove the newline character (\\n) at the end."
+        "explanation": "strip() is commonly used when reading lines from a file to remove the newline character (\n) at the end."
     },
     {
         "question_type": "mcq",
@@ -211,7 +211,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Read File\\nWrite a function `read_content` that takes a filename and returns its content.",
+        "text": "Read File\nWrite a function `read_content` that takes a filename and returns its content.",
         "starter_code": "def read_content(filename):\n    pass",
         "test_cases": [
             {
@@ -225,7 +225,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Write File\\nWrite a function `write_message` that writes 'Hello' to 'msg.txt'.",
+        "text": "Write File\nWrite a function `write_message` that writes 'Hello' to 'msg.txt'.",
         "starter_code": "def write_message():\n    pass",
         "test_cases": [
             {
@@ -239,7 +239,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Append Line\\nWrite a function `append_log` that appends a log entry to 'log.txt'.",
+        "text": "Append Line\nWrite a function `append_log` that appends a log entry to 'log.txt'.",
         "starter_code": "def append_log(entry):\n    pass",
         "test_cases": [
             {
@@ -253,11 +253,11 @@
     },
     {
         "question_type": "coding",
-        "text": "Strip Lines\\nWrite a function `clean_lines` that takes a list of strings and returns them stripped of whitespace.",
+        "text": "Strip Lines\nWrite a function `clean_lines` that takes a list of strings and returns them stripped of whitespace.",
         "starter_code": "def clean_lines(lines):\n    pass",
         "test_cases": [
             {
-                "function_call": "clean_lines([' a ', 'b\\n'])",
+                "function_call": "clean_lines([' a ', 'b\n'])",
                 "expected": "['a', 'b']"
             }
         ],
@@ -267,7 +267,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Replace Name\\nWrite a function `personalize` that replaces '[name]' in `text` with `name`.",
+        "text": "Replace Name\nWrite a function `personalize` that replaces '[name]' in `text` with `name`.",
         "starter_code": "def personalize(text, name):\n    pass",
         "test_cases": [
             {

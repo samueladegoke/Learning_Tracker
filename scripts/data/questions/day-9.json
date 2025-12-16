@@ -213,7 +213,7 @@
    },
    {
      "question_type": "coding",
-     "text": "Safe Lookup\\nWrite a function `safe_lookup(d, key, default)` that returns the value for `key` in `d`, or `default` if the key is missing.",
+     "text": "Safe Lookup\nWrite a function `safe_lookup(d, key, default)` that returns the value for `key` in `d`, or `default` if the key is missing.",
      "starter_code": "def safe_lookup(d, key, default=None):\n    # Use dict.get() for safe lookup\n    pass",
      "test_cases": [
        {
@@ -235,7 +235,7 @@
    },
    {
      "question_type": "coding",
-     "text": "Score to Grade\\nWrite a function `score_to_grade(score)` that returns a grade string using these rules: 91-100 Outstanding, 81-90 Exceeds Expectations, 71-80 Acceptable, 70 or lower Fail.",
+     "text": "Score to Grade\nWrite a function `score_to_grade(score)` that returns a grade string using these rules: 91-100 Outstanding, 81-90 Exceeds Expectations, 71-80 Acceptable, 70 or lower Fail.",
      "starter_code": "def score_to_grade(score):\n    # Use if/elif/else based on the score\n    pass",
      "test_cases": [
        {
@@ -261,7 +261,7 @@
    },
    {
      "question_type": "coding",
-     "text": "Nested Lookup\\nWrite a function `get_city(travel_log, country, index)` that returns the city at `travel_log[country]['cities_visited'][index]`.",
+     "text": "Nested Lookup\nWrite a function `get_city(travel_log, country, index)` that returns the city at `travel_log[country]['cities_visited'][index]`.",
      "starter_code": "def get_city(travel_log, country, index):\n    # Return the requested city from the nested structure\n    pass",
      "test_cases": [
        {
@@ -283,7 +283,7 @@
    },
    {
      "question_type": "coding",
-     "text": "Build Grades Dictionary\\nWrite a function `build_student_grades(student_scores)` that returns a new dictionary mapping each student name to their grade string (using the same rules as the Day 9 Grading Program).",
+     "text": "Build Grades Dictionary\nWrite a function `build_student_grades(student_scores)` that returns a new dictionary mapping each student name to their grade string (using the same rules as the Day 9 Grading Program).",
      "starter_code": "def build_student_grades(student_scores):\n    # Create a new dictionary and fill it\n    # Return the new dictionary\n    pass",
      "test_cases": [
        {
@@ -305,7 +305,7 @@
    },
    {
      "question_type": "coding",
-     "text": "Highest Bidder\\nWrite a function `find_highest_bidder(bids)` that returns a tuple `(winner_name, highest_bid)`. ",
+     "text": "Highest Bidder\nWrite a function `find_highest_bidder(bids)` that returns a tuple `(winner_name, highest_bid)`. ",
      "starter_code": "def find_highest_bidder(bids):\n    # Loop over bids and track the highest\n    # Return (winner_name, highest_bid)\n    pass",
      "test_cases": [
        {

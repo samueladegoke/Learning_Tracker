@@ -169,7 +169,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Flash Card Timer\\nWrite a function that takes a Tkinter window, a delay in milliseconds, and a callback function. Return the timer ID from after().",
+        "text": "Flash Card Timer\nWrite a function that takes a Tkinter window, a delay in milliseconds, and a callback function. Return the timer ID from after().",
         "starter_code": "def schedule_flip(window, delay_ms, callback):\n    # Schedule callback after delay\n    # Return the timer ID\n    pass",
         "test_cases": [
             {
@@ -183,7 +183,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Convert DataFrame to Cards\\nGiven a pandas DataFrame with 'front' and 'back' columns, convert it to a list of dictionaries.",
+        "text": "Convert DataFrame to Cards\nGiven a pandas DataFrame with 'front' and 'back' columns, convert it to a list of dictionaries.",
         "starter_code": "def df_to_cards(df):\n    # Convert DataFrame to list of dicts\n    pass",
         "test_cases": [
             {
@@ -197,7 +197,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Pick Random Card\\nWrite a function that takes a list of card dictionaries and returns a random card.",
+        "text": "Pick Random Card\nWrite a function that takes a list of card dictionaries and returns a random card.",
         "starter_code": "import random\n\ndef pick_random_card(cards):\n    # Return a random card from the list\n    pass",
         "test_cases": [
             {
@@ -211,7 +211,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Load with Fallback\\nWrite a function that tries to load 'progress.csv', but falls back to 'original.csv' if not found. Return the loaded DataFrame.",
+        "text": "Load with Fallback\nWrite a function that tries to load 'progress.csv', but falls back to 'original.csv' if not found. Return the loaded DataFrame.",
         "starter_code": "import pandas as pd\n\ndef load_cards():\n    # Try progress.csv, fallback to original.csv\n    pass",
         "test_cases": [
             {
@@ -225,7 +225,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Remove Known Card\\nWrite a function that removes a card from a list and saves the remaining cards to CSV.",
+        "text": "Remove Known Card\nWrite a function that removes a card from a list and saves the remaining cards to CSV.",
         "starter_code": "import pandas as pd\n\ndef remove_and_save(cards, known_card, filepath):\n    # Remove known_card from cards list\n    # Save remaining to filepath\n    pass",
         "test_cases": [
             {
@@ -239,7 +239,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Cancel Timer Safely\\nWrite a function that cancels a timer only if it exists (not None). Use Tkinter's after_cancel.",
+        "text": "Cancel Timer Safely\nWrite a function that cancels a timer only if it exists (not None). Use Tkinter's after_cancel.",
         "starter_code": "def safe_cancel(window, timer_id):\n    # Cancel timer only if it's not None\n    pass",
         "test_cases": [
             {

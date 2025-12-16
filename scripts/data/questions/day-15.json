@@ -360,8 +360,8 @@
   },
   {
     "text": "Format Report\nWrite a function that takes the resources dict and 'money' value, and returns a formatted report string.",
-    "starter_code": "def get_report(resources, money):\n    # Format: Water: 100ml\\nMilk: 50ml\\nCoffee: 76g\\nMoney: $2.5\\n\n    pass",
-    "solution_code": "def get_report(resources, money):\n    return f\"Water: {resources['water']}ml\\nMilk: {resources['milk']}ml\\nCoffee: {resources['coffee']}g\\nMoney: ${money}\"",
+    "starter_code": "def get_report(resources, money):\n    # Format: Water: 100ml\nMilk: 50ml\nCoffee: 76g\nMoney: $2.5\n\n    pass",
+    "solution_code": "def get_report(resources, money):\n    return f\"Water: {resources['water']}ml\nMilk: {resources['milk']}ml\nCoffee: {resources['coffee']}g\nMoney: ${money}\"",
     "test_cases": [
       {
         "function_call": "'Water: 100ml' in get_report({'water': 100, 'milk': 50, 'coffee': 76}, 2.5)",

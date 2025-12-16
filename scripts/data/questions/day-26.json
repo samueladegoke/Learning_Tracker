@@ -211,8 +211,8 @@
     },
     {
         "question_type": "coding",
-        "text": "Square Numbers\\nWrite a function `square_list` that takes a list of numbers and returns a new list with each number squared using list comprehension.",
-        "starter_code": "def square_list(numbers):\\n    pass",
+        "text": "Square Numbers\nWrite a function `square_list` that takes a list of numbers and returns a new list with each number squared using list comprehension.",
+        "starter_code": "def square_list(numbers):\n    pass",
         "test_cases": [
             {
                 "function_call": "square_list([1, 2, 3])",
@@ -225,12 +225,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "list-comprehension",
-        "solution_code": "def square_list(numbers):\\n    return [n ** 2 for n in numbers]"
+        "solution_code": "def square_list(numbers):\n    return [n ** 2 for n in numbers]"
     },
     {
         "question_type": "coding",
-        "text": "Filter Evens\\nWrite a function `get_evens` that returns only even numbers from a list using list comprehension.",
-        "starter_code": "def get_evens(numbers):\\n    pass",
+        "text": "Filter Evens\nWrite a function `get_evens` that returns only even numbers from a list using list comprehension.",
+        "starter_code": "def get_evens(numbers):\n    pass",
         "test_cases": [
             {
                 "function_call": "get_evens([1, 2, 3, 4, 5, 6])",
@@ -243,12 +243,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "list-comprehension",
-        "solution_code": "def get_evens(numbers):\\n    return [n for n in numbers if n % 2 == 0]"
+        "solution_code": "def get_evens(numbers):\n    return [n for n in numbers if n % 2 == 0]"
     },
     {
         "question_type": "coding",
-        "text": "String to Chars\\nWrite a function `to_chars` that takes a string and returns a list of its characters using list comprehension.",
-        "starter_code": "def to_chars(text):\\n    pass",
+        "text": "String to Chars\nWrite a function `to_chars` that takes a string and returns a list of its characters using list comprehension.",
+        "starter_code": "def to_chars(text):\n    pass",
         "test_cases": [
             {
                 "function_call": "to_chars('Hi')",
@@ -261,12 +261,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "list-comprehension",
-        "solution_code": "def to_chars(text):\\n    return [char for char in text]"
+        "solution_code": "def to_chars(text):\n    return [char for char in text]"
     },
     {
         "question_type": "coding",
-        "text": "Number to Squared Dict\\nWrite a function `make_squares_dict` that takes a list of numbers and returns a dictionary where each number maps to its square.",
-        "starter_code": "def make_squares_dict(numbers):\\n    pass",
+        "text": "Number to Squared Dict\nWrite a function `make_squares_dict` that takes a list of numbers and returns a dictionary where each number maps to its square.",
+        "starter_code": "def make_squares_dict(numbers):\n    pass",
         "test_cases": [
             {
                 "function_call": "make_squares_dict([1, 2, 3])",
@@ -279,12 +279,12 @@
         ],
         "difficulty": "medium",
         "topic_tag": "dictionary-comprehension",
-        "solution_code": "def make_squares_dict(numbers):\\n    return {n: n ** 2 for n in numbers}"
+        "solution_code": "def make_squares_dict(numbers):\n    return {n: n ** 2 for n in numbers}"
     },
     {
         "question_type": "coding",
-        "text": "Filter Dict by Value\\nWrite a function `filter_passing` that takes a dict of student:score pairs and returns a dict with only students who scored >= 60.",
-        "starter_code": "def filter_passing(scores):\\n    pass",
+        "text": "Filter Dict by Value\nWrite a function `filter_passing` that takes a dict of student:score pairs and returns a dict with only students who scored >= 60.",
+        "starter_code": "def filter_passing(scores):\n    pass",
         "test_cases": [
             {
                 "function_call": "filter_passing({'Alice': 85, 'Bob': 45, 'Carol': 60})",
@@ -297,12 +297,12 @@
         ],
         "difficulty": "medium",
         "topic_tag": "dictionary-comprehension",
-        "solution_code": "def filter_passing(scores):\\n    return {name: score for name, score in scores.items() if score >= 60}"
+        "solution_code": "def filter_passing(scores):\n    return {name: score for name, score in scores.items() if score >= 60}"
     },
     {
         "question_type": "coding",
-        "text": "Double Range\\nWrite a function `double_range` that takes an integer n and returns a list of all numbers from 1 to n, doubled.",
-        "starter_code": "def double_range(n):\\n    pass",
+        "text": "Double Range\nWrite a function `double_range` that takes an integer n and returns a list of all numbers from 1 to n, doubled.",
+        "starter_code": "def double_range(n):\n    pass",
         "test_cases": [
             {
                 "function_call": "double_range(4)",
@@ -315,12 +315,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "list-comprehension",
-        "solution_code": "def double_range(n):\\n    return [x * 2 for x in range(1, n + 1)]"
+        "solution_code": "def double_range(n):\n    return [x * 2 for x in range(1, n + 1)]"
     },
     {
         "question_type": "coding",
-        "text": "Short Names\\nWrite a function `get_short_names` that returns names with 4 or fewer characters from a list.",
-        "starter_code": "def get_short_names(names):\\n    pass",
+        "text": "Short Names\nWrite a function `get_short_names` that returns names with 4 or fewer characters from a list.",
+        "starter_code": "def get_short_names(names):\n    pass",
         "test_cases": [
             {
                 "function_call": "get_short_names(['Alex', 'Beth', 'Caroline', 'Dave'])",
@@ -333,7 +333,7 @@
         ],
         "difficulty": "easy",
         "topic_tag": "list-comprehension",
-        "solution_code": "def get_short_names(names):\\n    return [name for name in names if len(name) <= 4]"
+        "solution_code": "def get_short_names(names):\n    return [name for name in names if len(name) <= 4]"
     },
     {
         "question_type": "code-correction",

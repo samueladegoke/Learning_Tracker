@@ -169,7 +169,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Make API Request\\nWrite a function that makes a GET request to a URL and returns the response object.",
+        "text": "Make API Request\nWrite a function that makes a GET request to a URL and returns the response object.",
         "starter_code": "import requests\n\ndef fetch_data(url):\n    # Make GET request and return response\n    pass",
         "test_cases": [
             {
@@ -183,7 +183,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Check Status Code\\nWrite a function that takes a response and returns True if successful (200-299), False otherwise.",
+        "text": "Check Status Code\nWrite a function that takes a response and returns True if successful (200-299), False otherwise.",
         "starter_code": "def is_successful(response):\n    # Check if status code indicates success\n    pass",
         "test_cases": [
             {
@@ -197,7 +197,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Get JSON Data\\nWrite a function that makes a request and returns the parsed JSON data.",
+        "text": "Get JSON Data\nWrite a function that makes a request and returns the parsed JSON data.",
         "starter_code": "import requests\n\ndef get_json(url):\n    # Fetch URL and return JSON data\n    pass",
         "test_cases": [
             {
@@ -211,7 +211,7 @@
     },
     {
         "question_type": "coding",
-        "text": "API with Parameters\\nWrite a function that fetches weather data from an API using lat/lng parameters.",
+        "text": "API with Parameters\nWrite a function that fetches weather data from an API using lat/lng parameters.",
         "starter_code": "import requests\n\ndef get_weather(lat, lng):\n    # Make request with lat/lng parameters\n    # Return the response\n    pass",
         "test_cases": [
             {
@@ -225,7 +225,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Safe API Call\\nWrite a function that makes a request and uses raise_for_status() to handle errors.",
+        "text": "Safe API Call\nWrite a function that makes a request and uses raise_for_status() to handle errors.",
         "starter_code": "import requests\n\ndef safe_fetch(url):\n    # Make request, raise for errors, return json\n    pass",
         "test_cases": [
             {
@@ -239,7 +239,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Extract Nested Value\\nWrite a function that extracts a nested value from JSON using a list of keys.",
+        "text": "Extract Nested Value\nWrite a function that extracts a nested value from JSON using a list of keys.",
         "starter_code": "def get_nested(data, keys):\n    # Navigate through nested dict using keys list\n    # Return the final value\n    pass",
         "test_cases": [
             {

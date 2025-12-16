@@ -211,7 +211,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Bounce Logic\\nWrite a function `bounce` that takes a coordinate `current_delta` and inverts it.",
+        "text": "Bounce Logic\nWrite a function `bounce` that takes a coordinate `current_delta` and inverts it.",
         "starter_code": "def bounce(current_delta):\n    pass",
         "test_cases": [
             {
@@ -229,7 +229,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Wall Collision Check\\nWrite a function `hit_wall` that returns True if `y_cor` is greater than 280 or less than -280.",
+        "text": "Wall Collision Check\nWrite a function `hit_wall` that returns True if `y_cor` is greater than 280 or less than -280.",
         "starter_code": "def hit_wall(y_cor):\n    pass",
         "test_cases": [
             {
@@ -251,7 +251,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Move Calculation\\nWrite a function `get_new_pos` that takes `current`, `delta` and returns the new position.",
+        "text": "Move Calculation\nWrite a function `get_new_pos` that takes `current`, `delta` and returns the new position.",
         "starter_code": "def get_new_pos(current, delta):\n    pass",
         "test_cases": [
             {
@@ -265,7 +265,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Score Increase\\nWrite a function `increase_score` that takes a score, adds 1, and returns it.",
+        "text": "Score Increase\nWrite a function `increase_score` that takes a score, adds 1, and returns it.",
         "starter_code": "def increase_score(score):\n    pass",
         "test_cases": [
             {
@@ -279,7 +279,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Paddle Boundary\\nWrite a function `can_move_up` that returns True if `y_cor` is less than 250 (top boundary).",
+        "text": "Paddle Boundary\nWrite a function `can_move_up` that returns True if `y_cor` is less than 250 (top boundary).",
         "starter_code": "def can_move_up(y_cor):\n    pass",
         "test_cases": [
             {

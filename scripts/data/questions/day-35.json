@@ -183,7 +183,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Get Environment Variable\\nWrite a function that gets an environment variable with a default fallback.",
+        "text": "Get Environment Variable\nWrite a function that gets an environment variable with a default fallback.",
         "starter_code": "import os\n\ndef get_env(key, default=None):\n    # Return env variable or default\n    pass",
         "test_cases": [
             {
@@ -197,7 +197,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Build Auth Header\\nWrite a function that returns a dictionary with a Bearer token authorization header.",
+        "text": "Build Auth Header\nWrite a function that returns a dictionary with a Bearer token authorization header.",
         "starter_code": "def build_auth_header(token):\n    # Return dict with Authorization: Bearer <token>\n    pass",
         "test_cases": [
             {
@@ -211,7 +211,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Check Weather Codes\\nWrite a function that returns True if any weather code in a list is below 700 (precipitation).",
+        "text": "Check Weather Codes\nWrite a function that returns True if any weather code in a list is below 700 (precipitation).",
         "starter_code": "def will_rain(weather_codes):\n    # Return True if any code < 700\n    pass",
         "test_cases": [
             {
@@ -229,7 +229,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Extract Weather Codes\\nWrite a function that extracts weather condition codes from hourly forecast data.",
+        "text": "Extract Weather Codes\nWrite a function that extracts weather condition codes from hourly forecast data.",
         "starter_code": "def get_weather_codes(hourly_data):\n    # Each hour has 'weather' list with 'id' key\n    # Return list of all condition codes\n    pass",
         "test_cases": [
             {
@@ -243,7 +243,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Send SMS Message\\nWrite a function that creates a Twilio message object (mock implementation).",
+        "text": "Send SMS Message\nWrite a function that creates a Twilio message object (mock implementation).",
         "starter_code": "def send_sms(client, from_num, to_num, body):\n    # Use client.messages.create() to send SMS\n    # Return the message object\n    pass",
         "test_cases": [
             {
@@ -257,7 +257,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Load dotenv\\nWrite a function that loads a .env file and returns a specific variable.",
+        "text": "Load dotenv\nWrite a function that loads a .env file and returns a specific variable.",
         "starter_code": "import os\n\ndef load_secret(key):\n    # Assume load_dotenv() has been called\n    # Return the environment variable\n    pass",
         "test_cases": [
             {

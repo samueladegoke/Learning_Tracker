@@ -211,7 +211,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Read CSV Check\\nWrite a function `load_data` that reads 'data.csv' and returns the DataFrame.",
+        "text": "Read CSV Check\nWrite a function `load_data` that reads 'data.csv' and returns the DataFrame.",
         "starter_code": "import pandas as pd\n\ndef load_data():\n    pass",
         "test_cases": [
             {
@@ -225,7 +225,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Calculate Mean\\nWrite a function `get_mean` that takes a list of numbers and returns the mean (without using pandas for this exercise, just basic python).",
+        "text": "Calculate Mean\nWrite a function `get_mean` that takes a list of numbers and returns the mean (without using pandas for this exercise, just basic python).",
         "starter_code": "def get_mean(numbers):\n    pass",
         "test_cases": [
             {
@@ -239,7 +239,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Dict to DataFrame\\nWrite a function `make_df` that takes a dictionary `d` and returns a DataFrame.",
+        "text": "Dict to DataFrame\nWrite a function `make_df` that takes a dictionary `d` and returns a DataFrame.",
         "starter_code": "import pandas as pd\ndef make_df(d):\n    pass",
         "test_cases": [
             {
@@ -253,7 +253,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Conditions\\nWrite a function `is_hot` that returns True if `temp` > 25, else False.",
+        "text": "Conditions\nWrite a function `is_hot` that returns True if `temp` > 25, else False.",
         "starter_code": "def is_hot(temp):\n    pass",
         "test_cases": [
             {
@@ -271,7 +271,7 @@
     },
     {
         "question_type": "coding",
-        "text": "List Conversion\\nWrite a function `convert` that takes a pandas Series `s` and returns it as a list.",
+        "text": "List Conversion\nWrite a function `convert` that takes a pandas Series `s` and returns it as a list.",
         "starter_code": "def convert(s):\n    pass",
         "test_cases": [
             {

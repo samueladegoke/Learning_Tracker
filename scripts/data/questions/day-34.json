@@ -169,7 +169,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Decode HTML Entities\\nWrite a function that takes a string with HTML entities and returns the decoded version.",
+        "text": "Decode HTML Entities\nWrite a function that takes a string with HTML entities and returns the decoded version.",
         "starter_code": "import html\n\ndef decode_text(text):\n    # Decode HTML entities\n    pass",
         "test_cases": [
             {
@@ -183,7 +183,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Create Question Object\\nWrite a Question class with text and answer attributes.",
+        "text": "Create Question Object\nWrite a Question class with text and answer attributes.",
         "starter_code": "class Question:\n    def __init__(self, text, answer):\n        # Store text and answer\n        pass",
         "test_cases": [
             {
@@ -197,7 +197,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Check Answer\\nWrite a function that compares user_answer to correct_answer (case-insensitive).",
+        "text": "Check Answer\nWrite a function that compares user_answer to correct_answer (case-insensitive).",
         "starter_code": "def check_answer(user_answer, correct_answer):\n    # Return True if answers match (case-insensitive)\n    pass",
         "test_cases": [
             {
@@ -215,7 +215,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Still Has Questions\\nWrite a method that returns True if there are more questions to ask.",
+        "text": "Still Has Questions\nWrite a method that returns True if there are more questions to ask.",
         "starter_code": "def still_has_questions(question_number, question_list):\n    # Return True if more questions remain\n    pass",
         "test_cases": [
             {
@@ -233,7 +233,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Convert API Response\\nWrite a function that converts API question data to Question objects.",
+        "text": "Convert API Response\nWrite a function that converts API question data to Question objects.",
         "starter_code": "def create_questions(api_data):\n    # Return list of Question objects from API response\n    # Assume api_data is list of dicts with 'question' and 'correct_answer'\n    pass",
         "test_cases": [
             {
@@ -247,7 +247,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Calculate Score Percentage\\nWrite a function that returns the score as a percentage.",
+        "text": "Calculate Score Percentage\nWrite a function that returns the score as a percentage.",
         "starter_code": "def score_percentage(score, total):\n    # Return percentage rounded to 1 decimal\n    pass",
         "test_cases": [
             {

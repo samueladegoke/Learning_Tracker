@@ -211,8 +211,8 @@
     },
     {
         "question_type": "coding",
-        "text": "Create Soup\\nReturn BeautifulSoup code to parse HTML with html.parser",
-        "starter_code": "def make_soup(html_string):\\n    from bs4 import BeautifulSoup\\n    # Return soup object\\n    pass",
+        "text": "Create Soup\nReturn BeautifulSoup code to parse HTML with html.parser",
+        "starter_code": "def make_soup(html_string):\n    from bs4 import BeautifulSoup\n    # Return soup object\n    pass",
         "test_cases": [
             {
                 "function_call": "make_soup('<p>Test</p>').p.getText()",
@@ -225,12 +225,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "beautifulsoup",
-        "solution_code": "def make_soup(html_string):\\n    from bs4 import BeautifulSoup\\n    return BeautifulSoup(html_string, 'html.parser')"
+        "solution_code": "def make_soup(html_string):\n    from bs4 import BeautifulSoup\n    return BeautifulSoup(html_string, 'html.parser')"
     },
     {
         "question_type": "coding",
-        "text": "Find All Links\\nReturn all href values from anchor tags in the HTML",
-        "starter_code": "def get_all_links(html):\\n    from bs4 import BeautifulSoup\\n    # Return list of href values\\n    pass",
+        "text": "Find All Links\nReturn all href values from anchor tags in the HTML",
+        "starter_code": "def get_all_links(html):\n    from bs4 import BeautifulSoup\n    # Return list of href values\n    pass",
         "test_cases": [
             {
                 "function_call": "get_all_links('<a href=\"/a\">A</a><a href=\"/b\">B</a>')",
@@ -243,12 +243,12 @@
         ],
         "difficulty": "medium",
         "topic_tag": "beautifulsoup",
-        "solution_code": "def get_all_links(html):\\n    from bs4 import BeautifulSoup\\n    soup = BeautifulSoup(html, 'html.parser')\\n    return [a.get('href') for a in soup.find_all('a')]"
+        "solution_code": "def get_all_links(html):\n    from bs4 import BeautifulSoup\n    soup = BeautifulSoup(html, 'html.parser')\n    return [a.get('href') for a in soup.find_all('a')]"
     },
     {
         "question_type": "coding",
-        "text": "Get By ID\\nReturn the text content of an element with the given ID",
-        "starter_code": "def get_by_id(html, element_id):\\n    from bs4 import BeautifulSoup\\n    # Return text of element with that ID\\n    pass",
+        "text": "Get By ID\nReturn the text content of an element with the given ID",
+        "starter_code": "def get_by_id(html, element_id):\n    from bs4 import BeautifulSoup\n    # Return text of element with that ID\n    pass",
         "test_cases": [
             {
                 "function_call": "get_by_id('<div id=\"test\">Hello</div>', 'test')",
@@ -261,12 +261,12 @@
         ],
         "difficulty": "medium",
         "topic_tag": "beautifulsoup",
-        "solution_code": "def get_by_id(html, element_id):\\n    from bs4 import BeautifulSoup\\n    soup = BeautifulSoup(html, 'html.parser')\\n    element = soup.find(id=element_id)\\n    return element.getText() if element else None"
+        "solution_code": "def get_by_id(html, element_id):\n    from bs4 import BeautifulSoup\n    soup = BeautifulSoup(html, 'html.parser')\n    element = soup.find(id=element_id)\n    return element.getText() if element else None"
     },
     {
         "question_type": "coding",
-        "text": "Count Elements\\nCount how many elements match the given tag name",
-        "starter_code": "def count_tags(html, tag_name):\\n    from bs4 import BeautifulSoup\\n    # Return count of matching tags\\n    pass",
+        "text": "Count Elements\nCount how many elements match the given tag name",
+        "starter_code": "def count_tags(html, tag_name):\n    from bs4 import BeautifulSoup\n    # Return count of matching tags\n    pass",
         "test_cases": [
             {
                 "function_call": "count_tags('<p>A</p><p>B</p><p>C</p>', 'p')",
@@ -279,12 +279,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "beautifulsoup",
-        "solution_code": "def count_tags(html, tag_name):\\n    from bs4 import BeautifulSoup\\n    soup = BeautifulSoup(html, 'html.parser')\\n    return len(soup.find_all(tag_name))"
+        "solution_code": "def count_tags(html, tag_name):\n    from bs4 import BeautifulSoup\n    soup = BeautifulSoup(html, 'html.parser')\n    return len(soup.find_all(tag_name))"
     },
     {
         "question_type": "coding",
-        "text": "Select By Class\\nReturn texts of all elements with the given class",
-        "starter_code": "def get_by_class(html, class_name):\\n    from bs4 import BeautifulSoup\\n    # Return list of text contents\\n    pass",
+        "text": "Select By Class\nReturn texts of all elements with the given class",
+        "starter_code": "def get_by_class(html, class_name):\n    from bs4 import BeautifulSoup\n    # Return list of text contents\n    pass",
         "test_cases": [
             {
                 "function_call": "get_by_class('<p class=\"item\">A</p><p class=\"item\">B</p>', 'item')",
@@ -297,12 +297,12 @@
         ],
         "difficulty": "medium",
         "topic_tag": "beautifulsoup",
-        "solution_code": "def get_by_class(html, class_name):\\n    from bs4 import BeautifulSoup\\n    soup = BeautifulSoup(html, 'html.parser')\\n    return [el.getText() for el in soup.find_all(class_=class_name)]"
+        "solution_code": "def get_by_class(html, class_name):\n    from bs4 import BeautifulSoup\n    soup = BeautifulSoup(html, 'html.parser')\n    return [el.getText() for el in soup.find_all(class_=class_name)]"
     },
     {
         "question_type": "coding",
-        "text": "CSS Selector\\nUse select() to get all paragraph texts",
-        "starter_code": "def select_paragraphs(html):\\n    from bs4 import BeautifulSoup\\n    # Use select() to get all <p> texts\\n    pass",
+        "text": "CSS Selector\nUse select() to get all paragraph texts",
+        "starter_code": "def select_paragraphs(html):\n    from bs4 import BeautifulSoup\n    # Use select() to get all <p> texts\n    pass",
         "test_cases": [
             {
                 "function_call": "select_paragraphs('<p>One</p><p>Two</p>')",
@@ -315,12 +315,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "css-selectors",
-        "solution_code": "def select_paragraphs(html):\\n    from bs4 import BeautifulSoup\\n    soup = BeautifulSoup(html, 'html.parser')\\n    return [p.getText() for p in soup.select('p')]"
+        "solution_code": "def select_paragraphs(html):\n    from bs4 import BeautifulSoup\n    soup = BeautifulSoup(html, 'html.parser')\n    return [p.getText() for p in soup.select('p')]"
     },
     {
         "question_type": "code-correction",
         "text": "Fix the Beautiful Soup import:",
-        "code": "from beautifulsoup import BeautifulSoup\\n# ImportError: No module named 'beautifulsoup'",
+        "code": "from beautifulsoup import BeautifulSoup\n# ImportError: No module named 'beautifulsoup'",
         "options": [
             "Change 'beautifulsoup' to 'bs4'",
             "Install beautiful soup first",
@@ -335,7 +335,7 @@
     {
         "question_type": "code-correction",
         "text": "Fix the class selector in find():",
-        "code": "soup.find(name='div', class='highlight')\\n# SyntaxError: invalid syntax",
+        "code": "soup.find(name='div', class='highlight')\n# SyntaxError: invalid syntax",
         "options": [
             "Change 'class' to 'class_' (with underscore)",
             "Remove the quotes",
@@ -350,7 +350,7 @@
     {
         "question_type": "code-correction",
         "text": "Fix the AttributeError when accessing href:",
-        "code": "link = soup.find('a')\\nurl = link.get('href')\\n# AttributeError: 'NoneType' has no attribute 'get'",
+        "code": "link = soup.find('a')\nurl = link.get('href')\n# AttributeError: 'NoneType' has no attribute 'get'",
         "options": [
             "Add a check: if link is not None before accessing",
             "Use link['href'] instead",

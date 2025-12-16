@@ -59,8 +59,8 @@
         "question_type": "mcq",
         "text": "What will be printed?\n```python\ndef my_func():\n    return 5\n    print(\"Hello\")\n\nprint(my_func())\n```",
         "options": [
-            "Hello\\n5",
-            "5\\nHello",
+            "Hello\n5",
+            "5\nHello",
             "5",
             "Hello"
         ],
@@ -212,7 +212,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Create Function with Return\\nWrite a function `double` that takes a number and returns that number multiplied by 2.",
+        "text": "Create Function with Return\nWrite a function `double` that takes a number and returns that number multiplied by 2.",
         "starter_code": "def double(num):\n    # Your code here\n    pass",
         "test_cases": [
             {
@@ -234,7 +234,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Format Name\\nWrite a function `format_name` that takes a first name and last name and returns them formatted in title case with a space between.",
+        "text": "Format Name\nWrite a function `format_name` that takes a first name and last name and returns them formatted in title case with a space between.",
         "starter_code": "def format_name(first, last):\n    # Your code here\n    pass",
         "test_cases": [
             {
@@ -256,7 +256,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Early Return Validation\\nWrite a function `get_grade` that takes a score. If the score is negative, return 'Invalid'. Otherwise return 'Pass' if score >= 50, else 'Fail'.",
+        "text": "Early Return Validation\nWrite a function `get_grade` that takes a score. If the score is negative, return 'Invalid'. Otherwise return 'Pass' if score >= 50, else 'Fail'.",
         "starter_code": "def get_grade(score):\n    # Your code here\n    pass",
         "test_cases": [
             {
@@ -282,7 +282,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Calculator Function\\nWrite a function `calculate` that takes two numbers and an operator string (+, -, *, /). Return the result of applying that operator.",
+        "text": "Calculator Function\nWrite a function `calculate` that takes two numbers and an operator string (+, -, *, /). Return the result of applying that operator.",
         "starter_code": "def calculate(n1, n2, operator):\n    # Your code here\n    pass",
         "test_cases": [
             {
@@ -308,7 +308,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Leap Year\\nWrite a function `is_leap_year` that takes a year and returns True if it's a leap year, False otherwise. A leap year is divisible by 4, except for years divisible by 100 unless also divisible by 400.",
+        "text": "Leap Year\nWrite a function `is_leap_year` that takes a year and returns True if it's a leap year, False otherwise. A leap year is divisible by 4, except for years divisible by 100 unless also divisible by 400.",
         "starter_code": "def is_leap_year(year):\n    # Your code here\n    pass",
         "test_cases": [
             {
@@ -334,7 +334,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Function Chaining\\nWrite a function `shout_double` that takes a string and returns it doubled and uppercase. Use two helper functions: `double_text(text)` that returns text + text, and `shout(text)` that returns text.upper().",
+        "text": "Function Chaining\nWrite a function `shout_double` that takes a string and returns it doubled and uppercase. Use two helper functions: `double_text(text)` that returns text + text, and `shout(text)` that returns text.upper().",
         "starter_code": "def double_text(text):\n    # Return text + text\n    pass\n\ndef shout(text):\n    # Return text.upper()\n    pass\n\ndef shout_double(text):\n    # Use both functions to return doubled uppercase text\n    pass",
         "test_cases": [
             {

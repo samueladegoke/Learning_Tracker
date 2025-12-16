@@ -211,80 +211,80 @@
     },
     {
         "question_type": "coding",
-        "text": "Create CSS Rule\\nReturn a CSS rule string that makes all h1 elements blue",
-        "starter_code": "def h1_blue():\\n    # Return CSS rule string\\n    pass",
+        "text": "Create CSS Rule\nReturn a CSS rule string that makes all h1 elements blue",
+        "starter_code": "def h1_blue():\n    # Return CSS rule string\n    pass",
         "test_cases": [
             {"function_call": "'h1' in h1_blue()", "expected": "True"},
             {"function_call": "'color' in h1_blue() and 'blue' in h1_blue()", "expected": "True"}
         ],
         "difficulty": "easy",
         "topic_tag": "css-syntax",
-        "solution_code": "def h1_blue():\\n    return 'h1 { color: blue; }'"
+        "solution_code": "def h1_blue():\n    return 'h1 { color: blue; }'"
     },
     {
         "question_type": "coding",
-        "text": "Class Selector\\nReturn a CSS rule for a class called 'highlight' with yellow background",
-        "starter_code": "def highlight_class():\\n    # Return CSS rule for .highlight class\\n    pass",
+        "text": "Class Selector\nReturn a CSS rule for a class called 'highlight' with yellow background",
+        "starter_code": "def highlight_class():\n    # Return CSS rule for .highlight class\n    pass",
         "test_cases": [
             {"function_call": "'.highlight' in highlight_class()", "expected": "True"},
             {"function_call": "'background' in highlight_class() and 'yellow' in highlight_class()", "expected": "True"}
         ],
         "difficulty": "easy",
         "topic_tag": "selectors",
-        "solution_code": "def highlight_class():\\n    return '.highlight { background-color: yellow; }'"
+        "solution_code": "def highlight_class():\n    return '.highlight { background-color: yellow; }'"
     },
     {
         "question_type": "coding",
-        "text": "ID Selector\\nReturn a CSS rule for an ID called 'header' with font-size 32px",
-        "starter_code": "def header_id():\\n    # Return CSS rule for #header ID\\n    pass",
+        "text": "ID Selector\nReturn a CSS rule for an ID called 'header' with font-size 32px",
+        "starter_code": "def header_id():\n    # Return CSS rule for #header ID\n    pass",
         "test_cases": [
             {"function_call": "'#header' in header_id()", "expected": "True"},
             {"function_call": "'font-size' in header_id() and '32px' in header_id()", "expected": "True"}
         ],
         "difficulty": "easy",
         "topic_tag": "selectors",
-        "solution_code": "def header_id():\\n    return '#header { font-size: 32px; }'"
+        "solution_code": "def header_id():\n    return '#header { font-size: 32px; }'"
     },
     {
         "question_type": "coding",
-        "text": "Create Inline Style\\nReturn an HTML paragraph with inline CSS making text red",
-        "starter_code": "def red_paragraph(text):\\n    # Return p tag with style attribute\\n    pass",
+        "text": "Create Inline Style\nReturn an HTML paragraph with inline CSS making text red",
+        "starter_code": "def red_paragraph(text):\n    # Return p tag with style attribute\n    pass",
         "test_cases": [
             {"function_call": "'style=' in red_paragraph('Hello')", "expected": "True"},
             {"function_call": "'red' in red_paragraph('Hello') and 'Hello' in red_paragraph('Hello')", "expected": "True"}
         ],
         "difficulty": "medium",
         "topic_tag": "css-methods",
-        "solution_code": "def red_paragraph(text):\\n    return f'<p style=\"color: red;\">{text}</p>'"
+        "solution_code": "def red_paragraph(text):\n    return f'<p style=\"color: red;\">{text}</p>'"
     },
     {
         "question_type": "coding",
-        "text": "Link Tag\\nReturn the HTML link tag to connect 'styles.css'",
-        "starter_code": "def css_link():\\n    # Return link tag for external CSS\\n    pass",
+        "text": "Link Tag\nReturn the HTML link tag to connect 'styles.css'",
+        "starter_code": "def css_link():\n    # Return link tag for external CSS\n    pass",
         "test_cases": [
             {"function_call": "'stylesheet' in css_link()", "expected": "True"},
             {"function_call": "'styles.css' in css_link()", "expected": "True"}
         ],
         "difficulty": "easy",
         "topic_tag": "css-methods",
-        "solution_code": "def css_link():\\n    return '<link rel=\"stylesheet\" href=\"styles.css\">'"
+        "solution_code": "def css_link():\n    return '<link rel=\"stylesheet\" href=\"styles.css\">'"
     },
     {
         "question_type": "coding",
-        "text": "Multiple Properties\\nReturn CSS for a class 'box' with padding 20px and margin 10px",
-        "starter_code": "def box_class():\\n    # Return CSS with multiple properties\\n    pass",
+        "text": "Multiple Properties\nReturn CSS for a class 'box' with padding 20px and margin 10px",
+        "starter_code": "def box_class():\n    # Return CSS with multiple properties\n    pass",
         "test_cases": [
             {"function_call": "'.box' in box_class()", "expected": "True"},
             {"function_call": "'padding' in box_class() and 'margin' in box_class()", "expected": "True"}
         ],
         "difficulty": "medium",
         "topic_tag": "css-properties",
-        "solution_code": "def box_class():\\n    return '.box { padding: 20px; margin: 10px; }'"
+        "solution_code": "def box_class():\n    return '.box { padding: 20px; margin: 10px; }'"
     },
     {
         "question_type": "code-correction",
         "text": "Fix the CSS syntax error:",
-        "code": "h1 {\\n    color = blue;\\n}",
+        "code": "h1 {\n    color = blue;\n}",
         "options": [
             "Change = to :",
             "Remove the semicolon",
@@ -299,7 +299,7 @@
     {
         "question_type": "code-correction",
         "text": "Fix the class selector:",
-        "code": "#myclass {\\n    color: red;\\n}\\n<!-- Should style elements with class='myclass' -->",
+        "code": "#myclass {\n    color: red;\n}\n<!-- Should style elements with class='myclass' -->",
         "options": [
             "Change # to . for class selector",
             "Change # to *",
@@ -314,7 +314,7 @@
     {
         "question_type": "code-correction",
         "text": "Fix the missing semicolon:",
-        "code": "p {\\n    color: blue\\n    font-size: 16px;\\n}",
+        "code": "p {\n    color: blue\n    font-size: 16px;\n}",
         "options": [
             "Add semicolon after 'blue'",
             "Remove the braces",

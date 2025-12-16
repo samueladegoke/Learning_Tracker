@@ -211,8 +211,8 @@
     },
     {
         "question_type": "coding",
-        "text": "Create Link\\nReturn HTML for a link to 'https://example.com' with text 'Click Here'",
-        "starter_code": "def create_link():\\n    # Return an anchor tag\\n    pass",
+        "text": "Create Link\nReturn HTML for a link to 'https://example.com' with text 'Click Here'",
+        "starter_code": "def create_link():\n    # Return an anchor tag\n    pass",
         "test_cases": [
             {
                 "function_call": "'href' in create_link() and 'example.com' in create_link()",
@@ -225,12 +225,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "anchors",
-        "solution_code": "def create_link():\\n    return '<a href=\"https://example.com\">Click Here</a>'"
+        "solution_code": "def create_link():\n    return '<a href=\"https://example.com\">Click Here</a>'"
     },
     {
         "question_type": "coding",
-        "text": "Create Image\\nReturn HTML for an image with src='photo.jpg' and alt='A photo'",
-        "starter_code": "def create_image():\\n    # Return an img tag with src and alt\\n    pass",
+        "text": "Create Image\nReturn HTML for an image with src='photo.jpg' and alt='A photo'",
+        "starter_code": "def create_image():\n    # Return an img tag with src and alt\n    pass",
         "test_cases": [
             {
                 "function_call": "'src=\"photo.jpg\"' in create_image()",
@@ -243,12 +243,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "images",
-        "solution_code": "def create_image():\\n    return '<img src=\"photo.jpg\" alt=\"A photo\">'"
+        "solution_code": "def create_image():\n    return '<img src=\"photo.jpg\" alt=\"A photo\">'"
     },
     {
         "question_type": "coding",
-        "text": "Create List\\nReturn HTML for an unordered list from a Python list of items",
-        "starter_code": "def create_list(items):\\n    # Return a ul with li for each item\\n    pass",
+        "text": "Create List\nReturn HTML for an unordered list from a Python list of items",
+        "starter_code": "def create_list(items):\n    # Return a ul with li for each item\n    pass",
         "test_cases": [
             {
                 "function_call": "create_list(['A', 'B'])",
@@ -261,12 +261,12 @@
         ],
         "difficulty": "medium",
         "topic_tag": "lists",
-        "solution_code": "def create_list(items):\\n    list_items = ''.join([f'<li>{item}</li>' for item in items])\\n    return f'<ul>{list_items}</ul>'"
+        "solution_code": "def create_list(items):\n    list_items = ''.join([f'<li>{item}</li>' for item in items])\n    return f'<ul>{list_items}</ul>'"
     },
     {
         "question_type": "coding",
-        "text": "Create Ordered List\\nReturn HTML for a numbered list from items",
-        "starter_code": "def create_ordered_list(items):\\n    # Return an ol with li for each item\\n    pass",
+        "text": "Create Ordered List\nReturn HTML for a numbered list from items",
+        "starter_code": "def create_ordered_list(items):\n    # Return an ol with li for each item\n    pass",
         "test_cases": [
             {
                 "function_call": "'<ol>' in create_ordered_list(['First', 'Second'])",
@@ -279,12 +279,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "lists",
-        "solution_code": "def create_ordered_list(items):\\n    list_items = ''.join([f'<li>{item}</li>' for item in items])\\n    return f'<ol>{list_items}</ol>'"
+        "solution_code": "def create_ordered_list(items):\n    list_items = ''.join([f'<li>{item}</li>' for item in items])\n    return f'<ol>{list_items}</ol>'"
     },
     {
         "question_type": "coding",
-        "text": "Create Link with Target\\nReturn an anchor tag that opens in a new tab",
-        "starter_code": "def create_external_link(url, text):\\n    # Return link with target=_blank\\n    pass",
+        "text": "Create Link with Target\nReturn an anchor tag that opens in a new tab",
+        "starter_code": "def create_external_link(url, text):\n    # Return link with target=_blank\n    pass",
         "test_cases": [
             {
                 "function_call": "'target=\"_blank\"' in create_external_link('https://google.com', 'Google')",
@@ -297,12 +297,12 @@
         ],
         "difficulty": "medium",
         "topic_tag": "anchors",
-        "solution_code": "def create_external_link(url, text):\\n    return f'<a href=\"{url}\" target=\"_blank\">{text}</a>'"
+        "solution_code": "def create_external_link(url, text):\n    return f'<a href=\"{url}\" target=\"_blank\">{text}</a>'"
     },
     {
         "question_type": "coding",
-        "text": "Create Image with Size\\nReturn an image tag with width and height attributes",
-        "starter_code": "def create_sized_image(src, alt, width, height):\\n    # Return img with all attributes\\n    pass",
+        "text": "Create Image with Size\nReturn an image tag with width and height attributes",
+        "starter_code": "def create_sized_image(src, alt, width, height):\n    # Return img with all attributes\n    pass",
         "test_cases": [
             {
                 "function_call": "'width=\"100\"' in create_sized_image('x.jpg', 'X', 100, 200)",
@@ -315,12 +315,12 @@
         ],
         "difficulty": "medium",
         "topic_tag": "images",
-        "solution_code": "def create_sized_image(src, alt, width, height):\\n    return f'<img src=\"{src}\" alt=\"{alt}\" width=\"{width}\" height=\"{height}\">'"
+        "solution_code": "def create_sized_image(src, alt, width, height):\n    return f'<img src=\"{src}\" alt=\"{alt}\" width=\"{width}\" height=\"{height}\">'"
     },
     {
         "question_type": "code-correction",
         "text": "Fix the improperly nested HTML:",
-        "code": "<ul>\\n    <li>Item 1\\n    <li>Item 2</li>\\n</ul>",
+        "code": "<ul>\n    <li>Item 1\n    <li>Item 2</li>\n</ul>",
         "options": [
             "Add </li> after 'Item 1'",
             "Remove the <ul> tag",

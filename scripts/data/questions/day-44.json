@@ -211,8 +211,8 @@
     },
     {
         "question_type": "coding",
-        "text": "Hex Color\\nReturn the hex color code for pure green",
-        "starter_code": "def green_hex():\\n    # Return hex code for green\\n    pass",
+        "text": "Hex Color\nReturn the hex color code for pure green",
+        "starter_code": "def green_hex():\n    # Return hex code for green\n    pass",
         "test_cases": [
             {
                 "function_call": "green_hex()",
@@ -221,12 +221,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "colors",
-        "solution_code": "def green_hex():\\n    return '#00FF00'"
+        "solution_code": "def green_hex():\n    return '#00FF00'"
     },
     {
         "question_type": "coding",
-        "text": "RGB Color\\nReturn the RGB notation for blue (0 red, 0 green, 255 blue)",
-        "starter_code": "def blue_rgb():\\n    # Return rgb() notation for blue\\n    pass",
+        "text": "RGB Color\nReturn the RGB notation for blue (0 red, 0 green, 255 blue)",
+        "starter_code": "def blue_rgb():\n    # Return rgb() notation for blue\n    pass",
         "test_cases": [
             {
                 "function_call": "blue_rgb()",
@@ -235,12 +235,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "colors",
-        "solution_code": "def blue_rgb():\\n    return 'rgb(0, 0, 255)'"
+        "solution_code": "def blue_rgb():\n    return 'rgb(0, 0, 255)'"
     },
     {
         "question_type": "coding",
-        "text": "Create RGBA\\nReturn RGBA with 50% transparency for black",
-        "starter_code": "def transparent_black():\\n    # Return rgba for 50% transparent black\\n    pass",
+        "text": "Create RGBA\nReturn RGBA with 50% transparency for black",
+        "starter_code": "def transparent_black():\n    # Return rgba for 50% transparent black\n    pass",
         "test_cases": [
             {
                 "function_call": "'rgba' in transparent_black()",
@@ -253,12 +253,12 @@
         ],
         "difficulty": "medium",
         "topic_tag": "colors",
-        "solution_code": "def transparent_black():\\n    return 'rgba(0, 0, 0, 0.5)'"
+        "solution_code": "def transparent_black():\n    return 'rgba(0, 0, 0, 0.5)'"
     },
     {
         "question_type": "coding",
-        "text": "Box Sizing Reset\\nReturn CSS rule to apply border-box to all elements",
-        "starter_code": "def border_box_reset():\\n    # Return CSS for universal border-box\\n    pass",
+        "text": "Box Sizing Reset\nReturn CSS rule to apply border-box to all elements",
+        "starter_code": "def border_box_reset():\n    # Return CSS for universal border-box\n    pass",
         "test_cases": [
             {
                 "function_call": "'*' in border_box_reset()",
@@ -271,12 +271,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "box-model",
-        "solution_code": "def border_box_reset():\\n    return '* { box-sizing: border-box; }'"
+        "solution_code": "def border_box_reset():\n    return '* { box-sizing: border-box; }'"
     },
     {
         "question_type": "coding",
-        "text": "Padding Shorthand\\nReturn CSS padding rule with 10px top/bottom and 20px left/right",
-        "starter_code": "def padding_shorthand():\\n    # Return padding shorthand\\n    pass",
+        "text": "Padding Shorthand\nReturn CSS padding rule with 10px top/bottom and 20px left/right",
+        "starter_code": "def padding_shorthand():\n    # Return padding shorthand\n    pass",
         "test_cases": [
             {
                 "function_call": "'padding' in padding_shorthand()",
@@ -289,12 +289,12 @@
         ],
         "difficulty": "medium",
         "topic_tag": "box-model",
-        "solution_code": "def padding_shorthand():\\n    return 'padding: 10px 20px;'"
+        "solution_code": "def padding_shorthand():\n    return 'padding: 10px 20px;'"
     },
     {
         "question_type": "coding",
-        "text": "Font Family\\nReturn CSS for Arial with sans-serif fallback",
-        "starter_code": "def font_stack():\\n    # Return font-family rule\\n    pass",
+        "text": "Font Family\nReturn CSS for Arial with sans-serif fallback",
+        "starter_code": "def font_stack():\n    # Return font-family rule\n    pass",
         "test_cases": [
             {
                 "function_call": "'font-family' in font_stack()",
@@ -307,7 +307,7 @@
         ],
         "difficulty": "easy",
         "topic_tag": "fonts",
-        "solution_code": "def font_stack():\\n    return 'font-family: Arial, sans-serif;'"
+        "solution_code": "def font_stack():\n    return 'font-family: Arial, sans-serif;'"
     },
     {
         "question_type": "code-correction",
@@ -327,7 +327,7 @@
     {
         "question_type": "code-correction",
         "text": "Fix the box model issue:",
-        "code": ".box {\\n    width: 200px;\\n    padding: 20px;\\n    /* Total width is unexpectedly 240px! */\\n}",
+        "code": ".box {\n    width: 200px;\n    padding: 20px;\n    /* Total width is unexpectedly 240px! */\n}",
         "options": [
             "Add box-sizing: border-box;",
             "Remove padding",

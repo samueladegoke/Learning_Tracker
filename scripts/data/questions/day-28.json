@@ -211,8 +211,8 @@
     },
     {
         "question_type": "coding",
-        "text": "Seconds to Minutes\\nWrite a function `to_minutes` that takes seconds and returns the number of complete minutes.",
-        "starter_code": "def to_minutes(seconds):\\n    pass",
+        "text": "Seconds to Minutes\nWrite a function `to_minutes` that takes seconds and returns the number of complete minutes.",
+        "starter_code": "def to_minutes(seconds):\n    pass",
         "test_cases": [
             {
                 "function_call": "to_minutes(125)",
@@ -229,12 +229,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "timer",
-        "solution_code": "def to_minutes(seconds):\\n    return seconds // 60"
+        "solution_code": "def to_minutes(seconds):\n    return seconds // 60"
     },
     {
         "question_type": "coding",
-        "text": "Remaining Seconds\\nWrite a function `remaining_seconds` that returns the remaining seconds after full minutes.",
-        "starter_code": "def remaining_seconds(seconds):\\n    pass",
+        "text": "Remaining Seconds\nWrite a function `remaining_seconds` that returns the remaining seconds after full minutes.",
+        "starter_code": "def remaining_seconds(seconds):\n    pass",
         "test_cases": [
             {
                 "function_call": "remaining_seconds(125)",
@@ -251,12 +251,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "timer",
-        "solution_code": "def remaining_seconds(seconds):\\n    return seconds % 60"
+        "solution_code": "def remaining_seconds(seconds):\n    return seconds % 60"
     },
     {
         "question_type": "coding",
-        "text": "Format Time\\nWrite a function `format_time` that takes seconds and returns a string in 'MM:SS' format.",
-        "starter_code": "def format_time(seconds):\\n    pass",
+        "text": "Format Time\nWrite a function `format_time` that takes seconds and returns a string in 'MM:SS' format.",
+        "starter_code": "def format_time(seconds):\n    pass",
         "test_cases": [
             {
                 "function_call": "format_time(65)",
@@ -273,12 +273,12 @@
         ],
         "difficulty": "medium",
         "topic_tag": "timer",
-        "solution_code": "def format_time(seconds):\\n    mins = seconds // 60\\n    secs = seconds % 60\\n    return f'{mins:02d}:{secs:02d}'"
+        "solution_code": "def format_time(seconds):\n    mins = seconds // 60\n    secs = seconds % 60\n    return f'{mins:02d}:{secs:02d}'"
     },
     {
         "question_type": "coding",
-        "text": "Get Type Name\\nWrite a function `get_type_name` that returns the type name of the input as a string.",
-        "starter_code": "def get_type_name(value):\\n    pass",
+        "text": "Get Type Name\nWrite a function `get_type_name` that returns the type name of the input as a string.",
+        "starter_code": "def get_type_name(value):\n    pass",
         "test_cases": [
             {
                 "function_call": "get_type_name(5)",
@@ -295,12 +295,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "dynamic-typing",
-        "solution_code": "def get_type_name(value):\\n    return type(value).__name__"
+        "solution_code": "def get_type_name(value):\n    return type(value).__name__"
     },
     {
         "question_type": "coding",
-        "text": "Zero Pad\\nWrite a function `zero_pad` that takes a number and returns it as a 2-digit string with leading zero if needed.",
-        "starter_code": "def zero_pad(num):\\n    pass",
+        "text": "Zero Pad\nWrite a function `zero_pad` that takes a number and returns it as a 2-digit string with leading zero if needed.",
+        "starter_code": "def zero_pad(num):\n    pass",
         "test_cases": [
             {
                 "function_call": "zero_pad(5)",
@@ -317,12 +317,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "timer",
-        "solution_code": "def zero_pad(num):\\n    return f'{num:02d}'"
+        "solution_code": "def zero_pad(num):\n    return f'{num:02d}'"
     },
     {
         "question_type": "coding",
-        "text": "Minutes to Seconds\\nWrite a function `to_seconds` that converts minutes to seconds.",
-        "starter_code": "def to_seconds(minutes):\\n    pass",
+        "text": "Minutes to Seconds\nWrite a function `to_seconds` that converts minutes to seconds.",
+        "starter_code": "def to_seconds(minutes):\n    pass",
         "test_cases": [
             {
                 "function_call": "to_seconds(5)",
@@ -339,12 +339,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "timer",
-        "solution_code": "def to_seconds(minutes):\\n    return minutes * 60"
+        "solution_code": "def to_seconds(minutes):\n    return minutes * 60"
     },
     {
         "question_type": "coding",
-        "text": "Is Integer\\nWrite a function `is_integer` that returns True if the value is an integer, False otherwise.",
-        "starter_code": "def is_integer(value):\\n    pass",
+        "text": "Is Integer\nWrite a function `is_integer` that returns True if the value is an integer, False otherwise.",
+        "starter_code": "def is_integer(value):\n    pass",
         "test_cases": [
             {
                 "function_call": "is_integer(5)",
@@ -361,7 +361,7 @@
         ],
         "difficulty": "easy",
         "topic_tag": "dynamic-typing",
-        "solution_code": "def is_integer(value):\\n    return type(value) == int"
+        "solution_code": "def is_integer(value):\n    return type(value) == int"
     },
     {
         "question_type": "code-correction",

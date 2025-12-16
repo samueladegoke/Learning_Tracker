@@ -283,8 +283,8 @@
     },
     {
         "question_type": "coding",
-        "text": "Callback Function\\nWrite a higher-order function `apply_operation` that takes a number and a function. It applies the function to the number and returns the result.\\n\\nExample: apply_operation(5, lambda x: x * 2) returns 10.",
-        "starter_code": "def apply_operation(num, operation):\\n    # Apply operation function to num\\n    pass",
+        "text": "Callback Function\nWrite a higher-order function `apply_operation` that takes a number and a function. It applies the function to the number and returns the result.\n\nExample: apply_operation(5, lambda x: x * 2) returns 10.",
+        "starter_code": "def apply_operation(num, operation):\n    # Apply operation function to num\n    pass",
         "test_cases": [
             {
                 "function_call": "apply_operation(5, lambda x: x * 2)",
@@ -301,12 +301,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "higher-order",
-        "solution_code": "def apply_operation(num, operation):\\n    return operation(num)"
+        "solution_code": "def apply_operation(num, operation):\n    return operation(num)"
     },
     {
         "question_type": "coding",
-        "text": "Create Turtles at Positions\\nWrite a function that takes a list of y_positions and returns the count of positions created. This simulates setting up turtle race positions.\\n\\nExample: setup_race_positions([-100, -50, 0, 50, 100]) returns 5.",
-        "starter_code": "def setup_race_positions(y_positions):\\n    # Return count of positions\\n    pass",
+        "text": "Create Turtles at Positions\nWrite a function that takes a list of y_positions and returns the count of positions created. This simulates setting up turtle race positions.\n\nExample: setup_race_positions([-100, -50, 0, 50, 100]) returns 5.",
+        "starter_code": "def setup_race_positions(y_positions):\n    # Return count of positions\n    pass",
         "test_cases": [
             {
                 "function_call": "setup_race_positions([-100, -50, 0, 50, 100])",
@@ -323,12 +323,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "turtle-race",
-        "solution_code": "def setup_race_positions(y_positions):\\n    return len(y_positions)"
+        "solution_code": "def setup_race_positions(y_positions):\n    return len(y_positions)"
     },
     {
         "question_type": "coding",
-        "text": "Check Winner\\nWrite a function that checks if any turtle has crossed the finish line at x_position >= 230. Takes a list of x positions and returns True if any turtle won.\\n\\nExample: check_winner([100, 231, 150]) returns True.",
-        "starter_code": "def check_winner(x_positions, finish_line=230):\\n    # Return True if any turtle crossed finish line\\n    pass",
+        "text": "Check Winner\nWrite a function that checks if any turtle has crossed the finish line at x_position >= 230. Takes a list of x positions and returns True if any turtle won.\n\nExample: check_winner([100, 231, 150]) returns True.",
+        "starter_code": "def check_winner(x_positions, finish_line=230):\n    # Return True if any turtle crossed finish line\n    pass",
         "test_cases": [
             {
                 "function_call": "check_winner([100, 231, 150])",
@@ -345,12 +345,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "turtle-race",
-        "solution_code": "def check_winner(x_positions, finish_line=230):\\n    return any(x >= finish_line for x in x_positions)"
+        "solution_code": "def check_winner(x_positions, finish_line=230):\n    return any(x >= finish_line for x in x_positions)"
     },
     {
         "question_type": "coding",
-        "text": "Event Handler Mapping\\nCreate a dictionary that maps key strings to movement values. Keys: 'w'=90, 's'=270, 'a'=180, 'd'=0 (WASD controls for turtle heading).\\n\\nExample: get_heading('w') returns 90.",
-        "starter_code": "def get_heading(key):\\n    # Return heading value for key\\n    # w=North(90), s=South(270), a=West(180), d=East(0)\\n    pass",
+        "text": "Event Handler Mapping\nCreate a dictionary that maps key strings to movement values. Keys: 'w'=90, 's'=270, 'a'=180, 'd'=0 (WASD controls for turtle heading).\n\nExample: get_heading('w') returns 90.",
+        "starter_code": "def get_heading(key):\n    # Return heading value for key\n    # w=North(90), s=South(270), a=West(180), d=East(0)\n    pass",
         "test_cases": [
             {
                 "function_call": "get_heading('w')",
@@ -371,12 +371,12 @@
         ],
         "difficulty": "medium",
         "topic_tag": "event-handling",
-        "solution_code": "def get_heading(key):\\n    headings = {'w': 90, 's': 270, 'a': 180, 'd': 0}\\n    return headings[key]"
+        "solution_code": "def get_heading(key):\n    headings = {'w': 90, 's': 270, 'a': 180, 'd': 0}\n    return headings[key]"
     },
     {
         "question_type": "coding",
-        "text": "Instance State Tracker\\nCreate a class `StateTracker` that tracks how many times a method `record` is called. Each object should track independently.\\n\\nExample: Two StateTrackers, one with 3 records and one with 5 should report those values separately.",
-        "starter_code": "class StateTracker:\\n    def __init__(self):\\n        # Initialize count\\n        pass\\n    \\n    def record(self):\\n        # Increment count\\n        pass\\n    \\n    def get_count(self):\\n        # Return count\\n        pass\\n\\ndef test_state():\\n    t1 = StateTracker()\\n    t2 = StateTracker()\\n    for _ in range(3): t1.record()\\n    for _ in range(5): t2.record()\\n    return (t1.get_count(), t2.get_count())",
+        "text": "Instance State Tracker\nCreate a class `StateTracker` that tracks how many times a method `record` is called. Each object should track independently.\n\nExample: Two StateTrackers, one with 3 records and one with 5 should report those values separately.",
+        "starter_code": "class StateTracker:\n    def __init__(self):\n        # Initialize count\n        pass\n    \n    def record(self):\n        # Increment count\n        pass\n    \n    def get_count(self):\n        # Return count\n        pass\n\ndef test_state():\n    t1 = StateTracker()\n    t2 = StateTracker()\n    for _ in range(3): t1.record()\n    for _ in range(5): t2.record()\n    return (t1.get_count(), t2.get_count())",
         "test_cases": [
             {
                 "function_call": "test_state()",
@@ -389,6 +389,6 @@
         ],
         "difficulty": "medium",
         "topic_tag": "state",
-        "solution_code": "class StateTracker:\\n    def __init__(self):\\n        self.count = 0\\n    \\n    def record(self):\\n        self.count += 1\\n    \\n    def get_count(self):\\n        return self.count\\n\\ndef test_state():\\n    t1 = StateTracker()\\n    t2 = StateTracker()\\n    for _ in range(3): t1.record()\\n    for _ in range(5): t2.record()\\n    return (t1.get_count(), t2.get_count())"
+        "solution_code": "class StateTracker:\n    def __init__(self):\n        self.count = 0\n    \n    def record(self):\n        self.count += 1\n    \n    def get_count(self):\n        return self.count\n\ndef test_state():\n    t1 = StateTracker()\n    t2 = StateTracker()\n    for _ in range(3): t1.record()\n    for _ in range(5): t2.record()\n    return (t1.get_count(), t2.get_count())"
     }
 ]

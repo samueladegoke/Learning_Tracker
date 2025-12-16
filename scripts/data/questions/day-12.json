@@ -42,7 +42,7 @@
     "question_type": "mcq"
   },
   {
-    "text": "What will this code print?\\n```python\\nenemies = 1\\ndef increase():\\n    enemies = 2\\nincrease()\\nprint(enemies)\\n```",
+    "text": "What will this code print?\n```python\nenemies = 1\ndef increase():\n    enemies = 2\nincrease()\nprint(enemies)\n```",
     "options": [
       "1",
       "2",
@@ -210,7 +210,7 @@
     "question_type": "mcq"
   },
   {
-    "text": "What will this print?\\n```python\\nx = 10\\ndef change_x():\\n    global x\\n    x = 20\\nchange_x()\\nprint(x)\\n```",
+    "text": "What will this print?\n```python\nx = 10\ndef change_x():\n    global x\n    x = 20\nchange_x()\nprint(x)\n```",
     "options": [
       "10",
       "20",
@@ -224,7 +224,7 @@
     "question_type": "mcq"
   },
   {
-    "text": "Local Variable\\nWrite a function `get_greeting` that creates a local variable `message` set to 'Hello!' and returns it.",
+    "text": "Local Variable\nWrite a function `get_greeting` that creates a local variable `message` set to 'Hello!' and returns it.",
     "starter_code": "def get_greeting():\n    # Create and return a local variable\n    pass",
     "solution_code": "def get_greeting():\n    message = 'Hello!'\n    return message",
     "test_cases": [
@@ -239,7 +239,7 @@
     "question_type": "coding"
   },
   {
-    "text": "Decrement Turns\\nWrite a function `decrease_turns` that takes `turns` and returns `turns - 1`.",
+    "text": "Decrement Turns\nWrite a function `decrease_turns` that takes `turns` and returns `turns - 1`.",
     "starter_code": "def decrease_turns(turns):\n    # Return turns - 1\n    pass",
     "solution_code": "def decrease_turns(turns):\n    return turns - 1",
     "test_cases": [
@@ -254,7 +254,7 @@
     "question_type": "coding"
   },
   {
-    "text": "Return Instead of Global\\nWrite a function `add_one` that takes a number and returns that number plus 1. Don't use the global keyword.",
+    "text": "Return Instead of Global\nWrite a function `add_one` that takes a number and returns that number plus 1. Don't use the global keyword.",
     "starter_code": "def add_one(number):\n    # Return number + 1\n    pass",
     "solution_code": "def add_one(number):\n    return number + 1",
     "test_cases": [
@@ -273,7 +273,7 @@
     "question_type": "coding"
   },
   {
-    "text": "Set Difficulty\\nWrite a function `set_turns` that takes `level`. Return 10 for 'easy' and 5 for 'hard'. Return 0 otherwise.",
+    "text": "Set Difficulty\nWrite a function `set_turns` that takes `level`. Return 10 for 'easy' and 5 for 'hard'. Return 0 otherwise.",
     "starter_code": "def set_turns(level):\n    # Return 10 or 5\n    pass",
     "solution_code": "def set_turns(level):\n    if level == 'easy':\n        return 10\n    elif level == 'hard':\n        return 5\n    else:\n        return 0",
     "test_cases": [
@@ -292,7 +292,7 @@
     "question_type": "coding"
   },
   {
-    "text": "Check Guess\\nWrite a function `check_guess` that takes guess and answer. Return 'Too high' if guess > answer, 'Too low' if guess < answer, 'Correct!' if equal.",
+    "text": "Check Guess\nWrite a function `check_guess` that takes guess and answer. Return 'Too high' if guess > answer, 'Too low' if guess < answer, 'Correct!' if equal.",
     "starter_code": "def check_guess(guess, answer):\n    # Return string feedback\n    pass",
     "solution_code": "def check_guess(guess, answer):\n    if guess > answer:\n        return 'Too high'\n    elif guess < answer:\n        return 'Too low'\n    else:\n        return 'Correct!'",
     "test_cases": [
@@ -315,7 +315,7 @@
     "question_type": "coding"
   },
   {
-    "text": "Use Constant\\nGiven the constant MAX_ATTEMPTS = 10 at the top of your code, write a function `has_attempts` that takes current_attempts and returns True if current_attempts < MAX_ATTEMPTS.",
+    "text": "Use Constant\nGiven the constant MAX_ATTEMPTS = 10 at the top of your code, write a function `has_attempts` that takes current_attempts and returns True if current_attempts < MAX_ATTEMPTS.",
     "starter_code": "MAX_ATTEMPTS = 10\n\ndef has_attempts(current_attempts):\n    # Return True if attempts < MAX\n    pass",
     "solution_code": "MAX_ATTEMPTS = 10\n\ndef has_attempts(current_attempts):\n    return current_attempts < MAX_ATTEMPTS",
     "test_cases": [
@@ -334,7 +334,7 @@
     "question_type": "coding"
   },
   {
-    "text": "Random Number in Range\\nWrite a function `random_number` that returns a random integer between 1 and 100 (inclusive). Import randint from random.",
+    "text": "Random Number in Range\nWrite a function `random_number` that returns a random integer between 1 and 100 (inclusive). Import randint from random.",
     "starter_code": "from random import randint\n\ndef random_number():\n    # Return number 1-100\n    pass",
     "solution_code": "from random import randint\n\ndef random_number():\n    return randint(1, 100)",
     "test_cases": [
@@ -349,7 +349,7 @@
     "question_type": "coding"
   },
   {
-    "text": "Game Over Check\\nWrite a function `is_game_over` that takes guess, answer, and turns. Return True if guess equals answer OR turns is 0, False otherwise.",
+    "text": "Game Over Check\nWrite a function `is_game_over` that takes guess, answer, and turns. Return True if guess equals answer OR turns is 0, False otherwise.",
     "starter_code": "def is_game_over(guess, answer, turns):\n    # Return True if game over\n    pass",
     "solution_code": "def is_game_over(guess, answer, turns):\n    return guess == answer or turns == 0",
     "test_cases": [

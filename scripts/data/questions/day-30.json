@@ -211,8 +211,8 @@
     },
     {
         "question_type": "coding",
-        "text": "Safe Divide\\nWrite a function that returns a/b. If b is 0, return 0 instead of crashing.",
-        "starter_code": "def safe_divide(a, b):\\n    pass",
+        "text": "Safe Divide\nWrite a function that returns a/b. If b is 0, return 0 instead of crashing.",
+        "starter_code": "def safe_divide(a, b):\n    pass",
         "test_cases": [
             {
                 "function_call": "safe_divide(10, 2)",
@@ -225,12 +225,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "exceptions",
-        "solution_code": "def safe_divide(a, b):\\n    try:\\n        return a / b\\n    except ZeroDivisionError:\\n        return 0"
+        "solution_code": "def safe_divide(a, b):\n    try:\n        return a / b\n    except ZeroDivisionError:\n        return 0"
     },
     {
         "question_type": "coding",
-        "text": "Safe Get Key\\nWrite a function that returns dict[key] or 'Not found' if key doesn't exist.",
-        "starter_code": "def safe_get(d, key):\\n    pass",
+        "text": "Safe Get Key\nWrite a function that returns dict[key] or 'Not found' if key doesn't exist.",
+        "starter_code": "def safe_get(d, key):\n    pass",
         "test_cases": [
             {
                 "function_call": "safe_get({'a': 1}, 'a')",
@@ -243,12 +243,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "exceptions",
-        "solution_code": "def safe_get(d, key):\\n    try:\\n        return d[key]\\n    except KeyError:\\n        return 'Not found'"
+        "solution_code": "def safe_get(d, key):\n    try:\n        return d[key]\n    except KeyError:\n        return 'Not found'"
     },
     {
         "question_type": "coding",
-        "text": "To JSON String\\nWrite a function that converts a dict to a JSON string.",
-        "starter_code": "import json\\ndef to_json(data):\\n    pass",
+        "text": "To JSON String\nWrite a function that converts a dict to a JSON string.",
+        "starter_code": "import json\ndef to_json(data):\n    pass",
         "test_cases": [
             {
                 "function_call": "to_json({'a': 1})",
@@ -257,12 +257,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "json",
-        "solution_code": "import json\\ndef to_json(data):\\n    return json.dumps(data)"
+        "solution_code": "import json\ndef to_json(data):\n    return json.dumps(data)"
     },
     {
         "question_type": "coding",
-        "text": "From JSON String\\nWrite a function that parses a JSON string into a dict.",
-        "starter_code": "import json\\ndef from_json(text):\\n    pass",
+        "text": "From JSON String\nWrite a function that parses a JSON string into a dict.",
+        "starter_code": "import json\ndef from_json(text):\n    pass",
         "test_cases": [
             {
                 "function_call": "from_json('{\"a\": 1}')",
@@ -271,12 +271,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "json",
-        "solution_code": "import json\\ndef from_json(text):\\n    return json.loads(text)"
+        "solution_code": "import json\ndef from_json(text):\n    return json.loads(text)"
     },
     {
         "question_type": "coding",
-        "text": "Safe Index\\nWrite a function that returns list[index] or None if index is out of range.",
-        "starter_code": "def safe_index(lst, index):\\n    pass",
+        "text": "Safe Index\nWrite a function that returns list[index] or None if index is out of range.",
+        "starter_code": "def safe_index(lst, index):\n    pass",
         "test_cases": [
             {
                 "function_call": "safe_index([1,2,3], 1)",
@@ -289,12 +289,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "exceptions",
-        "solution_code": "def safe_index(lst, index):\\n    try:\\n        return lst[index]\\n    except IndexError:\\n        return None"
+        "solution_code": "def safe_index(lst, index):\n    try:\n        return lst[index]\n    except IndexError:\n        return None"
     },
     {
         "question_type": "coding",
-        "text": "Validate Positive\\nWrite a function that raises ValueError if n <= 0, else returns n.",
-        "starter_code": "def validate_positive(n):\\n    pass",
+        "text": "Validate Positive\nWrite a function that raises ValueError if n <= 0, else returns n.",
+        "starter_code": "def validate_positive(n):\n    pass",
         "test_cases": [
             {
                 "function_call": "validate_positive(5)",
@@ -307,12 +307,12 @@
         ],
         "difficulty": "medium",
         "topic_tag": "exceptions",
-        "solution_code": "def validate_positive(n):\\n    if n <= 0:\\n        raise ValueError('Must be positive')\\n    return n"
+        "solution_code": "def validate_positive(n):\n    if n <= 0:\n        raise ValueError('Must be positive')\n    return n"
     },
     {
         "question_type": "coding",
-        "text": "Merge Dicts to JSON\\nWrite a function that merges two dicts and returns JSON string.",
-        "starter_code": "import json\\ndef merge_to_json(d1, d2):\\n    pass",
+        "text": "Merge Dicts to JSON\nWrite a function that merges two dicts and returns JSON string.",
+        "starter_code": "import json\ndef merge_to_json(d1, d2):\n    pass",
         "test_cases": [
             {
                 "function_call": "merge_to_json({'a':1}, {'b':2})",
@@ -321,7 +321,7 @@
         ],
         "difficulty": "medium",
         "topic_tag": "json",
-        "solution_code": "import json\\ndef merge_to_json(d1, d2):\\n    merged = {**d1, **d2}\\n    return json.dumps(merged)"
+        "solution_code": "import json\ndef merge_to_json(d1, d2):\n    merged = {**d1, **d2}\n    return json.dumps(merged)"
     },
     {
         "question_type": "code-correction",

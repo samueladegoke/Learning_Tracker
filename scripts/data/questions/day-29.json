@@ -211,22 +211,22 @@
     },
     {
         "question_type": "coding",
-        "text": "File Writer\\nWrite a function `append_line` that appends a line of text to 'data.txt' with a newline.",
-        "starter_code": "def append_line(text):\\n    pass",
+        "text": "File Writer\nWrite a function `append_line` that appends a line of text to 'data.txt' with a newline.",
+        "starter_code": "def append_line(text):\n    pass",
         "test_cases": [
             {
                 "function_call": "append_line('hello'); open('data.txt').read()[-6:]",
-                "expected": "\"hello\\n\""
+                "expected": "\"hello\n\""
             }
         ],
         "difficulty": "easy",
         "topic_tag": "file-io",
-        "solution_code": "def append_line(text):\\n    with open('data.txt', 'a') as f:\\n        f.write(text + '\\n')"
+        "solution_code": "def append_line(text):\n    with open('data.txt', 'a') as f:\n        f.write(text + '\n')"
     },
     {
         "question_type": "coding",
-        "text": "Validate Not Empty\\nWrite a function `is_valid` that returns True if both website and password are non-empty strings.",
-        "starter_code": "def is_valid(website, password):\\n    pass",
+        "text": "Validate Not Empty\nWrite a function `is_valid` that returns True if both website and password are non-empty strings.",
+        "starter_code": "def is_valid(website, password):\n    pass",
         "test_cases": [
             {
                 "function_call": "is_valid('google.com', 'abc123')",
@@ -243,12 +243,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "validation",
-        "solution_code": "def is_valid(website, password):\\n    return len(website) > 0 and len(password) > 0"
+        "solution_code": "def is_valid(website, password):\n    return len(website) > 0 and len(password) > 0"
     },
     {
         "question_type": "coding",
-        "text": "Format Entry\\nWrite a function `format_entry` that takes website and password and returns 'website | password'.",
-        "starter_code": "def format_entry(website, password):\\n    pass",
+        "text": "Format Entry\nWrite a function `format_entry` that takes website and password and returns 'website | password'.",
+        "starter_code": "def format_entry(website, password):\n    pass",
         "test_cases": [
             {
                 "function_call": "format_entry('google.com', 'pass123')",
@@ -261,26 +261,26 @@
         ],
         "difficulty": "easy",
         "topic_tag": "password-manager",
-        "solution_code": "def format_entry(website, password):\\n    return f'{website} | {password}'"
+        "solution_code": "def format_entry(website, password):\n    return f'{website} | {password}'"
     },
     {
         "question_type": "coding",
-        "text": "Count Lines\\nWrite a function `count_lines` that returns the number of lines in 'data.txt'.",
-        "starter_code": "def count_lines():\\n    pass",
+        "text": "Count Lines\nWrite a function `count_lines` that returns the number of lines in 'data.txt'.",
+        "starter_code": "def count_lines():\n    pass",
         "test_cases": [
             {
-                "function_call": "open('data.txt','w').write('a\\nb\\nc'); count_lines()",
+                "function_call": "open('data.txt','w').write('a\nb\nc'); count_lines()",
                 "expected": "3"
             }
         ],
         "difficulty": "medium",
         "topic_tag": "file-io",
-        "solution_code": "def count_lines():\\n    with open('data.txt', 'r') as f:\\n        return len(f.readlines())"
+        "solution_code": "def count_lines():\n    with open('data.txt', 'r') as f:\n        return len(f.readlines())"
     },
     {
         "question_type": "coding",
-        "text": "Generate Password String\\nWrite a function `generate_password` that returns a string of n random lowercase letters.",
-        "starter_code": "import random\\nimport string\\n\\ndef generate_password(n):\\n    pass",
+        "text": "Generate Password String\nWrite a function `generate_password` that returns a string of n random lowercase letters.",
+        "starter_code": "import random\nimport string\n\ndef generate_password(n):\n    pass",
         "test_cases": [
             {
                 "function_call": "len(generate_password(8))",
@@ -293,12 +293,12 @@
         ],
         "difficulty": "medium",
         "topic_tag": "password-manager",
-        "solution_code": "import random\\nimport string\\n\\ndef generate_password(n):\\n    return ''.join(random.choices(string.ascii_lowercase, k=n))"
+        "solution_code": "import random\nimport string\n\ndef generate_password(n):\n    return ''.join(random.choices(string.ascii_lowercase, k=n))"
     },
     {
         "question_type": "coding",
-        "text": "Parse Entry\\nWrite a function `parse_entry` that takes a string 'website | password' and returns a tuple (website, password).",
-        "starter_code": "def parse_entry(entry):\\n    pass",
+        "text": "Parse Entry\nWrite a function `parse_entry` that takes a string 'website | password' and returns a tuple (website, password).",
+        "starter_code": "def parse_entry(entry):\n    pass",
         "test_cases": [
             {
                 "function_call": "parse_entry('google.com | pass123')",
@@ -311,26 +311,26 @@
         ],
         "difficulty": "medium",
         "topic_tag": "password-manager",
-        "solution_code": "def parse_entry(entry):\\n    parts = entry.split(' | ')\\n    return (parts[0], parts[1])"
+        "solution_code": "def parse_entry(entry):\n    parts = entry.split(' | ')\n    return (parts[0], parts[1])"
     },
     {
         "question_type": "coding",
-        "text": "Read First Line\\nWrite a function `read_first_line` that returns the first line of 'data.txt' stripped of newlines.",
-        "starter_code": "def read_first_line():\\n    pass",
+        "text": "Read First Line\nWrite a function `read_first_line` that returns the first line of 'data.txt' stripped of newlines.",
+        "starter_code": "def read_first_line():\n    pass",
         "test_cases": [
             {
-                "function_call": "open('data.txt','w').write('hello\\nworld'); read_first_line()",
+                "function_call": "open('data.txt','w').write('hello\nworld'); read_first_line()",
                 "expected": "\"hello\""
             }
         ],
         "difficulty": "easy",
         "topic_tag": "file-io",
-        "solution_code": "def read_first_line():\\n    with open('data.txt', 'r') as f:\\n        return f.readline().strip()"
+        "solution_code": "def read_first_line():\n    with open('data.txt', 'r') as f:\n        return f.readline().strip()"
     },
     {
         "question_type": "code-correction",
         "text": "Fix the bug in this file write code",
-        "code": "# Save password to file\nwith open('passwords.txt', 'r') as f:\n    f.write('google.com | pass123\\n')",
+        "code": "# Save password to file\nwith open('passwords.txt', 'r') as f:\n    f.write('google.com | pass123\n')",
         "options": [
             "Change 'r' to 'a' or 'w' mode",
             "Change f.write to f.read",

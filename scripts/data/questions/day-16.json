@@ -287,8 +287,8 @@
   },
   {
     "question_type": "coding",
-    "text": "Create a Simple Class\\nDefine a class called `Dog` with an `__init__` method that takes `name` and `breed` as parameters and stores them as attributes. Return a formatted string when called.\\n\\nExample: create_dog('Buddy', 'Golden Retriever') should work with Dog class.",
-    "starter_code": "class Dog:\\n    def __init__(self, name, breed):\\n        # Store name and breed as attributes\\n        pass\\n\\ndef create_dog(name, breed):\\n    dog = Dog(name, breed)\\n    return f'{dog.name} is a {dog.breed}'",
+    "text": "Create a Simple Class\nDefine a class called `Dog` with an `__init__` method that takes `name` and `breed` as parameters and stores them as attributes. Return a formatted string when called.\n\nExample: create_dog('Buddy', 'Golden Retriever') should work with Dog class.",
+    "starter_code": "class Dog:\n    def __init__(self, name, breed):\n        # Store name and breed as attributes\n        pass\n\ndef create_dog(name, breed):\n    dog = Dog(name, breed)\n    return f'{dog.name} is a {dog.breed}'",
     "test_cases": [
       {
         "function_call": "create_dog('Buddy', 'Golden Retriever')",
@@ -305,12 +305,12 @@
     ],
     "difficulty": "easy",
     "topic_tag": "classes",
-    "solution_code": "class Dog:\\n    def __init__(self, name, breed):\\n        self.name = name\\n        self.breed = breed\\n\\ndef create_dog(name, breed):\\n    dog = Dog(name, breed)\\n    return f'{dog.name} is a {dog.breed}'"
+    "solution_code": "class Dog:\n    def __init__(self, name, breed):\n        self.name = name\n        self.breed = breed\n\ndef create_dog(name, breed):\n    dog = Dog(name, breed)\n    return f'{dog.name} is a {dog.breed}'"
   },
   {
     "question_type": "coding",
-    "text": "Add a Method to a Class\\nCreate a `Counter` class with a `count` attribute that starts at 0. Add an `increment` method that increases count by 1 and a `get_count` method that returns the current count.\\n\\nExample: After calling increment() 3 times, get_count() should return 3.",
-    "starter_code": "class Counter:\\n    def __init__(self):\\n        # Initialize count to 0\\n        pass\\n    \\n    def increment(self):\\n        # Increase count by 1\\n        pass\\n    \\n    def get_count(self):\\n        # Return current count\\n        pass\\n\\ndef test_counter(times):\\n    c = Counter()\\n    for _ in range(times):\\n        c.increment()\\n    return c.get_count()",
+    "text": "Add a Method to a Class\nCreate a `Counter` class with a `count` attribute that starts at 0. Add an `increment` method that increases count by 1 and a `get_count` method that returns the current count.\n\nExample: After calling increment() 3 times, get_count() should return 3.",
+    "starter_code": "class Counter:\n    def __init__(self):\n        # Initialize count to 0\n        pass\n    \n    def increment(self):\n        # Increase count by 1\n        pass\n    \n    def get_count(self):\n        # Return current count\n        pass\n\ndef test_counter(times):\n    c = Counter()\n    for _ in range(times):\n        c.increment()\n    return c.get_count()",
     "test_cases": [
       {
         "function_call": "test_counter(3)",
@@ -327,12 +327,12 @@
     ],
     "difficulty": "easy",
     "topic_tag": "methods",
-    "solution_code": "class Counter:\\n    def __init__(self):\\n        self.count = 0\\n    \\n    def increment(self):\\n        self.count += 1\\n    \\n    def get_count(self):\\n        return self.count\\n\\ndef test_counter(times):\\n    c = Counter()\\n    for _ in range(times):\\n        c.increment()\\n    return c.get_count()"
+    "solution_code": "class Counter:\n    def __init__(self):\n        self.count = 0\n    \n    def increment(self):\n        self.count += 1\n    \n    def get_count(self):\n        return self.count\n\ndef test_counter(times):\n    c = Counter()\n    for _ in range(times):\n        c.increment()\n    return c.get_count()"
   },
   {
     "question_type": "coding",
-    "text": "Default Attribute Values\\nCreate a `User` class where `username` is required but `followers` defaults to 0. Add a `follow` method that increases followers by 1.\\n\\nExample: A new user starts with 0 followers, after 5 follows they have 5.",
-    "starter_code": "class User:\\n    def __init__(self, username):\\n        # Set username and default followers to 0\\n        pass\\n    \\n    def follow(self):\\n        # Increase followers by 1\\n        pass\\n\\ndef test_user(name, num_follows):\\n    user = User(name)\\n    for _ in range(num_follows):\\n        user.follow()\\n    return user.followers",
+    "text": "Default Attribute Values\nCreate a `User` class where `username` is required but `followers` defaults to 0. Add a `follow` method that increases followers by 1.\n\nExample: A new user starts with 0 followers, after 5 follows they have 5.",
+    "starter_code": "class User:\n    def __init__(self, username):\n        # Set username and default followers to 0\n        pass\n    \n    def follow(self):\n        # Increase followers by 1\n        pass\n\ndef test_user(name, num_follows):\n    user = User(name)\n    for _ in range(num_follows):\n        user.follow()\n    return user.followers",
     "test_cases": [
       {
         "function_call": "test_user('alice', 5)",
@@ -349,12 +349,12 @@
     ],
     "difficulty": "medium",
     "topic_tag": "attributes",
-    "solution_code": "class User:\\n    def __init__(self, username):\\n        self.username = username\\n        self.followers = 0\\n    \\n    def follow(self):\\n        self.followers += 1\\n\\ndef test_user(name, num_follows):\\n    user = User(name)\\n    for _ in range(num_follows):\\n        user.follow()\\n    return user.followers"
+    "solution_code": "class User:\n    def __init__(self, username):\n        self.username = username\n        self.followers = 0\n    \n    def follow(self):\n        self.followers += 1\n\ndef test_user(name, num_follows):\n    user = User(name)\n    for _ in range(num_follows):\n        user.follow()\n    return user.followers"
   },
   {
     "question_type": "coding",
-    "text": "Object Comparison\\nCreate a `Point` class with `x` and `y` attributes. Write a function that takes two Point objects and returns the distance between them using the Pythagorean theorem.\\n\\nFormula: distance = sqrt((x2-x1)² + (y2-y1)²)",
-    "starter_code": "import math\\n\\nclass Point:\\n    def __init__(self, x, y):\\n        # Store x and y coordinates\\n        pass\\n\\ndef distance(p1, p2):\\n    # Calculate distance between two points\\n    pass",
+    "text": "Object Comparison\nCreate a `Point` class with `x` and `y` attributes. Write a function that takes two Point objects and returns the distance between them using the Pythagorean theorem.\n\nFormula: distance = sqrt((x2-x1)² + (y2-y1)²)",
+    "starter_code": "import math\n\nclass Point:\n    def __init__(self, x, y):\n        # Store x and y coordinates\n        pass\n\ndef distance(p1, p2):\n    # Calculate distance between two points\n    pass",
     "test_cases": [
       {
         "function_call": "distance(Point(0, 0), Point(3, 4))",
@@ -371,12 +371,12 @@
     ],
     "difficulty": "medium",
     "topic_tag": "classes",
-    "solution_code": "import math\\n\\nclass Point:\\n    def __init__(self, x, y):\\n        self.x = x\\n        self.y = y\\n\\ndef distance(p1, p2):\\n    return math.sqrt((p2.x - p1.x)**2 + (p2.y - p1.y)**2)"
+    "solution_code": "import math\n\nclass Point:\n    def __init__(self, x, y):\n        self.x = x\n        self.y = y\n\ndef distance(p1, p2):\n    return math.sqrt((p2.x - p1.x)**2 + (p2.y - p1.y)**2)"
   },
   {
     "question_type": "coding",
-    "text": "Bank Account Class\\nCreate a `BankAccount` class with `balance` starting at 0. Add `deposit(amount)` and `withdraw(amount)` methods. Withdraw should not allow balance to go negative (return False if insufficient funds, True otherwise).\\n\\nExample: deposit(100), withdraw(30) leaves balance at 70.",
-    "starter_code": "class BankAccount:\\n    def __init__(self):\\n        # Initialize balance to 0\\n        pass\\n    \\n    def deposit(self, amount):\\n        # Add amount to balance\\n        pass\\n    \\n    def withdraw(self, amount):\\n        # Subtract amount if sufficient funds\\n        # Return True if successful, False otherwise\\n        pass\\n\\ndef test_account(deposits, withdrawals):\\n    acc = BankAccount()\\n    for d in deposits:\\n        acc.deposit(d)\\n    for w in withdrawals:\\n        acc.withdraw(w)\\n    return acc.balance",
+    "text": "Bank Account Class\nCreate a `BankAccount` class with `balance` starting at 0. Add `deposit(amount)` and `withdraw(amount)` methods. Withdraw should not allow balance to go negative (return False if insufficient funds, True otherwise).\n\nExample: deposit(100), withdraw(30) leaves balance at 70.",
+    "starter_code": "class BankAccount:\n    def __init__(self):\n        # Initialize balance to 0\n        pass\n    \n    def deposit(self, amount):\n        # Add amount to balance\n        pass\n    \n    def withdraw(self, amount):\n        # Subtract amount if sufficient funds\n        # Return True if successful, False otherwise\n        pass\n\ndef test_account(deposits, withdrawals):\n    acc = BankAccount()\n    for d in deposits:\n        acc.deposit(d)\n    for w in withdrawals:\n        acc.withdraw(w)\n    return acc.balance",
     "test_cases": [
       {
         "function_call": "test_account([100], [30])",
@@ -393,6 +393,6 @@
     ],
     "difficulty": "hard",
     "topic_tag": "oop",
-    "solution_code": "class BankAccount:\\n    def __init__(self):\\n        self.balance = 0\\n    \\n    def deposit(self, amount):\\n        self.balance += amount\\n    \\n    def withdraw(self, amount):\\n        if amount > self.balance:\\n            return False\\n        self.balance -= amount\\n        return True\\n\\ndef test_account(deposits, withdrawals):\\n    acc = BankAccount()\\n    for d in deposits:\\n        acc.deposit(d)\\n    for w in withdrawals:\\n        acc.withdraw(w)\\n    return acc.balance"
+    "solution_code": "class BankAccount:\n    def __init__(self):\n        self.balance = 0\n    \n    def deposit(self, amount):\n        self.balance += amount\n    \n    def withdraw(self, amount):\n        if amount > self.balance:\n            return False\n        self.balance -= amount\n        return True\n\ndef test_account(deposits, withdrawals):\n    acc = BankAccount()\n    for d in deposits:\n        acc.deposit(d)\n    for w in withdrawals:\n        acc.withdraw(w)\n    return acc.balance"
   }
 ]

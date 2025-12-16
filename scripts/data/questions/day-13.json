@@ -287,7 +287,7 @@
     "question_type": "mcq"
   },
   {
-    "text": "Fix the Range Bug\\nThis function should print numbers 1 to 20 and then print 'You got it' when i reaches 20. But it never prints 'You got it'. Fix the range() call so that i actually reaches 20.",
+    "text": "Fix the Range Bug\nThis function should print numbers 1 to 20 and then print 'You got it' when i reaches 20. But it never prints 'You got it'. Fix the range() call so that i actually reaches 20.",
     "starter_code": "def my_function():\n    for i in range(1, 20):\n        if i == 20:\n            print('You got it')\n    return 'Done'",
     "solution_code": "def my_function():\n    for i in range(1, 21):\n        if i == 20:\n            print('You got it')\n    return 'Done'",
     "test_cases": [
@@ -302,7 +302,7 @@
     "question_type": "coding"
   },
   {
-    "text": "Fix the Voting Age Bug\\nThis function should return True if age is 18 or older. But someone who is exactly 18 gets False. Fix the comparison operator.",
+    "text": "Fix the Voting Age Bug\nThis function should return True if age is 18 or older. But someone who is exactly 18 gets False. Fix the comparison operator.",
     "starter_code": "def can_vote(age):\n    if age > 18:\n        return True\n    return False",
     "solution_code": "def can_vote(age):\n    if age >= 18:\n        return True\n    return False",
     "test_cases": [
@@ -325,7 +325,7 @@
     "question_type": "coding"
   },
   {
-    "text": "Fix the Assignment Bug\\nThis function calculates total words (pages × 250). But it returns 0 because of an = vs == bug. Find and fix it.",
+    "text": "Fix the Assignment Bug\nThis function calculates total words (pages × 250). But it returns 0 because of an = vs == bug. Find and fix it.",
     "starter_code": "def total_words(pages):\n    words_per_page = 0\n    words_per_page == 250\n    return pages * words_per_page",
     "solution_code": "def total_words(pages):\n    words_per_page = 0\n    words_per_page = 250\n    return pages * words_per_page",
     "test_cases": [
@@ -344,7 +344,7 @@
     "question_type": "coding"
   },
   {
-    "text": "Fix the Index Bug\\nThis function picks a random item from a list. But it sometimes crashes with IndexError. Fix the randint range.",
+    "text": "Fix the Index Bug\nThis function picks a random item from a list. But it sometimes crashes with IndexError. Fix the randint range.",
     "starter_code": "import random\n\ndef pick_random(items):\n    rand_idx = random.randint(0, len(items))\n    return items[rand_idx]",
     "solution_code": "import random\n\ndef pick_random(items):\n    rand_idx = random.randint(0, len(items) - 1)\n    return items[rand_idx]",
     "test_cases": [
@@ -359,7 +359,7 @@
     "question_type": "coding"
   },
   {
-    "text": "Fix FizzBuzz\\nThis FizzBuzz function has a logic bug. It should print 'FizzBuzz' for numbers divisible by both 3 and 5, but it prints 'Fizz' instead. Fix the order of conditions.",
+    "text": "Fix FizzBuzz\nThis FizzBuzz function has a logic bug. It should print 'FizzBuzz' for numbers divisible by both 3 and 5, but it prints 'Fizz' instead. Fix the order of conditions.",
     "starter_code": "def fizz_buzz(target):\n    result = []\n    for number in range(1, target + 1):\n        if number % 3 == 0:\n            result.append('Fizz')\n        elif number % 5 == 0:\n            result.append('Buzz')\n        elif number % 3 == 0 and number % 5 == 0:\n            result.append('FizzBuzz')\n        else:\n            result.append(number)\n    return result",
     "solution_code": "def fizz_buzz(target):\n    result = []\n    for number in range(1, target + 1):\n        if number % 3 == 0 and number % 5 == 0:\n            result.append('FizzBuzz')\n        elif number % 3 == 0:\n            result.append('Fizz')\n        elif number % 5 == 0:\n            result.append('Buzz')\n        else:\n            result.append(number)\n    return result",
     "test_cases": [

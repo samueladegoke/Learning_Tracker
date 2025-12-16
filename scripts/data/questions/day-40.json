@@ -130,7 +130,7 @@
         "text": "What format is used for email subject lines in SMTP?",
         "options": [
             "Subject = 'text'",
-            "Subject: text\\n\\nbody",
+            "Subject: text\n\nbody",
             "SUBJECT: text",
             "{subject: 'text'}"
         ],
@@ -205,13 +205,13 @@
                 "expected": "True"
             },
             {
-                "function_call": "'\\n\\n' in format_email('Hello', 'World')",
+                "function_call": "'\n\n' in format_email('Hello', 'World')",
                 "expected": "True"
             }
         ],
         "difficulty": "easy",
         "topic_tag": "email",
-        "solution_code": "def format_email(subject, body):\n    return f'Subject:{subject}\\n\\n{body}'"
+        "solution_code": "def format_email(subject, body):\n    return f'Subject:{subject}\n\n{body}'"
     },
     {
         "question_type": "coding",
@@ -280,7 +280,7 @@
     {
         "question_type": "code-correction",
         "text": "Fix the email encoding bug:",
-        "code": "connection.sendmail(sender, recipient, msg=f'Subject:Alert\\n\\n£50 flight!')\n# Bug: UnicodeEncodeError",
+        "code": "connection.sendmail(sender, recipient, msg=f'Subject:Alert\n\n£50 flight!')\n# Bug: UnicodeEncodeError",
         "options": [
             "Add .encode('utf-8') to the message",
             "Remove the £ symbol",

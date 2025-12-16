@@ -211,8 +211,8 @@
     },
     {
         "question_type": "coding",
-        "text": "Add Numbers\\nWrite a function `add_all` using *args that returns the sum of all arguments passed.",
-        "starter_code": "def add_all(*args):\\n    pass",
+        "text": "Add Numbers\nWrite a function `add_all` using *args that returns the sum of all arguments passed.",
+        "starter_code": "def add_all(*args):\n    pass",
         "test_cases": [
             {
                 "function_call": "add_all(1, 2, 3)",
@@ -225,12 +225,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "args",
-        "solution_code": "def add_all(*args):\\n    return sum(args)"
+        "solution_code": "def add_all(*args):\n    return sum(args)"
     },
     {
         "question_type": "coding",
-        "text": "Greet with Default\\nWrite a function `greet` that takes a name and an optional greeting (default 'Hello'). Return the formatted greeting.",
-        "starter_code": "def greet(name, greeting='Hello'):\\n    pass",
+        "text": "Greet with Default\nWrite a function `greet` that takes a name and an optional greeting (default 'Hello'). Return the formatted greeting.",
+        "starter_code": "def greet(name, greeting='Hello'):\n    pass",
         "test_cases": [
             {
                 "function_call": "greet('Alice')",
@@ -243,12 +243,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "default-values",
-        "solution_code": "def greet(name, greeting='Hello'):\\n    return f'{greeting}, {name}!'"
+        "solution_code": "def greet(name, greeting='Hello'):\n    return f'{greeting}, {name}!'"
     },
     {
         "question_type": "coding",
-        "text": "Get Kwarg Value\\nWrite a function `get_value` that accepts **kwargs and returns the value of key 'x' or 0 if not present.",
-        "starter_code": "def get_value(**kwargs):\\n    pass",
+        "text": "Get Kwarg Value\nWrite a function `get_value` that accepts **kwargs and returns the value of key 'x' or 0 if not present.",
+        "starter_code": "def get_value(**kwargs):\n    pass",
         "test_cases": [
             {
                 "function_call": "get_value(x=5, y=10)",
@@ -261,12 +261,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "kwargs",
-        "solution_code": "def get_value(**kwargs):\\n    return kwargs.get('x', 0)"
+        "solution_code": "def get_value(**kwargs):\n    return kwargs.get('x', 0)"
     },
     {
         "question_type": "coding",
-        "text": "Multiply Args\\nWrite a function `multiply_all` using *args that returns the product of all arguments. Return 1 if no args.",
-        "starter_code": "def multiply_all(*args):\\n    pass",
+        "text": "Multiply Args\nWrite a function `multiply_all` using *args that returns the product of all arguments. Return 1 if no args.",
+        "starter_code": "def multiply_all(*args):\n    pass",
         "test_cases": [
             {
                 "function_call": "multiply_all(2, 3, 4)",
@@ -283,12 +283,12 @@
         ],
         "difficulty": "medium",
         "topic_tag": "args",
-        "solution_code": "def multiply_all(*args):\\n    result = 1\\n    for n in args:\\n        result *= n\\n    return result"
+        "solution_code": "def multiply_all(*args):\n    result = 1\n    for n in args:\n        result *= n\n    return result"
     },
     {
         "question_type": "coding",
-        "text": "Build Profile\\nWrite a function `build_profile` that takes a name and **kwargs, returning a dict with name and all kwargs.",
-        "starter_code": "def build_profile(name, **kwargs):\\n    pass",
+        "text": "Build Profile\nWrite a function `build_profile` that takes a name and **kwargs, returning a dict with name and all kwargs.",
+        "starter_code": "def build_profile(name, **kwargs):\n    pass",
         "test_cases": [
             {
                 "function_call": "build_profile('Alice', age=25)",
@@ -301,12 +301,12 @@
         ],
         "difficulty": "medium",
         "topic_tag": "kwargs",
-        "solution_code": "def build_profile(name, **kwargs):\\n    return {'name': name, **kwargs}"
+        "solution_code": "def build_profile(name, **kwargs):\n    return {'name': name, **kwargs}"
     },
     {
         "question_type": "coding",
-        "text": "Count Args\\nWrite a function `count_args` that returns how many positional arguments were passed using *args.",
-        "starter_code": "def count_args(*args):\\n    pass",
+        "text": "Count Args\nWrite a function `count_args` that returns how many positional arguments were passed using *args.",
+        "starter_code": "def count_args(*args):\n    pass",
         "test_cases": [
             {
                 "function_call": "count_args(1, 2, 3)",
@@ -323,12 +323,12 @@
         ],
         "difficulty": "easy",
         "topic_tag": "args",
-        "solution_code": "def count_args(*args):\\n    return len(args)"
+        "solution_code": "def count_args(*args):\n    return len(args)"
     },
     {
         "question_type": "coding",
-        "text": "Calculate Expression\\nWrite a function `calculate` that takes n and **kwargs with 'add' and 'multiply' keys. Return (n + add) * multiply.",
-        "starter_code": "def calculate(n, **kwargs):\\n    pass",
+        "text": "Calculate Expression\nWrite a function `calculate` that takes n and **kwargs with 'add' and 'multiply' keys. Return (n + add) * multiply.",
+        "starter_code": "def calculate(n, **kwargs):\n    pass",
         "test_cases": [
             {
                 "function_call": "calculate(2, add=3, multiply=5)",
@@ -341,7 +341,7 @@
         ],
         "difficulty": "medium",
         "topic_tag": "kwargs",
-        "solution_code": "def calculate(n, **kwargs):\\n    n += kwargs['add']\\n    n *= kwargs['multiply']\\n    return n"
+        "solution_code": "def calculate(n, **kwargs):\n    n += kwargs['add']\n    n *= kwargs['multiply']\n    return n"
     },
     {
         "question_type": "code-correction",
