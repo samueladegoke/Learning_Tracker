@@ -47,6 +47,7 @@ frontend/build/
 # Logs
 logs/
 *.log
+logs_result.json
 
 # Plan files
 *.plan.md
@@ -70,7 +71,7 @@ seed_data.json
 
 # Agent & Tool Configs
 _bmad/
-.agent/
+
 .agentvibes/
 .claude/
 .codex/
