@@ -1,0 +1,365 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What does `<!DOCTYPE html>` declare?",
+        "options": [
+            "The document is HTML5",
+            "The document uses CSS",
+            "The document has JavaScript",
+            "The document is a template"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "boilerplate",
+        "explanation": "<!DOCTYPE html> tells the browser this is an HTML5 document."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which section of the HTML boilerplate contains visible content?",
+        "options": [
+            "<head>",
+            "<body>",
+            "<meta>",
+            "<title>"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "boilerplate",
+        "explanation": "The <body> section contains all the visible content displayed in the browser."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What tag creates an unordered (bulleted) list?",
+        "options": [
+            "<ol>",
+            "<ul>",
+            "<li>",
+            "<list>"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "lists",
+        "explanation": "<ul> creates an unordered list with bullet points."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What tag creates an ordered (numbered) list?",
+        "options": [
+            "<ol>",
+            "<ul>",
+            "<nl>",
+            "<numbered>"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "lists",
+        "explanation": "<ol> creates an ordered list with numbers."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which tag is used for individual list items?",
+        "options": [
+            "<item>",
+            "<li>",
+            "<list>",
+            "<i>"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "lists",
+        "explanation": "<li> (list item) is used inside <ul> or <ol> to define each list item."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What attribute specifies where a link goes?",
+        "options": [
+            "src",
+            "href",
+            "link",
+            "url"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "anchors",
+        "explanation": "The href attribute in an <a> tag specifies the URL or path the link points to."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you open a link in a new browser tab?",
+        "options": [
+            "href=\"_blank\"",
+            "target=\"_blank\"",
+            "new=\"true\"",
+            "tab=\"new\""
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "anchors",
+        "explanation": "Adding target=\"_blank\" to an anchor tag opens the link in a new tab."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which attribute is REQUIRED for an `<img>` tag?",
+        "options": [
+            "alt",
+            "width",
+            "src",
+            "title"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "images",
+        "explanation": "The src attribute is required - it specifies the path or URL to the image file."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the purpose of the `alt` attribute in images?",
+        "options": [
+            "Changes the image style",
+            "Provides alternative text for accessibility",
+            "Sets the image size",
+            "Links to another page"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "images",
+        "explanation": "Alt text describes the image for screen readers and displays if the image fails to load."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What goes in the `<head>` section?",
+        "options": [
+            "Visible content like headings",
+            "Images and links",
+            "Metadata, title, and CSS links",
+            "Main text content"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "boilerplate",
+        "explanation": "The <head> contains metadata, the page title, links to stylesheets, and other non-visible information."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the correct nesting order?",
+        "options": [
+            "First opened = first closed",
+            "Last opened = first closed",
+            "Any order works",
+            "Alphabetical order"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "nesting",
+        "explanation": "Elements must close in reverse order - the last element opened should be the first closed."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does `<meta charset=\"UTF-8\">` specify?",
+        "options": [
+            "Page language",
+            "Character encoding for text",
+            "Screen size",
+            "Browser type"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "boilerplate",
+        "explanation": "Charset UTF-8 tells the browser how to encode characters, supporting most world languages."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why is `index.html` a special filename?",
+        "options": [
+            "It loads faster",
+            "Servers automatically serve it as the default page",
+            "It has special styling",
+            "It's required by HTML"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "boilerplate",
+        "explanation": "Web servers automatically serve index.html when visitors access a directory without specifying a file."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the correct syntax for an email link?",
+        "options": [
+            "<a href=\"email:test@mail.com\">",
+            "<a href=\"mailto:test@mail.com\">",
+            "<mail to=\"test@mail.com\">",
+            "<a email=\"test@mail.com\">"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "anchors",
+        "explanation": "Use href=\"mailto:email@address.com\" to create an email link."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Can you nest a list inside another list?",
+        "options": [
+            "No, lists cannot be nested",
+            "Yes, by placing a <ul> or <ol> inside an <li>",
+            "Only ordered lists can be nested",
+            "Only unordered lists can be nested"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "nesting",
+        "explanation": "Lists can be nested by placing a new <ul> or <ol> inside an <li> element."
+    },
+    {
+        "question_type": "coding",
+        "text": "Create Link\\nReturn HTML for a link to 'https://example.com' with text 'Click Here'",
+        "starter_code": "def create_link():\\n    # Return an anchor tag\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "'href' in create_link() and 'example.com' in create_link()",
+                "expected": "True"
+            },
+            {
+                "function_call": "'Click Here' in create_link()",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "anchors",
+        "solution_code": "def create_link():\\n    return '<a href=\"https://example.com\">Click Here</a>'"
+    },
+    {
+        "question_type": "coding",
+        "text": "Create Image\\nReturn HTML for an image with src='photo.jpg' and alt='A photo'",
+        "starter_code": "def create_image():\\n    # Return an img tag with src and alt\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "'src=\"photo.jpg\"' in create_image()",
+                "expected": "True"
+            },
+            {
+                "function_call": "'alt=\"A photo\"' in create_image()",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "images",
+        "solution_code": "def create_image():\\n    return '<img src=\"photo.jpg\" alt=\"A photo\">'"
+    },
+    {
+        "question_type": "coding",
+        "text": "Create List\\nReturn HTML for an unordered list from a Python list of items",
+        "starter_code": "def create_list(items):\\n    # Return a ul with li for each item\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "create_list(['A', 'B'])",
+                "expected": "'<ul><li>A</li><li>B</li></ul>'"
+            },
+            {
+                "function_call": "create_list(['X'])",
+                "expected": "'<ul><li>X</li></ul>'"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "lists",
+        "solution_code": "def create_list(items):\\n    list_items = ''.join([f'<li>{item}</li>' for item in items])\\n    return f'<ul>{list_items}</ul>'"
+    },
+    {
+        "question_type": "coding",
+        "text": "Create Ordered List\\nReturn HTML for a numbered list from items",
+        "starter_code": "def create_ordered_list(items):\\n    # Return an ol with li for each item\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "'<ol>' in create_ordered_list(['First', 'Second'])",
+                "expected": "True"
+            },
+            {
+                "function_call": "'</ol>' in create_ordered_list(['First', 'Second'])",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "lists",
+        "solution_code": "def create_ordered_list(items):\\n    list_items = ''.join([f'<li>{item}</li>' for item in items])\\n    return f'<ol>{list_items}</ol>'"
+    },
+    {
+        "question_type": "coding",
+        "text": "Create Link with Target\\nReturn an anchor tag that opens in a new tab",
+        "starter_code": "def create_external_link(url, text):\\n    # Return link with target=_blank\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "'target=\"_blank\"' in create_external_link('https://google.com', 'Google')",
+                "expected": "True"
+            },
+            {
+                "function_call": "'Google' in create_external_link('https://google.com', 'Google')",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "anchors",
+        "solution_code": "def create_external_link(url, text):\\n    return f'<a href=\"{url}\" target=\"_blank\">{text}</a>'"
+    },
+    {
+        "question_type": "coding",
+        "text": "Create Image with Size\\nReturn an image tag with width and height attributes",
+        "starter_code": "def create_sized_image(src, alt, width, height):\\n    # Return img with all attributes\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "'width=\"100\"' in create_sized_image('x.jpg', 'X', 100, 200)",
+                "expected": "True"
+            },
+            {
+                "function_call": "'height=\"200\"' in create_sized_image('x.jpg', 'X', 100, 200)",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "images",
+        "solution_code": "def create_sized_image(src, alt, width, height):\\n    return f'<img src=\"{src}\" alt=\"{alt}\" width=\"{width}\" height=\"{height}\">'"
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the improperly nested HTML:",
+        "code": "<ul>\\n    <li>Item 1\\n    <li>Item 2</li>\\n</ul>",
+        "options": [
+            "Add </li> after 'Item 1'",
+            "Remove the <ul> tag",
+            "Change ul to ol",
+            "Add more list items"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "lists",
+        "explanation": "Each <li> needs a closing </li> tag. Add </li> after 'Item 1'."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the broken image tag:",
+        "code": "<img href=\"photo.jpg\" alt=\"Photo\">",
+        "options": [
+            "Change href to src",
+            "Add a closing tag",
+            "Remove the alt attribute",
+            "Change img to image"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "images",
+        "explanation": "Images use 'src' for the source, not 'href'. href is for links."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the link that won't open in a new tab:",
+        "code": "<a href=\"https://google.com\" new=\"true\">Google</a>",
+        "options": [
+            "Change new=\"true\" to target=\"_blank\"",
+            "Add onclick handler",
+            "Change href to src",
+            "Use <link> instead of <a>"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "anchors",
+        "explanation": "To open in a new tab, use target=\"_blank\", not new=\"true\"."
+    }
+]

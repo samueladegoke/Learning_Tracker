@@ -38,6 +38,7 @@ development_status:
 
   content-day-9: done
   CONTENT-13-16: done
+  CONTENT-41-45: done
 
   # MVP Core Features (Implemented)
   mvp-dashboard: done           # Dashboard with XP, Gold, Streak, Hearts, Boss

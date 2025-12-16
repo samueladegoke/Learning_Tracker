@@ -1,0 +1,365 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What is web scraping?",
+        "options": [
+            "Building websites",
+            "Extracting data from websites programmatically",
+            "Deleting web pages",
+            "Designing CSS styles"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "web-scraping",
+        "explanation": "Web scraping is the automated process of extracting data from websites using code."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does Beautiful Soup do?",
+        "options": [
+            "Creates websites",
+            "Parses HTML and lets you navigate/search its structure",
+            "Sends HTTP requests",
+            "Renders JavaScript"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "beautifulsoup",
+        "explanation": "Beautiful Soup parses HTML/XML and provides methods to navigate, search, and extract data."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you import Beautiful Soup?",
+        "options": [
+            "import beautifulsoup",
+            "from bs4 import BeautifulSoup",
+            "import soup",
+            "from beautiful import Soup"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "beautifulsoup",
+        "explanation": "The correct import is: from bs4 import BeautifulSoup (bs4 is the package name)."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the difference between `find()` and `find_all()`?",
+        "options": [
+            "find() is faster",
+            "find() returns first match, find_all() returns a list of all matches",
+            "find_all() is deprecated",
+            "They are the same"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "beautifulsoup",
+        "explanation": "find() returns the first matching element (or None), while find_all() returns a list of all matches."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why do we use `class_` instead of `class` in find()?",
+        "options": [
+            "Beautiful Soup requires it",
+            "'class' is a reserved Python keyword",
+            "It's for CSS classes only",
+            "It's more efficient"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "beautifulsoup",
+        "explanation": "'class' is a Python keyword for creating classes, so Beautiful Soup uses 'class_' instead."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What method extracts text content from an element?",
+        "options": [
+            "getText() or .string",
+            "getContent()",
+            ".text_value",
+            "extract()"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "beautifulsoup",
+        "explanation": "Use element.getText() or element.string to get the text content inside an element."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does `soup.a.get('href')` return?",
+        "options": [
+            "The text of the first link",
+            "The URL from the first anchor tag's href attribute",
+            "All links on the page",
+            "The link tag name"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "beautifulsoup",
+        "explanation": "soup.a gets the first <a> tag, and .get('href') gets the value of its href attribute (the URL)."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the difference between `select()` and `select_one()`?",
+        "options": [
+            "select() uses CSS, select_one() uses XPath",
+            "select() returns a list, select_one() returns first match",
+            "They accept different selectors",
+            "select_one() is for IDs only"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "beautifulsoup",
+        "explanation": "select() returns all matching elements as a list, select_one() returns only the first match."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you select by class using select()?",
+        "options": [
+            "soup.select('#classname')",
+            "soup.select('.classname')",
+            "soup.select('classname')",
+            "soup.select('class:classname')"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "css-selectors",
+        "explanation": "CSS class selectors use a dot: .classname"
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you select by ID using select()?",
+        "options": [
+            "soup.select('.idname')",
+            "soup.select('#idname')",
+            "soup.select('id:idname')",
+            "soup.select('idname')"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "css-selectors",
+        "explanation": "CSS ID selectors use a hash: #idname"
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does `soup.prettify()` do?",
+        "options": [
+            "Minifies the HTML",
+            "Formats HTML with proper indentation for readability",
+            "Removes all styles",
+            "Validates the HTML"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "beautifulsoup",
+        "explanation": "prettify() returns the HTML with nice indentation, making it easier to read."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What parser is built into Python for Beautiful Soup?",
+        "options": [
+            "lxml",
+            "html.parser",
+            "html5lib",
+            "xml.parser"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "beautifulsoup",
+        "explanation": "html.parser is Python's built-in parser and works without additional installation."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What happens if `find()` doesn't match anything?",
+        "options": [
+            "Returns empty string",
+            "Returns None",
+            "Raises an error",
+            "Returns False"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "beautifulsoup",
+        "explanation": "find() returns None if no matching element is found. Always check for None before accessing attributes."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which selector finds links inside a nav element?",
+        "options": [
+            "soup.select('a nav')",
+            "soup.select('nav > a')",
+            "soup.select('nav a')",
+            "soup.select('a.nav')"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "css-selectors",
+        "explanation": "'nav a' selects all <a> tags that are descendants of <nav>. 'nav > a' is only direct children."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Before scraping a website, you should check:",
+        "options": [
+            "Only the page title",
+            "The site's robots.txt and Terms of Service",
+            "The CSS colors",
+            "The number of images"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "web-scraping",
+        "explanation": "Always check robots.txt and ToS to ensure scraping is allowed and follow rate limits."
+    },
+    {
+        "question_type": "coding",
+        "text": "Create Soup\\nReturn BeautifulSoup code to parse HTML with html.parser",
+        "starter_code": "def make_soup(html_string):\\n    from bs4 import BeautifulSoup\\n    # Return soup object\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "make_soup('<p>Test</p>').p.getText()",
+                "expected": "'Test'"
+            },
+            {
+                "function_call": "make_soup('<h1>Title</h1>').h1.getText()",
+                "expected": "'Title'"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "beautifulsoup",
+        "solution_code": "def make_soup(html_string):\\n    from bs4 import BeautifulSoup\\n    return BeautifulSoup(html_string, 'html.parser')"
+    },
+    {
+        "question_type": "coding",
+        "text": "Find All Links\\nReturn all href values from anchor tags in the HTML",
+        "starter_code": "def get_all_links(html):\\n    from bs4 import BeautifulSoup\\n    # Return list of href values\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "get_all_links('<a href=\"/a\">A</a><a href=\"/b\">B</a>')",
+                "expected": "['/a', '/b']"
+            },
+            {
+                "function_call": "get_all_links('<p>No links</p>')",
+                "expected": "[]"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "beautifulsoup",
+        "solution_code": "def get_all_links(html):\\n    from bs4 import BeautifulSoup\\n    soup = BeautifulSoup(html, 'html.parser')\\n    return [a.get('href') for a in soup.find_all('a')]"
+    },
+    {
+        "question_type": "coding",
+        "text": "Get By ID\\nReturn the text content of an element with the given ID",
+        "starter_code": "def get_by_id(html, element_id):\\n    from bs4 import BeautifulSoup\\n    # Return text of element with that ID\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "get_by_id('<div id=\"test\">Hello</div>', 'test')",
+                "expected": "'Hello'"
+            },
+            {
+                "function_call": "get_by_id('<h1 id=\"title\">Welcome</h1>', 'title')",
+                "expected": "'Welcome'"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "beautifulsoup",
+        "solution_code": "def get_by_id(html, element_id):\\n    from bs4 import BeautifulSoup\\n    soup = BeautifulSoup(html, 'html.parser')\\n    element = soup.find(id=element_id)\\n    return element.getText() if element else None"
+    },
+    {
+        "question_type": "coding",
+        "text": "Count Elements\\nCount how many elements match the given tag name",
+        "starter_code": "def count_tags(html, tag_name):\\n    from bs4 import BeautifulSoup\\n    # Return count of matching tags\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "count_tags('<p>A</p><p>B</p><p>C</p>', 'p')",
+                "expected": "3"
+            },
+            {
+                "function_call": "count_tags('<div><span></span></div>', 'span')",
+                "expected": "1"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "beautifulsoup",
+        "solution_code": "def count_tags(html, tag_name):\\n    from bs4 import BeautifulSoup\\n    soup = BeautifulSoup(html, 'html.parser')\\n    return len(soup.find_all(tag_name))"
+    },
+    {
+        "question_type": "coding",
+        "text": "Select By Class\\nReturn texts of all elements with the given class",
+        "starter_code": "def get_by_class(html, class_name):\\n    from bs4 import BeautifulSoup\\n    # Return list of text contents\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "get_by_class('<p class=\"item\">A</p><p class=\"item\">B</p>', 'item')",
+                "expected": "['A', 'B']"
+            },
+            {
+                "function_call": "get_by_class('<div class=\"box\">X</div>', 'box')",
+                "expected": "['X']"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "beautifulsoup",
+        "solution_code": "def get_by_class(html, class_name):\\n    from bs4 import BeautifulSoup\\n    soup = BeautifulSoup(html, 'html.parser')\\n    return [el.getText() for el in soup.find_all(class_=class_name)]"
+    },
+    {
+        "question_type": "coding",
+        "text": "CSS Selector\\nUse select() to get all paragraph texts",
+        "starter_code": "def select_paragraphs(html):\\n    from bs4 import BeautifulSoup\\n    # Use select() to get all <p> texts\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "select_paragraphs('<p>One</p><p>Two</p>')",
+                "expected": "['One', 'Two']"
+            },
+            {
+                "function_call": "select_paragraphs('<div><p>Inside</p></div>')",
+                "expected": "['Inside']"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "css-selectors",
+        "solution_code": "def select_paragraphs(html):\\n    from bs4 import BeautifulSoup\\n    soup = BeautifulSoup(html, 'html.parser')\\n    return [p.getText() for p in soup.select('p')]"
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the Beautiful Soup import:",
+        "code": "from beautifulsoup import BeautifulSoup\\n# ImportError: No module named 'beautifulsoup'",
+        "options": [
+            "Change 'beautifulsoup' to 'bs4'",
+            "Install beautiful soup first",
+            "Use import soup",
+            "Change BeautifulSoup to Soup"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "beautifulsoup",
+        "explanation": "The package name is 'bs4' not 'beautifulsoup': from bs4 import BeautifulSoup"
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the class selector in find():",
+        "code": "soup.find(name='div', class='highlight')\\n# SyntaxError: invalid syntax",
+        "options": [
+            "Change 'class' to 'class_' (with underscore)",
+            "Remove the quotes",
+            "Use find_all instead",
+            "Change to CSS selector"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "beautifulsoup",
+        "explanation": "'class' is a Python keyword. Use 'class_' (with underscore) in Beautiful Soup."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the AttributeError when accessing href:",
+        "code": "link = soup.find('a')\\nurl = link.get('href')\\n# AttributeError: 'NoneType' has no attribute 'get'",
+        "options": [
+            "Add a check: if link is not None before accessing",
+            "Use link['href'] instead",
+            "Change find to find_all",
+            "Use a different parser"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "beautifulsoup",
+        "explanation": "find() returns None if no match. Check: if link: url = link.get('href')"
+    }
+]

@@ -47,6 +47,11 @@ const DeepDiveDay37 = lazy(() => import('../components/content/DeepDive/Day37'))
 const DeepDiveDay38 = lazy(() => import('../components/content/DeepDive/Day38'))
 const DeepDiveDay39 = lazy(() => import('../components/content/DeepDive/Day39'))
 const DeepDiveDay40 = lazy(() => import('../components/content/DeepDive/Day40'))
+const DeepDiveDay41 = lazy(() => import('../components/content/DeepDive/Day41'))
+const DeepDiveDay42 = lazy(() => import('../components/content/DeepDive/Day42'))
+const DeepDiveDay43 = lazy(() => import('../components/content/DeepDive/Day43'))
+const DeepDiveDay44 = lazy(() => import('../components/content/DeepDive/Day44'))
+const DeepDiveDay45 = lazy(() => import('../components/content/DeepDive/Day45'))
 
 // Loading fallback component for lazy-loaded DeepDive content
 const DeepDiveLoader = () => (
@@ -376,6 +381,46 @@ const DAY_META = {
         quizId: 'day-40-practice',
         level: 'advanced',
         topics: ['email-smtp', 'user-management', 'notifications', 'stopovers']
+    },
+    'day-41': {
+        label: 'Day 41',
+        title: 'Day 41: Introduction to HTML',
+        subtitle: 'Learn the fundamentals of HTML: tags, elements, headings, and structure.',
+        quizId: 'day-41-practice',
+        level: 'web-foundation',
+        topics: ['html-basics', 'tags', 'elements', 'headings', 'paragraphs']
+    },
+    'day-42': {
+        label: 'Day 42',
+        title: 'Day 42: Intermediate HTML',
+        subtitle: 'HTML boilerplate, lists, nesting, anchor links, and images.',
+        quizId: 'day-42-practice',
+        level: 'web-foundation',
+        topics: ['boilerplate', 'lists', 'nesting', 'anchors', 'images']
+    },
+    'day-43': {
+        label: 'Day 43',
+        title: 'Day 43: Introduction to CSS',
+        subtitle: 'Style your HTML with CSS: syntax, selectors, and styling methods.',
+        quizId: 'day-43-practice',
+        level: 'web-foundation',
+        topics: ['css-basics', 'selectors', 'inline-css', 'external-css']
+    },
+    'day-44': {
+        label: 'Day 44',
+        title: 'Day 44: Intermediate CSS',
+        subtitle: 'Colors, fonts, the CSS Box Model, and browser DevTools.',
+        quizId: 'day-44-practice',
+        level: 'web-foundation',
+        topics: ['colors', 'fonts', 'box-model', 'devtools']
+    },
+    'day-45': {
+        label: 'Day 45',
+        title: 'Day 45: Web Scraping with Beautiful Soup',
+        subtitle: 'Parse HTML and extract data with Python and Beautiful Soup.',
+        quizId: 'day-45-practice',
+        level: 'intermediate+',
+        topics: ['beautifulsoup', 'web-scraping', 'find-all', 'css-selectors']
     }
 }
 
@@ -508,7 +553,12 @@ function DeepDive({ activeDay }) {
         'day-37': DeepDiveDay37,
         'day-38': DeepDiveDay38,
         'day-39': DeepDiveDay39,
-        'day-40': DeepDiveDay40
+        'day-40': DeepDiveDay40,
+        'day-41': DeepDiveDay41,
+        'day-42': DeepDiveDay42,
+        'day-43': DeepDiveDay43,
+        'day-44': DeepDiveDay44,
+        'day-45': DeepDiveDay45
     }
     const Component = components[activeDay]
     if (!Component) {
