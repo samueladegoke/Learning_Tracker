@@ -1,396 +1,401 @@
 [
-    {
-        "question_type": "mcq",
-        "text": "What keyword is used to define a class in Python?",
-        "options": [
-            "function",
-            "class",
-            "def",
-            "object"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "classes",
-        "explanation": "The 'class' keyword is used to define a new class in Python."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What naming convention is used for class names in Python?",
-        "options": [
-            "snake_case",
-            "camelCase",
-            "PascalCase",
-            "UPPERCASE"
-        ],
-        "correct_index": 2,
-        "difficulty": "easy",
-        "topic_tag": "naming",
-        "explanation": "PascalCase (CapWords) is the standard convention for naming classes in Python."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does the 'pass' keyword do in an empty class?",
-        "options": [
-            "Deletes the class",
-            "Creates a syntax error",
-            "Acts as a placeholder so the class is valid",
-            "Runs the class automatically"
-        ],
-        "correct_index": 2,
-        "difficulty": "easy",
-        "topic_tag": "classes",
-        "explanation": "'pass' is a placeholder that allows you to create an empty class or function without errors."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the purpose of the __init__() method?",
-        "options": [
-            "To delete an object",
-            "To initialize attributes when an object is created",
-            "To print the object",
-            "To create a new class"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "init",
-        "explanation": "__init__() is the constructor that initializes an object's attributes when it's created."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does 'self' refer to inside a class?",
-        "options": [
-            "The class itself",
-            "The current object instance being created or used",
-            "A global variable",
-            "The previous object"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "self",
-        "explanation": "'self' refers to the specific instance of the object that is calling the method."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is a class attribute?",
-        "options": [
-            "A function inside a class",
-            "A variable associated with an object",
-            "A class name",
-            "A module"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "attributes",
-        "explanation": "An attribute is a variable that holds data associated with an object."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is a method?",
-        "options": [
-            "A variable attached to an object",
-            "A function defined inside a class",
-            "A class name",
-            "An import statement"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "methods",
-        "explanation": "A method is a function that is defined inside a class and operates on objects."
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Which is the correct way to define a class constructor?",
-        "code": "def init(self):",
-        "options": [
-            "def __init__(self):",
-            "def constructor(self):",
-            "def _init_(self):",
-            "def Init(self):"
-        ],
-        "correct_index": 0,
-        "difficulty": "medium",
-        "topic_tag": "init",
-        "explanation": "The constructor in Python uses double underscores: __init__(self)"
-    },
-    {
-        "question_type": "code-correction",
-        "text": "How do you create an object from a class named 'Car'?",
-        "code": "my_car = Car",
-        "options": [
-            "my_car = Car()",
-            "my_car = new Car()",
-            "my_car = create Car",
-            "my_car = Car.new()"
-        ],
-        "correct_index": 0,
-        "difficulty": "easy",
-        "topic_tag": "objects",
-        "explanation": "In Python, you create an object by calling the class like a function: ClassName()"
-    },
-    {
-        "question_type": "mcq",
-        "text": "What happens if you don't provide required parameters when creating an object?",
-        "options": [
-            "Nothing",
-            "Python uses default values",
-            "You get a TypeError",
-            "The object is created empty"
-        ],
-        "correct_index": 2,
-        "difficulty": "medium",
-        "topic_tag": "init",
-        "explanation": "If required parameters are missing, Python raises a TypeError for missing arguments."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you set a default value for an attribute in __init__?",
-        "options": [
-            "default = value",
-            "self.attribute = value (without parameter)",
-            "attribute := value",
-            "set(attribute, value)"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "init",
-        "explanation": "Set self.attribute = value directly in __init__ without making it a parameter."
-    },
-    {
-        "question_type": "code-correction",
-        "text": "How do you access an object's attribute called 'username'?",
-        "code": "print(user[username])",
-        "options": [
-            "print(user.username)",
-            "print(user->username)",
-            "print(user::username)",
-            "print(get(user, username))"
-        ],
-        "correct_index": 0,
-        "difficulty": "easy",
-        "topic_tag": "attributes",
-        "explanation": "Use dot notation: object.attribute"
-    },
-    {
-        "question_type": "mcq",
-        "text": "Why must 'self' be the first parameter in instance methods?",
-        "options": [
-            "It's optional",
-            "So Python knows which object is calling the method",
-            "It defines the class name",
-            "It creates a new object"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "self",
-        "explanation": "'self' allows the method to access and modify the specific object's attributes."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the relationship between a class and an object?",
-        "options": [
-            "They are the same thing",
-            "A class is an instance of an object",
-            "An object is an instance created from a class",
-            "Objects create classes"
-        ],
-        "correct_index": 2,
-        "difficulty": "easy",
-        "topic_tag": "oop",
-        "explanation": "A class is the blueprint; an object is a specific instance created from that blueprint."
-    },
-    {
-        "question_type": "mcq",
-        "text": "In the Quiz project, what does the QuizBrain class manage?",
-        "options": [
-            "User interface",
-            "Question navigation, scoring, and game state",
-            "File storage",
-            "Network requests"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "quiz-project",
-        "explanation": "QuizBrain handles showing questions, tracking score, and managing game progress."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the Question class responsible for in the Quiz project?",
-        "options": [
-            "Storing question text and answer",
-            "Displaying questions",
-            "Calculating scores",
-            "Loading from API"
-        ],
-        "correct_index": 0,
-        "difficulty": "easy",
-        "topic_tag": "quiz-project",
-        "explanation": "The Question class is a simple data model that holds the text and answer for each question."
-    },
-    {
-        "question_type": "code-correction",
-        "text": "How do you call a method 'follow' on object 'user_1' passing 'user_2'?",
-        "code": "follow(user_1, user_2)",
-        "options": [
-            "user_1.follow(user_2)",
-            "User.follow(user_1, user_2)",
-            "call user_1.follow with user_2",
-            "user_1->follow(user_2)"
-        ],
-        "correct_index": 0,
-        "difficulty": "easy",
-        "topic_tag": "methods",
-        "explanation": "Call methods using dot notation: object.method(arguments)"
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the benefit of using classes over procedural code?",
-        "options": [
-            "Faster execution",
-            "Better organization, reusability, and encapsulation",
-            "Less code",
-            "Automatic testing"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "oop",
-        "explanation": "OOP provides better code organization, reusability, and keeps related data and functions together."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does the still_has_questions() method check in QuizBrain?",
-        "options": [
-            "If the user is logged in",
-            "If there are more questions to ask",
-            "If the score is high enough",
-            "If the file exists"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "quiz-project",
-        "explanation": "It checks if question_number is less than the total number of questions."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Where does the Open Trivia Database come into play?",
-        "options": [
-            "It provides the Quiz Brain logic",
-            "It provides real trivia questions via API",
-            "It stores user scores",
-            "It validates answers"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "quiz-project",
-        "explanation": "Open Trivia DB is an API that provides trivia questions to make the quiz dynamic."
-    },
-    {
-        "question_type": "coding",
-        "text": "Create Question Class\nCreate a `Question` class that stores a `text` and an `answer` attribute. Both are passed as parameters to `__init__`.\n\nExample: q = Question('Is Python fun?', 'True') stores the question and answer.",
-        "starter_code": "class Question:\n    def __init__(self, text, answer):\n        # Store text and answer as attributes\n        pass\n\ndef test_question(text, answer):\n    q = Question(text, answer)\n    return f'{q.text} -> {q.answer}'",
-        "test_cases": [
-            {
-                "function_call": "test_question('Is Python fun?', 'True')",
-                "expected": "'Is Python fun? -> True'"
-            },
-            {
-                "function_call": "test_question('Is 2+2=5?', 'False')",
-                "expected": "'Is 2+2=5? -> False'"
-            },
-            {
-                "function_call": "test_question('Is the sky blue?', 'True')",
-                "expected": "'Is the sky blue? -> True'"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "quiz-project",
-        "solution_code": "class Question:\n    def __init__(self, text, answer):\n        self.text = text\n        self.answer = answer\n\ndef test_question(text, answer):\n    q = Question(text, answer)\n    return f'{q.text} -> {q.answer}'"
-    },
-    {
-        "question_type": "coding",
-        "text": "Check Answer Method\nCreate a `check_answer` function that takes a Question object and a user response. Return True if the user's answer (case-insensitive) matches the question's answer.\n\nExample: check_answer(question, 'true') returns True if question.answer is 'True'.",
-        "starter_code": "class Question:\n    def __init__(self, text, answer):\n        self.text = text\n        self.answer = answer\n\ndef check_answer(question, user_answer):\n    # Compare user_answer to question.answer (case insensitive)\n    pass",
-        "test_cases": [
-            {
-                "function_call": "check_answer(Question('Test?', 'True'), 'true')",
-                "expected": "True"
-            },
-            {
-                "function_call": "check_answer(Question('Test?', 'False'), 'True')",
-                "expected": "False"
-            },
-            {
-                "function_call": "check_answer(Question('Test?', 'Yes'), 'YES')",
-                "expected": "True"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "quiz-project",
-        "solution_code": "class Question:\n    def __init__(self, text, answer):\n        self.text = text\n        self.answer = answer\n\ndef check_answer(question, user_answer):\n    return user_answer.lower() == question.answer.lower()"
-    },
-    {
-        "question_type": "coding",
-        "text": "Still Has Questions\nWrite a function that takes a current question number and a list of questions. Return True if there are still questions left to ask (question_number < len(questions)).\n\nExample: still_has_questions(2, [q1, q2, q3]) returns True (index 2 is valid).",
-        "starter_code": "def still_has_questions(question_number, question_list):\n    # Return True if more questions remain\n    pass",
-        "test_cases": [
-            {
-                "function_call": "still_has_questions(0, ['q1', 'q2', 'q3'])",
-                "expected": "True"
-            },
-            {
-                "function_call": "still_has_questions(3, ['q1', 'q2', 'q3'])",
-                "expected": "False"
-            },
-            {
-                "function_call": "still_has_questions(2, ['q1', 'q2', 'q3'])",
-                "expected": "True"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "quiz-project",
-        "solution_code": "def still_has_questions(question_number, question_list):\n    return question_number < len(question_list)"
-    },
-    {
-        "question_type": "coding",
-        "text": "Quiz Scorer\nCreate a function that takes a list of Question objects and a list of user answers. Return the score as 'X/Y' where X is correct answers and Y is total questions.\n\nExample: quiz_score([q1, q2], ['True', 'False']) where q1.answer='True' and q2.answer='True' returns '1/2'.",
-        "starter_code": "class Question:\n    def __init__(self, text, answer):\n        self.text = text\n        self.answer = answer\n\ndef quiz_score(questions, user_answers):\n    # Count correct answers and return 'X/Y' format\n    pass",
-        "test_cases": [
-            {
-                "function_call": "quiz_score([Question('Q1', 'True'), Question('Q2', 'False')], ['True', 'False'])",
-                "expected": "'2/2'"
-            },
-            {
-                "function_call": "quiz_score([Question('Q1', 'True'), Question('Q2', 'True')], ['True', 'False'])",
-                "expected": "'1/2'"
-            },
-            {
-                "function_call": "quiz_score([Question('Q1', 'A')], ['B'])",
-                "expected": "'0/1'"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "quiz-project",
-        "solution_code": "class Question:\n    def __init__(self, text, answer):\n        self.text = text\n        self.answer = answer\n\ndef quiz_score(questions, user_answers):\n    correct = 0\n    for i, q in enumerate(questions):\n        if user_answers[i].lower() == q.answer.lower():\n            correct += 1\n    return f'{correct}/{len(questions)}'"
-    },
-    {
-        "question_type": "coding",
-        "text": "Build Question Bank\nWrite a function that takes a list of dictionaries with 'text' and 'answer' keys and returns a list of Question objects.\n\nExample: build_question_bank([{'text': 'Q1?', 'answer': 'True'}]) returns [Question('Q1?', 'True')].",
-        "starter_code": "class Question:\n    def __init__(self, text, answer):\n        self.text = text\n        self.answer = answer\n\ndef build_question_bank(question_data):\n    # Create Question objects from dictionaries\n    pass\n\ndef test_build(data):\n    questions = build_question_bank(data)\n    return len(questions)",
-        "test_cases": [
-            {
-                "function_call": "test_build([{'text': 'Q1?', 'answer': 'True'}])",
-                "expected": "1"
-            },
-            {
-                "function_call": "test_build([{'text': 'Q1?', 'answer': 'True'}, {'text': 'Q2?', 'answer': 'False'}])",
-                "expected": "2"
-            },
-            {
-                "function_call": "test_build([])",
-                "expected": "0"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "quiz-project",
-        "solution_code": "class Question:\n    def __init__(self, text, answer):\n        self.text = text\n        self.answer = answer\n\ndef build_question_bank(question_data):\n    question_bank = []\n    for item in question_data:\n        q = Question(item['text'], item['answer'])\n        question_bank.append(q)\n    return question_bank\n\ndef test_build(data):\n    questions = build_question_bank(data)\n    return len(questions)"
-    }
+  {
+    "question_type": "mcq",
+    "text": "What keyword is used to define a class in Python?",
+    "options": [
+      "function",
+      "class",
+      "def",
+      "object"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "classes",
+    "explanation": "The 'class' keyword is used to define a new class in Python."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What naming convention is used for class names in Python?",
+    "options": [
+      "snake_case",
+      "camelCase",
+      "PascalCase",
+      "UPPERCASE"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "naming",
+    "explanation": "PascalCase (CapWords) is the standard convention for naming classes in Python."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does the 'pass' keyword do in an empty class?",
+    "options": [
+      "Deletes the class",
+      "Creates a syntax error",
+      "Acts as a placeholder so the class is valid",
+      "Runs the class automatically"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "classes",
+    "explanation": "'pass' is a placeholder that allows you to create an empty class or function without errors."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the purpose of the __init__() method?",
+    "options": [
+      "To delete an object",
+      "To initialize attributes when an object is created",
+      "To print the object",
+      "To create a new class"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "init",
+    "explanation": "__init__() is the constructor that initializes an object's attributes when it's created."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does 'self' refer to inside a class?",
+    "options": [
+      "The class itself",
+      "The current object instance being created or used",
+      "A global variable",
+      "The previous object"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "self",
+    "explanation": "'self' refers to the specific instance of the object that is calling the method."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is a class attribute?",
+    "options": [
+      "A function inside a class",
+      "A variable associated with an object",
+      "A class name",
+      "A module"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "attributes",
+    "explanation": "An attribute is a variable that holds data associated with an object."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is a method?",
+    "options": [
+      "A variable attached to an object",
+      "A function defined inside a class",
+      "A class name",
+      "An import statement"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "methods",
+    "explanation": "A method is a function that is defined inside a class and operates on objects."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Which is the correct way to define a class constructor?",
+    "code": "def init(self):",
+    "options": [
+      "def __init__(self):",
+      "def constructor(self):",
+      "def _init_(self):",
+      "def Init(self):"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "init",
+    "explanation": "The constructor in Python uses double underscores: __init__(self)"
+  },
+  {
+    "question_type": "code-correction",
+    "text": "How do you create an object from a class named 'Car'?",
+    "code": "my_car = Car",
+    "options": [
+      "my_car = Car()",
+      "my_car = new Car()",
+      "my_car = create Car",
+      "my_car = Car.new()"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "objects",
+    "explanation": "In Python, you create an object by calling the class like a function: ClassName()"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What happens if you don't provide required parameters when creating an object?",
+    "options": [
+      "Nothing",
+      "Python uses default values",
+      "You get a TypeError",
+      "The object is created empty"
+    ],
+    "correct_index": 2,
+    "difficulty": "medium",
+    "topic_tag": "init",
+    "explanation": "If required parameters are missing, Python raises a TypeError for missing arguments."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you set a default value for an attribute in __init__?",
+    "options": [
+      "default = value",
+      "self.attribute = value (without parameter)",
+      "attribute := value",
+      "set(attribute, value)"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "init",
+    "explanation": "Set self.attribute = value directly in __init__ without making it a parameter."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "How do you access an object's attribute called 'username'?",
+    "code": "print(user[username])",
+    "options": [
+      "print(user.username)",
+      "print(user->username)",
+      "print(user::username)",
+      "print(get(user, username))"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "attributes",
+    "explanation": "Use dot notation: object.attribute"
+  },
+  {
+    "question_type": "mcq",
+    "text": "Why must 'self' be the first parameter in instance methods?",
+    "options": [
+      "It's optional",
+      "So Python knows which object is calling the method",
+      "It defines the class name",
+      "It creates a new object"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "self",
+    "explanation": "'self' allows the method to access and modify the specific object's attributes."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the relationship between a class and an object?",
+    "options": [
+      "They are the same thing",
+      "A class is an instance of an object",
+      "An object is an instance created from a class",
+      "Objects create classes"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "oop",
+    "explanation": "A class is the blueprint; an object is a specific instance created from that blueprint."
+  },
+  {
+    "question_type": "mcq",
+    "text": "In the Quiz project, what does the QuizBrain class manage?",
+    "options": [
+      "User interface",
+      "Question navigation, scoring, and game state",
+      "File storage",
+      "Network requests"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "quiz-project",
+    "explanation": "QuizBrain handles showing questions, tracking score, and managing game progress."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the Question class responsible for in the Quiz project?",
+    "options": [
+      "Storing question text and answer",
+      "Displaying questions",
+      "Calculating scores",
+      "Loading from API"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "quiz-project",
+    "explanation": "The Question class is a simple data model that holds the text and answer for each question."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "How do you call a method 'follow' on object 'user_1' passing 'user_2'?",
+    "code": "follow(user_1, user_2)",
+    "options": [
+      "user_1.follow(user_2)",
+      "User.follow(user_1, user_2)",
+      "call user_1.follow with user_2",
+      "user_1->follow(user_2)"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "methods",
+    "explanation": "Call methods using dot notation: object.method(arguments)"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the benefit of using classes over procedural code?",
+    "options": [
+      "Faster execution",
+      "Better organization, reusability, and encapsulation",
+      "Less code",
+      "Automatic testing"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "oop",
+    "explanation": "OOP provides better code organization, reusability, and keeps related data and functions together."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does the still_has_questions() method check in QuizBrain?",
+    "options": [
+      "If the user is logged in",
+      "If there are more questions to ask",
+      "If the score is high enough",
+      "If the file exists"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "quiz-project",
+    "explanation": "It checks if question_number is less than the total number of questions."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Where does the Open Trivia Database come into play?",
+    "options": [
+      "It provides the Quiz Brain logic",
+      "It provides real trivia questions via API",
+      "It stores user scores",
+      "It validates answers"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "quiz-project",
+    "explanation": "Open Trivia DB is an API that provides trivia questions to make the quiz dynamic."
+  },
+  {
+    "question_type": "coding",
+    "text": "Create Question Class\nCreate a `Question` class that stores a `text` and an `answer` attribute. Both are passed as parameters to `__init__`.\n\nExample: q = Question('Is Python fun?', 'True') stores the question and answer.",
+    "starter_code": "class Question:\n    def __init__(self, text, answer):\n        # Store text and answer as attributes\n        pass\n\ndef test_question(text, answer):\n    q = Question(text, answer)\n    return f'{q.text} -> {q.answer}'",
+    "test_cases": [
+      {
+        "function_call": "test_question('Is Python fun?', 'True')",
+        "expected": "'Is Python fun? -> True'"
+      },
+      {
+        "function_call": "test_question('Is 2+2=5?', 'False')",
+        "expected": "'Is 2+2=5? -> False'"
+      },
+      {
+        "function_call": "test_question('Is the sky blue?', 'True')",
+        "expected": "'Is the sky blue? -> True'"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "quiz-project",
+    "solution_code": "class Question:\n    def __init__(self, text, answer):\n        self.text = text\n        self.answer = answer\n\ndef test_question(text, answer):\n    q = Question(text, answer)\n    return f'{q.text} -> {q.answer}'",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Check Answer Method\nCreate a `check_answer` function that takes a Question object and a user response. Return True if the user's answer (case-insensitive) matches the question's answer.\n\nExample: check_answer(question, 'true') returns True if question.answer is 'True'.",
+    "starter_code": "class Question:\n    def __init__(self, text, answer):\n        self.text = text\n        self.answer = answer\n\ndef check_answer(question, user_answer):\n    # Compare user_answer to question.answer (case insensitive)\n    pass",
+    "test_cases": [
+      {
+        "function_call": "check_answer(Question('Test?', 'True'), 'true')",
+        "expected": "True"
+      },
+      {
+        "function_call": "check_answer(Question('Test?', 'False'), 'True')",
+        "expected": "False"
+      },
+      {
+        "function_call": "check_answer(Question('Test?', 'Yes'), 'YES')",
+        "expected": "True"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "quiz-project",
+    "solution_code": "class Question:\n    def __init__(self, text, answer):\n        self.text = text\n        self.answer = answer\n\ndef check_answer(question, user_answer):\n    return user_answer.lower() == question.answer.lower()",
+    "explanation": "Compare values using == and return the boolean result directly. No if/else needed for simple comparisons."
+  },
+  {
+    "question_type": "coding",
+    "text": "Still Has Questions\nWrite a function that takes a current question number and a list of questions. Return True if there are still questions left to ask (question_number < len(questions)).\n\nExample: still_has_questions(2, [q1, q2, q3]) returns True (index 2 is valid).",
+    "starter_code": "def still_has_questions(question_number, question_list):\n    # Return True if more questions remain\n    pass",
+    "test_cases": [
+      {
+        "function_call": "still_has_questions(0, ['q1', 'q2', 'q3'])",
+        "expected": "True"
+      },
+      {
+        "function_call": "still_has_questions(3, ['q1', 'q2', 'q3'])",
+        "expected": "False"
+      },
+      {
+        "function_call": "still_has_questions(2, ['q1', 'q2', 'q3'])",
+        "expected": "True"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "quiz-project",
+    "solution_code": "def still_has_questions(question_number, question_list):\n    return question_number < len(question_list)",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Quiz Scorer\nCreate a function that takes a list of Question objects and a list of user answers. Return the score as 'X/Y' where X is correct answers and Y is total questions.\n\nExample: quiz_score([q1, q2], ['True', 'False']) where q1.answer='True' and q2.answer='True' returns '1/2'.",
+    "starter_code": "class Question:\n    def __init__(self, text, answer):\n        self.text = text\n        self.answer = answer\n\ndef quiz_score(questions, user_answers):\n    # Count correct answers and return 'X/Y' format\n    pass",
+    "test_cases": [
+      {
+        "function_call": "quiz_score([Question('Q1', 'True'), Question('Q2', 'False')], ['True', 'False'])",
+        "expected": "'2/2'"
+      },
+      {
+        "function_call": "quiz_score([Question('Q1', 'True'), Question('Q2', 'True')], ['True', 'False'])",
+        "expected": "'1/2'"
+      },
+      {
+        "function_call": "quiz_score([Question('Q1', 'A')], ['B'])",
+        "expected": "'0/1'"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "quiz-project",
+    "solution_code": "class Question:\n    def __init__(self, text, answer):\n        self.text = text\n        self.answer = answer\n\ndef quiz_score(questions, user_answers):\n    correct = 0\n    for i, q in enumerate(questions):\n        if user_answers[i].lower() == q.answer.lower():\n            correct += 1\n    return f'{correct}/{len(questions)}'",
+    "explanation": "Compare values using == and return the boolean result directly. No if/else needed for simple comparisons."
+  },
+  {
+    "question_type": "coding",
+    "text": "Build Question Bank\nWrite a function that takes a list of dictionaries with 'text' and 'answer' keys and returns a list of Question objects.\n\nExample: build_question_bank([{'text': 'Q1?', 'answer': 'True'}]) returns [Question('Q1?', 'True')].",
+    "starter_code": "class Question:\n    def __init__(self, text, answer):\n        self.text = text\n        self.answer = answer\n\ndef build_question_bank(question_data):\n    # Create Question objects from dictionaries\n    pass\n\ndef test_build(data):\n    questions = build_question_bank(data)\n    return len(questions)",
+    "test_cases": [
+      {
+        "function_call": "test_build([{'text': 'Q1?', 'answer': 'True'}])",
+        "expected": "1"
+      },
+      {
+        "function_call": "test_build([{'text': 'Q1?', 'answer': 'True'}, {'text': 'Q2?', 'answer': 'False'}])",
+        "expected": "2"
+      },
+      {
+        "function_call": "test_build([])",
+        "expected": "0"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "quiz-project",
+    "solution_code": "class Question:\n    def __init__(self, text, answer):\n        self.text = text\n        self.answer = answer\n\ndef build_question_bank(question_data):\n    question_bank = []\n    for item in question_data:\n        q = Question(item['text'], item['answer'])\n        question_bank.append(q)\n    return question_bank\n\ndef test_build(data):\n    questions = build_question_bank(data)\n    return len(questions)",
+    "explanation": "Loop through the collection and use append() to build the result list item by item."
+  }
 ]

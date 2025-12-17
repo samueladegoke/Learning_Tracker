@@ -305,7 +305,8 @@
     ],
     "difficulty": "easy",
     "topic_tag": "classes",
-    "solution_code": "class Dog:\n    def __init__(self, name, breed):\n        self.name = name\n        self.breed = breed\n\ndef create_dog(name, breed):\n    dog = Dog(name, breed)\n    return f'{dog.name} is a {dog.breed}'"
+    "solution_code": "class Dog:\n    def __init__(self, name, breed):\n        self.name = name\n        self.breed = breed\n\ndef create_dog(name, breed):\n    dog = Dog(name, breed)\n    return f'{dog.name} is a {dog.breed}'",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
   },
   {
     "question_type": "coding",
@@ -327,7 +328,8 @@
     ],
     "difficulty": "easy",
     "topic_tag": "methods",
-    "solution_code": "class Counter:\n    def __init__(self):\n        self.count = 0\n    \n    def increment(self):\n        self.count += 1\n    \n    def get_count(self):\n        return self.count\n\ndef test_counter(times):\n    c = Counter()\n    for _ in range(times):\n        c.increment()\n    return c.get_count()"
+    "solution_code": "class Counter:\n    def __init__(self):\n        self.count = 0\n    \n    def increment(self):\n        self.count += 1\n    \n    def get_count(self):\n        return self.count\n\ndef test_counter(times):\n    c = Counter()\n    for _ in range(times):\n        c.increment()\n    return c.get_count()",
+    "explanation": "Use the 'in' keyword to check membership. It returns True if the item exists in the collection."
   },
   {
     "question_type": "coding",
@@ -349,7 +351,8 @@
     ],
     "difficulty": "medium",
     "topic_tag": "attributes",
-    "solution_code": "class User:\n    def __init__(self, username):\n        self.username = username\n        self.followers = 0\n    \n    def follow(self):\n        self.followers += 1\n\ndef test_user(name, num_follows):\n    user = User(name)\n    for _ in range(num_follows):\n        user.follow()\n    return user.followers"
+    "solution_code": "class User:\n    def __init__(self, username):\n        self.username = username\n        self.followers = 0\n    \n    def follow(self):\n        self.followers += 1\n\ndef test_user(name, num_follows):\n    user = User(name)\n    for _ in range(num_follows):\n        user.follow()\n    return user.followers",
+    "explanation": "Use the 'in' keyword to check membership. It returns True if the item exists in the collection."
   },
   {
     "question_type": "coding",
@@ -371,7 +374,8 @@
     ],
     "difficulty": "medium",
     "topic_tag": "classes",
-    "solution_code": "import math\n\nclass Point:\n    def __init__(self, x, y):\n        self.x = x\n        self.y = y\n\ndef distance(p1, p2):\n    return math.sqrt((p2.x - p1.x)**2 + (p2.y - p1.y)**2)"
+    "solution_code": "import math\n\nclass Point:\n    def __init__(self, x, y):\n        self.x = x\n        self.y = y\n\ndef distance(p1, p2):\n    return math.sqrt((p2.x - p1.x)**2 + (p2.y - p1.y)**2)",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
   },
   {
     "question_type": "coding",
@@ -393,6 +397,7 @@
     ],
     "difficulty": "hard",
     "topic_tag": "oop",
-    "solution_code": "class BankAccount:\n    def __init__(self):\n        self.balance = 0\n    \n    def deposit(self, amount):\n        self.balance += amount\n    \n    def withdraw(self, amount):\n        if amount > self.balance:\n            return False\n        self.balance -= amount\n        return True\n\ndef test_account(deposits, withdrawals):\n    acc = BankAccount()\n    for d in deposits:\n        acc.deposit(d)\n    for w in withdrawals:\n        acc.withdraw(w)\n    return acc.balance"
+    "solution_code": "class BankAccount:\n    def __init__(self):\n        self.balance = 0\n    \n    def deposit(self, amount):\n        self.balance += amount\n    \n    def withdraw(self, amount):\n        if amount > self.balance:\n            return False\n        self.balance -= amount\n        return True\n\ndef test_account(deposits, withdrawals):\n    acc = BankAccount()\n    for d in deposits:\n        acc.deposit(d)\n    for w in withdrawals:\n        acc.withdraw(w)\n    return acc.balance",
+    "explanation": "Use the 'in' keyword to check membership. It returns True if the item exists in the collection."
   }
 ]

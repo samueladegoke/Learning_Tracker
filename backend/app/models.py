@@ -249,6 +249,12 @@ class Question(Base):
     quiz_id = Column(String(50), index=True, nullable=False)  # e.g., "day-1-practice"
     question_type = Column(String(20), default="mcq")  # mcq, coding, code-correction
     text = Column(Text, nullable=False)
+    code = Column(Text, nullable=True)  # For code-correction questions
     options = Column(Text, nullable=True)  # JSON string of options list (for MCQ/code-correction)
     correct_index = Column(Integer, nullable=True)  # For MCQ/code-correction
-    explanation = Column(Text)
+    starter_code = Column(Text, nullable=True)  # For coding questions
+    test_cases = Column(Text, nullable=True)  # JSON string of test cases for coding questions
+    solution_code = Column(Text, nullable=True)  # For coding questions (not sent to client)
+    explanation = Column(Text, nullable=True)
+    difficulty = Column(String(20), default="medium")  # easy, medium, hard
+    topic_tag = Column(String(100), nullable=True)  # e.g., "variables", "loops"

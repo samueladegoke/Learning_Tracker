@@ -11,7 +11,7 @@ export const quizApi = {
   async getQuestions(quizId) {
     const { data, error } = await supabase
       .from('questions')
-      .select('id, quiz_id, question_type, text, code, options, starter_code, test_cases, explanation, difficulty, topic_tag')
+      .select('id, quiz_id, question_type, text, code, options, correct_index, starter_code, test_cases, explanation, difficulty, topic_tag')
       .eq('quiz_id', quizId)
       .order('id')
 

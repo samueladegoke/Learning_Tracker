@@ -1,326 +1,333 @@
 [
-    {
-        "question_type": "mcq",
-        "text": "What is the difference between a parameter and an argument?",
-        "options": [
-            "No difference, they are synonyms",
-            "Parameter is the variable name in the function definition; Argument is the actual data passed in",
-            "Argument is the variable name; Parameter is the data",
-            "Parameters are only for numbers, arguments for strings"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "functions",
-        "explanation": "Parameters are the placeholders defined in the function (e.g., def my_func(name)). Arguments are the actual values passed when calling it (e.g., my_func('Jack'))."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Which function call correctly uses keyword arguments for def my_func(a, b, c)?",
-        "options": [
-            "my_func(a=1, b=2, c=3)",
-            "my_func(1, 2, 3)",
-            "my_func(a:1, b:2, c:3)",
-            "my_func[a=1, b=2, c=3]"
-        ],
-        "correct_index": 0,
-        "difficulty": "easy",
-        "topic_tag": "parameters",
-        "explanation": "Keyword arguments use the syntax key=value in the function call, allowing you to specify values irrespective of order."
-    },
-    {
-        "question_type": "mcq",
-        "text": "In a Caesar Cipher with a shift of 1, what does 'A' become?",
-        "options": [
-            "A",
-            "B",
-            "Z",
-            "@"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "caesar-cipher",
-        "explanation": "A shift of 1 means moving 1 position down the alphabet. A -> B."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What happens if a function requires 2 positional arguments but you call it with only 1?",
-        "options": [
-            "It runs fine with None as the second argument",
-            "It prompts the user for the second argument",
-            "It raises a TypeError",
-            "It crashes the entire computer"
-        ],
-        "correct_index": 2,
-        "difficulty": "easy",
-        "topic_tag": "functions",
-        "explanation": "Calling a function with missing required positional arguments raises a TypeError."
-    },
-    {
-        "question_type": "mcq",
-        "text": "If result = my_func(1, 2), what keyword is needed inside my_func to pass a value back to result?",
-        "options": [
-            "send",
-            "back",
-            "return",
-            "output"
-        ],
-        "correct_index": 2,
-        "difficulty": "easy",
-        "topic_tag": "functions",
-        "explanation": "The 'return' keyword is used to send a result back from a function to the caller."
-    },
-    {
-        "question_type": "mcq",
-        "text": "In the Caesar Cipher, what logic handles shifting 'z' by 1 back to 'a'?",
-        "options": [
-            "If statement checking for 'z'",
-            "Using the modulo operator % 26",
-            "Duplicating the alphabet list",
-            "All of the above work"
-        ],
-        "correct_index": 3,
-        "difficulty": "medium",
-        "topic_tag": "caesar-cipher",
-        "explanation": "You can handle wrapping by checking if index > 25, using modulo % 26, or simply looking up in a doubled alphabet list (as shown in the course)."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Which call is invalid for def area(width, height)?",
-        "options": [
-            "area(5, 4)",
-            "area(width=5, height=4)",
-            "area(5, height=4)",
-            "area(width=5, 4)"
-        ],
-        "correct_index": 3,
-        "difficulty": "medium",
-        "topic_tag": "parameters",
-        "explanation": "Positional arguments must come before keyword arguments. 'area(width=5, 4)' puts a keyword argument first, which is a SyntaxError."
-    },
-    {
-        "question_type": "mcq",
-        "text": "If you define def default_val(a, b=10):, what is 'b' called?",
-        "options": [
-            "Keyword Argument",
-            "Default Parameter",
-            "Optional Variable",
-            "Constant"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "parameters",
-        "explanation": "Parameters assigned a value in the definition are called Default Parameters. They are optional when calling the function."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you import the 'ceil' function from the 'math' module?",
-        "options": [
-            "import math.ceil",
-            "from math import ceil",
-            "function ceil from math",
-            "using math use ceil"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "modules",
-        "explanation": "The correct syntax is 'from module import item'."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the result of 2 % 26?",
-        "options": [
-            "26",
-            "0",
-            "2",
-            "13"
-        ],
-        "correct_index": 2,
-        "difficulty": "medium",
-        "topic_tag": "caesar-cipher",
-        "explanation": "The modulo operator returns the remainder. 2 divided by 26 is 0 remainder 2."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the result of 27 % 26?",
-        "options": [
-            "27",
-            "1",
-            "0",
-            "26"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "caesar-cipher",
-        "explanation": "27 divided by 26 is 1 with a remainder of 1. This is how we wrap 'z' (25) + 2 -> 27 -> index 1 ('b')."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Why might you use .lower() on input before encryption?",
-        "options": [
-            "To make it print faster",
-            "To match the standard lowercase alphabet list",
-            "Python only supports lowercase variables",
-            "To remove spaces"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "caesar-cipher",
-        "explanation": "If your reference alphabet is ['a', 'b'...], an input of 'A' won't be found unless you convert it to 'a' first."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Which string method calculates the index of a character?",
-        "options": [
-            ".find()",
-            ".index()",
-            ".locate()",
-            ".search()"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "functions",
-        "explanation": "Both lists and strings have an .index() method. .find() is also for strings but distinct."
-    },
-    {
-        "question_type": "coding",
-        "text": "Simple Greeting\nWrite a function named 'greet' that prints 'Hello ' followed by the name provided as a parameter.",
-        "starter_code": "def greet(name):\n    # Print the greeting\n    pass",
-        "test_cases": [
-            {
-                "function_call": "greet('Angela')",
-                "expected": "Hello Angela"
-            },
-            {
-                "function_call": "greet('Jack')",
-                "expected": "Hello Jack"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "functions",
-        "solution_code": "def greet(name):\n    print(f'Hello {name}')"
-    },
-    {
-        "question_type": "coding",
-        "text": "Caesar Shift\nWrite a function that shifts a single letter by a given amount. Assume inputs are lowercase and shifting 'z' wraps around to 'a'.",
-        "starter_code": "def shift_letter(letter, shift):\n    alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']\n    # Your logic here to find index, add shift, and handle wrap around\n    pass",
-        "test_cases": [
-            {
-                "function_call": "shift_letter('a', 1)",
-                "expected": "'b'"
-            },
-            {
-                "function_call": "shift_letter('z', 1)",
-                "expected": "'a'"
-            },
-            {
-                "function_call": "shift_letter('a', 5)",
-                "expected": "'f'"
-            }
-        ],
-        "difficulty": "hard",
-        "topic_tag": "caesar-cipher",
-        "solution_code": "def shift_letter(letter, shift):\n    alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']\n    if letter not in alphabet:\n        return letter\n    idx = alphabet.index(letter)\n    new_idx = (idx + shift) % 26\n    return alphabet[new_idx]"
-    },
-    {
-        "question_type": "coding",
-        "text": "Paint Area Calculator\nYou are painting a wall. The instructions say 1 can of paint covers 5 square meters. Given height and width of the wall, calculate how many cans of paint you need to buy (rounded up).",
-        "starter_code": "import math\n\ndef paint_calc(height, width, cover):\n    # Calculate number of cans\n    # Remember to round UP to the nearest whole number\n    pass",
-        "test_cases": [
-            {
-                "function_call": "paint_calc(2, 4, 5)",
-                "expected": "2"
-            },
-            {
-                "function_call": "paint_calc(3, 9, 5)",
-                "expected": "6"
-            },
-            {
-                "function_call": "paint_calc(1, 4, 5)",
-                "expected": "1"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "functions",
-        "solution_code": "import math\ndef paint_calc(height, width, cover):\n    num_cans = (height * width) / cover\n    round_up_cans = math.ceil(num_cans)\n    return round_up_cans"
-    },
-    {
-        "question_type": "coding",
-        "text": "Prime Number Checker\nWrite a function that checks if a number is prime.",
-        "starter_code": "def prime_checker(number):\n    is_prime = True\n    # Check for divisibility\n    # If number is <= 1, it's not prime\n    return is_prime",
-        "test_cases": [
-            {
-                "function_call": "prime_checker(7)",
-                "expected": "True"
-            },
-            {
-                "function_call": "prime_checker(73)",
-                "expected": "True"
-            },
-            {
-                "function_call": "prime_checker(4)",
-                "expected": "False"
-            },
-            {
-                "function_call": "prime_checker(1)",
-                "expected": "False"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "functions",
-        "solution_code": "def prime_checker(number):\n    if number <= 1: return False\n    for i in range(2, number):\n        if number % i == 0:\n            return False\n    return True"
-    },
-    {
-        "question_type": "coding",
-        "text": "Keyword Greeter\nCreate a function called 'greet_with' that takes 'name' and 'location' and prints exactly: 'Hello {name}\nWhat is it like in {location}?'",
-        "starter_code": "def greet_with(name, location):\n    # Print the specific lines\n    pass",
-        "test_cases": [
-            {
-                "function_call": "greet_with('Jack', 'London')",
-                "expected": "Hello Jack\nWhat is it like in London?"
-            },
-            {
-                "function_call": "greet_with(location='Nowhere', name='Nobody')",
-                "expected": "Hello Nobody\nWhat is it like in Nowhere?"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "parameters",
-        "solution_code": "def greet_with(name, location):\n    print(f'Hello {name}\nWhat is it like in {location}?')"
-    },
-    {
-        "question_type": "coding",
-        "text": "Decode Function\nWrite a function 'decode' that takes 'cipher_text' and 'shift' and returns the plain text.",
-        "starter_code": "def decode(cipher_text, shift):\n    alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']\n    # Decrypt the text\n    pass",
-        "test_cases": [
-            {
-                "function_call": "decode('b', 1)",
-                "expected": "'a'"
-            },
-            {
-                "function_call": "decode('mjqqt', 5)",
-                "expected": "'hello'"
-            }
-        ],
-        "difficulty": "hard",
-        "topic_tag": "caesar-cipher",
-        "solution_code": "def decode(cipher_text, shift):\n    alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']\n    text = ''\n    for char in cipher_text:\n        if char in alphabet:\n            idx = alphabet.index(char)\n            new_idx = (idx - shift) % 26\n            text += alphabet[new_idx]\n        else:\n            text += char\n    return text"
-    },
-    {
-        "question_type": "coding",
-        "text": "Double Params\nWrite a function that takes two numbers, x and y, and returns their difference (x - y).",
-        "starter_code": "def diff(x, y):\n    pass",
-        "test_cases": [
-            {
-                "function_call": "diff(10, 5)",
-                "expected": "5"
-            },
-            {
-                "function_call": "diff(5, 10)",
-                "expected": "-5"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "functions",
-        "solution_code": "def diff(x, y):\n    return x - y"
-    }
+  {
+    "question_type": "mcq",
+    "text": "What is the difference between a parameter and an argument?",
+    "options": [
+      "No difference, they are synonyms",
+      "Parameter is the variable name in the function definition; Argument is the actual data passed in",
+      "Argument is the variable name; Parameter is the data",
+      "Parameters are only for numbers, arguments for strings"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "functions",
+    "explanation": "Parameters are the placeholders defined in the function (e.g., def my_func(name)). Arguments are the actual values passed when calling it (e.g., my_func('Jack'))."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Which function call correctly uses keyword arguments for def my_func(a, b, c)?",
+    "options": [
+      "my_func(a=1, b=2, c=3)",
+      "my_func(1, 2, 3)",
+      "my_func(a:1, b:2, c:3)",
+      "my_func[a=1, b=2, c=3]"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "parameters",
+    "explanation": "Keyword arguments use the syntax key=value in the function call, allowing you to specify values irrespective of order."
+  },
+  {
+    "question_type": "mcq",
+    "text": "In a Caesar Cipher with a shift of 1, what does 'A' become?",
+    "options": [
+      "A",
+      "B",
+      "Z",
+      "@"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "caesar-cipher",
+    "explanation": "A shift of 1 means moving 1 position down the alphabet. A -> B."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What happens if a function requires 2 positional arguments but you call it with only 1?",
+    "options": [
+      "It runs fine with None as the second argument",
+      "It prompts the user for the second argument",
+      "It raises a TypeError",
+      "It crashes the entire computer"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "functions",
+    "explanation": "Calling a function with missing required positional arguments raises a TypeError."
+  },
+  {
+    "question_type": "mcq",
+    "text": "If result = my_func(1, 2), what keyword is needed inside my_func to pass a value back to result?",
+    "options": [
+      "send",
+      "back",
+      "return",
+      "output"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "functions",
+    "explanation": "The 'return' keyword is used to send a result back from a function to the caller."
+  },
+  {
+    "question_type": "mcq",
+    "text": "In the Caesar Cipher, what logic handles shifting 'z' by 1 back to 'a'?",
+    "options": [
+      "If statement checking for 'z'",
+      "Using the modulo operator % 26",
+      "Duplicating the alphabet list",
+      "All of the above work"
+    ],
+    "correct_index": 3,
+    "difficulty": "medium",
+    "topic_tag": "caesar-cipher",
+    "explanation": "You can handle wrapping by checking if index > 25, using modulo % 26, or simply looking up in a doubled alphabet list (as shown in the course)."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Which call is invalid for def area(width, height)?",
+    "options": [
+      "area(5, 4)",
+      "area(width=5, height=4)",
+      "area(5, height=4)",
+      "area(width=5, 4)"
+    ],
+    "correct_index": 3,
+    "difficulty": "medium",
+    "topic_tag": "parameters",
+    "explanation": "Positional arguments must come before keyword arguments. 'area(width=5, 4)' puts a keyword argument first, which is a SyntaxError."
+  },
+  {
+    "question_type": "mcq",
+    "text": "If you define def default_val(a, b=10):, what is 'b' called?",
+    "options": [
+      "Keyword Argument",
+      "Default Parameter",
+      "Optional Variable",
+      "Constant"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "parameters",
+    "explanation": "Parameters assigned a value in the definition are called Default Parameters. They are optional when calling the function."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you import the 'ceil' function from the 'math' module?",
+    "options": [
+      "import math.ceil",
+      "from math import ceil",
+      "function ceil from math",
+      "using math use ceil"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "modules",
+    "explanation": "The correct syntax is 'from module import item'."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the result of 2 % 26?",
+    "options": [
+      "26",
+      "0",
+      "2",
+      "13"
+    ],
+    "correct_index": 2,
+    "difficulty": "medium",
+    "topic_tag": "caesar-cipher",
+    "explanation": "The modulo operator returns the remainder. 2 divided by 26 is 0 remainder 2."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the result of 27 % 26?",
+    "options": [
+      "27",
+      "1",
+      "0",
+      "26"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "caesar-cipher",
+    "explanation": "27 divided by 26 is 1 with a remainder of 1. This is how we wrap 'z' (25) + 2 -> 27 -> index 1 ('b')."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Why might you use .lower() on input before encryption?",
+    "options": [
+      "To make it print faster",
+      "To match the standard lowercase alphabet list",
+      "Python only supports lowercase variables",
+      "To remove spaces"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "caesar-cipher",
+    "explanation": "If your reference alphabet is ['a', 'b'...], an input of 'A' won't be found unless you convert it to 'a' first."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Which string method calculates the index of a character?",
+    "options": [
+      ".find()",
+      ".index()",
+      ".locate()",
+      ".search()"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "functions",
+    "explanation": "Both lists and strings have an .index() method. .find() is also for strings but distinct."
+  },
+  {
+    "question_type": "coding",
+    "text": "Simple Greeting\nWrite a function named 'greet' that prints 'Hello ' followed by the name provided as a parameter.",
+    "starter_code": "def greet(name):\n    # Print the greeting\n    pass",
+    "test_cases": [
+      {
+        "function_call": "greet('Angela')",
+        "expected": "Hello Angela"
+      },
+      {
+        "function_call": "greet('Jack')",
+        "expected": "Hello Jack"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "functions",
+    "solution_code": "def greet(name):\n    print(f'Hello {name}')",
+    "explanation": "Define the function with def, then call print() in the body to output the result. Remember proper indentation."
+  },
+  {
+    "question_type": "coding",
+    "text": "Caesar Shift\nWrite a function that shifts a single letter by a given amount. Assume inputs are lowercase and shifting 'z' wraps around to 'a'.",
+    "starter_code": "def shift_letter(letter, shift):\n    alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']\n    # Your logic here to find index, add shift, and handle wrap around\n    pass",
+    "test_cases": [
+      {
+        "function_call": "shift_letter('a', 1)",
+        "expected": "'b'"
+      },
+      {
+        "function_call": "shift_letter('z', 1)",
+        "expected": "'a'"
+      },
+      {
+        "function_call": "shift_letter('a', 5)",
+        "expected": "'f'"
+      }
+    ],
+    "difficulty": "hard",
+    "topic_tag": "caesar-cipher",
+    "solution_code": "def shift_letter(letter, shift):\n    alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']\n    if letter not in alphabet:\n        return letter\n    idx = alphabet.index(letter)\n    new_idx = (idx + shift) % 26\n    return alphabet[new_idx]",
+    "explanation": "Use 'not in' to check if an item is absent from a collection. Returns True if not found."
+  },
+  {
+    "question_type": "coding",
+    "text": "Paint Area Calculator\nYou are painting a wall. The instructions say 1 can of paint covers 5 square meters. Given height and width of the wall, calculate how many cans of paint you need to buy (rounded up).",
+    "starter_code": "import math\n\ndef paint_calc(height, width, cover):\n    # Calculate number of cans\n    # Remember to round UP to the nearest whole number\n    pass",
+    "test_cases": [
+      {
+        "function_call": "paint_calc(2, 4, 5)",
+        "expected": "2"
+      },
+      {
+        "function_call": "paint_calc(3, 9, 5)",
+        "expected": "6"
+      },
+      {
+        "function_call": "paint_calc(1, 4, 5)",
+        "expected": "1"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "functions",
+    "solution_code": "import math\ndef paint_calc(height, width, cover):\n    num_cans = (height * width) / cover\n    round_up_cans = math.ceil(num_cans)\n    return round_up_cans",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Prime Number Checker\nWrite a function that checks if a number is prime.",
+    "starter_code": "def prime_checker(number):\n    is_prime = True\n    # Check for divisibility\n    # If number is <= 1, it's not prime\n    return is_prime",
+    "test_cases": [
+      {
+        "function_call": "prime_checker(7)",
+        "expected": "True"
+      },
+      {
+        "function_call": "prime_checker(73)",
+        "expected": "True"
+      },
+      {
+        "function_call": "prime_checker(4)",
+        "expected": "False"
+      },
+      {
+        "function_call": "prime_checker(1)",
+        "expected": "False"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "functions",
+    "solution_code": "def prime_checker(number):\n    if number <= 1: return False\n    for i in range(2, number):\n        if number % i == 0:\n            return False\n    return True",
+    "explanation": "Compare values using == and return the boolean result directly. No if/else needed for simple comparisons."
+  },
+  {
+    "question_type": "coding",
+    "text": "Keyword Greeter\nCreate a function called 'greet_with' that takes 'name' and 'location' and prints exactly: 'Hello {name}\nWhat is it like in {location}?'",
+    "starter_code": "def greet_with(name, location):\n    # Print the specific lines\n    pass",
+    "test_cases": [
+      {
+        "function_call": "greet_with('Jack', 'London')",
+        "expected": "Hello Jack\nWhat is it like in London?"
+      },
+      {
+        "function_call": "greet_with(location='Nowhere', name='Nobody')",
+        "expected": "Hello Nobody\nWhat is it like in Nowhere?"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "parameters",
+    "solution_code": "def greet_with(name, location):\n    print(f'Hello {name}\nWhat is it like in {location}?')",
+    "explanation": "Define the function with def, then call print() in the body to output the result. Remember proper indentation."
+  },
+  {
+    "question_type": "coding",
+    "text": "Decode Function\nWrite a function 'decode' that takes 'cipher_text' and 'shift' and returns the plain text.",
+    "starter_code": "def decode(cipher_text, shift):\n    alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']\n    # Decrypt the text\n    pass",
+    "test_cases": [
+      {
+        "function_call": "decode('b', 1)",
+        "expected": "'a'"
+      },
+      {
+        "function_call": "decode('mjqqt', 5)",
+        "expected": "'hello'"
+      }
+    ],
+    "difficulty": "hard",
+    "topic_tag": "caesar-cipher",
+    "solution_code": "def decode(cipher_text, shift):\n    alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']\n    text = ''\n    for char in cipher_text:\n        if char in alphabet:\n            idx = alphabet.index(char)\n            new_idx = (idx - shift) % 26\n            text += alphabet[new_idx]\n        else:\n            text += char\n    return text",
+    "explanation": "Use the 'in' keyword to check membership. It returns True if the item exists in the collection."
+  },
+  {
+    "question_type": "coding",
+    "text": "Double Params\nWrite a function that takes two numbers, x and y, and returns their difference (x - y).",
+    "starter_code": "def diff(x, y):\n    pass",
+    "test_cases": [
+      {
+        "function_call": "diff(10, 5)",
+        "expected": "5"
+      },
+      {
+        "function_call": "diff(5, 10)",
+        "expected": "-5"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "functions",
+    "solution_code": "def diff(x, y):\n    return x - y",
+    "explanation": "Check the condition and return immediately when it's met. Return a default value if the loop completes without finding a match."
+  }
 ]

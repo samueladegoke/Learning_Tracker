@@ -1,342 +1,348 @@
 [
-    {
-        "question_type": "mcq",
-        "text": "What method is used to display an image on a Tkinter Canvas?",
-        "options": [
-            "canvas.add_image()",
-            "canvas.create_image()",
-            "canvas.display_image()",
-            "canvas.show_image()"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "tkinter-canvas",
-        "explanation": "The create_image() method is used to place images on a Canvas widget."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Why must PhotoImage objects be stored in a variable?",
-        "options": [
-            "To improve performance",
-            "To prevent garbage collection from removing them",
-            "To enable image editing",
-            "To allow multiple uses"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "tkinter-images",
-        "explanation": "If PhotoImage isn't referenced by a variable, Python's garbage collector may delete it, causing the image to disappear."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What pandas method converts a DataFrame to a list of dictionaries?",
-        "options": [
-            "to_list()",
-            "to_dict(orient='records')",
-            "as_dict()",
-            "convert_records()"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "pandas",
-        "explanation": "to_dict(orient='records') converts each row to a dictionary, returning a list of dictionaries."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does window.after(3000, flip_card) do?",
-        "options": [
-            "Calls flip_card after 3 seconds",
-            "Calls flip_card 3000 times",
-            "Waits 3000 milliseconds then exits",
-            "Schedules flip_card to run in 3 minutes"
-        ],
-        "correct_index": 0,
-        "difficulty": "easy",
-        "topic_tag": "tkinter-after",
-        "explanation": "after() schedules a function to run after a delay in milliseconds (3000ms = 3 seconds)."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the purpose of after_cancel()?",
-        "options": [
-            "Cancel the window",
-            "Stop a pending after() callback",
-            "Pause the application",
-            "Reset the timer to zero"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "tkinter-after",
-        "explanation": "after_cancel() cancels a scheduled after() callback, preventing timer stacking issues."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you update text on a Canvas text item?",
-        "options": [
-            "canvas.update_text()",
-            "canvas.itemconfig(item_id, text='new')",
-            "canvas.set_text()",
-            "item.text = 'new'"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "tkinter-canvas",
-        "explanation": "itemconfig() updates properties of canvas items including text, fill color, and more."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What exception should you catch when a file doesn't exist?",
-        "options": [
-            "FileError",
-            "IOError",
-            "FileNotFoundError",
-            "PathError"
-        ],
-        "correct_index": 2,
-        "difficulty": "easy",
-        "topic_tag": "exceptions",
-        "explanation": "FileNotFoundError is raised when trying to open a file that doesn't exist."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does random.choice() return?",
-        "options": [
-            "A random number",
-            "A random index",
-            "A single random element from a sequence",
-            "A random boolean"
-        ],
-        "correct_index": 2,
-        "difficulty": "easy",
-        "topic_tag": "random",
-        "explanation": "random.choice() returns one randomly selected element from a non-empty sequence."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What argument removes the button border in Tkinter?",
-        "options": [
-            "border=0",
-            "highlightthickness=0",
-            "outline=None",
-            "bd=False"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "tkinter-widgets",
-        "explanation": "highlightthickness=0 removes the focus highlight border around widgets."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the correct pattern for saving progress to CSV with pandas?",
-        "options": [
-            "df.save('file.csv')",
-            "df.to_csv('file.csv', index=False)",
-            "df.write_csv('file.csv')",
-            "pd.save(df, 'file.csv')"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "pandas",
-        "explanation": "to_csv() saves a DataFrame to CSV. index=False prevents saving row indices."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Which approach correctly handles missing save files?",
-        "options": [
-            "Use if/else to check file exists",
-            "try to load saved file, except FileNotFoundError load original",
-            "Always load from original",
-            "Check with os.path.exists() only"
-        ],
-        "correct_index": 1,
-        "difficulty": "hard",
-        "topic_tag": "file-handling",
-        "explanation": "Try/except is the Pythonic EAFP approach - try to load saved progress, fall back to original on error."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What happens when you remove an item from a list during iteration?",
-        "options": [
-            "Nothing special",
-            "The list shortens but iteration continues correctly",
-            "Items may be skipped unexpectedly",
-            "Python raises an error"
-        ],
-        "correct_index": 2,
-        "difficulty": "hard",
-        "topic_tag": "python-lists",
-        "explanation": "Removing items during iteration can cause skipped elements. Use remove() outside the loop or iterate over a copy."
-    },
-    {
-        "question_type": "coding",
-        "text": "Flash Card Timer\nWrite a function that takes a Tkinter window, a delay in milliseconds, and a callback function. Return the timer ID from after().",
-        "starter_code": "def schedule_flip(window, delay_ms, callback):\n    # Schedule callback after delay\n    # Return the timer ID\n    pass",
-        "test_cases": [
-            {
-                "function_call": "schedule_flip.__doc__ is not None or True",
-                "expected": "True"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "tkinter-after",
-        "solution_code": "def schedule_flip(window, delay_ms, callback):\n    timer_id = window.after(delay_ms, callback)\n    return timer_id"
-    },
-    {
-        "question_type": "coding",
-        "text": "Convert DataFrame to Cards\nGiven a pandas DataFrame with 'front' and 'back' columns, convert it to a list of dictionaries.",
-        "starter_code": "def df_to_cards(df):\n    # Convert DataFrame to list of dicts\n    pass",
-        "test_cases": [
-            {
-                "function_call": "df_to_cards.__doc__ is not None or True",
-                "expected": "True"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "pandas",
-        "solution_code": "def df_to_cards(df):\n    return df.to_dict(orient='records')"
-    },
-    {
-        "question_type": "coding",
-        "text": "Pick Random Card\nWrite a function that takes a list of card dictionaries and returns a random card.",
-        "starter_code": "import random\n\ndef pick_random_card(cards):\n    # Return a random card from the list\n    pass",
-        "test_cases": [
-            {
-                "function_call": "pick_random_card([{'word': 'test'}]) == {'word': 'test'}",
-                "expected": "True"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "random",
-        "solution_code": "import random\n\ndef pick_random_card(cards):\n    return random.choice(cards)"
-    },
-    {
-        "question_type": "coding",
-        "text": "Load with Fallback\nWrite a function that tries to load 'progress.csv', but falls back to 'original.csv' if not found. Return the loaded DataFrame.",
-        "starter_code": "import pandas as pd\n\ndef load_cards():\n    # Try progress.csv, fallback to original.csv\n    pass",
-        "test_cases": [
-            {
-                "function_call": "load_cards.__doc__ is not None or True",
-                "expected": "True"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "file-handling",
-        "solution_code": "import pandas as pd\n\ndef load_cards():\n    try:\n        return pd.read_csv('progress.csv')\n    except FileNotFoundError:\n        return pd.read_csv('original.csv')"
-    },
-    {
-        "question_type": "coding",
-        "text": "Remove Known Card\nWrite a function that removes a card from a list and saves the remaining cards to CSV.",
-        "starter_code": "import pandas as pd\n\ndef remove_and_save(cards, known_card, filepath):\n    # Remove known_card from cards list\n    # Save remaining to filepath\n    pass",
-        "test_cases": [
-            {
-                "function_call": "remove_and_save.__doc__ is not None or True",
-                "expected": "True"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "file-handling",
-        "solution_code": "import pandas as pd\n\ndef remove_and_save(cards, known_card, filepath):\n    cards.remove(known_card)\n    df = pd.DataFrame(cards)\n    df.to_csv(filepath, index=False)"
-    },
-    {
-        "question_type": "coding",
-        "text": "Cancel Timer Safely\nWrite a function that cancels a timer only if it exists (not None). Use Tkinter's after_cancel.",
-        "starter_code": "def safe_cancel(window, timer_id):\n    # Cancel timer only if it's not None\n    pass",
-        "test_cases": [
-            {
-                "function_call": "safe_cancel.__doc__ is not None or True",
-                "expected": "True"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "tkinter-after",
-        "solution_code": "def safe_cancel(window, timer_id):\n    if timer_id is not None:\n        window.after_cancel(timer_id)"
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the bug in this flash card timer code:",
-        "code": "def next_card():\n    global flip_timer\n    current_card = random.choice(to_learn)\n    flip_timer = window.after(3000, flip_card)\n    # Bug: Previous timer not cancelled",
-        "options": [
-            "Add window.after_cancel(flip_timer) before scheduling new timer",
-            "Remove the global statement",
-            "Change 3000 to 3",
-            "Add return statement"
-        ],
-        "correct_index": 0,
-        "difficulty": "medium",
-        "topic_tag": "tkinter-after",
-        "explanation": "You must cancel any pending timer before scheduling a new one to prevent timer stacking."
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the bug in this PhotoImage code:",
-        "code": "def create_card():\n    img = tk.PhotoImage(file='card.png')\n    canvas.create_image(200, 200, image=img)\n    # Bug: Image disappears",
-        "options": [
-            "Store img in a global or instance variable",
-            "Use png instead of PhotoImage",
-            "Add img.show()",
-            "Change create_image to add_image"
-        ],
-        "correct_index": 0,
-        "difficulty": "medium",
-        "topic_tag": "tkinter-images",
-        "explanation": "PhotoImage must be stored in a variable that persists. Local variables are garbage collected, removing the image."
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the pandas conversion bug:",
-        "code": "data = pd.read_csv('words.csv')\ncards = data.to_dict()\n# Bug: cards is not a list of dicts",
-        "options": [
-            "Use to_dict(orient='records')",
-            "Use to_list()",
-            "Use list(data)",
-            "Use data.values.tolist()"
-        ],
-        "correct_index": 0,
-        "difficulty": "easy",
-        "topic_tag": "pandas",
-        "explanation": "to_dict() without orient='records' returns a dict of columns. Use orient='records' for a list of row dicts."
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the file fallback logic:",
-        "code": "try:\n    data = pd.read_csv('progress.csv')\nexcept:\n    data = pd.read_csv('original.csv')\n# Bug: Catches too many exceptions",
-        "options": [
-            "Catch FileNotFoundError specifically",
-            "Add finally block",
-            "Use if/else instead",
-            "Remove except clause"
-        ],
-        "correct_index": 0,
-        "difficulty": "hard",
-        "topic_tag": "exceptions",
-        "explanation": "Bare except catches all exceptions including keyboard interrupts. Catch FileNotFoundError specifically."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the purpose of `window.config(padx=50, pady=50)`?",
-        "options": [
-            "To make the window 50x50 pixels",
-            "To add 50 pixels of padding inside the window borders",
-            "To move the window to position (50, 50) on screen",
-            "To set the background color"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "tkinter-layout",
-        "explanation": "padx and pady in window.config() add internal padding around the key content."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you span a widget across 2 columns in grid layout?",
-        "options": [
-            "grid(span=2)",
-            "grid(columnspan=2)",
-            "grid(width=2)",
-            "grid(columns=2)"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "tkinter-layout",
-        "explanation": "The `columnspan` argument in grid() specifies how many columns the widget should occupy."
-    }
+  {
+    "question_type": "mcq",
+    "text": "What method is used to display an image on a Tkinter Canvas?",
+    "options": [
+      "canvas.add_image()",
+      "canvas.create_image()",
+      "canvas.display_image()",
+      "canvas.show_image()"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "tkinter-canvas",
+    "explanation": "The create_image() method is used to place images on a Canvas widget."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Why must PhotoImage objects be stored in a variable?",
+    "options": [
+      "To improve performance",
+      "To prevent garbage collection from removing them",
+      "To enable image editing",
+      "To allow multiple uses"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "tkinter-images",
+    "explanation": "If PhotoImage isn't referenced by a variable, Python's garbage collector may delete it, causing the image to disappear."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What pandas method converts a DataFrame to a list of dictionaries?",
+    "options": [
+      "to_list()",
+      "to_dict(orient='records')",
+      "as_dict()",
+      "convert_records()"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "pandas",
+    "explanation": "to_dict(orient='records') converts each row to a dictionary, returning a list of dictionaries."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does window.after(3000, flip_card) do?",
+    "options": [
+      "Calls flip_card after 3 seconds",
+      "Calls flip_card 3000 times",
+      "Waits 3000 milliseconds then exits",
+      "Schedules flip_card to run in 3 minutes"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "tkinter-after",
+    "explanation": "after() schedules a function to run after a delay in milliseconds (3000ms = 3 seconds)."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the purpose of after_cancel()?",
+    "options": [
+      "Cancel the window",
+      "Stop a pending after() callback",
+      "Pause the application",
+      "Reset the timer to zero"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "tkinter-after",
+    "explanation": "after_cancel() cancels a scheduled after() callback, preventing timer stacking issues."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you update text on a Canvas text item?",
+    "options": [
+      "canvas.update_text()",
+      "canvas.itemconfig(item_id, text='new')",
+      "canvas.set_text()",
+      "item.text = 'new'"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "tkinter-canvas",
+    "explanation": "itemconfig() updates properties of canvas items including text, fill color, and more."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What exception should you catch when a file doesn't exist?",
+    "options": [
+      "FileError",
+      "IOError",
+      "FileNotFoundError",
+      "PathError"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "exceptions",
+    "explanation": "FileNotFoundError is raised when trying to open a file that doesn't exist."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does random.choice() return?",
+    "options": [
+      "A random number",
+      "A random index",
+      "A single random element from a sequence",
+      "A random boolean"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "random",
+    "explanation": "random.choice() returns one randomly selected element from a non-empty sequence."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What argument removes the button border in Tkinter?",
+    "options": [
+      "border=0",
+      "highlightthickness=0",
+      "outline=None",
+      "bd=False"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "tkinter-widgets",
+    "explanation": "highlightthickness=0 removes the focus highlight border around widgets."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the correct pattern for saving progress to CSV with pandas?",
+    "options": [
+      "df.save('file.csv')",
+      "df.to_csv('file.csv', index=False)",
+      "df.write_csv('file.csv')",
+      "pd.save(df, 'file.csv')"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "pandas",
+    "explanation": "to_csv() saves a DataFrame to CSV. index=False prevents saving row indices."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Which approach correctly handles missing save files?",
+    "options": [
+      "Use if/else to check file exists",
+      "try to load saved file, except FileNotFoundError load original",
+      "Always load from original",
+      "Check with os.path.exists() only"
+    ],
+    "correct_index": 1,
+    "difficulty": "hard",
+    "topic_tag": "file-handling",
+    "explanation": "Try/except is the Pythonic EAFP approach - try to load saved progress, fall back to original on error."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What happens when you remove an item from a list during iteration?",
+    "options": [
+      "Nothing special",
+      "The list shortens but iteration continues correctly",
+      "Items may be skipped unexpectedly",
+      "Python raises an error"
+    ],
+    "correct_index": 2,
+    "difficulty": "hard",
+    "topic_tag": "python-lists",
+    "explanation": "Removing items during iteration can cause skipped elements. Use remove() outside the loop or iterate over a copy."
+  },
+  {
+    "question_type": "coding",
+    "text": "Flash Card Timer\nWrite a function that takes a Tkinter window, a delay in milliseconds, and a callback function. Return the timer ID from after().",
+    "starter_code": "def schedule_flip(window, delay_ms, callback):\n    # Schedule callback after delay\n    # Return the timer ID\n    pass",
+    "test_cases": [
+      {
+        "function_call": "schedule_flip.__doc__ is not None or True",
+        "expected": "True"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "tkinter-after",
+    "solution_code": "def schedule_flip(window, delay_ms, callback):\n    timer_id = window.after(delay_ms, callback)\n    return timer_id",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Convert DataFrame to Cards\nGiven a pandas DataFrame with 'front' and 'back' columns, convert it to a list of dictionaries.",
+    "starter_code": "def df_to_cards(df):\n    # Convert DataFrame to list of dicts\n    pass",
+    "test_cases": [
+      {
+        "function_call": "df_to_cards.__doc__ is not None or True",
+        "expected": "True"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "pandas",
+    "solution_code": "def df_to_cards(df):\n    return df.to_dict(orient='records')",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Pick Random Card\nWrite a function that takes a list of card dictionaries and returns a random card.",
+    "starter_code": "import random\n\ndef pick_random_card(cards):\n    # Return a random card from the list\n    pass",
+    "test_cases": [
+      {
+        "function_call": "pick_random_card([{'word': 'test'}]) == {'word': 'test'}",
+        "expected": "True"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "random",
+    "solution_code": "import random\n\ndef pick_random_card(cards):\n    return random.choice(cards)",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Load with Fallback\nWrite a function that tries to load 'progress.csv', but falls back to 'original.csv' if not found. Return the loaded DataFrame.",
+    "starter_code": "import pandas as pd\n\ndef load_cards():\n    # Try progress.csv, fallback to original.csv\n    pass",
+    "test_cases": [
+      {
+        "function_call": "load_cards.__doc__ is not None or True",
+        "expected": "True"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "file-handling",
+    "solution_code": "import pandas as pd\n\ndef load_cards():\n    try:\n        return pd.read_csv('progress.csv')\n    except FileNotFoundError:\n        return pd.read_csv('original.csv')",
+    "explanation": "Use try/except to handle potential errors gracefully. Catch specific exceptions to handle different error cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Remove Known Card\nWrite a function that removes a card from a list and saves the remaining cards to CSV.",
+    "starter_code": "import pandas as pd\n\ndef remove_and_save(cards, known_card, filepath):\n    # Remove known_card from cards list\n    # Save remaining to filepath\n    pass",
+    "test_cases": [
+      {
+        "function_call": "remove_and_save.__doc__ is not None or True",
+        "expected": "True"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "file-handling",
+    "solution_code": "import pandas as pd\n\ndef remove_and_save(cards, known_card, filepath):\n    cards.remove(known_card)\n    df = pd.DataFrame(cards)\n    df.to_csv(filepath, index=False)",
+    "explanation": "Implement the logic step by step, following the problem requirements. Test with the provided examples."
+  },
+  {
+    "question_type": "coding",
+    "text": "Cancel Timer Safely\nWrite a function that cancels a timer only if it exists (not None). Use Tkinter's after_cancel.",
+    "starter_code": "def safe_cancel(window, timer_id):\n    # Cancel timer only if it's not None\n    pass",
+    "test_cases": [
+      {
+        "function_call": "safe_cancel.__doc__ is not None or True",
+        "expected": "True"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "tkinter-after",
+    "solution_code": "def safe_cancel(window, timer_id):\n    if timer_id is not None:\n        window.after_cancel(timer_id)",
+    "explanation": "Implement the logic step by step, following the problem requirements. Test with the provided examples."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the bug in this flash card timer code:",
+    "code": "def next_card():\n    global flip_timer\n    current_card = random.choice(to_learn)\n    flip_timer = window.after(3000, flip_card)\n    # Bug: Previous timer not cancelled",
+    "options": [
+      "Add window.after_cancel(flip_timer) before scheduling new timer",
+      "Remove the global statement",
+      "Change 3000 to 3",
+      "Add return statement"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "tkinter-after",
+    "explanation": "You must cancel any pending timer before scheduling a new one to prevent timer stacking."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the bug in this PhotoImage code:",
+    "code": "def create_card():\n    img = tk.PhotoImage(file='card.png')\n    canvas.create_image(200, 200, image=img)\n    # Bug: Image disappears",
+    "options": [
+      "Store img in a global or instance variable",
+      "Use png instead of PhotoImage",
+      "Add img.show()",
+      "Change create_image to add_image"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "tkinter-images",
+    "explanation": "PhotoImage must be stored in a variable that persists. Local variables are garbage collected, removing the image."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the pandas conversion bug:",
+    "code": "data = pd.read_csv('words.csv')\ncards = data.to_dict()\n# Bug: cards is not a list of dicts",
+    "options": [
+      "Use to_dict(orient='records')",
+      "Use to_list()",
+      "Use list(data)",
+      "Use data.values.tolist()"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "pandas",
+    "explanation": "to_dict() without orient='records' returns a dict of columns. Use orient='records' for a list of row dicts."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the file fallback logic:",
+    "code": "try:\n    data = pd.read_csv('progress.csv')\nexcept:\n    data = pd.read_csv('original.csv')\n# Bug: Catches too many exceptions",
+    "options": [
+      "Catch FileNotFoundError specifically",
+      "Add finally block",
+      "Use if/else instead",
+      "Remove except clause"
+    ],
+    "correct_index": 0,
+    "difficulty": "hard",
+    "topic_tag": "exceptions",
+    "explanation": "Bare except catches all exceptions including keyboard interrupts. Catch FileNotFoundError specifically."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the purpose of `window.config(padx=50, pady=50)`?",
+    "options": [
+      "To make the window 50x50 pixels",
+      "To add 50 pixels of padding inside the window borders",
+      "To move the window to position (50, 50) on screen",
+      "To set the background color"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "tkinter-layout",
+    "explanation": "padx and pady in window.config() add internal padding around the key content."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you span a widget across 2 columns in grid layout?",
+    "options": [
+      "grid(span=2)",
+      "grid(columnspan=2)",
+      "grid(width=2)",
+      "grid(columns=2)"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "tkinter-layout",
+    "explanation": "The `columnspan` argument in grid() specifies how many columns the widget should occupy."
+  }
 ]

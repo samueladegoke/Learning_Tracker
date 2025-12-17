@@ -1,328 +1,334 @@
 [
-    {
-        "question_type": "mcq",
-        "text": "What does the Nutritionix API specialize in?",
-        "options": [
-            "Weather data",
-            "Natural language food/exercise processing",
-            "Stock prices",
-            "Social media"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "nutritionix",
-        "explanation": "Nutritionix uses NLP to understand natural language food and exercise descriptions."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the role of the natural language processing (NLP) API in the Workout Tracker?",
-        "options": [
-            "To count calories burned",
-            "To convert plain text input (e.g., 'ran 3 miles') into structured data",
-            "To send emails",
-            "To login to Google Sheets"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "nlp",
-        "explanation": "The NLP API (like Nutritionix) parses natural language sentences into exercise type, duration, and calories."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does Sheety do?",
-        "options": [
-            "Sends emails",
-            "Turns Google Sheets into a REST API",
-            "Tracks habits",
-            "Searches flights"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "sheety",
-        "explanation": "Sheety turns Google Sheets spreadsheets into REST APIs for CRUD operations."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What header format does Bearer token authentication use?",
-        "options": [
-            "Authorization: Token xyz",
-            "Authorization: Bearer xyz",
-            "Bearer: xyz",
-            "Token: Bearer xyz"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "auth",
-        "explanation": "Bearer token format is 'Authorization: Bearer <token>' in the header."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does .title() do to a string?",
-        "options": [
-            "Converts to lowercase",
-            "Converts to uppercase",
-            "Capitalizes first letter of each word",
-            "Adds a title tag"
-        ],
-        "correct_index": 2,
-        "difficulty": "easy",
-        "topic_tag": "python",
-        "explanation": ".title() capitalizes the first letter of each word: 'running' → 'Running'."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What Nutritionix endpoint processes exercise descriptions?",
-        "options": [
-            "/v2/natural/nutrients",
-            "/v2/natural/exercise",
-            "/v2/exercise/log",
-            "/v2/workout"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "nutritionix",
-        "explanation": "The /v2/natural/exercise endpoint processes natural language exercise input."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What key in Sheety data wraps a single row?",
-        "options": [
-            "The plural sheet name",
-            "The singular of the sheet name",
-            "row",
-            "data"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "sheety",
-        "explanation": "Sheety uses the singular form of the sheet name: 'workouts' sheet → 'workout' key."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What Nutritionix headers are required for authentication?",
-        "options": [
-            "Authorization only",
-            "x-app-id and x-app-key",
-            "API-KEY",
-            "Bearer token"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "nutritionix",
-        "explanation": "Nutritionix requires both x-app-id and x-app-key headers for authentication."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does strftime('%d/%m/%Y') produce?",
-        "options": [
-            "2025-12-15",
-            "15/12/2025",
-            "12/15/2025",
-            "20251215"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "datetime",
-        "explanation": "%d/%m/%Y produces day/month/year format like '15/12/2025'."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does strftime('%H:%M:%S') produce?",
-        "options": [
-            "12-30-45",
-            "12:30:45",
-            "12.30.45",
-            "12h30m45s"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "datetime",
-        "explanation": "%H:%M:%S produces 24-hour time format like '14:30:45'."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What key contains exercise data in Nutritionix response?",
-        "options": [
-            "data",
-            "exercises",
-            "workouts",
-            "results"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "nutritionix",
-        "explanation": "Nutritionix returns exercise data under the 'exercises' key in the response."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What parameter provides user's weight to Nutritionix?",
-        "options": [
-            "weight",
-            "weight_kg",
-            "user_weight",
-            "mass"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "nutritionix",
-        "explanation": "Nutritionix uses weight_kg for the user's weight in kilograms."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does 'nf_calories' represent in Nutritionix response?",
-        "options": [
-            "Food calories",
-            "Calories burned from exercise",
-            "Daily calorie goal",
-            "Net calories"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "nutritionix",
-        "explanation": "nf_calories contains the estimated calories burned for the exercise."
-    },
-    {
-        "question_type": "coding",
-        "text": "Build Bearer Header\nWrite a function that creates an Authorization header with Bearer token.",
-        "starter_code": "def bearer_header(token):\n    # Return header dict with Bearer token\n    pass",
-        "test_cases": [
-            {
-                "function_call": "bearer_header('xyz123')['Authorization']",
-                "expected": "Bearer xyz123"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "auth",
-        "solution_code": "def bearer_header(token):\n    return {'Authorization': f'Bearer {token}'}"
-    },
-    {
-        "question_type": "coding",
-        "text": "Format Date Time\nWrite a function that returns current date and time in dd/mm/yyyy and HH:MM:SS format.",
-        "starter_code": "import datetime as dt\n\ndef get_date_time():\n    # Return tuple of (date_string, time_string)\n    pass",
-        "test_cases": [
-            {
-                "function_call": "len(get_date_time())",
-                "expected": "2"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "datetime",
-        "solution_code": "import datetime as dt\n\ndef get_date_time():\n    now = dt.datetime.now()\n    return (now.strftime('%d/%m/%Y'), now.strftime('%H:%M:%S'))"
-    },
-    {
-        "question_type": "coding",
-        "text": "Build Sheety Row\nWrite a function that wraps data in Sheety format with the row key.",
-        "starter_code": "def sheety_row(row_name, data):\n    # Return data wrapped in {row_name: data}\n    pass",
-        "test_cases": [
-            {
-                "function_call": "sheety_row('workout', {'exercise': 'run'})['workout']['exercise']",
-                "expected": "run"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "sheety",
-        "solution_code": "def sheety_row(row_name, data):\n    return {row_name: data}"
-    },
-    {
-        "question_type": "coding",
-        "text": "Extract Exercise Data\nWrite a function that extracts name, duration, and calories from Nutritionix result.",
-        "starter_code": "def extract_exercise(exercise_data):\n    # Return dict with name, duration, calories\n    pass",
-        "test_cases": [
-            {
-                "function_call": "'name' in extract_exercise({'name': 'run', 'duration_min': 30, 'nf_calories': 300})",
-                "expected": "True"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "nutritionix",
-        "solution_code": "def extract_exercise(exercise_data):\n    return {\n        'name': exercise_data['name'],\n        'duration': exercise_data['duration_min'],\n        'calories': exercise_data['nf_calories']\n    }"
-    },
-    {
-        "question_type": "coding",
-        "text": "Build Nutritionix Headers\nWrite a function that creates the Nutritionix API headers.",
-        "starter_code": "def nutritionix_headers(app_id, api_key):\n    # Return headers dict with x-app-id and x-app-key\n    pass",
-        "test_cases": [
-            {
-                "function_call": "nutritionix_headers('id1', 'key1')['x-app-id']",
-                "expected": "id1"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "nutritionix",
-        "solution_code": "def nutritionix_headers(app_id, api_key):\n    return {'x-app-id': app_id, 'x-app-key': api_key}"
-    },
-    {
-        "question_type": "coding",
-        "text": "Capitalize Exercise Name\nWrite a function that properly capitalizes an exercise name.",
-        "starter_code": "def format_exercise_name(name):\n    # Return properly capitalized name\n    pass",
-        "test_cases": [
-            {
-                "function_call": "format_exercise_name('running fast')",
-                "expected": "Running Fast"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "python",
-        "solution_code": "def format_exercise_name(name):\n    return name.title()"
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the Sheety data format bug:",
-        "code": "data = {'date': '15/12/2025', 'exercise': 'Running'}\nresponse = requests.post(url, json=data)\n# Bug: Sheety rejects the request",
-        "options": [
-            "Wrap data: {'workout': data}",
-            "Change json= to params=",
-            "Add Content-Type header",
-            "Use PUT instead"
-        ],
-        "correct_index": 0,
-        "difficulty": "medium",
-        "topic_tag": "sheety",
-        "explanation": "Sheety requires data wrapped in the singular sheet name: {'workout': {...}}"
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the Bearer token format bug:",
-        "code": "headers = {'Authorization': token}\n# Bug: API returns 401 Unauthorized",
-        "options": [
-            "Use f'Bearer {token}'",
-            "Use 'Token ' + token",
-            "Add 'Content-Type' header",
-            "Use params instead"
-        ],
-        "correct_index": 0,
-        "difficulty": "easy",
-        "topic_tag": "auth",
-        "explanation": "Bearer tokens must include 'Bearer ' prefix: 'Authorization': f'Bearer {token}'"
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the Nutritionix headers bug:",
-        "code": "headers = {'API_KEY': api_key}\nresponse = requests.post(url, json=data, headers=headers)\n# Bug: API returns authentication error",
-        "options": [
-            "Use x-app-id and x-app-key headers",
-            "Use Authorization header",
-            "Use Bearer token",
-            "Add Content-Type"
-        ],
-        "correct_index": 0,
-        "difficulty": "medium",
-        "topic_tag": "nutritionix",
-        "explanation": "Nutritionix requires both 'x-app-id' and 'x-app-key' headers for authentication."
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the exercise data access bug:",
-        "code": "result = response.json()\ncalories = result['calories']\n# Bug: KeyError",
-        "options": [
-            "Access via result['exercises'][0]['nf_calories']",
-            "Use result[0].calories",
-            "Use result.nf_calories",
-            "Convert to list first"
-        ],
-        "correct_index": 0,
-        "difficulty": "hard",
-        "topic_tag": "nutritionix",
-        "explanation": "Nutritionix returns data under 'exercises' list with 'nf_calories' key."
-    }
+  {
+    "question_type": "mcq",
+    "text": "What does the Nutritionix API specialize in?",
+    "options": [
+      "Weather data",
+      "Natural language food/exercise processing",
+      "Stock prices",
+      "Social media"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "nutritionix",
+    "explanation": "Nutritionix uses NLP to understand natural language food and exercise descriptions."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the role of the natural language processing (NLP) API in the Workout Tracker?",
+    "options": [
+      "To count calories burned",
+      "To convert plain text input (e.g., 'ran 3 miles') into structured data",
+      "To send emails",
+      "To login to Google Sheets"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "nlp",
+    "explanation": "The NLP API (like Nutritionix) parses natural language sentences into exercise type, duration, and calories."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does Sheety do?",
+    "options": [
+      "Sends emails",
+      "Turns Google Sheets into a REST API",
+      "Tracks habits",
+      "Searches flights"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "sheety",
+    "explanation": "Sheety turns Google Sheets spreadsheets into REST APIs for CRUD operations."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What header format does Bearer token authentication use?",
+    "options": [
+      "Authorization: Token xyz",
+      "Authorization: Bearer xyz",
+      "Bearer: xyz",
+      "Token: Bearer xyz"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "auth",
+    "explanation": "Bearer token format is 'Authorization: Bearer <token>' in the header."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does .title() do to a string?",
+    "options": [
+      "Converts to lowercase",
+      "Converts to uppercase",
+      "Capitalizes first letter of each word",
+      "Adds a title tag"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "python",
+    "explanation": ".title() capitalizes the first letter of each word: 'running' → 'Running'."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What Nutritionix endpoint processes exercise descriptions?",
+    "options": [
+      "/v2/natural/nutrients",
+      "/v2/natural/exercise",
+      "/v2/exercise/log",
+      "/v2/workout"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "nutritionix",
+    "explanation": "The /v2/natural/exercise endpoint processes natural language exercise input."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What key in Sheety data wraps a single row?",
+    "options": [
+      "The plural sheet name",
+      "The singular of the sheet name",
+      "row",
+      "data"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "sheety",
+    "explanation": "Sheety uses the singular form of the sheet name: 'workouts' sheet → 'workout' key."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What Nutritionix headers are required for authentication?",
+    "options": [
+      "Authorization only",
+      "x-app-id and x-app-key",
+      "API-KEY",
+      "Bearer token"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "nutritionix",
+    "explanation": "Nutritionix requires both x-app-id and x-app-key headers for authentication."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does strftime('%d/%m/%Y') produce?",
+    "options": [
+      "2025-12-15",
+      "15/12/2025",
+      "12/15/2025",
+      "20251215"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "datetime",
+    "explanation": "%d/%m/%Y produces day/month/year format like '15/12/2025'."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does strftime('%H:%M:%S') produce?",
+    "options": [
+      "12-30-45",
+      "12:30:45",
+      "12.30.45",
+      "12h30m45s"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "datetime",
+    "explanation": "%H:%M:%S produces 24-hour time format like '14:30:45'."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What key contains exercise data in Nutritionix response?",
+    "options": [
+      "data",
+      "exercises",
+      "workouts",
+      "results"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "nutritionix",
+    "explanation": "Nutritionix returns exercise data under the 'exercises' key in the response."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What parameter provides user's weight to Nutritionix?",
+    "options": [
+      "weight",
+      "weight_kg",
+      "user_weight",
+      "mass"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "nutritionix",
+    "explanation": "Nutritionix uses weight_kg for the user's weight in kilograms."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does 'nf_calories' represent in Nutritionix response?",
+    "options": [
+      "Food calories",
+      "Calories burned from exercise",
+      "Daily calorie goal",
+      "Net calories"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "nutritionix",
+    "explanation": "nf_calories contains the estimated calories burned for the exercise."
+  },
+  {
+    "question_type": "coding",
+    "text": "Build Bearer Header\nWrite a function that creates an Authorization header with Bearer token.",
+    "starter_code": "def bearer_header(token):\n    # Return header dict with Bearer token\n    pass",
+    "test_cases": [
+      {
+        "function_call": "bearer_header('xyz123')['Authorization']",
+        "expected": "Bearer xyz123"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "auth",
+    "solution_code": "def bearer_header(token):\n    return {'Authorization': f'Bearer {token}'}",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Format Date Time\nWrite a function that returns current date and time in dd/mm/yyyy and HH:MM:SS format.",
+    "starter_code": "import datetime as dt\n\ndef get_date_time():\n    # Return tuple of (date_string, time_string)\n    pass",
+    "test_cases": [
+      {
+        "function_call": "len(get_date_time())",
+        "expected": "2"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "datetime",
+    "solution_code": "import datetime as dt\n\ndef get_date_time():\n    now = dt.datetime.now()\n    return (now.strftime('%d/%m/%Y'), now.strftime('%H:%M:%S'))",
+    "explanation": "Use modulo (%) to check divisibility or wrap around indices. Returns the remainder of division."
+  },
+  {
+    "question_type": "coding",
+    "text": "Build Sheety Row\nWrite a function that wraps data in Sheety format with the row key.",
+    "starter_code": "def sheety_row(row_name, data):\n    # Return data wrapped in {row_name: data}\n    pass",
+    "test_cases": [
+      {
+        "function_call": "sheety_row('workout', {'exercise': 'run'})['workout']['exercise']",
+        "expected": "run"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "sheety",
+    "solution_code": "def sheety_row(row_name, data):\n    return {row_name: data}",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Extract Exercise Data\nWrite a function that extracts name, duration, and calories from Nutritionix result.",
+    "starter_code": "def extract_exercise(exercise_data):\n    # Return dict with name, duration, calories\n    pass",
+    "test_cases": [
+      {
+        "function_call": "'name' in extract_exercise({'name': 'run', 'duration_min': 30, 'nf_calories': 300})",
+        "expected": "True"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "nutritionix",
+    "solution_code": "def extract_exercise(exercise_data):\n    return {\n        'name': exercise_data['name'],\n        'duration': exercise_data['duration_min'],\n        'calories': exercise_data['nf_calories']\n    }",
+    "explanation": "Track the minimum by comparing each value to the current min. Update when a smaller value is found."
+  },
+  {
+    "question_type": "coding",
+    "text": "Build Nutritionix Headers\nWrite a function that creates the Nutritionix API headers.",
+    "starter_code": "def nutritionix_headers(app_id, api_key):\n    # Return headers dict with x-app-id and x-app-key\n    pass",
+    "test_cases": [
+      {
+        "function_call": "nutritionix_headers('id1', 'key1')['x-app-id']",
+        "expected": "id1"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "nutritionix",
+    "solution_code": "def nutritionix_headers(app_id, api_key):\n    return {'x-app-id': app_id, 'x-app-key': api_key}",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Capitalize Exercise Name\nWrite a function that properly capitalizes an exercise name.",
+    "starter_code": "def format_exercise_name(name):\n    # Return properly capitalized name\n    pass",
+    "test_cases": [
+      {
+        "function_call": "format_exercise_name('running fast')",
+        "expected": "Running Fast"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "python",
+    "solution_code": "def format_exercise_name(name):\n    return name.title()",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the Sheety data format bug:",
+    "code": "data = {'date': '15/12/2025', 'exercise': 'Running'}\nresponse = requests.post(url, json=data)\n# Bug: Sheety rejects the request",
+    "options": [
+      "Wrap data: {'workout': data}",
+      "Change json= to params=",
+      "Add Content-Type header",
+      "Use PUT instead"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "sheety",
+    "explanation": "Sheety requires data wrapped in the singular sheet name: {'workout': {...}}"
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the Bearer token format bug:",
+    "code": "headers = {'Authorization': token}\n# Bug: API returns 401 Unauthorized",
+    "options": [
+      "Use f'Bearer {token}'",
+      "Use 'Token ' + token",
+      "Add 'Content-Type' header",
+      "Use params instead"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "auth",
+    "explanation": "Bearer tokens must include 'Bearer ' prefix: 'Authorization': f'Bearer {token}'"
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the Nutritionix headers bug:",
+    "code": "headers = {'API_KEY': api_key}\nresponse = requests.post(url, json=data, headers=headers)\n# Bug: API returns authentication error",
+    "options": [
+      "Use x-app-id and x-app-key headers",
+      "Use Authorization header",
+      "Use Bearer token",
+      "Add Content-Type"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "nutritionix",
+    "explanation": "Nutritionix requires both 'x-app-id' and 'x-app-key' headers for authentication."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the exercise data access bug:",
+    "code": "result = response.json()\ncalories = result['calories']\n# Bug: KeyError",
+    "options": [
+      "Access via result['exercises'][0]['nf_calories']",
+      "Use result[0].calories",
+      "Use result.nf_calories",
+      "Convert to list first"
+    ],
+    "correct_index": 0,
+    "difficulty": "hard",
+    "topic_tag": "nutritionix",
+    "explanation": "Nutritionix returns data under 'exercises' list with 'nf_calories' key."
+  }
 ]

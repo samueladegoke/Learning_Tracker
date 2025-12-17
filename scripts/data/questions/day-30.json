@@ -1,414 +1,421 @@
 [
-    {
-        "question_type": "mcq",
-        "text": "What keyword starts an exception handling block?",
-        "options": [
-            "catch",
-            "try",
-            "handle",
-            "error"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "exceptions",
-        "explanation": "The 'try' keyword begins a block of code that might raise exceptions."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What block runs if no exception was raised?",
-        "options": [
-            "except",
-            "else",
-            "finally",
-            "catch"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "exceptions",
-        "explanation": "The 'else' block runs when the try block succeeds without exceptions."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What block ALWAYS runs regardless of exceptions?",
-        "options": [
-            "except",
-            "else",
-            "finally",
-            "always"
-        ],
-        "correct_index": 2,
-        "difficulty": "easy",
-        "topic_tag": "exceptions",
-        "explanation": "The 'finally' block runs whether an exception occurred or not."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Which error occurs when accessing a missing dictionary key?",
-        "options": [
-            "IndexError",
-            "KeyError",
-            "ValueError",
-            "LookupError"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "exceptions",
-        "explanation": "KeyError is raised when a dictionary key doesn't exist."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Which error occurs when a list index is out of range?",
-        "options": [
-            "KeyError",
-            "IndexError",
-            "RangeError",
-            "ValueError"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "exceptions",
-        "explanation": "IndexError is raised when accessing an index that doesn't exist."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you manually raise an exception?",
-        "options": [
-            "throw Exception",
-            "raise Exception",
-            "error Exception",
-            "exception Exception"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "exceptions",
-        "explanation": "Use 'raise' to manually trigger an exception."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does `except KeyError as e` capture?",
-        "options": [
-            "The key name",
-            "The error message",
-            "The line number",
-            "Nothing"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "exceptions",
-        "explanation": "The 'as' keyword captures the exception details in variable e."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Why is bare 'except:' considered bad practice?",
-        "options": [
-            "It's slower",
-            "It catches ALL errors hiding bugs",
-            "It doesn't work",
-            "It's deprecated"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "exceptions",
-        "explanation": "Bare except catches everything, potentially hiding programming errors."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Which function writes Python data to a JSON file?",
-        "options": [
-            "json.write()",
-            "json.dump()",
-            "json.save()",
-            "json.store()"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "json",
-        "explanation": "json.dump() writes Python objects to a JSON file."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Which function reads JSON from a file into Python?",
-        "options": [
-            "json.read()",
-            "json.load()",
-            "json.parse()",
-            "json.get()"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "json",
-        "explanation": "json.load() reads JSON data from a file into Python objects."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What's the difference between json.dump() and json.dumps()?",
-        "options": [
-            "No difference",
-            "dump writes to file, dumps returns string",
-            "dumps is faster",
-            "dump is deprecated"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "json",
-        "explanation": "dump() writes to file, dumps() (dump string) returns a string."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does `indent=4` do in json.dump()?",
-        "options": [
-            "Limits to 4 items",
-            "Adds 4-space formatting",
-            "Creates 4 copies",
-            "Limits depth to 4"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "json",
-        "explanation": "indent parameter adds spaces for human-readable formatting."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What Python type does a JSON object become after json.load()?",
-        "options": [
-            "list",
-            "dict",
-            "tuple",
-            "set"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "json",
-        "explanation": "JSON objects {} become Python dictionaries."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What error is raised when opening a non-existent file in read mode?",
-        "options": [
-            "IOError",
-            "FileNotFoundError",
-            "PathError",
-            "ReadError"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "exceptions",
-        "explanation": "FileNotFoundError is raised when a file doesn't exist."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Which is the correct order for exception handling blocks?",
-        "options": [
-            "except-try-else-finally",
-            "try-except-else-finally",
-            "try-finally-except-else",
-            "try-else-except-finally"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "exceptions",
-        "explanation": "The correct order is: try, except, else, finally."
-    },
-    {
-        "question_type": "coding",
-        "text": "Safe Divide\nWrite a function that returns a/b. If b is 0, return 0 instead of crashing.",
-        "starter_code": "def safe_divide(a, b):\n    pass",
-        "test_cases": [
-            {
-                "function_call": "safe_divide(10, 2)",
-                "expected": "5.0"
-            },
-            {
-                "function_call": "safe_divide(10, 0)",
-                "expected": "0"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "exceptions",
-        "solution_code": "def safe_divide(a, b):\n    try:\n        return a / b\n    except ZeroDivisionError:\n        return 0"
-    },
-    {
-        "question_type": "coding",
-        "text": "Safe Get Key\nWrite a function that returns dict[key] or 'Not found' if key doesn't exist.",
-        "starter_code": "def safe_get(d, key):\n    pass",
-        "test_cases": [
-            {
-                "function_call": "safe_get({'a': 1}, 'a')",
-                "expected": "1"
-            },
-            {
-                "function_call": "safe_get({'a': 1}, 'b')",
-                "expected": "\"Not found\""
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "exceptions",
-        "solution_code": "def safe_get(d, key):\n    try:\n        return d[key]\n    except KeyError:\n        return 'Not found'"
-    },
-    {
-        "question_type": "coding",
-        "text": "To JSON String\nWrite a function that converts a dict to a JSON string.",
-        "starter_code": "import json\ndef to_json(data):\n    pass",
-        "test_cases": [
-            {
-                "function_call": "to_json({'a': 1})",
-                "expected": "\"{\\\"a\\\": 1}\""
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "json",
-        "solution_code": "import json\ndef to_json(data):\n    return json.dumps(data)"
-    },
-    {
-        "question_type": "coding",
-        "text": "From JSON String\nWrite a function that parses a JSON string into a dict.",
-        "starter_code": "import json\ndef from_json(text):\n    pass",
-        "test_cases": [
-            {
-                "function_call": "from_json('{\"a\": 1}')",
-                "expected": "{'a': 1}"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "json",
-        "solution_code": "import json\ndef from_json(text):\n    return json.loads(text)"
-    },
-    {
-        "question_type": "coding",
-        "text": "Safe Index\nWrite a function that returns list[index] or None if index is out of range.",
-        "starter_code": "def safe_index(lst, index):\n    pass",
-        "test_cases": [
-            {
-                "function_call": "safe_index([1,2,3], 1)",
-                "expected": "2"
-            },
-            {
-                "function_call": "safe_index([1,2,3], 5)",
-                "expected": "None"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "exceptions",
-        "solution_code": "def safe_index(lst, index):\n    try:\n        return lst[index]\n    except IndexError:\n        return None"
-    },
-    {
-        "question_type": "coding",
-        "text": "Validate Positive\nWrite a function that raises ValueError if n <= 0, else returns n.",
-        "starter_code": "def validate_positive(n):\n    pass",
-        "test_cases": [
-            {
-                "function_call": "validate_positive(5)",
-                "expected": "5"
-            },
-            {
-                "function_call": "str(type(validate_positive(-1)))",
-                "expected": "\"<class 'ValueError'>\""
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "exceptions",
-        "solution_code": "def validate_positive(n):\n    if n <= 0:\n        raise ValueError('Must be positive')\n    return n"
-    },
-    {
-        "question_type": "coding",
-        "text": "Merge Dicts to JSON\nWrite a function that merges two dicts and returns JSON string.",
-        "starter_code": "import json\ndef merge_to_json(d1, d2):\n    pass",
-        "test_cases": [
-            {
-                "function_call": "merge_to_json({'a':1}, {'b':2})",
-                "expected": "\"{\\\"a\\\": 1, \\\"b\\\": 2}\""
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "json",
-        "solution_code": "import json\ndef merge_to_json(d1, d2):\n    merged = {**d1, **d2}\n    return json.dumps(merged)"
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the bug in this exception handling",
-        "code": "def read_number():\n    try:\n        num = int(input('Number: '))\n    except:\n        print('Invalid input')\n    return num",
-        "options": [
-            "Move 'return num' inside the try block, add default in except",
-            "Remove the except block",
-            "Add 'raise' in except block",
-            "Change int() to str()"
-        ],
-        "correct_index": 0,
-        "difficulty": "medium",
-        "topic_tag": "exceptions",
-        "explanation": "If exception occurs, 'num' is never defined but still accessed. Return inside try, or set a default in except: num = 0."
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the bug in this JSON file handling",
-        "code": "import json\n\nwith open('data.json', 'r') as f:\n    data = json.load(f)\n    data['new_key'] = 'value'\n    json.dump(data, f, indent=4)",
-        "options": [
-            "Open file separately for writing after reading",
-            "Change 'r' to 'r+' and add f.seek(0)",
-            "Change json.load to json.loads",
-            "Remove indent=4"
-        ],
-        "correct_index": 0,
-        "difficulty": "hard",
-        "topic_tag": "json",
-        "explanation": "Reading and writing to same file handle is problematic. Better: read file, close it, modify data, open for write, dump modified data."
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the bug in this bare except",
-        "code": "def parse_data(data):\n    try:\n        result = data['key'] + 10\n        return result\n    except:\n        return None",
-        "options": [
-            "Catch specific exceptions: except (KeyError, TypeError):",
-            "Change 'except' to 'finally'",
-            "Remove the try-except block",
-            "Add 'raise' at the end"
-        ],
-        "correct_index": 0,
-        "difficulty": "medium",
-        "topic_tag": "exceptions",
-        "explanation": "Bare except catches ALL errors including typos and system exits. Catch specific exceptions: KeyError (missing key) and TypeError (can't add)."
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the bug in this exception block order",
-        "code": "try:\n    result = 10 / 0\nfinally:\n    print('Cleanup')\nexcept ZeroDivisionError:\n    print('Cannot divide by zero')\nelse:\n    print('Success')",
-        "options": [
-            "Reorder to: try, except, else, finally",
-            "Remove the else block",
-            "Change ZeroDivisionError to Exception",
-            "Move finally to the beginning"
-        ],
-        "correct_index": 0,
-        "difficulty": "easy",
-        "topic_tag": "exceptions",
-        "explanation": "Exception blocks must be in order: try, then except, then else, then finally. The given order is invalid."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What happens if you raise an exception inside a finally block?",
-        "options": [
-            "The original exception is preserved",
-            "The new exception replaces any previous exception",
-            "Both exceptions are raised together",
-            "Python ignores exceptions in finally"
-        ],
-        "correct_index": 1,
-        "difficulty": "hard",
-        "topic_tag": "exceptions",
-        "explanation": "An exception in finally replaces any exception being propagated. This can hide the original error, which is why finally should avoid raising."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the key difference between `except Exception` and bare `except:`?",
-        "options": [
-            "No difference, they catch the same errors",
-            "bare except also catches KeyboardInterrupt and SystemExit",
-            "except Exception is slower",
-            "bare except only catches TypeError"
-        ],
-        "correct_index": 1,
-        "difficulty": "hard",
-        "topic_tag": "exceptions",
-        "explanation": "Bare except catches BaseException (including KeyboardInterrupt, SystemExit). 'except Exception' is safer as it lets those through."
-    }
+  {
+    "question_type": "mcq",
+    "text": "What keyword starts an exception handling block?",
+    "options": [
+      "catch",
+      "try",
+      "handle",
+      "error"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "exceptions",
+    "explanation": "The 'try' keyword begins a block of code that might raise exceptions."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What block runs if no exception was raised?",
+    "options": [
+      "except",
+      "else",
+      "finally",
+      "catch"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "exceptions",
+    "explanation": "The 'else' block runs when the try block succeeds without exceptions."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What block ALWAYS runs regardless of exceptions?",
+    "options": [
+      "except",
+      "else",
+      "finally",
+      "always"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "exceptions",
+    "explanation": "The 'finally' block runs whether an exception occurred or not."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Which error occurs when accessing a missing dictionary key?",
+    "options": [
+      "IndexError",
+      "KeyError",
+      "ValueError",
+      "LookupError"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "exceptions",
+    "explanation": "KeyError is raised when a dictionary key doesn't exist."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Which error occurs when a list index is out of range?",
+    "options": [
+      "KeyError",
+      "IndexError",
+      "RangeError",
+      "ValueError"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "exceptions",
+    "explanation": "IndexError is raised when accessing an index that doesn't exist."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you manually raise an exception?",
+    "options": [
+      "throw Exception",
+      "raise Exception",
+      "error Exception",
+      "exception Exception"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "exceptions",
+    "explanation": "Use 'raise' to manually trigger an exception."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does `except KeyError as e` capture?",
+    "options": [
+      "The key name",
+      "The error message",
+      "The line number",
+      "Nothing"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "exceptions",
+    "explanation": "The 'as' keyword captures the exception details in variable e."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Why is bare 'except:' considered bad practice?",
+    "options": [
+      "It's slower",
+      "It catches ALL errors hiding bugs",
+      "It doesn't work",
+      "It's deprecated"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "exceptions",
+    "explanation": "Bare except catches everything, potentially hiding programming errors."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Which function writes Python data to a JSON file?",
+    "options": [
+      "json.write()",
+      "json.dump()",
+      "json.save()",
+      "json.store()"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "json",
+    "explanation": "json.dump() writes Python objects to a JSON file."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Which function reads JSON from a file into Python?",
+    "options": [
+      "json.read()",
+      "json.load()",
+      "json.parse()",
+      "json.get()"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "json",
+    "explanation": "json.load() reads JSON data from a file into Python objects."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What's the difference between json.dump() and json.dumps()?",
+    "options": [
+      "No difference",
+      "dump writes to file, dumps returns string",
+      "dumps is faster",
+      "dump is deprecated"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "json",
+    "explanation": "dump() writes to file, dumps() (dump string) returns a string."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does `indent=4` do in json.dump()?",
+    "options": [
+      "Limits to 4 items",
+      "Adds 4-space formatting",
+      "Creates 4 copies",
+      "Limits depth to 4"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "json",
+    "explanation": "indent parameter adds spaces for human-readable formatting."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What Python type does a JSON object become after json.load()?",
+    "options": [
+      "list",
+      "dict",
+      "tuple",
+      "set"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "json",
+    "explanation": "JSON objects {} become Python dictionaries."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What error is raised when opening a non-existent file in read mode?",
+    "options": [
+      "IOError",
+      "FileNotFoundError",
+      "PathError",
+      "ReadError"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "exceptions",
+    "explanation": "FileNotFoundError is raised when a file doesn't exist."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Which is the correct order for exception handling blocks?",
+    "options": [
+      "except-try-else-finally",
+      "try-except-else-finally",
+      "try-finally-except-else",
+      "try-else-except-finally"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "exceptions",
+    "explanation": "The correct order is: try, except, else, finally."
+  },
+  {
+    "question_type": "coding",
+    "text": "Safe Divide\nWrite a function that returns a/b. If b is 0, return 0 instead of crashing.",
+    "starter_code": "def safe_divide(a, b):\n    pass",
+    "test_cases": [
+      {
+        "function_call": "safe_divide(10, 2)",
+        "expected": "5.0"
+      },
+      {
+        "function_call": "safe_divide(10, 0)",
+        "expected": "0"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "exceptions",
+    "solution_code": "def safe_divide(a, b):\n    try:\n        return a / b\n    except ZeroDivisionError:\n        return 0",
+    "explanation": "Use try/except to handle potential errors gracefully. Catch specific exceptions to handle different error cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Safe Get Key\nWrite a function that returns dict[key] or 'Not found' if key doesn't exist.",
+    "starter_code": "def safe_get(d, key):\n    pass",
+    "test_cases": [
+      {
+        "function_call": "safe_get({'a': 1}, 'a')",
+        "expected": "1"
+      },
+      {
+        "function_call": "safe_get({'a': 1}, 'b')",
+        "expected": "\"Not found\""
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "exceptions",
+    "solution_code": "def safe_get(d, key):\n    try:\n        return d[key]\n    except KeyError:\n        return 'Not found'",
+    "explanation": "Use try/except to handle potential errors gracefully. Catch specific exceptions to handle different error cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "To JSON String\nWrite a function that converts a dict to a JSON string.",
+    "starter_code": "import json\ndef to_json(data):\n    pass",
+    "test_cases": [
+      {
+        "function_call": "to_json({'a': 1})",
+        "expected": "\"{\\\"a\\\": 1}\""
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "json",
+    "solution_code": "import json\ndef to_json(data):\n    return json.dumps(data)",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "From JSON String\nWrite a function that parses a JSON string into a dict.",
+    "starter_code": "import json\ndef from_json(text):\n    pass",
+    "test_cases": [
+      {
+        "function_call": "from_json('{\"a\": 1}')",
+        "expected": "{'a': 1}"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "json",
+    "solution_code": "import json\ndef from_json(text):\n    return json.loads(text)",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Safe Index\nWrite a function that returns list[index] or None if index is out of range.",
+    "starter_code": "def safe_index(lst, index):\n    pass",
+    "test_cases": [
+      {
+        "function_call": "safe_index([1,2,3], 1)",
+        "expected": "2"
+      },
+      {
+        "function_call": "safe_index([1,2,3], 5)",
+        "expected": "None"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "exceptions",
+    "solution_code": "def safe_index(lst, index):\n    try:\n        return lst[index]\n    except IndexError:\n        return None",
+    "explanation": "Use try/except to handle potential errors gracefully. Catch specific exceptions to handle different error cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Validate Positive\nWrite a function that raises ValueError if n <= 0, else returns n.",
+    "starter_code": "def validate_positive(n):\n    pass",
+    "test_cases": [
+      {
+        "function_call": "validate_positive(5)",
+        "expected": "5"
+      },
+      {
+        "function_call": "str(type(validate_positive(-1)))",
+        "expected": "\"<class 'ValueError'>\""
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "exceptions",
+    "solution_code": "def validate_positive(n):\n    if n <= 0:\n        raise ValueError('Must be positive')\n    return n",
+    "explanation": "Check the condition and return immediately when it's met. Return a default value if the loop completes without finding a match."
+  },
+  {
+    "question_type": "coding",
+    "text": "Merge Dicts to JSON\nWrite a function that merges two dicts and returns JSON string.",
+    "starter_code": "import json\ndef merge_to_json(d1, d2):\n    pass",
+    "test_cases": [
+      {
+        "function_call": "merge_to_json({'a':1}, {'b':2})",
+        "expected": "\"{\\\"a\\\": 1, \\\"b\\\": 2}\""
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "json",
+    "solution_code": "import json\ndef merge_to_json(d1, d2):\n    merged = {**d1, **d2}\n    return json.dumps(merged)",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the bug in this exception handling",
+    "code": "def read_number():\n    try:\n        num = int(input('Number: '))\n    except:\n        print('Invalid input')\n    return num",
+    "options": [
+      "Move 'return num' inside the try block, add default in except",
+      "Remove the except block",
+      "Add 'raise' in except block",
+      "Change int() to str()"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "exceptions",
+    "explanation": "If exception occurs, 'num' is never defined but still accessed. Return inside try, or set a default in except: num = 0."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the bug in this JSON file handling",
+    "code": "import json\n\nwith open('data.json', 'r') as f:\n    data = json.load(f)\n    data['new_key'] = 'value'\n    json.dump(data, f, indent=4)",
+    "options": [
+      "Open file separately for writing after reading",
+      "Change 'r' to 'r+' and add f.seek(0)",
+      "Change json.load to json.loads",
+      "Remove indent=4"
+    ],
+    "correct_index": 0,
+    "difficulty": "hard",
+    "topic_tag": "json",
+    "explanation": "Reading and writing to same file handle is problematic. Better: read file, close it, modify data, open for write, dump modified data."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the bug in this bare except",
+    "code": "def parse_data(data):\n    try:\n        result = data['key'] + 10\n        return result\n    except:\n        return None",
+    "options": [
+      "Catch specific exceptions: except (KeyError, TypeError):",
+      "Change 'except' to 'finally'",
+      "Remove the try-except block",
+      "Add 'raise' at the end"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "exceptions",
+    "explanation": "Bare except catches ALL errors including typos and system exits. Catch specific exceptions: KeyError (missing key) and TypeError (can't add)."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the bug in this exception block order",
+    "code": "try:\n    result = 10 / 0\nfinally:\n    print('Cleanup')\nexcept ZeroDivisionError:\n    print('Cannot divide by zero')\nelse:\n    print('Success')",
+    "options": [
+      "Reorder to: try, except, else, finally",
+      "Remove the else block",
+      "Change ZeroDivisionError to Exception",
+      "Move finally to the beginning"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "exceptions",
+    "explanation": "Exception blocks must be in order: try, then except, then else, then finally. The given order is invalid."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What happens if you raise an exception inside a finally block?",
+    "options": [
+      "The original exception is preserved",
+      "The new exception replaces any previous exception",
+      "Both exceptions are raised together",
+      "Python ignores exceptions in finally"
+    ],
+    "correct_index": 1,
+    "difficulty": "hard",
+    "topic_tag": "exceptions",
+    "explanation": "An exception in finally replaces any exception being propagated. This can hide the original error, which is why finally should avoid raising."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the key difference between `except Exception` and bare `except:`?",
+    "options": [
+      "No difference, they catch the same errors",
+      "bare except also catches KeyboardInterrupt and SystemExit",
+      "except Exception is slower",
+      "bare except only catches TypeError"
+    ],
+    "correct_index": 1,
+    "difficulty": "hard",
+    "topic_tag": "exceptions",
+    "explanation": "Bare except catches BaseException (including KeyboardInterrupt, SystemExit). 'except Exception' is safer as it lets those through."
+  }
 ]

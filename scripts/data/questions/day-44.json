@@ -1,357 +1,363 @@
 [
-    {
-        "question_type": "mcq",
-        "text": "Which is a valid hex color for red?",
-        "options": [
-            "#FF0000",
-            "#00FF00",
-            "#0000FF",
-            "#FFFFFF"
-        ],
-        "correct_index": 0,
-        "difficulty": "easy",
-        "topic_tag": "colors",
-        "explanation": "#FF0000 is red (full red, no green, no blue). #00FF00 is green, #0000FF is blue."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does the 'A' in RGBA stand for?",
-        "options": [
-            "Alignment",
-            "Alpha (transparency)",
-            "Adjustment",
-            "Automation"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "colors",
-        "explanation": "Alpha controls transparency, ranging from 0 (fully transparent) to 1 (fully opaque)."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What are the four layers of the CSS Box Model (inside to outside)?",
-        "options": [
-            "Content, Padding, Border, Margin",
-            "Margin, Border, Padding, Content",
-            "Border, Content, Padding, Margin",
-            "Padding, Content, Border, Margin"
-        ],
-        "correct_index": 0,
-        "difficulty": "medium",
-        "topic_tag": "box-model",
-        "explanation": "From inside out: Content → Padding → Border → Margin"
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is `padding` in the Box Model?",
-        "options": [
-            "Space outside the border",
-            "Space inside the border, around the content",
-            "The visible edge of the element",
-            "The actual text or images"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "box-model",
-        "explanation": "Padding is the space between the content and the border (inside the element)."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is `margin` in the Box Model?",
-        "options": [
-            "Space inside the border",
-            "The visible edge",
-            "Space outside the border, between elements",
-            "The content area"
-        ],
-        "correct_index": 2,
-        "difficulty": "easy",
-        "topic_tag": "box-model",
-        "explanation": "Margin is the space outside the element, creating distance from neighboring elements."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does `box-sizing: border-box` do?",
-        "options": [
-            "Adds extra padding automatically",
-            "Includes padding and border in the element's total width/height",
-            "Removes the border",
-            "Makes the box invisible"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "box-model",
-        "explanation": "border-box makes width/height include padding and border, so sizing is more predictable."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What property controls text boldness?",
-        "options": [
-            "font-size",
-            "font-weight",
-            "font-style",
-            "text-weight"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "fonts",
-        "explanation": "font-weight controls boldness (100-900 or keywords like 'bold')."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the purpose of fallback fonts in font-family?",
-        "options": [
-            "They make text bold",
-            "They provide alternatives if the primary font fails to load",
-            "They change colors",
-            "They add animations"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "fonts",
-        "explanation": "Fallback fonts display if the primary font isn't available: font-family: 'Custom', Arial, sans-serif;"
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is rgb(0, 0, 0)?",
-        "options": [
-            "White",
-            "Black",
-            "Red",
-            "Transparent"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "colors",
-        "explanation": "rgb(0, 0, 0) is black - no red, no green, no blue."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is rgb(255, 255, 255)?",
-        "options": [
-            "Black",
-            "White",
-            "Gray",
-            "Red"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "colors",
-        "explanation": "rgb(255, 255, 255) is white - maximum of all colors."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does `line-height: 1.5` mean?",
-        "options": [
-            "1.5 pixels between lines",
-            "1.5 times the font size",
-            "1.5 inches tall",
-            "1.5 characters wide"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "fonts",
-        "explanation": "A unitless line-height (like 1.5) multiplies by the font size for spacing between lines."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does `text-decoration: none` do?",
-        "options": [
-            "Adds underline",
-            "Removes underlines, strikethroughs, etc.",
-            "Makes text bold",
-            "Changes text color"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "fonts",
-        "explanation": "text-decoration: none removes underlines (commonly used to remove link underlines)."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you center an element horizontally with margin?",
-        "options": [
-            "margin: center;",
-            "margin: 0 auto;",
-            "margin: auto auto;",
-            "center: true;"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "box-model",
-        "explanation": "margin: 0 auto; sets top/bottom to 0 and left/right to auto, centering the element."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What keyboard shortcut opens browser DevTools?",
-        "options": [
-            "F5",
-            "F12",
-            "Ctrl+S",
-            "Alt+Tab"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "devtools",
-        "explanation": "F12 opens Developer Tools in most browsers. Right-click → Inspect also works."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does a crossed-out CSS rule in DevTools mean?",
-        "options": [
-            "The rule is broken",
-            "The rule is being overridden by a more specific rule",
-            "The browser doesn't support it",
-            "You need to refresh"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "devtools",
-        "explanation": "Crossed-out rules are overridden by rules with higher specificity."
-    },
-    {
-        "question_type": "coding",
-        "text": "Hex Color\nReturn the hex color code for pure green",
-        "starter_code": "def green_hex():\n    # Return hex code for green\n    pass",
-        "test_cases": [
-            {
-                "function_call": "green_hex()",
-                "expected": "'#00FF00'"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "colors",
-        "solution_code": "def green_hex():\n    return '#00FF00'"
-    },
-    {
-        "question_type": "coding",
-        "text": "RGB Color\nReturn the RGB notation for blue (0 red, 0 green, 255 blue)",
-        "starter_code": "def blue_rgb():\n    # Return rgb() notation for blue\n    pass",
-        "test_cases": [
-            {
-                "function_call": "blue_rgb()",
-                "expected": "'rgb(0, 0, 255)'"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "colors",
-        "solution_code": "def blue_rgb():\n    return 'rgb(0, 0, 255)'"
-    },
-    {
-        "question_type": "coding",
-        "text": "Create RGBA\nReturn RGBA with 50% transparency for black",
-        "starter_code": "def transparent_black():\n    # Return rgba for 50% transparent black\n    pass",
-        "test_cases": [
-            {
-                "function_call": "'rgba' in transparent_black()",
-                "expected": "True"
-            },
-            {
-                "function_call": "'0.5' in transparent_black() or '0, 0, 0, 0.5' in transparent_black()",
-                "expected": "True"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "colors",
-        "solution_code": "def transparent_black():\n    return 'rgba(0, 0, 0, 0.5)'"
-    },
-    {
-        "question_type": "coding",
-        "text": "Box Sizing Reset\nReturn CSS rule to apply border-box to all elements",
-        "starter_code": "def border_box_reset():\n    # Return CSS for universal border-box\n    pass",
-        "test_cases": [
-            {
-                "function_call": "'*' in border_box_reset()",
-                "expected": "True"
-            },
-            {
-                "function_call": "'border-box' in border_box_reset()",
-                "expected": "True"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "box-model",
-        "solution_code": "def border_box_reset():\n    return '* { box-sizing: border-box; }'"
-    },
-    {
-        "question_type": "coding",
-        "text": "Padding Shorthand\nReturn CSS padding rule with 10px top/bottom and 20px left/right",
-        "starter_code": "def padding_shorthand():\n    # Return padding shorthand\n    pass",
-        "test_cases": [
-            {
-                "function_call": "'padding' in padding_shorthand()",
-                "expected": "True"
-            },
-            {
-                "function_call": "'10px 20px' in padding_shorthand()",
-                "expected": "True"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "box-model",
-        "solution_code": "def padding_shorthand():\n    return 'padding: 10px 20px;'"
-    },
-    {
-        "question_type": "coding",
-        "text": "Font Family\nReturn CSS for Arial with sans-serif fallback",
-        "starter_code": "def font_stack():\n    # Return font-family rule\n    pass",
-        "test_cases": [
-            {
-                "function_call": "'font-family' in font_stack()",
-                "expected": "True"
-            },
-            {
-                "function_call": "'Arial' in font_stack() and 'sans-serif' in font_stack()",
-                "expected": "True"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "fonts",
-        "solution_code": "def font_stack():\n    return 'font-family: Arial, sans-serif;'"
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the color syntax:",
-        "code": "color: rgb(255, 0, 0, 0.5);  /* Should be 50% transparent red */",
-        "options": [
-            "Change rgb to rgba",
-            "Remove the 0.5",
-            "Add quotes",
-            "Change to hex"
-        ],
-        "correct_index": 0,
-        "difficulty": "easy",
-        "topic_tag": "colors",
-        "explanation": "For transparency, use rgba() not rgb(). Change to rgba(255, 0, 0, 0.5)."
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the box model issue:",
-        "code": ".box {\n    width: 200px;\n    padding: 20px;\n    /* Total width is unexpectedly 240px! */\n}",
-        "options": [
-            "Add box-sizing: border-box;",
-            "Remove padding",
-            "Change width to 240px",
-            "Use margin instead"
-        ],
-        "correct_index": 0,
-        "difficulty": "medium",
-        "topic_tag": "box-model",
-        "explanation": "Add box-sizing: border-box; so padding is included in the 200px width."
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the font weight value:",
-        "code": "font-weight: thick;",
-        "options": [
-            "Change 'thick' to 'bold' or a number like 700",
-            "Change to font-style",
-            "Add quotes",
-            "Use font-size instead"
-        ],
-        "correct_index": 0,
-        "difficulty": "easy",
-        "topic_tag": "fonts",
-        "explanation": "Valid font-weight values are: normal, bold, lighter, bolder, or numbers 100-900."
-    }
+  {
+    "question_type": "mcq",
+    "text": "Which is a valid hex color for red?",
+    "options": [
+      "#FF0000",
+      "#00FF00",
+      "#0000FF",
+      "#FFFFFF"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "colors",
+    "explanation": "#FF0000 is red (full red, no green, no blue). #00FF00 is green, #0000FF is blue."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does the 'A' in RGBA stand for?",
+    "options": [
+      "Alignment",
+      "Alpha (transparency)",
+      "Adjustment",
+      "Automation"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "colors",
+    "explanation": "Alpha controls transparency, ranging from 0 (fully transparent) to 1 (fully opaque)."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What are the four layers of the CSS Box Model (inside to outside)?",
+    "options": [
+      "Content, Padding, Border, Margin",
+      "Margin, Border, Padding, Content",
+      "Border, Content, Padding, Margin",
+      "Padding, Content, Border, Margin"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "box-model",
+    "explanation": "From inside out: Content → Padding → Border → Margin"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is `padding` in the Box Model?",
+    "options": [
+      "Space outside the border",
+      "Space inside the border, around the content",
+      "The visible edge of the element",
+      "The actual text or images"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "box-model",
+    "explanation": "Padding is the space between the content and the border (inside the element)."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is `margin` in the Box Model?",
+    "options": [
+      "Space inside the border",
+      "The visible edge",
+      "Space outside the border, between elements",
+      "The content area"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "box-model",
+    "explanation": "Margin is the space outside the element, creating distance from neighboring elements."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does `box-sizing: border-box` do?",
+    "options": [
+      "Adds extra padding automatically",
+      "Includes padding and border in the element's total width/height",
+      "Removes the border",
+      "Makes the box invisible"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "box-model",
+    "explanation": "border-box makes width/height include padding and border, so sizing is more predictable."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What property controls text boldness?",
+    "options": [
+      "font-size",
+      "font-weight",
+      "font-style",
+      "text-weight"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "fonts",
+    "explanation": "font-weight controls boldness (100-900 or keywords like 'bold')."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the purpose of fallback fonts in font-family?",
+    "options": [
+      "They make text bold",
+      "They provide alternatives if the primary font fails to load",
+      "They change colors",
+      "They add animations"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "fonts",
+    "explanation": "Fallback fonts display if the primary font isn't available: font-family: 'Custom', Arial, sans-serif;"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is rgb(0, 0, 0)?",
+    "options": [
+      "White",
+      "Black",
+      "Red",
+      "Transparent"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "colors",
+    "explanation": "rgb(0, 0, 0) is black - no red, no green, no blue."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is rgb(255, 255, 255)?",
+    "options": [
+      "Black",
+      "White",
+      "Gray",
+      "Red"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "colors",
+    "explanation": "rgb(255, 255, 255) is white - maximum of all colors."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does `line-height: 1.5` mean?",
+    "options": [
+      "1.5 pixels between lines",
+      "1.5 times the font size",
+      "1.5 inches tall",
+      "1.5 characters wide"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "fonts",
+    "explanation": "A unitless line-height (like 1.5) multiplies by the font size for spacing between lines."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does `text-decoration: none` do?",
+    "options": [
+      "Adds underline",
+      "Removes underlines, strikethroughs, etc.",
+      "Makes text bold",
+      "Changes text color"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "fonts",
+    "explanation": "text-decoration: none removes underlines (commonly used to remove link underlines)."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you center an element horizontally with margin?",
+    "options": [
+      "margin: center;",
+      "margin: 0 auto;",
+      "margin: auto auto;",
+      "center: true;"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "box-model",
+    "explanation": "margin: 0 auto; sets top/bottom to 0 and left/right to auto, centering the element."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What keyboard shortcut opens browser DevTools?",
+    "options": [
+      "F5",
+      "F12",
+      "Ctrl+S",
+      "Alt+Tab"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "devtools",
+    "explanation": "F12 opens Developer Tools in most browsers. Right-click → Inspect also works."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does a crossed-out CSS rule in DevTools mean?",
+    "options": [
+      "The rule is broken",
+      "The rule is being overridden by a more specific rule",
+      "The browser doesn't support it",
+      "You need to refresh"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "devtools",
+    "explanation": "Crossed-out rules are overridden by rules with higher specificity."
+  },
+  {
+    "question_type": "coding",
+    "text": "Hex Color\nReturn the hex color code for pure green",
+    "starter_code": "def green_hex():\n    # Return hex code for green\n    pass",
+    "test_cases": [
+      {
+        "function_call": "green_hex()",
+        "expected": "'#00FF00'"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "colors",
+    "solution_code": "def green_hex():\n    return '#00FF00'",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "RGB Color\nReturn the RGB notation for blue (0 red, 0 green, 255 blue)",
+    "starter_code": "def blue_rgb():\n    # Return rgb() notation for blue\n    pass",
+    "test_cases": [
+      {
+        "function_call": "blue_rgb()",
+        "expected": "'rgb(0, 0, 255)'"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "colors",
+    "solution_code": "def blue_rgb():\n    return 'rgb(0, 0, 255)'",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Create RGBA\nReturn RGBA with 50% transparency for black",
+    "starter_code": "def transparent_black():\n    # Return rgba for 50% transparent black\n    pass",
+    "test_cases": [
+      {
+        "function_call": "'rgba' in transparent_black()",
+        "expected": "True"
+      },
+      {
+        "function_call": "'0.5' in transparent_black() or '0, 0, 0, 0.5' in transparent_black()",
+        "expected": "True"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "colors",
+    "solution_code": "def transparent_black():\n    return 'rgba(0, 0, 0, 0.5)'",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Box Sizing Reset\nReturn CSS rule to apply border-box to all elements",
+    "starter_code": "def border_box_reset():\n    # Return CSS for universal border-box\n    pass",
+    "test_cases": [
+      {
+        "function_call": "'*' in border_box_reset()",
+        "expected": "True"
+      },
+      {
+        "function_call": "'border-box' in border_box_reset()",
+        "expected": "True"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "box-model",
+    "solution_code": "def border_box_reset():\n    return '* { box-sizing: border-box; }'",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Padding Shorthand\nReturn CSS padding rule with 10px top/bottom and 20px left/right",
+    "starter_code": "def padding_shorthand():\n    # Return padding shorthand\n    pass",
+    "test_cases": [
+      {
+        "function_call": "'padding' in padding_shorthand()",
+        "expected": "True"
+      },
+      {
+        "function_call": "'10px 20px' in padding_shorthand()",
+        "expected": "True"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "box-model",
+    "solution_code": "def padding_shorthand():\n    return 'padding: 10px 20px;'",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Font Family\nReturn CSS for Arial with sans-serif fallback",
+    "starter_code": "def font_stack():\n    # Return font-family rule\n    pass",
+    "test_cases": [
+      {
+        "function_call": "'font-family' in font_stack()",
+        "expected": "True"
+      },
+      {
+        "function_call": "'Arial' in font_stack() and 'sans-serif' in font_stack()",
+        "expected": "True"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "fonts",
+    "solution_code": "def font_stack():\n    return 'font-family: Arial, sans-serif;'",
+    "explanation": "Check the condition and return immediately when it's met. Return a default value if the loop completes without finding a match."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the color syntax:",
+    "code": "color: rgb(255, 0, 0, 0.5);  /* Should be 50% transparent red */",
+    "options": [
+      "Change rgb to rgba",
+      "Remove the 0.5",
+      "Add quotes",
+      "Change to hex"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "colors",
+    "explanation": "For transparency, use rgba() not rgb(). Change to rgba(255, 0, 0, 0.5)."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the box model issue:",
+    "code": ".box {\n    width: 200px;\n    padding: 20px;\n    /* Total width is unexpectedly 240px! */\n}",
+    "options": [
+      "Add box-sizing: border-box;",
+      "Remove padding",
+      "Change width to 240px",
+      "Use margin instead"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "box-model",
+    "explanation": "Add box-sizing: border-box; so padding is included in the 200px width."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the font weight value:",
+    "code": "font-weight: thick;",
+    "options": [
+      "Change 'thick' to 'bold' or a number like 700",
+      "Change to font-style",
+      "Add quotes",
+      "Use font-size instead"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "fonts",
+    "explanation": "Valid font-weight values are: normal, bold, lighter, bolder, or numbers 100-900."
+  }
 ]

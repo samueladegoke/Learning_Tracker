@@ -1,282 +1,287 @@
 [
-    {
-        "question_type": "mcq",
-        "text": "What is the default mode when opening a file using `open(\"file.txt\")`?",
-        "options": [
-            "Write (\"w\")",
-            "Read (\"r\")",
-            "Append (\"a\")",
-            "Execute (\"x\")"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "files",
-        "explanation": "If no mode is specified, Python defaults to read-only mode ('r')."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What happens if you open a file in `mode=\"w\"` that already exists?",
-        "options": [
-            "It appends text to the end",
-            "It throws an error",
-            "It overwrites the entire file",
-            "It reads the file"
-        ],
-        "correct_index": 2,
-        "difficulty": "medium",
-        "topic_tag": "files",
-        "explanation": "Write mode ('w') truncates the file first, clearing all existing content before writing."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Why is it recommended to use the `with` keyword when opening files?",
-        "options": [
-            "It runs faster",
-            "It automatically closes the file after the block ends",
-            "It allows reading and writing simultaneously",
-            "It encrypts the file"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "files",
-        "explanation": "The 'with' statement acts as a context manager that ensures the close() method is called automatically, preventing resource leaks."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does the relative path `../data.txt` refer to?",
-        "options": [
-            "A file named data.txt in the current folder",
-            "A file named data.txt in the parent folder",
-            "A file named data.txt in the root folder",
-            "A file named data.txt in the Documents folder"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "paths",
-        "explanation": "The double dot (..) signifies moving up one level in the directory hierarchy."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you add content to the end of an existing file without deleting its contents?",
-        "options": [
-            "mode=\"w\"",
-            "mode=\"e\"",
-            "mode=\"a\"",
-            "mode=\"r+\""
-        ],
-        "correct_index": 2,
-        "difficulty": "easy",
-        "topic_tag": "files",
-        "explanation": "Append mode ('a') opens the file for writing but keeps the existing content, adding new data to the end."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does the `strip()` string method do?",
-        "options": [
-            "Removes specific characters from the string",
-            "Removes leading and trailing whitespace (including newlines)",
-            "Splits the string into a list",
-            "Converts the string to lowercase"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "strings",
-        "explanation": "strip() is commonly used when reading lines from a file to remove the newline character (\n) at the end."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does `file.readlines()` return?",
-        "options": [
-            "A single string containing the whole file",
-            "A list of strings, where each string is a line",
-            "The number of lines in the file",
-            "The first line of the file"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "files",
-        "explanation": "readlines() reads the entire file and returns it as a list, with each line as an element."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Which path is an Absolute Path?",
-        "options": [
-            "./data/file.txt",
-            "/Users/Anglea/Project/main.py",
-            "../images/logo.png",
-            "script.py"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "paths",
-        "explanation": "Absolute paths start from the root directory (/ on Unix/Mac, C:\\ on Windows)."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What happens if you try to open a non-existent file in `mode=\"r\"`?",
-        "options": [
-            "It creates the file",
-            "It returns None",
-            "It raises a FileNotFoundError",
-            "It opens an empty buffer"
-        ],
-        "correct_index": 2,
-        "difficulty": "medium",
-        "topic_tag": "files",
-        "explanation": "Read mode expects the file to exist. If it doesn't, Python raises an error."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you replace dynamic content (like '[name]') in a string?",
-        "options": [
-            "string.swap('[name]', 'Angela')",
-            "string.replace('[name]', 'Angela')",
-            "string.insert('Angela')",
-            "string.sub('[name]', 'Angela')"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "strings",
-        "explanation": "The replace(old, new) method returns a copy of the string with all occurrences of substring old replaced by new."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the correct syntax to open a file in a different directory called 'data'?",
-        "options": [
-            "open(\"data.file.txt\")",
-            "open(\"./data/file.txt\")",
-            "open(\"data-file.txt\")",
-            "open(\"file(data)\")"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "paths",
-        "explanation": "Use the slash / to separate directories. ./data/file.txt looks in the current folder, then inside 'data'."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Does `file.read()` move the cursor?",
-        "options": [
-            "No, it stays at the beginning",
-            "Yes, it moves to the end of the file",
-            "It moves to the middle",
-            "It depends on the file size"
-        ],
-        "correct_index": 1,
-        "difficulty": "hard",
-        "topic_tag": "files",
-        "explanation": "After read() consumes the file, the cursor is at the end. Calling read() again will return an empty string."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Which mode should you use to read binary data (like an image)?",
-        "options": [
-            "\"r\"",
-            "\"rb\"",
-            "\"b\"",
-            "\"bin\""
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "files",
-        "explanation": "RB stands for Read Binary."
-    },
-    {
-        "question_type": "mcq",
-        "text": "In Windows, absolute paths usually start with:",
-        "options": [
-            "/",
-            "~",
-            "C:\\",
-            "\\"
-        ],
-        "correct_index": 2,
-        "difficulty": "easy",
-        "topic_tag": "paths",
-        "explanation": "Windows uses Drive letters (like C:\\) for absolute paths."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does `pass` do in a `with` block if used alone?",
-        "options": [
-            "Errors out",
-            "Closes the file immediately without doing anything",
-            "Deletes the file",
-            "Writes 'pass' to the file"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "files",
-        "explanation": "It does nothing, but exiting the block triggers the context manager to close the file."
-    },
-    {
-        "question_type": "coding",
-        "text": "Read File\nWrite a function `read_content` that takes a filename and returns its content.",
-        "starter_code": "def read_content(filename):\n    pass",
-        "test_cases": [
-            {
-                "function_call": "read_content('test.txt')",
-                "expected": "\"Content\""
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "files",
-        "solution_code": "def read_content(filename):\n    with open(filename) as f:\n        return f.read()"
-    },
-    {
-        "question_type": "coding",
-        "text": "Write File\nWrite a function `write_message` that writes 'Hello' to 'msg.txt'.",
-        "starter_code": "def write_message():\n    pass",
-        "test_cases": [
-            {
-                "function_call": "write_message()",
-                "expected": "None"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "files",
-        "solution_code": "def write_message():\n    with open('msg.txt', 'w') as f:\n        f.write('Hello')"
-    },
-    {
-        "question_type": "coding",
-        "text": "Append Line\nWrite a function `append_log` that appends a log entry to 'log.txt'.",
-        "starter_code": "def append_log(entry):\n    pass",
-        "test_cases": [
-            {
-                "function_call": "append_log('Error')",
-                "expected": "None"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "files",
-        "solution_code": "def append_log(entry):\n    with open('log.txt', 'a') as f:\n        f.write(entry)"
-    },
-    {
-        "question_type": "coding",
-        "text": "Strip Lines\nWrite a function `clean_lines` that takes a list of strings and returns them stripped of whitespace.",
-        "starter_code": "def clean_lines(lines):\n    pass",
-        "test_cases": [
-            {
-                "function_call": "clean_lines([' a ', 'b\n'])",
-                "expected": "['a', 'b']"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "strings",
-        "solution_code": "def clean_lines(lines):\n    return [line.strip() for line in lines]"
-    },
-    {
-        "question_type": "coding",
-        "text": "Replace Name\nWrite a function `personalize` that replaces '[name]' in `text` with `name`.",
-        "starter_code": "def personalize(text, name):\n    pass",
-        "test_cases": [
-            {
-                "function_call": "personalize(\"Hi [name]\", \"Bob\")",
-                "expected": "\"Hi Bob\""
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "strings",
-        "solution_code": "def personalize(text, name):\n    return text.replace(\"[name]\", name)"
-    }
+  {
+    "question_type": "mcq",
+    "text": "What is the default mode when opening a file using `open(\"file.txt\")`?",
+    "options": [
+      "Write (\"w\")",
+      "Read (\"r\")",
+      "Append (\"a\")",
+      "Execute (\"x\")"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "files",
+    "explanation": "If no mode is specified, Python defaults to read-only mode ('r')."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What happens if you open a file in `mode=\"w\"` that already exists?",
+    "options": [
+      "It appends text to the end",
+      "It throws an error",
+      "It overwrites the entire file",
+      "It reads the file"
+    ],
+    "correct_index": 2,
+    "difficulty": "medium",
+    "topic_tag": "files",
+    "explanation": "Write mode ('w') truncates the file first, clearing all existing content before writing."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Why is it recommended to use the `with` keyword when opening files?",
+    "options": [
+      "It runs faster",
+      "It automatically closes the file after the block ends",
+      "It allows reading and writing simultaneously",
+      "It encrypts the file"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "files",
+    "explanation": "The 'with' statement acts as a context manager that ensures the close() method is called automatically, preventing resource leaks."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does the relative path `../data.txt` refer to?",
+    "options": [
+      "A file named data.txt in the current folder",
+      "A file named data.txt in the parent folder",
+      "A file named data.txt in the root folder",
+      "A file named data.txt in the Documents folder"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "paths",
+    "explanation": "The double dot (..) signifies moving up one level in the directory hierarchy."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you add content to the end of an existing file without deleting its contents?",
+    "options": [
+      "mode=\"w\"",
+      "mode=\"e\"",
+      "mode=\"a\"",
+      "mode=\"r+\""
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "files",
+    "explanation": "Append mode ('a') opens the file for writing but keeps the existing content, adding new data to the end."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does the `strip()` string method do?",
+    "options": [
+      "Removes specific characters from the string",
+      "Removes leading and trailing whitespace (including newlines)",
+      "Splits the string into a list",
+      "Converts the string to lowercase"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "strings",
+    "explanation": "strip() is commonly used when reading lines from a file to remove the newline character (\n) at the end."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does `file.readlines()` return?",
+    "options": [
+      "A single string containing the whole file",
+      "A list of strings, where each string is a line",
+      "The number of lines in the file",
+      "The first line of the file"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "files",
+    "explanation": "readlines() reads the entire file and returns it as a list, with each line as an element."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Which path is an Absolute Path?",
+    "options": [
+      "./data/file.txt",
+      "/Users/Anglea/Project/main.py",
+      "../images/logo.png",
+      "script.py"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "paths",
+    "explanation": "Absolute paths start from the root directory (/ on Unix/Mac, C:\\ on Windows)."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What happens if you try to open a non-existent file in `mode=\"r\"`?",
+    "options": [
+      "It creates the file",
+      "It returns None",
+      "It raises a FileNotFoundError",
+      "It opens an empty buffer"
+    ],
+    "correct_index": 2,
+    "difficulty": "medium",
+    "topic_tag": "files",
+    "explanation": "Read mode expects the file to exist. If it doesn't, Python raises an error."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you replace dynamic content (like '[name]') in a string?",
+    "options": [
+      "string.swap('[name]', 'Angela')",
+      "string.replace('[name]', 'Angela')",
+      "string.insert('Angela')",
+      "string.sub('[name]', 'Angela')"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "strings",
+    "explanation": "The replace(old, new) method returns a copy of the string with all occurrences of substring old replaced by new."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the correct syntax to open a file in a different directory called 'data'?",
+    "options": [
+      "open(\"data.file.txt\")",
+      "open(\"./data/file.txt\")",
+      "open(\"data-file.txt\")",
+      "open(\"file(data)\")"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "paths",
+    "explanation": "Use the slash / to separate directories. ./data/file.txt looks in the current folder, then inside 'data'."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Does `file.read()` move the cursor?",
+    "options": [
+      "No, it stays at the beginning",
+      "Yes, it moves to the end of the file",
+      "It moves to the middle",
+      "It depends on the file size"
+    ],
+    "correct_index": 1,
+    "difficulty": "hard",
+    "topic_tag": "files",
+    "explanation": "After read() consumes the file, the cursor is at the end. Calling read() again will return an empty string."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Which mode should you use to read binary data (like an image)?",
+    "options": [
+      "\"r\"",
+      "\"rb\"",
+      "\"b\"",
+      "\"bin\""
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "files",
+    "explanation": "RB stands for Read Binary."
+  },
+  {
+    "question_type": "mcq",
+    "text": "In Windows, absolute paths usually start with:",
+    "options": [
+      "/",
+      "~",
+      "C:\\",
+      "\\"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "paths",
+    "explanation": "Windows uses Drive letters (like C:\\) for absolute paths."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does `pass` do in a `with` block if used alone?",
+    "options": [
+      "Errors out",
+      "Closes the file immediately without doing anything",
+      "Deletes the file",
+      "Writes 'pass' to the file"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "files",
+    "explanation": "It does nothing, but exiting the block triggers the context manager to close the file."
+  },
+  {
+    "question_type": "coding",
+    "text": "Read File\nWrite a function `read_content` that takes a filename and returns its content.",
+    "starter_code": "def read_content(filename):\n    pass",
+    "test_cases": [
+      {
+        "function_call": "read_content('test.txt')",
+        "expected": "\"Content\""
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "files",
+    "solution_code": "def read_content(filename):\n    with open(filename) as f:\n        return f.read()",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Write File\nWrite a function `write_message` that writes 'Hello' to 'msg.txt'.",
+    "starter_code": "def write_message():\n    pass",
+    "test_cases": [
+      {
+        "function_call": "write_message()",
+        "expected": "None"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "files",
+    "solution_code": "def write_message():\n    with open('msg.txt', 'w') as f:\n        f.write('Hello')",
+    "explanation": "Implement the logic step by step, following the problem requirements. Test with the provided examples."
+  },
+  {
+    "question_type": "coding",
+    "text": "Append Line\nWrite a function `append_log` that appends a log entry to 'log.txt'.",
+    "starter_code": "def append_log(entry):\n    pass",
+    "test_cases": [
+      {
+        "function_call": "append_log('Error')",
+        "expected": "None"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "files",
+    "solution_code": "def append_log(entry):\n    with open('log.txt', 'a') as f:\n        f.write(entry)",
+    "explanation": "Build the result by appending items to a list. Initialize an empty list and add items as you process them."
+  },
+  {
+    "question_type": "coding",
+    "text": "Strip Lines\nWrite a function `clean_lines` that takes a list of strings and returns them stripped of whitespace.",
+    "starter_code": "def clean_lines(lines):\n    pass",
+    "test_cases": [
+      {
+        "function_call": "clean_lines([' a ', 'b\n'])",
+        "expected": "['a', 'b']"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "strings",
+    "solution_code": "def clean_lines(lines):\n    return [line.strip() for line in lines]",
+    "explanation": "Use the 'in' keyword to check membership. It returns True if the item exists in the collection."
+  },
+  {
+    "question_type": "coding",
+    "text": "Replace Name\nWrite a function `personalize` that replaces '[name]' in `text` with `name`.",
+    "starter_code": "def personalize(text, name):\n    pass",
+    "test_cases": [
+      {
+        "function_call": "personalize(\"Hi [name]\", \"Bob\")",
+        "expected": "\"Hi Bob\""
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "strings",
+    "solution_code": "def personalize(text, name):\n    return text.replace(\"[name]\", name)",
+    "explanation": "Use list indexing to access specific elements. Negative indices count from the end."
+  }
 ]

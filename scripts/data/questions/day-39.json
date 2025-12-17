@@ -1,344 +1,350 @@
 [
-    {
-        "question_type": "mcq",
-        "text": "What is the main project pattern used in the Flight Deal Finder?",
-        "options": [
-            "Functional programming",
-            "Object-Oriented Programming with modules",
-            "Procedural scripting",
-            "Event-driven"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "architecture",
-        "explanation": "The project uses OOP with separate modules (classes) for different responsibilities."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is a 'stopover' in flight search terminology?",
-        "options": [
-            "The final destination",
-            "A layover or intermediate stop between origin and destination",
-            "The price of the ticket",
-            "The seat assignment"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "flight-search",
-        "explanation": "A stopover is a break in the journey where you change planes or wait at an intermediate airport."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the purpose of the DataManager class?",
-        "options": [
-            "Search for flights",
-            "Handle sheet data (CRUD)",
-            "Send notifications",
-            "Store flight results"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "architecture",
-        "explanation": "DataManager handles reading and writing destination data to Google Sheets via Sheety."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What API is used to search for flights?",
-        "options": [
-            "Skyscanner",
-            "Tequila/Kiwi",
-            "Google Flights",
-            "Expedia"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "tequila",
-        "explanation": "The Tequila (Kiwi) API is used to search for flight prices and routes."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What are IATA codes?",
-        "options": [
-            "Hotel ratings",
-            "3-letter airport/city codes",
-            "Airline names",
-            "Flight numbers"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "aviation",
-        "explanation": "IATA codes are 3-letter identifiers for airports/cities (e.g., LON for London)."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What Tequila endpoint returns city codes?",
-        "options": [
-            "/v2/search",
-            "/locations/query",
-            "/cities/lookup",
-            "/iata/convert"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "tequila",
-        "explanation": "The /locations/query endpoint converts city names to IATA codes."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What date format does the Tequila API require?",
-        "options": [
-            "YYYY-MM-DD",
-            "dd/mm/YYYY",
-            "MM-DD-YYYY",
-            "yyyyMMdd"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "tequila",
-        "explanation": "Tequila uses dd/mm/YYYY format for dates, e.g., '15/12/2025'."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does 'one_for_city=1' parameter do?",
-        "options": [
-            "Returns one airport per city",
-            "Returns only the cheapest flight per destination",
-            "Limits to one result",
-            "Ignores city codes"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "tequila",
-        "explanation": "one_for_city=1 returns only the cheapest flight for each destination city."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does 'max_stopovers=0' specify?",
-        "options": [
-            "Maximum 0 days layover",
-            "Direct flights only",
-            "No limit on stops",
-            "At least 0 stops"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "tequila",
-        "explanation": "max_stopovers=0 means only direct (non-stop) flights are returned."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the purpose of the FlightData class?",
-        "options": [
-            "Make API requests",
-            "Structure flight information",
-            "Send emails",
-            "Store in database"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "architecture",
-        "explanation": "FlightData is a data class that structures flight details (price, cities, dates)."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does 'flight_type': 'round' specify?",
-        "options": [
-            "One-way flights",
-            "Round-trip flights",
-            "Multi-city flights",
-            "Open-jaw flights"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "tequila",
-        "explanation": "flight_type='round' searches for round-trip (return) flights."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What parameters control trip duration?",
-        "options": [
-            "min_days, max_days",
-            "nights_in_dst_from, nights_in_dst_to",
-            "stay_from, stay_to",
-            "duration_min, duration_max"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "tequila",
-        "explanation": "nights_in_dst_from and nights_in_dst_to specify the range of nights at destination."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What design principle does separating modules follow?",
-        "options": [
-            "DRY",
-            "KISS",
-            "Separation of Concerns",
-            "YAGNI"
-        ],
-        "correct_index": 2,
-        "difficulty": "medium",
-        "topic_tag": "architecture",
-        "explanation": "Separation of Concerns means each module handles one specific responsibility."
-    },
-    {
-        "question_type": "coding",
-        "text": "Get IATA Code Endpoint\nWrite a function that builds the Tequila locations endpoint URL.",
-        "starter_code": "def locations_endpoint(base_url):\n    # Return the locations/query endpoint\n    pass",
-        "test_cases": [
-            {
-                "function_call": "locations_endpoint('https://api.tequila.kiwi.com')",
-                "expected": "https://api.tequila.kiwi.com/locations/query"
-            },
-            {
-                "function_call": "locations_endpoint('https://example.com')",
-                "expected": "https://example.com/locations/query"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "tequila",
-        "solution_code": "def locations_endpoint(base_url):\n    return f'{base_url}/locations/query'"
-    },
-    {
-        "question_type": "coding",
-        "text": "Format Search Date\nWrite a function that converts a datetime to Tequila's dd/mm/YYYY format.",
-        "starter_code": "import datetime as dt\n\ndef format_tequila_date(date):\n    # Return date in dd/mm/YYYY format\n    pass",
-        "test_cases": [
-            {
-                "function_call": "format_tequila_date(dt.datetime(2025, 12, 15))",
-                "expected": "15/12/2025"
-            },
-            {
-                "function_call": "format_tequila_date(dt.datetime(2025, 1, 1))",
-                "expected": "01/01/2025"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "datetime",
-        "solution_code": "import datetime as dt\n\ndef format_tequila_date(date):\n    return date.strftime('%d/%m/%Y')"
-    },
-    {
-        "question_type": "coding",
-        "text": "Calculate Date Range\nWrite a function that returns tomorrow and 6 months from now as a tuple.",
-        "starter_code": "import datetime as dt\nfrom datetime import timedelta\n\ndef get_search_dates():\n    # Return (tomorrow, six_months_later)\n    pass",
-        "test_cases": [
-            {
-                "function_call": "len(get_search_dates())",
-                "expected": "2"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "datetime",
-        "solution_code": "import datetime as dt\nfrom datetime import timedelta\n\ndef get_search_dates():\n    tomorrow = dt.datetime.now() + timedelta(days=1)\n    six_months = dt.datetime.now() + timedelta(days=180)\n    return (tomorrow, six_months)"
-    },
-    {
-        "question_type": "coding",
-        "text": "Extract Cheapest Price\nWrite a function that finds the cheapest price from a list of flight data.",
-        "starter_code": "def find_cheapest_price(flights):\n    # Return the lowest price from the list\n    pass",
-        "test_cases": [
-            {
-                "function_call": "find_cheapest_price([{'price': 150}, {'price': 120}, {'price': 180}])",
-                "expected": "120"
-            },
-            {
-                "function_call": "find_cheapest_price([{'price': 99}])",
-                "expected": "99"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "data-processing",
-        "solution_code": "def find_cheapest_price(flights):\n    return min(flight['price'] for flight in flights)"
-    },
-    {
-        "question_type": "coding",
-        "text": "Build Search Query\nWrite a function that creates a basic flight search query dict.",
-        "starter_code": "def build_search_query(fly_from, fly_to, date_from, date_to):\n    # Return query dict for Tequila\n    pass",
-        "test_cases": [
-            {
-                "function_call": "build_search_query('LON', 'PAR', '01/01/2025', '01/06/2025')['fly_from']",
-                "expected": "LON"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "tequila",
-        "solution_code": "def build_search_query(fly_from, fly_to, date_from, date_to):\n    return {\n        'fly_from': fly_from,\n        'fly_to': fly_to,\n        'date_from': date_from,\n        'date_to': date_to,\n        'flight_type': 'round',\n        'one_for_city': 1,\n        'max_stopovers': 0\n    }"
-    },
-    {
-        "question_type": "coding",
-        "text": "Check If Deal\nWrite a function that returns True if the flight price is below the target price.",
-        "starter_code": "def is_deal(flight_price, target_price):\n    # Return True if flight is cheaper than target\n    pass",
-        "test_cases": [
-            {
-                "function_call": "is_deal(100, 150)",
-                "expected": "True"
-            },
-            {
-                "function_call": "is_deal(200, 150)",
-                "expected": "False"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "deal-logic",
-        "solution_code": "def is_deal(flight_price, target_price):\n    return flight_price < target_price"
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the IATA code access bug:",
-        "code": "city_code = response.json()['code']\n# Bug: KeyError",
-        "options": [
-            "Access via response.json()['locations'][0]['code']",
-            "Use response.code",
-            "Use response['iata']",
-            "Parse as XML"
-        ],
-        "correct_index": 0,
-        "difficulty": "hard",
-        "topic_tag": "tequila",
-        "explanation": "Tequila returns locations in a list under 'locations' key."
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the date format bug:",
-        "code": "date_string = date.strftime('%Y-%m-%d')\nquery = {'date_from': date_string}\n# Bug: Tequila rejects the date",
-        "options": [
-            "Use strftime('%d/%m/%Y')",
-            "Use strftime('%m/%d/%Y')",
-            "Use strftime('%Y%m%d')",
-            "Convert to timestamp"
-        ],
-        "correct_index": 0,
-        "difficulty": "medium",
-        "topic_tag": "datetime",
-        "explanation": "Tequila requires dates in dd/mm/YYYY format, not YYYY-MM-DD."
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the timedelta import bug:",
-        "code": "from datetime import datetime\ntomorrow = datetime.now() + timedelta(days=1)\n# Bug: NameError: timedelta not defined",
-        "options": [
-            "Import timedelta: from datetime import datetime, timedelta",
-            "Use datetime.delta",
-            "Use datetime.add_days",
-            "Import from time"
-        ],
-        "correct_index": 0,
-        "difficulty": "easy",
-        "topic_tag": "datetime",
-        "explanation": "timedelta must be imported separately from the datetime module."
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the flight data access bug:",
-        "code": "departure = flight['route']['local_departure']\n# Bug: TypeError",
-        "options": [
-            "Use flight['route'][0]['local_departure']",
-            "Use flight.route.departure",
-            "Use flight['departure']",
-            "Convert to list"
-        ],
-        "correct_index": 0,
-        "difficulty": "hard",
-        "topic_tag": "tequila",
-        "explanation": "'route' is a list of segments. Access the first segment with [0]."
-    }
+  {
+    "question_type": "mcq",
+    "text": "What is the main project pattern used in the Flight Deal Finder?",
+    "options": [
+      "Functional programming",
+      "Object-Oriented Programming with modules",
+      "Procedural scripting",
+      "Event-driven"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "architecture",
+    "explanation": "The project uses OOP with separate modules (classes) for different responsibilities."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is a 'stopover' in flight search terminology?",
+    "options": [
+      "The final destination",
+      "A layover or intermediate stop between origin and destination",
+      "The price of the ticket",
+      "The seat assignment"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "flight-search",
+    "explanation": "A stopover is a break in the journey where you change planes or wait at an intermediate airport."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the purpose of the DataManager class?",
+    "options": [
+      "Search for flights",
+      "Handle sheet data (CRUD)",
+      "Send notifications",
+      "Store flight results"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "architecture",
+    "explanation": "DataManager handles reading and writing destination data to Google Sheets via Sheety."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What API is used to search for flights?",
+    "options": [
+      "Skyscanner",
+      "Tequila/Kiwi",
+      "Google Flights",
+      "Expedia"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "tequila",
+    "explanation": "The Tequila (Kiwi) API is used to search for flight prices and routes."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What are IATA codes?",
+    "options": [
+      "Hotel ratings",
+      "3-letter airport/city codes",
+      "Airline names",
+      "Flight numbers"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "aviation",
+    "explanation": "IATA codes are 3-letter identifiers for airports/cities (e.g., LON for London)."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What Tequila endpoint returns city codes?",
+    "options": [
+      "/v2/search",
+      "/locations/query",
+      "/cities/lookup",
+      "/iata/convert"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "tequila",
+    "explanation": "The /locations/query endpoint converts city names to IATA codes."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What date format does the Tequila API require?",
+    "options": [
+      "YYYY-MM-DD",
+      "dd/mm/YYYY",
+      "MM-DD-YYYY",
+      "yyyyMMdd"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "tequila",
+    "explanation": "Tequila uses dd/mm/YYYY format for dates, e.g., '15/12/2025'."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does 'one_for_city=1' parameter do?",
+    "options": [
+      "Returns one airport per city",
+      "Returns only the cheapest flight per destination",
+      "Limits to one result",
+      "Ignores city codes"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "tequila",
+    "explanation": "one_for_city=1 returns only the cheapest flight for each destination city."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does 'max_stopovers=0' specify?",
+    "options": [
+      "Maximum 0 days layover",
+      "Direct flights only",
+      "No limit on stops",
+      "At least 0 stops"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "tequila",
+    "explanation": "max_stopovers=0 means only direct (non-stop) flights are returned."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the purpose of the FlightData class?",
+    "options": [
+      "Make API requests",
+      "Structure flight information",
+      "Send emails",
+      "Store in database"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "architecture",
+    "explanation": "FlightData is a data class that structures flight details (price, cities, dates)."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does 'flight_type': 'round' specify?",
+    "options": [
+      "One-way flights",
+      "Round-trip flights",
+      "Multi-city flights",
+      "Open-jaw flights"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "tequila",
+    "explanation": "flight_type='round' searches for round-trip (return) flights."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What parameters control trip duration?",
+    "options": [
+      "min_days, max_days",
+      "nights_in_dst_from, nights_in_dst_to",
+      "stay_from, stay_to",
+      "duration_min, duration_max"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "tequila",
+    "explanation": "nights_in_dst_from and nights_in_dst_to specify the range of nights at destination."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What design principle does separating modules follow?",
+    "options": [
+      "DRY",
+      "KISS",
+      "Separation of Concerns",
+      "YAGNI"
+    ],
+    "correct_index": 2,
+    "difficulty": "medium",
+    "topic_tag": "architecture",
+    "explanation": "Separation of Concerns means each module handles one specific responsibility."
+  },
+  {
+    "question_type": "coding",
+    "text": "Get IATA Code Endpoint\nWrite a function that builds the Tequila locations endpoint URL.",
+    "starter_code": "def locations_endpoint(base_url):\n    # Return the locations/query endpoint\n    pass",
+    "test_cases": [
+      {
+        "function_call": "locations_endpoint('https://api.tequila.kiwi.com')",
+        "expected": "https://api.tequila.kiwi.com/locations/query"
+      },
+      {
+        "function_call": "locations_endpoint('https://example.com')",
+        "expected": "https://example.com/locations/query"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "tequila",
+    "solution_code": "def locations_endpoint(base_url):\n    return f'{base_url}/locations/query'",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Format Search Date\nWrite a function that converts a datetime to Tequila's dd/mm/YYYY format.",
+    "starter_code": "import datetime as dt\n\ndef format_tequila_date(date):\n    # Return date in dd/mm/YYYY format\n    pass",
+    "test_cases": [
+      {
+        "function_call": "format_tequila_date(dt.datetime(2025, 12, 15))",
+        "expected": "15/12/2025"
+      },
+      {
+        "function_call": "format_tequila_date(dt.datetime(2025, 1, 1))",
+        "expected": "01/01/2025"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "datetime",
+    "solution_code": "import datetime as dt\n\ndef format_tequila_date(date):\n    return date.strftime('%d/%m/%Y')",
+    "explanation": "Use modulo (%) to check divisibility or wrap around indices. Returns the remainder of division."
+  },
+  {
+    "question_type": "coding",
+    "text": "Calculate Date Range\nWrite a function that returns tomorrow and 6 months from now as a tuple.",
+    "starter_code": "import datetime as dt\nfrom datetime import timedelta\n\ndef get_search_dates():\n    # Return (tomorrow, six_months_later)\n    pass",
+    "test_cases": [
+      {
+        "function_call": "len(get_search_dates())",
+        "expected": "2"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "datetime",
+    "solution_code": "import datetime as dt\nfrom datetime import timedelta\n\ndef get_search_dates():\n    tomorrow = dt.datetime.now() + timedelta(days=1)\n    six_months = dt.datetime.now() + timedelta(days=180)\n    return (tomorrow, six_months)",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Extract Cheapest Price\nWrite a function that finds the cheapest price from a list of flight data.",
+    "starter_code": "def find_cheapest_price(flights):\n    # Return the lowest price from the list\n    pass",
+    "test_cases": [
+      {
+        "function_call": "find_cheapest_price([{'price': 150}, {'price': 120}, {'price': 180}])",
+        "expected": "120"
+      },
+      {
+        "function_call": "find_cheapest_price([{'price': 99}])",
+        "expected": "99"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "data-processing",
+    "solution_code": "def find_cheapest_price(flights):\n    return min(flight['price'] for flight in flights)",
+    "explanation": "Use the 'in' keyword to check membership. It returns True if the item exists in the collection."
+  },
+  {
+    "question_type": "coding",
+    "text": "Build Search Query\nWrite a function that creates a basic flight search query dict.",
+    "starter_code": "def build_search_query(fly_from, fly_to, date_from, date_to):\n    # Return query dict for Tequila\n    pass",
+    "test_cases": [
+      {
+        "function_call": "build_search_query('LON', 'PAR', '01/01/2025', '01/06/2025')['fly_from']",
+        "expected": "LON"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "tequila",
+    "solution_code": "def build_search_query(fly_from, fly_to, date_from, date_to):\n    return {\n        'fly_from': fly_from,\n        'fly_to': fly_to,\n        'date_from': date_from,\n        'date_to': date_to,\n        'flight_type': 'round',\n        'one_for_city': 1,\n        'max_stopovers': 0\n    }",
+    "explanation": "Track the maximum by comparing each value to the current max. Update when a larger value is found."
+  },
+  {
+    "question_type": "coding",
+    "text": "Check If Deal\nWrite a function that returns True if the flight price is below the target price.",
+    "starter_code": "def is_deal(flight_price, target_price):\n    # Return True if flight is cheaper than target\n    pass",
+    "test_cases": [
+      {
+        "function_call": "is_deal(100, 150)",
+        "expected": "True"
+      },
+      {
+        "function_call": "is_deal(200, 150)",
+        "expected": "False"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "deal-logic",
+    "solution_code": "def is_deal(flight_price, target_price):\n    return flight_price < target_price",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the IATA code access bug:",
+    "code": "city_code = response.json()['code']\n# Bug: KeyError",
+    "options": [
+      "Access via response.json()['locations'][0]['code']",
+      "Use response.code",
+      "Use response['iata']",
+      "Parse as XML"
+    ],
+    "correct_index": 0,
+    "difficulty": "hard",
+    "topic_tag": "tequila",
+    "explanation": "Tequila returns locations in a list under 'locations' key."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the date format bug:",
+    "code": "date_string = date.strftime('%Y-%m-%d')\nquery = {'date_from': date_string}\n# Bug: Tequila rejects the date",
+    "options": [
+      "Use strftime('%d/%m/%Y')",
+      "Use strftime('%m/%d/%Y')",
+      "Use strftime('%Y%m%d')",
+      "Convert to timestamp"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "datetime",
+    "explanation": "Tequila requires dates in dd/mm/YYYY format, not YYYY-MM-DD."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the timedelta import bug:",
+    "code": "from datetime import datetime\ntomorrow = datetime.now() + timedelta(days=1)\n# Bug: NameError: timedelta not defined",
+    "options": [
+      "Import timedelta: from datetime import datetime, timedelta",
+      "Use datetime.delta",
+      "Use datetime.add_days",
+      "Import from time"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "datetime",
+    "explanation": "timedelta must be imported separately from the datetime module."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the flight data access bug:",
+    "code": "departure = flight['route']['local_departure']\n# Bug: TypeError",
+    "options": [
+      "Use flight['route'][0]['local_departure']",
+      "Use flight.route.departure",
+      "Use flight['departure']",
+      "Convert to list"
+    ],
+    "correct_index": 0,
+    "difficulty": "hard",
+    "topic_tag": "tequila",
+    "explanation": "'route' is a list of segments. Access the first segment with [0]."
+  }
 ]

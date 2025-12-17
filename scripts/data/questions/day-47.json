@@ -1,367 +1,372 @@
 [
-    {
-        "question_type": "mcq",
-        "text": "What is the purpose of an Amazon Price Tracker?",
-        "options": [
-            "To buy products automatically",
-            "To monitor product prices and alert when they drop",
-            "To scrape customer reviews",
-            "To compare prices across websites"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "price-tracker",
-        "explanation": "A price tracker monitors product prices over time and can send alerts when prices fall below a target."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Why do we need to send HTTP headers when scraping Amazon?",
-        "options": [
-            "To make requests faster",
-            "To avoid being blocked by Amazon's bot detection",
-            "To log into Amazon",
-            "To download images"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "headers",
-        "explanation": "Amazon blocks requests that look like bots. Sending a User-Agent header makes your request look like a real browser."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What header is most important for avoiding bot detection?",
-        "options": [
-            "Content-Type",
-            "User-Agent",
-            "Authorization",
-            "Accept-Encoding"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "headers",
-        "explanation": "The User-Agent header identifies your browser. Websites use it to detect bots (which often have no User-Agent)."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Where can you find your browser's User-Agent string?",
-        "options": [
-            "In the URL bar",
-            "In browser settings only",
-            "From sites like httpbin.org/headers or DevTools Network tab",
-            "It's stored in cookies"
-        ],
-        "correct_index": 2,
-        "difficulty": "easy",
-        "topic_tag": "headers",
-        "explanation": "Visit httpbin.org/headers or check Chrome DevTools > Network tab to see your browser's headers."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does the Accept-Language header specify?",
-        "options": [
-            "The programming language of the website",
-            "The language the user prefers for content",
-            "The encoding of the response",
-            "The country to shop from"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "headers",
-        "explanation": "Accept-Language tells the server which language(s) the user prefers (e.g., en-US for American English)."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you extract the product title on Amazon using Beautiful Soup?",
-        "options": [
-            "soup.find('title')",
-            "soup.find(id='productTitle')",
-            "soup.select('.product')[0]",
-            "soup.get_title()"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "beautifulsoup",
-        "explanation": "Amazon product titles are in a span with id='productTitle'. Use find(id='productTitle')."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What library is used to send emails in Python?",
-        "options": [
-            "emaillib",
-            "smtplib",
-            "mailpy",
-            "sendmail"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "smtp",
-        "explanation": "smtplib is Python's built-in library for sending emails via the SMTP protocol."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does SMTP stand for?",
-        "options": [
-            "Simple Mail Transfer Protocol",
-            "Secure Mail Transport Protocol",
-            "System Mail Transfer Process",
-            "Standard Messaging Transfer Protocol"
-        ],
-        "correct_index": 0,
-        "difficulty": "easy",
-        "topic_tag": "smtp",
-        "explanation": "SMTP (Simple Mail Transfer Protocol) is the standard protocol for sending emails across the internet."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What method starts TLS encryption on an SMTP connection?",
-        "options": [
-            "connection.encrypt()",
-            "connection.starttls()",
-            "connection.secure()",
-            "connection.ssl()"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "smtp",
-        "explanation": "The starttls() method upgrades an insecure connection to a secure TLS-encrypted connection."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is an App Password for Gmail?",
-        "options": [
-            "A password for mobile apps only",
-            "A generated password for apps when 2FA is enabled",
-            "Your regular Gmail password",
-            "A password to access Gmail API"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "smtp",
-        "explanation": "With 2-Factor Authentication, you generate App Passwords for less secure apps to access Gmail."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you clean whitespace from scraped text?",
-        "options": [
-            "text.clean()",
-            "text.strip()",
-            "text.remove_spaces()",
-            "text.trim()"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "beautifulsoup",
-        "explanation": "The strip() method removes leading and trailing whitespace from a string."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does `getText()` return from a Beautiful Soup element?",
-        "options": [
-            "The HTML of the element",
-            "The text content without HTML tags",
-            "The element's attributes",
-            "A list of child elements"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "beautifulsoup",
-        "explanation": "getText() (or .text) returns the text content of an element, stripping all HTML tags."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you convert '$129.99' to a number for comparison?",
-        "options": [
-            "int('$129.99')",
-            "float('$129.99'.replace('$', ''))",
-            "price.to_number()",
-            "eval('$129.99')"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "price-tracker",
-        "explanation": "First remove the $ with replace(), then convert to float: float(price.replace('$', ''))"
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the Gmail SMTP server address?",
-        "options": [
-            "mail.gmail.com",
-            "smtp.gmail.com",
-            "gmail.smtp.com",
-            "send.gmail.com"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "smtp",
-        "explanation": "Gmail's SMTP server is at smtp.gmail.com, typically on port 587 with TLS."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Why might Amazon return different prices for the same product?",
-        "options": [
-            "Random price changes",
-            "Different sellers, locations, or dynamic pricing",
-            "Bugs on their website",
-            "Your browser is outdated"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "price-tracker",
-        "explanation": "Amazon uses dynamic pricing based on demand, seller, location, and user behavior."
-    },
-    {
-        "question_type": "coding",
-        "text": "Get Price from HTML\nExtract the price value from a span element",
-        "starter_code": "def extract_price(soup):\n    from bs4 import BeautifulSoup\n    # Find span with class 'a-price-whole' and return as float\n    # Return None if not found\n    pass",
-        "test_cases": [
-            {
-                "function_call": "extract_price(BeautifulSoup('<span class=\"a-price-whole\">99</span>', 'html.parser'))",
-                "expected": "99.0"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "beautifulsoup",
-        "solution_code": "def extract_price(soup):\n    price_elem = soup.find(class_='a-price-whole')\n    if price_elem:\n        price_text = price_elem.getText().replace(',', '').strip()\n        return float(price_text)\n    return None"
-    },
-    {
-        "question_type": "coding",
-        "text": "Build Headers Dict\nCreate proper HTTP headers for scraping",
-        "starter_code": "def get_headers(user_agent, language='en-US'):\n    # Return a headers dictionary with User-Agent and Accept-Language\n    pass",
-        "test_cases": [
-            {
-                "function_call": "'User-Agent' in get_headers('Mozilla/5.0')",
-                "expected": "True"
-            },
-            {
-                "function_call": "get_headers('Mozilla/5.0')['Accept-Language']",
-                "expected": "'en-US'"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "headers",
-        "solution_code": "def get_headers(user_agent, language='en-US'):\n    return {\n        'User-Agent': user_agent,\n        'Accept-Language': language\n    }"
-    },
-    {
-        "question_type": "coding",
-        "text": "Send Email Alert\nSend an email using smtplib",
-        "starter_code": "def send_alert(email, password, to_email, subject, body):\n    import smtplib\n    # Send email via Gmail SMTP\n    # Return True on success, False on failure\n    pass",
-        "test_cases": [
-            {
-                "function_call": "type(send_alert('a@b.com', 'pass', 'c@d.com', 'Test', 'Body'))",
-                "expected": "<class 'bool'>"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "smtp",
-        "solution_code": "def send_alert(email, password, to_email, subject, body):\n    import smtplib\n    try:\n        with smtplib.SMTP('smtp.gmail.com', 587) as connection:\n            connection.starttls()\n            connection.login(email, password)\n            connection.sendmail(email, to_email, f'Subject:{subject}\\n\\n{body}')\n        return True\n    except:\n        return False"
-    },
-    {
-        "question_type": "coding",
-        "text": "Check Price Drop\nCompare current price to target and return True if it's lower",
-        "starter_code": "def is_price_below_target(current, target):\n    # Return True if current price is below target\n    pass",
-        "test_cases": [
-            {
-                "function_call": "is_price_below_target(99.99, 100)",
-                "expected": "True"
-            },
-            {
-                "function_call": "is_price_below_target(150, 100)",
-                "expected": "False"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "price-tracker",
-        "solution_code": "def is_price_below_target(current, target):\n    return current < target"
-    },
-    {
-        "question_type": "coding",
-        "text": "Clean Price String\nConvert a price string like '$1,299.99' to a float",
-        "starter_code": "def clean_price(price_str):\n    # Remove $ and , then convert to float\n    # Handle edge cases gracefully\n    pass",
-        "test_cases": [
-            {
-                "function_call": "clean_price('$1,299.99')",
-                "expected": "1299.99"
-            },
-            {
-                "function_call": "clean_price('$99')",
-                "expected": "99.0"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "price-tracker",
-        "solution_code": "def clean_price(price_str):\n    cleaned = price_str.replace('$', '').replace(',', '').strip()\n    return float(cleaned)"
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the blocked request:",
-        "code": "response = requests.get(amazon_url)\n# Returns status 503 or CAPTCHA page",
-        "options": [
-            "Add headers parameter with User-Agent",
-            "Use a different URL",
-            "Switch to POST request",
-            "Add a delay"
-        ],
-        "correct_index": 0,
-        "difficulty": "medium",
-        "topic_tag": "headers",
-        "explanation": "Amazon blocks requests without headers. Add: requests.get(url, headers={'User-Agent': '...'})"
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the email sending error:",
-        "code": "connection = smtplib.SMTP('smtp.gmail.com')\nconnection.login(email, password)\n# Connection refused",
-        "options": [
-            "Add port 587 and call starttls()",
-            "Use different email provider",
-            "Remove login step",
-            "Add SSL certificate"
-        ],
-        "correct_index": 0,
-        "difficulty": "medium",
-        "topic_tag": "smtp",
-        "explanation": "Gmail requires port 587 and TLS: SMTP('smtp.gmail.com', 587) then connection.starttls()"
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the price extraction:",
-        "code": "price = soup.find(class_='a-price')\nvalue = float(price)\n# TypeError: float() argument must be a string or number",
-        "options": [
-            "Get text first: float(price.getText())",
-            "Use int() instead",
-            "Add .value attribute",
-            "Change the selector"
-        ],
-        "correct_index": 0,
-        "difficulty": "easy",
-        "topic_tag": "beautifulsoup",
-        "explanation": "You need to get the text content first: float(price.getText().replace('$', ''))"
-    },
-    {
-        "question_type": "mcq",
-        "text": "What Python module is used to schedule the price check?",
-        "options": [
-            "datetime",
-            "schedule or time.sleep()",
-            "calendar",
-            "cron"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "automation",
-        "explanation": "Use the 'schedule' library or time.sleep() in a loop to run the scraper periodically."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What's the benefit of using environment variables for email credentials?",
-        "options": [
-            "Faster execution",
-            "Keeps sensitive data out of your code",
-            "Allows multiple emails",
-            "Makes emails more secure"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "security",
-        "explanation": "Environment variables keep passwords out of source code, preventing accidental exposure in version control."
-    }
+  {
+    "question_type": "mcq",
+    "text": "What is the purpose of an Amazon Price Tracker?",
+    "options": [
+      "To buy products automatically",
+      "To monitor product prices and alert when they drop",
+      "To scrape customer reviews",
+      "To compare prices across websites"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "price-tracker",
+    "explanation": "A price tracker monitors product prices over time and can send alerts when prices fall below a target."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Why do we need to send HTTP headers when scraping Amazon?",
+    "options": [
+      "To make requests faster",
+      "To avoid being blocked by Amazon's bot detection",
+      "To log into Amazon",
+      "To download images"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "headers",
+    "explanation": "Amazon blocks requests that look like bots. Sending a User-Agent header makes your request look like a real browser."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What header is most important for avoiding bot detection?",
+    "options": [
+      "Content-Type",
+      "User-Agent",
+      "Authorization",
+      "Accept-Encoding"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "headers",
+    "explanation": "The User-Agent header identifies your browser. Websites use it to detect bots (which often have no User-Agent)."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Where can you find your browser's User-Agent string?",
+    "options": [
+      "In the URL bar",
+      "In browser settings only",
+      "From sites like httpbin.org/headers or DevTools Network tab",
+      "It's stored in cookies"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "headers",
+    "explanation": "Visit httpbin.org/headers or check Chrome DevTools > Network tab to see your browser's headers."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does the Accept-Language header specify?",
+    "options": [
+      "The programming language of the website",
+      "The language the user prefers for content",
+      "The encoding of the response",
+      "The country to shop from"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "headers",
+    "explanation": "Accept-Language tells the server which language(s) the user prefers (e.g., en-US for American English)."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you extract the product title on Amazon using Beautiful Soup?",
+    "options": [
+      "soup.find('title')",
+      "soup.find(id='productTitle')",
+      "soup.select('.product')[0]",
+      "soup.get_title()"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "beautifulsoup",
+    "explanation": "Amazon product titles are in a span with id='productTitle'. Use find(id='productTitle')."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What library is used to send emails in Python?",
+    "options": [
+      "emaillib",
+      "smtplib",
+      "mailpy",
+      "sendmail"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "smtp",
+    "explanation": "smtplib is Python's built-in library for sending emails via the SMTP protocol."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does SMTP stand for?",
+    "options": [
+      "Simple Mail Transfer Protocol",
+      "Secure Mail Transport Protocol",
+      "System Mail Transfer Process",
+      "Standard Messaging Transfer Protocol"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "smtp",
+    "explanation": "SMTP (Simple Mail Transfer Protocol) is the standard protocol for sending emails across the internet."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What method starts TLS encryption on an SMTP connection?",
+    "options": [
+      "connection.encrypt()",
+      "connection.starttls()",
+      "connection.secure()",
+      "connection.ssl()"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "smtp",
+    "explanation": "The starttls() method upgrades an insecure connection to a secure TLS-encrypted connection."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is an App Password for Gmail?",
+    "options": [
+      "A password for mobile apps only",
+      "A generated password for apps when 2FA is enabled",
+      "Your regular Gmail password",
+      "A password to access Gmail API"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "smtp",
+    "explanation": "With 2-Factor Authentication, you generate App Passwords for less secure apps to access Gmail."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you clean whitespace from scraped text?",
+    "options": [
+      "text.clean()",
+      "text.strip()",
+      "text.remove_spaces()",
+      "text.trim()"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "beautifulsoup",
+    "explanation": "The strip() method removes leading and trailing whitespace from a string."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does `getText()` return from a Beautiful Soup element?",
+    "options": [
+      "The HTML of the element",
+      "The text content without HTML tags",
+      "The element's attributes",
+      "A list of child elements"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "beautifulsoup",
+    "explanation": "getText() (or .text) returns the text content of an element, stripping all HTML tags."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you convert '$129.99' to a number for comparison?",
+    "options": [
+      "int('$129.99')",
+      "float('$129.99'.replace('$', ''))",
+      "price.to_number()",
+      "eval('$129.99')"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "price-tracker",
+    "explanation": "First remove the $ with replace(), then convert to float: float(price.replace('$', ''))"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the Gmail SMTP server address?",
+    "options": [
+      "mail.gmail.com",
+      "smtp.gmail.com",
+      "gmail.smtp.com",
+      "send.gmail.com"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "smtp",
+    "explanation": "Gmail's SMTP server is at smtp.gmail.com, typically on port 587 with TLS."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Why might Amazon return different prices for the same product?",
+    "options": [
+      "Random price changes",
+      "Different sellers, locations, or dynamic pricing",
+      "Bugs on their website",
+      "Your browser is outdated"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "price-tracker",
+    "explanation": "Amazon uses dynamic pricing based on demand, seller, location, and user behavior."
+  },
+  {
+    "question_type": "coding",
+    "text": "Get Price from HTML\nExtract the price value from a span element",
+    "starter_code": "def extract_price(soup):\n    from bs4 import BeautifulSoup\n    # Find span with class 'a-price-whole' and return as float\n    # Return None if not found\n    pass",
+    "test_cases": [
+      {
+        "function_call": "extract_price(BeautifulSoup('<span class=\"a-price-whole\">99</span>', 'html.parser'))",
+        "expected": "99.0"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "beautifulsoup",
+    "solution_code": "def extract_price(soup):\n    price_elem = soup.find(class_='a-price-whole')\n    if price_elem:\n        price_text = price_elem.getText().replace(',', '').strip()\n        return float(price_text)\n    return None",
+    "explanation": "Check the condition and return immediately when it's met. Return a default value if the loop completes without finding a match."
+  },
+  {
+    "question_type": "coding",
+    "text": "Build Headers Dict\nCreate proper HTTP headers for scraping",
+    "starter_code": "def get_headers(user_agent, language='en-US'):\n    # Return a headers dictionary with User-Agent and Accept-Language\n    pass",
+    "test_cases": [
+      {
+        "function_call": "'User-Agent' in get_headers('Mozilla/5.0')",
+        "expected": "True"
+      },
+      {
+        "function_call": "get_headers('Mozilla/5.0')['Accept-Language']",
+        "expected": "'en-US'"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "headers",
+    "solution_code": "def get_headers(user_agent, language='en-US'):\n    return {\n        'User-Agent': user_agent,\n        'Accept-Language': language\n    }",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Send Email Alert\nSend an email using smtplib",
+    "starter_code": "def send_alert(email, password, to_email, subject, body):\n    import smtplib\n    # Send email via Gmail SMTP\n    # Return True on success, False on failure\n    pass",
+    "test_cases": [
+      {
+        "function_call": "type(send_alert('a@b.com', 'pass', 'c@d.com', 'Test', 'Body'))",
+        "expected": "<class 'bool'>"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "smtp",
+    "solution_code": "def send_alert(email, password, to_email, subject, body):\n    import smtplib\n    try:\n        with smtplib.SMTP('smtp.gmail.com', 587) as connection:\n            connection.starttls()\n            connection.login(email, password)\n            connection.sendmail(email, to_email, f'Subject:{subject}\\n\\n{body}')\n        return True\n    except:\n        return False",
+    "explanation": "Use try/except to handle potential errors gracefully. Catch specific exceptions to handle different error cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Check Price Drop\nCompare current price to target and return True if it's lower",
+    "starter_code": "def is_price_below_target(current, target):\n    # Return True if current price is below target\n    pass",
+    "test_cases": [
+      {
+        "function_call": "is_price_below_target(99.99, 100)",
+        "expected": "True"
+      },
+      {
+        "function_call": "is_price_below_target(150, 100)",
+        "expected": "False"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "price-tracker",
+    "solution_code": "def is_price_below_target(current, target):\n    return current < target",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Clean Price String\nConvert a price string like '$1,299.99' to a float",
+    "starter_code": "def clean_price(price_str):\n    # Remove $ and , then convert to float\n    # Handle edge cases gracefully\n    pass",
+    "test_cases": [
+      {
+        "function_call": "clean_price('$1,299.99')",
+        "expected": "1299.99"
+      },
+      {
+        "function_call": "clean_price('$99')",
+        "expected": "99.0"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "price-tracker",
+    "solution_code": "def clean_price(price_str):\n    cleaned = price_str.replace('$', '').replace(',', '').strip()\n    return float(cleaned)",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the blocked request:",
+    "code": "response = requests.get(amazon_url)\n# Returns status 503 or CAPTCHA page",
+    "options": [
+      "Add headers parameter with User-Agent",
+      "Use a different URL",
+      "Switch to POST request",
+      "Add a delay"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "headers",
+    "explanation": "Amazon blocks requests without headers. Add: requests.get(url, headers={'User-Agent': '...'})"
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the email sending error:",
+    "code": "connection = smtplib.SMTP('smtp.gmail.com')\nconnection.login(email, password)\n# Connection refused",
+    "options": [
+      "Add port 587 and call starttls()",
+      "Use different email provider",
+      "Remove login step",
+      "Add SSL certificate"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "smtp",
+    "explanation": "Gmail requires port 587 and TLS: SMTP('smtp.gmail.com', 587) then connection.starttls()"
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the price extraction:",
+    "code": "price = soup.find(class_='a-price')\nvalue = float(price)\n# TypeError: float() argument must be a string or number",
+    "options": [
+      "Get text first: float(price.getText())",
+      "Use int() instead",
+      "Add .value attribute",
+      "Change the selector"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "beautifulsoup",
+    "explanation": "You need to get the text content first: float(price.getText().replace('$', ''))"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What Python module is used to schedule the price check?",
+    "options": [
+      "datetime",
+      "schedule or time.sleep()",
+      "calendar",
+      "cron"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "automation",
+    "explanation": "Use the 'schedule' library or time.sleep() in a loop to run the scraper periodically."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What's the benefit of using environment variables for email credentials?",
+    "options": [
+      "Faster execution",
+      "Keeps sensitive data out of your code",
+      "Allows multiple emails",
+      "Makes emails more secure"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "security",
+    "explanation": "Environment variables keep passwords out of source code, preventing accidental exposure in version control."
+  }
 ]

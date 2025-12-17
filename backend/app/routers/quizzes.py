@@ -1,37 +1,22 @@
 import json
-from datetime import datetime
 from typing import List
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from sqlalchemy import func
-from pydantic import BaseModel
 
 from ..database import get_db
 from ..models import QuizResult, User, Question, Achievement, UserAchievement
 from ..schemas import QuizSubmission, QuestionResponse
+from ..auth import get_current_user
 
 router = APIRouter()
 
-# =============================================================================
-# SECURITY NOTE: Single-User MVP Mode
-# =============================================================================
-# This application currently operates in single-user mode without authentication.
-# All API endpoints use a hardcoded user ID. This is intentional for the MVP phase.
-#
-# BEFORE PRODUCTION DEPLOYMENT:
-# 1. Implement proper authentication (e.g., Supabase Auth, JWT)
-# 2. Replace DEFAULT_USER_ID with authenticated user from request context
-# 3. Add authorization checks for user-owned resources
-# 4. See docs/architecture.md for auth implementation guidance
-# =============================================================================
-DEFAULT_USER_ID = 1  # TODO: Replace with authenticated user ID from auth middleware
-
 
 @router.get("/completed")
-def get_completed_quizzes(db: Session = Depends(get_db)):
+def get_completed_quizzes(user: User = Depends(get_current_user), db: Session = Depends(get_db)):
     """Get list of quiz_ids that the user has completed."""
     results = db.query(QuizResult.quiz_id).filter(
-        QuizResult.user_id == DEFAULT_USER_ID
+        QuizResult.user_id == user.id
     ).distinct().all()
     return [r[0] for r in results]
 
@@ -43,7 +28,7 @@ def get_quiz_leaderboard(limit: int = 20, offset: int = 0, db: Session = Depends
         QuizResult.score.desc(),
         QuizResult.completed_at.desc()
     ).offset(offset).limit(limit).all()
-    
+
     return [
         {
             "id": r.id,
@@ -60,25 +45,37 @@ def get_quiz_leaderboard(limit: int = 20, offset: int = 0, db: Session = Depends
 
 @router.get("/{quiz_id}/questions", response_model=List[QuestionResponse])
 def get_quiz_questions(quiz_id: str, db: Session = Depends(get_db)):
-    """Get questions for a specific quiz (without correct answers)."""
+    """Get questions for a specific quiz (without correct answers or solution_code)."""
     questions = db.query(Question).filter(Question.quiz_id == quiz_id).all()
-    
-    # Parse options JSON string to list
+
+    # Parse options/test_cases JSON strings to lists
     response = []
     for q in questions:
         try:
             options_list = json.loads(q.options) if q.options else []
         except (json.JSONDecodeError, TypeError):
             options_list = []
-            
+
+        try:
+            test_cases_list = json.loads(q.test_cases) if q.test_cases else None
+        except (json.JSONDecodeError, TypeError):
+            test_cases_list = None
+
         response.append(QuestionResponse(
             id=q.id,
             quiz_id=q.quiz_id,
+            question_type=q.question_type or "mcq",
             text=q.text,
+            code=q.code,  # For code-correction questions
             options=options_list,
-            explanation=None # Don't reveal explanation yet
+            correct_index=q.correct_index,
+            starter_code=q.starter_code,
+            test_cases=test_cases_list,
+            explanation=q.explanation,
+            difficulty=q.difficulty,
+            topic_tag=q.topic_tag
         ))
-        
+
     return response
 
 
@@ -87,50 +84,47 @@ def award_achievement_for_quiz(db: Session, user_id: int, achievement_id: str) -
     achievement = db.query(Achievement).filter(Achievement.achievement_id == achievement_id).first()
     if not achievement:
         return False, 0
-    
+
     existing = db.query(UserAchievement).filter(
         UserAchievement.user_id == user_id,
         UserAchievement.achievement_id == achievement.id
     ).first()
-    
+
     if existing:
         return False, 0
-    
+
     db.add(UserAchievement(user_id=user_id, achievement_id=achievement.id))
     return True, achievement.xp_value
 
 
 @router.post("/submit")
-def submit_quiz(submission: QuizSubmission, db: Session = Depends(get_db)):
+def submit_quiz(submission: QuizSubmission, user: User = Depends(get_current_user), db: Session = Depends(get_db)):
     """Submit a quiz result and award XP."""
-    user = db.query(User).filter(User.id == DEFAULT_USER_ID).first()
-    if not user:
-        raise HTTPException(status_code=404, detail="User not found")
 
     # Fetch all questions for this quiz
     questions = db.query(Question).filter(Question.quiz_id == submission.quiz_id).all()
     if not questions:
         raise HTTPException(status_code=404, detail="Quiz not found")
-        
+
     questions_map = {q.id: q for q in questions}
-    
+
     score = 0
     total_questions = len(questions)
-    
+
     # Calculate score server-side - handle both MCQ and coding questions
     for q_id_str, answer in submission.answers.items():
         try:
             q_id = int(q_id_str)
         except ValueError:
             continue
-            
+
         question = questions_map.get(q_id)
         if not question:
             continue
-            
+
         # Trust the model default; column is now guaranteed
         question_type = question.question_type or 'mcq'
-        
+
         if question_type in ('mcq', 'code-correction'):
             # MCQ/Code-correction: answer is the selected index (int)
             if isinstance(answer, int) and question.correct_index == answer:
@@ -142,7 +136,7 @@ def submit_quiz(submission: QuizSubmission, db: Session = Depends(get_db)):
 
     # Save result
     result = QuizResult(
-        user_id=DEFAULT_USER_ID,
+        user_id=user.id,
         quiz_id=submission.quiz_id,
         score=score,
         total_questions=total_questions
@@ -152,34 +146,34 @@ def submit_quiz(submission: QuizSubmission, db: Session = Depends(get_db)):
     # Award XP (e.g., 10 XP base + score)
     xp_gained = 10 + score
     user.xp += xp_gained
-    
+
     # Check for quiz achievements
     achievements_unlocked = []
-    
+
     # Quiz Master: Perfect score
     if score == total_questions and total_questions > 0:
-        awarded, ach_xp = award_achievement_for_quiz(db, DEFAULT_USER_ID, "a-quiz-master")
+        awarded, ach_xp = award_achievement_for_quiz(db, user.id, "a-quiz-master")
         if awarded:
             achievements_unlocked.append("a-quiz-master")
             xp_gained += ach_xp
             user.xp += ach_xp
-    
+
     # Quiz count achievements
     quiz_count = db.query(func.count(QuizResult.id)).filter(
-        QuizResult.user_id == DEFAULT_USER_ID
+        QuizResult.user_id == user.id
     ).scalar()
-    
+
     if quiz_count >= 5:
-        awarded, ach_xp = award_achievement_for_quiz(db, DEFAULT_USER_ID, "a-quiz-streak")
+        awarded, ach_xp = award_achievement_for_quiz(db, user.id, "a-quiz-streak")
         if awarded:
             achievements_unlocked.append("a-quiz-streak")
             xp_gained += ach_xp
             user.xp += ach_xp
-    
+
     db.commit()
-    
+
     return {
-        "message": "Quiz submitted", 
+        "message": "Quiz submitted",
         "xp_gained": xp_gained,
         "score": score,
         "total_questions": total_questions,

@@ -1,5 +1,5 @@
 import { useState, useEffect, lazy, Suspense } from 'react'
-import { AlertTriangle, Trophy, PartyPopper, BookOpen, Check, Lightbulb, ArrowLeft, ArrowRight, CheckCircle, Loader2 } from 'lucide-react'
+import { AlertTriangle, Trophy, PartyPopper, BookOpen, Check, X, Lightbulb, ArrowLeft, ArrowRight, CheckCircle, Loader2 } from 'lucide-react'
 import { quizApi } from '../api/quizApi'
 import { rpgAPI, quizzesAPI } from '../api/client'
 import CodeBlock from '../components/CodeBlock'
@@ -473,6 +473,8 @@ function Practice() {
     const [activeTab, setActiveTab] = useState('deep-dive')
     const [activeDay, setActiveDay] = useState('day-5')
     const [completedQuizzes, setCompletedQuizzes] = useState([])
+    const [quizData, setQuizData] = useState({ questions: [], hasCoding: false })
+    const [loading, setLoading] = useState(false)
 
     const currentDay = DAY_META[activeDay]
 
@@ -482,9 +484,27 @@ function Practice() {
             .then(setCompletedQuizzes)
             .catch(err => {
                 console.error('Failed to load completed quizzes:', err)
-                // Silently fail - completed quizzes is non-critical for page load
             })
     }, [])
+
+    useEffect(() => {
+        const loadDayData = async () => {
+            const quizId = DAY_META[activeDay].quizId
+            if (!quizId) return
+
+            setLoading(true)
+            try {
+                const questions = await quizzesAPI.getQuestions(quizId)
+                const hasCoding = questions.some(q => q.question_type === 'coding')
+                setQuizData({ questions, hasCoding })
+            } catch (err) {
+                console.error('Failed to load quiz data:', err)
+            } finally {
+                setLoading(false)
+            }
+        }
+        loadDayData()
+    }, [activeDay])
 
     return (
         <div className="space-y-8 pb-12">
@@ -509,9 +529,9 @@ function Practice() {
                             <button
                                 key={key}
                                 onClick={() => setActiveDay(key)}
-                                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap flex items-center gap-2 ${activeDay === key
-                                    ? 'bg-primary-500/10 text-primary-400 border border-primary-500/20'
-                                    : 'text-surface-400 hover:text-surface-200 hover:bg-surface-800/50'
+                                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap flex items-center gap-2 border ${activeDay === key
+                                    ? 'bg-primary-500/10 text-primary-400 border-primary-500/50 scale-105 shadow-lg shadow-primary-900/20'
+                                    : 'text-surface-400 border-transparent hover:text-surface-200 hover:bg-surface-800/50'
                                     }`}
                             >
                                 {data.label}
@@ -544,14 +564,43 @@ function Practice() {
                 >
                     Quiz
                 </button>
-
+                {quizData.hasCoding && (
+                    <button
+                        onClick={() => setActiveTab('challenges')}
+                        className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${activeTab === 'challenges'
+                            ? 'border-primary-500 text-primary-400'
+                            : 'border-transparent text-surface-400 hover:text-surface-200'
+                            }`}
+                    >
+                        Challenges
+                    </button>
+                )}
             </div>
 
             {/* Content */}
             <div className="min-h-[400px]">
-                {activeTab === 'deep-dive' && <DeepDive activeDay={activeDay} />}
-                {activeTab === 'practice' && <Quiz quizId={currentDay.quizId} activeDay={activeDay} />}
-
+                {loading && (
+                    <div className="flex items-center justify-center p-12">
+                        <Loader2 className="w-8 h-8 text-primary-400 animate-spin" />
+                        <span className="ml-3 text-surface-300">Loading mission data...</span>
+                    </div>
+                )}
+                {!loading && activeTab === 'deep-dive' && <DeepDive activeDay={activeDay} />}
+                {!loading && activeTab === 'practice' && (
+                    <Quiz
+                        quizId={currentDay.quizId}
+                        activeDay={activeDay}
+                        initialQuestions={quizData.questions.filter(q => q.question_type !== 'coding')}
+                    />
+                )}
+                {!loading && activeTab === 'challenges' && (
+                    <Quiz
+                        quizId={currentDay.quizId}
+                        activeDay={activeDay}
+                        initialQuestions={quizData.questions.filter(q => q.question_type === 'coding')}
+                        isChallengeTab={true}
+                    />
+                )}
             </div>
         </div>
     )
@@ -621,21 +670,31 @@ function DeepDive({ activeDay }) {
     )
 }
 
-function Quiz({ quizId, activeDay }) {
-    const [questions, setQuestions] = useState([])
+function Quiz({ quizId, activeDay, initialQuestions = [], isChallengeTab = false }) {
+    const [questions, setQuestions] = useState(initialQuestions)
     const [currentQ, setCurrentQ] = useState(0)
     const [answers, setAnswers] = useState({}) // { questionId: selectedIndex or { code, passed, total } }
     const [showResult, setShowResult] = useState(false)
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [resultData, setResultData] = useState(null)
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(initialQuestions.length === 0)
     const [error, setError] = useState(null)
     const [quizStats, setQuizStats] = useState(null)
     const [xpWarning, setXpWarning] = useState(null)
 
     useEffect(() => {
-        loadQuiz(quizId)
-    }, [quizId])
+        if (initialQuestions.length > 0) {
+            setQuestions(initialQuestions)
+            setLoading(false)
+            // Reset state for new question set
+            setCurrentQ(0)
+            setAnswers({})
+            setShowResult(false)
+            setResultData(null)
+        } else {
+            loadQuiz(quizId)
+        }
+    }, [quizId, initialQuestions])
 
     const loadQuiz = async (targetQuizId) => {
         try {
@@ -892,29 +951,49 @@ function Quiz({ quizId, activeDay }) {
                 {/* MCQ Options */}
                 {isMCQ && currentQuestion.options && (
                     <div className="space-y-3">
-                        {currentQuestion.options.map((opt, idx) => (
-                            <button
-                                key={idx}
-                                onClick={() => handleMCQAnswer(idx)}
-                                className={`w-full text-left p-4 rounded-xl border transition-all duration-200 flex justify-between items-center ${selectedOption === idx
-                                    ? 'bg-primary-600/20 border-primary-500 text-primary-200'
-                                    : 'bg-surface-700/50 border-surface-600 hover:bg-surface-700 hover:border-surface-500 text-surface-200'
-                                    }`}
-                            >
-                                <div className="flex items-center gap-3">
-                                    <span className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm font-medium ${selectedOption === idx
-                                        ? 'bg-primary-500 text-white'
-                                        : 'bg-surface-600 text-surface-300'
-                                        }`}>
-                                        {String.fromCharCode(65 + idx)}
-                                    </span>
-                                    <span className="font-mono text-sm whitespace-pre-wrap">{opt}</span>
-                                </div>
-                                {selectedOption === idx && (
-                                    <Check className="w-5 h-5 text-primary-400" />
-                                )}
-                            </button>
-                        ))}
+                        {currentQuestion.options.map((opt, idx) => {
+                            const isCorrect = Number(idx) === Number(currentQuestion.correct_index)
+                            const isSelected = selectedOption === idx
+                            const showCorrectness = selectedOption !== undefined
+
+                            let buttonClass = 'bg-surface-700/50 border-surface-600 hover:bg-surface-700 hover:border-surface-500 text-surface-200'
+                            let badgeClass = 'bg-surface-600 text-surface-300'
+
+                            if (showCorrectness) {
+                                if (isCorrect) {
+                                    buttonClass = 'bg-green-500/20 border-green-500 text-green-200'
+                                    badgeClass = 'bg-green-500 text-white'
+                                } else if (isSelected) {
+                                    buttonClass = 'bg-red-500/20 border-red-500 text-red-200'
+                                    badgeClass = 'bg-red-500 text-white'
+                                }
+                            } else if (isSelected) {
+                                buttonClass = 'bg-primary-600/20 border-primary-500 text-primary-200'
+                                badgeClass = 'bg-primary-500 text-white'
+                            }
+
+                            return (
+                                <button
+                                    key={idx}
+                                    onClick={() => !showCorrectness && handleMCQAnswer(idx)}
+                                    disabled={showCorrectness}
+                                    className={`w-full text-left p-4 rounded-xl border transition-all duration-200 flex justify-between items-center ${buttonClass} ${showCorrectness ? 'cursor-default' : ''}`}
+                                >
+                                    <div className="flex items-center gap-3">
+                                        <span className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm font-medium ${badgeClass}`}>
+                                            {String.fromCharCode(65 + idx)}
+                                        </span>
+                                        <span className="font-mono text-sm whitespace-pre-wrap">{opt}</span>
+                                    </div>
+                                    {showCorrectness && isCorrect && (
+                                        <Check className="w-5 h-5 text-green-400" />
+                                    )}
+                                    {showCorrectness && isSelected && !isCorrect && (
+                                        <X className="w-5 h-5 text-red-400" />
+                                    )}
+                                </button>
+                            )
+                        })}
                     </div>
                 )}
 
@@ -928,29 +1007,49 @@ function Quiz({ quizId, activeDay }) {
                         </div>
                         {/* Options for correction */}
                         <div className="space-y-3">
-                            {currentQuestion.options?.map((opt, idx) => (
-                                <button
-                                    key={idx}
-                                    onClick={() => handleMCQAnswer(idx)}
-                                    className={`w-full text-left p-4 rounded-xl border transition-all duration-200 flex justify-between items-center ${selectedOption === idx
-                                        ? 'bg-orange-600/20 border-orange-500 text-orange-200'
-                                        : 'bg-surface-700/50 border-surface-600 hover:bg-surface-700 hover:border-surface-500 text-surface-200'
-                                        }`}
-                                >
-                                    <div className="flex items-center gap-3">
-                                        <span className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm font-medium ${selectedOption === idx
-                                            ? 'bg-orange-500 text-white'
-                                            : 'bg-surface-600 text-surface-300'
-                                            }`}>
-                                            {String.fromCharCode(65 + idx)}
-                                        </span>
-                                        <span className="font-mono text-sm whitespace-pre-wrap">{opt}</span>
-                                    </div>
-                                    {selectedOption === idx && (
-                                        <Check className="w-5 h-5 text-orange-400" />
-                                    )}
-                                </button>
-                            ))}
+                            {currentQuestion.options?.map((opt, idx) => {
+                                const isCorrect = idx === currentQuestion.correct_index
+                                const isSelected = selectedOption === idx
+                                const showCorrectness = selectedOption !== undefined
+
+                                let buttonClass = 'bg-surface-700/50 border-surface-600 hover:bg-surface-700 hover:border-surface-500 text-surface-200'
+                                let badgeClass = 'bg-surface-600 text-surface-300'
+
+                                if (showCorrectness) {
+                                    if (isCorrect) {
+                                        buttonClass = 'bg-green-500/20 border-green-500 text-green-200'
+                                        badgeClass = 'bg-green-500 text-white'
+                                    } else if (isSelected) {
+                                        buttonClass = 'bg-red-500/20 border-red-500 text-red-200'
+                                        badgeClass = 'bg-red-500 text-white'
+                                    }
+                                } else if (isSelected) {
+                                    buttonClass = 'bg-orange-600/20 border-orange-500 text-orange-200'
+                                    badgeClass = 'bg-orange-500 text-white'
+                                }
+
+                                return (
+                                    <button
+                                        key={idx}
+                                        onClick={() => !showCorrectness && handleMCQAnswer(idx)}
+                                        disabled={showCorrectness}
+                                        className={`w-full text-left p-4 rounded-xl border transition-all duration-200 flex justify-between items-center ${buttonClass} ${showCorrectness ? 'cursor-default' : ''}`}
+                                    >
+                                        <div className="flex items-center gap-3">
+                                            <span className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm font-medium ${badgeClass}`}>
+                                                {String.fromCharCode(65 + idx)}
+                                            </span>
+                                            <span className="font-mono text-sm whitespace-pre-wrap">{opt}</span>
+                                        </div>
+                                        {showCorrectness && isCorrect && (
+                                            <Check className="w-5 h-5 text-green-400" />
+                                        )}
+                                        {showCorrectness && isSelected && !isCorrect && (
+                                            <X className="w-5 h-5 text-red-400" />
+                                        )}
+                                    </button>
+                                )
+                            })}
                         </div>
                     </div>
                 )}
@@ -1074,9 +1173,11 @@ function Quiz({ quizId, activeDay }) {
 
             {/* Explanation (shown after answering) */}
             {currentQuestion.explanation && isAnswered && (
-                <div className="mt-4 p-4 bg-surface-800/50 rounded-xl border border-surface-700">
-                    <h4 className="text-sm font-medium text-primary-400 mb-2 flex items-center gap-2"><Lightbulb className="w-4 h-4" /> Explanation</h4>
-                    <p className="text-surface-300 text-sm">{currentQuestion.explanation}</p>
+                <div className="mt-4 p-5 bg-primary-900/10 rounded-xl border border-primary-500/30 shadow-inner">
+                    <h4 className="text-sm font-bold text-primary-400 mb-2 flex items-center gap-2 uppercase tracking-wider">
+                        <Lightbulb className="w-5 h-5 text-yellow-400" /> Theory & Context
+                    </h4>
+                    <p className="text-surface-200 text-sm leading-relaxed">{currentQuestion.explanation}</p>
                 </div>
             )}
         </div>

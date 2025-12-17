@@ -1,355 +1,360 @@
 [
-    {
-        "question_type": "mcq",
-        "text": "What library is commonly used to interact with the Spotify API in Python?",
-        "options": [
-            "requests",
-            "spotipy",
-            "spotifyapi",
-            "pyspotify"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "spotify-api",
-        "explanation": "Spotipy is the popular Python wrapper library for the Spotify Web API, simplifying authentication and API calls."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What authentication flow does Spotify use for accessing user data?",
-        "options": [
-            "API Key",
-            "OAuth 2.0",
-            "Basic Auth",
-            "JWT Token"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "oauth",
-        "explanation": "Spotify uses OAuth 2.0, which allows users to grant your app permission to access their Spotify data."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is a 'scope' in Spotify OAuth?",
-        "options": [
-            "A type of playlist",
-            "Permissions your app requests (e.g., playlist-modify-public)",
-            "A music genre category",
-            "A rate limit setting"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "oauth",
-        "explanation": "Scopes define what actions your app can perform on behalf of the user, like modifying playlists or reading listening history."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Which Spotify API scope is needed to create a public playlist?",
-        "options": [
-            "user-read-private",
-            "playlist-modify-private",
-            "playlist-modify-public",
-            "user-library-modify"
-        ],
-        "correct_index": 2,
-        "difficulty": "medium",
-        "topic_tag": "spotify-api",
-        "explanation": "The 'playlist-modify-public' scope allows your app to create and modify public playlists on behalf of the user."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is a redirect URI used for in OAuth?",
-        "options": [
-            "To redirect users to login with Facebook",
-            "Where Spotify sends the user after they authorize your app",
-            "The URL of the Spotify API",
-            "A backup URL if the main one fails"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "oauth",
-        "explanation": "The redirect URI is where users are sent after authorizing your app, usually carrying an authorization code."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What website provides the Billboard Hot 100 chart data?",
-        "options": [
-            "spotify.com",
-            "billboard.com",
-            "itunes.com",
-            "soundcloud.com"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "web-scraping",
-        "explanation": "Billboard.com publishes the official Billboard Hot 100 music charts which can be scraped for song data."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you get the Billboard Hot 100 for a specific date?",
-        "options": [
-            "Pass the date in the request body",
-            "Append the date (YYYY-MM-DD) to the URL path",
-            "Send the date as a header",
-            "Use the billboard API"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "web-scraping",
-        "explanation": "The Billboard Hot 100 URL accepts dates: billboard.com/charts/hot-100/2020-08-12"
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does `sp.search(q='song name', type='track')` return?",
-        "options": [
-            "A single track object",
-            "A dictionary with tracks, albums, artists, etc.",
-            "A list of song names",
-            "The track's audio file"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "spotify-api",
-        "explanation": "Spotify's search endpoint returns a dictionary containing 'tracks' (and optionally 'albums', 'artists') with paginated results."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is a Spotify URI?",
-        "options": [
-            "A URL to open Spotify in browser",
-            "A unique identifier like 'spotify:track:abc123'",
-            "A user's email address",
-            "A playlist name"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "spotify-api",
-        "explanation": "A Spotify URI (Uniform Resource Identifier) uniquely identifies resources like tracks, albums, and playlists."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Which method creates a new Spotify playlist?",
-        "options": [
-            "sp.playlist_create()",
-            "sp.user_playlist_create()",
-            "sp.create_playlist()",
-            "sp.new_playlist()"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "spotify-api",
-        "explanation": "The spotipy method `user_playlist_create(user, name)` creates a new playlist for the specified user."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you add tracks to a Spotify playlist?",
-        "options": [
-            "sp.playlist_add_items(playlist_id, track_uris)",
-            "sp.add_to_playlist(playlist_id, tracks)",
-            "sp.playlist.add(tracks)",
-            "sp.insert_tracks(playlist_id, tracks)"
-        ],
-        "correct_index": 0,
-        "difficulty": "medium",
-        "topic_tag": "spotify-api",
-        "explanation": "Use `playlist_add_items(playlist_id, items)` where items is a list of Spotify URIs or track IDs."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does `sp.current_user()` return?",
-        "options": [
-            "The user's currently playing track",
-            "Information about the authenticated user",
-            "A list of the user's playlists",
-            "The user's top artists"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "spotify-api",
-        "explanation": "current_user() returns a dictionary with the authenticated user's profile information including their Spotify ID."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Why might a song from Billboard not be found on Spotify?",
-        "options": [
-            "Spotify is down",
-            "The song title has special characters or different spelling",
-            "Billboard data is encrypted",
-            "You need a premium account"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "spotify-api",
-        "explanation": "Song titles may differ between Billboard and Spotify (parentheses, featured artists, special characters), causing search misses."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the SpotifyOAuth class used for?",
-        "options": [
-            "Playing music",
-            "Managing the OAuth authentication flow",
-            "Creating playlists",
-            "Searching for tracks"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "oauth",
-        "explanation": "SpotifyOAuth handles the full OAuth 2.0 flow including token refresh, authorization, and credential management."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Where do you register your app to get Spotify API credentials?",
-        "options": [
-            "spotify.com/developers",
-            "developer.spotify.com",
-            "api.spotify.com/register",
-            "github.com/spotify"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "spotify-api",
-        "explanation": "You register apps and get client ID/secret at developer.spotify.com in the Dashboard."
-    },
-    {
-        "question_type": "coding",
-        "text": "Create Spotify Auth\nInitialize Spotipy with OAuth authentication",
-        "starter_code": "def get_spotify_client(client_id, client_secret, redirect_uri):\n    import spotipy\n    from spotipy.oauth2 import SpotifyOAuth\n    # Return authenticated Spotify client\n    pass",
-        "test_cases": [
-            {
-                "function_call": "type(get_spotify_client('id', 'secret', 'http://localhost'))",
-                "expected": "<class 'spotipy.client.Spotify'>"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "spotify-api",
-        "solution_code": "def get_spotify_client(client_id, client_secret, redirect_uri):\n    import spotipy\n    from spotipy.oauth2 import SpotifyOAuth\n    auth_manager = SpotifyOAuth(\n        client_id=client_id,\n        client_secret=client_secret,\n        redirect_uri=redirect_uri,\n        scope='playlist-modify-public'\n    )\n    return spotipy.Spotify(auth_manager=auth_manager)"
-    },
-    {
-        "question_type": "coding",
-        "text": "Search for Track\nReturn the Spotify URI of the first matching track",
-        "starter_code": "def search_track(sp, song_name, artist=None):\n    # Search and return URI of first result\n    # Return None if not found\n    pass",
-        "test_cases": [
-            {
-                "function_call": "search_track(mock_sp, 'Blinding Lights', 'The Weeknd') is not None",
-                "expected": "True"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "spotify-api",
-        "solution_code": "def search_track(sp, song_name, artist=None):\n    query = f'{song_name} artist:{artist}' if artist else song_name\n    results = sp.search(q=query, type='track', limit=1)\n    tracks = results.get('tracks', {}).get('items', [])\n    if tracks:\n        return tracks[0]['uri']\n    return None"
-    },
-    {
-        "question_type": "coding",
-        "text": "Create Playlist\nCreate a new public playlist and return its ID",
-        "starter_code": "def create_playlist(sp, user_id, name, description=''):\n    # Create playlist and return its ID\n    pass",
-        "test_cases": [
-            {
-                "function_call": "len(create_playlist(mock_sp, 'user123', 'My Playlist', 'Test')) > 0",
-                "expected": "True"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "spotify-api",
-        "solution_code": "def create_playlist(sp, user_id, name, description=''):\n    playlist = sp.user_playlist_create(\n        user=user_id,\n        name=name,\n        public=True,\n        description=description\n    )\n    return playlist['id']"
-    },
-    {
-        "question_type": "coding",
-        "text": "Scrape Billboard Songs\nExtract song titles from Billboard HTML",
-        "starter_code": "def get_billboard_songs(soup):\n    from bs4 import BeautifulSoup\n    # Return list of song titles from chart\n    # Songs are in h3 tags with id='title-of-a-story'\n    pass",
-        "test_cases": [
-            {
-                "function_call": "len(get_billboard_songs(mock_soup)) > 0",
-                "expected": "True"
-            }
-        ],
-        "difficulty": "hard",
-        "topic_tag": "web-scraping",
-        "solution_code": "def get_billboard_songs(soup):\n    song_elements = soup.select('li h3#title-of-a-story')\n    songs = [song.getText().strip() for song in song_elements]\n    return songs"
-    },
-    {
-        "question_type": "coding",
-        "text": "Build Music Playlist\nCombine scraping and Spotify to build a playlist",
-        "starter_code": "def build_time_machine_playlist(sp, song_list, playlist_name):\n    # 1. Get current user ID\n    # 2. Create playlist\n    # 3. Search and add each song\n    # Return number of songs added\n    pass",
-        "test_cases": [
-            {
-                "function_call": "build_time_machine_playlist(mock_sp, ['Blinding Lights', 'Circles'], '2020 Hits') >= 0",
-                "expected": "True"
-            }
-        ],
-        "difficulty": "hard",
-        "topic_tag": "spotify-api",
-        "solution_code": "def build_time_machine_playlist(sp, song_list, playlist_name):\n    user_id = sp.current_user()['id']\n    playlist = sp.user_playlist_create(user_id, playlist_name)\n    uris = []\n    for song in song_list:\n        result = sp.search(q=song, type='track', limit=1)\n        tracks = result.get('tracks', {}).get('items', [])\n        if tracks:\n            uris.append(tracks[0]['uri'])\n    if uris:\n        sp.playlist_add_items(playlist['id'], uris)\n    return len(uris)"
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the Spotify search query:",
-        "code": "result = sp.search(song_name, type='track')\n# Returns empty results",
-        "options": [
-            "Change to `sp.search(q=song_name, type='track')`",
-            "Remove the type parameter",
-            "Use sp.find() instead",
-            "Add limit=100"
-        ],
-        "correct_index": 0,
-        "difficulty": "easy",
-        "topic_tag": "spotify-api",
-        "explanation": "The search() method requires the 'q' keyword argument for the query: sp.search(q=song_name, type='track')"
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the OAuth scope error:",
-        "code": "auth = SpotifyOAuth(client_id, client_secret, redirect_uri)\nsp.user_playlist_create(user, 'My Playlist')\n# Error: Insufficient client scope",
-        "options": [
-            "Add scope='playlist-modify-public' to SpotifyOAuth",
-            "Use a different method",
-            "Remove the playlist creation",
-            "Add premium=True"
-        ],
-        "correct_index": 0,
-        "difficulty": "medium",
-        "topic_tag": "oauth",
-        "explanation": "Creating playlists requires the 'playlist-modify-public' (or private) scope in your OAuth configuration."
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the track URI extraction:",
-        "code": "results = sp.search(q='Blinding Lights', type='track')\nuri = results['uri']\n# KeyError: 'uri'",
-        "options": [
-            "Access via results['tracks']['items'][0]['uri']",
-            "Use results.uri",
-            "Change type to 'album'",
-            "Add limit=1"
-        ],
-        "correct_index": 0,
-        "difficulty": "medium",
-        "topic_tag": "spotify-api",
-        "explanation": "Search results are nested: results['tracks']['items'] is a list of track objects, each with a 'uri' key."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What happens if you try to add more than 100 tracks to a playlist at once?",
-        "options": [
-            "It works fine",
-            "Only the first 100 are added",
-            "The API returns an error",
-            "It creates multiple playlists"
-        ],
-        "correct_index": 2,
-        "difficulty": "hard",
-        "topic_tag": "spotify-api",
-        "explanation": "Spotify's API limits adding 100 tracks per request. For more, you need to batch the requests in chunks."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does the `.cache` file store in Spotipy?",
-        "options": [
-            "Your search history",
-            "OAuth access and refresh tokens",
-            "Playlist data",
-            "Album artwork"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "oauth",
-        "explanation": "Spotipy caches OAuth tokens in a .cache file so you don't need to re-authorize every time you run your script."
-    }
+  {
+    "question_type": "mcq",
+    "text": "What library is commonly used to interact with the Spotify API in Python?",
+    "options": [
+      "requests",
+      "spotipy",
+      "spotifyapi",
+      "pyspotify"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "spotify-api",
+    "explanation": "Spotipy is the popular Python wrapper library for the Spotify Web API, simplifying authentication and API calls."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What authentication flow does Spotify use for accessing user data?",
+    "options": [
+      "API Key",
+      "OAuth 2.0",
+      "Basic Auth",
+      "JWT Token"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "oauth",
+    "explanation": "Spotify uses OAuth 2.0, which allows users to grant your app permission to access their Spotify data."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is a 'scope' in Spotify OAuth?",
+    "options": [
+      "A type of playlist",
+      "Permissions your app requests (e.g., playlist-modify-public)",
+      "A music genre category",
+      "A rate limit setting"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "oauth",
+    "explanation": "Scopes define what actions your app can perform on behalf of the user, like modifying playlists or reading listening history."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Which Spotify API scope is needed to create a public playlist?",
+    "options": [
+      "user-read-private",
+      "playlist-modify-private",
+      "playlist-modify-public",
+      "user-library-modify"
+    ],
+    "correct_index": 2,
+    "difficulty": "medium",
+    "topic_tag": "spotify-api",
+    "explanation": "The 'playlist-modify-public' scope allows your app to create and modify public playlists on behalf of the user."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is a redirect URI used for in OAuth?",
+    "options": [
+      "To redirect users to login with Facebook",
+      "Where Spotify sends the user after they authorize your app",
+      "The URL of the Spotify API",
+      "A backup URL if the main one fails"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "oauth",
+    "explanation": "The redirect URI is where users are sent after authorizing your app, usually carrying an authorization code."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What website provides the Billboard Hot 100 chart data?",
+    "options": [
+      "spotify.com",
+      "billboard.com",
+      "itunes.com",
+      "soundcloud.com"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "web-scraping",
+    "explanation": "Billboard.com publishes the official Billboard Hot 100 music charts which can be scraped for song data."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you get the Billboard Hot 100 for a specific date?",
+    "options": [
+      "Pass the date in the request body",
+      "Append the date (YYYY-MM-DD) to the URL path",
+      "Send the date as a header",
+      "Use the billboard API"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "web-scraping",
+    "explanation": "The Billboard Hot 100 URL accepts dates: billboard.com/charts/hot-100/2020-08-12"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does `sp.search(q='song name', type='track')` return?",
+    "options": [
+      "A single track object",
+      "A dictionary with tracks, albums, artists, etc.",
+      "A list of song names",
+      "The track's audio file"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "spotify-api",
+    "explanation": "Spotify's search endpoint returns a dictionary containing 'tracks' (and optionally 'albums', 'artists') with paginated results."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is a Spotify URI?",
+    "options": [
+      "A URL to open Spotify in browser",
+      "A unique identifier like 'spotify:track:abc123'",
+      "A user's email address",
+      "A playlist name"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "spotify-api",
+    "explanation": "A Spotify URI (Uniform Resource Identifier) uniquely identifies resources like tracks, albums, and playlists."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Which method creates a new Spotify playlist?",
+    "options": [
+      "sp.playlist_create()",
+      "sp.user_playlist_create()",
+      "sp.create_playlist()",
+      "sp.new_playlist()"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "spotify-api",
+    "explanation": "The spotipy method `user_playlist_create(user, name)` creates a new playlist for the specified user."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you add tracks to a Spotify playlist?",
+    "options": [
+      "sp.playlist_add_items(playlist_id, track_uris)",
+      "sp.add_to_playlist(playlist_id, tracks)",
+      "sp.playlist.add(tracks)",
+      "sp.insert_tracks(playlist_id, tracks)"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "spotify-api",
+    "explanation": "Use `playlist_add_items(playlist_id, items)` where items is a list of Spotify URIs or track IDs."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does `sp.current_user()` return?",
+    "options": [
+      "The user's currently playing track",
+      "Information about the authenticated user",
+      "A list of the user's playlists",
+      "The user's top artists"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "spotify-api",
+    "explanation": "current_user() returns a dictionary with the authenticated user's profile information including their Spotify ID."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Why might a song from Billboard not be found on Spotify?",
+    "options": [
+      "Spotify is down",
+      "The song title has special characters or different spelling",
+      "Billboard data is encrypted",
+      "You need a premium account"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "spotify-api",
+    "explanation": "Song titles may differ between Billboard and Spotify (parentheses, featured artists, special characters), causing search misses."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the SpotifyOAuth class used for?",
+    "options": [
+      "Playing music",
+      "Managing the OAuth authentication flow",
+      "Creating playlists",
+      "Searching for tracks"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "oauth",
+    "explanation": "SpotifyOAuth handles the full OAuth 2.0 flow including token refresh, authorization, and credential management."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Where do you register your app to get Spotify API credentials?",
+    "options": [
+      "spotify.com/developers",
+      "developer.spotify.com",
+      "api.spotify.com/register",
+      "github.com/spotify"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "spotify-api",
+    "explanation": "You register apps and get client ID/secret at developer.spotify.com in the Dashboard."
+  },
+  {
+    "question_type": "coding",
+    "text": "Create Spotify Auth\nInitialize Spotipy with OAuth authentication",
+    "starter_code": "def get_spotify_client(client_id, client_secret, redirect_uri):\n    import spotipy\n    from spotipy.oauth2 import SpotifyOAuth\n    # Return authenticated Spotify client\n    pass",
+    "test_cases": [
+      {
+        "function_call": "type(get_spotify_client('id', 'secret', 'http://localhost'))",
+        "expected": "<class 'spotipy.client.Spotify'>"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "spotify-api",
+    "solution_code": "def get_spotify_client(client_id, client_secret, redirect_uri):\n    import spotipy\n    from spotipy.oauth2 import SpotifyOAuth\n    auth_manager = SpotifyOAuth(\n        client_id=client_id,\n        client_secret=client_secret,\n        redirect_uri=redirect_uri,\n        scope='playlist-modify-public'\n    )\n    return spotipy.Spotify(auth_manager=auth_manager)",
+    "explanation": "Check the condition and return immediately when it's met. Return a default value if the loop completes without finding a match."
+  },
+  {
+    "question_type": "coding",
+    "text": "Search for Track\nReturn the Spotify URI of the first matching track",
+    "starter_code": "def search_track(sp, song_name, artist=None):\n    # Search and return URI of first result\n    # Return None if not found\n    pass",
+    "test_cases": [
+      {
+        "function_call": "search_track(mock_sp, 'Blinding Lights', 'The Weeknd') is not None",
+        "expected": "True"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "spotify-api",
+    "solution_code": "def search_track(sp, song_name, artist=None):\n    query = f'{song_name} artist:{artist}' if artist else song_name\n    results = sp.search(q=query, type='track', limit=1)\n    tracks = results.get('tracks', {}).get('items', [])\n    if tracks:\n        return tracks[0]['uri']\n    return None",
+    "explanation": "Check the condition and return immediately when it's met. Return a default value if the loop completes without finding a match."
+  },
+  {
+    "question_type": "coding",
+    "text": "Create Playlist\nCreate a new public playlist and return its ID",
+    "starter_code": "def create_playlist(sp, user_id, name, description=''):\n    # Create playlist and return its ID\n    pass",
+    "test_cases": [
+      {
+        "function_call": "len(create_playlist(mock_sp, 'user123', 'My Playlist', 'Test')) > 0",
+        "expected": "True"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "spotify-api",
+    "solution_code": "def create_playlist(sp, user_id, name, description=''):\n    playlist = sp.user_playlist_create(\n        user=user_id,\n        name=name,\n        public=True,\n        description=description\n    )\n    return playlist['id']",
+    "explanation": "Use list indexing to access specific elements. Negative indices count from the end."
+  },
+  {
+    "question_type": "coding",
+    "text": "Scrape Billboard Songs\nExtract song titles from Billboard HTML",
+    "starter_code": "def get_billboard_songs(soup):\n    from bs4 import BeautifulSoup\n    # Return list of song titles from chart\n    # Songs are in h3 tags with id='title-of-a-story'\n    pass",
+    "test_cases": [
+      {
+        "function_call": "len(get_billboard_songs(mock_soup)) > 0",
+        "expected": "True"
+      }
+    ],
+    "difficulty": "hard",
+    "topic_tag": "web-scraping",
+    "solution_code": "def get_billboard_songs(soup):\n    song_elements = soup.select('li h3#title-of-a-story')\n    songs = [song.getText().strip() for song in song_elements]\n    return songs",
+    "explanation": "Use the 'in' keyword to check membership. It returns True if the item exists in the collection."
+  },
+  {
+    "question_type": "coding",
+    "text": "Build Music Playlist\nCombine scraping and Spotify to build a playlist",
+    "starter_code": "def build_time_machine_playlist(sp, song_list, playlist_name):\n    # 1. Get current user ID\n    # 2. Create playlist\n    # 3. Search and add each song\n    # Return number of songs added\n    pass",
+    "test_cases": [
+      {
+        "function_call": "build_time_machine_playlist(mock_sp, ['Blinding Lights', 'Circles'], '2020 Hits') >= 0",
+        "expected": "True"
+      }
+    ],
+    "difficulty": "hard",
+    "topic_tag": "spotify-api",
+    "solution_code": "def build_time_machine_playlist(sp, song_list, playlist_name):\n    user_id = sp.current_user()['id']\n    playlist = sp.user_playlist_create(user_id, playlist_name)\n    uris = []\n    for song in song_list:\n        result = sp.search(q=song, type='track', limit=1)\n        tracks = result.get('tracks', {}).get('items', [])\n        if tracks:\n            uris.append(tracks[0]['uri'])\n    if uris:\n        sp.playlist_add_items(playlist['id'], uris)\n    return len(uris)",
+    "explanation": "Loop through the collection and use append() to build the result list item by item."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the Spotify search query:",
+    "code": "result = sp.search(song_name, type='track')\n# Returns empty results",
+    "options": [
+      "Change to `sp.search(q=song_name, type='track')`",
+      "Remove the type parameter",
+      "Use sp.find() instead",
+      "Add limit=100"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "spotify-api",
+    "explanation": "The search() method requires the 'q' keyword argument for the query: sp.search(q=song_name, type='track')"
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the OAuth scope error:",
+    "code": "auth = SpotifyOAuth(client_id, client_secret, redirect_uri)\nsp.user_playlist_create(user, 'My Playlist')\n# Error: Insufficient client scope",
+    "options": [
+      "Add scope='playlist-modify-public' to SpotifyOAuth",
+      "Use a different method",
+      "Remove the playlist creation",
+      "Add premium=True"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "oauth",
+    "explanation": "Creating playlists requires the 'playlist-modify-public' (or private) scope in your OAuth configuration."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the track URI extraction:",
+    "code": "results = sp.search(q='Blinding Lights', type='track')\nuri = results['uri']\n# KeyError: 'uri'",
+    "options": [
+      "Access via results['tracks']['items'][0]['uri']",
+      "Use results.uri",
+      "Change type to 'album'",
+      "Add limit=1"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "spotify-api",
+    "explanation": "Search results are nested: results['tracks']['items'] is a list of track objects, each with a 'uri' key."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What happens if you try to add more than 100 tracks to a playlist at once?",
+    "options": [
+      "It works fine",
+      "Only the first 100 are added",
+      "The API returns an error",
+      "It creates multiple playlists"
+    ],
+    "correct_index": 2,
+    "difficulty": "hard",
+    "topic_tag": "spotify-api",
+    "explanation": "Spotify's API limits adding 100 tracks per request. For more, you need to batch the requests in chunks."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does the `.cache` file store in Spotipy?",
+    "options": [
+      "Your search history",
+      "OAuth access and refresh tokens",
+      "Playlist data",
+      "Album artwork"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "oauth",
+    "explanation": "Spotipy caches OAuth tokens in a .cache file so you don't need to re-authorize every time you run your script."
+  }
 ]

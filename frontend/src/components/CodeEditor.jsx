@@ -1,5 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
-import { Check, X } from 'lucide-react'
+import CodeMirror from '@uiw/react-codemirror'
+import { python } from '@codemirror/lang-python'
+import { oneDark } from '@codemirror/theme-one-dark'
+import { Check, X, RotateCcw, Play, Send } from 'lucide-react'
 import { usePythonRunner } from '../hooks/usePythonRunner'
 
 function CodeEditor({
@@ -14,7 +17,6 @@ function CodeEditor({
   const [isRunning, setIsRunning] = useState(false)
   const [testResults, setTestResults] = useState(null)
   const [activeTab, setActiveTab] = useState('code') // 'code' | 'output' | 'tests'
-  const textareaRef = useRef(null)
 
   const { runCode, runTestCases, isLoading, loadingProgress, isReady, error: pyError } = usePythonRunner()
 
@@ -24,21 +26,6 @@ function CodeEditor({
     setOutput('')
     setTestResults(null)
   }, [starterCode, questionId])
-
-  // Handle tab key for indentation
-  const handleKeyDown = (e) => {
-    if (e.key === 'Tab') {
-      e.preventDefault()
-      const start = e.target.selectionStart
-      const end = e.target.selectionEnd
-      const newCode = code.substring(0, start) + '    ' + code.substring(end)
-      setCode(newCode)
-      // Move cursor after the inserted spaces
-      setTimeout(() => {
-        e.target.selectionStart = e.target.selectionEnd = start + 4
-      }, 0)
-    }
-  }
 
   const handleRun = async () => {
     if (!isReady) return
@@ -95,35 +82,33 @@ function CodeEditor({
   }
 
   const handleReset = () => {
-    setCode(starterCode)
-    setOutput('')
-    setTestResults(null)
-    setActiveTab('code')
+    if (window.confirm('Are you sure you want to reset your code? This cannot be undone.')) {
+      setCode(starterCode)
+      setOutput('')
+      setTestResults(null)
+      setActiveTab('code')
+    }
   }
 
-  // Line numbers
-  const lineCount = code.split('\n').length
-  const lineNumbers = Array.from({ length: lineCount }, (_, i) => i + 1)
-
   return (
-    <div className="code-editor rounded-xl overflow-hidden border border-surface-700 bg-surface-900">
+    <div className="code-editor rounded-xl overflow-hidden border border-surface-700 bg-[#282c34] shadow-2xl">
       {/* Header with tabs */}
-      <div className="flex items-center justify-between px-4 py-2 bg-surface-800 border-b border-surface-700">
+      <div className="flex items-center justify-between px-4 py-2 bg-[#21252b] border-b border-white/5">
         <div className="flex gap-1">
           <button
             onClick={() => setActiveTab('code')}
-            className={`px-3 py-1 text-xs font-medium rounded transition-colors ${activeTab === 'code'
-              ? 'bg-primary-600 text-white'
-              : 'text-surface-400 hover:text-surface-200 hover:bg-surface-700'
+            className={`px-4 py-1.5 text-xs font-bold uppercase tracking-wider rounded-md transition-all ${activeTab === 'code'
+              ? 'bg-primary-500/10 text-primary-400 shadow-[inset_0_0_10px_rgba(59,130,246,0.1)]'
+              : 'text-surface-500 hover:text-surface-300 hover:bg-white/5'
               }`}
           >
-            Code
+            Terminal
           </button>
           <button
             onClick={() => setActiveTab('output')}
-            className={`px-3 py-1 text-xs font-medium rounded transition-colors ${activeTab === 'output'
-              ? 'bg-primary-600 text-white'
-              : 'text-surface-400 hover:text-surface-200 hover:bg-surface-700'
+            className={`px-4 py-1.5 text-xs font-bold uppercase tracking-wider rounded-md transition-all ${activeTab === 'output'
+              ? 'bg-primary-500/10 text-primary-400 shadow-[inset_0_0_10px_rgba(59,130,246,0.1)]'
+              : 'text-surface-500 hover:text-surface-300 hover:bg-white/5'
               }`}
           >
             Output
@@ -131,54 +116,59 @@ function CodeEditor({
           {testCases.length > 0 && (
             <button
               onClick={() => setActiveTab('tests')}
-              className={`px-3 py-1 text-xs font-medium rounded transition-colors ${activeTab === 'tests'
-                ? 'bg-primary-600 text-white'
-                : 'text-surface-400 hover:text-surface-200 hover:bg-surface-700'
+              className={`px-4 py-1.5 text-xs font-bold uppercase tracking-wider rounded-md transition-all ${activeTab === 'tests'
+                ? 'bg-primary-500/10 text-primary-400 shadow-[inset_0_0_10px_rgba(59,130,246,0.1)]'
+                : 'text-surface-500 hover:text-surface-300 hover:bg-white/5'
                 }`}
             >
-              Tests {testResults && `(${testResults.filter(r => r.passed).length}/${testResults.length})`}
+              Test Suite {testResults && <span className="ml-1 opacity-60">({testResults.filter(r => r.passed).length}/{testResults.length})</span>}
             </button>
           )}
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           {!isReady && (
-            <span className="text-xs text-surface-400">
-              {pyError ? 'Python failed to load' : `Loading Python... ${loadingProgress}%`}
-            </span>
+            <div className="flex items-center gap-2 px-3 py-1 bg-amber-500/10 border border-amber-500/20 rounded-full">
+              <div className="w-1.5 h-1.5 bg-amber-500 rounded-full animate-pulse"></div>
+              <span className="text-[10px] font-bold uppercase tracking-tighter text-amber-500">
+                {pyError ? 'Core Offline' : `Syncing Python: ${loadingProgress}%`}
+              </span>
+            </div>
           )}
           <button
             onClick={handleReset}
-            className="px-3 py-1 text-xs text-surface-400 hover:text-surface-200 transition-colors"
+            className="p-1.5 text-surface-500 hover:text-red-400 hover:bg-red-400/10 rounded-md transition-all"
+            title="Reset to starter code"
             disabled={isRunning}
           >
-            Reset
+            <RotateCcw className="w-4 h-4" />
           </button>
         </div>
       </div>
 
-      {/* Code editor with line numbers */}
+      {/* Code editor with CodeMirror */}
       {activeTab === 'code' && (
-        <div className="flex">
-          {/* Line numbers */}
-          <div className="py-4 px-2 bg-surface-850 text-surface-500 text-right text-sm font-mono select-none border-r border-surface-700 min-w-[3rem]">
-            {lineNumbers.map(num => (
-              <div key={num} className="leading-6">{num}</div>
-            ))}
-          </div>
-
-          {/* Code textarea */}
-          <textarea
-            ref={textareaRef}
+        <div className="relative group">
+          <CodeMirror
             value={code}
-            onChange={(e) => setCode(e.target.value)}
-            onKeyDown={handleKeyDown}
-            className="flex-1 p-4 bg-transparent text-surface-100 font-mono text-sm resize-none outline-none leading-6 min-h-[200px]"
-            style={{ tabSize: 4 }}
-            spellCheck={false}
+            height="320px"
+            theme={oneDark}
+            extensions={[python()]}
+            onChange={(value) => setCode(value)}
+            className="text-sm border-0 focus:outline-none"
+            basicSetup={{
+              lineNumbers: true,
+              highlightActiveLine: true,
+              bracketMatching: true,
+              closeBrackets: true,
+              autocompletion: true,
+              foldGutter: true,
+            }}
             readOnly={readOnly}
-            placeholder="Write your Python code here..."
           />
+          {readOnly && (
+            <div className="absolute inset-0 bg-black/5 pointer-events-none border-t border-white/5"></div>
+          )}
         </div>
       )}
 
@@ -264,25 +254,25 @@ function CodeEditor({
       )}
 
       {/* Action buttons */}
-      <div className="flex items-center justify-between px-4 py-3 bg-surface-800 border-t border-surface-700">
-        <div className="text-xs text-surface-500">
-          {testCases.length > 0 && `${testCases.length} test case${testCases.length > 1 ? 's' : ''}`}
+      <div className="flex items-center justify-between px-4 py-3 bg-[#21252b] border-t border-white/5">
+        <div className="text-[10px] font-bold uppercase tracking-widest text-surface-500">
+          {testCases.length > 0 && `${testCases.length} Logic Gate${testCases.length > 1 ? 's' : ''} Active`}
         </div>
         <div className="flex gap-2">
           <button
             onClick={handleRun}
             disabled={!isReady || isRunning}
-            className="px-4 py-2 bg-surface-700 hover:bg-surface-600 disabled:opacity-50 disabled:cursor-not-allowed text-surface-200 text-sm font-medium rounded-lg transition-colors flex items-center gap-2"
+            className="px-5 py-2 bg-surface-700 hover:bg-surface-600 disabled:opacity-50 disabled:cursor-not-allowed text-surface-200 text-xs font-bold uppercase tracking-wider rounded-lg transition-all flex items-center gap-2 shadow-lg shadow-black/20 active:scale-95"
           >
-            <span>▶</span> Run
+            <Play className="w-3.5 h-3.5 fill-current" /> Execute
           </button>
           {testCases.length > 0 && (
             <button
               onClick={handleSubmit}
               disabled={!isReady || isRunning}
-              className="px-4 py-2 bg-primary-600 hover:bg-primary-500 disabled:opacity-50 disabled:cursor-not-allowed text-white text-sm font-medium rounded-lg transition-colors"
+              className="px-5 py-2 bg-primary-600 hover:bg-primary-500 disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-all flex items-center gap-2 shadow-lg shadow-primary-900/40 active:scale-95"
             >
-              Submit
+              <Send className="w-3.5 h-3.5" /> Deploy Code
             </button>
           )}
         </div>

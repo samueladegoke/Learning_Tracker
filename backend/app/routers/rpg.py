@@ -11,60 +11,42 @@ from ..models import (
 from ..schemas import RPGState, RPGQuestState, RPGChallengeState
 from ..utils.gamification import (
     level_from_xp,
-    xp_for_next_level as xp_needed_for_level,
     next_level_requirement,
     refresh_focus_points,
     check_penalty,
     FOCUS_CAP,
 )
+from ..auth import get_current_user
 
 router = APIRouter()
 
-# =============================================================================
-# SECURITY NOTE: Single-User MVP Mode
-# =============================================================================
-# This application currently operates in single-user mode without authentication.
-# All API endpoints use a hardcoded user ID. This is intentional for the MVP phase.
-#
-# BEFORE PRODUCTION DEPLOYMENT:
-# 1. Implement proper authentication (e.g., Supabase Auth, JWT)
-# 2. Replace DEFAULT_USER_ID with authenticated user from request context
-# 3. Add authorization checks for user-owned resources
-# 4. See docs/architecture.md for auth implementation guidance
-# =============================================================================
-DEFAULT_USER_ID = 1  # TODO: Replace with authenticated user ID from auth middleware
 
-
-def get_active_quest(db: Session) -> UserQuest | None:
+def get_active_quest(db: Session, user_id: int) -> UserQuest | None:
     return (
         db.query(UserQuest)
         .options(joinedload(UserQuest.quest))
-        .filter(UserQuest.user_id == DEFAULT_USER_ID, UserQuest.completed_at.is_(None))
+        .filter(UserQuest.user_id == user_id, UserQuest.completed_at.is_(None))
         .first()
     )
 
 
-def get_active_challenges(db: Session):
+def get_active_challenges(db: Session, user_id: int):
     return (
         db.query(UserChallenge)
         .options(joinedload(UserChallenge.challenge))
-        .filter(UserChallenge.user_id == DEFAULT_USER_ID)
+        .filter(UserChallenge.user_id == user_id)
         .all()
     )
 
 
 @router.get("/state", response_model=RPGState)
-def get_rpg_state(db: Session = Depends(get_db)):
-    """Return consolidated RPG state for the current user."""
-    user = db.query(User).filter(User.id == DEFAULT_USER_ID).first()
-    if not user:
-        raise HTTPException(status_code=404, detail="User not found")
-
+def get_rpg_state(user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+    """Return consolidated RPG state for the authenticated user."""
     refresh_focus_points(user)
     check_penalty(user)
     db.commit()
 
-    active_quest = get_active_quest(db)
+    active_quest = get_active_quest(db, user.id)
     quest_payload = None
     if active_quest and active_quest.quest:
         quest_payload = RPGQuestState(
@@ -76,7 +58,7 @@ def get_rpg_state(db: Session = Depends(get_db)):
         )
 
     challenges_payload = []
-    for uc in get_active_challenges(db):
+    for uc in get_active_challenges(db, user.id):
         if not uc.challenge:
             continue
         if uc.completed_at:
@@ -107,23 +89,19 @@ def get_rpg_state(db: Session = Depends(get_db)):
 
 
 @router.post("/award-xp")
-def award_xp(amount: int, db: Session = Depends(get_db)):
-    """Award XP to the current user (e.g., from quiz completion)."""
+def award_xp(amount: int, user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+    """Award XP to the authenticated user (e.g., from quiz completion)."""
     if amount <= 0:
         raise HTTPException(status_code=400, detail="XP amount must be positive")
     if amount > 1000:
         raise HTTPException(status_code=400, detail="XP amount too large (max 1000 per request)")
-    
-    user = db.query(User).filter(User.id == DEFAULT_USER_ID).first()
-    if not user:
-        raise HTTPException(status_code=404, detail="User not found")
-    
+
     old_level = level_from_xp(user.xp)
     user.xp += amount
     new_level = level_from_xp(user.xp)
-    
+
     db.commit()
-    
+
     return {
         "xp_awarded": amount,
         "total_xp": user.xp,
@@ -133,19 +111,15 @@ def award_xp(amount: int, db: Session = Depends(get_db)):
 
 
 @router.post("/buy/{item_id}")
-def buy_item(item_id: str, db: Session = Depends(get_db)):
+def buy_item(item_id: str, user: User = Depends(get_current_user), db: Session = Depends(get_db)):
     """Buy an item from the shop."""
-    user = db.query(User).filter(User.id == DEFAULT_USER_ID).first()
-    if not user:
-        raise HTTPException(status_code=404, detail="User not found")
-
     if item_id == "streak_freeze":
         cost = 50
         if user.gold < cost:
             raise HTTPException(status_code=400, detail="Not enough gold")
         user.gold -= cost
         user.streak_freeze_count += 1
-    
+
     elif item_id == "potion_focus":
         cost = 20
         if user.gold < cost:
@@ -153,7 +127,7 @@ def buy_item(item_id: str, db: Session = Depends(get_db)):
         user.gold -= cost
         user.focus_points = FOCUS_CAP
         user.focus_refreshed_at = datetime.utcnow()
-        
+
     elif item_id == "heart_refill":
         cost = 100
         if user.gold < cost:
@@ -162,7 +136,7 @@ def buy_item(item_id: str, db: Session = Depends(get_db)):
              raise HTTPException(status_code=400, detail="Hearts already full")
         user.gold -= cost
         user.hearts += 1
-        
+
     else:
         raise HTTPException(status_code=404, detail="Item not found")
 

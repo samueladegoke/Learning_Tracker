@@ -1,329 +1,371 @@
 [
-    {
-        "question_type": "mcq",
-        "text": "What does CSS stand for?",
-        "options": [
-            "Cascading Style Sheets",
-            "Computer Style System",
-            "Creative Styling Syntax",
-            "Code Structure Sheets"
-        ],
-        "correct_index": 0,
-        "difficulty": "easy",
-        "topic_tag": "css-basics",
-        "explanation": "CSS stands for Cascading Style Sheets - the language for styling web pages."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the BEST way to add CSS to a website?",
-        "options": [
-            "Inline styles",
-            "Internal <style> tag",
-            "External stylesheet file",
-            "JavaScript injection"
-        ],
-        "correct_index": 2,
-        "difficulty": "easy",
-        "topic_tag": "css-methods",
-        "explanation": "External stylesheets (.css files) are best - they're reusable, maintainable, and cacheable."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Which symbol is used for a CLASS selector in CSS?",
-        "options": [
-            "#",
-            ".",
-            "@",
-            "*"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "selectors",
-        "explanation": "A dot (.) is used for class selectors: .classname { }"
-    },
-    {
-        "question_type": "mcq",
-        "text": "Which symbol is used for an ID selector in CSS?",
-        "options": [
-            "#",
-            ".",
-            "@",
-            "!"
-        ],
-        "correct_index": 0,
-        "difficulty": "easy",
-        "topic_tag": "selectors",
-        "explanation": "A hash (#) is used for ID selectors: #idname { }"
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does 'Cascading' mean in CSS?",
-        "options": [
-            "Styles flow like a waterfall",
-            "Styles can inherit and override each other",
-            "CSS runs in order",
-            "CSS creates animations"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "css-basics",
-        "explanation": "Cascading means styles inherit from parent elements and can be overridden by more specific rules."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the correct CSS syntax?",
-        "options": [
-            "selector { property: value; }",
-            "selector [ property = value ]",
-            "selector ( property: value )",
-            "{selector} property: value"
-        ],
-        "correct_index": 0,
-        "difficulty": "easy",
-        "topic_tag": "css-syntax",
-        "explanation": "CSS uses curly braces: selector { property: value; }"
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you add inline CSS to an HTML element?",
-        "options": [
-            "<p css=\"color:red\">",
-            "<p style=\"color:red\">",
-            "<p class=\"color:red\">",
-            "<p color=\"red\">"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "css-methods",
-        "explanation": "Inline CSS uses the style attribute: style=\"property: value;\""
-    },
-    {
-        "question_type": "mcq",
-        "text": "Which HTML tag links an external CSS file?",
-        "options": [
-            "<style>",
-            "<css>",
-            "<link>",
-            "<script>"
-        ],
-        "correct_index": 2,
-        "difficulty": "easy",
-        "topic_tag": "css-methods",
-        "explanation": "The <link> tag connects external CSS: <link rel=\"stylesheet\" href=\"styles.css\">"
-    },
-    {
-        "question_type": "mcq",
-        "text": "What property changes text color?",
-        "options": [
-            "text-color",
-            "font-color",
-            "color",
-            "foreground"
-        ],
-        "correct_index": 2,
-        "difficulty": "easy",
-        "topic_tag": "css-properties",
-        "explanation": "The 'color' property sets text color. Background uses 'background-color'."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the difference between class and ID selectors?",
-        "options": [
-            "Classes can be reused, IDs should be unique",
-            "IDs can be reused, classes should be unique",
-            "They are the same",
-            "Classes are for CSS, IDs are for JavaScript only"
-        ],
-        "correct_index": 0,
-        "difficulty": "medium",
-        "topic_tag": "selectors",
-        "explanation": "Classes (.name) can be used on multiple elements. IDs (#name) should be unique per page."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Which has higher specificity?",
-        "options": [
-            "Element selector (p)",
-            "Class selector (.name)",
-            "ID selector (#name)",
-            "They all have equal specificity"
-        ],
-        "correct_index": 2,
-        "difficulty": "medium",
-        "topic_tag": "specificity",
-        "explanation": "ID selectors have highest specificity, then class selectors, then element selectors."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Where should the `<link>` tag for CSS go?",
-        "options": [
-            "In the <body>",
-            "In the <head>",
-            "After </html>",
-            "Before <!DOCTYPE>"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "css-methods",
-        "explanation": "The <link> tag for CSS should be placed in the <head> section."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you select ALL paragraphs in CSS?",
-        "options": [
-            ".p { }",
-            "#p { }",
-            "p { }",
-            "*p { }"
-        ],
-        "correct_index": 2,
-        "difficulty": "easy",
-        "topic_tag": "selectors",
-        "explanation": "Element selectors use just the tag name without symbols: p { }"
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does padding do?",
-        "options": [
-            "Space outside the element",
-            "Space inside the element (between content and border)",
-            "Makes text bold",
-            "Creates a shadow"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "css-properties",
-        "explanation": "Padding creates space INSIDE the element, between the content and the border."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does margin do?",
-        "options": [
-            "Space inside the element",
-            "Space outside the element",
-            "Changes font size",
-            "Adds a border"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "css-properties",
-        "explanation": "Margin creates space OUTSIDE the element, between it and neighboring elements."
-    },
-    {
-        "question_type": "coding",
-        "text": "Create CSS Rule\nReturn a CSS rule string that makes all h1 elements blue",
-        "starter_code": "def h1_blue():\n    # Return CSS rule string\n    pass",
-        "test_cases": [
-            {"function_call": "'h1' in h1_blue()", "expected": "True"},
-            {"function_call": "'color' in h1_blue() and 'blue' in h1_blue()", "expected": "True"}
-        ],
-        "difficulty": "easy",
-        "topic_tag": "css-syntax",
-        "solution_code": "def h1_blue():\n    return 'h1 { color: blue; }'"
-    },
-    {
-        "question_type": "coding",
-        "text": "Class Selector\nReturn a CSS rule for a class called 'highlight' with yellow background",
-        "starter_code": "def highlight_class():\n    # Return CSS rule for .highlight class\n    pass",
-        "test_cases": [
-            {"function_call": "'.highlight' in highlight_class()", "expected": "True"},
-            {"function_call": "'background' in highlight_class() and 'yellow' in highlight_class()", "expected": "True"}
-        ],
-        "difficulty": "easy",
-        "topic_tag": "selectors",
-        "solution_code": "def highlight_class():\n    return '.highlight { background-color: yellow; }'"
-    },
-    {
-        "question_type": "coding",
-        "text": "ID Selector\nReturn a CSS rule for an ID called 'header' with font-size 32px",
-        "starter_code": "def header_id():\n    # Return CSS rule for #header ID\n    pass",
-        "test_cases": [
-            {"function_call": "'#header' in header_id()", "expected": "True"},
-            {"function_call": "'font-size' in header_id() and '32px' in header_id()", "expected": "True"}
-        ],
-        "difficulty": "easy",
-        "topic_tag": "selectors",
-        "solution_code": "def header_id():\n    return '#header { font-size: 32px; }'"
-    },
-    {
-        "question_type": "coding",
-        "text": "Create Inline Style\nReturn an HTML paragraph with inline CSS making text red",
-        "starter_code": "def red_paragraph(text):\n    # Return p tag with style attribute\n    pass",
-        "test_cases": [
-            {"function_call": "'style=' in red_paragraph('Hello')", "expected": "True"},
-            {"function_call": "'red' in red_paragraph('Hello') and 'Hello' in red_paragraph('Hello')", "expected": "True"}
-        ],
-        "difficulty": "medium",
-        "topic_tag": "css-methods",
-        "solution_code": "def red_paragraph(text):\n    return f'<p style=\"color: red;\">{text}</p>'"
-    },
-    {
-        "question_type": "coding",
-        "text": "Link Tag\nReturn the HTML link tag to connect 'styles.css'",
-        "starter_code": "def css_link():\n    # Return link tag for external CSS\n    pass",
-        "test_cases": [
-            {"function_call": "'stylesheet' in css_link()", "expected": "True"},
-            {"function_call": "'styles.css' in css_link()", "expected": "True"}
-        ],
-        "difficulty": "easy",
-        "topic_tag": "css-methods",
-        "solution_code": "def css_link():\n    return '<link rel=\"stylesheet\" href=\"styles.css\">'"
-    },
-    {
-        "question_type": "coding",
-        "text": "Multiple Properties\nReturn CSS for a class 'box' with padding 20px and margin 10px",
-        "starter_code": "def box_class():\n    # Return CSS with multiple properties\n    pass",
-        "test_cases": [
-            {"function_call": "'.box' in box_class()", "expected": "True"},
-            {"function_call": "'padding' in box_class() and 'margin' in box_class()", "expected": "True"}
-        ],
-        "difficulty": "medium",
-        "topic_tag": "css-properties",
-        "solution_code": "def box_class():\n    return '.box { padding: 20px; margin: 10px; }'"
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the CSS syntax error:",
-        "code": "h1 {\n    color = blue;\n}",
-        "options": [
-            "Change = to :",
-            "Remove the semicolon",
-            "Add quotes around blue",
-            "Change h1 to .h1"
-        ],
-        "correct_index": 0,
-        "difficulty": "easy",
-        "topic_tag": "css-syntax",
-        "explanation": "CSS uses colons (:) not equals signs (=) between property and value."
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the class selector:",
-        "code": "#myclass {\n    color: red;\n}\n<!-- Should style elements with class='myclass' -->",
-        "options": [
-            "Change # to . for class selector",
-            "Change # to *",
-            "Remove the #",
-            "Add quotes around myclass"
-        ],
-        "correct_index": 0,
-        "difficulty": "easy",
-        "topic_tag": "selectors",
-        "explanation": "Class selectors use a dot (.), ID selectors use hash (#). Change #myclass to .myclass"
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the missing semicolon:",
-        "code": "p {\n    color: blue\n    font-size: 16px;\n}",
-        "options": [
-            "Add semicolon after 'blue'",
-            "Remove the braces",
-            "Add quotes around blue",
-            "Change p to .p"
-        ],
-        "correct_index": 0,
-        "difficulty": "easy",
-        "topic_tag": "css-syntax",
-        "explanation": "Each CSS declaration must end with a semicolon. Add ; after 'blue'."
-    }
+  {
+    "question_type": "mcq",
+    "text": "What does CSS stand for?",
+    "options": [
+      "Cascading Style Sheets",
+      "Computer Style System",
+      "Creative Styling Syntax",
+      "Code Structure Sheets"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "css-basics",
+    "explanation": "CSS stands for Cascading Style Sheets - the language for styling web pages."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the BEST way to add CSS to a website?",
+    "options": [
+      "Inline styles",
+      "Internal <style> tag",
+      "External stylesheet file",
+      "JavaScript injection"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "css-methods",
+    "explanation": "External stylesheets (.css files) are best - they're reusable, maintainable, and cacheable."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Which symbol is used for a CLASS selector in CSS?",
+    "options": [
+      "#",
+      ".",
+      "@",
+      "*"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "selectors",
+    "explanation": "A dot (.) is used for class selectors: .classname { }"
+  },
+  {
+    "question_type": "mcq",
+    "text": "Which symbol is used for an ID selector in CSS?",
+    "options": [
+      "#",
+      ".",
+      "@",
+      "!"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "selectors",
+    "explanation": "A hash (#) is used for ID selectors: #idname { }"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does 'Cascading' mean in CSS?",
+    "options": [
+      "Styles flow like a waterfall",
+      "Styles can inherit and override each other",
+      "CSS runs in order",
+      "CSS creates animations"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "css-basics",
+    "explanation": "Cascading means styles inherit from parent elements and can be overridden by more specific rules."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the correct CSS syntax?",
+    "options": [
+      "selector { property: value; }",
+      "selector [ property = value ]",
+      "selector ( property: value )",
+      "{selector} property: value"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "css-syntax",
+    "explanation": "CSS uses curly braces: selector { property: value; }"
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you add inline CSS to an HTML element?",
+    "options": [
+      "<p css=\"color:red\">",
+      "<p style=\"color:red\">",
+      "<p class=\"color:red\">",
+      "<p color=\"red\">"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "css-methods",
+    "explanation": "Inline CSS uses the style attribute: style=\"property: value;\""
+  },
+  {
+    "question_type": "mcq",
+    "text": "Which HTML tag links an external CSS file?",
+    "options": [
+      "<style>",
+      "<css>",
+      "<link>",
+      "<script>"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "css-methods",
+    "explanation": "The <link> tag connects external CSS: <link rel=\"stylesheet\" href=\"styles.css\">"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What property changes text color?",
+    "options": [
+      "text-color",
+      "font-color",
+      "color",
+      "foreground"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "css-properties",
+    "explanation": "The 'color' property sets text color. Background uses 'background-color'."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the difference between class and ID selectors?",
+    "options": [
+      "Classes can be reused, IDs should be unique",
+      "IDs can be reused, classes should be unique",
+      "They are the same",
+      "Classes are for CSS, IDs are for JavaScript only"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "selectors",
+    "explanation": "Classes (.name) can be used on multiple elements. IDs (#name) should be unique per page."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Which has higher specificity?",
+    "options": [
+      "Element selector (p)",
+      "Class selector (.name)",
+      "ID selector (#name)",
+      "They all have equal specificity"
+    ],
+    "correct_index": 2,
+    "difficulty": "medium",
+    "topic_tag": "specificity",
+    "explanation": "ID selectors have highest specificity, then class selectors, then element selectors."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Where should the `<link>` tag for CSS go?",
+    "options": [
+      "In the <body>",
+      "In the <head>",
+      "After </html>",
+      "Before <!DOCTYPE>"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "css-methods",
+    "explanation": "The <link> tag for CSS should be placed in the <head> section."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you select ALL paragraphs in CSS?",
+    "options": [
+      ".p { }",
+      "#p { }",
+      "p { }",
+      "*p { }"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "selectors",
+    "explanation": "Element selectors use just the tag name without symbols: p { }"
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does padding do?",
+    "options": [
+      "Space outside the element",
+      "Space inside the element (between content and border)",
+      "Makes text bold",
+      "Creates a shadow"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "css-properties",
+    "explanation": "Padding creates space INSIDE the element, between the content and the border."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does margin do?",
+    "options": [
+      "Space inside the element",
+      "Space outside the element",
+      "Changes font size",
+      "Adds a border"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "css-properties",
+    "explanation": "Margin creates space OUTSIDE the element, between it and neighboring elements."
+  },
+  {
+    "question_type": "coding",
+    "text": "Create CSS Rule\nReturn a CSS rule string that makes all h1 elements blue",
+    "starter_code": "def h1_blue():\n    # Return CSS rule string\n    pass",
+    "test_cases": [
+      {
+        "function_call": "'h1' in h1_blue()",
+        "expected": "True"
+      },
+      {
+        "function_call": "'color' in h1_blue() and 'blue' in h1_blue()",
+        "expected": "True"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "css-syntax",
+    "solution_code": "def h1_blue():\n    return 'h1 { color: blue; }'",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Class Selector\nReturn a CSS rule for a class called 'highlight' with yellow background",
+    "starter_code": "def highlight_class():\n    # Return CSS rule for .highlight class\n    pass",
+    "test_cases": [
+      {
+        "function_call": "'.highlight' in highlight_class()",
+        "expected": "True"
+      },
+      {
+        "function_call": "'background' in highlight_class() and 'yellow' in highlight_class()",
+        "expected": "True"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "selectors",
+    "solution_code": "def highlight_class():\n    return '.highlight { background-color: yellow; }'",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "ID Selector\nReturn a CSS rule for an ID called 'header' with font-size 32px",
+    "starter_code": "def header_id():\n    # Return CSS rule for #header ID\n    pass",
+    "test_cases": [
+      {
+        "function_call": "'#header' in header_id()",
+        "expected": "True"
+      },
+      {
+        "function_call": "'font-size' in header_id() and '32px' in header_id()",
+        "expected": "True"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "selectors",
+    "solution_code": "def header_id():\n    return '#header { font-size: 32px; }'",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Create Inline Style\nReturn an HTML paragraph with inline CSS making text red",
+    "starter_code": "def red_paragraph(text):\n    # Return p tag with style attribute\n    pass",
+    "test_cases": [
+      {
+        "function_call": "'style=' in red_paragraph('Hello')",
+        "expected": "True"
+      },
+      {
+        "function_call": "'red' in red_paragraph('Hello') and 'Hello' in red_paragraph('Hello')",
+        "expected": "True"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "css-methods",
+    "solution_code": "def red_paragraph(text):\n    return f'<p style=\"color: red;\">{text}</p>'",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Link Tag\nReturn the HTML link tag to connect 'styles.css'",
+    "starter_code": "def css_link():\n    # Return link tag for external CSS\n    pass",
+    "test_cases": [
+      {
+        "function_call": "'stylesheet' in css_link()",
+        "expected": "True"
+      },
+      {
+        "function_call": "'styles.css' in css_link()",
+        "expected": "True"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "css-methods",
+    "solution_code": "def css_link():\n    return '<link rel=\"stylesheet\" href=\"styles.css\">'",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Multiple Properties\nReturn CSS for a class 'box' with padding 20px and margin 10px",
+    "starter_code": "def box_class():\n    # Return CSS with multiple properties\n    pass",
+    "test_cases": [
+      {
+        "function_call": "'.box' in box_class()",
+        "expected": "True"
+      },
+      {
+        "function_call": "'padding' in box_class() and 'margin' in box_class()",
+        "expected": "True"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "css-properties",
+    "solution_code": "def box_class():\n    return '.box { padding: 20px; margin: 10px; }'",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the CSS syntax error:",
+    "code": "h1 {\n    color = blue;\n}",
+    "options": [
+      "Change = to :",
+      "Remove the semicolon",
+      "Add quotes around blue",
+      "Change h1 to .h1"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "css-syntax",
+    "explanation": "CSS uses colons (:) not equals signs (=) between property and value."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the class selector:",
+    "code": "#myclass {\n    color: red;\n}\n<!-- Should style elements with class='myclass' -->",
+    "options": [
+      "Change # to . for class selector",
+      "Change # to *",
+      "Remove the #",
+      "Add quotes around myclass"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "selectors",
+    "explanation": "Class selectors use a dot (.), ID selectors use hash (#). Change #myclass to .myclass"
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the missing semicolon:",
+    "code": "p {\n    color: blue\n    font-size: 16px;\n}",
+    "options": [
+      "Add semicolon after 'blue'",
+      "Remove the braces",
+      "Add quotes around blue",
+      "Change p to .p"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "css-syntax",
+    "explanation": "Each CSS declaration must end with a semicolon. Add ; after 'blue'."
+  }
 ]

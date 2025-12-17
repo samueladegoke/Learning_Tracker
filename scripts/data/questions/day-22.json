@@ -1,298 +1,303 @@
 [
-    {
-        "question_type": "mcq",
-        "text": "Which method is used to stretch a Turtle shape?",
-        "options": [
-            "stretch()",
-            "resize()",
-            "shapesize()",
-            "scale()"
-        ],
-        "correct_index": 2,
-        "difficulty": "easy",
-        "topic_tag": "turtle",
-        "explanation": "shapesize(stretch_wid, stretch_len) modifies the dimensions of the turtle shape."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you reverse the direction of a moving object along the Y-axis?",
-        "options": [
-            "y_move = -y_move",
-            "y_move *= -1",
-            "y_move = reverse(y_move)",
-            "y_move -= 1"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "logic",
-        "explanation": "Multiplying the movement variable by -1 flips its sign (e.g., 10 becomes -10), reversing direction."
-    },
-    {
-        "question_type": "mcq",
-        "text": "In the Pong game, what condition checks for collision with the top or bottom wall?",
-        "options": [
-            "if ball.xcor() > 300",
-            "if ball.ycor() > 280 or ball.ycor() < -280",
-            "if ball.distance(wall) < 20",
-            "if ball.hit_wall()"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "logic",
-        "explanation": "We check the Y coordinate against the screen boundary (approx 280 since height is 600)."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does `turtle.distance(other_turtle)` return?",
-        "options": [
-            "The time to reach the other turtle",
-            "The pixel distance between the two turtles",
-            "The boolean True if they are touching",
-            "The angle between them"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "turtle",
-        "explanation": "distance() returns the straight-line distance in coordinate units (pixels)."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Why do we use `tracer(0)` and `update()` in the game loop?",
-        "options": [
-            "To speed up the computer",
-            "To turn off automatic screen updates and manually update for smoother animation",
-            "To stop the game",
-            "To debug the code"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "turtle",
-        "explanation": "tracer(0) disables auto-updates, allowing us to move multiple objects and then update the screen all at once."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do we create a vertical paddle from a square turtle?",
-        "options": [
-            "shapesize(stretch_wid=5, stretch_len=1)",
-            "shapesize(stretch_wid=1, stretch_len=5)",
-            "shape('rectangle')",
-            "resize(20, 100)"
-        ],
-        "correct_index": 0,
-        "difficulty": "medium",
-        "topic_tag": "turtle",
-        "explanation": "Stretch width applies to the perpendicular to orientation (initially Y for east-facing), but actually for a default square facing East, stretch_wid is Y dimension (height), stretch_len is X (width). So wid=5 makes it tall."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What happens when the ball goes out of bounds (past a paddle)?",
-        "options": [
-            "Game Over",
-            "The ball bounces back",
-            "Reset ball to center and reverse direction",
-            "Pause game"
-        ],
-        "correct_index": 2,
-        "difficulty": "medium",
-        "topic_tag": "logic",
-        "explanation": "In Pong, play continues. The ball resets to center, usually moves towards the other player, and score updates."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Which method stops the turtle from drawing lines when moving?",
-        "options": [
-            "stop_draw()",
-            "penup()",
-            "no_trace()",
-            "lift()"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "turtle",
-        "explanation": "penup() lifts the pen so movement does not leave a trail."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How can we control the speed of the game loop?",
-        "options": [
-            "By changing computer clock",
-            "Using `time.sleep()`",
-            "Using `speed('fastest')`",
-            "We cannot control it"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "logic",
-        "explanation": "time.sleep(seconds) adds a small delay in each iteration of the while loop."
-    },
-    {
-        "question_type": "mcq",
-        "text": "If `ball.xcor() > 380`, what does this imply?",
-        "options": [
-            "Ball hit top wall",
-            "Ball went past the Right paddle",
-            "Ball went past the Left paddle",
-            "Ball is in the center"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "logic",
-        "explanation": "Positive X is to the right. > 380 suggests it passed the paddle at roughly 350."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Why do we check `distance < 50` for paddle collision instead of `< 20`?",
-        "options": [
-            "Because the ball is large",
-            "Because the paddle is stretched (it's 100px tall)",
-            "Because distance calculation is inaccurate",
-            "To make the game easier"
-        ],
-        "correct_index": 1,
-        "difficulty": "hard",
-        "topic_tag": "logic",
-        "explanation": "Since distance is measured from the center, and the paddle is 100px tall, hitting the edge can be up to 50px away from the center."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you detect simultaneous key usage (e.g., both players moving)?",
-        "options": [
-            "You cannot",
-            "screen.listen() handles it automatically with separate onkey bindings",
-            "Use threaded code",
-            "Use input() function"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "turtle",
-        "explanation": "The turtle screen listener can register multiple key bindings (e.g. 'w' and 'Up') and the OS handles the key events."
-    },
-    {
-        "question_type": "mcq",
-        "text": "To create a Dashed Line for the center net, you would:",
-        "options": [
-            "Use a background image",
-            "Draw a line using pendown() and penup() repeatedly",
-            "Use a strip shape",
-            "It's impossible"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "logic",
-        "explanation": "Loop: pendown, forward, penup, forward."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the best way to keep score?",
-        "options": [
-            "Print to console",
-            "Use a global variable and a Scoreboard(Turtle) class to write to screen",
-            "Write on a piece of paper",
-            "Use a database"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "design",
-        "explanation": "A Scoreboard class inheriting from Turtle is the standard pattern to display dynamic text on the canvas."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do we make the ball move faster over time?",
-        "options": [
-            "Increase movement step size or decrease sleep time",
-            "Buy a faster CPU",
-            "Use `ball.speed('fastest')`",
-            "Remove code"
-        ],
-        "correct_index": 0,
-        "difficulty": "medium",
-        "topic_tag": "logic",
-        "explanation": "Decreasing the delay in time.sleep() or increasing the (x_move, y_move) values speeds up the game."
-    },
-    {
-        "question_type": "coding",
-        "text": "Bounce Logic\nWrite a function `bounce` that takes a coordinate `current_delta` and inverts it.",
-        "starter_code": "def bounce(current_delta):\n    pass",
-        "test_cases": [
-            {
-                "function_call": "bounce(10)",
-                "expected": "-10"
-            },
-            {
-                "function_call": "bounce(-5)",
-                "expected": "5"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "logic",
-        "solution_code": "def bounce(current_delta):\n    return current_delta * -1"
-    },
-    {
-        "question_type": "coding",
-        "text": "Wall Collision Check\nWrite a function `hit_wall` that returns True if `y_cor` is greater than 280 or less than -280.",
-        "starter_code": "def hit_wall(y_cor):\n    pass",
-        "test_cases": [
-            {
-                "function_call": "hit_wall(290)",
-                "expected": "True"
-            },
-            {
-                "function_call": "hit_wall(0)",
-                "expected": "False"
-            },
-            {
-                "function_call": "hit_wall(-300)",
-                "expected": "True"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "logic",
-        "solution_code": "def hit_wall(y_cor):\n    return y_cor > 280 or y_cor < -280"
-    },
-    {
-        "question_type": "coding",
-        "text": "Move Calculation\nWrite a function `get_new_pos` that takes `current`, `delta` and returns the new position.",
-        "starter_code": "def get_new_pos(current, delta):\n    pass",
-        "test_cases": [
-            {
-                "function_call": "get_new_pos(0, 10)",
-                "expected": "10"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "logic",
-        "solution_code": "def get_new_pos(current, delta):\n    return current + delta"
-    },
-    {
-        "question_type": "coding",
-        "text": "Score Increase\nWrite a function `increase_score` that takes a score, adds 1, and returns it.",
-        "starter_code": "def increase_score(score):\n    pass",
-        "test_cases": [
-            {
-                "function_call": "increase_score(0)",
-                "expected": "1"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "logic",
-        "solution_code": "def increase_score(score):\n    return score + 1"
-    },
-    {
-        "question_type": "coding",
-        "text": "Paddle Boundary\nWrite a function `can_move_up` that returns True if `y_cor` is less than 250 (top boundary).",
-        "starter_code": "def can_move_up(y_cor):\n    pass",
-        "test_cases": [
-            {
-                "function_call": "can_move_up(240)",
-                "expected": "True"
-            },
-            {
-                "function_call": "can_move_up(260)",
-                "expected": "False"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "logic",
-        "solution_code": "def can_move_up(y_cor):\n    return y_cor < 250"
-    }
+  {
+    "question_type": "mcq",
+    "text": "Which method is used to stretch a Turtle shape?",
+    "options": [
+      "stretch()",
+      "resize()",
+      "shapesize()",
+      "scale()"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "turtle",
+    "explanation": "shapesize(stretch_wid, stretch_len) modifies the dimensions of the turtle shape."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you reverse the direction of a moving object along the Y-axis?",
+    "options": [
+      "y_move = -y_move",
+      "y_move *= -1",
+      "y_move = reverse(y_move)",
+      "y_move -= 1"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "logic",
+    "explanation": "Multiplying the movement variable by -1 flips its sign (e.g., 10 becomes -10), reversing direction."
+  },
+  {
+    "question_type": "mcq",
+    "text": "In the Pong game, what condition checks for collision with the top or bottom wall?",
+    "options": [
+      "if ball.xcor() > 300",
+      "if ball.ycor() > 280 or ball.ycor() < -280",
+      "if ball.distance(wall) < 20",
+      "if ball.hit_wall()"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "logic",
+    "explanation": "We check the Y coordinate against the screen boundary (approx 280 since height is 600)."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does `turtle.distance(other_turtle)` return?",
+    "options": [
+      "The time to reach the other turtle",
+      "The pixel distance between the two turtles",
+      "The boolean True if they are touching",
+      "The angle between them"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "turtle",
+    "explanation": "distance() returns the straight-line distance in coordinate units (pixels)."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Why do we use `tracer(0)` and `update()` in the game loop?",
+    "options": [
+      "To speed up the computer",
+      "To turn off automatic screen updates and manually update for smoother animation",
+      "To stop the game",
+      "To debug the code"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "turtle",
+    "explanation": "tracer(0) disables auto-updates, allowing us to move multiple objects and then update the screen all at once."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do we create a vertical paddle from a square turtle?",
+    "options": [
+      "shapesize(stretch_wid=5, stretch_len=1)",
+      "shapesize(stretch_wid=1, stretch_len=5)",
+      "shape('rectangle')",
+      "resize(20, 100)"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "turtle",
+    "explanation": "Stretch width applies to the perpendicular to orientation (initially Y for east-facing), but actually for a default square facing East, stretch_wid is Y dimension (height), stretch_len is X (width). So wid=5 makes it tall."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What happens when the ball goes out of bounds (past a paddle)?",
+    "options": [
+      "Game Over",
+      "The ball bounces back",
+      "Reset ball to center and reverse direction",
+      "Pause game"
+    ],
+    "correct_index": 2,
+    "difficulty": "medium",
+    "topic_tag": "logic",
+    "explanation": "In Pong, play continues. The ball resets to center, usually moves towards the other player, and score updates."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Which method stops the turtle from drawing lines when moving?",
+    "options": [
+      "stop_draw()",
+      "penup()",
+      "no_trace()",
+      "lift()"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "turtle",
+    "explanation": "penup() lifts the pen so movement does not leave a trail."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How can we control the speed of the game loop?",
+    "options": [
+      "By changing computer clock",
+      "Using `time.sleep()`",
+      "Using `speed('fastest')`",
+      "We cannot control it"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "logic",
+    "explanation": "time.sleep(seconds) adds a small delay in each iteration of the while loop."
+  },
+  {
+    "question_type": "mcq",
+    "text": "If `ball.xcor() > 380`, what does this imply?",
+    "options": [
+      "Ball hit top wall",
+      "Ball went past the Right paddle",
+      "Ball went past the Left paddle",
+      "Ball is in the center"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "logic",
+    "explanation": "Positive X is to the right. > 380 suggests it passed the paddle at roughly 350."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Why do we check `distance < 50` for paddle collision instead of `< 20`?",
+    "options": [
+      "Because the ball is large",
+      "Because the paddle is stretched (it's 100px tall)",
+      "Because distance calculation is inaccurate",
+      "To make the game easier"
+    ],
+    "correct_index": 1,
+    "difficulty": "hard",
+    "topic_tag": "logic",
+    "explanation": "Since distance is measured from the center, and the paddle is 100px tall, hitting the edge can be up to 50px away from the center."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you detect simultaneous key usage (e.g., both players moving)?",
+    "options": [
+      "You cannot",
+      "screen.listen() handles it automatically with separate onkey bindings",
+      "Use threaded code",
+      "Use input() function"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "turtle",
+    "explanation": "The turtle screen listener can register multiple key bindings (e.g. 'w' and 'Up') and the OS handles the key events."
+  },
+  {
+    "question_type": "mcq",
+    "text": "To create a Dashed Line for the center net, you would:",
+    "options": [
+      "Use a background image",
+      "Draw a line using pendown() and penup() repeatedly",
+      "Use a strip shape",
+      "It's impossible"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "logic",
+    "explanation": "Loop: pendown, forward, penup, forward."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the best way to keep score?",
+    "options": [
+      "Print to console",
+      "Use a global variable and a Scoreboard(Turtle) class to write to screen",
+      "Write on a piece of paper",
+      "Use a database"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "design",
+    "explanation": "A Scoreboard class inheriting from Turtle is the standard pattern to display dynamic text on the canvas."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do we make the ball move faster over time?",
+    "options": [
+      "Increase movement step size or decrease sleep time",
+      "Buy a faster CPU",
+      "Use `ball.speed('fastest')`",
+      "Remove code"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "logic",
+    "explanation": "Decreasing the delay in time.sleep() or increasing the (x_move, y_move) values speeds up the game."
+  },
+  {
+    "question_type": "coding",
+    "text": "Bounce Logic\nWrite a function `bounce` that takes a coordinate `current_delta` and inverts it.",
+    "starter_code": "def bounce(current_delta):\n    pass",
+    "test_cases": [
+      {
+        "function_call": "bounce(10)",
+        "expected": "-10"
+      },
+      {
+        "function_call": "bounce(-5)",
+        "expected": "5"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "logic",
+    "solution_code": "def bounce(current_delta):\n    return current_delta * -1",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Wall Collision Check\nWrite a function `hit_wall` that returns True if `y_cor` is greater than 280 or less than -280.",
+    "starter_code": "def hit_wall(y_cor):\n    pass",
+    "test_cases": [
+      {
+        "function_call": "hit_wall(290)",
+        "expected": "True"
+      },
+      {
+        "function_call": "hit_wall(0)",
+        "expected": "False"
+      },
+      {
+        "function_call": "hit_wall(-300)",
+        "expected": "True"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "logic",
+    "solution_code": "def hit_wall(y_cor):\n    return y_cor > 280 or y_cor < -280",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Move Calculation\nWrite a function `get_new_pos` that takes `current`, `delta` and returns the new position.",
+    "starter_code": "def get_new_pos(current, delta):\n    pass",
+    "test_cases": [
+      {
+        "function_call": "get_new_pos(0, 10)",
+        "expected": "10"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "logic",
+    "solution_code": "def get_new_pos(current, delta):\n    return current + delta",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Score Increase\nWrite a function `increase_score` that takes a score, adds 1, and returns it.",
+    "starter_code": "def increase_score(score):\n    pass",
+    "test_cases": [
+      {
+        "function_call": "increase_score(0)",
+        "expected": "1"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "logic",
+    "solution_code": "def increase_score(score):\n    return score + 1",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Paddle Boundary\nWrite a function `can_move_up` that returns True if `y_cor` is less than 250 (top boundary).",
+    "starter_code": "def can_move_up(y_cor):\n    pass",
+    "test_cases": [
+      {
+        "function_call": "can_move_up(240)",
+        "expected": "True"
+      },
+      {
+        "function_call": "can_move_up(260)",
+        "expected": "False"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "logic",
+    "solution_code": "def can_move_up(y_cor):\n    return y_cor < 250",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  }
 ]

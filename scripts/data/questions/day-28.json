@@ -1,454 +1,461 @@
 [
-    {
-        "question_type": "mcq",
-        "text": "Which Tkinter widget allows you to layer images and text?",
-        "options": [
-            "Label",
-            "Frame",
-            "Canvas",
-            "Panel"
-        ],
-        "correct_index": 2,
-        "difficulty": "easy",
-        "topic_tag": "canvas",
-        "explanation": "Canvas is a widget that allows you to draw shapes, images, and layer text on top."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you add an image to a Canvas?",
-        "options": [
-            "canvas.add_image()",
-            "canvas.create_image()",
-            "canvas.insert_image()",
-            "canvas.draw_image()"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "canvas",
-        "explanation": "create_image() is the method used to display an image on a Canvas."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Why shouldn't you use `time.sleep()` in a Tkinter GUI?",
-        "options": [
-            "It's too slow",
-            "It blocks the mainloop, freezing the GUI",
-            "It doesn't work on Windows",
-            "It requires an extra import"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "after-method",
-        "explanation": "time.sleep() blocks the main thread, preventing the GUI from responding to events."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does `window.after(1000, my_func)` do?",
-        "options": [
-            "Runs my_func 1000 times",
-            "Runs my_func after 1000 milliseconds",
-            "Runs my_func after 1000 seconds",
-            "Delays the window by 1000 pixels"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "after-method",
-        "explanation": "after() schedules the function to run after the specified milliseconds (1000ms = 1 second)."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the first argument to the `after()` method?",
-        "options": [
-            "The function to call",
-            "Time in milliseconds",
-            "Time in seconds",
-            "Arguments for the function"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "after-method",
-        "explanation": "The first argument is the delay in milliseconds."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you convert 300 seconds to minutes?",
-        "options": [
-            "300 * 60",
-            "300 / 60",
-            "300 // 60",
-            "300 % 60"
-        ],
-        "correct_index": 2,
-        "difficulty": "easy",
-        "topic_tag": "timer",
-        "explanation": "Integer division (//) gives the number of whole minutes: 300 // 60 = 5."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does `125 % 60` return?",
-        "options": [
-            "2",
-            "5",
-            "65",
-            "2.08"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "timer",
-        "explanation": "Modulo gives the remainder: 125 = 2*60 + 5, so the remainder is 5 seconds."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you update text on a Canvas element?",
-        "options": [
-            "canvas.config(text=...)",
-            "canvas.itemconfig(item_id, text=...)",
-            "canvas.update(item_id, text=...)",
-            "item_id.text = ..."
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "canvas",
-        "explanation": "itemconfig() is used to modify properties of canvas items like text."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does dynamic typing mean in Python?",
-        "options": [
-            "Variables must be declared with types",
-            "Variables can change type during execution",
-            "Types are checked at compile time",
-            "All variables are constants"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "dynamic-typing",
-        "explanation": "Dynamic typing means a variable's type is determined at runtime and can change."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Is this valid Python: `x = 5; x = 'hello'`?",
-        "options": [
-            "No, x was already an integer",
-            "Yes, Python allows type changes",
-            "Only with explicit type conversion",
-            "Only in Python 3"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "dynamic-typing",
-        "explanation": "Python is dynamically typed, so variables can be reassigned to different types."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Which image formats does Tkinter PhotoImage support natively?",
-        "options": [
-            "JPG and BMP",
-            "PNG and GIF",
-            "All common formats",
-            "Only BMP"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "canvas",
-        "explanation": "PhotoImage only supports PNG and GIF. Use Pillow for other formats like JPG."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you cancel a scheduled `after()` call?",
-        "options": [
-            "window.stop()",
-            "window.cancel()",
-            "window.after_cancel(timer_id)",
-            "window.after_clear()"
-        ],
-        "correct_index": 2,
-        "difficulty": "medium",
-        "topic_tag": "after-method",
-        "explanation": "after_cancel() cancels a scheduled after callback using its ID."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the Pomodoro Technique?",
-        "options": [
-            "A cooking method",
-            "A time management method with work/break intervals",
-            "A programming language",
-            "A type of database"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "pomodoro",
-        "explanation": "Pomodoro is a time management technique using 25-min work sessions with short breaks."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How many milliseconds are in one second?",
-        "options": [
-            "10",
-            "100",
-            "1000",
-            "10000"
-        ],
-        "correct_index": 2,
-        "difficulty": "easy",
-        "topic_tag": "timer",
-        "explanation": "There are 1000 milliseconds in one second."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What value does `after()` return?",
-        "options": [
-            "Nothing",
-            "A timer ID that can be used to cancel it",
-            "The function result",
-            "A boolean"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "after-method",
-        "explanation": "after() returns an ID that can be passed to after_cancel() to stop the timer."
-    },
-    {
-        "question_type": "coding",
-        "text": "Seconds to Minutes\nWrite a function `to_minutes` that takes seconds and returns the number of complete minutes.",
-        "starter_code": "def to_minutes(seconds):\n    pass",
-        "test_cases": [
-            {
-                "function_call": "to_minutes(125)",
-                "expected": "2"
-            },
-            {
-                "function_call": "to_minutes(300)",
-                "expected": "5"
-            },
-            {
-                "function_call": "to_minutes(59)",
-                "expected": "0"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "timer",
-        "solution_code": "def to_minutes(seconds):\n    return seconds // 60"
-    },
-    {
-        "question_type": "coding",
-        "text": "Remaining Seconds\nWrite a function `remaining_seconds` that returns the remaining seconds after full minutes.",
-        "starter_code": "def remaining_seconds(seconds):\n    pass",
-        "test_cases": [
-            {
-                "function_call": "remaining_seconds(125)",
-                "expected": "5"
-            },
-            {
-                "function_call": "remaining_seconds(300)",
-                "expected": "0"
-            },
-            {
-                "function_call": "remaining_seconds(67)",
-                "expected": "7"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "timer",
-        "solution_code": "def remaining_seconds(seconds):\n    return seconds % 60"
-    },
-    {
-        "question_type": "coding",
-        "text": "Format Time\nWrite a function `format_time` that takes seconds and returns a string in 'MM:SS' format.",
-        "starter_code": "def format_time(seconds):\n    pass",
-        "test_cases": [
-            {
-                "function_call": "format_time(65)",
-                "expected": "\"01:05\""
-            },
-            {
-                "function_call": "format_time(300)",
-                "expected": "\"05:00\""
-            },
-            {
-                "function_call": "format_time(9)",
-                "expected": "\"00:09\""
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "timer",
-        "solution_code": "def format_time(seconds):\n    mins = seconds // 60\n    secs = seconds % 60\n    return f'{mins:02d}:{secs:02d}'"
-    },
-    {
-        "question_type": "coding",
-        "text": "Get Type Name\nWrite a function `get_type_name` that returns the type name of the input as a string.",
-        "starter_code": "def get_type_name(value):\n    pass",
-        "test_cases": [
-            {
-                "function_call": "get_type_name(5)",
-                "expected": "\"int\""
-            },
-            {
-                "function_call": "get_type_name('hello')",
-                "expected": "\"str\""
-            },
-            {
-                "function_call": "get_type_name([1,2])",
-                "expected": "\"list\""
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "dynamic-typing",
-        "solution_code": "def get_type_name(value):\n    return type(value).__name__"
-    },
-    {
-        "question_type": "coding",
-        "text": "Zero Pad\nWrite a function `zero_pad` that takes a number and returns it as a 2-digit string with leading zero if needed.",
-        "starter_code": "def zero_pad(num):\n    pass",
-        "test_cases": [
-            {
-                "function_call": "zero_pad(5)",
-                "expected": "\"05\""
-            },
-            {
-                "function_call": "zero_pad(12)",
-                "expected": "\"12\""
-            },
-            {
-                "function_call": "zero_pad(0)",
-                "expected": "\"00\""
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "timer",
-        "solution_code": "def zero_pad(num):\n    return f'{num:02d}'"
-    },
-    {
-        "question_type": "coding",
-        "text": "Minutes to Seconds\nWrite a function `to_seconds` that converts minutes to seconds.",
-        "starter_code": "def to_seconds(minutes):\n    pass",
-        "test_cases": [
-            {
-                "function_call": "to_seconds(5)",
-                "expected": "300"
-            },
-            {
-                "function_call": "to_seconds(1)",
-                "expected": "60"
-            },
-            {
-                "function_call": "to_seconds(25)",
-                "expected": "1500"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "timer",
-        "solution_code": "def to_seconds(minutes):\n    return minutes * 60"
-    },
-    {
-        "question_type": "coding",
-        "text": "Is Integer\nWrite a function `is_integer` that returns True if the value is an integer, False otherwise.",
-        "starter_code": "def is_integer(value):\n    pass",
-        "test_cases": [
-            {
-                "function_call": "is_integer(5)",
-                "expected": "True"
-            },
-            {
-                "function_call": "is_integer('5')",
-                "expected": "False"
-            },
-            {
-                "function_call": "is_integer(5.0)",
-                "expected": "False"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "dynamic-typing",
-        "solution_code": "def is_integer(value):\n    return type(value) == int"
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the bug in this canvas text update",
-        "code": "import tkinter as tk\nwindow = tk.Tk()\ncanvas = tk.Canvas(width=200, height=200)\ncanvas.pack()\ntext_id = canvas.create_text(100, 100, text='Start')\n\ndef update():\n    canvas.text_id.config(text='Updated')\n\nwindow.after(1000, update)\nwindow.mainloop()",
-        "options": [
-            "Use canvas.itemconfig(text_id, text='Updated')",
-            "Change canvas.text_id to canvas.configure",
-            "Add canvas.update() before config",
-            "Change create_text to create_label"
-        ],
-        "correct_index": 0,
-        "difficulty": "medium",
-        "topic_tag": "canvas",
-        "explanation": "Canvas items are updated with itemconfig() method, not .config(). Use canvas.itemconfig(text_id, text='Updated')."
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the bug in this after() timer call",
-        "code": "import tkinter as tk\nwindow = tk.Tk()\n\ndef countdown(count):\n    print(count)\n    if count > 0:\n        window.after(1000, countdown(count - 1))\n\ncountdown(5)\nwindow.mainloop()",
-        "options": [
-            "Change countdown(count - 1) to countdown, count - 1",
-            "Remove the if statement",
-            "Change 1000 to '1000'",
-            "Add return before window.after"
-        ],
-        "correct_index": 0,
-        "difficulty": "hard",
-        "topic_tag": "after-method",
-        "explanation": "after() expects a function reference and arguments separately. countdown(count-1) calls the function immediately. Use: window.after(1000, countdown, count - 1)."
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the bug in this time formatting function",
-        "code": "def format_time(total_seconds):\n    minutes = total_seconds / 60\n    seconds = total_seconds % 60\n    return f'{minutes:02d}:{seconds:02d}'\n\nprint(format_time(125))  # Should print '02:05'",
-        "options": [
-            "Change / to // for integer division",
-            "Change % to / for seconds",
-            "Remove the :02d format specifiers",
-            "Change the order of minutes and seconds"
-        ],
-        "correct_index": 0,
-        "difficulty": "medium",
-        "topic_tag": "timer",
-        "explanation": "Using / returns a float (2.083...), but :02d format requires an integer. Use // for integer division."
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the bug in this type check",
-        "code": "def process(value):\n    if type(value) is 'int':\n        return value * 2\n    else:\n        return str(value)\n\nprint(process(5))",
-        "options": [
-            "Change 'int' to int (remove quotes)",
-            "Change 'is' to '=='",
-            "Change type(value) to value.type",
-            "Add isinstance before type"
-        ],
-        "correct_index": 0,
-        "difficulty": "easy",
-        "topic_tag": "dynamic-typing",
-        "explanation": "type(value) returns a type object. Compare with int, not the string 'int'. Correct: type(value) is int."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Why does `window.after(1000, func())` call the function immediately rather than after 1 second?",
-        "options": [
-            "1000 is too short a delay",
-            "The parentheses () execute func immediately, passing its return value to after()",
-            "after() doesn't support function callbacks",
-            "The window must be visible first"
-        ],
-        "correct_index": 1,
-        "difficulty": "hard",
-        "topic_tag": "after-method",
-        "explanation": "Python evaluates func() immediately to get its return value. after() receives that return value, not the function itself. Omit () to pass the function reference."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is dynamic typing in Python?",
-        "options": [
-            "Variables must be declared with explicit types",
-            "Variable types are determined at runtime and can change",
-            "Types are checked at compile time",
-            "Variables cannot change types"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "dynamic-typing",
-        "explanation": "In dynamic typing, type checking happens at runtime and the same variable can hold different types at different times."
-    }
+  {
+    "question_type": "mcq",
+    "text": "Which Tkinter widget allows you to layer images and text?",
+    "options": [
+      "Label",
+      "Frame",
+      "Canvas",
+      "Panel"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "canvas",
+    "explanation": "Canvas is a widget that allows you to draw shapes, images, and layer text on top."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you add an image to a Canvas?",
+    "options": [
+      "canvas.add_image()",
+      "canvas.create_image()",
+      "canvas.insert_image()",
+      "canvas.draw_image()"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "canvas",
+    "explanation": "create_image() is the method used to display an image on a Canvas."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Why shouldn't you use `time.sleep()` in a Tkinter GUI?",
+    "options": [
+      "It's too slow",
+      "It blocks the mainloop, freezing the GUI",
+      "It doesn't work on Windows",
+      "It requires an extra import"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "after-method",
+    "explanation": "time.sleep() blocks the main thread, preventing the GUI from responding to events."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does `window.after(1000, my_func)` do?",
+    "options": [
+      "Runs my_func 1000 times",
+      "Runs my_func after 1000 milliseconds",
+      "Runs my_func after 1000 seconds",
+      "Delays the window by 1000 pixels"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "after-method",
+    "explanation": "after() schedules the function to run after the specified milliseconds (1000ms = 1 second)."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the first argument to the `after()` method?",
+    "options": [
+      "The function to call",
+      "Time in milliseconds",
+      "Time in seconds",
+      "Arguments for the function"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "after-method",
+    "explanation": "The first argument is the delay in milliseconds."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you convert 300 seconds to minutes?",
+    "options": [
+      "300 * 60",
+      "300 / 60",
+      "300 // 60",
+      "300 % 60"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "timer",
+    "explanation": "Integer division (//) gives the number of whole minutes: 300 // 60 = 5."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does `125 % 60` return?",
+    "options": [
+      "2",
+      "5",
+      "65",
+      "2.08"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "timer",
+    "explanation": "Modulo gives the remainder: 125 = 2*60 + 5, so the remainder is 5 seconds."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you update text on a Canvas element?",
+    "options": [
+      "canvas.config(text=...)",
+      "canvas.itemconfig(item_id, text=...)",
+      "canvas.update(item_id, text=...)",
+      "item_id.text = ..."
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "canvas",
+    "explanation": "itemconfig() is used to modify properties of canvas items like text."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does dynamic typing mean in Python?",
+    "options": [
+      "Variables must be declared with types",
+      "Variables can change type during execution",
+      "Types are checked at compile time",
+      "All variables are constants"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "dynamic-typing",
+    "explanation": "Dynamic typing means a variable's type is determined at runtime and can change."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Is this valid Python: `x = 5; x = 'hello'`?",
+    "options": [
+      "No, x was already an integer",
+      "Yes, Python allows type changes",
+      "Only with explicit type conversion",
+      "Only in Python 3"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "dynamic-typing",
+    "explanation": "Python is dynamically typed, so variables can be reassigned to different types."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Which image formats does Tkinter PhotoImage support natively?",
+    "options": [
+      "JPG and BMP",
+      "PNG and GIF",
+      "All common formats",
+      "Only BMP"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "canvas",
+    "explanation": "PhotoImage only supports PNG and GIF. Use Pillow for other formats like JPG."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you cancel a scheduled `after()` call?",
+    "options": [
+      "window.stop()",
+      "window.cancel()",
+      "window.after_cancel(timer_id)",
+      "window.after_clear()"
+    ],
+    "correct_index": 2,
+    "difficulty": "medium",
+    "topic_tag": "after-method",
+    "explanation": "after_cancel() cancels a scheduled after callback using its ID."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the Pomodoro Technique?",
+    "options": [
+      "A cooking method",
+      "A time management method with work/break intervals",
+      "A programming language",
+      "A type of database"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "pomodoro",
+    "explanation": "Pomodoro is a time management technique using 25-min work sessions with short breaks."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How many milliseconds are in one second?",
+    "options": [
+      "10",
+      "100",
+      "1000",
+      "10000"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "timer",
+    "explanation": "There are 1000 milliseconds in one second."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What value does `after()` return?",
+    "options": [
+      "Nothing",
+      "A timer ID that can be used to cancel it",
+      "The function result",
+      "A boolean"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "after-method",
+    "explanation": "after() returns an ID that can be passed to after_cancel() to stop the timer."
+  },
+  {
+    "question_type": "coding",
+    "text": "Seconds to Minutes\nWrite a function `to_minutes` that takes seconds and returns the number of complete minutes.",
+    "starter_code": "def to_minutes(seconds):\n    pass",
+    "test_cases": [
+      {
+        "function_call": "to_minutes(125)",
+        "expected": "2"
+      },
+      {
+        "function_call": "to_minutes(300)",
+        "expected": "5"
+      },
+      {
+        "function_call": "to_minutes(59)",
+        "expected": "0"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "timer",
+    "solution_code": "def to_minutes(seconds):\n    return seconds // 60",
+    "explanation": "Track the minimum by comparing each value to the current min. Update when a smaller value is found."
+  },
+  {
+    "question_type": "coding",
+    "text": "Remaining Seconds\nWrite a function `remaining_seconds` that returns the remaining seconds after full minutes.",
+    "starter_code": "def remaining_seconds(seconds):\n    pass",
+    "test_cases": [
+      {
+        "function_call": "remaining_seconds(125)",
+        "expected": "5"
+      },
+      {
+        "function_call": "remaining_seconds(300)",
+        "expected": "0"
+      },
+      {
+        "function_call": "remaining_seconds(67)",
+        "expected": "7"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "timer",
+    "solution_code": "def remaining_seconds(seconds):\n    return seconds % 60",
+    "explanation": "Use modulo (%) to check divisibility or wrap around indices. Returns the remainder of division."
+  },
+  {
+    "question_type": "coding",
+    "text": "Format Time\nWrite a function `format_time` that takes seconds and returns a string in 'MM:SS' format.",
+    "starter_code": "def format_time(seconds):\n    pass",
+    "test_cases": [
+      {
+        "function_call": "format_time(65)",
+        "expected": "\"01:05\""
+      },
+      {
+        "function_call": "format_time(300)",
+        "expected": "\"05:00\""
+      },
+      {
+        "function_call": "format_time(9)",
+        "expected": "\"00:09\""
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "timer",
+    "solution_code": "def format_time(seconds):\n    mins = seconds // 60\n    secs = seconds % 60\n    return f'{mins:02d}:{secs:02d}'",
+    "explanation": "Use modulo (%) to check divisibility or wrap around indices. Returns the remainder of division."
+  },
+  {
+    "question_type": "coding",
+    "text": "Get Type Name\nWrite a function `get_type_name` that returns the type name of the input as a string.",
+    "starter_code": "def get_type_name(value):\n    pass",
+    "test_cases": [
+      {
+        "function_call": "get_type_name(5)",
+        "expected": "\"int\""
+      },
+      {
+        "function_call": "get_type_name('hello')",
+        "expected": "\"str\""
+      },
+      {
+        "function_call": "get_type_name([1,2])",
+        "expected": "\"list\""
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "dynamic-typing",
+    "solution_code": "def get_type_name(value):\n    return type(value).__name__",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Zero Pad\nWrite a function `zero_pad` that takes a number and returns it as a 2-digit string with leading zero if needed.",
+    "starter_code": "def zero_pad(num):\n    pass",
+    "test_cases": [
+      {
+        "function_call": "zero_pad(5)",
+        "expected": "\"05\""
+      },
+      {
+        "function_call": "zero_pad(12)",
+        "expected": "\"12\""
+      },
+      {
+        "function_call": "zero_pad(0)",
+        "expected": "\"00\""
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "timer",
+    "solution_code": "def zero_pad(num):\n    return f'{num:02d}'",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Minutes to Seconds\nWrite a function `to_seconds` that converts minutes to seconds.",
+    "starter_code": "def to_seconds(minutes):\n    pass",
+    "test_cases": [
+      {
+        "function_call": "to_seconds(5)",
+        "expected": "300"
+      },
+      {
+        "function_call": "to_seconds(1)",
+        "expected": "60"
+      },
+      {
+        "function_call": "to_seconds(25)",
+        "expected": "1500"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "timer",
+    "solution_code": "def to_seconds(minutes):\n    return minutes * 60",
+    "explanation": "Track the minimum by comparing each value to the current min. Update when a smaller value is found."
+  },
+  {
+    "question_type": "coding",
+    "text": "Is Integer\nWrite a function `is_integer` that returns True if the value is an integer, False otherwise.",
+    "starter_code": "def is_integer(value):\n    pass",
+    "test_cases": [
+      {
+        "function_call": "is_integer(5)",
+        "expected": "True"
+      },
+      {
+        "function_call": "is_integer('5')",
+        "expected": "False"
+      },
+      {
+        "function_call": "is_integer(5.0)",
+        "expected": "False"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "dynamic-typing",
+    "solution_code": "def is_integer(value):\n    return type(value) == int",
+    "explanation": "Compare values using == and return the boolean result directly. No if/else needed for simple comparisons."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the bug in this canvas text update",
+    "code": "import tkinter as tk\nwindow = tk.Tk()\ncanvas = tk.Canvas(width=200, height=200)\ncanvas.pack()\ntext_id = canvas.create_text(100, 100, text='Start')\n\ndef update():\n    canvas.text_id.config(text='Updated')\n\nwindow.after(1000, update)\nwindow.mainloop()",
+    "options": [
+      "Use canvas.itemconfig(text_id, text='Updated')",
+      "Change canvas.text_id to canvas.configure",
+      "Add canvas.update() before config",
+      "Change create_text to create_label"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "canvas",
+    "explanation": "Canvas items are updated with itemconfig() method, not .config(). Use canvas.itemconfig(text_id, text='Updated')."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the bug in this after() timer call",
+    "code": "import tkinter as tk\nwindow = tk.Tk()\n\ndef countdown(count):\n    print(count)\n    if count > 0:\n        window.after(1000, countdown(count - 1))\n\ncountdown(5)\nwindow.mainloop()",
+    "options": [
+      "Change countdown(count - 1) to countdown, count - 1",
+      "Remove the if statement",
+      "Change 1000 to '1000'",
+      "Add return before window.after"
+    ],
+    "correct_index": 0,
+    "difficulty": "hard",
+    "topic_tag": "after-method",
+    "explanation": "after() expects a function reference and arguments separately. countdown(count-1) calls the function immediately. Use: window.after(1000, countdown, count - 1)."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the bug in this time formatting function",
+    "code": "def format_time(total_seconds):\n    minutes = total_seconds / 60\n    seconds = total_seconds % 60\n    return f'{minutes:02d}:{seconds:02d}'\n\nprint(format_time(125))  # Should print '02:05'",
+    "options": [
+      "Change / to // for integer division",
+      "Change % to / for seconds",
+      "Remove the :02d format specifiers",
+      "Change the order of minutes and seconds"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "timer",
+    "explanation": "Using / returns a float (2.083...), but :02d format requires an integer. Use // for integer division."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the bug in this type check",
+    "code": "def process(value):\n    if type(value) is 'int':\n        return value * 2\n    else:\n        return str(value)\n\nprint(process(5))",
+    "options": [
+      "Change 'int' to int (remove quotes)",
+      "Change 'is' to '=='",
+      "Change type(value) to value.type",
+      "Add isinstance before type"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "dynamic-typing",
+    "explanation": "type(value) returns a type object. Compare with int, not the string 'int'. Correct: type(value) is int."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Why does `window.after(1000, func())` call the function immediately rather than after 1 second?",
+    "options": [
+      "1000 is too short a delay",
+      "The parentheses () execute func immediately, passing its return value to after()",
+      "after() doesn't support function callbacks",
+      "The window must be visible first"
+    ],
+    "correct_index": 1,
+    "difficulty": "hard",
+    "topic_tag": "after-method",
+    "explanation": "Python evaluates func() immediately to get its return value. after() receives that return value, not the function itself. Omit () to pass the function reference."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is dynamic typing in Python?",
+    "options": [
+      "Variables must be declared with explicit types",
+      "Variable types are determined at runtime and can change",
+      "Types are checked at compile time",
+      "Variables cannot change types"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "dynamic-typing",
+    "explanation": "In dynamic typing, type checking happens at runtime and the same variable can hold different types at different times."
+  }
 ]

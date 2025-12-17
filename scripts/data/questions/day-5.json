@@ -229,7 +229,8 @@
     ],
     "difficulty": "medium",
     "topic_tag": "algorithms",
-    "solution_code": "def solve(heights):\n    total = 0\n    count = 0\n    for h in heights:\n        total += h\n        count += 1\n    return round(total / count)"
+    "solution_code": "def solve(heights):\n    total = 0\n    count = 0\n    for h in heights:\n        total += h\n        count += 1\n    return round(total / count)",
+    "explanation": "Use two accumulators: 'total' to sum all heights and 'count' to track how many heights there are. Loop through each height, adding to both. Finally, divide total by count and round to get the average."
   },
   {
     "question_type": "coding",
@@ -251,7 +252,8 @@
     ],
     "difficulty": "medium",
     "topic_tag": "algorithms",
-    "solution_code": "def solve(scores):\n    highest = scores[0]\n    for score in scores:\n        if score > highest:\n            highest = score\n    return highest"
+    "solution_code": "def solve(scores):\n    highest = scores[0]\n    for score in scores:\n        if score > highest:\n            highest = score\n    return highest",
+    "explanation": "Initialize 'highest' with the first score. Loop through all scores, comparing each to 'highest'. If a score is greater, update 'highest'. This pattern tracks the maximum value seen so far."
   },
   {
     "question_type": "coding",
@@ -265,7 +267,8 @@
     ],
     "difficulty": "easy",
     "topic_tag": "range",
-    "solution_code": "def solve():\n    total = 0\n    for number in range(2, 101, 2):\n        total += number\n    return total"
+    "solution_code": "def solve():\n    total = 0\n    for number in range(2, 101, 2):\n        total += number\n    return total",
+    "explanation": "Use range(2, 101, 2) to generate even numbers from 2 to 100 by stepping by 2. Initialize 'total' to 0, then add each even number to the total."
   },
   {
     "question_type": "coding",
@@ -283,7 +286,8 @@
     ],
     "difficulty": "hard",
     "topic_tag": "algorithms",
-    "solution_code": "def solve(n):\n    result = []\n    for i in range(1, n + 1):\n        if i % 3 == 0 and i % 5 == 0:\n            result.append('FizzBuzz')\n        elif i % 3 == 0:\n            result.append('Fizz')\n        elif i % 5 == 0:\n            result.append('Buzz')\n        else:\n            result.append(i)\n    return result"
+    "solution_code": "def solve(n):\n    result = []\n    for i in range(1, n + 1):\n        if i % 3 == 0 and i % 5 == 0:\n            result.append('FizzBuzz')\n        elif i % 3 == 0:\n            result.append('Fizz')\n        elif i % 5 == 0:\n            result.append('Buzz')\n        else:\n            result.append(i)\n    return result",
+    "explanation": "Check divisibility using modulo (%). Order matters: check 'divisible by both 3 AND 5' first, then 'by 3', then 'by 5'. Use elif to ensure only one condition matches per number."
   },
   {
     "question_type": "coding",
@@ -305,6 +309,7 @@
     ],
     "difficulty": "easy",
     "topic_tag": "algorithms",
-    "solution_code": "def count_items(items, target):\n    count = 0\n    for item in items:\n        if item == target:\n            count += 1\n    return count"
+    "solution_code": "def count_items(items, target):\n    count = 0\n    for item in items:\n        if item == target:\n            count += 1\n    return count",
+    "explanation": "Initialize a counter to 0. Loop through each item, and if it matches the target, increment the counter. Return the final count."
   }
 ]

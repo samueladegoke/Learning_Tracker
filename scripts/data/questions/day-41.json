@@ -1,369 +1,375 @@
 [
-    {
-        "question_type": "mcq",
-        "text": "What does HTML stand for?",
-        "options": [
-            "Hyper Text Markup Language",
-            "High Tech Modern Language",
-            "Hyperlink Text Making Language",
-            "Home Tool Markup Language"
-        ],
-        "correct_index": 0,
-        "difficulty": "easy",
-        "topic_tag": "html-basics",
-        "explanation": "HTML stands for HyperText Markup Language - the standard language for creating web pages."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Which part of `<h1>Hello</h1>` is the closing tag?",
-        "options": [
-            "<h1>",
-            "</h1>",
-            "Hello",
-            "<h1>Hello</h1>"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "html-tags",
-        "explanation": "The closing tag contains a forward slash (/) before the tag name: </h1>"
-    },
-    {
-        "question_type": "mcq",
-        "text": "How many heading levels does HTML provide?",
-        "options": [
-            "4 (h1-h4)",
-            "5 (h1-h5)",
-            "6 (h1-h6)",
-            "10 (h1-h10)"
-        ],
-        "correct_index": 2,
-        "difficulty": "easy",
-        "topic_tag": "headings",
-        "explanation": "HTML provides 6 heading levels from h1 (most important) to h6 (least important)."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Which heading level is the largest and most important?",
-        "options": [
-            "h6",
-            "h1",
-            "h3",
-            "heading1"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "headings",
-        "explanation": "h1 is the largest heading and represents the most important content on the page."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the difference between a tag and an element?",
-        "options": [
-            "They are the same thing",
-            "A tag is inside angle brackets; an element includes tags plus content",
-            "An element is inside angle brackets; a tag includes elements plus content",
-            "Tags are for CSS, elements are for HTML"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "html-basics",
-        "explanation": "Tags are the parts inside angle brackets (<h1>, </h1>). An element is the complete unit including opening tag, content, and closing tag."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Which tag is used to create a paragraph in HTML?",
-        "options": [
-            "<paragraph>",
-            "<para>",
-            "<p>",
-            "<text>"
-        ],
-        "correct_index": 2,
-        "difficulty": "easy",
-        "topic_tag": "paragraphs",
-        "explanation": "The <p> tag defines a paragraph in HTML."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is a void element (self-closing tag)?",
-        "options": [
-            "An element that contains no content and has no closing tag",
-            "An element that is hidden from view",
-            "An element that has been deprecated",
-            "An element with empty content"
-        ],
-        "correct_index": 0,
-        "difficulty": "medium",
-        "topic_tag": "void-elements",
-        "explanation": "Void elements like <br> and <hr> don't have content or closing tags - they stand alone."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Which of these is a void element?",
-        "options": [
-            "<p>",
-            "<h1>",
-            "<br>",
-            "<div>"
-        ],
-        "correct_index": 2,
-        "difficulty": "easy",
-        "topic_tag": "void-elements",
-        "explanation": "<br> is a void element (line break) that doesn't require a closing tag."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Who invented the World Wide Web and HTML?",
-        "options": [
-            "Steve Jobs",
-            "Bill Gates",
-            "Tim Berners-Lee",
-            "Mark Zuckerberg"
-        ],
-        "correct_index": 2,
-        "difficulty": "easy",
-        "topic_tag": "html-history",
-        "explanation": "Sir Tim Berners-Lee invented the World Wide Web and created HTML in 1989."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Why should you only have one h1 element per page?",
-        "options": [
-            "It's required by the browser",
-            "It helps with SEO and represents the page's main topic",
-            "Multiple h1s crash the page",
-            "CSS doesn't support multiple h1s"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "headings",
-        "explanation": "Having one h1 per page helps search engines understand the page's main topic and improves accessibility."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does `<hr>` create on a webpage?",
-        "options": [
-            "A header row",
-            "A horizontal rule (divider line)",
-            "A hyperlink reference",
-            "A hidden region"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "void-elements",
-        "explanation": "<hr> creates a horizontal rule, which appears as a divider line across the page."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the correct way to skip to the next line in HTML?",
-        "options": [
-            "Press Enter in the code",
-            "Use the <br> tag",
-            "Use the <newline> tag",
-            "Add extra spaces"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "void-elements",
-        "explanation": "The <br> tag creates a line break. Pressing Enter in your code doesn't create visible line breaks in the rendered output."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Which is the correct heading hierarchy?",
-        "options": [
-            "h1 → h3 → h5",
-            "h1 → h2 → h3",
-            "h3 → h2 → h1",
-            "h1 → h1 → h1"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "headings",
-        "explanation": "You should follow the heading hierarchy in order (h1 → h2 → h3) without skipping levels."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does 'Markup' mean in HTML?",
-        "options": [
-            "Price increase",
-            "Annotations that define structure",
-            "Programming logic",
-            "Database storage"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "html-basics",
-        "explanation": "Markup refers to annotations (tags) that mark up content to define its structure, similar to an editor marking up a manuscript."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Can you create a website with only an HTML file?",
-        "options": [
-            "No, CSS is always required",
-            "No, JavaScript is always required",
-            "Yes, HTML alone can create a valid website",
-            "No, you need all three (HTML, CSS, JS)"
-        ],
-        "correct_index": 2,
-        "difficulty": "easy",
-        "topic_tag": "html-basics",
-        "explanation": "You can create a valid website with just HTML. CSS and JavaScript add styling and interactivity but aren't required."
-    },
-    {
-        "question_type": "coding",
-        "text": "Create Heading\nReturn HTML for an h1 heading with the text 'Welcome'",
-        "starter_code": "def create_heading():\n    # Return the HTML string for an h1 heading\n    pass",
-        "test_cases": [
-            {
-                "function_call": "'<h1>' in create_heading() and '</h1>' in create_heading()",
-                "expected": "True"
-            },
-            {
-                "function_call": "'Welcome' in create_heading()",
-                "expected": "True"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "headings",
-        "solution_code": "def create_heading():\n    return '<h1>Welcome</h1>'"
-    },
-    {
-        "question_type": "coding",
-        "text": "Create Paragraph\nReturn HTML for a paragraph with the given text",
-        "starter_code": "def create_paragraph(text):\n    # Return a paragraph element with the text\n    pass",
-        "test_cases": [
-            {
-                "function_call": "create_paragraph('Hello')",
-                "expected": "'<p>Hello</p>'"
-            },
-            {
-                "function_call": "create_paragraph('Test')",
-                "expected": "'<p>Test</p>'"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "paragraphs",
-        "solution_code": "def create_paragraph(text):\n    return f'<p>{text}</p>'"
-    },
-    {
-        "question_type": "coding",
-        "text": "Heading Level\nReturn an HTML heading of the specified level (1-6) with the given text",
-        "starter_code": "def create_heading_level(level, text):\n    # Return heading at specified level\n    pass",
-        "test_cases": [
-            {
-                "function_call": "create_heading_level(1, 'Title')",
-                "expected": "'<h1>Title</h1>'"
-            },
-            {
-                "function_call": "create_heading_level(3, 'Section')",
-                "expected": "'<h3>Section</h3>'"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "headings",
-        "solution_code": "def create_heading_level(level, text):\n    return f'<h{level}>{text}</h{level}>'"
-    },
-    {
-        "question_type": "coding",
-        "text": "Count Elements\nCount how many times a specific HTML tag appears in a string",
-        "starter_code": "def count_elements(html, tag):\n    # Count occurrences of the opening tag\n    pass",
-        "test_cases": [
-            {
-                "function_call": "count_elements('<p>A</p><p>B</p>', 'p')",
-                "expected": "2"
-            },
-            {
-                "function_call": "count_elements('<h1>X</h1><h2>Y</h2>', 'h1')",
-                "expected": "1"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "html-basics",
-        "solution_code": "def count_elements(html, tag):\n    return html.count(f'<{tag}>')"
-    },
-    {
-        "question_type": "coding",
-        "text": "Extract Text\nExtract the text content from inside an HTML element",
-        "starter_code": "def extract_text(element):\n    # Extract text between opening and closing tags\n    pass",
-        "test_cases": [
-            {
-                "function_call": "extract_text('<h1>Hello World</h1>')",
-                "expected": "'Hello World'"
-            },
-            {
-                "function_call": "extract_text('<p>Content</p>')",
-                "expected": "'Content'"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "html-basics",
-        "solution_code": "def extract_text(element):\n    start = element.find('>') + 1\n    end = element.rfind('<')\n    return element[start:end]"
-    },
-    {
-        "question_type": "coding",
-        "text": "Is Void Element\nReturn True if the tag name is a void element (br, hr, img, input, meta, link)",
-        "starter_code": "def is_void_element(tag):\n    # Check if tag is a void element\n    pass",
-        "test_cases": [
-            {
-                "function_call": "is_void_element('br')",
-                "expected": "True"
-            },
-            {
-                "function_call": "is_void_element('p')",
-                "expected": "False"
-            },
-            {
-                "function_call": "is_void_element('img')",
-                "expected": "True"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "void-elements",
-        "solution_code": "def is_void_element(tag):\n    void_elements = ['br', 'hr', 'img', 'input', 'meta', 'link']\n    return tag.lower() in void_elements"
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the heading hierarchy issue:",
-        "code": "<h1>My Website</h1>\n<h3>About Me</h3>  <!-- Problem here -->\n<p>Some content...</p>",
-        "options": [
-            "Change h3 to h2 to follow proper hierarchy",
-            "Change h1 to h2",
-            "Remove the h3 tag",
-            "Add a closing tag"
-        ],
-        "correct_index": 0,
-        "difficulty": "medium",
-        "topic_tag": "headings",
-        "explanation": "You shouldn't skip heading levels. After h1, use h2 before h3."
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the missing closing tag:",
-        "code": "<h1>Welcome to my site\n<p>This is a paragraph.</p>",
-        "options": [
-            "Add </h1> after 'site'",
-            "Remove the <h1> tag",
-            "Add <br> after 'site'",
-            "Change h1 to h2"
-        ],
-        "correct_index": 0,
-        "difficulty": "easy",
-        "topic_tag": "html-tags",
-        "explanation": "Every opening tag (except void elements) needs a corresponding closing tag. Add </h1> to close the heading."
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix this attempt to create a line break:",
-        "code": "<p>First line\nSecond line</p>\n<!-- Bug: newline in code doesn't create visible line break -->",
-        "options": [
-            "Use <br> between the lines",
-            "Add more spaces",
-            "Use <hr> instead",
-            "Remove the paragraph tags"
-        ],
-        "correct_index": 0,
-        "difficulty": "easy",
-        "topic_tag": "void-elements",
-        "explanation": "Newlines in HTML code don't create visible line breaks. Use the <br> tag: 'First line<br>Second line'"
-    }
+  {
+    "question_type": "mcq",
+    "text": "What does HTML stand for?",
+    "options": [
+      "Hyper Text Markup Language",
+      "High Tech Modern Language",
+      "Hyperlink Text Making Language",
+      "Home Tool Markup Language"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "html-basics",
+    "explanation": "HTML stands for HyperText Markup Language - the standard language for creating web pages."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Which part of `<h1>Hello</h1>` is the closing tag?",
+    "options": [
+      "<h1>",
+      "</h1>",
+      "Hello",
+      "<h1>Hello</h1>"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "html-tags",
+    "explanation": "The closing tag contains a forward slash (/) before the tag name: </h1>"
+  },
+  {
+    "question_type": "mcq",
+    "text": "How many heading levels does HTML provide?",
+    "options": [
+      "4 (h1-h4)",
+      "5 (h1-h5)",
+      "6 (h1-h6)",
+      "10 (h1-h10)"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "headings",
+    "explanation": "HTML provides 6 heading levels from h1 (most important) to h6 (least important)."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Which heading level is the largest and most important?",
+    "options": [
+      "h6",
+      "h1",
+      "h3",
+      "heading1"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "headings",
+    "explanation": "h1 is the largest heading and represents the most important content on the page."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the difference between a tag and an element?",
+    "options": [
+      "They are the same thing",
+      "A tag is inside angle brackets; an element includes tags plus content",
+      "An element is inside angle brackets; a tag includes elements plus content",
+      "Tags are for CSS, elements are for HTML"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "html-basics",
+    "explanation": "Tags are the parts inside angle brackets (<h1>, </h1>). An element is the complete unit including opening tag, content, and closing tag."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Which tag is used to create a paragraph in HTML?",
+    "options": [
+      "<paragraph>",
+      "<para>",
+      "<p>",
+      "<text>"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "paragraphs",
+    "explanation": "The <p> tag defines a paragraph in HTML."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is a void element (self-closing tag)?",
+    "options": [
+      "An element that contains no content and has no closing tag",
+      "An element that is hidden from view",
+      "An element that has been deprecated",
+      "An element with empty content"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "void-elements",
+    "explanation": "Void elements like <br> and <hr> don't have content or closing tags - they stand alone."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Which of these is a void element?",
+    "options": [
+      "<p>",
+      "<h1>",
+      "<br>",
+      "<div>"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "void-elements",
+    "explanation": "<br> is a void element (line break) that doesn't require a closing tag."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Who invented the World Wide Web and HTML?",
+    "options": [
+      "Steve Jobs",
+      "Bill Gates",
+      "Tim Berners-Lee",
+      "Mark Zuckerberg"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "html-history",
+    "explanation": "Sir Tim Berners-Lee invented the World Wide Web and created HTML in 1989."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Why should you only have one h1 element per page?",
+    "options": [
+      "It's required by the browser",
+      "It helps with SEO and represents the page's main topic",
+      "Multiple h1s crash the page",
+      "CSS doesn't support multiple h1s"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "headings",
+    "explanation": "Having one h1 per page helps search engines understand the page's main topic and improves accessibility."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does `<hr>` create on a webpage?",
+    "options": [
+      "A header row",
+      "A horizontal rule (divider line)",
+      "A hyperlink reference",
+      "A hidden region"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "void-elements",
+    "explanation": "<hr> creates a horizontal rule, which appears as a divider line across the page."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the correct way to skip to the next line in HTML?",
+    "options": [
+      "Press Enter in the code",
+      "Use the <br> tag",
+      "Use the <newline> tag",
+      "Add extra spaces"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "void-elements",
+    "explanation": "The <br> tag creates a line break. Pressing Enter in your code doesn't create visible line breaks in the rendered output."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Which is the correct heading hierarchy?",
+    "options": [
+      "h1 → h3 → h5",
+      "h1 → h2 → h3",
+      "h3 → h2 → h1",
+      "h1 → h1 → h1"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "headings",
+    "explanation": "You should follow the heading hierarchy in order (h1 → h2 → h3) without skipping levels."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does 'Markup' mean in HTML?",
+    "options": [
+      "Price increase",
+      "Annotations that define structure",
+      "Programming logic",
+      "Database storage"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "html-basics",
+    "explanation": "Markup refers to annotations (tags) that mark up content to define its structure, similar to an editor marking up a manuscript."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Can you create a website with only an HTML file?",
+    "options": [
+      "No, CSS is always required",
+      "No, JavaScript is always required",
+      "Yes, HTML alone can create a valid website",
+      "No, you need all three (HTML, CSS, JS)"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "html-basics",
+    "explanation": "You can create a valid website with just HTML. CSS and JavaScript add styling and interactivity but aren't required."
+  },
+  {
+    "question_type": "coding",
+    "text": "Create Heading\nReturn HTML for an h1 heading with the text 'Welcome'",
+    "starter_code": "def create_heading():\n    # Return the HTML string for an h1 heading\n    pass",
+    "test_cases": [
+      {
+        "function_call": "'<h1>' in create_heading() and '</h1>' in create_heading()",
+        "expected": "True"
+      },
+      {
+        "function_call": "'Welcome' in create_heading()",
+        "expected": "True"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "headings",
+    "solution_code": "def create_heading():\n    return '<h1>Welcome</h1>'",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Create Paragraph\nReturn HTML for a paragraph with the given text",
+    "starter_code": "def create_paragraph(text):\n    # Return a paragraph element with the text\n    pass",
+    "test_cases": [
+      {
+        "function_call": "create_paragraph('Hello')",
+        "expected": "'<p>Hello</p>'"
+      },
+      {
+        "function_call": "create_paragraph('Test')",
+        "expected": "'<p>Test</p>'"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "paragraphs",
+    "solution_code": "def create_paragraph(text):\n    return f'<p>{text}</p>'",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Heading Level\nReturn an HTML heading of the specified level (1-6) with the given text",
+    "starter_code": "def create_heading_level(level, text):\n    # Return heading at specified level\n    pass",
+    "test_cases": [
+      {
+        "function_call": "create_heading_level(1, 'Title')",
+        "expected": "'<h1>Title</h1>'"
+      },
+      {
+        "function_call": "create_heading_level(3, 'Section')",
+        "expected": "'<h3>Section</h3>'"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "headings",
+    "solution_code": "def create_heading_level(level, text):\n    return f'<h{level}>{text}</h{level}>'",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Count Elements\nCount how many times a specific HTML tag appears in a string",
+    "starter_code": "def count_elements(html, tag):\n    # Count occurrences of the opening tag\n    pass",
+    "test_cases": [
+      {
+        "function_call": "count_elements('<p>A</p><p>B</p>', 'p')",
+        "expected": "2"
+      },
+      {
+        "function_call": "count_elements('<h1>X</h1><h2>Y</h2>', 'h1')",
+        "expected": "1"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "html-basics",
+    "solution_code": "def count_elements(html, tag):\n    return html.count(f'<{tag}>')",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Extract Text\nExtract the text content from inside an HTML element",
+    "starter_code": "def extract_text(element):\n    # Extract text between opening and closing tags\n    pass",
+    "test_cases": [
+      {
+        "function_call": "extract_text('<h1>Hello World</h1>')",
+        "expected": "'Hello World'"
+      },
+      {
+        "function_call": "extract_text('<p>Content</p>')",
+        "expected": "'Content'"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "html-basics",
+    "solution_code": "def extract_text(element):\n    start = element.find('>') + 1\n    end = element.rfind('<')\n    return element[start:end]",
+    "explanation": "Use list indexing to access specific elements. Negative indices count from the end."
+  },
+  {
+    "question_type": "coding",
+    "text": "Is Void Element\nReturn True if the tag name is a void element (br, hr, img, input, meta, link)",
+    "starter_code": "def is_void_element(tag):\n    # Check if tag is a void element\n    pass",
+    "test_cases": [
+      {
+        "function_call": "is_void_element('br')",
+        "expected": "True"
+      },
+      {
+        "function_call": "is_void_element('p')",
+        "expected": "False"
+      },
+      {
+        "function_call": "is_void_element('img')",
+        "expected": "True"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "void-elements",
+    "solution_code": "def is_void_element(tag):\n    void_elements = ['br', 'hr', 'img', 'input', 'meta', 'link']\n    return tag.lower() in void_elements",
+    "explanation": "Use the 'in' keyword to check membership. It returns True if the item exists in the collection."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the heading hierarchy issue:",
+    "code": "<h1>My Website</h1>\n<h3>About Me</h3>  <!-- Problem here -->\n<p>Some content...</p>",
+    "options": [
+      "Change h3 to h2 to follow proper hierarchy",
+      "Change h1 to h2",
+      "Remove the h3 tag",
+      "Add a closing tag"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "headings",
+    "explanation": "You shouldn't skip heading levels. After h1, use h2 before h3."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the missing closing tag:",
+    "code": "<h1>Welcome to my site\n<p>This is a paragraph.</p>",
+    "options": [
+      "Add </h1> after 'site'",
+      "Remove the <h1> tag",
+      "Add <br> after 'site'",
+      "Change h1 to h2"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "html-tags",
+    "explanation": "Every opening tag (except void elements) needs a corresponding closing tag. Add </h1> to close the heading."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix this attempt to create a line break:",
+    "code": "<p>First line\nSecond line</p>\n<!-- Bug: newline in code doesn't create visible line break -->",
+    "options": [
+      "Use <br> between the lines",
+      "Add more spaces",
+      "Use <hr> instead",
+      "Remove the paragraph tags"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "void-elements",
+    "explanation": "Newlines in HTML code don't create visible line breaks. Use the <br> tag: 'First line<br>Second line'"
+  }
 ]

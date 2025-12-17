@@ -1,11 +1,26 @@
+import { supabase } from '../lib/supabase'
+
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000/api'
+
+let cachedSession = null;
+let lastSessionFetch = 0;
+const SESSION_CACHE_TTL = 30000; // 30 seconds
 
 async function fetchAPI(endpoint, options = {}) {
   const url = `${API_BASE}${endpoint}`
 
+  // Get current session for auth token with 30s caching
+  const now = Date.now();
+  if (!cachedSession || (now - lastSessionFetch > SESSION_CACHE_TTL)) {
+    const { data: { session } } = await supabase.auth.getSession()
+    cachedSession = session;
+    lastSessionFetch = now;
+  }
+
   const config = {
     headers: {
       'Content-Type': 'application/json',
+      ...(cachedSession?.access_token && { 'Authorization': `Bearer ${cachedSession.access_token}` }),
       ...options.headers,
     },
     ...options,

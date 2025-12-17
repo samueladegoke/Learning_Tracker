@@ -223,7 +223,7 @@ except Exception as e:
                         </div>
                         <div className="w-full h-px bg-surface-700/50"></div>
                         <div>
-                            <h4 className="font-medium text-primary-400 text-sm uppercase tracking-wider mb-1">Explicit > Implicit</h4>
+                            <h4 className="font-medium text-primary-400 text-sm uppercase tracking-wider mb-1">Explicit {'>'} Implicit</h4>
                             <p className="text-sm text-surface-400">
                                 Prefer <code>WebDriverWait</code> over implicit waits—it's more precise and flexible.
                             </p>

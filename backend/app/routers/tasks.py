@@ -1,4 +1,4 @@
-from datetime import datetime, date
+from datetime import datetime
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session, joinedload
 
@@ -9,7 +9,6 @@ from ..models import (
     User,
     UserQuest,
     UserChallenge,
-    Challenge,
     Badge,
     UserBadge,
     Week,
@@ -17,22 +16,16 @@ from ..models import (
     UserAchievement,
 )
 from ..schemas import TaskResponse, TaskCompletionResult
+from ..auth import get_current_user
+from ..utils.gamification import (
+    level_from_xp,
+    refresh_focus_points,
+    update_streak,
+)
+
 
 router = APIRouter()
 
-# =============================================================================
-# SECURITY NOTE: Single-User MVP Mode
-# =============================================================================
-# This application currently operates in single-user mode without authentication.
-# All API endpoints use a hardcoded user ID. This is intentional for the MVP phase.
-#
-# BEFORE PRODUCTION DEPLOYMENT:
-# 1. Implement proper authentication (e.g., Supabase Auth, JWT)
-# 2. Replace DEFAULT_USER_ID with authenticated user from request context
-# 3. Add authorization checks for user-owned resources
-# 4. See docs/architecture.md for auth implementation guidance
-# =============================================================================
-DEFAULT_USER_ID = 1  # TODO: Replace with authenticated user ID from auth middleware
 FOCUS_CAP = 5
 DIFFICULTY_MULTIPLIER = {
     "trivial": 0.5,
@@ -54,20 +47,13 @@ REWARD_MULTIPLIER = {
 }
 
 
-# Import shared gamification utilities (consolidated to avoid duplication)
-from ..utils.gamification import (
-    level_from_xp,
-    xp_for_next_level as xp_needed_for_level,
-    refresh_focus_points,
-    update_streak,
-)
 
 
-def active_user_quest(db: Session) -> UserQuest | None:
+def active_user_quest(db: Session, user_id: int) -> UserQuest | None:
     return (
         db.query(UserQuest)
         .options(joinedload(UserQuest.quest))
-        .filter(UserQuest.user_id == DEFAULT_USER_ID, UserQuest.completed_at.is_(None))
+        .filter(UserQuest.user_id == user_id, UserQuest.completed_at.is_(None))
         .first()
     )
 
@@ -88,13 +74,13 @@ def apply_quest_damage(db: Session, user_quest: UserQuest, damage: int) -> tuple
     return new_hp, boss_defeated
 
 
-def apply_challenge_progress(db: Session) -> list[dict]:
+def apply_challenge_progress(db: Session, user_id: int) -> list[dict]:
     """Increment progress for all active challenges; return progress snapshots."""
     updates = []
     active = (
         db.query(UserChallenge)
         .options(joinedload(UserChallenge.challenge))
-        .filter(UserChallenge.user_id == DEFAULT_USER_ID)
+        .filter(UserChallenge.user_id == user_id)
         .all()
     )
     for uc in active:
@@ -160,7 +146,7 @@ def check_week_completion(db: Session, week_id: int, user_id: int) -> bool:
         .filter(
             Task.week_id == week_id,
             UserTaskStatus.user_id == user_id,
-            UserTaskStatus.completed == True,
+            UserTaskStatus.completed,
         )
         .count()
     )
@@ -171,7 +157,7 @@ def check_all_weeks_completed(db: Session, user_id: int) -> bool:
     tasks_total = db.query(Task).count()
     tasks_completed = (
         db.query(UserTaskStatus)
-        .filter(UserTaskStatus.user_id == user_id, UserTaskStatus.completed == True)
+        .filter(UserTaskStatus.user_id == user_id, UserTaskStatus.completed)
         .count()
     )
     return tasks_total > 0 and tasks_completed == tasks_total
@@ -180,27 +166,26 @@ def check_all_weeks_completed(db: Session, user_id: int) -> bool:
 def total_tasks_completed(db: Session, user_id: int) -> int:
     return (
         db.query(UserTaskStatus)
-        .filter(UserTaskStatus.user_id == user_id, UserTaskStatus.completed == True)
+        .filter(UserTaskStatus.user_id == user_id, UserTaskStatus.completed)
         .count()
     )
 
 
 @router.post("/{task_id}/complete", response_model=TaskCompletionResult)
-def complete_task(task_id: str, db: Session = Depends(get_db)):
+def complete_task(task_id: str, user: User = Depends(get_current_user), db: Session = Depends(get_db)):
     """Mark a task as completed. Adds XP to user."""
     # Find task by task_id string (e.g., "w1-d1")
     task = db.query(Task).filter(Task.task_id == task_id).first()
-    
+
     if not task:
         raise HTTPException(status_code=404, detail="Task not found")
-    
-    user = db.query(User).filter(User.id == DEFAULT_USER_ID).first()
+
     # Get or create UserTaskStatus
     status = db.query(UserTaskStatus).filter(
         UserTaskStatus.task_id == task.id,
-        UserTaskStatus.user_id == DEFAULT_USER_ID
+        UserTaskStatus.user_id == user.id
     ).first()
-    
+
     if status and status.completed:
         # Already completed, just return current state with zero deltas
         new_level = level_from_xp(user.xp) if user else 1
@@ -227,23 +212,18 @@ def complete_task(task_id: str, db: Session = Depends(get_db)):
             streak=streak,
             focus_points=focus_points,
         )
-    
+
     if not status:
         status = UserTaskStatus(
-            user_id=DEFAULT_USER_ID,
+            user_id=user.id,
             task_id=task.id,
             completed=False
         )
         db.add(status)
-    
+
     # Mark as completed
     status.completed = True
     status.completed_at = datetime.utcnow()
-    
-    # Add XP/gold to user with RPG deltas
-    user = db.query(User).filter(User.id == DEFAULT_USER_ID).first()
-    if not user:
-        raise HTTPException(status_code=404, detail="User not found")
 
     refresh_focus_points(user)
     update_streak(user)
@@ -266,7 +246,7 @@ def complete_task(task_id: str, db: Session = Depends(get_db)):
     user.focus_points = min(FOCUS_CAP, (user.focus_points or 0) + 1)
 
     # Apply quest damage if an active quest exists
-    quest = active_user_quest(db)
+    quest = active_user_quest(db, user.id)
     boss_damage = xp_gained
     boss_hp_remaining = None
     boss_defeated = False
@@ -278,62 +258,62 @@ def complete_task(task_id: str, db: Session = Depends(get_db)):
         level_up = user.level > level_before
 
     # Advance challenges
-    challenge_updates = apply_challenge_progress(db)
+    challenge_updates = apply_challenge_progress(db, user.id)
 
     # Award badges: streak thresholds
     if user.streak in STREAK_BADGES:
-        awarded, bonus_xp, bonus_gold = award_badge(db, DEFAULT_USER_ID, STREAK_BADGES[user.streak])
+        awarded, bonus_xp, bonus_gold = award_badge(db, user.id, STREAK_BADGES[user.streak])
         if awarded:
             xp_bonus_total += bonus_xp
             gold_bonus_total += bonus_gold
             badges_unlocked.append(STREAK_BADGES[user.streak])
 
     # Award week completion badge
-    if check_week_completion(db, task.week_id, DEFAULT_USER_ID):
+    if check_week_completion(db, task.week_id, user.id):
         week = db.query(Week).filter(Week.id == task.week_id).first()
         if week:
             badge_code = f"b-week-{week.week_number}"
-            awarded, bonus_xp, bonus_gold = award_badge(db, DEFAULT_USER_ID, badge_code)
+            awarded, bonus_xp, bonus_gold = award_badge(db, user.id, badge_code)
             if awarded:
                 xp_bonus_total += bonus_xp
                 gold_bonus_total += bonus_gold
                 badges_unlocked.append(badge_code)
 
     # Award bootcamp finisher
-    if check_all_weeks_completed(db, DEFAULT_USER_ID):
-        awarded, bonus_xp, bonus_gold = award_badge(db, DEFAULT_USER_ID, "b-bootcamp-finish")
+    if check_all_weeks_completed(db, user.id):
+        awarded, bonus_xp, bonus_gold = award_badge(db, user.id, "b-bootcamp-finish")
         if awarded:
             xp_bonus_total += bonus_xp
             gold_bonus_total += bonus_gold
             badges_unlocked.append("b-bootcamp-finish")
-        awarded_ach, ach_xp, ach_gold = award_achievement(db, DEFAULT_USER_ID, "a-all-weeks")
+        awarded_ach, ach_xp, ach_gold = award_achievement(db, user.id, "a-all-weeks")
         if awarded_ach:
             xp_bonus_total += ach_xp
             gold_bonus_total += ach_gold
             achievements_unlocked.append("a-all-weeks")
 
     # Task count achievements
-    tasks_done = total_tasks_completed(db, DEFAULT_USER_ID)
+    tasks_done = total_tasks_completed(db, user.id)
     if tasks_done >= 1:
-        awarded, ach_xp, ach_gold = award_achievement(db, DEFAULT_USER_ID, "a-first-task")
+        awarded, ach_xp, ach_gold = award_achievement(db, user.id, "a-first-task")
         if awarded:
             xp_bonus_total += ach_xp
             gold_bonus_total += ach_gold
             achievements_unlocked.append("a-first-task")
     if tasks_done >= 10:
-        awarded, ach_xp, ach_gold = award_achievement(db, DEFAULT_USER_ID, "a-ten-tasks")
+        awarded, ach_xp, ach_gold = award_achievement(db, user.id, "a-ten-tasks")
         if awarded:
             xp_bonus_total += ach_xp
             gold_bonus_total += ach_gold
             achievements_unlocked.append("a-ten-tasks")
     if tasks_done >= 50:
-        awarded, ach_xp, ach_gold = award_achievement(db, DEFAULT_USER_ID, "a-fifty-tasks")
+        awarded, ach_xp, ach_gold = award_achievement(db, user.id, "a-fifty-tasks")
         if awarded:
             xp_bonus_total += ach_xp
             gold_bonus_total += ach_gold
             achievements_unlocked.append("a-fifty-tasks")
     if tasks_done >= 100:
-        awarded, ach_xp, ach_gold = award_achievement(db, DEFAULT_USER_ID, "a-hundred-tasks")
+        awarded, ach_xp, ach_gold = award_achievement(db, user.id, "a-hundred-tasks")
         if awarded:
             xp_bonus_total += ach_xp
             gold_bonus_total += ach_gold
@@ -341,20 +321,20 @@ def complete_task(task_id: str, db: Session = Depends(get_db)):
 
     # Award quest badge and assign next quest
     if boss_defeated and quest and quest.quest and quest.quest.reward_badge_id:
-        awarded, bonus_xp, bonus_gold = award_badge(db, DEFAULT_USER_ID, quest.quest.reward_badge_id)
+        awarded, bonus_xp, bonus_gold = award_badge(db, user.id, quest.quest.reward_badge_id)
         if awarded:
             xp_bonus_total += bonus_xp
             gold_bonus_total += bonus_gold
             badges_unlocked.append(quest.quest.reward_badge_id)
-        awarded_ach, ach_xp, ach_gold = award_achievement(db, DEFAULT_USER_ID, "a-boss-first")
+        awarded_ach, ach_xp, ach_gold = award_achievement(db, user.id, "a-boss-first")
         if awarded_ach:
             xp_bonus_total += ach_xp
             gold_bonus_total += ach_gold
             achievements_unlocked.append("a-boss-first")
-        
+
         # Auto-assign next quest
         from ..utils.quest_manager import assign_next_quest
-        assign_next_quest(db, DEFAULT_USER_ID)
+        assign_next_quest(db, user.id)
 
     # Award challenge badges
     for update in challenge_updates:
@@ -362,11 +342,11 @@ def complete_task(task_id: str, db: Session = Depends(get_db)):
             uc = (
                 db.query(UserChallenge)
                 .options(joinedload(UserChallenge.challenge))
-                .filter(UserChallenge.user_id == DEFAULT_USER_ID, UserChallenge.challenge_id == update["challenge_id"])
+                .filter(UserChallenge.user_id == user.id, UserChallenge.challenge_id == update["challenge_id"])
                 .first()
             )
             if uc and uc.challenge and uc.challenge.reward_badge_id:
-                awarded, bonus_xp, bonus_gold = award_badge(db, DEFAULT_USER_ID, uc.challenge.reward_badge_id)
+                awarded, bonus_xp, bonus_gold = award_badge(db, user.id, uc.challenge.reward_badge_id)
                 if awarded:
                     xp_bonus_total += bonus_xp
                     gold_bonus_total += bonus_gold
@@ -413,44 +393,42 @@ def complete_task(task_id: str, db: Session = Depends(get_db)):
 
 
 @router.post("/{task_id}/uncomplete", response_model=TaskCompletionResult)
-def uncomplete_task(task_id: str, db: Session = Depends(get_db)):
+def uncomplete_task(task_id: str, user: User = Depends(get_current_user), db: Session = Depends(get_db)):
     """Unmark a task as completed. Removes XP from user."""
     # Find task by task_id string
     task = db.query(Task).filter(Task.task_id == task_id).first()
-    
+
     if not task:
         raise HTTPException(status_code=404, detail="Task not found")
-    
+
     # Get UserTaskStatus
     status = db.query(UserTaskStatus).filter(
         UserTaskStatus.task_id == task.id,
-        UserTaskStatus.user_id == DEFAULT_USER_ID
+        UserTaskStatus.user_id == user.id
     ).first()
-    
+
     xp_gained = 0
     gold_gained = 0
     level_up = False
-    user = db.query(User).filter(User.id == DEFAULT_USER_ID).first()
 
     if status and status.completed:
         # Remove XP from user
-        if user:
-            difficulty_multiplier = DIFFICULTY_MULTIPLIER.get(task.difficulty or "normal", 1.0)
-            xp_delta = int(task.xp_reward * difficulty_multiplier)
-            gold_delta = xp_delta // 10
-            user.xp = max(0, user.xp - xp_delta)
-            user.gold = max(0, user.gold - gold_delta)
-            new_level = level_from_xp(user.xp)
-            level_up = new_level > user.level
-            user.level = new_level
-            xp_gained = -xp_delta
-            gold_gained = -gold_delta
-        
+        difficulty_multiplier = DIFFICULTY_MULTIPLIER.get(task.difficulty or "normal", 1.0)
+        xp_delta = int(task.xp_reward * difficulty_multiplier)
+        gold_delta = xp_delta // 10
+        user.xp = max(0, user.xp - xp_delta)
+        user.gold = max(0, user.gold - gold_delta)
+        new_level = level_from_xp(user.xp)
+        level_up = new_level > user.level
+        user.level = new_level
+        xp_gained = -xp_delta
+        gold_gained = -gold_delta
+
         # Mark as incomplete
         status.completed = False
         status.completed_at = None
         db.commit()
-    
+
     return TaskCompletionResult(
         id=task.id,
         task_id=task.task_id,
@@ -468,9 +446,9 @@ def uncomplete_task(task_id: str, db: Session = Depends(get_db)):
         xp_gained=xp_gained,
         gold_gained=gold_gained,
         level_up=level_up,
-        new_level=level_from_xp(user.xp) if user else 1,
-        streak=user.streak if user else 0,
-        focus_points=user.focus_points if user else 0,
+        new_level=level_from_xp(user.xp),
+        streak=user.streak,
+        focus_points=user.focus_points,
         boss_damage=0,
         boss_hp_remaining=None,
         challenge_updates=[],
@@ -478,18 +456,18 @@ def uncomplete_task(task_id: str, db: Session = Depends(get_db)):
 
 
 @router.get("/{task_id}", response_model=TaskResponse)
-def get_task(task_id: str, db: Session = Depends(get_db)):
+def get_task(task_id: str, user: User = Depends(get_current_user), db: Session = Depends(get_db)):
     """Get a specific task by its task_id."""
     task = db.query(Task).filter(Task.task_id == task_id).first()
-    
+
     if not task:
         raise HTTPException(status_code=404, detail="Task not found")
-    
+
     status = db.query(UserTaskStatus).filter(
         UserTaskStatus.task_id == task.id,
-        UserTaskStatus.user_id == DEFAULT_USER_ID
+        UserTaskStatus.user_id == user.id
     ).first()
-    
+
     return {
         "id": task.id,
         "task_id": task.task_id,
@@ -505,4 +483,3 @@ def get_task(task_id: str, db: Session = Depends(get_db)):
         "completed": status.completed if status else False,
         "completed_at": status.completed_at if status else None
     }
-

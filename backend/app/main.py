@@ -45,7 +45,7 @@ def get_allowed_origins():
     """
     origins_str = os.getenv("ALLOWED_ORIGINS", DEFAULT_ORIGINS)
     origins = [origin.strip() for origin in origins_str.split(",")]
-    
+
     # Filter out empty strings and validate basic URL structure
     valid_origins = []
     for origin in origins:
@@ -57,7 +57,7 @@ def get_allowed_origins():
         else:
             # Log warning for invalid origins (only in development)
             logger.warning(f"[CORS] Invalid origin ignored: {origin}")
-    
+
     return valid_origins if valid_origins else ["http://localhost:5173"]
 
 ALLOWED_ORIGINS = get_allowed_origins()

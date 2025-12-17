@@ -61,7 +61,7 @@ def refresh_focus_points(user, focus_cap: int = FOCUS_CAP) -> None:
     """
     Refresh focus points once per day.
     Modifies the user object in place.
-    
+
     Args:
         user: User model instance with focus_points and focus_refreshed_at attributes
         focus_cap: Maximum focus points (default: 5)
@@ -79,11 +79,11 @@ def update_streak(user) -> None:
     """
     Update user streak based on last_checkin_at.
     Modifies the user object in place.
-    
+
     - If last check-in was yesterday: increment streak
     - If last check-in was today: no change
     - Otherwise: reset streak to 1
-    
+
     Args:
         user: User model instance with streak, best_streak, and last_checkin_at attributes
     """
@@ -108,13 +108,13 @@ def check_penalty(user) -> None:
     Check if user missed a day and apply penalty.
     Uses streak freeze if available, otherwise deducts hearts.
     Modifies the user object in place.
-    
+
     Args:
         user: User model instance with hearts, streak, streak_freeze_count,
               last_checkin_at, and last_heart_loss attributes
     """
     today = date.today()
-    
+
     # If never checked in, no penalty yet (grace period)
     if not user.last_checkin_at:
         return

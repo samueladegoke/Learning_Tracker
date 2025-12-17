@@ -1,355 +1,360 @@
 [
-    {
-        "question_type": "mcq",
-        "text": "What is the purpose of the Day 50 Selenium project?",
-        "options": [
-            "Building a dating algorithm",
-            "Automating profile browsing and interactions on a dating app",
-            "Creating fake profiles",
-            "Analyzing match data"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "automation",
-        "explanation": "Day 50 builds a bot that automates login and interactions on a dating app using Selenium."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you handle a pop-up modal that blocks interaction?",
-        "options": [
-            "Ignore it",
-            "Find and click the dismiss/close button",
-            "Refresh the page",
-            "Close the browser"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "selenium",
-        "explanation": "Pop-ups and modals need to be dismissed by finding and clicking their close button or overlay."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is an iframe?",
-        "options": [
-            "A Python framework",
-            "An HTML element that embeds another HTML document",
-            "A type of popup",
-            "A Selenium method"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "iframes",
-        "explanation": "An iframe is an HTML element that embeds a separate HTML document within the current page."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you switch to an iframe in Selenium?",
-        "options": [
-            "driver.get_frame()",
-            "driver.switch_to.frame(element_or_index)",
-            "driver.iframe()",
-            "driver.select_frame()"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "iframes",
-        "explanation": "Use driver.switch_to.frame() with the iframe element, name, or index to access its contents."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you switch back from an iframe to the main page?",
-        "options": [
-            "driver.back()",
-            "driver.switch_to.default_content()",
-            "driver.main_page()",
-            "driver.parent_frame()"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "iframes",
-        "explanation": "switch_to.default_content() returns control to the main document after working in an iframe."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does OAuth mean when logging in with Facebook/Google?",
-        "options": [
-            "Open Authentication - letting third-party apps access your account",
-            "Online Authorization Token",
-            "Original Authentication",
-            "Open Access"
-        ],
-        "correct_index": 0,
-        "difficulty": "medium",
-        "topic_tag": "oauth",
-        "explanation": "OAuth allows users to grant apps access to their data on other services without sharing passwords."
-    },
-    {
-        "question_type": "mcq",
-        "text": "When logging in via Facebook popup, what must you do first?",
-        "options": [
-            "Close the main window",
-            "Switch to the popup window using window_handles",
-            "Refresh the page",
-            "Clear cookies"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "windows",
-        "explanation": "OAuth popups open in new windows. You must switch_to.window(handle) before interacting."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you get the handle of the current window?",
-        "options": [
-            "driver.handle",
-            "driver.current_window_handle",
-            "driver.window_id",
-            "driver.get_handle()"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "windows",
-        "explanation": "current_window_handle returns the handle of the currently focused window."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What's the best way to handle location permission popups in Selenium?",
-        "options": [
-            "Click 'Allow' automatically",
-            "Use ChromeOptions to disable geolocation prompts",
-            "Close the popup manually",
-            "Ignore it"
-        ],
-        "correct_index": 1,
-        "difficulty": "hard",
-        "topic_tag": "selenium",
-        "explanation": "Set Chrome preferences to automatically handle or block geolocation prompts."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you disable notifications in Chrome with Selenium?",
-        "options": [
-            "driver.disable_notifications()",
-            "options.add_experimental_option('prefs', {'profile.default_content_setting_values.notifications': 2})",
-            "options.set('notifications', False)",
-            "ChromeOptions.no_notifications()"
-        ],
-        "correct_index": 1,
-        "difficulty": "hard",
-        "topic_tag": "selenium",
-        "explanation": "Use add_experimental_option with prefs to set notification blocking preference (2 = block)."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the purpose of time.sleep() between actions in the bot?",
-        "options": [
-            "Required by Selenium",
-            "Mimics human behavior and avoids rate limiting",
-            "Makes the bot faster",
-            "Prevents crashes"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "automation",
-        "explanation": "Adding delays between actions makes the bot appear more human-like and helps avoid detection."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you find elements by their aria-label attribute?",
-        "options": [
-            "driver.find_element(By.ARIA, 'like')",
-            "driver.find_element(By.CSS_SELECTOR, '[aria-label=\"like\"]')",
-            "driver.find_element(By.LABEL, 'like')",
-            "driver.find_element_by_aria('like')"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "locators",
-        "explanation": "Use CSS attribute selector: [aria-label=\"value\"] to find elements by aria-label."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What exception might occur when trying to click a covered element?",
-        "options": [
-            "ElementNotVisibleException",
-            "ElementClickInterceptedException",
-            "ClickBlockedException",
-            "ElementHiddenException"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "exceptions",
-        "explanation": "ElementClickInterceptedException occurs when another element overlays the target element."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How can you handle match pop-ups that appear randomly?",
-        "options": [
-            "Ignore them",
-            "Use try/except to dismiss if present",
-            "Refresh the page",
-            "Close the browser"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "exceptions",
-        "explanation": "Wrap popup handling in try/except blocks to handle their random appearance gracefully."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is Action Chains used for in Selenium?",
-        "options": [
-            "Running multiple browsers",
-            "Complex mouse/keyboard actions like hover, drag, key combos",
-            "Chaining web requests",
-            "Connecting to APIs"
-        ],
-        "correct_index": 1,
-        "difficulty": "hard",
-        "topic_tag": "selenium",
-        "explanation": "ActionChains enables complex interactions like hover, drag-and-drop, and keyboard combinations."
-    },
-    {
-        "question_type": "coding",
-        "text": "Switch to Popup\nSwitch to a popup window and return its title",
-        "starter_code": "def get_popup_title(driver):\n    # Get all window handles\n    # Switch to the new popup (not the original)\n    # Return the title\n    pass",
-        "test_cases": [
-            {
-                "function_call": "type(get_popup_title(mock_driver))",
-                "expected": "<class 'str'>"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "windows",
-        "solution_code": "def get_popup_title(driver):\n    original = driver.current_window_handle\n    for handle in driver.window_handles:\n        if handle != original:\n            driver.switch_to.window(handle)\n            return driver.title\n    return None"
-    },
-    {
-        "question_type": "coding",
-        "text": "Dismiss Modal\nFind and click a dismiss button to close a modal",
-        "starter_code": "def dismiss_modal(driver):\n    from selenium.webdriver.common.by import By\n    # Try to find and click 'No Thanks' or 'Close' button\n    # Return True if dismissed, False if no modal\n    pass",
-        "test_cases": [
-            {
-                "function_call": "type(dismiss_modal(mock_driver))",
-                "expected": "<class 'bool'>"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "selenium",
-        "solution_code": "def dismiss_modal(driver):\n    from selenium.webdriver.common.by import By\n    try:\n        btn = driver.find_element(By.XPATH, '//button[contains(text(), \"No Thanks\") or contains(text(), \"Close\")]')\n        btn.click()\n        return True\n    except:\n        return False"
-    },
-    {
-        "question_type": "coding",
-        "text": "Handle Random Popup\nSafely try to dismiss a popup if it exists",
-        "starter_code": "def safe_dismiss(driver, button_xpath):\n    from selenium.webdriver.common.by import By\n    from selenium.common.exceptions import NoSuchElementException\n    # Try to click button, return True if clicked, False otherwise\n    pass",
-        "test_cases": [
-            {
-                "function_call": "safe_dismiss(mock_driver, '//button') in [True, False]",
-                "expected": "True"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "exceptions",
-        "solution_code": "def safe_dismiss(driver, button_xpath):\n    from selenium.webdriver.common.by import By\n    from selenium.common.exceptions import NoSuchElementException\n    try:\n        button = driver.find_element(By.XPATH, button_xpath)\n        button.click()\n        return True\n    except NoSuchElementException:\n        return False"
-    },
-    {
-        "question_type": "coding",
-        "text": "Swipe Loop\nPerform multiple swipe actions with delay",
-        "starter_code": "def swipe_loop(driver, like_button_locator, count=10):\n    import time\n    from selenium.webdriver.common.by import By\n    # Click the like button 'count' times with 1 second delay\n    pass",
-        "test_cases": [
-            {
-                "function_call": "swipe_loop(mock_driver, ('id', 'like'), 5)",
-                "expected": "None"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "automation",
-        "solution_code": "def swipe_loop(driver, like_button_locator, count=10):\n    import time\n    from selenium.webdriver.common.by import By\n    for _ in range(count):\n        try:\n            button = driver.find_element(like_button_locator[0], like_button_locator[1])\n            button.click()\n            time.sleep(1)\n        except:\n            pass"
-    },
-    {
-        "question_type": "coding",
-        "text": "Switch to IFrame\nSwitch to an iframe by its name",
-        "starter_code": "def enter_iframe(driver, frame_name):\n    # Switch to iframe with given name\n    # Return True if successful, False otherwise\n    pass",
-        "test_cases": [
-            {
-                "function_call": "enter_iframe(mock_driver, 'login-frame') in [True, False]",
-                "expected": "True"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "iframes",
-        "solution_code": "def enter_iframe(driver, frame_name):\n    try:\n        driver.switch_to.frame(frame_name)\n        return True\n    except:\n        return False"
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the popup window switch:",
-        "code": "driver.click('#login-facebook')\ndriver.find_element(By.ID, 'email').send_keys('test')\n# Element not found - click opened a popup",
-        "options": [
-            "Switch to the popup window first using window_handles",
-            "Wait longer for the element",
-            "Use a different locator",
-            "Close the popup"
-        ],
-        "correct_index": 0,
-        "difficulty": "medium",
-        "topic_tag": "windows",
-        "explanation": "When a popup opens, you must switch to it before interacting with its elements."
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the iframe element access:",
-        "code": "driver.get(url)  # Page has an iframe\nelement = driver.find_element(By.ID, 'input-in-iframe')\n# NoSuchElementException",
-        "options": [
-            "Switch to the iframe first with switch_to.frame()",
-            "Use XPath instead",
-            "Add a wait",
-            "Use JavaScript"
-        ],
-        "correct_index": 0,
-        "difficulty": "medium",
-        "topic_tag": "iframes",
-        "explanation": "Elements inside iframes are not accessible until you switch into the iframe."
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the click intercepted error:",
-        "code": "like_button.click()\n# ElementClickInterceptedException: element click intercepted\n# another element would receive the click",
-        "options": [
-            "Wait for overlay to disappear or dismiss it first",
-            "Use find_element again",
-            "Refresh the page",
-            "Use a different browser"
-        ],
-        "correct_index": 0,
-        "difficulty": "medium",
-        "topic_tag": "exceptions",
-        "explanation": "An overlay (popup, modal, cookie banner) is blocking. Dismiss it or wait for it to disappear."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Why should you use environment variables for login credentials?",
-        "options": [
-            "Makes the code run faster",
-            "Keeps passwords out of source code",
-            "Required by Selenium",
-            "Makes debugging easier"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "security",
-        "explanation": "Environment variables keep sensitive data like passwords out of your code and version control."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What ethical considerations apply to automation bots?",
-        "options": [
-            "None, bots are always fine",
-            "Check Terms of Service, don't spam, respect rate limits",
-            "Only legal concerns matter",
-            "Ethics don't apply to learning projects"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "ethics",
-        "explanation": "Always check ToS, avoid spam/abuse, and respect the platform's rate limits and other users."
-    }
+  {
+    "question_type": "mcq",
+    "text": "What is the purpose of the Day 50 Selenium project?",
+    "options": [
+      "Building a dating algorithm",
+      "Automating profile browsing and interactions on a dating app",
+      "Creating fake profiles",
+      "Analyzing match data"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "automation",
+    "explanation": "Day 50 builds a bot that automates login and interactions on a dating app using Selenium."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you handle a pop-up modal that blocks interaction?",
+    "options": [
+      "Ignore it",
+      "Find and click the dismiss/close button",
+      "Refresh the page",
+      "Close the browser"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "selenium",
+    "explanation": "Pop-ups and modals need to be dismissed by finding and clicking their close button or overlay."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is an iframe?",
+    "options": [
+      "A Python framework",
+      "An HTML element that embeds another HTML document",
+      "A type of popup",
+      "A Selenium method"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "iframes",
+    "explanation": "An iframe is an HTML element that embeds a separate HTML document within the current page."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you switch to an iframe in Selenium?",
+    "options": [
+      "driver.get_frame()",
+      "driver.switch_to.frame(element_or_index)",
+      "driver.iframe()",
+      "driver.select_frame()"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "iframes",
+    "explanation": "Use driver.switch_to.frame() with the iframe element, name, or index to access its contents."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you switch back from an iframe to the main page?",
+    "options": [
+      "driver.back()",
+      "driver.switch_to.default_content()",
+      "driver.main_page()",
+      "driver.parent_frame()"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "iframes",
+    "explanation": "switch_to.default_content() returns control to the main document after working in an iframe."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does OAuth mean when logging in with Facebook/Google?",
+    "options": [
+      "Open Authentication - letting third-party apps access your account",
+      "Online Authorization Token",
+      "Original Authentication",
+      "Open Access"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "oauth",
+    "explanation": "OAuth allows users to grant apps access to their data on other services without sharing passwords."
+  },
+  {
+    "question_type": "mcq",
+    "text": "When logging in via Facebook popup, what must you do first?",
+    "options": [
+      "Close the main window",
+      "Switch to the popup window using window_handles",
+      "Refresh the page",
+      "Clear cookies"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "windows",
+    "explanation": "OAuth popups open in new windows. You must switch_to.window(handle) before interacting."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you get the handle of the current window?",
+    "options": [
+      "driver.handle",
+      "driver.current_window_handle",
+      "driver.window_id",
+      "driver.get_handle()"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "windows",
+    "explanation": "current_window_handle returns the handle of the currently focused window."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What's the best way to handle location permission popups in Selenium?",
+    "options": [
+      "Click 'Allow' automatically",
+      "Use ChromeOptions to disable geolocation prompts",
+      "Close the popup manually",
+      "Ignore it"
+    ],
+    "correct_index": 1,
+    "difficulty": "hard",
+    "topic_tag": "selenium",
+    "explanation": "Set Chrome preferences to automatically handle or block geolocation prompts."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you disable notifications in Chrome with Selenium?",
+    "options": [
+      "driver.disable_notifications()",
+      "options.add_experimental_option('prefs', {'profile.default_content_setting_values.notifications': 2})",
+      "options.set('notifications', False)",
+      "ChromeOptions.no_notifications()"
+    ],
+    "correct_index": 1,
+    "difficulty": "hard",
+    "topic_tag": "selenium",
+    "explanation": "Use add_experimental_option with prefs to set notification blocking preference (2 = block)."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the purpose of time.sleep() between actions in the bot?",
+    "options": [
+      "Required by Selenium",
+      "Mimics human behavior and avoids rate limiting",
+      "Makes the bot faster",
+      "Prevents crashes"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "automation",
+    "explanation": "Adding delays between actions makes the bot appear more human-like and helps avoid detection."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you find elements by their aria-label attribute?",
+    "options": [
+      "driver.find_element(By.ARIA, 'like')",
+      "driver.find_element(By.CSS_SELECTOR, '[aria-label=\"like\"]')",
+      "driver.find_element(By.LABEL, 'like')",
+      "driver.find_element_by_aria('like')"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "locators",
+    "explanation": "Use CSS attribute selector: [aria-label=\"value\"] to find elements by aria-label."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What exception might occur when trying to click a covered element?",
+    "options": [
+      "ElementNotVisibleException",
+      "ElementClickInterceptedException",
+      "ClickBlockedException",
+      "ElementHiddenException"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "exceptions",
+    "explanation": "ElementClickInterceptedException occurs when another element overlays the target element."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How can you handle match pop-ups that appear randomly?",
+    "options": [
+      "Ignore them",
+      "Use try/except to dismiss if present",
+      "Refresh the page",
+      "Close the browser"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "exceptions",
+    "explanation": "Wrap popup handling in try/except blocks to handle their random appearance gracefully."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is Action Chains used for in Selenium?",
+    "options": [
+      "Running multiple browsers",
+      "Complex mouse/keyboard actions like hover, drag, key combos",
+      "Chaining web requests",
+      "Connecting to APIs"
+    ],
+    "correct_index": 1,
+    "difficulty": "hard",
+    "topic_tag": "selenium",
+    "explanation": "ActionChains enables complex interactions like hover, drag-and-drop, and keyboard combinations."
+  },
+  {
+    "question_type": "coding",
+    "text": "Switch to Popup\nSwitch to a popup window and return its title",
+    "starter_code": "def get_popup_title(driver):\n    # Get all window handles\n    # Switch to the new popup (not the original)\n    # Return the title\n    pass",
+    "test_cases": [
+      {
+        "function_call": "type(get_popup_title(mock_driver))",
+        "expected": "<class 'str'>"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "windows",
+    "solution_code": "def get_popup_title(driver):\n    original = driver.current_window_handle\n    for handle in driver.window_handles:\n        if handle != original:\n            driver.switch_to.window(handle)\n            return driver.title\n    return None",
+    "explanation": "Use the 'in' keyword to check membership. It returns True if the item exists in the collection."
+  },
+  {
+    "question_type": "coding",
+    "text": "Dismiss Modal\nFind and click a dismiss button to close a modal",
+    "starter_code": "def dismiss_modal(driver):\n    from selenium.webdriver.common.by import By\n    # Try to find and click 'No Thanks' or 'Close' button\n    # Return True if dismissed, False if no modal\n    pass",
+    "test_cases": [
+      {
+        "function_call": "type(dismiss_modal(mock_driver))",
+        "expected": "<class 'bool'>"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "selenium",
+    "solution_code": "def dismiss_modal(driver):\n    from selenium.webdriver.common.by import By\n    try:\n        btn = driver.find_element(By.XPATH, '//button[contains(text(), \"No Thanks\") or contains(text(), \"Close\")]')\n        btn.click()\n        return True\n    except:\n        return False",
+    "explanation": "Use try/except to handle potential errors gracefully. Catch specific exceptions to handle different error cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Handle Random Popup\nSafely try to dismiss a popup if it exists",
+    "starter_code": "def safe_dismiss(driver, button_xpath):\n    from selenium.webdriver.common.by import By\n    from selenium.common.exceptions import NoSuchElementException\n    # Try to click button, return True if clicked, False otherwise\n    pass",
+    "test_cases": [
+      {
+        "function_call": "safe_dismiss(mock_driver, '//button') in [True, False]",
+        "expected": "True"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "exceptions",
+    "solution_code": "def safe_dismiss(driver, button_xpath):\n    from selenium.webdriver.common.by import By\n    from selenium.common.exceptions import NoSuchElementException\n    try:\n        button = driver.find_element(By.XPATH, button_xpath)\n        button.click()\n        return True\n    except NoSuchElementException:\n        return False",
+    "explanation": "Use try/except to handle potential errors gracefully. Catch specific exceptions to handle different error cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Swipe Loop\nPerform multiple swipe actions with delay",
+    "starter_code": "def swipe_loop(driver, like_button_locator, count=10):\n    import time\n    from selenium.webdriver.common.by import By\n    # Click the like button 'count' times with 1 second delay\n    pass",
+    "test_cases": [
+      {
+        "function_call": "swipe_loop(mock_driver, ('id', 'like'), 5)",
+        "expected": "None"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "automation",
+    "solution_code": "def swipe_loop(driver, like_button_locator, count=10):\n    import time\n    from selenium.webdriver.common.by import By\n    for _ in range(count):\n        try:\n            button = driver.find_element(like_button_locator[0], like_button_locator[1])\n            button.click()\n            time.sleep(1)\n        except:\n            pass",
+    "explanation": "Loop through each index using range(len(...)). Access elements by index to work with positions or make updates."
+  },
+  {
+    "question_type": "coding",
+    "text": "Switch to IFrame\nSwitch to an iframe by its name",
+    "starter_code": "def enter_iframe(driver, frame_name):\n    # Switch to iframe with given name\n    # Return True if successful, False otherwise\n    pass",
+    "test_cases": [
+      {
+        "function_call": "enter_iframe(mock_driver, 'login-frame') in [True, False]",
+        "expected": "True"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "iframes",
+    "solution_code": "def enter_iframe(driver, frame_name):\n    try:\n        driver.switch_to.frame(frame_name)\n        return True\n    except:\n        return False",
+    "explanation": "Check the condition and return immediately when it's met. Return a default value if the loop completes without finding a match."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the popup window switch:",
+    "code": "driver.click('#login-facebook')\ndriver.find_element(By.ID, 'email').send_keys('test')\n# Element not found - click opened a popup",
+    "options": [
+      "Switch to the popup window first using window_handles",
+      "Wait longer for the element",
+      "Use a different locator",
+      "Close the popup"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "windows",
+    "explanation": "When a popup opens, you must switch to it before interacting with its elements."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the iframe element access:",
+    "code": "driver.get(url)  # Page has an iframe\nelement = driver.find_element(By.ID, 'input-in-iframe')\n# NoSuchElementException",
+    "options": [
+      "Switch to the iframe first with switch_to.frame()",
+      "Use XPath instead",
+      "Add a wait",
+      "Use JavaScript"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "iframes",
+    "explanation": "Elements inside iframes are not accessible until you switch into the iframe."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the click intercepted error:",
+    "code": "like_button.click()\n# ElementClickInterceptedException: element click intercepted\n# another element would receive the click",
+    "options": [
+      "Wait for overlay to disappear or dismiss it first",
+      "Use find_element again",
+      "Refresh the page",
+      "Use a different browser"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "exceptions",
+    "explanation": "An overlay (popup, modal, cookie banner) is blocking. Dismiss it or wait for it to disappear."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Why should you use environment variables for login credentials?",
+    "options": [
+      "Makes the code run faster",
+      "Keeps passwords out of source code",
+      "Required by Selenium",
+      "Makes debugging easier"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "security",
+    "explanation": "Environment variables keep sensitive data like passwords out of your code and version control."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What ethical considerations apply to automation bots?",
+    "options": [
+      "None, bots are always fine",
+      "Check Terms of Service, don't spam, respect rate limits",
+      "Only legal concerns matter",
+      "Ethics don't apply to learning projects"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "ethics",
+    "explanation": "Always check ToS, avoid spam/abuse, and respect the platform's rate limits and other users."
+  }
 ]

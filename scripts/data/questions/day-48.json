@@ -1,355 +1,360 @@
 [
-    {
-        "question_type": "mcq",
-        "text": "What is Selenium WebDriver?",
-        "options": [
-            "A web browser",
-            "A tool for automating browser interactions",
-            "A Python IDE",
-            "A database driver"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "selenium",
-        "explanation": "Selenium WebDriver is a tool that automates browser interactions—clicking, typing, navigating—for testing and scraping."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Why use Selenium instead of Beautiful Soup?",
-        "options": [
-            "Selenium is faster",
-            "Selenium can execute JavaScript and interact with dynamic content",
-            "Beautiful Soup doesn't parse HTML",
-            "Selenium uses less memory"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "selenium",
-        "explanation": "Selenium runs a real browser, so it can handle JavaScript-rendered content that Beautiful Soup cannot see."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you initialize a Chrome browser in Selenium 4?",
-        "options": [
-            "driver = Chrome()",
-            "driver = webdriver.Chrome()",
-            "driver = selenium.Chrome()",
-            "driver = Browser('chrome')"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "selenium",
-        "explanation": "Use webdriver.Chrome() to create a Chrome browser instance. Selenium 4 handles the driver automatically."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does `driver.get(url)` do?",
-        "options": [
-            "Downloads a file",
-            "Navigates the browser to the specified URL",
-            "Gets the page source",
-            "Closes the browser"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "selenium",
-        "explanation": "driver.get(url) navigates the browser to the specified webpage, like typing a URL in the address bar."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the modern way to find elements in Selenium 4?",
-        "options": [
-            "driver.find_element_by_id('id')",
-            "driver.find_element(By.ID, 'id')",
-            "driver.get_element('id')",
-            "driver.select('#id')"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "selenium",
-        "explanation": "Selenium 4 uses find_element(By.LOCATOR, value). The old find_element_by_* methods are deprecated."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the difference between `find_element` and `find_elements`?",
-        "options": [
-            "find_element is faster",
-            "find_element returns first match, find_elements returns a list",
-            "find_elements only works with CSS",
-            "They are the same"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "selenium",
-        "explanation": "find_element returns the first matching element, find_elements returns a list of all matches."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Which locator is most reliable for finding elements?",
-        "options": [
-            "By.CLASS_NAME",
-            "By.ID",
-            "By.TAG_NAME",
-            "By.LINK_TEXT"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "locators",
-        "explanation": "ID is most reliable because IDs should be unique on a page. Classes and tags can match multiple elements."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is XPath?",
-        "options": [
-            "A file path format",
-            "A language for navigating XML/HTML documents",
-            "A Python module",
-            "A browser plugin"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "xpath",
-        "explanation": "XPath is a query language for selecting nodes from XML/HTML documents using path expressions."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does `//div[@class='item']` select in XPath?",
-        "options": [
-            "The first div with class 'item'",
-            "All div elements with class 'item' anywhere in the document",
-            "Only direct child divs",
-            "Divs without a class"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "xpath",
-        "explanation": "// selects from anywhere in the document. [@class='item'] filters for elements with that class."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you click a button in Selenium?",
-        "options": [
-            "button.press()",
-            "button.click()",
-            "driver.click(button)",
-            "button.submit()"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "selenium",
-        "explanation": "Use element.click() to simulate clicking on any clickable element."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you type text into an input field?",
-        "options": [
-            "input.type('text')",
-            "input.send_keys('text')",
-            "input.write('text')",
-            "driver.type(input, 'text')"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "selenium",
-        "explanation": "Use element.send_keys('text') to type text into input fields, text areas, or other editable elements."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does `driver.quit()` do?",
-        "options": [
-            "Minimizes the browser",
-            "Closes all browser windows and ends the WebDriver session",
-            "Closes the current tab only",
-            "Refreshes the page"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "selenium",
-        "explanation": "quit() closes all browser windows and properly terminates the WebDriver session."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the difference between `driver.close()` and `driver.quit()`?",
-        "options": [
-            "They are the same",
-            "close() closes current window, quit() closes all and ends session",
-            "quit() is slower",
-            "close() kills the process"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "selenium",
-        "explanation": "close() closes only the current window. quit() closes all windows and properly terminates WebDriver."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you get text from an element?",
-        "options": [
-            "element.text",
-            "element.getText()",
-            "element.value",
-            "element.content"
-        ],
-        "correct_index": 0,
-        "difficulty": "easy",
-        "topic_tag": "selenium",
-        "explanation": "In Selenium Python, use element.text (property) to get the visible text content of an element."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you get an attribute value from an element?",
-        "options": [
-            "element.attr('href')",
-            "element.get_attribute('href')",
-            "element['href']",
-            "element.href"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "selenium",
-        "explanation": "Use element.get_attribute('attribute_name') to get the value of any HTML attribute."
-    },
-    {
-        "question_type": "coding",
-        "text": "Setup Chrome Driver\nInitialize and return a Chrome WebDriver",
-        "starter_code": "def get_driver():\n    from selenium import webdriver\n    # Return a Chrome browser instance\n    pass",
-        "test_cases": [
-            {
-                "function_call": "type(get_driver()).__name__",
-                "expected": "'WebDriver'"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "selenium",
-        "solution_code": "def get_driver():\n    from selenium import webdriver\n    return webdriver.Chrome()"
-    },
-    {
-        "question_type": "coding",
-        "text": "Find by ID\nReturn the text of an element with the given ID",
-        "starter_code": "def get_text_by_id(driver, element_id):\n    from selenium.webdriver.common.by import By\n    # Find element by ID and return its text\n    pass",
-        "test_cases": [
-            {
-                "function_call": "get_text_by_id(mock_driver, 'title') is not None",
-                "expected": "True"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "locators",
-        "solution_code": "def get_text_by_id(driver, element_id):\n    from selenium.webdriver.common.by import By\n    element = driver.find_element(By.ID, element_id)\n    return element.text"
-    },
-    {
-        "question_type": "coding",
-        "text": "Fill Form Field\nType text into an input field",
-        "starter_code": "def fill_input(driver, input_id, text):\n    from selenium.webdriver.common.by import By\n    # Find input by ID and type text into it\n    pass",
-        "test_cases": [
-            {
-                "function_call": "fill_input(mock_driver, 'email', '[email protected]')",
-                "expected": "None"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "selenium",
-        "solution_code": "def fill_input(driver, input_id, text):\n    from selenium.webdriver.common.by import By\n    element = driver.find_element(By.ID, input_id)\n    element.send_keys(text)"
-    },
-    {
-        "question_type": "coding",
-        "text": "Get All Links\nReturn a list of all href values on the page",
-        "starter_code": "def get_all_links(driver):\n    from selenium.webdriver.common.by import By\n    # Find all anchor tags and return their href attributes\n    pass",
-        "test_cases": [
-            {
-                "function_call": "type(get_all_links(mock_driver))",
-                "expected": "<class 'list'>"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "selenium",
-        "solution_code": "def get_all_links(driver):\n    from selenium.webdriver.common.by import By\n    links = driver.find_elements(By.TAG_NAME, 'a')\n    return [link.get_attribute('href') for link in links]"
-    },
-    {
-        "question_type": "coding",
-        "text": "XPath Selector\nFind element by XPath and return its text",
-        "starter_code": "def get_by_xpath(driver, xpath):\n    from selenium.webdriver.common.by import By\n    # Find element using XPath and return text\n    pass",
-        "test_cases": [
-            {
-                "function_call": "get_by_xpath(mock_driver, '//h1') is not None",
-                "expected": "True"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "xpath",
-        "solution_code": "def get_by_xpath(driver, xpath):\n    from selenium.webdriver.common.by import By\n    element = driver.find_element(By.XPATH, xpath)\n    return element.text"
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the deprecated locator method:",
-        "code": "element = driver.find_element_by_id('submit')\n# DeprecationWarning: find_element_by_* is deprecated",
-        "options": [
-            "Use driver.find_element(By.ID, 'submit')",
-            "Use driver.get_element('submit')",
-            "Add import deprecated",
-            "Use find_elements instead"
-        ],
-        "correct_index": 0,
-        "difficulty": "easy",
-        "topic_tag": "selenium",
-        "explanation": "Selenium 4 uses find_element(By.LOCATOR, value). Import By from selenium.webdriver.common.by"
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the missing import:",
-        "code": "element = driver.find_element(By.ID, 'button')\n# NameError: name 'By' is not defined",
-        "options": [
-            "Add: from selenium.webdriver.common.by import By",
-            "Use 'id' instead of By.ID",
-            "Use find_element_by_id",
-            "Install selenium"
-        ],
-        "correct_index": 0,
-        "difficulty": "easy",
-        "topic_tag": "selenium",
-        "explanation": "You need to import By: from selenium.webdriver.common.by import By"
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix the element not found error:",
-        "code": "driver.get(url)\nelement = driver.find_element(By.ID, 'dynamic-content')\n# NoSuchElementException: element not found",
-        "options": [
-            "Add WebDriverWait to wait for element to load",
-            "Use find_elements instead",
-            "Change the ID",
-            "Reload the page"
-        ],
-        "correct_index": 0,
-        "difficulty": "medium",
-        "topic_tag": "selenium",
-        "explanation": "Dynamic content may not be loaded immediately. Use WebDriverWait to wait for the element."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is WebDriverWait used for?",
-        "options": [
-            "Making requests faster",
-            "Waiting for elements to appear before interacting",
-            "Downloading files",
-            "Changing browser settings"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "selenium",
-        "explanation": "WebDriverWait pauses execution until a condition is met (element visible, clickable, etc.) or timeout."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does headless mode mean?",
-        "options": [
-            "Running without a monitor",
-            "Running the browser without a visible window",
-            "Running without JavaScript",
-            "Running on a server"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "selenium",
-        "explanation": "Headless mode runs the browser in the background without displaying a GUI—useful for servers and automation."
-    }
+  {
+    "question_type": "mcq",
+    "text": "What is Selenium WebDriver?",
+    "options": [
+      "A web browser",
+      "A tool for automating browser interactions",
+      "A Python IDE",
+      "A database driver"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "selenium",
+    "explanation": "Selenium WebDriver is a tool that automates browser interactions—clicking, typing, navigating—for testing and scraping."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Why use Selenium instead of Beautiful Soup?",
+    "options": [
+      "Selenium is faster",
+      "Selenium can execute JavaScript and interact with dynamic content",
+      "Beautiful Soup doesn't parse HTML",
+      "Selenium uses less memory"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "selenium",
+    "explanation": "Selenium runs a real browser, so it can handle JavaScript-rendered content that Beautiful Soup cannot see."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you initialize a Chrome browser in Selenium 4?",
+    "options": [
+      "driver = Chrome()",
+      "driver = webdriver.Chrome()",
+      "driver = selenium.Chrome()",
+      "driver = Browser('chrome')"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "selenium",
+    "explanation": "Use webdriver.Chrome() to create a Chrome browser instance. Selenium 4 handles the driver automatically."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does `driver.get(url)` do?",
+    "options": [
+      "Downloads a file",
+      "Navigates the browser to the specified URL",
+      "Gets the page source",
+      "Closes the browser"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "selenium",
+    "explanation": "driver.get(url) navigates the browser to the specified webpage, like typing a URL in the address bar."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the modern way to find elements in Selenium 4?",
+    "options": [
+      "driver.find_element_by_id('id')",
+      "driver.find_element(By.ID, 'id')",
+      "driver.get_element('id')",
+      "driver.select('#id')"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "selenium",
+    "explanation": "Selenium 4 uses find_element(By.LOCATOR, value). The old find_element_by_* methods are deprecated."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the difference between `find_element` and `find_elements`?",
+    "options": [
+      "find_element is faster",
+      "find_element returns first match, find_elements returns a list",
+      "find_elements only works with CSS",
+      "They are the same"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "selenium",
+    "explanation": "find_element returns the first matching element, find_elements returns a list of all matches."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Which locator is most reliable for finding elements?",
+    "options": [
+      "By.CLASS_NAME",
+      "By.ID",
+      "By.TAG_NAME",
+      "By.LINK_TEXT"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "locators",
+    "explanation": "ID is most reliable because IDs should be unique on a page. Classes and tags can match multiple elements."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is XPath?",
+    "options": [
+      "A file path format",
+      "A language for navigating XML/HTML documents",
+      "A Python module",
+      "A browser plugin"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "xpath",
+    "explanation": "XPath is a query language for selecting nodes from XML/HTML documents using path expressions."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does `//div[@class='item']` select in XPath?",
+    "options": [
+      "The first div with class 'item'",
+      "All div elements with class 'item' anywhere in the document",
+      "Only direct child divs",
+      "Divs without a class"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "xpath",
+    "explanation": "// selects from anywhere in the document. [@class='item'] filters for elements with that class."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you click a button in Selenium?",
+    "options": [
+      "button.press()",
+      "button.click()",
+      "driver.click(button)",
+      "button.submit()"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "selenium",
+    "explanation": "Use element.click() to simulate clicking on any clickable element."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you type text into an input field?",
+    "options": [
+      "input.type('text')",
+      "input.send_keys('text')",
+      "input.write('text')",
+      "driver.type(input, 'text')"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "selenium",
+    "explanation": "Use element.send_keys('text') to type text into input fields, text areas, or other editable elements."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does `driver.quit()` do?",
+    "options": [
+      "Minimizes the browser",
+      "Closes all browser windows and ends the WebDriver session",
+      "Closes the current tab only",
+      "Refreshes the page"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "selenium",
+    "explanation": "quit() closes all browser windows and properly terminates the WebDriver session."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the difference between `driver.close()` and `driver.quit()`?",
+    "options": [
+      "They are the same",
+      "close() closes current window, quit() closes all and ends session",
+      "quit() is slower",
+      "close() kills the process"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "selenium",
+    "explanation": "close() closes only the current window. quit() closes all windows and properly terminates WebDriver."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you get text from an element?",
+    "options": [
+      "element.text",
+      "element.getText()",
+      "element.value",
+      "element.content"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "selenium",
+    "explanation": "In Selenium Python, use element.text (property) to get the visible text content of an element."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you get an attribute value from an element?",
+    "options": [
+      "element.attr('href')",
+      "element.get_attribute('href')",
+      "element['href']",
+      "element.href"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "selenium",
+    "explanation": "Use element.get_attribute('attribute_name') to get the value of any HTML attribute."
+  },
+  {
+    "question_type": "coding",
+    "text": "Setup Chrome Driver\nInitialize and return a Chrome WebDriver",
+    "starter_code": "def get_driver():\n    from selenium import webdriver\n    # Return a Chrome browser instance\n    pass",
+    "test_cases": [
+      {
+        "function_call": "type(get_driver()).__name__",
+        "expected": "'WebDriver'"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "selenium",
+    "solution_code": "def get_driver():\n    from selenium import webdriver\n    return webdriver.Chrome()",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Find by ID\nReturn the text of an element with the given ID",
+    "starter_code": "def get_text_by_id(driver, element_id):\n    from selenium.webdriver.common.by import By\n    # Find element by ID and return its text\n    pass",
+    "test_cases": [
+      {
+        "function_call": "get_text_by_id(mock_driver, 'title') is not None",
+        "expected": "True"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "locators",
+    "solution_code": "def get_text_by_id(driver, element_id):\n    from selenium.webdriver.common.by import By\n    element = driver.find_element(By.ID, element_id)\n    return element.text",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Fill Form Field\nType text into an input field",
+    "starter_code": "def fill_input(driver, input_id, text):\n    from selenium.webdriver.common.by import By\n    # Find input by ID and type text into it\n    pass",
+    "test_cases": [
+      {
+        "function_call": "fill_input(mock_driver, 'email', '[email protected]')",
+        "expected": "None"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "selenium",
+    "solution_code": "def fill_input(driver, input_id, text):\n    from selenium.webdriver.common.by import By\n    element = driver.find_element(By.ID, input_id)\n    element.send_keys(text)",
+    "explanation": "Implement the logic step by step, following the problem requirements. Test with the provided examples."
+  },
+  {
+    "question_type": "coding",
+    "text": "Get All Links\nReturn a list of all href values on the page",
+    "starter_code": "def get_all_links(driver):\n    from selenium.webdriver.common.by import By\n    # Find all anchor tags and return their href attributes\n    pass",
+    "test_cases": [
+      {
+        "function_call": "type(get_all_links(mock_driver))",
+        "expected": "<class 'list'>"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "selenium",
+    "solution_code": "def get_all_links(driver):\n    from selenium.webdriver.common.by import By\n    links = driver.find_elements(By.TAG_NAME, 'a')\n    return [link.get_attribute('href') for link in links]",
+    "explanation": "Use the 'in' keyword to check membership. It returns True if the item exists in the collection."
+  },
+  {
+    "question_type": "coding",
+    "text": "XPath Selector\nFind element by XPath and return its text",
+    "starter_code": "def get_by_xpath(driver, xpath):\n    from selenium.webdriver.common.by import By\n    # Find element using XPath and return text\n    pass",
+    "test_cases": [
+      {
+        "function_call": "get_by_xpath(mock_driver, '//h1') is not None",
+        "expected": "True"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "xpath",
+    "solution_code": "def get_by_xpath(driver, xpath):\n    from selenium.webdriver.common.by import By\n    element = driver.find_element(By.XPATH, xpath)\n    return element.text",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the deprecated locator method:",
+    "code": "element = driver.find_element_by_id('submit')\n# DeprecationWarning: find_element_by_* is deprecated",
+    "options": [
+      "Use driver.find_element(By.ID, 'submit')",
+      "Use driver.get_element('submit')",
+      "Add import deprecated",
+      "Use find_elements instead"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "selenium",
+    "explanation": "Selenium 4 uses find_element(By.LOCATOR, value). Import By from selenium.webdriver.common.by"
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the missing import:",
+    "code": "element = driver.find_element(By.ID, 'button')\n# NameError: name 'By' is not defined",
+    "options": [
+      "Add: from selenium.webdriver.common.by import By",
+      "Use 'id' instead of By.ID",
+      "Use find_element_by_id",
+      "Install selenium"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "selenium",
+    "explanation": "You need to import By: from selenium.webdriver.common.by import By"
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix the element not found error:",
+    "code": "driver.get(url)\nelement = driver.find_element(By.ID, 'dynamic-content')\n# NoSuchElementException: element not found",
+    "options": [
+      "Add WebDriverWait to wait for element to load",
+      "Use find_elements instead",
+      "Change the ID",
+      "Reload the page"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "selenium",
+    "explanation": "Dynamic content may not be loaded immediately. Use WebDriverWait to wait for the element."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is WebDriverWait used for?",
+    "options": [
+      "Making requests faster",
+      "Waiting for elements to appear before interacting",
+      "Downloading files",
+      "Changing browser settings"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "selenium",
+    "explanation": "WebDriverWait pauses execution until a condition is met (element visible, clickable, etc.) or timeout."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does headless mode mean?",
+    "options": [
+      "Running without a monitor",
+      "Running the browser without a visible window",
+      "Running without JavaScript",
+      "Running on a server"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "selenium",
+    "explanation": "Headless mode runs the browser in the background without displaying a GUI—useful for servers and automation."
+  }
 ]

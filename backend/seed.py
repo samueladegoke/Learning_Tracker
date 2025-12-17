@@ -122,7 +122,7 @@ def seed_questions(db: Session):
         return
 
     print("Seeding questions...")
-    
+
     day1_questions = [
         {
             "q": "What is the correct way to assign 10 to 'score'?",
@@ -155,7 +155,7 @@ def seed_questions(db: Session):
             "explanation": "len() is a built-in Python function to get the length of a sequence."
         }
     ]
-    
+
     for q in day1_questions:
         db_question = Question(
             quiz_id="day-1-practice",
@@ -165,7 +165,7 @@ def seed_questions(db: Session):
             explanation=q["explanation"]
         )
         db.add(db_question)
-    
+
     db.commit()
     print(f"  Seeded {len(day1_questions)} questions for 'day-1-practice'.")
 
@@ -348,7 +348,7 @@ def seed_database():
             {"badge_id": "b-boss-data-leviathan", "name": "Data Leviathan Conqueror", "description": "Defeated the Data Leviathan - Data Wizard", "xp_value": 120, "difficulty": "epic"},
             {"badge_id": "b-boss-portfolio-phoenix", "name": "Portfolio Phoenix Champion", "description": "Defeated the Portfolio Phoenix - Bootcamp Champion", "xp_value": 150, "difficulty": "legendary"},
         ]
-        
+
         for badge_data in boss_badges:
             db.add(
                 Badge(
@@ -359,7 +359,7 @@ def seed_database():
                     difficulty=badge_data.get("difficulty", "normal"),
                 )
             )
-        
+
         # Create dynamic Boss Battle system based on curriculum milestones
         print("Creating milestone-based Boss Battles...")
         bosses_data = [
@@ -420,7 +420,7 @@ def seed_database():
                 "task_ids": ["w8-d1", "w8-d2", "w8-d3", "w8-d4", "w8-d5"]  # Week 8 (Capstone)
             },
         ]
-        
+
         quest_objects = []
         for boss_data in bosses_data:
             quest = Quest(
@@ -432,12 +432,12 @@ def seed_database():
             )
             db.add(quest)
             db.flush()
-            
+
             # Map tasks to quest
             for task_id in boss_data["task_ids"]:
                 if task_id in task_lookup:
                     db.add(QuestTask(quest_id=quest.id, task_id=task_lookup[task_id].id))
-            
+
             quest_objects.append(quest)
             print(f"  Created Boss: {boss_data['name']} ({boss_data['boss_hp']} HP)")
 
@@ -451,7 +451,7 @@ def seed_database():
         )
 
         seed_questions(db)
-        
+
         # Sample 7-day consistency challenge
         print("Creating sample challenge...")
         challenge = Challenge(
@@ -490,8 +490,8 @@ def seed_database():
         weeks_count = db.query(Week).count()
         tasks_count = db.query(Task).count()
         badges_count = db.query(Badge).count()
-        print(f"\nSummary:")
-        print(f"  - Users: 1")
+        print("\nSummary:")
+        print("  - Users: 1")
         print(f"  - Weeks: {weeks_count}")
         print(f"  - Tasks: {tasks_count}")
         print(f"  - Badges: {badges_count}")

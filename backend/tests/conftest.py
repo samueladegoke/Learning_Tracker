@@ -41,10 +41,10 @@ def client(db_session):
             pass
 
     app.dependency_overrides[get_db] = override_get_db
-    
+
     test_client = TestClient(app)
     yield test_client
-    
+
     app.dependency_overrides.clear()
 
 
@@ -52,7 +52,7 @@ def client(db_session):
 def seed_test_user(db_session):
     """Seed a test user for authenticated endpoints."""
     from app.models import User
-    
+
     user = User(id=1, username="test_user", xp=0, level=1)
     db_session.add(user)
     db_session.commit()
@@ -64,7 +64,7 @@ def seed_test_user(db_session):
 def seed_test_questions(db_session):
     """Seed test questions for quiz endpoints."""
     from app.models import Question
-    
+
     questions = [
         Question(
             id=1,
@@ -85,9 +85,9 @@ def seed_test_questions(db_session):
             explanation="Paris is the capital of France"
         ),
     ]
-    
+
     for q in questions:
         db_session.add(q)
     db_session.commit()
-    
+
     return questions

@@ -1,398 +1,403 @@
 [
-    {
-        "question_type": "mcq",
-        "text": "What does screen.tracer(0) do?",
-        "options": [
-            "Speeds up the turtle",
-            "Turns off automatic screen updates",
-            "Closes the window",
-            "Creates a trace file"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "animation",
-        "explanation": "tracer(0) disables automatic animation so you can control when screens refresh."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you manually refresh the screen when tracer is off?",
-        "options": [
-            "screen.refresh()",
-            "screen.update()",
-            "screen.redraw()",
-            "screen.paint()"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "animation",
-        "explanation": "screen.update() forces the screen to redraw with all pending changes."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does time.sleep(0.1) do?",
-        "options": [
-            "Speeds up the program",
-            "Pauses execution for 0.1 seconds",
-            "Closes the program",
-            "Saves the game"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "timing",
-        "explanation": "time.sleep() pauses the program for the specified number of seconds."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Which module provides the sleep() function?",
-        "options": [
-            "turtle",
-            "time",
-            "random",
-            "math"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "timing",
-        "explanation": "The time module provides sleep() for adding delays."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What shape is used for snake segments?",
-        "options": [
-            "circle",
-            "turtle",
-            "square",
-            "triangle"
-        ],
-        "correct_index": 2,
-        "difficulty": "easy",
-        "topic_tag": "snake",
-        "explanation": "Turtle('square') creates square-shaped segments for the snake body."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Why must segments be moved in reverse order (tail to head)?",
-        "options": [
-            "It's faster",
-            "So each segment moves to where the one in front was",
-            "To prevent errors",
-            "It doesn't matter"
-        ],
-        "correct_index": 1,
-        "difficulty": "hard",
-        "topic_tag": "movement",
-        "explanation": "Moving tail-to-head ensures each segment takes the position of the segment ahead of it."
-    },
-    {
-        "question_type": "code-correction",
-        "text": "How do you iterate backwards from 2 to 0?",
-        "code": "range(0, 2, 1)",
-        "options": [
-            "range(2, -1, -1)",
-            "range(2, 0, 1)",
-            "range(0, 2, -1)",
-            "reverse(0, 2)"
-        ],
-        "correct_index": 0,
-        "difficulty": "medium",
-        "topic_tag": "range",
-        "explanation": "range(start, stop, step) with negative step goes backwards. range(2, -1, -1) gives 2, 1, 0."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does turtle.penup() prevent?",
-        "options": [
-            "Movement",
-            "Drawing lines when the turtle moves",
-            "Color changes",
-            "Shape changes"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "turtle",
-        "explanation": "penup() lifts the pen so movement doesn't leave a trail."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What are constants like MOVE_DISTANCE used for?",
-        "options": [
-            "Required by Python",
-            "Easy configuration at the top of files",
-            "To slow down code",
-            "For security"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "constants",
-        "explanation": "Constants at the top make values easy to find and modify."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How are Python constants conventionally named?",
-        "options": [
-            "camelCase",
-            "snake_case",
-            "UPPERCASE_WITH_UNDERSCORES",
-            "PascalCase"
-        ],
-        "correct_index": 2,
-        "difficulty": "easy",
-        "topic_tag": "naming",
-        "explanation": "Constants use ALL_CAPS_WITH_UNDERSCORES by convention."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Why create a separate Snake class instead of scripted code?",
-        "options": [
-            "It runs faster",
-            "Better organization, reusability, and debugging",
-            "Required by turtle module",
-            "To use less memory"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "oop",
-        "explanation": "Classes organize related code, making it easier to maintain and debug."
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Where should class constants like STARTING_POSITIONS be defined?",
-        "code": "def __init__(self): STARTING_POSITIONS = []",
-        "options": [
-            "At the top of the file, outside the class",
-            "Inside each method",
-            "In main.py only",
-            "Inside the for loop"
-        ],
-        "correct_index": 0,
-        "difficulty": "medium",
-        "topic_tag": "constants",
-        "explanation": "Constants are typically defined at module level (top of file) for easy access."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does screen.setup(width=600, height=600) do?",
-        "options": [
-            "Creates a turtle",
-            "Sets the window dimensions",
-            "Changes the background",
-            "Starts the game"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "screen",
-        "explanation": "setup() configures the window size before the game starts."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the 'head' of the snake in terms of the segments list?",
-        "options": [
-            "segments[-1]",
-            "segments[0]",
-            "segments[len(segments)]",
-            "segments.head"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "snake",
-        "explanation": "The head is the first segment, at index 0."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What would happen if segments moved head-to-tail instead of tail-to-head?",
-        "options": [
-            "Snake moves faster",
-            "All segments stack on the head position",
-            "Snake stretches out",
-            "No difference"
-        ],
-        "correct_index": 1,
-        "difficulty": "hard",
-        "topic_tag": "movement",
-        "explanation": "If head moves first, segment 1 moves to head's NEW position (not old), causing stacking."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does turtle.setheading(90) do?",
-        "options": [
-            "Moves forward 90 pixels",
-            "Sets turtle to face North (up)",
-            "Turns right 90 degrees",
-            "Sets speed to 90"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "heading",
-        "explanation": "setheading() sets absolute direction: 0=East, 90=North, 180=West, 270=South."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Why check heading before changing direction (e.g., if heading != 270)?",
-        "options": [
-            "To go faster",
-            "To prevent the snake from reversing into itself",
-            "Required by Python",
-            "To save memory"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "controls",
-        "explanation": "Prevents 180° turns that would cause the snake to crash into its own body."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you get a turtle's current x coordinate?",
-        "options": [
-            "turtle.x",
-            "turtle.xcor()",
-            "turtle.position_x()",
-            "x(turtle)"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "turtle",
-        "explanation": "xcor() returns the turtle's current x position."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the purpose of the game_is_on variable?",
-        "options": [
-            "To count score",
-            "To control the main game loop",
-            "To move the snake",
-            "To set the screen size"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "game-loop",
-        "explanation": "game_is_on is a boolean that controls whether the while loop continues running."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the animation technique used in the Snake game similar to?",
-        "options": [
-            "Vector graphics",
-            "GIF animation with frame-by-frame updates",
-            "3D rendering",
-            "Live streaming"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "animation",
-        "explanation": "Like GIFs, we update the screen frame-by-frame with tracer(0) + update()."
-    },
-    {
-        "question_type": "coding",
-        "text": "Create Backwards Range\nWrite a function that returns a list of numbers counting backwards from start to end (inclusive).\n\nExample: backwards_range(5, 1) returns [5, 4, 3, 2, 1]",
-        "starter_code": "def backwards_range(start, end):\n    # Return a list counting backwards from start to end\n    pass",
-        "test_cases": [
-            {
-                "function_call": "backwards_range(5, 1)",
-                "expected": "[5, 4, 3, 2, 1]"
-            },
-            {
-                "function_call": "backwards_range(3, 0)",
-                "expected": "[3, 2, 1, 0]"
-            },
-            {
-                "function_call": "backwards_range(10, 7)",
-                "expected": "[10, 9, 8, 7]"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "range",
-        "solution_code": "def backwards_range(start, end):\n    return list(range(start, end - 1, -1))"
-    },
-    {
-        "question_type": "coding",
-        "text": "Game Loop Counter\nCreate a function that simulates a game loop running for n iterations. Return the total number of 'frames' rendered.\n\nThe loop runs while game_is_on is True, decrements a counter each iteration, and stops when counter reaches 0.",
-        "starter_code": "def game_loop_counter(n):\n    # Simulate game loop for n frames\n    # Return total frames rendered\n    pass",
-        "test_cases": [
-            {
-                "function_call": "game_loop_counter(5)",
-                "expected": "5"
-            },
-            {
-                "function_call": "game_loop_counter(10)",
-                "expected": "10"
-            },
-            {
-                "function_call": "game_loop_counter(0)",
-                "expected": "0"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "game-loop",
-        "solution_code": "def game_loop_counter(n):\n    game_is_on = True\n    frames = 0\n    counter = n\n    while game_is_on:\n        if counter <= 0:\n            game_is_on = False\n        else:\n            frames += 1\n            counter -= 1\n    return frames"
-    },
-    {
-        "question_type": "coding",
-        "text": "Snake Positions\nCreate a function that generates starting positions for a snake with n segments. Each segment is 20 pixels apart on the x-axis, starting at (0, 0).\n\nExample: snake_positions(3) returns [(0, 0), (-20, 0), (-40, 0)]",
-        "starter_code": "def snake_positions(n):\n    # Generate starting positions for n snake segments\n    # Each segment 20px apart on x-axis\n    pass",
-        "test_cases": [
-            {
-                "function_call": "snake_positions(3)",
-                "expected": "[(0, 0), (-20, 0), (-40, 0)]"
-            },
-            {
-                "function_call": "snake_positions(1)",
-                "expected": "[(0, 0)]"
-            },
-            {
-                "function_call": "snake_positions(5)",
-                "expected": "[(0, 0), (-20, 0), (-40, 0), (-60, 0), (-80, 0)]"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "coordinates",
-        "solution_code": "def snake_positions(n):\n    positions = []\n    for i in range(n):\n        positions.append((-20 * i, 0))\n    return positions"
-    },
-    {
-        "question_type": "coding",
-        "text": "Move Segments\nSimulate snake movement by shifting positions. Given a list of (x, y) positions, move each segment to the position of the segment in front of it. The head (index 0) moves forward by move_distance on the x-axis.\n\nReturn the new positions list.",
-        "starter_code": "def move_segments(positions, move_distance):\n    # Move segments: tail follows head\n    # Head moves forward by move_distance on x-axis\n    pass",
-        "test_cases": [
-            {
-                "function_call": "move_segments([(0, 0), (-20, 0), (-40, 0)], 20)",
-                "expected": "[(20, 0), (0, 0), (-20, 0)]"
-            },
-            {
-                "function_call": "move_segments([(100, 50)], 20)",
-                "expected": "[(120, 50)]"
-            },
-            {
-                "function_call": "move_segments([(0, 0), (-20, 0)], 10)",
-                "expected": "[(10, 0), (0, 0)]"
-            }
-        ],
-        "difficulty": "hard",
-        "topic_tag": "movement",
-        "solution_code": "def move_segments(positions, move_distance):\n    new_positions = []\n    for i in range(len(positions) - 1, 0, -1):\n        new_positions.insert(0, positions[i - 1])\n    head_x, head_y = positions[0]\n    new_positions.insert(0, (head_x + move_distance, head_y))\n    return new_positions"
-    },
-    {
-        "question_type": "coding",
-        "text": "Check Heading\nIn the Snake game, you can't reverse direction (e.g., can't go left if heading right). Write a function that takes current_heading and new_heading (in degrees: 0=East, 90=North, 180=West, 270=South) and returns True if the turn is valid (not 180 degrees opposite).\n\nExample: is_valid_turn(0, 90) returns True (East to North is valid)",
-        "starter_code": "def is_valid_turn(current_heading, new_heading):\n    # Return True if the turn is valid (not opposite direction)\n    pass",
-        "test_cases": [
-            {
-                "function_call": "is_valid_turn(0, 90)",
-                "expected": "True"
-            },
-            {
-                "function_call": "is_valid_turn(0, 180)",
-                "expected": "False"
-            },
-            {
-                "function_call": "is_valid_turn(90, 270)",
-                "expected": "False"
-            },
-            {
-                "function_call": "is_valid_turn(270, 0)",
-                "expected": "True"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "controls",
-        "solution_code": "def is_valid_turn(current_heading, new_heading):\n    opposite = (current_heading + 180) % 360\n    return new_heading != opposite"
-    }
+  {
+    "question_type": "mcq",
+    "text": "What does screen.tracer(0) do?",
+    "options": [
+      "Speeds up the turtle",
+      "Turns off automatic screen updates",
+      "Closes the window",
+      "Creates a trace file"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "animation",
+    "explanation": "tracer(0) disables automatic animation so you can control when screens refresh."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you manually refresh the screen when tracer is off?",
+    "options": [
+      "screen.refresh()",
+      "screen.update()",
+      "screen.redraw()",
+      "screen.paint()"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "animation",
+    "explanation": "screen.update() forces the screen to redraw with all pending changes."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does time.sleep(0.1) do?",
+    "options": [
+      "Speeds up the program",
+      "Pauses execution for 0.1 seconds",
+      "Closes the program",
+      "Saves the game"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "timing",
+    "explanation": "time.sleep() pauses the program for the specified number of seconds."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Which module provides the sleep() function?",
+    "options": [
+      "turtle",
+      "time",
+      "random",
+      "math"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "timing",
+    "explanation": "The time module provides sleep() for adding delays."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What shape is used for snake segments?",
+    "options": [
+      "circle",
+      "turtle",
+      "square",
+      "triangle"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "snake",
+    "explanation": "Turtle('square') creates square-shaped segments for the snake body."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Why must segments be moved in reverse order (tail to head)?",
+    "options": [
+      "It's faster",
+      "So each segment moves to where the one in front was",
+      "To prevent errors",
+      "It doesn't matter"
+    ],
+    "correct_index": 1,
+    "difficulty": "hard",
+    "topic_tag": "movement",
+    "explanation": "Moving tail-to-head ensures each segment takes the position of the segment ahead of it."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "How do you iterate backwards from 2 to 0?",
+    "code": "range(0, 2, 1)",
+    "options": [
+      "range(2, -1, -1)",
+      "range(2, 0, 1)",
+      "range(0, 2, -1)",
+      "reverse(0, 2)"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "range",
+    "explanation": "range(start, stop, step) with negative step goes backwards. range(2, -1, -1) gives 2, 1, 0."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does turtle.penup() prevent?",
+    "options": [
+      "Movement",
+      "Drawing lines when the turtle moves",
+      "Color changes",
+      "Shape changes"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "turtle",
+    "explanation": "penup() lifts the pen so movement doesn't leave a trail."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What are constants like MOVE_DISTANCE used for?",
+    "options": [
+      "Required by Python",
+      "Easy configuration at the top of files",
+      "To slow down code",
+      "For security"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "constants",
+    "explanation": "Constants at the top make values easy to find and modify."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How are Python constants conventionally named?",
+    "options": [
+      "camelCase",
+      "snake_case",
+      "UPPERCASE_WITH_UNDERSCORES",
+      "PascalCase"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "naming",
+    "explanation": "Constants use ALL_CAPS_WITH_UNDERSCORES by convention."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Why create a separate Snake class instead of scripted code?",
+    "options": [
+      "It runs faster",
+      "Better organization, reusability, and debugging",
+      "Required by turtle module",
+      "To use less memory"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "oop",
+    "explanation": "Classes organize related code, making it easier to maintain and debug."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Where should class constants like STARTING_POSITIONS be defined?",
+    "code": "def __init__(self): STARTING_POSITIONS = []",
+    "options": [
+      "At the top of the file, outside the class",
+      "Inside each method",
+      "In main.py only",
+      "Inside the for loop"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "constants",
+    "explanation": "Constants are typically defined at module level (top of file) for easy access."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does screen.setup(width=600, height=600) do?",
+    "options": [
+      "Creates a turtle",
+      "Sets the window dimensions",
+      "Changes the background",
+      "Starts the game"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "screen",
+    "explanation": "setup() configures the window size before the game starts."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the 'head' of the snake in terms of the segments list?",
+    "options": [
+      "segments[-1]",
+      "segments[0]",
+      "segments[len(segments)]",
+      "segments.head"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "snake",
+    "explanation": "The head is the first segment, at index 0."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What would happen if segments moved head-to-tail instead of tail-to-head?",
+    "options": [
+      "Snake moves faster",
+      "All segments stack on the head position",
+      "Snake stretches out",
+      "No difference"
+    ],
+    "correct_index": 1,
+    "difficulty": "hard",
+    "topic_tag": "movement",
+    "explanation": "If head moves first, segment 1 moves to head's NEW position (not old), causing stacking."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does turtle.setheading(90) do?",
+    "options": [
+      "Moves forward 90 pixels",
+      "Sets turtle to face North (up)",
+      "Turns right 90 degrees",
+      "Sets speed to 90"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "heading",
+    "explanation": "setheading() sets absolute direction: 0=East, 90=North, 180=West, 270=South."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Why check heading before changing direction (e.g., if heading != 270)?",
+    "options": [
+      "To go faster",
+      "To prevent the snake from reversing into itself",
+      "Required by Python",
+      "To save memory"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "controls",
+    "explanation": "Prevents 180° turns that would cause the snake to crash into its own body."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you get a turtle's current x coordinate?",
+    "options": [
+      "turtle.x",
+      "turtle.xcor()",
+      "turtle.position_x()",
+      "x(turtle)"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "turtle",
+    "explanation": "xcor() returns the turtle's current x position."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the purpose of the game_is_on variable?",
+    "options": [
+      "To count score",
+      "To control the main game loop",
+      "To move the snake",
+      "To set the screen size"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "game-loop",
+    "explanation": "game_is_on is a boolean that controls whether the while loop continues running."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is the animation technique used in the Snake game similar to?",
+    "options": [
+      "Vector graphics",
+      "GIF animation with frame-by-frame updates",
+      "3D rendering",
+      "Live streaming"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "animation",
+    "explanation": "Like GIFs, we update the screen frame-by-frame with tracer(0) + update()."
+  },
+  {
+    "question_type": "coding",
+    "text": "Create Backwards Range\nWrite a function that returns a list of numbers counting backwards from start to end (inclusive).\n\nExample: backwards_range(5, 1) returns [5, 4, 3, 2, 1]",
+    "starter_code": "def backwards_range(start, end):\n    # Return a list counting backwards from start to end\n    pass",
+    "test_cases": [
+      {
+        "function_call": "backwards_range(5, 1)",
+        "expected": "[5, 4, 3, 2, 1]"
+      },
+      {
+        "function_call": "backwards_range(3, 0)",
+        "expected": "[3, 2, 1, 0]"
+      },
+      {
+        "function_call": "backwards_range(10, 7)",
+        "expected": "[10, 9, 8, 7]"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "range",
+    "solution_code": "def backwards_range(start, end):\n    return list(range(start, end - 1, -1))",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Game Loop Counter\nCreate a function that simulates a game loop running for n iterations. Return the total number of 'frames' rendered.\n\nThe loop runs while game_is_on is True, decrements a counter each iteration, and stops when counter reaches 0.",
+    "starter_code": "def game_loop_counter(n):\n    # Simulate game loop for n frames\n    # Return total frames rendered\n    pass",
+    "test_cases": [
+      {
+        "function_call": "game_loop_counter(5)",
+        "expected": "5"
+      },
+      {
+        "function_call": "game_loop_counter(10)",
+        "expected": "10"
+      },
+      {
+        "function_call": "game_loop_counter(0)",
+        "expected": "0"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "game-loop",
+    "solution_code": "def game_loop_counter(n):\n    game_is_on = True\n    frames = 0\n    counter = n\n    while game_is_on:\n        if counter <= 0:\n            game_is_on = False\n        else:\n            frames += 1\n            counter -= 1\n    return frames",
+    "explanation": "Use a while loop with a counter that decrements. The loop runs until the counter reaches the exit condition."
+  },
+  {
+    "question_type": "coding",
+    "text": "Snake Positions\nCreate a function that generates starting positions for a snake with n segments. Each segment is 20 pixels apart on the x-axis, starting at (0, 0).\n\nExample: snake_positions(3) returns [(0, 0), (-20, 0), (-40, 0)]",
+    "starter_code": "def snake_positions(n):\n    # Generate starting positions for n snake segments\n    # Each segment 20px apart on x-axis\n    pass",
+    "test_cases": [
+      {
+        "function_call": "snake_positions(3)",
+        "expected": "[(0, 0), (-20, 0), (-40, 0)]"
+      },
+      {
+        "function_call": "snake_positions(1)",
+        "expected": "[(0, 0)]"
+      },
+      {
+        "function_call": "snake_positions(5)",
+        "expected": "[(0, 0), (-20, 0), (-40, 0), (-60, 0), (-80, 0)]"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "coordinates",
+    "solution_code": "def snake_positions(n):\n    positions = []\n    for i in range(n):\n        positions.append((-20 * i, 0))\n    return positions",
+    "explanation": "Loop through the collection and use append() to build the result list item by item."
+  },
+  {
+    "question_type": "coding",
+    "text": "Move Segments\nSimulate snake movement by shifting positions. Given a list of (x, y) positions, move each segment to the position of the segment in front of it. The head (index 0) moves forward by move_distance on the x-axis.\n\nReturn the new positions list.",
+    "starter_code": "def move_segments(positions, move_distance):\n    # Move segments: tail follows head\n    # Head moves forward by move_distance on x-axis\n    pass",
+    "test_cases": [
+      {
+        "function_call": "move_segments([(0, 0), (-20, 0), (-40, 0)], 20)",
+        "expected": "[(20, 0), (0, 0), (-20, 0)]"
+      },
+      {
+        "function_call": "move_segments([(100, 50)], 20)",
+        "expected": "[(120, 50)]"
+      },
+      {
+        "function_call": "move_segments([(0, 0), (-20, 0)], 10)",
+        "expected": "[(10, 0), (0, 0)]"
+      }
+    ],
+    "difficulty": "hard",
+    "topic_tag": "movement",
+    "solution_code": "def move_segments(positions, move_distance):\n    new_positions = []\n    for i in range(len(positions) - 1, 0, -1):\n        new_positions.insert(0, positions[i - 1])\n    head_x, head_y = positions[0]\n    new_positions.insert(0, (head_x + move_distance, head_y))\n    return new_positions",
+    "explanation": "Loop through each index using range(len(...)). Access elements by index to work with positions or make updates."
+  },
+  {
+    "question_type": "coding",
+    "text": "Check Heading\nIn the Snake game, you can't reverse direction (e.g., can't go left if heading right). Write a function that takes current_heading and new_heading (in degrees: 0=East, 90=North, 180=West, 270=South) and returns True if the turn is valid (not 180 degrees opposite).\n\nExample: is_valid_turn(0, 90) returns True (East to North is valid)",
+    "starter_code": "def is_valid_turn(current_heading, new_heading):\n    # Return True if the turn is valid (not opposite direction)\n    pass",
+    "test_cases": [
+      {
+        "function_call": "is_valid_turn(0, 90)",
+        "expected": "True"
+      },
+      {
+        "function_call": "is_valid_turn(0, 180)",
+        "expected": "False"
+      },
+      {
+        "function_call": "is_valid_turn(90, 270)",
+        "expected": "False"
+      },
+      {
+        "function_call": "is_valid_turn(270, 0)",
+        "expected": "True"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "controls",
+    "solution_code": "def is_valid_turn(current_heading, new_heading):\n    opposite = (current_heading + 180) % 360\n    return new_heading != opposite",
+    "explanation": "Use modulo (%) to check divisibility or wrap around indices. Returns the remainder of division."
+  }
 ]

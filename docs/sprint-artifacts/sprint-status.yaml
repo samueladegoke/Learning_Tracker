@@ -50,6 +50,7 @@ development_status:
   mvp-reflections: done         # Weekly reflections
   mvp-rpg-system: done          # XP, Levels, Shop, Boss Battles
   mvp-deployment: done          # Vercel auto-deploy from GitHub
+  story-production-deployment: done # Production auth & schema migration
 
 # =============================================================================
 # PHASE 2 (FUTURE) - Local-First Architecture Enhancement

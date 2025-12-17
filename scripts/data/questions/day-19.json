@@ -1,394 +1,399 @@
 [
-    {
-        "question_type": "mcq",
-        "text": "What is a higher-order function?",
-        "options": [
-            "A function that runs faster",
-            "A function that takes or returns other functions",
-            "A function with many parameters",
-            "A function inside a class"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "higher-order",
-        "explanation": "Higher-order functions take functions as arguments or return functions as results."
-    },
-    {
-        "question_type": "mcq",
-        "text": "When passing a function as an argument, how do you write it?",
-        "options": [
-            "function_name()",
-            "call(function_name)",
-            "function_name",
-            "&function_name"
-        ],
-        "correct_index": 2,
-        "difficulty": "easy",
-        "topic_tag": "higher-order",
-        "explanation": "Pass just the function name without parentheses; parentheses would call it immediately."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does screen.listen() do?",
-        "options": [
-            "Plays audio",
-            "Enables keyboard/mouse event detection",
-            "Closes the window",
-            "Prints to console"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "events",
-        "explanation": "listen() tells the screen to start listening for keyboard and mouse events."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does screen.onkey() do?",
-        "options": [
-            "Creates a new key",
-            "Binds a function to a key press event",
-            "Locks the keyboard",
-            "Returns the pressed key"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "events",
-        "explanation": "onkey() binds a callback function to be triggered when a specific key is pressed."
-    },
-    {
-        "question_type": "code-correction",
-        "text": "Fix this event listener binding:",
-        "code": "screen.onkey(move_forwards(), 'space')",
-        "options": [
-            "screen.onkey(move_forwards, 'space')",
-            "screen.onkey('space', move_forwards)",
-            "screen.bind(move_forwards, 'space')",
-            "screen.key('space', move_forwards())"
-        ],
-        "correct_index": 0,
-        "difficulty": "medium",
-        "topic_tag": "events",
-        "explanation": "Remove the parentheses from move_forwards to pass the function, not call it."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is an 'instance' in OOP?",
-        "options": [
-            "A class definition",
-            "A specific object created from a class",
-            "A method",
-            "A module"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "instances",
-        "explanation": "An instance is an individual object created from a class blueprint."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is 'state' in the context of objects?",
-        "options": [
-            "The class name",
-            "The current values of an object's attributes",
-            "The methods available",
-            "The file location"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "state",
-        "explanation": "State refers to the current data/attribute values stored in an object at any moment."
-    },
-    {
-        "question_type": "mcq",
-        "text": "If timmy and tommy are both Turtle instances, what happens when timmy.forward(100) is called?",
-        "options": [
-            "Both move forward",
-            "Only timmy moves forward",
-            "Tommy moves forward",
-            "Neither moves"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "instances",
-        "explanation": "Each instance is independent; only the object whose method is called is affected."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does screen.textinput() return?",
-        "options": [
-            "An integer",
-            "A boolean",
-            "The text entered by the user (or None if cancelled)",
-            "Nothing"
-        ],
-        "correct_index": 2,
-        "difficulty": "medium",
-        "topic_tag": "screen",
-        "explanation": "textinput() returns the user's input as a string, or None if they cancelled."
-    },
-    {
-        "question_type": "code-correction",
-        "text": "How do you get a turtle's current x position?",
-        "code": "position = turtle.x",
-        "options": [
-            "position = turtle.xcor()",
-            "position = turtle.getx()",
-            "position = turtle.pos_x()",
-            "position = x(turtle)"
-        ],
-        "correct_index": 0,
-        "difficulty": "easy",
-        "topic_tag": "turtle",
-        "explanation": "xcor() returns the turtle's current x coordinate."
-    },
-    {
-        "question_type": "mcq",
-        "text": "In a turtle race, how do multiple turtles move independently?",
-        "options": [
-            "They share the same method calls",
-            "Each is a separate instance with its own state",
-            "Only one turtle can exist",
-            "They move in sync automatically"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "instances",
-        "explanation": "Each turtle is a separate instance that can be controlled independently."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What key parameter does screen.onkey() accept?",
-        "options": [
-            "Key codes only",
-            "String names like 'space', 'Up', 'a'",
-            "Numbers 0-9",
-            "ASCII values"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "events",
-        "explanation": "onkey() accepts key names as strings like 'space', 'Up', 'Down', or letter keys."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What happens if screen.listen() is not called before screen.onkey()?",
-        "options": [
-            "Error is raised",
-            "Key presses won't be detected",
-            "It works normally",
-            "The program crashes"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "events",
-        "explanation": "Without listen(), the screen isn't listening for events so onkey() won't trigger."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Why use keyword arguments with onkey() like key='space'?",
-        "options": [
-            "It's required by Python",
-            "For better readability and to avoid position errors",
-            "It makes code run faster",
-            "To use multiple keys"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "events",
-        "explanation": "Keyword arguments make code clearer and prevent errors from wrong argument order."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is turtle.home() used for?",
-        "options": [
-            "Exits the program",
-            "Returns turtle to origin (0, 0) facing right",
-            "Creates a new turtle",
-            "Saves the current position"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "turtle",
-        "explanation": "home() moves the turtle back to its starting position and heading."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you create a pop-up asking the user to pick a color?",
-        "options": [
-            "input('Pick color')",
-            "screen.textinput('Title', 'Pick a color')",
-            "screen.ask('color')",
-            "print('Pick color')"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "screen",
-        "explanation": "textinput() creates a GUI dialog box for user text input."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does turtle.clear() do?",
-        "options": [
-            "Deletes the turtle",
-            "Erases the turtle's drawings",
-            "Clears the screen background",
-            "Resets all turtles"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "turtle",
-        "explanation": "clear() erases the lines drawn by that specific turtle."
-    },
-    {
-        "question_type": "mcq",
-        "text": "In the turtle race, how is the winner determined?",
-        "options": [
-            "Random selection",
-            "First turtle to cross the finish line (xcor() > threshold)",
-            "Fastest speed setting",
-            "User choice"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "turtle-race",
-        "explanation": "Check each turtle's x position; the first to cross the finish line wins."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is turtle.pencolor() used for in the race example?",
-        "options": [
-            "To move the turtle",
-            "To identify/return the turtle's color",
-            "To change the background",
-            "To set speed"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "turtle",
-        "explanation": "pencolor() returns or sets the turtle's pen color, useful for identifying winners."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does random.randint(0, 10) return?",
-        "options": [
-            "Always 5",
-            "A random float between 0-10",
-            "A random integer between 0 and 10 inclusive",
-            "A list of numbers"
-        ],
-        "correct_index": 2,
-        "difficulty": "easy",
-        "topic_tag": "random",
-        "explanation": "randint(a, b) returns a random integer N where a <= N <= b."
-    },
-    {
-        "question_type": "coding",
-        "text": "Callback Function\nWrite a higher-order function `apply_operation` that takes a number and a function. It applies the function to the number and returns the result.\n\nExample: apply_operation(5, lambda x: x * 2) returns 10.",
-        "starter_code": "def apply_operation(num, operation):\n    # Apply operation function to num\n    pass",
-        "test_cases": [
-            {
-                "function_call": "apply_operation(5, lambda x: x * 2)",
-                "expected": "10"
-            },
-            {
-                "function_call": "apply_operation(10, lambda x: x + 5)",
-                "expected": "15"
-            },
-            {
-                "function_call": "apply_operation(3, lambda x: x ** 2)",
-                "expected": "9"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "higher-order",
-        "solution_code": "def apply_operation(num, operation):\n    return operation(num)"
-    },
-    {
-        "question_type": "coding",
-        "text": "Create Turtles at Positions\nWrite a function that takes a list of y_positions and returns the count of positions created. This simulates setting up turtle race positions.\n\nExample: setup_race_positions([-100, -50, 0, 50, 100]) returns 5.",
-        "starter_code": "def setup_race_positions(y_positions):\n    # Return count of positions\n    pass",
-        "test_cases": [
-            {
-                "function_call": "setup_race_positions([-100, -50, 0, 50, 100])",
-                "expected": "5"
-            },
-            {
-                "function_call": "setup_race_positions([0])",
-                "expected": "1"
-            },
-            {
-                "function_call": "setup_race_positions([-70, -35, 0, 35, 70, 105])",
-                "expected": "6"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "turtle-race",
-        "solution_code": "def setup_race_positions(y_positions):\n    return len(y_positions)"
-    },
-    {
-        "question_type": "coding",
-        "text": "Check Winner\nWrite a function that checks if any turtle has crossed the finish line at x_position >= 230. Takes a list of x positions and returns True if any turtle won.\n\nExample: check_winner([100, 231, 150]) returns True.",
-        "starter_code": "def check_winner(x_positions, finish_line=230):\n    # Return True if any turtle crossed finish line\n    pass",
-        "test_cases": [
-            {
-                "function_call": "check_winner([100, 231, 150])",
-                "expected": "True"
-            },
-            {
-                "function_call": "check_winner([100, 200, 150])",
-                "expected": "False"
-            },
-            {
-                "function_call": "check_winner([230])",
-                "expected": "True"
-            }
-        ],
-        "difficulty": "easy",
-        "topic_tag": "turtle-race",
-        "solution_code": "def check_winner(x_positions, finish_line=230):\n    return any(x >= finish_line for x in x_positions)"
-    },
-    {
-        "question_type": "coding",
-        "text": "Event Handler Mapping\nCreate a dictionary that maps key strings to movement values. Keys: 'w'=90, 's'=270, 'a'=180, 'd'=0 (WASD controls for turtle heading).\n\nExample: get_heading('w') returns 90.",
-        "starter_code": "def get_heading(key):\n    # Return heading value for key\n    # w=North(90), s=South(270), a=West(180), d=East(0)\n    pass",
-        "test_cases": [
-            {
-                "function_call": "get_heading('w')",
-                "expected": "90"
-            },
-            {
-                "function_call": "get_heading('s')",
-                "expected": "270"
-            },
-            {
-                "function_call": "get_heading('a')",
-                "expected": "180"
-            },
-            {
-                "function_call": "get_heading('d')",
-                "expected": "0"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "event-handling",
-        "solution_code": "def get_heading(key):\n    headings = {'w': 90, 's': 270, 'a': 180, 'd': 0}\n    return headings[key]"
-    },
-    {
-        "question_type": "coding",
-        "text": "Instance State Tracker\nCreate a class `StateTracker` that tracks how many times a method `record` is called. Each object should track independently.\n\nExample: Two StateTrackers, one with 3 records and one with 5 should report those values separately.",
-        "starter_code": "class StateTracker:\n    def __init__(self):\n        # Initialize count\n        pass\n    \n    def record(self):\n        # Increment count\n        pass\n    \n    def get_count(self):\n        # Return count\n        pass\n\ndef test_state():\n    t1 = StateTracker()\n    t2 = StateTracker()\n    for _ in range(3): t1.record()\n    for _ in range(5): t2.record()\n    return (t1.get_count(), t2.get_count())",
-        "test_cases": [
-            {
-                "function_call": "test_state()",
-                "expected": "(3, 5)"
-            },
-            {
-                "function_call": "StateTracker().get_count()",
-                "expected": "0"
-            }
-        ],
-        "difficulty": "medium",
-        "topic_tag": "state",
-        "solution_code": "class StateTracker:\n    def __init__(self):\n        self.count = 0\n    \n    def record(self):\n        self.count += 1\n    \n    def get_count(self):\n        return self.count\n\ndef test_state():\n    t1 = StateTracker()\n    t2 = StateTracker()\n    for _ in range(3): t1.record()\n    for _ in range(5): t2.record()\n    return (t1.get_count(), t2.get_count())"
-    }
+  {
+    "question_type": "mcq",
+    "text": "What is a higher-order function?",
+    "options": [
+      "A function that runs faster",
+      "A function that takes or returns other functions",
+      "A function with many parameters",
+      "A function inside a class"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "higher-order",
+    "explanation": "Higher-order functions take functions as arguments or return functions as results."
+  },
+  {
+    "question_type": "mcq",
+    "text": "When passing a function as an argument, how do you write it?",
+    "options": [
+      "function_name()",
+      "call(function_name)",
+      "function_name",
+      "&function_name"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "higher-order",
+    "explanation": "Pass just the function name without parentheses; parentheses would call it immediately."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does screen.listen() do?",
+    "options": [
+      "Plays audio",
+      "Enables keyboard/mouse event detection",
+      "Closes the window",
+      "Prints to console"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "events",
+    "explanation": "listen() tells the screen to start listening for keyboard and mouse events."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does screen.onkey() do?",
+    "options": [
+      "Creates a new key",
+      "Binds a function to a key press event",
+      "Locks the keyboard",
+      "Returns the pressed key"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "events",
+    "explanation": "onkey() binds a callback function to be triggered when a specific key is pressed."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Fix this event listener binding:",
+    "code": "screen.onkey(move_forwards(), 'space')",
+    "options": [
+      "screen.onkey(move_forwards, 'space')",
+      "screen.onkey('space', move_forwards)",
+      "screen.bind(move_forwards, 'space')",
+      "screen.key('space', move_forwards())"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "events",
+    "explanation": "Remove the parentheses from move_forwards to pass the function, not call it."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is an 'instance' in OOP?",
+    "options": [
+      "A class definition",
+      "A specific object created from a class",
+      "A method",
+      "A module"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "instances",
+    "explanation": "An instance is an individual object created from a class blueprint."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is 'state' in the context of objects?",
+    "options": [
+      "The class name",
+      "The current values of an object's attributes",
+      "The methods available",
+      "The file location"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "state",
+    "explanation": "State refers to the current data/attribute values stored in an object at any moment."
+  },
+  {
+    "question_type": "mcq",
+    "text": "If timmy and tommy are both Turtle instances, what happens when timmy.forward(100) is called?",
+    "options": [
+      "Both move forward",
+      "Only timmy moves forward",
+      "Tommy moves forward",
+      "Neither moves"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "instances",
+    "explanation": "Each instance is independent; only the object whose method is called is affected."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does screen.textinput() return?",
+    "options": [
+      "An integer",
+      "A boolean",
+      "The text entered by the user (or None if cancelled)",
+      "Nothing"
+    ],
+    "correct_index": 2,
+    "difficulty": "medium",
+    "topic_tag": "screen",
+    "explanation": "textinput() returns the user's input as a string, or None if they cancelled."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "How do you get a turtle's current x position?",
+    "code": "position = turtle.x",
+    "options": [
+      "position = turtle.xcor()",
+      "position = turtle.getx()",
+      "position = turtle.pos_x()",
+      "position = x(turtle)"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "turtle",
+    "explanation": "xcor() returns the turtle's current x coordinate."
+  },
+  {
+    "question_type": "mcq",
+    "text": "In a turtle race, how do multiple turtles move independently?",
+    "options": [
+      "They share the same method calls",
+      "Each is a separate instance with its own state",
+      "Only one turtle can exist",
+      "They move in sync automatically"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "instances",
+    "explanation": "Each turtle is a separate instance that can be controlled independently."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What key parameter does screen.onkey() accept?",
+    "options": [
+      "Key codes only",
+      "String names like 'space', 'Up', 'a'",
+      "Numbers 0-9",
+      "ASCII values"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "events",
+    "explanation": "onkey() accepts key names as strings like 'space', 'Up', 'Down', or letter keys."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What happens if screen.listen() is not called before screen.onkey()?",
+    "options": [
+      "Error is raised",
+      "Key presses won't be detected",
+      "It works normally",
+      "The program crashes"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "events",
+    "explanation": "Without listen(), the screen isn't listening for events so onkey() won't trigger."
+  },
+  {
+    "question_type": "mcq",
+    "text": "Why use keyword arguments with onkey() like key='space'?",
+    "options": [
+      "It's required by Python",
+      "For better readability and to avoid position errors",
+      "It makes code run faster",
+      "To use multiple keys"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "events",
+    "explanation": "Keyword arguments make code clearer and prevent errors from wrong argument order."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is turtle.home() used for?",
+    "options": [
+      "Exits the program",
+      "Returns turtle to origin (0, 0) facing right",
+      "Creates a new turtle",
+      "Saves the current position"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "turtle",
+    "explanation": "home() moves the turtle back to its starting position and heading."
+  },
+  {
+    "question_type": "mcq",
+    "text": "How do you create a pop-up asking the user to pick a color?",
+    "options": [
+      "input('Pick color')",
+      "screen.textinput('Title', 'Pick a color')",
+      "screen.ask('color')",
+      "print('Pick color')"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "screen",
+    "explanation": "textinput() creates a GUI dialog box for user text input."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does turtle.clear() do?",
+    "options": [
+      "Deletes the turtle",
+      "Erases the turtle's drawings",
+      "Clears the screen background",
+      "Resets all turtles"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "turtle",
+    "explanation": "clear() erases the lines drawn by that specific turtle."
+  },
+  {
+    "question_type": "mcq",
+    "text": "In the turtle race, how is the winner determined?",
+    "options": [
+      "Random selection",
+      "First turtle to cross the finish line (xcor() > threshold)",
+      "Fastest speed setting",
+      "User choice"
+    ],
+    "correct_index": 1,
+    "difficulty": "medium",
+    "topic_tag": "turtle-race",
+    "explanation": "Check each turtle's x position; the first to cross the finish line wins."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What is turtle.pencolor() used for in the race example?",
+    "options": [
+      "To move the turtle",
+      "To identify/return the turtle's color",
+      "To change the background",
+      "To set speed"
+    ],
+    "correct_index": 1,
+    "difficulty": "easy",
+    "topic_tag": "turtle",
+    "explanation": "pencolor() returns or sets the turtle's pen color, useful for identifying winners."
+  },
+  {
+    "question_type": "mcq",
+    "text": "What does random.randint(0, 10) return?",
+    "options": [
+      "Always 5",
+      "A random float between 0-10",
+      "A random integer between 0 and 10 inclusive",
+      "A list of numbers"
+    ],
+    "correct_index": 2,
+    "difficulty": "easy",
+    "topic_tag": "random",
+    "explanation": "randint(a, b) returns a random integer N where a <= N <= b."
+  },
+  {
+    "question_type": "coding",
+    "text": "Callback Function\nWrite a higher-order function `apply_operation` that takes a number and a function. It applies the function to the number and returns the result.\n\nExample: apply_operation(5, lambda x: x * 2) returns 10.",
+    "starter_code": "def apply_operation(num, operation):\n    # Apply operation function to num\n    pass",
+    "test_cases": [
+      {
+        "function_call": "apply_operation(5, lambda x: x * 2)",
+        "expected": "10"
+      },
+      {
+        "function_call": "apply_operation(10, lambda x: x + 5)",
+        "expected": "15"
+      },
+      {
+        "function_call": "apply_operation(3, lambda x: x ** 2)",
+        "expected": "9"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "higher-order",
+    "solution_code": "def apply_operation(num, operation):\n    return operation(num)",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Create Turtles at Positions\nWrite a function that takes a list of y_positions and returns the count of positions created. This simulates setting up turtle race positions.\n\nExample: setup_race_positions([-100, -50, 0, 50, 100]) returns 5.",
+    "starter_code": "def setup_race_positions(y_positions):\n    # Return count of positions\n    pass",
+    "test_cases": [
+      {
+        "function_call": "setup_race_positions([-100, -50, 0, 50, 100])",
+        "expected": "5"
+      },
+      {
+        "function_call": "setup_race_positions([0])",
+        "expected": "1"
+      },
+      {
+        "function_call": "setup_race_positions([-70, -35, 0, 35, 70, 105])",
+        "expected": "6"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "turtle-race",
+    "solution_code": "def setup_race_positions(y_positions):\n    return len(y_positions)",
+    "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "coding",
+    "text": "Check Winner\nWrite a function that checks if any turtle has crossed the finish line at x_position >= 230. Takes a list of x positions and returns True if any turtle won.\n\nExample: check_winner([100, 231, 150]) returns True.",
+    "starter_code": "def check_winner(x_positions, finish_line=230):\n    # Return True if any turtle crossed finish line\n    pass",
+    "test_cases": [
+      {
+        "function_call": "check_winner([100, 231, 150])",
+        "expected": "True"
+      },
+      {
+        "function_call": "check_winner([100, 200, 150])",
+        "expected": "False"
+      },
+      {
+        "function_call": "check_winner([230])",
+        "expected": "True"
+      }
+    ],
+    "difficulty": "easy",
+    "topic_tag": "turtle-race",
+    "solution_code": "def check_winner(x_positions, finish_line=230):\n    return any(x >= finish_line for x in x_positions)",
+    "explanation": "Use the 'in' keyword to check membership. It returns True if the item exists in the collection."
+  },
+  {
+    "question_type": "coding",
+    "text": "Event Handler Mapping\nCreate a dictionary that maps key strings to movement values. Keys: 'w'=90, 's'=270, 'a'=180, 'd'=0 (WASD controls for turtle heading).\n\nExample: get_heading('w') returns 90.",
+    "starter_code": "def get_heading(key):\n    # Return heading value for key\n    # w=North(90), s=South(270), a=West(180), d=East(0)\n    pass",
+    "test_cases": [
+      {
+        "function_call": "get_heading('w')",
+        "expected": "90"
+      },
+      {
+        "function_call": "get_heading('s')",
+        "expected": "270"
+      },
+      {
+        "function_call": "get_heading('a')",
+        "expected": "180"
+      },
+      {
+        "function_call": "get_heading('d')",
+        "expected": "0"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "event-handling",
+    "solution_code": "def get_heading(key):\n    headings = {'w': 90, 's': 270, 'a': 180, 'd': 0}\n    return headings[key]",
+    "explanation": "Use list indexing to access specific elements. Negative indices count from the end."
+  },
+  {
+    "question_type": "coding",
+    "text": "Instance State Tracker\nCreate a class `StateTracker` that tracks how many times a method `record` is called. Each object should track independently.\n\nExample: Two StateTrackers, one with 3 records and one with 5 should report those values separately.",
+    "starter_code": "class StateTracker:\n    def __init__(self):\n        # Initialize count\n        pass\n    \n    def record(self):\n        # Increment count\n        pass\n    \n    def get_count(self):\n        # Return count\n        pass\n\ndef test_state():\n    t1 = StateTracker()\n    t2 = StateTracker()\n    for _ in range(3): t1.record()\n    for _ in range(5): t2.record()\n    return (t1.get_count(), t2.get_count())",
+    "test_cases": [
+      {
+        "function_call": "test_state()",
+        "expected": "(3, 5)"
+      },
+      {
+        "function_call": "StateTracker().get_count()",
+        "expected": "0"
+      }
+    ],
+    "difficulty": "medium",
+    "topic_tag": "state",
+    "solution_code": "class StateTracker:\n    def __init__(self):\n        self.count = 0\n    \n    def record(self):\n        self.count += 1\n    \n    def get_count(self):\n        return self.count\n\ndef test_state():\n    t1 = StateTracker()\n    t2 = StateTracker()\n    for _ in range(3): t1.record()\n    for _ in range(5): t2.record()\n    return (t1.get_count(), t2.get_count())",
+    "explanation": "Use the 'in' keyword to check membership. It returns True if the item exists in the collection."
+  }
 ]

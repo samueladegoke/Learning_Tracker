@@ -3,6 +3,8 @@ import logging
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
+from sqlalchemy.pool import NullPool
+
 
 # Configure logging
 logger = logging.getLogger(__name__)
@@ -39,10 +41,9 @@ if not SQLALCHEMY_DATABASE_URL:
 else:
     connect_args = {}
 
-from sqlalchemy.pool import NullPool
 
 engine = create_engine(
-    SQLALCHEMY_DATABASE_URL, 
+    SQLALCHEMY_DATABASE_URL,
     connect_args=connect_args,
     poolclass=NullPool
 )

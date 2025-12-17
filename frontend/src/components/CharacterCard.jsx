@@ -1,4 +1,5 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 import ProgressBar from './ProgressBar'
 import { Heart, Flame, Coins, Zap } from 'lucide-react'
 import { calculateXpProgress } from '../utils/xpUtils'
@@ -54,19 +55,23 @@ const CharacterCard = ({ rpgState, progress }) => {
 
                     {/* XP Bar */}
                     <div className="mb-4">
-                        <div className="flex justify-between text-xs text-surface-400 mb-1.5">
+                        <div className="flex justify-between text-xs font-bold uppercase tracking-widest text-primary-400/80 mb-2">
                             <span>Progress to Level {rpgState.level + 1}</span>
                             <span>{Math.round(xpPercent)}%</span>
                         </div>
-                        <div className="h-3 bg-surface-800 rounded-full overflow-hidden border border-surface-700/50">
-                            <div
-                                className="h-full bg-gradient-to-r from-primary-600 to-primary-400 transition-all duration-1000 ease-out relative"
-                                style={{ width: `${xpPercent}%` }}
+                        <div className="h-4 bg-surface-900 rounded-full overflow-hidden border border-surface-700/50 shadow-inner p-0.5">
+                            <motion.div
+                                initial={{ width: 0 }}
+                                animate={{ width: `${xpPercent}%` }}
+                                transition={{ duration: 1.5, ease: "easeOut" }}
+                                className="h-full bg-gradient-to-r from-primary-600 via-primary-400 to-primary-300 rounded-full relative group"
                             >
-                                <div className="absolute inset-0 bg-white/20 animate-pulse-slow"></div>
-                            </div>
+                                <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.1)_50%,transparent_75%)] bg-[length:40px_40px] animate-[shimmer_2s_linear_infinite]"></div>
+                                <div className="absolute inset-0 shadow-[0_0_15px_rgba(59,130,246,0.5)] rounded-full"></div>
+                                <div className="absolute inset-0 bg-white/20 animate-pulse-slow rounded-full"></div>
+                            </motion.div>
                         </div>
-                        <div className="flex justify-between text-[10px] text-surface-600 mt-1">
+                        <div className="flex justify-between text-[10px] font-mono text-surface-500 mt-1.5 px-1">
                             <span>{xpProgress.xpIntoLevel} XP</span>
                             <span>{xpProgress.levelCost} XP needed</span>
                         </div>

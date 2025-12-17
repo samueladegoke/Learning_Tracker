@@ -84,7 +84,7 @@ function Dashboard() {
   const fetchData = async (force = false) => {
     try {
       const now = Date.now()
-      
+
       // Try to read from cache (with error handling for storage issues)
       let cached = null
       try {
@@ -271,7 +271,11 @@ function Dashboard() {
       <CurrentSyncStatus />
 
       {/* Character Status */}
-      <motion.div variants={itemVariants}>
+      <motion.div
+        variants={itemVariants}
+        whileHover={{ y: -5 }}
+        className="relative z-20"
+      >
         <CharacterCard rpgState={rpgState} progress={progress} />
       </motion.div>
 

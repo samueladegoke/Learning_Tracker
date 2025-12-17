@@ -1,6 +1,5 @@
 
 import json
-import sys
 
 # Load seed data
 with open('../seed_data.json', 'r', encoding='utf-8') as f:

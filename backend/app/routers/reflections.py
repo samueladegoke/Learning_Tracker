@@ -3,33 +3,20 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from ..database import get_db
-from ..models import Reflection, Week
+from ..models import Reflection, Week, User
 from ..schemas import ReflectionCreate, ReflectionResponse
+from ..auth import get_current_user
 
 router = APIRouter()
 
-# =============================================================================
-# SECURITY NOTE: Single-User MVP Mode
-# =============================================================================
-# This application currently operates in single-user mode without authentication.
-# All API endpoints use a hardcoded user ID. This is intentional for the MVP phase.
-#
-# BEFORE PRODUCTION DEPLOYMENT:
-# 1. Implement proper authentication (e.g., Supabase Auth, JWT)
-# 2. Replace DEFAULT_USER_ID with authenticated user from request context
-# 3. Add authorization checks for user-owned resources
-# 4. See docs/architecture.md for auth implementation guidance
-# =============================================================================
-DEFAULT_USER_ID = 1  # TODO: Replace with authenticated user ID from auth middleware
-
 
 @router.get("", response_model=List[ReflectionResponse])
-def get_reflections(db: Session = Depends(get_db)):
-    """Get all reflections for the default user."""
+def get_reflections(user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+    """Get all reflections for the authenticated user."""
     reflections = db.query(Reflection).filter(
-        Reflection.user_id == DEFAULT_USER_ID
+        Reflection.user_id == user.id
     ).order_by(Reflection.created_at.desc()).all()
-    
+
     result = []
     for ref in reflections:
         week = db.query(Week).filter(Week.id == ref.week_id).first()
@@ -42,23 +29,23 @@ def get_reflections(db: Session = Depends(get_db)):
             "created_at": ref.created_at,
             "updated_at": ref.updated_at
         })
-    
+
     return result
 
 
 @router.get("/week/{week_id}", response_model=ReflectionResponse)
-def get_reflection_for_week(week_id: int, db: Session = Depends(get_db)):
+def get_reflection_for_week(week_id: int, user: User = Depends(get_current_user), db: Session = Depends(get_db)):
     """Get reflection for a specific week."""
     reflection = db.query(Reflection).filter(
-        Reflection.user_id == DEFAULT_USER_ID,
+        Reflection.user_id == user.id,
         Reflection.week_id == week_id
     ).first()
-    
+
     if not reflection:
         raise HTTPException(status_code=404, detail="Reflection not found for this week")
-    
+
     week = db.query(Week).filter(Week.id == week_id).first()
-    
+
     return {
         "id": reflection.id,
         "week_id": reflection.week_id,
@@ -71,19 +58,19 @@ def get_reflection_for_week(week_id: int, db: Session = Depends(get_db)):
 
 
 @router.post("", response_model=ReflectionResponse)
-def create_or_update_reflection(data: ReflectionCreate, db: Session = Depends(get_db)):
+def create_or_update_reflection(data: ReflectionCreate, user: User = Depends(get_current_user), db: Session = Depends(get_db)):
     """Create or update a reflection for a week."""
     # Verify week exists
     week = db.query(Week).filter(Week.id == data.week_id).first()
     if not week:
         raise HTTPException(status_code=404, detail="Week not found")
-    
+
     # Check if reflection already exists for this week
     existing = db.query(Reflection).filter(
-        Reflection.user_id == DEFAULT_USER_ID,
+        Reflection.user_id == user.id,
         Reflection.week_id == data.week_id
     ).first()
-    
+
     if existing:
         # Update existing reflection
         existing.content = data.content
@@ -93,14 +80,14 @@ def create_or_update_reflection(data: ReflectionCreate, db: Session = Depends(ge
     else:
         # Create new reflection
         reflection = Reflection(
-            user_id=DEFAULT_USER_ID,
+            user_id=user.id,
             week_id=data.week_id,
             content=data.content
         )
         db.add(reflection)
         db.commit()
         db.refresh(reflection)
-    
+
     return {
         "id": reflection.id,
         "week_id": reflection.week_id,
@@ -110,4 +97,3 @@ def create_or_update_reflection(data: ReflectionCreate, db: Session = Depends(ge
         "created_at": reflection.created_at,
         "updated_at": reflection.updated_at
     }
-

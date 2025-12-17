@@ -207,7 +207,8 @@
     ],
     "difficulty": "easy",
     "topic_tag": "functions",
-    "solution_code": "def greet():\n    print('Hello World')"
+    "solution_code": "def greet():\n    print('Hello World')",
+    "explanation": "Use the 'def' keyword to define a function, followed by the function name and parentheses. The function body is indented and contains the print statement."
   },
   {
     "question_type": "coding",
@@ -229,7 +230,8 @@
     ],
     "difficulty": "medium",
     "topic_tag": "loops",
-    "solution_code": "def countdown(n):\n    result = []\n    while n > 0:\n        result.append(n)\n        n -= 1\n    return result"
+    "solution_code": "def countdown(n):\n    result = []\n    while n > 0:\n        result.append(n)\n        n -= 1\n    return result",
+    "explanation": "Use a while loop that runs while n is greater than 0. Each iteration adds n to the result list and decrements n by 1."
   },
   {
     "question_type": "coding",
@@ -251,7 +253,8 @@
     ],
     "difficulty": "medium",
     "topic_tag": "loops",
-    "solution_code": "def sum_until(limit):\n    total = 0\n    num = 1\n    while total + num <= limit:\n        total += num\n        num += 1\n    return total"
+    "solution_code": "def sum_until(limit):\n    total = 0\n    num = 1\n    while total + num <= limit:\n        total += num\n        num += 1\n    return total",
+    "explanation": "Before adding each number, check if adding it would exceed the limit. If not, add it to total and increment num. Stop when the next addition would exceed the limit."
   },
   {
     "question_type": "coding",
@@ -273,7 +276,8 @@
     ],
     "difficulty": "medium",
     "topic_tag": "algorithms",
-    "solution_code": "def factorial(n):\n    result = 1\n    while n > 0:\n        result *= n\n        n -= 1\n    return result"
+    "solution_code": "def factorial(n):\n    result = 1\n    while n > 0:\n        result *= n\n        n -= 1\n    return result",
+    "explanation": "Factorial multiplies n * (n-1) * (n-2) ... * 1. Start result at 1, multiply by n, decrement n, repeat while n > 0."
   },
   {
     "question_type": "coding",
@@ -295,7 +299,8 @@
     ],
     "difficulty": "easy",
     "topic_tag": "loops",
-    "solution_code": "def first_negative(numbers):\n    for num in numbers:\n        if num < 0:\n            return num\n    return None"
+    "solution_code": "def first_negative(numbers):\n    for num in numbers:\n        if num < 0:\n            return num\n    return None",
+    "explanation": "Loop through each number, and as soon as you find one less than 0, return it immediately. If the loop finishes without finding one, return None."
   },
   {
     "question_type": "mcq",

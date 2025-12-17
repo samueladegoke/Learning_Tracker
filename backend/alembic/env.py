@@ -18,11 +18,6 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # Import your models' Base and all models
 from app.database import Base, SQLALCHEMY_DATABASE_URL
-from app.models import (
-    User, Week, Task, UserTaskStatus, Reflection, Badge, Achievement,
-    UserBadge, UserAchievement, Quest, QuestTask, UserQuest,
-    Challenge, UserChallenge, UserInventory, QuizResult, Question
-)
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

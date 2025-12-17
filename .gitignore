@@ -92,3 +92,12 @@ frontend/test_output*.txt
 bmad-custom-modules-src/
 bmad-custom-src/
 
+# Local Development Scripts (developer-specific utilities)
+scripts/debug_db.py
+scripts/debug_db_v2.py
+scripts/seed_local_test_data.py
+scripts/update_schema.py
+
+# Gemini/Antigravity IDE artifacts (per-conversation brain files)
+.gemini/
+

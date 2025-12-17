@@ -15,6 +15,10 @@ class TaskBase(BaseModel):
     category: Optional[str] = None
     is_boss_task: Optional[bool] = False
 
+    class Config:
+        from_attributes = True
+
+
 
 class TaskResponse(TaskBase):
     id: int
@@ -118,6 +122,10 @@ class ProgressResponse(BaseModel):
     xp_to_next_level: int = 100
     level_progress: float = 0.0
 
+    class Config:
+        from_attributes = True
+
+
 
 # RPG schemas
 class RPGQuestState(BaseModel):
@@ -127,6 +135,10 @@ class RPGQuestState(BaseModel):
     boss_hp_remaining: int
     reward_badge_id: Optional[str] = None
 
+    class Config:
+        from_attributes = True
+
+
 
 class RPGChallengeState(BaseModel):
     id: int
@@ -134,6 +146,10 @@ class RPGChallengeState(BaseModel):
     progress: int
     goal: int
     ends_at: Optional[datetime]
+
+    class Config:
+        from_attributes = True
+
 
 
 class RPGState(BaseModel):
@@ -148,6 +164,10 @@ class RPGState(BaseModel):
     streak_freeze_count: int
     active_quest: Optional[RPGQuestState] = None
     active_challenges: List[RPGChallengeState] = []
+
+    class Config:
+        from_attributes = True
+
 
 
 class TaskCompletionResult(TaskResponse):
@@ -183,9 +203,16 @@ class UserResponse(BaseModel):
 class QuestionResponse(BaseModel):
     id: int
     quiz_id: str
+    question_type: str = "mcq"  # mcq, coding, code-correction
     text: str
-    options: List[str]
-    explanation: Optional[str] = None  # Only show after submission? Or maybe just don't send it initially.
+    code: Optional[str] = None  # For code-correction questions
+    options: List[str] = []  # For MCQ/code-correction
+    correct_index: Optional[int] = None # For immediate feedback
+    starter_code: Optional[str] = None  # For coding questions
+    test_cases: Optional[List[Any]] = None  # For coding questions
+    explanation: Optional[str] = None  # Shown after submission
+    difficulty: Optional[str] = None
+    topic_tag: Optional[str] = None
 
     class Config:
         from_attributes = True

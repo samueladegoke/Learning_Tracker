@@ -229,7 +229,8 @@
     ],
     "difficulty": "easy",
     "topic_tag": "logic",
-    "solution_code": "def check_in_list(item, my_list):\n    return item in my_list"
+    "solution_code": "def check_in_list(item, my_list):\n    return item in my_list",
+    "explanation": "The 'in' keyword checks if an item exists in a sequence. It returns True if found, False otherwise."
   },
   {
     "question_type": "coding",
@@ -251,7 +252,8 @@
     ],
     "difficulty": "hard",
     "topic_tag": "loops",
-    "solution_code": "def update_display(word, display, guess):\n    for i in range(len(word)):\n        if word[i] == guess:\n            display[i] = guess\n    return display"
+    "solution_code": "def update_display(word, display, guess):\n    for i in range(len(word)):\n        if word[i] == guess:\n            display[i] = guess\n    return display",
+    "explanation": "Loop through each index of the word. When the character at that position matches the guess, update the display list at that same index to show the letter."
   },
   {
     "question_type": "coding",
@@ -273,7 +275,8 @@
     ],
     "difficulty": "easy",
     "topic_tag": "flowcharts",
-    "solution_code": "def is_game_over(lives):\n    return lives == 0"
+    "solution_code": "def is_game_over(lives):\n    return lives == 0",
+    "explanation": "The game is over when the player has no lives left. Compare lives to 0 with == and return the boolean result."
   },
   {
     "question_type": "coding",
@@ -295,7 +298,8 @@
     ],
     "difficulty": "easy",
     "topic_tag": "logic",
-    "solution_code": "def has_won(display):\n    return '_' not in display"
+    "solution_code": "def has_won(display):\n    return '_' not in display",
+    "explanation": "The player wins when all blanks are filled. Use 'not in' to check if there are no underscores remaining in the display list."
   },
   {
     "question_type": "coding",
@@ -317,6 +321,7 @@
     ],
     "difficulty": "easy",
     "topic_tag": "lists",
-    "solution_code": "def create_display(word):\n    display = []\n    for _ in word:\n        display.append('_')\n    return display"
+    "solution_code": "def create_display(word):\n    display = []\n    for _ in word:\n        display.append('_')\n    return display",
+    "explanation": "Loop through each character in the word and append an underscore for each one. The underscore variable _ is convention when we don't need the actual value."
   }
 ]

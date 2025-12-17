@@ -1,7 +1,7 @@
 """initial_schema
 
 Revision ID: 92e1d2bb20f1
-Revises: 
+Revises:
 Create Date: 2025-12-10 01:09:51.263845
 
 Complete schema migration for Learning Tracker database.
