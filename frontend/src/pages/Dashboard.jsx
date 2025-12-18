@@ -2,26 +2,19 @@ import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence, useInView, useMotionValue, useSpring } from 'framer-motion'
 import {
-  Calendar,
-  Clock,
   ShoppingBag,
   Coins,
   Swords,
-  Heart,
-  Gift,
-  Flag,
   Map,
-  Award,
   Compass,
   AlertTriangle,
   Check,
   Scroll,
-  Timer,
+  ArrowRight,
   Trophy
 } from 'lucide-react'
 import { progressAPI, weeksAPI, tasksAPI, rpgAPI, badgesAPI } from '../api/client'
 import ProgressRing from '../components/ProgressRing'
-import StatCard from '../components/StatCard'
 import ProgressBar from '../components/ProgressBar'
 import CharacterCard from '../components/CharacterCard'
 import QuestLog from '../components/QuestLog'
@@ -51,7 +44,8 @@ function NumberTicker({ value, className = "" }) {
     })
   }, [springValue])
 
-  return <span ref={ref} className={className} />
+  // Display initial value (0) as fallback until animation kicks in
+  return <span ref={ref} className={className}>{Math.floor(value).toLocaleString()}</span>
 }
 
 const containerVariants = {
@@ -74,41 +68,34 @@ function Dashboard() {
   const [currentWeek, setCurrentWeek] = useState(null)
   const [rpgState, setRpgState] = useState(null)
   const [badges, setBadges] = useState([])
+  const [shopItems, setShopItems] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [shopOpen, setShopOpen] = useState(false)
-  const [weekCount, setWeekCount] = useState(0)
 
-  const CACHE_DURATION = 60000 // 1 minute
+  const CACHE_DURATION = 300000 // 5 minutes
 
   const fetchData = async (force = false) => {
     try {
       const now = Date.now()
+      const cachedData = sessionStorage.getItem('dashboard_cache')
+      const explicitRefresh = localStorage.getItem('force_dashboard_refresh') === 'true'
 
-      // Try to read from cache (with error handling for storage issues)
-      let cached = null
-      try {
-        const cachedStr = sessionStorage.getItem('dashboard_cache')
-        if (cachedStr) {
-          cached = JSON.parse(cachedStr)
-        }
-      } catch (storageError) {
-        // Storage read failed (quota exceeded, parsing error, etc.)
-        // Continue without cache - this is not a fatal error
-        console.warn('[Dashboard] Cache read failed:', storageError.message)
-      }
-
-      if (!force && cached) {
-        const { data, timestamp } = cached
+      if (!force && !explicitRefresh && cachedData) {
+        const { data, timestamp } = JSON.parse(cachedData)
         if (now - timestamp < CACHE_DURATION) {
           setProgress(data.progress)
-          setWeekCount(data.weekCount)
+          setCurrentWeek(data.currentWeek)
           setRpgState(data.rpgState)
           setBadges(data.badges)
-          if (data.currentWeek) setCurrentWeek(data.currentWeek)
+          setShopItems(data.shopItems || [])
           setLoading(false)
           return
         }
+      }
+
+      if (explicitRefresh) {
+        localStorage.removeItem('force_dashboard_refresh')
       }
 
       setLoading(true)
@@ -119,39 +106,38 @@ function Dashboard() {
         badgesAPI.getAll(),
       ])
 
-      let weekDetails = null
+      // Find current week or last week
       const firstIncomplete = weeksData.find(w => w.tasks_completed < w.tasks_total)
       const weekToLoad = firstIncomplete || weeksData[weeksData.length - 1]
 
+      let weekDetails = null
       if (weekToLoad) {
         weekDetails = await weeksAPI.getById(weekToLoad.id)
-        setCurrentWeek(weekDetails)
       }
+
+      // Shop items (placeholder or fetch if api exists)
+      const shopItemsData = [] // rpgAPI.getShopItems() if it existed
 
       setProgress(progressData)
-      setWeekCount(weeksData.length)
+      setCurrentWeek(weekDetails)
       setRpgState(rpgData)
       setBadges(badgesData)
+      setShopItems(shopItemsData)
 
-      // Try to save to cache (with error handling for storage issues)
-      try {
-        sessionStorage.setItem('dashboard_cache', JSON.stringify({
-          data: {
-            progress: progressData,
-            weekCount: weeksData.length,
-            rpgState: rpgData,
-            badges: badgesData,
-            currentWeek: weekDetails
-          },
-          timestamp: now
-        }))
-      } catch (storageError) {
-        // Storage write failed (quota exceeded, private mode, etc.)
-        // This is not a fatal error - the app works fine without caching
-        console.warn('[Dashboard] Cache write failed:', storageError.message)
-      }
+      // Update Cache
+      sessionStorage.setItem('dashboard_cache', JSON.stringify({
+        data: {
+          progress: progressData,
+          currentWeek: weekDetails,
+          rpgState: rpgData,
+          badges: badgesData,
+          shopItems: shopItemsData
+        },
+        timestamp: now
+      }))
 
     } catch (err) {
+      console.error('[Dashboard] Error fetching data:', err)
       setError(err.message)
     } finally {
       setLoading(false)
@@ -163,8 +149,8 @@ function Dashboard() {
   }, [])
 
   const handleTaskToggle = async (taskId, complete) => {
-    // Optimistic Update: Update UI immediately
-    const originalWeek = { ...currentWeek }
+    // Deep clone to preserve original state on revert
+    const originalWeek = currentWeek ? { ...currentWeek, tasks: [...currentWeek.tasks] } : null
 
     if (currentWeek) {
       const updatedTasks = currentWeek.tasks.map(t =>
@@ -178,10 +164,7 @@ function Dashboard() {
       setCurrentWeek(updatedWeek)
     }
 
-    // Play sound immediately
-    if (complete) {
-      soundManager.completeTask()
-    }
+    if (complete) soundManager.completeTask()
 
     try {
       if (complete) {
@@ -189,12 +172,10 @@ function Dashboard() {
       } else {
         await tasksAPI.uncomplete(taskId)
       }
-      // Re-fetch to ensure sync with backend (XP, Gold, etc.)
       fetchData(true)
     } catch (err) {
       console.error('Failed to toggle task:', err)
       soundManager.error()
-      // Revert if API fails
       setCurrentWeek(originalWeek)
     }
   }
@@ -242,7 +223,9 @@ function Dashboard() {
     )
   }
 
-  const weekProgress = currentWeek ? (currentWeek.tasks_completed / currentWeek.tasks_total) * 100 : 0
+  const weekProgress = currentWeek && currentWeek.tasks_total > 0
+    ? (currentWeek.tasks_completed / currentWeek.tasks_total) * 100
+    : 0
   const activeQuest = rpgState?.active_quest
   const activeChallenge = rpgState?.active_challenges?.[0]
   const questProgress = activeQuest && activeQuest.boss_hp
@@ -258,8 +241,6 @@ function Dashboard() {
     return badge ? badge.name : badgeId
   }
 
-
-
   return (
     <motion.div
       variants={containerVariants}
@@ -267,19 +248,12 @@ function Dashboard() {
       animate="show"
       className="space-y-6 pb-12"
     >
-      {/* Date and Time Display */}
       <CurrentSyncStatus />
 
-      {/* Character Status */}
-      <motion.div
-        variants={itemVariants}
-        whileHover={{ y: -5 }}
-        className="relative z-20"
-      >
+      <motion.div variants={itemVariants} whileHover={{ y: -5 }} className="relative z-20">
         <CharacterCard rpgState={rpgState} progress={progress} />
       </motion.div>
 
-      {/* Shop Button */}
       <motion.div variants={itemVariants} className="flex justify-end">
         <motion.button
           whileHover={{ scale: 1.05 }}
@@ -295,19 +269,43 @@ function Dashboard() {
         </motion.button>
       </motion.div>
 
-      {/* Main Content Grid */}
       <div className="grid lg:grid-cols-3 gap-6">
-        {/* Left Column: Quests & Current Week */}
         <div className="lg:col-span-2 space-y-6">
+          {/* Daily Training Card */}
+          {rpgState && (
+            <motion.div
+              variants={itemVariants}
+              className="card p-6 border-primary-500/20 bg-gradient-to-br from-primary-900/20 to-surface-900 shadow-[0_0_20px_rgba(59,130,246,0.1)] relative overflow-hidden group"
+            >
+              <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity pointer-events-none">
+                <Compass className="w-32 h-32 text-primary-400 rotate-12" />
+              </div>
+              <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 text-primary-400">
+                    <Trophy className="w-4 h-4" />
+                    <span className="text-[10px] font-bold uppercase tracking-[0.2em]">Active Mission</span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-surface-100">
+                    <span className="text-primary-400">Day {rpgState.level}:</span> Journey Continued
+                  </h3>
+                  <p className="text-surface-400 text-sm max-w-md">
+                    Your training path awaits. Complete today's Chronicles of Code to earn XP and advance your rank.
+                  </p>
+                </div>
+                <Link
+                  to="/practice"
+                  className="px-8 py-3 bg-primary-600 hover:bg-primary-500 text-white rounded-xl font-bold text-sm transition-all shadow-lg shadow-primary-900/40 hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
+                >
+                  Start Training <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </motion.div>
+          )}
 
-          {/* Active Boss Quest (if any) */}
           <AnimatePresence>
             {activeQuest && (
-              <motion.div
-                variants={itemVariants}
-                className="rpg-card p-6 min-h-[200px]"
-                layout
-              >
+              <motion.div variants={itemVariants} className="rpg-card p-6 min-h-[200px]" layout>
                 <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none select-none">
                   <Swords className="w-32 h-32" />
                 </div>
@@ -324,37 +322,16 @@ function Dashboard() {
                       </p>
                     </div>
                   </div>
-
-                  {/* Boss Image/Visual Area - simplified as noise texture for now */}
-                  <motion.div
-                    key={activeQuest.boss_hp_remaining}
-                    initial={{ scale: 1 }}
-                    animate={{ x: [0, -5, 5, -5, 5, 0] }}
-                    transition={{ duration: 0.4 }}
-                  >
+                  <motion.div key={activeQuest.boss_hp_remaining} animate={{ x: [0, -5, 5, -5, 5, 0] }} transition={{ duration: 0.4 }}>
                     <ProgressBar progress={questProgress} showLabel={false} height="h-4" />
                   </motion.div>
-
-                  <div className="flex items-center justify-between text-xs text-surface-500 mt-4 font-medium">
-                    <span className="flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-primary-500 animate-pulse"></span>
-                      Complete tasks to deal damage!
-                    </span>
-                    {activeQuest.reward_badge_id && (
-                      <span className="text-primary-400 bg-primary-900/20 px-2 py-1 rounded border border-primary-500/20 flex items-center gap-1">
-                        <Gift className="w-3 h-3" /> Reward: {getBadgeName(activeQuest.reward_badge_id)}
-                      </span>
-                    )}
-                  </div>
                 </div>
               </motion.div>
             )}
           </AnimatePresence>
 
-          {/* Quest Log (Daily Tasks) */}
           {currentWeek && <QuestLog tasks={currentWeek.tasks || []} onToggle={handleTaskToggle} />}
 
-          {/* Current Week Progress */}
           {currentWeek && (
             <motion.div variants={itemVariants} className="card p-8 bg-gradient-to-br from-surface-900/80 to-surface-800/80">
               <div className="flex items-start justify-between mb-6">
@@ -366,34 +343,17 @@ function Dashboard() {
                 <div className="relative">
                   <div className="absolute inset-0 bg-primary-500/20 blur-xl rounded-full"></div>
                   <ProgressRing progress={weekProgress} size={100} strokeWidth={8}>
-                    <motion.span
-                      initial={{ opacity: 0, scale: 0.5 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      className="text-2xl font-bold font-mono text-primary-400"
-                    >
+                    <motion.span className="text-2xl font-bold font-mono text-primary-400">
                       {Math.round(weekProgress)}%
                     </motion.span>
                   </ProgressRing>
                 </div>
               </div>
-
-              {currentWeek.milestone && (
-                <div className="flex items-center gap-3 text-sm p-4 bg-surface-950/30 rounded-xl border border-primary-500/10 shadow-inner">
-                  <Flag className="w-6 h-6 text-primary-500" />
-                  <div>
-                    <span className="text-primary-500 font-bold uppercase text-xs tracking-wider block mb-0.5">Current Objective</span>
-                    <span className="text-surface-200">{currentWeek.milestone}</span>
-                  </div>
-                </div>
-              )}
             </motion.div>
           )}
         </div>
 
-        {/* Right Column: Stats & Actions */}
         <div className="space-y-6">
-
-          {/* Quick Actions */}
           <motion.div variants={itemVariants} className="card p-6">
             <h3 className="text-lg font-semibold text-surface-100 mb-4 flex items-center gap-2">
               <Compass className="w-5 h-5 text-primary-400" /> Navigation
@@ -419,7 +379,6 @@ function Dashboard() {
             </div>
           </motion.div>
 
-          {/* Active Challenge */}
           {activeChallenge && (
             <motion.div variants={itemVariants} className="card p-6 border-accent-500/20">
               <div className="flex items-center justify-between mb-4">
@@ -427,24 +386,14 @@ function Dashboard() {
                   <span className="badge-accent mb-2">Side Quest</span>
                   <h3 className="text-lg font-bold text-surface-100">{activeChallenge.name}</h3>
                 </div>
-                <div className="text-right text-sm">
-                  <p className="text-surface-500 text-xs uppercase mb-1">Progress</p>
-                  <p className="text-accent-300 font-mono font-bold">
-                    <NumberTicker value={activeChallenge.progress} />/<NumberTicker value={activeChallenge.goal} />
-                  </p>
+                <div className="text-right text-sm font-mono font-bold text-accent-300">
+                  <NumberTicker value={activeChallenge.progress} />/<NumberTicker value={activeChallenge.goal} />
                 </div>
               </div>
               <ProgressBar progress={challengeProgress} showLabel={false} colorClass="bg-accent-500" />
-              {activeChallenge.ends_at && (
-                <div className="flex items-center gap-2 mt-4 text-xs text-surface-500 bg-surface-950/30 p-2 rounded">
-                  <Timer className="w-3 h-3" />
-                  <span>Ends: {new Date(activeChallenge.ends_at).toLocaleString()}</span>
-                </div>
-              )}
             </motion.div>
           )}
 
-          {/* Overall Progress */}
           <motion.div variants={itemVariants} className="card p-6 text-center relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-primary-900/5 pointer-events-none"></div>
             <h3 className="text-lg font-semibold text-surface-100 mb-6">Campaign Progress</h3>
@@ -462,19 +411,14 @@ function Dashboard() {
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-surface-800/50 rounded-full border border-surface-700/50 text-sm text-surface-400">
               <Check className="w-4 h-4 text-primary-500" />
               <span>
-                <strong className="text-surface-200">{progress?.tasks_completed || 0}</strong> of {progress?.tasks_total || 0} quests completed
+                <strong className="text-surface-200">{progress?.tasks_completed || 0}</strong> of {progress?.tasks_total || 0} quests
               </span>
             </div>
           </motion.div>
         </div>
       </div>
 
-      <ShopModal
-        isOpen={shopOpen}
-        onClose={() => setShopOpen(false)}
-        rpgState={rpgState}
-        onPurchase={handlePurchase}
-      />
+      <ShopModal isOpen={shopOpen} onClose={() => setShopOpen(false)} rpgState={rpgState} onPurchase={handlePurchase} />
     </motion.div>
   )
 }

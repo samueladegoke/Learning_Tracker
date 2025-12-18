@@ -20,6 +20,12 @@ from ..auth import get_current_user
 
 router = APIRouter()
 
+# Shop item configuration (move to DB or config file for production)
+SHOP_ITEMS = {
+    "streak_freeze": {"cost": 50, "description": "Protects your streak for one day"},
+    "potion_focus": {"cost": 20, "description": "Refills focus points to max"},
+    "heart_refill": {"cost": 100, "description": "Restores one heart"},
+}
 
 def get_active_quest(db: Session, user_id: int) -> UserQuest | None:
     return (
@@ -113,32 +119,32 @@ def award_xp(amount: int, user: User = Depends(get_current_user), db: Session = 
 @router.post("/buy/{item_id}")
 def buy_item(item_id: str, user: User = Depends(get_current_user), db: Session = Depends(get_db)):
     """Buy an item from the shop."""
+    # Validate item exists in config
+    if item_id not in SHOP_ITEMS:
+        raise HTTPException(status_code=404, detail="Item not found")
+
+    item = SHOP_ITEMS[item_id]
+    cost = item["cost"]
+
+    # Check gold
+    if user.gold < cost:
+        raise HTTPException(status_code=400, detail="Not enough gold")
+
+    # Apply item effect
     if item_id == "streak_freeze":
-        cost = 50
-        if user.gold < cost:
-            raise HTTPException(status_code=400, detail="Not enough gold")
         user.gold -= cost
         user.streak_freeze_count += 1
 
     elif item_id == "potion_focus":
-        cost = 20
-        if user.gold < cost:
-            raise HTTPException(status_code=400, detail="Not enough gold")
         user.gold -= cost
         user.focus_points = FOCUS_CAP
         user.focus_refreshed_at = datetime.utcnow()
 
     elif item_id == "heart_refill":
-        cost = 100
-        if user.gold < cost:
-            raise HTTPException(status_code=400, detail="Not enough gold")
         if user.hearts >= 3:
-             raise HTTPException(status_code=400, detail="Hearts already full")
+            raise HTTPException(status_code=400, detail="Hearts already full")
         user.gold -= cost
         user.hearts += 1
-
-    else:
-        raise HTTPException(status_code=404, detail="Item not found")
 
     db.commit()
     return {"message": f"Bought {item_id}", "gold": user.gold}

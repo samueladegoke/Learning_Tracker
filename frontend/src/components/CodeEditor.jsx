@@ -17,6 +17,8 @@ function CodeEditor({
   const [isRunning, setIsRunning] = useState(false)
   const [testResults, setTestResults] = useState(null)
   const [activeTab, setActiveTab] = useState('code') // 'code' | 'output' | 'tests'
+  const [hasUnreadOutput, setHasUnreadOutput] = useState(false)
+  const [hasUnreadTests, setHasUnreadTests] = useState(false)
 
   const { runCode, runTestCases, isLoading, loadingProgress, isReady, error: pyError } = usePythonRunner()
 
@@ -25,11 +27,20 @@ function CodeEditor({
     setCode(starterCode)
     setOutput('')
     setTestResults(null)
+    setHasUnreadOutput(false)
+    setHasUnreadTests(false)
   }, [starterCode, questionId])
+
+  // Clear unread flags when switching tabs
+  useEffect(() => {
+    if (activeTab === 'output') setHasUnreadOutput(false)
+    if (activeTab === 'tests') setHasUnreadTests(false)
+  }, [activeTab])
 
   const handleRun = async () => {
     if (!isReady) return
 
+    const tabBeforeRun = activeTab // Capture before async to prevent race
     setIsRunning(true)
     setOutput('')
     setActiveTab('output')
@@ -42,6 +53,11 @@ function CodeEditor({
       } else {
         setOutput(result.output || '(No output)')
       }
+
+      // Use captured tab value to determine notification state
+      if (tabBeforeRun !== 'output') {
+        setHasUnreadOutput(true)
+      }
     } catch (err) {
       setOutput(`Execution error: ${err.message}`)
     } finally {
@@ -52,6 +68,7 @@ function CodeEditor({
   const handleSubmit = async () => {
     if (!isReady || testCases.length === 0) return
 
+    const tabBeforeSubmit = activeTab // Capture before async to prevent race
     setIsRunning(true)
     setTestResults(null)
     setActiveTab('tests')
@@ -59,6 +76,11 @@ function CodeEditor({
     try {
       const results = await runTestCases(code, testCases)
       setTestResults(results)
+
+      // Use captured tab value to determine notification state
+      if (tabBeforeSubmit !== 'tests') {
+        setHasUnreadTests(true)
+      }
 
       const passed = results.filter(r => r.passed).length
       const total = results.length
@@ -106,22 +128,24 @@ function CodeEditor({
           </button>
           <button
             onClick={() => setActiveTab('output')}
-            className={`px-4 py-1.5 text-xs font-bold uppercase tracking-wider rounded-md transition-all ${activeTab === 'output'
+            className={`px-4 py-1.5 text-xs font-bold uppercase tracking-wider rounded-md transition-all relative ${activeTab === 'output'
               ? 'bg-primary-500/10 text-primary-400 shadow-[inset_0_0_10px_rgba(59,130,246,0.1)]'
               : 'text-surface-500 hover:text-surface-300 hover:bg-white/5'
               }`}
           >
             Output
+            {hasUnreadOutput && <span className="absolute top-1 right-1 w-1.5 h-1.5 bg-primary-500 rounded-full shadow-[0_0_5px_rgba(59,130,246,0.8)]"></span>}
           </button>
           {testCases.length > 0 && (
             <button
               onClick={() => setActiveTab('tests')}
-              className={`px-4 py-1.5 text-xs font-bold uppercase tracking-wider rounded-md transition-all ${activeTab === 'tests'
+              className={`px-4 py-1.5 text-xs font-bold uppercase tracking-wider rounded-md transition-all relative ${activeTab === 'tests'
                 ? 'bg-primary-500/10 text-primary-400 shadow-[inset_0_0_10px_rgba(59,130,246,0.1)]'
                 : 'text-surface-500 hover:text-surface-300 hover:bg-white/5'
                 }`}
             >
               Test Suite {testResults && <span className="ml-1 opacity-60">({testResults.filter(r => r.passed).length}/{testResults.length})</span>}
+              {hasUnreadTests && <span className="absolute top-1 right-1 w-1.5 h-1.5 bg-emerald-500 rounded-full shadow-[0_0_5px_rgba(16,185,129,0.8)]"></span>}
             </button>
           )}
         </div>
@@ -282,6 +306,7 @@ function CodeEditor({
 }
 
 export default CodeEditor
+
 
 
 

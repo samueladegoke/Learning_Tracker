@@ -76,11 +76,22 @@ def get_current_user(
         dev_user_id = int(os.environ.get("DEV_USER_ID", 1))
         user = db.query(User).filter(User.id == dev_user_id).first()
         if not user:
-            # Auto-create if not exists
-            user = User(id=dev_user_id, username=f"dev_user_{dev_user_id}")
-            db.add(user)
-            db.commit()
-            db.refresh(user)
+            # Auto-create if not exists (wrapped in try/except for safety)
+            try:
+                user = User(id=dev_user_id, username=f"dev_user_{dev_user_id}")
+                db.add(user)
+                db.commit()
+                db.refresh(user)
+            except Exception:
+                # Rollback on any error (e.g., FK violation, race condition)
+                db.rollback()
+                # Try to fetch again in case of race condition
+                user = db.query(User).filter(User.id == dev_user_id).first()
+                if not user:
+                    raise HTTPException(
+                        status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                        detail="Failed to create dev user"
+                    )
         return user
 
     # Production mode - require valid token

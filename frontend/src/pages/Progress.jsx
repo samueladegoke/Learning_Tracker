@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
-import { Trophy, Target, Flame, Calendar as CalendarIcon, AlertTriangle } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { Trophy, Target, Flame, Calendar as CalendarIcon, AlertTriangle, Star, Zap, Crown, Skull, Award, CheckCircle2 } from 'lucide-react'
 import { progressAPI, badgesAPI, achievementsAPI, weeksAPI } from '../api/client'
 import Leaderboard from '../components/Leaderboard'
 import ProgressRing from '../components/ProgressRing'
 import ProgressBar from '../components/ProgressBar'
 import BadgeCard from '../components/BadgeCard'
-import StatCard from '../components/StatCard'
 
 function Progress() {
   const [progress, setProgress] = useState(null)
@@ -188,37 +188,87 @@ function Progress() {
 
         <div className="grid lg:grid-cols-2 gap-6">
           <div className="card p-4">
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="text-sm uppercase tracking-wide text-surface-500">Achievements</h3>
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-sm uppercase tracking-wide text-surface-500 flex items-center gap-2">
+                <Award className="w-4 h-4 text-primary-400" />
+                Achievements
+              </h3>
               <span className="text-xs text-surface-500">
                 {progress?.achievements_earned || 0}/{progress?.achievements_total || achievements.length || 0}
               </span>
             </div>
             {achievements.length > 0 ? (
-              <div className="space-y-2 max-h-64 overflow-y-auto pr-2">
-                {achievements.map((ach) => (
-                  <div
-                    key={ach.id}
-                    className={`p-3 rounded-lg border text-sm ${ach.unlocked
-                      ? 'border-primary-700/50 bg-primary-900/20 text-surface-100'
-                      : 'border-surface-800 bg-surface-900/40 text-surface-400'
-                      }`}
-                  >
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h4 className="font-semibold mb-1 text-surface-200">{ach.name}</h4>
-                        <p className="text-xs text-surface-500">{ach.description}</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-80 overflow-y-auto pr-1">
+                {achievements.map((ach) => {
+                  // Determine rarity-based styling
+                  const rarityStyles = {
+                    trivial: 'border-surface-600 bg-surface-800/50',
+                    normal: 'border-primary-600/50 bg-primary-900/20',
+                    hard: 'border-amber-500/50 bg-amber-900/20',
+                    epic: 'border-purple-500/50 bg-purple-900/20 shadow-[0_0_15px_rgba(168,85,247,0.15)]'
+                  }
+                  const rarity = (ach.difficulty || 'normal').toLowerCase()
+                  const rarityClass = rarityStyles[rarity] || rarityStyles.normal
+
+                  // Determine icon based on achievement name/type
+                  const getIcon = () => {
+                    const name = ach.name?.toLowerCase() || ''
+                    if (name.includes('boss') || name.includes('slayer')) return <Skull className="w-5 h-5" />
+                    if (name.includes('streak') || name.includes('fire')) return <Flame className="w-5 h-5" />
+                    if (name.includes('quiz') || name.includes('master')) return <Crown className="w-5 h-5" />
+                    if (name.includes('first') || name.includes('start')) return <Zap className="w-5 h-5" />
+                    return <Star className="w-5 h-5" />
+                  }
+
+                  return (
+                    <motion.div
+                      key={ach.id}
+                      whileHover={{ scale: 1.02, y: -2 }}
+                      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                      className={`relative p-4 rounded-xl border-2 transition-all cursor-default ${rarityClass} ${ach.unlocked ? 'opacity-100' : 'opacity-50 grayscale'
+                        }`}
+                    >
+                      {/* Unlocked indicator */}
+                      {ach.unlocked && (
+                        <div className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-emerald-500 rounded-full flex items-center justify-center shadow-lg">
+                          <CheckCircle2 className="w-3 h-3 text-white" />
+                        </div>
+                      )}
+
+                      <div className="flex items-start gap-3">
+                        {/* Icon */}
+                        <div className={`p-2 rounded-lg ${rarity === 'epic' ? 'bg-purple-500/20 text-purple-400' :
+                            rarity === 'hard' ? 'bg-amber-500/20 text-amber-400' :
+                              rarity === 'normal' ? 'bg-primary-500/20 text-primary-400' :
+                                'bg-surface-600/50 text-surface-400'
+                          }`}>
+                          {getIcon()}
+                        </div>
+
+                        {/* Content */}
+                        <div className="flex-1 min-w-0">
+                          <h4 className="font-bold text-sm text-surface-100 truncate">{ach.name}</h4>
+                          <p className="text-xs text-surface-400 mt-0.5 line-clamp-2">{ach.description}</p>
+                        </div>
                       </div>
-                      <div className="text-right">
-                        <p className="text-xs text-surface-500 capitalize">{ach.difficulty || 'normal'}</p>
-                        <p className="text-xs text-primary-400">+{ach.xp_value} XP</p>
+
+                      {/* Footer */}
+                      <div className="flex items-center justify-between mt-3 pt-2 border-t border-white/5">
+                        <span className={`text-[10px] font-bold uppercase tracking-wider ${rarity === 'epic' ? 'text-purple-400' :
+                            rarity === 'hard' ? 'text-amber-400' :
+                              rarity === 'normal' ? 'text-primary-400' :
+                                'text-surface-500'
+                          }`}>
+                          {rarity}
+                        </span>
+                        <span className="text-xs font-mono text-primary-400">+{ach.xp_value} XP</span>
                       </div>
-                    </div>
-                  </div>
-                ))}
+                    </motion.div>
+                  )
+                })}
               </div>
             ) : (
-              <p className="text-sm text-surface-500">No achievements defined yet.</p>
+              <p className="text-sm text-surface-500 text-center py-6">No achievements defined yet.</p>
             )}
           </div>
 

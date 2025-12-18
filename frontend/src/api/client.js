@@ -36,6 +36,12 @@ async function fetchAPI(endpoint, options = {}) {
   return response.json()
 }
 
+// Clear cached session (call on logout to prevent stale token usage)
+export function clearSessionCache() {
+  cachedSession = null;
+  lastSessionFetch = 0;
+}
+
 // Weeks API
 export const weeksAPI = {
   getAll: () => fetchAPI('/weeks'),

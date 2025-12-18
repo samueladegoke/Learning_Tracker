@@ -12,10 +12,13 @@ export function usePythonRunner() {
     const stdout = []
     const stderr = []
 
+    // Use a cancellable timeout pattern to prevent memory leaks
+    let timeoutId = null
+
     try {
       // Create a promise that rejects on timeout
       const timeoutPromise = new Promise((_, reject) => {
-        setTimeout(() => reject(new Error('Execution timeout - code took too long')), timeout)
+        timeoutId = setTimeout(() => reject(new Error('Execution timeout - code took too long')), timeout)
       })
 
       // Run the code with timeout using the safe context runner
@@ -27,12 +30,18 @@ export function usePythonRunner() {
         timeoutPromise
       ])
 
+      // Clear timeout on success to prevent dangling timer
+      if (timeoutId) clearTimeout(timeoutId)
+
       return {
         output: stdout.join(''),
         result: result !== undefined ? String(result) : null,
         error: stderr.length > 0 ? stderr.join('') : null
       }
     } catch (err) {
+      // Clear timeout on error as well
+      if (timeoutId) clearTimeout(timeoutId)
+
       // Format Python errors nicely
       let errorMessage = err.message
       if (err.message && err.message.includes('PythonError')) {
