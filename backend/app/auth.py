@@ -24,8 +24,12 @@ security = HTTPBearer(auto_error=False)
 SUPABASE_JWT_SECRET = os.environ.get("SUPABASE_JWT_SECRET", "")
 SUPABASE_URL = os.environ.get("SUPABASE_URL", "")
 
-# For local development/testing, fall back to single-user mode
-ENABLE_AUTH = bool(SUPABASE_JWT_SECRET)
+# =============================================================================
+# AUTHENTICATION SUSPENDED FOR SINGLE-USER DEVELOPMENT PHASE
+# =============================================================================
+# When multi-user login is implemented, set this to: bool(SUPABASE_JWT_SECRET)
+# For now, all requests use the fallback user (ID 1) regardless of JWT secret.
+ENABLE_AUTH = False
 
 
 def decode_jwt(token: str) -> dict:
