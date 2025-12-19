@@ -1,7 +1,8 @@
 import { useState, useEffect, lazy, Suspense } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { AlertTriangle, Trophy, PartyPopper, BookOpen, Check, X, Lightbulb, ArrowLeft, ArrowRight, CheckCircle, Loader2, Sparkles } from 'lucide-react'
-import { rpgAPI, quizzesAPI } from '../api/client'
+import { AlertTriangle, Trophy, PartyPopper, BookOpen, Check, X, Lightbulb, ArrowLeft, ArrowRight, CheckCircle, Loader2, Sparkles, Brain, Sword } from 'lucide-react'
+import { rpgAPI, quizzesAPI, srsAPI } from '../api/client'
 import CodeBlock from '../components/CodeBlock'
 import CodeEditor from '../components/CodeEditor'
 import { InlineCode } from '../components/InlineCode'
@@ -57,6 +58,11 @@ const DeepDiveDay47 = lazy(() => import('../components/content/DeepDive/Day47'))
 const DeepDiveDay48 = lazy(() => import('../components/content/DeepDive/Day48'))
 const DeepDiveDay49 = lazy(() => import('../components/content/DeepDive/Day49'))
 const DeepDiveDay50 = lazy(() => import('../components/content/DeepDive/Day50'))
+const DeepDiveDay51 = lazy(() => import('../components/content/DeepDive/Day51'))
+const DeepDiveDay52 = lazy(() => import('../components/content/DeepDive/Day52'))
+const DeepDiveDay53 = lazy(() => import('../components/content/DeepDive/Day53'))
+const DeepDiveDay54 = lazy(() => import('../components/content/DeepDive/Day54'))
+const DeepDiveDay55 = lazy(() => import('../components/content/DeepDive/Day55'))
 
 // Loading fallback component for lazy-loaded DeepDive content
 const DeepDiveLoader = () => (
@@ -466,6 +472,46 @@ const DAY_META = {
         quizId: 'day-50-practice',
         level: 'intermediate+',
         topics: ['selenium', 'iframes', 'windows', 'popups']
+    },
+    'day-51': {
+        label: 'Day 51',
+        title: 'Day 51: Internet Speed Twitter Bot',
+        subtitle: 'Test internet speed and tweet complaints at your ISP automatically.',
+        quizId: 'day-51-practice',
+        level: 'intermediate+',
+        topics: ['selenium', 'speedtest', 'twitter', 'automation']
+    },
+    'day-52': {
+        label: 'Day 52',
+        title: 'Day 52: Instagram Follower Bot',
+        subtitle: 'Automate following users from a target account to grow your following.',
+        quizId: 'day-52-practice',
+        level: 'intermediate+',
+        topics: ['selenium', 'instagram', 'scrolling', 'rate-limiting']
+    },
+    'day-53': {
+        label: 'Day 53',
+        title: 'Day 53: Data Entry Capstone',
+        subtitle: 'Scrape property listings and automate Google Form submissions.',
+        quizId: 'day-53-practice',
+        level: 'intermediate+',
+        topics: ['beautifulsoup', 'selenium', 'web-scraping', 'automation']
+    },
+    'day-54': {
+        label: 'Day 54',
+        title: 'Day 54: Introduction to Flask',
+        subtitle: 'Create web servers, understand decorators, and master __name__.',
+        quizId: 'day-54-practice',
+        level: 'intermediate+',
+        topics: ['flask', 'decorators', 'web-server', 'python']
+    },
+    'day-55': {
+        label: 'Day 55',
+        title: 'Day 55: Flask Routing & Higher/Lower',
+        subtitle: 'Build dynamic URL routes and create a number guessing game.',
+        quizId: 'day-55-practice',
+        level: 'intermediate+',
+        topics: ['flask', 'routing', 'url-parameters', 'web-game']
     }
 }
 
@@ -477,6 +523,25 @@ function Practice() {
     const [lastDayResult, setLastDayResult] = useState(null)
     const [isChallengeCleared, setIsChallengeCleared] = useState(false)
     const [loading, setLoading] = useState(true)
+    const [isReviewMode, setIsReviewMode] = useState(() => {
+        const params = new URLSearchParams(window.location.search)
+        return params.get('mode') === 'review'
+    })
+
+    const location = useLocation()
+    const navigate = useNavigate()
+
+    // Sync review mode if URL changes 
+    useEffect(() => {
+        const params = new URLSearchParams(location.search)
+        const review = params.get('mode') === 'review'
+        if (review) {
+            setActiveTab('practice')
+        }
+        if (review !== isReviewMode) {
+            setIsReviewMode(review)
+        }
+    }, [location.search, isReviewMode])
 
     // Project start date for "Jump to Today" calculation
     const PROJECT_START_DATE = new Date('2025-11-20')
@@ -501,73 +566,103 @@ function Practice() {
     }, [])
 
     useEffect(() => {
+        let active = true
         const loadDayData = async () => {
-            const quizId = DAY_META[activeDay].quizId
+            if (isReviewMode) {
+                setLoading(true)
+                try {
+                    const data = await srsAPI.getDailyReview()
+                    if (active) {
+                        setQuizData({ questions: data.questions || [], hasCoding: false })
+                    }
+                } catch (err) {
+                    console.error('Failed to load review data:', err)
+                } finally {
+                    if (active) setLoading(false)
+                }
+                return
+            }
+
+            const quizId = DAY_META[activeDay]?.quizId
             if (!quizId) return
 
             setLoading(true)
             try {
                 const questions = await quizzesAPI.getQuestions(quizId)
-                const hasCoding = questions.some(q => q.question_type === 'coding')
-                setQuizData({ questions, hasCoding })
+                if (active) {
+                    const hasCoding = questions.some(q => q.question_type === 'coding')
+                    setQuizData({ questions, hasCoding })
+                }
             } catch (err) {
                 console.error('Failed to load quiz data:', err)
             } finally {
-                setLoading(false)
+                if (active) setLoading(false)
             }
         }
         loadDayData()
-    }, [activeDay])
+        return () => { active = false }
+    }, [activeDay, isReviewMode])
 
     return (
         <div className="space-y-8 pb-12">
             <header className="space-y-3">
                 <div className="flex items-center gap-3">
                     <h1 className="text-3xl font-bold bg-gradient-to-r from-primary-400 to-primary-200 bg-clip-text text-transparent">
-                        {currentDay.title}
+                        {isReviewMode ? (
+                            <span className="flex items-center gap-3">
+                                <Brain className="w-8 h-8 text-primary-400" />
+                                Memory Training
+                            </span>
+                        ) : currentDay.title}
                     </h1>
-                    <span className="px-3 py-1 rounded-full bg-surface-800/50 border border-surface-700 text-xs font-medium text-primary-400">
-                        {currentDay.level}
-                    </span>
+                    {!isReviewMode && (
+                        <span className="px-3 py-1 rounded-full bg-surface-800/50 border border-surface-700 text-xs font-medium text-primary-400">
+                            {currentDay.level}
+                        </span>
+                    )}
                 </div>
                 <p className="text-surface-400 text-lg max-w-2xl">
-                    {currentDay.subtitle}
+                    {isReviewMode
+                        ? "Strengthening your knowledge with Spaced Repetition. Master these questions to lock them into long-term memory."
+                        : currentDay.subtitle}
                 </p>
 
                 {/* Day Selector */}
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-4">
-                    <div className="flex-1 overflow-hidden">
-                        <div className="flex items-center justify-between mb-3">
-                            <h2 className="text-xs font-bold text-surface-500 uppercase tracking-widest">Chronicles of Code</h2>
-                            <button
-                                onClick={() => setActiveDay(getTodayKey())}
-                                className="text-[10px] font-bold text-primary-400 hover:text-primary-300 uppercase tracking-tight flex items-center gap-1 px-2 py-1 rounded bg-primary-400/10 transition-colors"
-                            >
-                                <Sparkles className="w-3 h-3" /> Jump to Today
-                            </button>
-                        </div>
-                        <div className="flex gap-2 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-surface-700">
-                            {Object.entries(DAY_META).map(([key, meta]) => {
-                                const isCompleted = completedQuizzes.includes(meta.quizId)
-                                return (
-                                    <button
-                                        key={key}
-                                        onClick={() => setActiveDay(key)}
-                                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap flex items-center gap-2 border ${activeDay === key
-                                            ? 'bg-primary-500/10 text-primary-400 border-primary-500/50 scale-105 shadow-lg shadow-primary-900/20'
-                                            : 'text-surface-400 border-transparent hover:text-surface-200 hover:bg-surface-800/50'
-                                            }`}
-                                    >
-                                        {meta.label}
-                                        {isCompleted && (
-                                            <CheckCircle className="w-4 h-4 text-green-500" />
-                                        )}
-                                    </button>
-                                )
-                            })}
+                {!isReviewMode && (
+                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-4">
+                        <div className="flex-1 overflow-hidden">
+                            <div className="flex items-center justify-between mb-3">
+                                <h2 className="text-xs font-bold text-surface-500 uppercase tracking-widest">Chronicles of Code</h2>
+                                <button
+                                    onClick={() => setActiveDay(getTodayKey())}
+                                    className="text-[10px] font-bold text-primary-400 hover:text-primary-300 uppercase tracking-tight flex items-center gap-1 px-2 py-1 rounded bg-primary-400/10 transition-colors"
+                                >
+                                    <Sparkles className="w-3 h-3" /> Jump to Today
+                                </button>
+                            </div>
+                            <div className="flex gap-2 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-surface-700">
+                                {Object.entries(DAY_META).map(([key, meta]) => {
+                                    const isCompleted = completedQuizzes.includes(meta.quizId)
+                                    return (
+                                        <button
+                                            key={key}
+                                            onClick={() => setActiveDay(key)}
+                                            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap flex items-center gap-2 border ${activeDay === key
+                                                ? 'bg-primary-500/10 text-primary-400 border-primary-500/50 scale-105 shadow-lg shadow-primary-900/20'
+                                                : 'text-surface-400 border-transparent hover:text-surface-200 hover:bg-surface-800/50'
+                                                }`}
+                                        >
+                                            {meta.label}
+                                            {isCompleted && (
+                                                <CheckCircle className="w-4 h-4 text-green-500" />
+                                            )}
+                                        </button>
+                                    )
+                                })}
+                            </div>
                         </div>
                     </div>
-                </div>
+                )}
             </header>
 
             {/* Challenge Cleared Celebration Overlay */}
@@ -593,37 +688,39 @@ function Practice() {
             </AnimatePresence>
 
             {/* Navigation Tabs */}
-            <div className="flex border-b border-surface-700">
-                <button
-                    onClick={() => setActiveTab('deep-dive')}
-                    className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${activeTab === 'deep-dive'
-                        ? 'border-primary-500 text-primary-400'
-                        : 'border-transparent text-surface-400 hover:text-surface-200'
-                        }`}
-                >
-                    Deep Dive
-                </button>
-                <button
-                    onClick={() => setActiveTab('practice')}
-                    className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${activeTab === 'practice'
-                        ? 'border-primary-500 text-primary-400'
-                        : 'border-transparent text-surface-400 hover:text-surface-200'
-                        }`}
-                >
-                    Quiz
-                </button>
-                {quizData.hasCoding && (
+            {!isReviewMode && (
+                <div className="flex border-b border-surface-700">
                     <button
-                        onClick={() => setActiveTab('challenges')}
-                        className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${activeTab === 'challenges'
+                        onClick={() => setActiveTab('deep-dive')}
+                        className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${activeTab === 'deep-dive'
                             ? 'border-primary-500 text-primary-400'
                             : 'border-transparent text-surface-400 hover:text-surface-200'
                             }`}
                     >
-                        Challenges
+                        Deep Dive
                     </button>
-                )}
-            </div>
+                    <button
+                        onClick={() => setActiveTab('practice')}
+                        className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${activeTab === 'practice'
+                            ? 'border-primary-500 text-primary-400'
+                            : 'border-transparent text-surface-400 hover:text-surface-200'
+                            }`}
+                    >
+                        Quiz
+                    </button>
+                    {quizData.hasCoding && (
+                        <button
+                            onClick={() => setActiveTab('challenges')}
+                            className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${activeTab === 'challenges'
+                                ? 'border-primary-500 text-primary-400'
+                                : 'border-transparent text-surface-400 hover:text-surface-200'
+                                }`}
+                        >
+                            Challenges
+                        </button>
+                    )}
+                </div>
+            )}
 
             {/* Content */}
             <div className="min-h-[400px]">
@@ -640,6 +737,7 @@ function Practice() {
                         activeDay={activeDay}
                         initialQuestions={quizData.questions.filter(q => q.question_type !== 'coding')}
                         setIsChallengeCleared={setIsChallengeCleared}
+                        isReviewMode={isReviewMode}
                     />
                 )}
                 {!loading && activeTab === 'challenges' && (
@@ -649,6 +747,7 @@ function Practice() {
                         initialQuestions={quizData.questions.filter(q => q.question_type === 'coding')}
                         isChallengeTab={true}
                         setIsChallengeCleared={setIsChallengeCleared}
+                        isReviewMode={isReviewMode}
                     />
                 )}
             </div>
@@ -707,7 +806,12 @@ function DeepDive({ activeDay }) {
         'day-47': DeepDiveDay47,
         'day-48': DeepDiveDay48,
         'day-49': DeepDiveDay49,
-        'day-50': DeepDiveDay50
+        'day-50': DeepDiveDay50,
+        'day-51': DeepDiveDay51,
+        'day-52': DeepDiveDay52,
+        'day-53': DeepDiveDay53,
+        'day-54': DeepDiveDay54,
+        'day-55': DeepDiveDay55
     }
     const Component = components[activeDay]
     if (!Component) {
@@ -720,7 +824,7 @@ function DeepDive({ activeDay }) {
     )
 }
 
-function Quiz({ quizId, activeDay, initialQuestions = [], isChallengeTab = false, setIsChallengeCleared }) {
+function Quiz({ quizId, activeDay, initialQuestions = [], isChallengeTab = false, setIsChallengeCleared, isReviewMode = false }) {
     const [questions, setQuestions] = useState(initialQuestions)
     const [currentQ, setCurrentQ] = useState(0)
     const [answers, setAnswers] = useState({}) // { questionId: selectedIndex or { code, passed, total } }
@@ -731,9 +835,10 @@ function Quiz({ quizId, activeDay, initialQuestions = [], isChallengeTab = false
     const [error, setError] = useState(null)
     const [quizStats, setQuizStats] = useState(null)
     const [xpWarning, setXpWarning] = useState(null)
+    const [masteryMessage, setMasteryMessage] = useState(null)
 
     useEffect(() => {
-        if (initialQuestions.length > 0) {
+        if (initialQuestions && initialQuestions.length > 0) {
             setQuestions(initialQuestions)
             setLoading(false)
             // Reset state for new question set
@@ -741,10 +846,14 @@ function Quiz({ quizId, activeDay, initialQuestions = [], isChallengeTab = false
             setAnswers({})
             setShowResult(false)
             setResultData(null)
-        } else {
+        } else if (!isReviewMode && quizId) {
             loadQuiz(quizId)
+        } else if (isReviewMode && initialQuestions && initialQuestions.length === 0) {
+            // In review mode with no questions - either loading or truly empty
+            setQuestions([])
+            setLoading(false)
         }
-    }, [quizId, initialQuestions])
+    }, [quizId, initialQuestions, isReviewMode])
 
     const loadQuiz = async (targetQuizId) => {
         try {
@@ -790,15 +899,32 @@ function Quiz({ quizId, activeDay, initialQuestions = [], isChallengeTab = false
         }
     }
 
-    const handleMCQAnswer = (optionIndex) => {
+    const handleMCQAnswer = async (optionIndex) => {
         const questionId = questions[currentQ].id
         setAnswers(prev => ({
             ...prev,
             [questionId]: optionIndex
         }))
+
+        if (isReviewMode) {
+            const isCorrect = Number(optionIndex) === Number(questions[currentQ].correct_index)
+            try {
+                const srsResult = await srsAPI.submitResult({
+                    review_id: questions[currentQ].id, // For SRS, the id is the review_id
+                    was_correct: isCorrect
+                })
+
+                if (srsResult?.message) {
+                    setMasteryMessage(srsResult.message)
+                    setTimeout(() => setMasteryMessage(null), 4000)
+                }
+            } catch (err) {
+                console.error('SRS Submit Failed:', err)
+            }
+        }
     }
 
-    const handleCodingResult = (result) => {
+    const handleCodingResult = async (result) => {
         const questionId = questions[currentQ].id
         setAnswers(prev => ({
             ...prev,
@@ -806,6 +932,22 @@ function Quiz({ quizId, activeDay, initialQuestions = [], isChallengeTab = false
         }))
 
         const { allPassed } = result
+
+        if (isReviewMode) {
+            try {
+                const srsResult = await srsAPI.submitResult({
+                    review_id: questions[currentQ].id,
+                    was_correct: allPassed
+                })
+
+                if (srsResult?.message) {
+                    setMasteryMessage(srsResult.message)
+                    setTimeout(() => setMasteryMessage(null), 4000)
+                }
+            } catch (err) {
+                console.error('SRS Submit Failed:', err)
+            }
+        }
         if (allPassed) {
             // Trigger animation for cleared challenge
             // This state is managed in the parent Practice component
@@ -941,6 +1083,32 @@ function Quiz({ quizId, activeDay, initialQuestions = [], isChallengeTab = false
     }
 
     const finishQuiz = async () => {
+        if (isReviewMode) {
+            // In review mode, items are submitted individually. 
+            // We just show the local completion summary.
+            const total = questions.length
+            const correct = Object.values(answers).filter((val, idx) => {
+                const q = questions.find(q => q.id === parseInt(Object.keys(answers)[idx]))
+                if (!q) return false
+                if (q.question_type === 'mcq' || q.question_type === 'code-correction') {
+                    return val === q.correct_index
+                }
+                return val.allPassed
+            }).length
+
+            setResultData({
+                score: correct,
+                total_questions: total,
+                score_breakdown: `${correct}/${total}`,
+                xp_gained: 0, // Individual XP already awarded via srs/review-result
+                percentage: (correct / total) * 100,
+                achievements_unlocked: [],
+                xp_saved: true
+            })
+            setShowResult(true)
+            return
+        }
+
         setIsSubmitting(true)
         try {
             // Submit quiz to backend - it handles scoring for both MCQ and coding
@@ -1014,18 +1182,22 @@ function Quiz({ quizId, activeDay, initialQuestions = [], isChallengeTab = false
                             : <BookOpen className="w-16 h-16 text-amber-400" />
                     }
                 </div>
-                <h3 className="text-3xl font-bold text-surface-100">Quiz Complete!</h3>
+                <h3 className="text-3xl font-bold text-surface-100">
+                    {isReviewMode ? 'Training Complete!' : 'Quiz Complete!'}
+                </h3>
                 <div className="text-center">
                     <p className={`text-5xl font-bold mb-2 ${isPerfect ? 'text-yellow-400' : isPassing ? 'text-primary-400' : 'text-amber-400'
                         }`}>
                         {percentage}%
                     </p>
                     <p className="text-surface-400">
-                        You scored {resultData.score} out of {resultData.total_questions}
+                        {isReviewMode
+                            ? `You reviewed ${resultData.total_questions} items in your memory bank.`
+                            : `You scored ${resultData.score} out of ${resultData.total_questions}`}
                     </p>
                     <p className="text-sm text-primary-300 mt-2">
-                        +{resultData.xp_gained} XP Earned!
-                        {!resultData.xp_saved && (
+                        {isReviewMode ? 'Knowledge Solidified' : `+${resultData.xp_gained} XP Earned!`}
+                        {!resultData.xp_saved && !isReviewMode && (
                             <span className="flex items-center gap-2 text-amber-400 text-xs mt-1 justify-center">
                                 <AlertTriangle className="w-3 h-3" /> XP not saved to profile
                             </span>
@@ -1038,7 +1210,7 @@ function Quiz({ quizId, activeDay, initialQuestions = [], isChallengeTab = false
                     )}
                 </div>
 
-                {quizStats && (
+                {quizStats && !isReviewMode && (
                     <div className="flex gap-4 text-sm text-surface-500">
                         <span>MCQ: {quizStats.byType.mcq}</span>
                         <span>•</span>
@@ -1048,10 +1220,10 @@ function Quiz({ quizId, activeDay, initialQuestions = [], isChallengeTab = false
 
                 <div className="flex gap-4">
                     <button
-                        onClick={() => loadQuiz(quizId)}
+                        onClick={() => isReviewMode ? window.location.href = '/' : loadQuiz(quizId)}
                         className="px-8 py-3 bg-primary-600 hover:bg-primary-500 text-white rounded-xl transition-colors font-medium shadow-lg shadow-primary-900/20"
                     >
-                        Try Again
+                        {isReviewMode ? 'Continue Journey' : 'Try Again'}
                     </button>
                 </div>
             </div>
@@ -1336,6 +1508,23 @@ function Quiz({ quizId, activeDay, initialQuestions = [], isChallengeTab = false
                         {currentQ < questions.length - 1 ? <>Next <ArrowRight className="w-4 h-4" /></> : 'Submit Quiz'}
                     </button>
                 </div>
+
+                {/* Mastery Notification */}
+                <AnimatePresence>
+                    {masteryMessage && (
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.9, y: -20 }}
+                            className="absolute top-4 left-1/2 -translate-x-1/2 z-20"
+                        >
+                            <div className="bg-primary-600 text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 border border-white/20 whitespace-nowrap">
+                                <Sword className="w-5 h-5 text-yellow-300 animate-pulse" />
+                                <span className="font-bold">{masteryMessage}</span>
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
 
                 {/* Explanation (shown after answering) - MOVED INSIDE CARD */}
                 <AnimatePresence>

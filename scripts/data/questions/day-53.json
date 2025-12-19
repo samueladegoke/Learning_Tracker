@@ -1,0 +1,367 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What is the main goal of the Day 53 Capstone project?",
+        "options": [
+            "Building a dating app",
+            "Scraping property listings and automatically entering data into a Google Form",
+            "Creating a web server",
+            "Sending automated emails"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "automation",
+        "explanation": "Day 53 combines web scraping (BeautifulSoup) with browser automation (Selenium) to extract property data and submit it to Google Forms."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which library is used to parse HTML and extract data from web pages?",
+        "options": [
+            "Selenium",
+            "BeautifulSoup",
+            "Flask",
+            "Pandas"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "beautifulsoup",
+        "explanation": "BeautifulSoup is a Python library for parsing HTML and XML documents, making it easy to extract data from web pages."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why might you need to use headers when making a request to a website?",
+        "options": [
+            "To speed up the request",
+            "To identify as a browser and avoid being blocked",
+            "Headers are always required",
+            "To encrypt the data"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "scraping",
+        "explanation": "Many websites block requests without browser-like User-Agent headers. Adding headers helps avoid detection."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you find all elements with class 'listing-card' using BeautifulSoup?",
+        "options": [
+            "soup.get('.listing-card')",
+            "soup.find_all(class_='listing-card')",
+            "soup.select_class('listing-card')",
+            "soup.elements('listing-card')"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "beautifulsoup",
+        "explanation": "find_all() with class_ parameter (underscore to avoid Python keyword conflict) finds all matching elements."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What's the difference between find() and find_all() in BeautifulSoup?",
+        "options": [
+            "find() is faster",
+            "find() returns the first match, find_all() returns all matches as a list",
+            "find_all() only works with classes",
+            "No difference"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "beautifulsoup",
+        "explanation": "find() returns a single element (first match), while find_all() returns a list of all matching elements."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you extract the href attribute from an anchor tag?",
+        "options": [
+            "anchor.href",
+            "anchor['href'] or anchor.get('href')",
+            "anchor.link",
+            "anchor.getAttribute('href')"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "beautifulsoup",
+        "explanation": "BeautifulSoup elements support dictionary-style access for attributes: element['attr'] or element.get('attr')."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What method removes extra whitespace from extracted text?",
+        "options": [
+            "text.clean()",
+            "text.strip()",
+            "text.trim()",
+            "text.remove_whitespace()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "python",
+        "explanation": "The strip() method removes leading and trailing whitespace from strings."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why would you use CSS selectors with soup.select() instead of find_all()?",
+        "options": [
+            "select() is always faster",
+            "CSS selectors allow complex queries like nested elements and combinations",
+            "find_all() doesn't work with classes",
+            "select() is newer"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "beautifulsoup",
+        "explanation": "CSS selectors enable complex patterns like 'div.container > ul > li a' that would be verbose with find_all()."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does the .text property return in BeautifulSoup?",
+        "options": [
+            "HTML content",
+            "All text content inside an element, with tags stripped",
+            "Only the first word",
+            "The element's class name"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "beautifulsoup",
+        "explanation": ".text returns the concatenated text content of an element and all its children, without HTML tags."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you fill an input field in a Google Form with Selenium?",
+        "options": [
+            "input.fill('text')",
+            "input.send_keys('text')",
+            "input.type('text')",
+            "input.write('text')"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "selenium",
+        "explanation": "Selenium uses send_keys() to simulate typing into input fields."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you submit a Google Form after filling all fields?",
+        "options": [
+            "driver.submit_form()",
+            "Find and click the Submit button",
+            "form.submit() automatically",
+            "Press Enter on any field"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "selenium",
+        "explanation": "Locate the Submit button element and call .click() to submit the form."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What's the typical workflow for scraping + form filling?",
+        "options": [
+            "Fill form first, then scrape",
+            "Scrape data → Store in list → Loop through data → Fill form for each entry",
+            "Scrape and fill simultaneously",
+            "Use only one tool for both"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "automation",
+        "explanation": "Extract all data first, store it, then iterate through entries to submit each to the form."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why might you need to handle pagination when scraping listings?",
+        "options": [
+            "To make it faster",
+            "Listings are spread across multiple pages that need to be navigated",
+            "Pagination is required by law",
+            "To avoid ads"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "scraping",
+        "explanation": "Most listing sites paginate results. You need to navigate through pages to get all data."
+    },
+    {
+        "question_type": "coding",
+        "text": "Parse HTML\nParse HTML content with BeautifulSoup",
+        "starter_code": "def parse_html(html_content):\n    from bs4 import BeautifulSoup\n    # Parse and return soup object\n    pass",
+        "test_cases": [
+            {
+                "function_call": "type(parse_html('<html></html>')).__name__",
+                "expected": "'BeautifulSoup'"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "beautifulsoup",
+        "solution_code": "def parse_html(html_content):\n    from bs4 import BeautifulSoup\n    return BeautifulSoup(html_content, 'html.parser')",
+        "explanation": "Create a BeautifulSoup object by passing HTML content and specifying the parser."
+    },
+    {
+        "question_type": "coding",
+        "text": "Extract Links\nGet all href links from a page",
+        "starter_code": "def extract_all_links(soup):\n    # Find all anchor tags and return list of hrefs\n    pass",
+        "test_cases": [
+            {
+                "function_call": "type(extract_all_links(mock_soup))",
+                "expected": "<class 'list'>"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "beautifulsoup",
+        "solution_code": "def extract_all_links(soup):\n    anchors = soup.find_all('a')\n    return [a.get('href') for a in anchors if a.get('href')]",
+        "explanation": "Find all anchor tags and extract href attributes using list comprehension."
+    },
+    {
+        "question_type": "coding",
+        "text": "Extract Property Data\nExtract price, address, and link from listing elements",
+        "starter_code": "def extract_property_data(listing_element):\n    # Extract price from .price class\n    # Extract address from .address class\n    # Extract link from anchor href\n    # Return dict with keys: price, address, link\n    pass",
+        "test_cases": [
+            {
+                "function_call": "type(extract_property_data(mock_listing))",
+                "expected": "<class 'dict'>"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "beautifulsoup",
+        "solution_code": "def extract_property_data(listing_element):\n    price = listing_element.find(class_='price').text.strip()\n    address = listing_element.find(class_='address').text.strip()\n    link = listing_element.find('a')['href']\n    return {'price': price, 'address': address, 'link': link}",
+        "explanation": "Use find() with class_ to locate child elements, then extract text and attributes."
+    },
+    {
+        "question_type": "coding",
+        "text": "Clean Price String\nExtract numeric value from price string like '$1,200/mo'",
+        "starter_code": "def clean_price(price_string):\n    # Remove $ and non-numeric characters\n    # Return numeric string or original if parsing fails\n    pass",
+        "test_cases": [
+            {
+                "function_call": "clean_price('$1,200/mo')",
+                "expected": "'1200'"
+            },
+            {
+                "function_call": "clean_price('$500')",
+                "expected": "'500'"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "python",
+        "solution_code": "def clean_price(price_string):\n    import re\n    numbers = re.findall(r'\\d+', price_string.replace(',', ''))\n    return ''.join(numbers) if numbers else price_string",
+        "explanation": "Use regex to extract digits and join them, handling commas and currency symbols."
+    },
+    {
+        "question_type": "coding",
+        "text": "Fill Google Form\nFill a form with property data",
+        "starter_code": "def fill_form(driver, data):\n    from selenium.webdriver.common.by import By\n    # data has keys: address, price, link\n    # Find inputs and fill them\n    # Click submit button\n    pass",
+        "test_cases": [
+            {
+                "function_call": "fill_form.__code__.co_varnames[:2]",
+                "expected": "('driver', 'data')"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "selenium",
+        "solution_code": "def fill_form(driver, data):\n    from selenium.webdriver.common.by import By\n    inputs = driver.find_elements(By.CSS_SELECTOR, 'input[type=\"text\"]')\n    inputs[0].send_keys(data['address'])\n    inputs[1].send_keys(data['price'])\n    inputs[2].send_keys(data['link'])\n    submit = driver.find_element(By.XPATH, '//span[text()=\"Submit\"]')\n    submit.click()",
+        "explanation": "Find input fields by selector, fill them in order, then locate and click submit."
+    },
+    {
+        "question_type": "coding",
+        "text": "Process Multiple Listings\nScrape multiple listings and submit each to form",
+        "starter_code": "def process_listings(soup, driver, form_url):\n    # Find all listing cards\n    # For each: extract data, open form, fill, submit\n    # Return count of processed listings\n    pass",
+        "test_cases": [
+            {
+                "function_call": "type(process_listings(mock_soup, mock_driver, 'http://form'))",
+                "expected": "<class 'int'>"
+            }
+        ],
+        "difficulty": "hard",
+        "topic_tag": "automation",
+        "solution_code": "def process_listings(soup, driver, form_url):\n    listings = soup.find_all(class_='listing-card')\n    count = 0\n    for listing in listings:\n        data = extract_property_data(listing)\n        driver.get(form_url)\n        fill_form(driver, data)\n        count += 1\n    return count",
+        "explanation": "Iterate through scraped listings, extract data, navigate to form, and fill for each entry."
+    },
+    {
+        "question_type": "coding",
+        "text": "Make Request with Headers\nMake HTTP request with browser-like headers",
+        "starter_code": "def get_page_content(url):\n    import requests\n    # Use User-Agent header to avoid blocking\n    # Return response text\n    pass",
+        "test_cases": [
+            {
+                "function_call": "type(get_page_content('http://example.com'))",
+                "expected": "<class 'str'>"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "scraping",
+        "solution_code": "def get_page_content(url):\n    import requests\n    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/91.0.4472.124'}\n    response = requests.get(url, headers=headers)\n    return response.text",
+        "explanation": "Include a User-Agent header to mimic a real browser and avoid being blocked."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the attribute access:",
+        "code": "link = anchor.href\n# AttributeError: 'Tag' object has no attribute 'href'",
+        "options": [
+            "Use anchor['href'] or anchor.get('href')",
+            "Use anchor.get_link()",
+            "Use anchor.getAttribute('href')",
+            "Use anchor.link"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "beautifulsoup",
+        "explanation": "BeautifulSoup uses dictionary-style access for HTML attributes: element['attr'] or element.get('attr')."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the class search:",
+        "code": "items = soup.find_all(class='listing')\n# SyntaxError: invalid syntax",
+        "options": [
+            "Use class_ with underscore: class_='listing'",
+            "Use className='listing'",
+            "Use css_class='listing'",
+            "Use class:'listing'"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "beautifulsoup",
+        "explanation": "'class' is a Python reserved keyword. BeautifulSoup uses 'class_' (with underscore) instead."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the text extraction:",
+        "code": "price = price_element.text()\n# TypeError: 'str' object is not callable",
+        "options": [
+            "Use .text without parentheses (it's a property, not a method)",
+            "Use .getText()",
+            "Use .get_text()",
+            "Use .content()"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "beautifulsoup",
+        "explanation": ".text is a property, not a method. Access it without parentheses or use .get_text() method."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the request being blocked:",
+        "code": "response = requests.get(url)\n# Response: 403 Forbidden",
+        "options": [
+            "Add headers with User-Agent to mimic a browser",
+            "Use POST instead of GET",
+            "Try a different URL",
+            "Add cookies"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "scraping",
+        "explanation": "Many sites block requests without browser-like headers. Add User-Agent to your request."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What ethical considerations apply to web scraping?",
+        "options": [
+            "None, websites are public",
+            "Check robots.txt, respect rate limits, don't overload servers",
+            "Only legal concerns matter",
+            "Scraping is always illegal"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "ethics",
+        "explanation": "Ethical scraping involves checking robots.txt, respecting rate limits, and not overloading servers."
+    }
+]

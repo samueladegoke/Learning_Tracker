@@ -5,9 +5,10 @@ from sqlalchemy.orm import Session
 from sqlalchemy import func
 
 from ..database import get_db
-from ..models import QuizResult, User, Question, Achievement, UserAchievement
+from ..models import QuizResult, User, Question, Achievement, UserAchievement, UserQuestionReview
 from ..schemas import QuizSubmission, QuestionResponse
 from ..auth import get_current_user
+from datetime import datetime, timedelta
 
 router = APIRouter()
 
@@ -44,7 +45,7 @@ def get_quiz_leaderboard(limit: int = 20, offset: int = 0, db: Session = Depends
 
 
 @router.get("/{quiz_id}/questions", response_model=List[QuestionResponse])
-def get_quiz_questions(quiz_id: str, db: Session = Depends(get_db)):
+def get_quiz_questions(quiz_id: str, user: User = Depends(get_current_user), db: Session = Depends(get_db)):
     """Get questions for a specific quiz (without correct answers or solution_code)."""
     questions = db.query(Question).filter(Question.quiz_id == quiz_id).all()
 
@@ -142,6 +143,56 @@ def submit_quiz(submission: QuizSubmission, user: User = Depends(get_current_use
         total_questions=total_questions
     )
     db.add(result)
+
+    # --- SRS Auto-Queueing: Add incorrectly answered questions to review queue ---
+    srs_intervals = [1, 3, 7, 14]  # Same intervals as spaced_repetition router
+    failed_question_ids = []
+    for q_id_str, answer in submission.answers.items():
+        try:
+            q_id = int(q_id_str)
+        except ValueError:
+            continue
+
+        question = questions_map.get(q_id)
+        if not question:
+            continue
+
+        question_type = question.question_type or 'mcq'
+        was_correct = False
+
+        if question_type in ('mcq', 'code-correction'):
+            was_correct = isinstance(answer, int) and question.correct_index == answer
+        elif question_type == 'coding':
+            was_correct = isinstance(answer, dict) and answer.get('allPassed', False)
+
+        if not was_correct:
+            failed_question_ids.append(q_id)
+
+    # Queue failed questions for SRS review
+    for q_id in failed_question_ids:
+        existing_review = db.query(UserQuestionReview).filter(
+            UserQuestionReview.user_id == user.id,
+            UserQuestionReview.question_id == q_id
+        ).first()
+
+        if existing_review:
+            # Reset interval for re-failed question
+            existing_review.interval_index = 0
+            existing_review.success_count = 0
+            existing_review.due_date = datetime.utcnow() + timedelta(days=srs_intervals[0])
+            existing_review.is_mastered = False
+        else:
+            # Create new review entry
+            new_review = UserQuestionReview(
+                user_id=user.id,
+                question_id=q_id,
+                interval_index=0,
+                due_date=datetime.utcnow() + timedelta(days=srs_intervals[0]),
+                success_count=0,
+                is_mastered=False
+            )
+            db.add(new_review)
+    # --- End SRS Auto-Queueing ---
 
     # Award XP (e.g., 10 XP base + score)
     xp_gained = 10 + score

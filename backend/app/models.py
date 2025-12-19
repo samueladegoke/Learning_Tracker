@@ -1,5 +1,5 @@
 from datetime import datetime
-from sqlalchemy import Column, Integer, String, Text, Boolean, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, String, Text, Boolean, DateTime, ForeignKey, Index
 from sqlalchemy.orm import relationship
 from .database import Base
 
@@ -258,3 +258,29 @@ class Question(Base):
     explanation = Column(Text, nullable=True)
     difficulty = Column(String(20), default="medium")  # easy, medium, hard
     topic_tag = Column(String(100), nullable=True)  # e.g., "variables", "loops"
+
+    # Relationship for SRS reviews
+    reviews = relationship("UserQuestionReview", back_populates="question")
+
+
+class UserQuestionReview(Base):
+    """Tracks spaced repetition state for each question per user."""
+    __tablename__ = "user_question_reviews"
+
+    __table_args__ = (
+        Index('ix_user_question_reviews_user_due', 'user_id', 'due_date'),
+    )
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False, index=True)
+    question_id = Column(Integer, ForeignKey("questions.id"), nullable=False)
+    interval_index = Column(Integer, default=0)  # 0=1d, 1=3d, 2=7d, 3=14d
+    due_date = Column(DateTime, nullable=False, index=True)
+    success_count = Column(Integer, default=0)
+    is_mastered = Column(Boolean, default=False)
+    last_reviewed_at = Column(DateTime, nullable=True)
+    created_at = Column(DateTime, default=datetime.utcnow)
+
+    # Relationships
+    question = relationship("Question", back_populates="reviews")
+

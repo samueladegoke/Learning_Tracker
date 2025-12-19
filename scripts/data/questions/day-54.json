@@ -1,0 +1,375 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What is Flask?",
+        "options": [
+            "A database management system",
+            "A lightweight Python web framework for building web applications",
+            "A JavaScript framework",
+            "A testing library"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "Flask is a micro web framework for Python that provides tools for building web applications and APIs."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does the @app.route() decorator do?",
+        "options": [
+            "Creates a database connection",
+            "Maps a URL path to a Python function that handles requests",
+            "Validates user input",
+            "Logs requests"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "@app.route('/path') tells Flask which function should handle requests to that URL path."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is __name__ in Python?",
+        "options": [
+            "A random variable",
+            "A special variable that holds the module's name or '__main__' if run directly",
+            "The name of your computer",
+            "The file extension"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "python",
+        "explanation": "__name__ equals '__main__' when the script is run directly, or the module name when imported."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why do we use if __name__ == '__main__' in Flask apps?",
+        "options": [
+            "Flask requires it",
+            "To ensure the server only runs when the script is executed directly, not when imported",
+            "To define the main function",
+            "For security"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "python",
+        "explanation": "This pattern prevents the development server from starting when the module is imported elsewhere."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does app.run(debug=True) do?",
+        "options": [
+            "Runs with production settings",
+            "Starts the development server with auto-reload and detailed error pages",
+            "Disables all logging",
+            "Compiles the Python code"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "debug=True enables the debugger and auto-reloader, showing detailed errors and restarting on code changes."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is a Python decorator?",
+        "options": [
+            "A comment style",
+            "A function that modifies the behavior of another function",
+            "A class attribute",
+            "A type of loop"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "decorators",
+        "explanation": "Decorators are functions that wrap other functions to extend or modify their behavior."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does the @ symbol mean when used before a function definition?",
+        "options": [
+            "A comment",
+            "Syntactic sugar for applying a decorator to the function below",
+            "An email address",
+            "A variable reference"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "decorators",
+        "explanation": "@decorator above a function is equivalent to: function = decorator(function)."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does it mean that functions are 'first-class objects' in Python?",
+        "options": [
+            "They run first",
+            "They can be passed as arguments, returned from functions, and assigned to variables",
+            "They have the highest priority",
+            "They can't be modified"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "python",
+        "explanation": "First-class objects can be treated like any other value: passed around, stored, and returned."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you return a simple HTML response from a Flask route?",
+        "options": [
+            "return html('<h1>Hello</h1>')",
+            "return '<h1>Hello</h1>'",
+            "flask.html('<h1>Hello</h1>')",
+            "print('<h1>Hello</h1>')"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "Simply return a string containing HTML. Flask serves it with the appropriate content type."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does a wrapper function do inside a decorator?",
+        "options": [
+            "Deletes the original function",
+            "Wraps the original function call with additional code before/after",
+            "Creates a new class",
+            "Handles errors only"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "decorators",
+        "explanation": "The wrapper function executes code before and/or after calling the original function."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why should debug mode be disabled in production?",
+        "options": [
+            "It makes the app slower",
+            "It exposes detailed error information that could help attackers",
+            "It uses too much memory",
+            "Flask doesn't allow it"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "explanation": "Debug mode shows full stack traces and allows code execution via the debugger - dangerous in production."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the default port for Flask's development server?",
+        "options": [
+            "80",
+            "5000",
+            "8080",
+            "3000"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "Flask's development server runs on port 5000 by default: http://127.0.0.1:5000"
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does Flask() constructor require as its first argument?",
+        "options": [
+            "The app name",
+            "__name__ - the name of the current module",
+            "The port number",
+            "The template folder"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "Flask(__name__) uses the module name to locate resources like templates and static files."
+    },
+    {
+        "question_type": "coding",
+        "text": "Create Flask App\nCreate a minimal Flask application with a home route",
+        "starter_code": "def create_app():\n    # Import Flask and create app\n    # Add route for '/' returning 'Hello, World!'\n    # Return the app object\n    pass",
+        "test_cases": [
+            {
+                "function_call": "create_app.__code__.co_names",
+                "expected": "('Flask', 'route')"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "solution_code": "def create_app():\n    from flask import Flask\n    app = Flask(__name__)\n    @app.route('/')\n    def home():\n        return 'Hello, World!'\n    return app",
+        "explanation": "Import Flask, create an app instance, define a route with decorator, and return the app."
+    },
+    {
+        "question_type": "coding",
+        "text": "Simple Decorator\nCreate a decorator that prints 'Before' and 'After' around a function call",
+        "starter_code": "def logging_decorator(func):\n    # Create wrapper that prints 'Before', calls func, prints 'After'\n    # Return wrapper\n    pass",
+        "test_cases": [
+            {
+                "function_call": "logging_decorator.__code__.co_varnames[0]",
+                "expected": "'func'"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "decorators",
+        "solution_code": "def logging_decorator(func):\n    def wrapper():\n        print('Before')\n        func()\n        print('After')\n    return wrapper",
+        "explanation": "Define an inner wrapper function that adds behavior around the original function call."
+    },
+    {
+        "question_type": "coding",
+        "text": "Timing Decorator\nCreate a decorator that measures function execution time",
+        "starter_code": "def timer_decorator(func):\n    import time\n    # Wrapper records start time, calls func, prints elapsed time\n    # Return the wrapper\n    pass",
+        "test_cases": [
+            {
+                "function_call": "timer_decorator.__code__.co_varnames[0]",
+                "expected": "'func'"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "decorators",
+        "solution_code": "def timer_decorator(func):\n    import time\n    def wrapper(*args, **kwargs):\n        start = time.time()\n        result = func(*args, **kwargs)\n        end = time.time()\n        print(f'{func.__name__} took {end - start:.2f}s')\n        return result\n    return wrapper",
+        "explanation": "Record time before and after function execution, then print the difference."
+    },
+    {
+        "question_type": "coding",
+        "text": "Check Module Name\nReturn whether the script is being run directly",
+        "starter_code": "def is_main_module(module_name):\n    # Return True if module_name is '__main__'\n    pass",
+        "test_cases": [
+            {
+                "function_call": "is_main_module('__main__')",
+                "expected": "True"
+            },
+            {
+                "function_call": "is_main_module('my_module')",
+                "expected": "False"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "python",
+        "solution_code": "def is_main_module(module_name):\n    return module_name == '__main__'",
+        "explanation": "Compare the module name to '__main__' to check if it's the entry point."
+    },
+    {
+        "question_type": "coding",
+        "text": "Pass Function as Argument\nCall a function passed as argument with given value",
+        "starter_code": "def call_with_value(func, value):\n    # Call func with value and return result\n    pass",
+        "test_cases": [
+            {
+                "function_call": "call_with_value(lambda x: x * 2, 5)",
+                "expected": "10"
+            },
+            {
+                "function_call": "call_with_value(str, 42)",
+                "expected": "'42'"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "python",
+        "solution_code": "def call_with_value(func, value):\n    return func(value)",
+        "explanation": "Functions are first-class objects - simply call the passed function with the value."
+    },
+    {
+        "question_type": "coding",
+        "text": "Preserve Function Metadata\nCreate a decorator that preserves the original function's name",
+        "starter_code": "def proper_decorator(func):\n    from functools import wraps\n    # Use @wraps to preserve metadata\n    # Simple wrapper that returns func result\n    pass",
+        "test_cases": [
+            {
+                "function_call": "'wraps' in proper_decorator.__code__.co_names",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "hard",
+        "topic_tag": "decorators",
+        "solution_code": "def proper_decorator(func):\n    from functools import wraps\n    @wraps(func)\n    def wrapper(*args, **kwargs):\n        return func(*args, **kwargs)\n    return wrapper",
+        "explanation": "@wraps copies __name__, __doc__, etc. from the original function to the wrapper."
+    },
+    {
+        "question_type": "coding",
+        "text": "Nested Function Return\nCreate function that returns an inner function",
+        "starter_code": "def make_multiplier(n):\n    # Return a function that multiplies its argument by n\n    pass",
+        "test_cases": [
+            {
+                "function_call": "make_multiplier(3)(4)",
+                "expected": "12"
+            },
+            {
+                "function_call": "make_multiplier(5)(2)",
+                "expected": "10"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "python",
+        "solution_code": "def make_multiplier(n):\n    def multiply(x):\n        return x * n\n    return multiply",
+        "explanation": "Return a closure that captures n and multiplies its argument by it."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the Flask app initialization:",
+        "code": "from flask import Flask\napp = Flask()\n# TypeError: Flask() missing 1 required positional argument",
+        "options": [
+            "Pass __name__ as the first argument: Flask(__name__)",
+            "Pass 'app' as the name: Flask('app')",
+            "Use Flask.create() instead",
+            "Import Flask differently"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "Flask requires the module name for locating resources: Flask(__name__)."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the decorator that breaks function metadata:",
+        "code": "def my_decorator(func):\n    def wrapper():\n        return func()\n    return wrapper\n\n@my_decorator\ndef greet():\n    '''Says hello'''\n    return 'Hello'\n\nprint(greet.__name__)  # Outputs: 'wrapper' (should be 'greet')",
+        "options": [
+            "Use @functools.wraps(func) on the wrapper",
+            "Rename wrapper to func",
+            "Return func instead of wrapper",
+            "Don't use decorators"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "decorators",
+        "explanation": "@wraps(func) preserves the original function's __name__, __doc__, and other attributes."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the route not returning anything:",
+        "code": "@app.route('/')\ndef home():\n    print('Hello')\n\n# Page shows nothing",
+        "options": [
+            "Use return instead of print to send response to client",
+            "Add a print statement",
+            "Use flask.print()",
+            "Add app.display()"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "print() outputs to console. Use return to send a response to the browser."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the decorator not handling arguments:",
+        "code": "def my_decorator(func):\n    def wrapper():\n        return func()\n    return wrapper\n\n@my_decorator\ndef greet(name):\n    return f'Hello, {name}!'\n\ngreet('Alice')  # TypeError: wrapper() takes 0 positional arguments",
+        "options": [
+            "Add *args, **kwargs to wrapper and pass to func",
+            "Remove parameters from greet",
+            "Don't use a decorator",
+            "Pass name inside decorator"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "decorators",
+        "explanation": "wrapper must accept and forward any arguments the original function might receive."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is a closure in Python?",
+        "options": [
+            "A way to close files",
+            "An inner function that remembers values from its enclosing scope",
+            "A type of exception",
+            "A way to end a program"
+        ],
+        "correct_index": 1,
+        "difficulty": "hard",
+        "topic_tag": "python",
+        "explanation": "A closure is an inner function that captures and remembers values from the enclosing function's scope."
+    }
+]

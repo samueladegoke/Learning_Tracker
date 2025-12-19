@@ -19,6 +19,7 @@ import ProgressBar from '../components/ProgressBar'
 import CharacterCard from '../components/CharacterCard'
 import QuestLog from '../components/QuestLog'
 import ShopModal from '../components/ShopModal'
+import DailyReviewWidget from '../components/DailyReviewWidget'
 import { soundManager } from '../utils/SoundManager'
 
 import CurrentSyncStatus from '../components/CurrentSyncStatus'
@@ -271,6 +272,11 @@ function Dashboard() {
 
       <div className="grid lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 space-y-6">
+          {/* Daily Review Widget (SRS) */}
+          <motion.div variants={itemVariants}>
+            <DailyReviewWidget />
+          </motion.div>
+
           {/* Daily Training Card */}
           {rpgState && (
             <motion.div

@@ -1,0 +1,367 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What is the main goal of the Day 52 Instagram Follower Bot project?",
+        "options": [
+            "Posting photos automatically",
+            "Following the followers of a target account to grow your own following",
+            "Liking all posts in your feed",
+            "Sending DMs to influencers"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "automation",
+        "explanation": "The project automates following users who follow a similar/competitor account, leveraging the 'follow-back' strategy for organic growth."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why is class-based design used for the Instagram bot?",
+        "options": [
+            "Instagram requires it",
+            "To maintain state (driver, credentials) and organize related methods",
+            "Classes are faster",
+            "Functions can't use Selenium"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "oop",
+        "explanation": "A class encapsulates the driver instance, login state, and methods like login(), find_followers(), and follow()."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What's the first step before automating Instagram interactions?",
+        "options": [
+            "Following accounts",
+            "Logging in with valid credentials",
+            "Scrolling the feed",
+            "Opening Chrome"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "selenium",
+        "explanation": "You must login first before performing any authenticated actions like following users."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you handle the 'Save Login Info' popup that appears after login?",
+        "options": [
+            "Ignore it",
+            "Find and click 'Not Now' button using Selenium",
+            "Refresh the page",
+            "Close the browser"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "selenium",
+        "explanation": "Instagram shows prompts after login. Use try/except to find and dismiss these popups."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you navigate to a specific Instagram profile?",
+        "options": [
+            "driver.profile('username')",
+            "driver.get('https://www.instagram.com/username/')",
+            "driver.find_profile('username')",
+            "driver.instagram('username')"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "selenium",
+        "explanation": "Navigate directly using driver.get() with the full profile URL."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you click on a user's 'Followers' count to see their followers?",
+        "options": [
+            "driver.followers()",
+            "Find the followers link element and click() it",
+            "driver.get('/followers')",
+            "Use Instagram API"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "selenium",
+        "explanation": "Locate the followers link (usually containing 'followers' text or href) and click to open the modal."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why do you need to scroll the followers modal?",
+        "options": [
+            "For aesthetics",
+            "Instagram loads followers dynamically as you scroll",
+            "To trigger JavaScript",
+            "Selenium requires scrolling"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "selenium",
+        "explanation": "Instagram uses lazy loading - followers are fetched from the server as you scroll down the modal."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you scroll inside a modal popup with Selenium?",
+        "options": [
+            "driver.scroll()",
+            "Execute JavaScript: modal.scrollTop = modal.scrollHeight",
+            "driver.page_down()",
+            "Use Keys.PAGE_DOWN on the modal element"
+        ],
+        "correct_index": 1,
+        "difficulty": "hard",
+        "topic_tag": "selenium",
+        "explanation": "Use execute_script() to run JavaScript that scrolls within the specific modal element, not the whole page."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What exception might occur when trying to follow a user you already follow?",
+        "options": [
+            "FollowError",
+            "ElementClickInterceptedException or button state change",
+            "AlreadyFollowingException",
+            "DuplicateActionError"
+        ],
+        "correct_index": 1,
+        "difficulty": "hard",
+        "topic_tag": "exceptions",
+        "explanation": "The button might change to 'Following' or fail to click. Handle with try/except."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why should you add random delays between follow actions?",
+        "options": [
+            "Instagram API requires it",
+            "To mimic human behavior and avoid triggering rate limits",
+            "Selenium is too fast",
+            "For accuracy"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "automation",
+        "explanation": "Instagram's anti-bot detection monitors action frequency. Random delays appear more human-like."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is Instagram's typical follow limit per hour/day?",
+        "options": [
+            "Unlimited",
+            "Approximately 20-50 per hour, 150-200 per day",
+            "Exactly 1000 per day",
+            "10 per minute"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "automation",
+        "explanation": "Instagram enforces rate limits to prevent spam. Exceeding these can result in temporary blocks or bans."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you find all Follow buttons in the followers modal?",
+        "options": [
+            "driver.buttons('Follow')",
+            "driver.find_elements(By.XPATH, \"//button[text()='Follow']\")",
+            "driver.get_follow_buttons()",
+            "modal.buttons"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "locators",
+        "explanation": "Use find_elements (plural) with XPath to get all buttons containing 'Follow' text."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What happens if Instagram prompts for security verification (e.g., phone code)?",
+        "options": [
+            "Selenium handles it automatically",
+            "Bot fails, requires manual intervention",
+            "It skips the verification",
+            "Python solves it"
+        ],
+        "correct_index": 1,
+        "difficulty": "hard",
+        "topic_tag": "automation",
+        "explanation": "Security challenges like SMS verification stop bots and require human action."
+    },
+    {
+        "question_type": "coding",
+        "text": "Navigate to Profile\nCreate a method to navigate to an Instagram profile",
+        "starter_code": "def navigate_to_profile(driver, username):\n    # Navigate to instagram.com/username/\n    pass",
+        "test_cases": [
+            {
+                "function_call": "navigate_to_profile.__code__.co_varnames[:2]",
+                "expected": "('driver', 'username')"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "selenium",
+        "solution_code": "def navigate_to_profile(driver, username):\n    driver.get(f'https://www.instagram.com/{username}/')",
+        "explanation": "Use driver.get() with an f-string to construct the profile URL."
+    },
+    {
+        "question_type": "coding",
+        "text": "Safe Click with Retry\nClick an element with retry logic for intercepted clicks",
+        "starter_code": "def safe_click(driver, element, retries=3):\n    from selenium.common.exceptions import ElementClickInterceptedException\n    import time\n    # Try clicking, if intercepted wait and retry\n    # Return True if clicked, False if all retries fail\n    pass",
+        "test_cases": [
+            {
+                "function_call": "safe_click.__code__.co_varnames[:3]",
+                "expected": "('driver', 'element', 'retries')"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "selenium",
+        "solution_code": "def safe_click(driver, element, retries=3):\n    from selenium.common.exceptions import ElementClickInterceptedException\n    import time\n    for attempt in range(retries):\n        try:\n            element.click()\n            return True\n        except ElementClickInterceptedException:\n            time.sleep(1)\n    return False",
+        "explanation": "Loop through retries, catching click interception and waiting before retry."
+    },
+    {
+        "question_type": "coding",
+        "text": "Scroll Modal\nScroll inside a popup modal element",
+        "starter_code": "def scroll_modal(driver, modal_element, scroll_amount=500):\n    # Use JavaScript to scroll the modal\n    pass",
+        "test_cases": [
+            {
+                "function_call": "scroll_modal.__code__.co_varnames[:3]",
+                "expected": "('driver', 'modal_element', 'scroll_amount')"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "selenium",
+        "solution_code": "def scroll_modal(driver, modal_element, scroll_amount=500):\n    driver.execute_script('arguments[0].scrollTop += arguments[1]', modal_element, scroll_amount)",
+        "explanation": "Use execute_script to run JavaScript that modifies the element's scrollTop property."
+    },
+    {
+        "question_type": "coding",
+        "text": "Get Follow Buttons\nFind all Follow buttons in the current page/modal",
+        "starter_code": "def get_follow_buttons(driver):\n    from selenium.webdriver.common.by import By\n    # Return list of button elements with text 'Follow'\n    pass",
+        "test_cases": [
+            {
+                "function_call": "type(get_follow_buttons(mock_driver))",
+                "expected": "<class 'list'>"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "locators",
+        "solution_code": "def get_follow_buttons(driver):\n    from selenium.webdriver.common.by import By\n    return driver.find_elements(By.XPATH, \"//button[text()='Follow']\")",
+        "explanation": "Use find_elements (plural) to get all matching elements as a list."
+    },
+    {
+        "question_type": "coding",
+        "text": "Follow with Delay\nFollow users with random delays between actions",
+        "starter_code": "def follow_users(driver, buttons, max_follows=10):\n    import time\n    import random\n    followed = 0\n    # Click buttons with random delay between 1-3 seconds\n    # Return number of successful follows\n    pass",
+        "test_cases": [
+            {
+                "function_call": "type(follow_users(mock_driver, [], 5))",
+                "expected": "<class 'int'>"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "automation",
+        "solution_code": "def follow_users(driver, buttons, max_follows=10):\n    import time\n    import random\n    followed = 0\n    for button in buttons[:max_follows]:\n        try:\n            button.click()\n            followed += 1\n            time.sleep(random.uniform(1, 3))\n        except:\n            pass\n    return followed",
+        "explanation": "Iterate through buttons, click each with a random delay, and count successes."
+    },
+    {
+        "question_type": "coding",
+        "text": "Dismiss Popup\nDismiss Instagram notification popups if present",
+        "starter_code": "def dismiss_notification_popup(driver):\n    from selenium.webdriver.common.by import By\n    from selenium.common.exceptions import NoSuchElementException\n    # Try to find and click 'Not Now' button\n    # Return True if dismissed, False if not found\n    pass",
+        "test_cases": [
+            {
+                "function_call": "dismiss_notification_popup(mock_driver) in [True, False]",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "selenium",
+        "solution_code": "def dismiss_notification_popup(driver):\n    from selenium.webdriver.common.by import By\n    from selenium.common.exceptions import NoSuchElementException\n    try:\n        not_now = driver.find_element(By.XPATH, \"//button[text()='Not Now']\")\n        not_now.click()\n        return True\n    except NoSuchElementException:\n        return False",
+        "explanation": "Use try/except to handle cases where the popup doesn't appear."
+    },
+    {
+        "question_type": "coding",
+        "text": "InstaFollower Class Init\nCreate the constructor for the bot class",
+        "starter_code": "class InstaFollower:\n    def __init__(self, username, password):\n        # Store credentials\n        # Initialize driver as None\n        pass",
+        "test_cases": [
+            {
+                "function_call": "InstaFollower('user', 'pass').username",
+                "expected": "'user'"
+            },
+            {
+                "function_call": "InstaFollower('user', 'pass').driver",
+                "expected": "None"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "oop",
+        "solution_code": "class InstaFollower:\n    def __init__(self, username, password):\n        self.username = username\n        self.password = password\n        self.driver = None",
+        "explanation": "Store configuration as instance attributes for use across methods."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the modal scroll:",
+        "code": "modal = driver.find_element(By.CLASS_NAME, 'modal')\ndriver.execute_script('window.scrollTo(0, 1000)')\n# Modal doesn't scroll, page scrolls instead",
+        "options": [
+            "Target the modal element: modal.scrollTop = modal.scrollHeight",
+            "Use driver.scroll_modal()",
+            "Use Keys.PAGE_DOWN",
+            "Call modal.scroll()"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "selenium",
+        "explanation": "window.scrollTo scrolls the page, not the modal. Use arguments[0].scrollTop with the modal element."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the multiple elements issue:",
+        "code": "button = driver.find_element(By.XPATH, \"//button[text()='Follow']\")\n# Only clicks the first Follow button",
+        "options": [
+            "Use find_elements (plural) to get all buttons",
+            "Use find_all()",
+            "Add [0] to the selector",
+            "Use a loop in the XPath"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "locators",
+        "explanation": "find_element returns only the first match. Use find_elements to get all matching elements."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the action block error:",
+        "code": "for button in follow_buttons:\n    button.click()\n# Action blocked: You're temporarily blocked from this action",
+        "options": [
+            "Add random delays between clicks: time.sleep(random.uniform(1, 3))",
+            "Use JavaScript click instead",
+            "Clear cookies after each click",
+            "Open new browser for each click"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "automation",
+        "explanation": "Instagram blocks rapid actions. Adding random delays between follows mimics human behavior."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the stale element error:",
+        "code": "buttons = driver.find_elements(By.XPATH, \"//button[text()='Follow']\")\nscroll_modal(driver, modal)\nfor btn in buttons:\n    btn.click()  # StaleElementReferenceException",
+        "options": [
+            "Re-fetch buttons after scrolling since DOM has changed",
+            "Use ActionChains",
+            "Increase wait time",
+            "Use JavaScript click"
+        ],
+        "correct_index": 0,
+        "difficulty": "hard",
+        "topic_tag": "exceptions",
+        "explanation": "Scrolling loads new content and can invalidate previous element references. Re-find elements after DOM changes."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the 'follow/unfollow' strategy often used with bots?",
+        "options": [
+            "Follow and immediately unfollow",
+            "Follow users, wait for follow-backs, then unfollow non-followers later",
+            "Never unfollowing anyone",
+            "Only following verified accounts"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "automation",
+        "explanation": "This strategy involves following users, waiting for follow-backs, then cleaning up by unfollowing those who didn't follow back."
+    }
+]

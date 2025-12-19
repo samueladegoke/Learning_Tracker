@@ -100,3 +100,14 @@ export const quizzesAPI = {
   }),
 }
 
+// Spaced Repetition System (SRS) API
+export const srsAPI = {
+  getDailyReview: () => fetchAPI('/srs/daily-review'),
+  submitResult: (data) => fetchAPI('/srs/review-result', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  }),
+  addToReview: (questionId) => fetchAPI(`/srs/add-to-review/${questionId}`, { method: 'POST' }),
+  getStats: () => fetchAPI('/srs/stats'),
+}
+

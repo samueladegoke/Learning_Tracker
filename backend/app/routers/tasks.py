@@ -173,7 +173,14 @@ def total_tasks_completed(db: Session, user_id: int) -> int:
 
 @router.post("/{task_id}/complete", response_model=TaskCompletionResult)
 def complete_task(task_id: str, user: User = Depends(get_current_user), db: Session = Depends(get_db)):
-    """Mark a task as completed. Adds XP to user."""
+    """
+    Mark a task as completed. Awards XP, gold, badges, and achievements.
+    
+    NOTE: This function intentionally uses a single transaction for all gamification
+    updates (XP, badges, achievements, quests, challenges). This ensures atomicity -
+    if any step fails, all changes are rolled back. For educational apps with low
+    concurrency, this is the correct pattern over split transactions.
+    """
     # Find task by task_id string (e.g., "w1-d1")
     task = db.query(Task).filter(Task.task_id == task_id).first()
 

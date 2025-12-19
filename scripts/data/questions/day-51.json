@@ -1,0 +1,360 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What is the main goal of the Day 51 project?",
+        "options": [
+            "Building a weather app",
+            "Creating a bot that tests internet speed and tweets at your ISP if it's slow",
+            "Automating email responses",
+            "Scraping website data"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "automation",
+        "explanation": "Day 51 builds a Twitter complaint bot that checks your internet speed and automatically tweets at your ISP if it's below the promised speed."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which library is used to test internet speed in Python?",
+        "options": [
+            "requests",
+            "speedtest-cli",
+            "urllib",
+            "socket"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "speedtest",
+        "explanation": "The speedtest-cli library provides a Python API to test download and upload speeds using Speedtest.net servers."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you get download speed using speedtest-cli?",
+        "options": [
+            "speedtest.download()",
+            "st.get_best_server() then st.download()",
+            "Speedtest().speed()",
+            "speedtest.measure()"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "speedtest",
+        "explanation": "You first call get_best_server() to find the optimal server, then download() to measure download speed in bits per second."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why do we use a class structure for the bot?",
+        "options": [
+            "It's required by Selenium",
+            "To organize related methods (login, get_speed, tweet) and maintain state",
+            "Classes are faster than functions",
+            "To avoid using decorators"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "oop",
+        "explanation": "A class groups related functionality (driver instance, credentials, methods) together, making the code maintainable and reusable."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the purpose of using environment variables for Twitter credentials?",
+        "options": [
+            "Makes the code run faster",
+            "Keeps sensitive information out of source code",
+            "Required for Selenium to work",
+            "Twitter API requires it"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "security",
+        "explanation": "Environment variables prevent accidentally committing passwords to version control and keep credentials secure."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you access an environment variable in Python?",
+        "options": [
+            "env.get('VAR_NAME')",
+            "os.environ['VAR_NAME'] or os.environ.get('VAR_NAME')",
+            "sys.env('VAR_NAME')",
+            "import VAR_NAME"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "security",
+        "explanation": "Use os.environ['KEY'] (raises KeyError if missing) or os.environ.get('KEY') (returns None if missing)."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you navigate to Twitter's login page with Selenium?",
+        "options": [
+            "driver.open('https://twitter.com/login')",
+            "driver.get('https://twitter.com/login')",
+            "driver.navigate('https://twitter.com/login')",
+            "driver.goto('https://twitter.com/login')"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "selenium",
+        "explanation": "driver.get(url) navigates the browser to the specified URL."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What's the advantage of using WebDriverWait over time.sleep()?",
+        "options": [
+            "WebDriverWait is faster",
+            "WebDriverWait waits only until element is ready, not a fixed time",
+            "time.sleep() doesn't work with Selenium",
+            "WebDriverWait is built into Python"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "selenium",
+        "explanation": "WebDriverWait with ExpectedConditions waits dynamically until an element is available, making tests more reliable and efficient."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you find an element by its data-testid attribute?",
+        "options": [
+            "driver.find_element(By.ID, 'testid')",
+            "driver.find_element(By.CSS_SELECTOR, '[data-testid=\"value\"]')",
+            "driver.find_element(By.TESTID, 'value')",
+            "driver.find_element(By.DATA, 'testid=value')"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "locators",
+        "explanation": "Use CSS attribute selector with square brackets: [data-testid=\"value\"] to find elements by data attributes."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does the send_keys() method do in Selenium?",
+        "options": [
+            "Sends an email",
+            "Types text into an input field",
+            "Clicks a button",
+            "Submits a form"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "selenium",
+        "explanation": "send_keys() simulates keyboard input, typing the specified text into the currently focused element."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you click the Tweet button after typing your message?",
+        "options": [
+            "driver.click('tweet')",
+            "tweet_button.click()",
+            "driver.submit()",
+            "tweet_button.press()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "selenium",
+        "explanation": "After finding the tweet button element, call .click() to simulate a mouse click on it."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What should you do if the promised speed is 100 Mbps but you get 50 Mbps?",
+        "options": [
+            "Do nothing",
+            "Compare speeds and tweet if actual < promised",
+            "Always tweet regardless of speed",
+            "Only tweet if speed is 0"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "automation",
+        "explanation": "The bot should compare actual speed against promised speed and only complain if the ISP isn't delivering what they promised."
+    },
+    {
+        "question_type": "coding",
+        "text": "Get Internet Speed\nUse speedtest-cli to get download speed in Mbps",
+        "starter_code": "def get_download_speed():\n    # Import speedtest and create Speedtest object\n    # Get best server and run download test\n    # Return speed in Mbps (bits/sec divided by 1_000_000)\n    pass",
+        "test_cases": [
+            {
+                "function_call": "type(get_download_speed())",
+                "expected": "<class 'float'>"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "speedtest",
+        "solution_code": "def get_download_speed():\n    import speedtest\n    st = speedtest.Speedtest()\n    st.get_best_server()\n    download_speed = st.download()\n    return download_speed / 1_000_000",
+        "explanation": "Create a Speedtest object, find the best server, run the download test, and convert bits per second to megabits per second."
+    },
+    {
+        "question_type": "coding",
+        "text": "Check Speed Threshold\nCompare actual speed against promised speed and return True if below threshold",
+        "starter_code": "def is_speed_below_promised(actual_speed, promised_speed):\n    # Return True if actual is less than promised\n    # Return False otherwise\n    pass",
+        "test_cases": [
+            {
+                "function_call": "is_speed_below_promised(50, 100)",
+                "expected": "True"
+            },
+            {
+                "function_call": "is_speed_below_promised(120, 100)",
+                "expected": "False"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "automation",
+        "solution_code": "def is_speed_below_promised(actual_speed, promised_speed):\n    return actual_speed < promised_speed",
+        "explanation": "Simple comparison returns True if actual speed is less than promised speed."
+    },
+    {
+        "question_type": "coding",
+        "text": "Format Tweet Message\nCreate a complaint tweet with speed information",
+        "starter_code": "def format_complaint_tweet(isp_handle, promised, actual):\n    # Return a tweet string mentioning the ISP\n    # Include promised and actual speeds\n    pass",
+        "test_cases": [
+            {
+                "function_call": "'@Comcast' in format_complaint_tweet('@Comcast', 100, 50)",
+                "expected": "True"
+            },
+            {
+                "function_call": "'100' in format_complaint_tweet('@Comcast', 100, 50)",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "automation",
+        "solution_code": "def format_complaint_tweet(isp_handle, promised, actual):\n    return f\"Hey {isp_handle}, why is my internet speed {actual}Mbps when I pay for {promised}Mbps?\"",
+        "explanation": "Use an f-string to create a formatted message mentioning the ISP handle and both speed values."
+    },
+    {
+        "question_type": "coding",
+        "text": "Wait for Element\nCreate a function that waits for an element to be clickable",
+        "starter_code": "def wait_for_clickable(driver, locator, timeout=10):\n    from selenium.webdriver.support.ui import WebDriverWait\n    from selenium.webdriver.support import expected_conditions as EC\n    # Return the clickable element\n    pass",
+        "test_cases": [
+            {
+                "function_call": "wait_for_clickable.__code__.co_varnames[:3]",
+                "expected": "('driver', 'locator', 'timeout')"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "selenium",
+        "solution_code": "def wait_for_clickable(driver, locator, timeout=10):\n    from selenium.webdriver.support.ui import WebDriverWait\n    from selenium.webdriver.support import expected_conditions as EC\n    wait = WebDriverWait(driver, timeout)\n    return wait.until(EC.element_to_be_clickable(locator))",
+        "explanation": "WebDriverWait combined with ExpectedConditions.element_to_be_clickable waits until the element is both visible and enabled."
+    },
+    {
+        "question_type": "coding",
+        "text": "Safe Login\nImplement login with error handling",
+        "starter_code": "def safe_login(driver, email, password):\n    from selenium.webdriver.common.by import By\n    from selenium.common.exceptions import NoSuchElementException\n    # Try to find email and password fields\n    # Fill them and submit\n    # Return True if successful, False otherwise\n    pass",
+        "test_cases": [
+            {
+                "function_call": "safe_login(mock_driver, 'test@test.com', 'pass123') in [True, False]",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "selenium",
+        "solution_code": "def safe_login(driver, email, password):\n    from selenium.webdriver.common.by import By\n    from selenium.common.exceptions import NoSuchElementException\n    try:\n        email_field = driver.find_element(By.NAME, 'text')\n        email_field.send_keys(email)\n        password_field = driver.find_element(By.NAME, 'password')\n        password_field.send_keys(password)\n        password_field.submit()\n        return True\n    except NoSuchElementException:\n        return False",
+        "explanation": "Wrap login logic in try/except to gracefully handle cases where elements aren't found."
+    },
+    {
+        "question_type": "coding",
+        "text": "InternetSpeedBot Class\nCreate the __init__ method for the bot class",
+        "starter_code": "class InternetSpeedBot:\n    def __init__(self, promised_down, promised_up):\n        # Store promised speeds\n        # Initialize driver to None\n        pass",
+        "test_cases": [
+            {
+                "function_call": "InternetSpeedBot(100, 20).promised_down",
+                "expected": "100"
+            },
+            {
+                "function_call": "InternetSpeedBot(100, 20).driver",
+                "expected": "None"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "oop",
+        "solution_code": "class InternetSpeedBot:\n    def __init__(self, promised_down, promised_up):\n        self.promised_down = promised_down\n        self.promised_up = promised_up\n        self.driver = None",
+        "explanation": "Store configuration as instance attributes and initialize the driver as None until explicitly started."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the environment variable access:",
+        "code": "import os\npassword = os.environ('TWITTER_PASSWORD')\n# TypeError: 'dict' object is not callable",
+        "options": [
+            "Use os.environ['TWITTER_PASSWORD'] with square brackets",
+            "Use os.getenv('TWITTER_PASSWORD')",
+            "Import env instead of os",
+            "Use os.system('TWITTER_PASSWORD')"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "security",
+        "explanation": "os.environ is a dictionary-like object, accessed with square brackets [] not parentheses ()."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the Selenium element interaction:",
+        "code": "from selenium.webdriver.common.by import By\nemail_input = driver.find_element(By.ID, 'email')\nemail_input.type('test@example.com')\n# AttributeError: 'WebElement' object has no attribute 'type'",
+        "options": [
+            "Use send_keys() instead of type()",
+            "Use write() instead of type()",
+            "Use input() instead of type()",
+            "Use set_text() instead of type()"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "selenium",
+        "explanation": "Selenium WebElements use send_keys() to simulate typing, not type()."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the speedtest initialization:",
+        "code": "import speedtest\nspeed = speedtest.download()\n# AttributeError: module has no attribute 'download'",
+        "options": [
+            "Create Speedtest() object first, then call download() on it",
+            "Use speedtest.get_download()",
+            "Import download from speedtest",
+            "Use speedtest.speed.download()"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "speedtest",
+        "explanation": "You need to create a Speedtest() instance and optionally get_best_server() before calling download()."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the tweet composition:",
+        "code": "tweet_box = driver.find_element(By.CSS_SELECTOR, '[data-testid=\"tweetTextarea_0\"]')\ntweet_box.send_keys(message)\ntweet_box.click()  # Nothing happens\n# Tweet not posted",
+        "options": [
+            "Find and click the Tweet button separately after typing",
+            "Use tweet_box.submit()",
+            "Press Enter key instead",
+            "Call tweet_box.post()"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "selenium",
+        "explanation": "Clicking the textarea doesn't submit. You need to find the Tweet/Post button and click it separately."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What happens if Twitter requires a CAPTCHA during login?",
+        "options": [
+            "Selenium automatically solves it",
+            "The bot fails and needs manual intervention or CAPTCHA solving service",
+            "Python has built-in CAPTCHA solving",
+            "CAPTCHAs don't appear with Selenium"
+        ],
+        "correct_index": 1,
+        "difficulty": "hard",
+        "topic_tag": "automation",
+        "explanation": "CAPTCHAs are designed to stop bots. When encountered, automation typically fails and requires human intervention."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why should you add delays between bot actions?",
+        "options": [
+            "Required by Python",
+            "To appear more human-like and avoid rate limiting or detection",
+            "Selenium runs too fast otherwise",
+            "Twitter API requires it"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "automation",
+        "explanation": "Adding random delays between actions mimics human behavior and helps avoid triggering anti-bot measures."
+    }
+]

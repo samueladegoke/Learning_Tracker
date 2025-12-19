@@ -1,0 +1,375 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What is the main goal of Day 55's Flask project?",
+        "options": [
+            "Building a database",
+            "Creating a Higher/Lower guessing game with dynamic URL routes",
+            "Sending emails",
+            "Scraping websites"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "Day 55 builds a number guessing game where users guess via URL paths and get feedback."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you create a dynamic URL route that captures a path segment?",
+        "options": [
+            "@app.route('/user?name=...')",
+            "@app.route('/user/<name>')",
+            "@app.route('/user/:name')",
+            "@app.route('/user/[name]')"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "routing",
+        "explanation": "Flask uses angle brackets <variable_name> to capture dynamic segments from the URL."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does <int:number> do in a Flask route?",
+        "options": [
+            "Validates that input is at least int characters",
+            "Converts the captured segment to an integer",
+            "Limits the route to int requests",
+            "Creates an integer range"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "routing",
+        "explanation": "Variable converters like int:, float:, path: convert the captured value to the specified type."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What happens if you visit /user/abc when the route expects <int:user_id>?",
+        "options": [
+            "Returns 'abc' as a string",
+            "Returns a 404 Not Found error",
+            "Converts 'abc' to 0",
+            "Crashes the server"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "routing",
+        "explanation": "Flask returns 404 because 'abc' doesn't match the int converter pattern."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the Flask debugger?",
+        "options": [
+            "A separate debugging tool",
+            "An interactive debugger that shows error details and allows code execution",
+            "A logging system",
+            "A testing framework"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "explanation": "The Flask debugger provides an interactive traceback and allows executing Python in the browser."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you enable the Flask debugger?",
+        "options": [
+            "import debugger",
+            "app.run(debug=True)",
+            "flask debug app.py",
+            "@app.debug"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "Pass debug=True to app.run() to enable the debugger and auto-reloader."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does the path converter do in Flask routes?",
+        "options": [
+            "Validates file paths",
+            "Captures the entire remaining path including slashes",
+            "Creates directory paths",
+            "Redirects to a path"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "routing",
+        "explanation": "<path:value> captures everything including slashes, unlike default which stops at /."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How can you return HTML with styling from a Flask route?",
+        "options": [
+            "Only use templates",
+            "Return a string containing HTML tags and inline styles",
+            "Flask can't return styled content",
+            "Use flask.style()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "You can return any HTML string, including tags with inline styles or embedded CSS."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does *args capture in a function?",
+        "options": [
+            "Keyword arguments",
+            "Positional arguments as a tuple",
+            "All variables in scope",
+            "Function decorators"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "python",
+        "explanation": "*args collects extra positional arguments into a tuple."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does **kwargs capture in a function?",
+        "options": [
+            "Positional arguments",
+            "Keyword arguments as a dictionary",
+            "Class attributes",
+            "Global variables"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "python",
+        "explanation": "**kwargs collects extra keyword arguments into a dictionary."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why use *args and **kwargs in decorator wrappers?",
+        "options": [
+            "Required by Python",
+            "To forward any arguments the original function might receive",
+            "For performance",
+            "To add extra arguments"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "decorators",
+        "explanation": "Using *args, **kwargs makes the wrapper flexible enough to decorate any function."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you return a GIF image in a Flask response?",
+        "options": [
+            "return gif('image.gif')",
+            "Return an img tag: '<img src=\"url\">'",
+            "Use flask.image()",
+            "Can't return images from Flask"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "Return an HTML img tag with a src attribute pointing to the image URL."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What happens when you use random.randint(0, 9) in Flask?",
+        "options": [
+            "Generates a random number each request",
+            "Flask caches the value",
+            "Throws an error",
+            "Returns None"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "python",
+        "explanation": "random.randint() generates a new random number each time it's called."
+    },
+    {
+        "question_type": "coding",
+        "text": "Dynamic Route\nCreate a route that greets a user by name from the URL",
+        "starter_code": "from flask import Flask\napp = Flask(__name__)\n\ndef create_greeting_route():\n    # Add route '/greet/<name>' that returns 'Hello, {name}!'\n    pass",
+        "test_cases": [
+            {
+                "function_call": "'route' in dir(app)",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "routing",
+        "solution_code": "from flask import Flask\napp = Flask(__name__)\n\ndef create_greeting_route():\n    @app.route('/greet/<name>')\n    def greet(name):\n        return f'Hello, {name}!'\n    return greet",
+        "explanation": "Capture the name from URL with <name> and use it in the response."
+    },
+    {
+        "question_type": "coding",
+        "text": "Integer Route\nCreate a route that squares a number from the URL",
+        "starter_code": "from flask import Flask\napp = Flask(__name__)\n\ndef create_square_route():\n    # Add route '/square/<int:num>' returning num squared\n    pass",
+        "test_cases": [
+            {
+                "function_call": "'route' in dir(app)",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "routing",
+        "solution_code": "from flask import Flask\napp = Flask(__name__)\n\ndef create_square_route():\n    @app.route('/square/<int:num>')\n    def square(num):\n        return str(num ** 2)\n    return square",
+        "explanation": "Use <int:num> to capture and convert to integer, then return the square."
+    },
+    {
+        "question_type": "coding",
+        "text": "Flexible Decorator\nCreate a decorator that works with any function arguments",
+        "starter_code": "def universal_decorator(func):\n    # Create wrapper that accepts any args/kwargs\n    # Print function name before calling\n    # Return result\n    pass",
+        "test_cases": [
+            {
+                "function_call": "universal_decorator.__code__.co_varnames[0]",
+                "expected": "'func'"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "decorators",
+        "solution_code": "def universal_decorator(func):\n    def wrapper(*args, **kwargs):\n        print(f'Calling {func.__name__}')\n        return func(*args, **kwargs)\n    return wrapper",
+        "explanation": "Use *args, **kwargs to accept any arguments and forward them."
+    },
+    {
+        "question_type": "coding",
+        "text": "Higher/Lower Logic\nCompare a guess to a secret number and return feedback",
+        "starter_code": "def check_guess(guess, secret):\n    # Return 'Too low!' if guess < secret\n    # Return 'Too high!' if guess > secret\n    # Return 'Correct!' if equal\n    pass",
+        "test_cases": [
+            {
+                "function_call": "check_guess(5, 10)",
+                "expected": "'Too low!'"
+            },
+            {
+                "function_call": "check_guess(15, 10)",
+                "expected": "'Too high!'"
+            },
+            {
+                "function_call": "check_guess(10, 10)",
+                "expected": "'Correct!'"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "solution_code": "def check_guess(guess, secret):\n    if guess < secret:\n        return 'Too low!'\n    elif guess > secret:\n        return 'Too high!'\n    else:\n        return 'Correct!'",
+        "explanation": "Simple comparison logic with three possible outcomes."
+    },
+    {
+        "question_type": "coding",
+        "text": "HTML Response with Styling\nReturn colored HTML based on guess result",
+        "starter_code": "def styled_response(message, color):\n    # Return h1 tag with message styled in given color\n    pass",
+        "test_cases": [
+            {
+                "function_call": "'color:' in styled_response('Hello', 'red')",
+                "expected": "True"
+            },
+            {
+                "function_call": "'h1' in styled_response('Hello', 'red')",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "solution_code": "def styled_response(message, color):\n    return f'<h1 style=\"color: {color}\">{message}</h1>'",
+        "explanation": "Use f-string to insert color and message into HTML with inline style."
+    },
+    {
+        "question_type": "coding",
+        "text": "Args and Kwargs Demo\nCreate function that prints all args and kwargs",
+        "starter_code": "def print_all(*args, **kwargs):\n    # Print each positional arg\n    # Print each keyword arg with its value\n    pass",
+        "test_cases": [
+            {
+                "function_call": "print_all.__code__.co_flags & 0x04 != 0",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "python",
+        "solution_code": "def print_all(*args, **kwargs):\n    for arg in args:\n        print(arg)\n    for key, value in kwargs.items():\n        print(f'{key} = {value}')",
+        "explanation": "Iterate through args tuple and kwargs dictionary items."
+    },
+    {
+        "question_type": "coding",
+        "text": "Decorator with Arguments\nCreate decorator factory that takes a message parameter",
+        "starter_code": "def log_with_message(message):\n    # Return a decorator that prints message before calling function\n    pass",
+        "test_cases": [
+            {
+                "function_call": "callable(log_with_message('test'))",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "hard",
+        "topic_tag": "decorators",
+        "solution_code": "def log_with_message(message):\n    def decorator(func):\n        def wrapper(*args, **kwargs):\n            print(message)\n            return func(*args, **kwargs)\n        return wrapper\n    return decorator",
+        "explanation": "A decorator factory returns a decorator, which returns a wrapper - three levels of nesting."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the route variable type:",
+        "code": "@app.route('/number/<number>')\ndef show_number(number):\n    return number * 2\n# Visiting /number/5 returns '55' instead of 10",
+        "options": [
+            "Use <int:number> to convert to integer",
+            "Use int(number) inside function",
+            "Use number.to_int()",
+            "Add type=int to route"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "routing",
+        "explanation": "URL segments are strings by default. Use <int:number> to automatically convert."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the decorator losing function info:",
+        "code": "def my_decorator(func):\n    def wrapper(*args, **kwargs):\n        return func(*args, **kwargs)\n    return wrapper\n\n@my_decorator\ndef hello():\n    '''Says hello'''\n    pass\n\nprint(hello.__doc__)  # None instead of 'Says hello'",
+        "options": [
+            "Add @functools.wraps(func) before wrapper definition",
+            "Return func instead of wrapper",
+            "Add docstring to wrapper",
+            "Use a class decorator"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "decorators",
+        "explanation": "@wraps(func) copies metadata like __doc__ from the original function."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the missing return value:",
+        "code": "@app.route('/add/<int:a>/<int:b>')\ndef add(a, b):\n    result = a + b\n# Page shows nothing",
+        "options": [
+            "Add return str(result) or return f'{result}'",
+            "Use print(result)",
+            "Add app.display(result)",
+            "The route syntax is wrong"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "Flask routes must return a string. Convert the number result to a string."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the path with slashes:",
+        "code": "@app.route('/file/<filename>')\ndef get_file(filename):\n    return filename\n# /file/folder/doc.txt returns 404",
+        "options": [
+            "Use <path:filename> to capture slashes",
+            "URL-encode the slashes",
+            "Use multiple parameters",
+            "Can't have slashes in URLs"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "routing",
+        "explanation": "The default converter stops at /. Use <path:var> to capture everything including slashes."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What HTTP status code indicates a successful response?",
+        "options": [
+            "404",
+            "200",
+            "500",
+            "301"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "HTTP 200 OK indicates the request was successful. 404 is not found, 500 is server error."
+    }
+]

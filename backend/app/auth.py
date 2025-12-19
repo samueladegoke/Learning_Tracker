@@ -107,7 +107,6 @@ def get_current_user(
     # Extract user info from Supabase JWT
     # Supabase puts user ID in 'sub' claim
     supabase_user_id = payload.get("sub")
-    payload.get("email", "")
 
     if not supabase_user_id:
         raise HTTPException(
@@ -120,17 +119,27 @@ def get_current_user(
     user = db.query(User).filter(User.username == supabase_user_id).first()
 
     if not user:
-        # First login - create user record
-        user = User(
-            username=supabase_user_id,
-            xp=0,
-            level=1,
-            streak=0,
-            current_week=1
-        )
-        db.add(user)
-        db.commit()
-        db.refresh(user)
+        # First login - create user record (with race condition protection)
+        try:
+            user = User(
+                username=supabase_user_id,
+                xp=0,
+                level=1,
+                streak=0,
+                current_week=1
+            )
+            db.add(user)
+            db.commit()
+            db.refresh(user)
+        except Exception:
+            db.rollback()
+            # Race condition: another request created the user
+            user = db.query(User).filter(User.username == supabase_user_id).first()
+            if not user:
+                raise HTTPException(
+                    status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                    detail="Failed to create user"
+                )
 
     return user
 

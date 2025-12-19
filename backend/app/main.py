@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from .database import engine, Base
-from .routers import weeks, tasks, reflections, progress, badges, rpg, achievements, quizzes
+from .routers import weeks, tasks, reflections, progress, badges, rpg, achievements, quizzes, spaced_repetition
 
 # Configure logger
 logger = logging.getLogger(__name__)
@@ -79,6 +79,7 @@ app.include_router(badges.router, prefix="/api/badges", tags=["badges"])
 app.include_router(rpg.router, prefix="/api/rpg", tags=["rpg"])
 app.include_router(achievements.router, prefix="/api/achievements", tags=["achievements"])
 app.include_router(quizzes.router, prefix="/api/quizzes", tags=["quizzes"])
+app.include_router(spaced_repetition.router, prefix="/api/srs", tags=["Spaced Repetition"])
 
 
 @app.get("/api")
