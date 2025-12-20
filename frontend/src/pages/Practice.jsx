@@ -63,6 +63,11 @@ const DeepDiveDay52 = lazy(() => import('../components/content/DeepDive/Day52'))
 const DeepDiveDay53 = lazy(() => import('../components/content/DeepDive/Day53'))
 const DeepDiveDay54 = lazy(() => import('../components/content/DeepDive/Day54'))
 const DeepDiveDay55 = lazy(() => import('../components/content/DeepDive/Day55'))
+const DeepDiveDay56 = lazy(() => import('../components/content/DeepDive/Day56'))
+const DeepDiveDay57 = lazy(() => import('../components/content/DeepDive/Day57'))
+const DeepDiveDay58 = lazy(() => import('../components/content/DeepDive/Day58'))
+const DeepDiveDay59 = lazy(() => import('../components/content/DeepDive/Day59'))
+const DeepDiveDay60 = lazy(() => import('../components/content/DeepDive/Day60'))
 
 // Loading fallback component for lazy-loaded DeepDive content
 const DeepDiveLoader = () => (
@@ -512,6 +517,46 @@ const DAY_META = {
         quizId: 'day-55-practice',
         level: 'intermediate+',
         topics: ['flask', 'routing', 'url-parameters', 'web-game']
+    },
+    'day-56': {
+        label: 'Day 56',
+        title: 'Day 56: HTML Rendering in Flask',
+        subtitle: 'Learn to serve static files and render complex HTML templates.',
+        quizId: 'day-56-practice',
+        level: 'intermediate+',
+        topics: ['flask', 'render_template', 'static-files', 'html5up']
+    },
+    'day-57': {
+        label: 'Day 57',
+        title: 'Day 57: Jinja Templates & API Data',
+        subtitle: 'Use Jinja2 templating and control structures with API data.',
+        quizId: 'day-57-practice',
+        level: 'intermediate+',
+        topics: ['jinja', 'templating', 'api', 'requests']
+    },
+    'day-58': {
+        label: 'Day 58',
+        title: 'Day 58: Bootstrap Framework',
+        subtitle: 'Build responsive, modern websites using the Bootstrap layout system.',
+        quizId: 'day-58-practice',
+        level: 'intermediate+',
+        topics: ['bootstrap', 'grid-system', 'responsive-design', 'css-framework']
+    },
+    'day-59': {
+        label: 'Day 59',
+        title: 'Day 59: Blog Capstone (Part 2) - Styling',
+        subtitle: 'Modularize your templates with Jinja includes and pull data from an API.',
+        quizId: 'day-59-practice',
+        level: 'advanced',
+        topics: ['jinja-includes', 'modularity', 'api-integration', 'flask']
+    },
+    'day-60': {
+        label: 'Day 60',
+        title: 'Day 60: POST Requests & HTML Forms',
+        subtitle: 'Handle user input securely with POST requests and send automated emails.',
+        quizId: 'day-60-practice',
+        level: 'advanced',
+        topics: ['html-forms', 'post-requests', 'smtplib', 'email-automation']
     }
 }
 
@@ -811,7 +856,12 @@ function DeepDive({ activeDay }) {
         'day-52': DeepDiveDay52,
         'day-53': DeepDiveDay53,
         'day-54': DeepDiveDay54,
-        'day-55': DeepDiveDay55
+        'day-55': DeepDiveDay55,
+        'day-56': DeepDiveDay56,
+        'day-57': DeepDiveDay57,
+        'day-58': DeepDiveDay58,
+        'day-59': DeepDiveDay59,
+        'day-60': DeepDiveDay60
     }
     const Component = components[activeDay]
     if (!Component) {

@@ -1,0 +1,290 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What is the primary purpose of the `{% include %}` tag in Jinja2?",
+        "options": [
+            "To import Python libraries into the template.",
+            "To insert the contents of another template file into the current one.",
+            "To include external CSS files directly into the HTML body.",
+            "To define a new function inside a template."
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "jinja",
+        "explanation": "`{% include 'filename.html' %}` allows you to reuse common components like headers, footers, or navigation bars across multiple pages."
+    },
+    {
+        "question_type": "mcq",
+        "text": "When building a blog, why is it better to fetch posts from an API in the Flask script rather than hardcoding them in the HTML?",
+        "options": [
+            "It makes the website look more professional.",
+            "It allows the content to be updated dynamically without changing the code.",
+            "Jinja cannot render hardcoded lists.",
+            "APIs are faster than local HTML files."
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "web-architecture",
+        "explanation": "Decoupling data from presentation allows for dynamic content management and easier updates."
+    },
+    {
+        "question_type": "mcq",
+        "text": "If you have a file `footer.html` inside the `templates` folder, what is the correct syntax to include it at the bottom of `index.html`?",
+        "options": [
+            "{{ include 'footer.html' }}",
+            "{% insert 'footer.html' %}",
+            "{% include 'footer.html' %}",
+            "[[ include footer.html ]]"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "jinja",
+        "explanation": "The `include` statement uses the `{% %}` logic tags and requires the filename in quotes."
+    },
+    {
+        "question_type": "mcq",
+        "text": "In the Blog Capstone project, what is the standard way to pass an ID to a specific post route (e.g., `/post/1`)?",
+        "options": [
+            "Use a query string: `/post?id=1`",
+            "Use a dynamic path parameter: `/post/<int:num>`",
+            "Send the ID in a cookie.",
+            "Hardcode separate routes for every post."
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "explanation": "Flask's variable rules `<converter:name>` are the standard for RESTful URL structures."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does 'modularizing' a template mean?",
+        "options": [
+            "Making the template file as large as possible.",
+            "Breaking a large template into smaller, reusable components like header, footer, and sidebar.",
+            "Adding custom CSS to every HTML element.",
+            "Using a specific Jinja filter for math."
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "web-design",
+        "explanation": "Modularity improves maintainability by reducing code duplication."
+    },
+    {
+        "question_type": "mcq",
+        "text": "When using `{% include %}`, which variables are accessible to the included template?",
+        "options": [
+            "Only variables explicitly passed to the include tag.",
+            "All variables available in the parent template's context.",
+            "No variables at all.",
+            "Only global Python variables."
+        ],
+        "correct_index": 1,
+        "difficulty": "hard",
+        "topic_tag": "jinja",
+        "explanation": "By default, the included template has access to the entire context of the template that includes it."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you render a list of objects where each object has a 'title' and 'subtitle'?",
+        "options": [
+            "{{ list.title }}",
+            "{% for item in list %} {{ item.title }} - {{ item.subtitle }} {% endfor %}",
+            "{% render list %}",
+            "list.map(item => item.title)"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "jinja",
+        "explanation": "A `for` loop is used to iterate over the list, and dot notation accesses the object attributes."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which HTTP method is typically used to FETCH data from an API source like npoint.io?",
+        "options": [
+            "POST",
+            "GET",
+            "PUT",
+            "DELETE"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "http",
+        "explanation": "GET requests are used to retrieve resources from a server."
+    },
+    {
+        "question_type": "mcq",
+        "text": "In the Blog project, where should the `header.html` and `footer.html` files be located?",
+        "options": [
+            "In the root project folder.",
+            "In the `static` folder.",
+            "In the `templates` folder.",
+            "In a special `includes` folder outside of `templates`."
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "explanation": "All HTML files intended for Jinja rendering or inclusion must be in the `templates` directory (or its subdirectories)."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the benefit of using `requests.get(url).json()` instead of just `requests.get(url).text`?",
+        "options": [
+            "There is no difference.",
+            "`.json()` returns a Python dictionary or list, while `.text` returns a raw string.",
+            "`.json()` is faster.",
+            "`.text` is only for encrypted data."
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "python",
+        "explanation": "The `.json()` method automatically parses the response body, saving you from using `json.loads()`."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you pass multiple keyword arguments from Flask to a template?",
+        "options": [
+            "render_template('page.html', [var1, var2])",
+            "render_template('page.html', var1=val1, var2=val2)",
+            "render_template('page.html', {var1: val1, var2: val2})",
+            "You can only pass one variable at a time."
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "Flask's `render_template` accepts any number of keyword arguments."
+    },
+    {
+        "question_type": "mcq",
+        "text": "In a blog layout, if you want the header to appear on EVERY page, what is the best strategy?",
+        "options": [
+            "Copy-paste the code into every HTML file.",
+            "Use `{% include \"header.html\" %}` at the top of every page template.",
+            "Link the header as a separate CSS file.",
+            "Headers are only needed on the home page."
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "jinja",
+        "explanation": "Using `include` ensures that changes to the header only need to be made in one place."
+    },
+    {
+        "question_type": "coding",
+        "text": "Modular Template Creation\nWrite the line of code that goes at the very top of `index.html` to include a file named `header.html`.",
+        "starter_code": "<!-- Include header here -->\n\n<h1>Welcome to my Blog</h1>",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "jinja",
+        "solution_code": "{% include \"header.html\" %}",
+        "explanation": "Use the `include` tag with the filename in quotes."
+    },
+    {
+        "question_type": "coding",
+        "text": "Fetching Blog Posts\nComplete the Flask route to fetch blog data from 'https://api.npoint.io/c79730733079251241af' and pass the JSON list to 'index.html' as the variable `all_posts`.",
+        "starter_code": "import requests\nfrom flask import Flask, render_template\n\napp = Flask(__name__)\n\n@app.route('/')\ndef get_all_posts():\n    # Your code here\n    pass",
+        "test_cases": [
+            {
+                "function_call": "app.url_map.bind('localhost').match('/')",
+                "expected": "('get_all_posts', {})"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "solution_code": "import requests\nfrom flask import Flask, render_template\n\napp = Flask(__name__)\n\n@app.route('/')\ndef get_all_posts():\n    response = requests.get('https://api.npoint.io/c79730733079251241af')\n    all_posts = response.json()\n    return render_template('index.html', posts=all_posts)",
+        "explanation": "The standard pattern is: fetch -> parse -> render."
+    },
+    {
+        "question_type": "coding",
+        "text": "Dynamic Post Route\nDefine a route named `show_post` that takes an integer `post_id` and renders 'post.html' while passing that ID as `id`.",
+        "starter_code": "from flask import Flask, render_template\napp = Flask(__name__)\n\n# Define the route using post_id",
+        "test_cases": [
+            {
+                "function_call": "app.url_map.bind('localhost').match('/post/5')",
+                "expected": "('show_post', {'post_id': 5})"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "solution_code": "from flask import Flask, render_template\napp = Flask(__name__)\n\n@app.route('/post/<int:post_id>')\ndef show_post(post_id):\n    return render_template('post.html', id=post_id)",
+        "explanation": "Use `<int:post_id>` to capture numerical IDs from the URL."
+    },
+    {
+        "question_type": "coding",
+        "text": "Iterating through complex data\nInside a Jinja template, iterate through a list `posts`. For each post, display the `title` in an `<h2>` and the `subtitle` in a `<p>`.",
+        "starter_code": "{% for ... %}\n  <!-- display title and subtitle -->\n{% endfor %}",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "jinja",
+        "solution_code": "{% for post in posts %}\n  <h2>{{ post.title }}</h2>\n  <p>{{ post.subtitle }}</p>\n{% endfor %}",
+        "explanation": "Standard for-loop iteration with variable interpolation."
+    },
+    {
+        "question_type": "coding",
+        "text": "Jinja Link Generation\nCreate an `<a>` tag that links to the route `view_post` and passes the argument `index` with a value of 42.",
+        "starter_code": "<a href=\"{{ url_for(...) }}\">View</a>",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "jinja",
+        "solution_code": "<a href=\"{{ url_for('view_post', index=42) }}\">View</a>",
+        "explanation": "Arguments for the route function go as keyword arguments in `url_for`."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The footer is not appearing on the page. Fix the include tag.",
+        "code": "<!-- Bottom of index.html -->\n{{ include \"footer.html\" }}",
+        "options": [
+            "Change {{ }} to {% %}",
+            "Change \"footer.html\" to footer.html",
+            "Remove the quotes",
+            "Use {% insert \"footer\" %}"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "jinja",
+        "explanation": "`include` is a statement/declaration, so it must use `{% %}` logic tags."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The following route is failing because it's not receiving the `id` from the URL. Fix the def line.",
+        "code": "@app.route('/blog/<int:num>')\ndef blog_post():\n    return f\"Post ID: {num}\"",
+        "options": [
+            "def blog_post(num):",
+            "def blog_post():",
+            "def blog_post(int):",
+            "def blog_post(id):"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "The function must accept an argument with the same name as the variable in the route converter."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Identify the logic error in this template snippet.",
+        "code": "{# Loop through blog posts #}\n{% for post in all_posts %}\n    {% if post.title == \"None\" %}\n        <p>No Title</p>\n    {% else %}\n        <h1>{{ post.title }}</h1>\n<!-- ERROR: Missing tags -->",
+        "options": [
+            "Missing {% endif %} and {% endfor %}",
+            "Missing {% endloop %}",
+            "Missing </p> tag",
+            "Variables must use [ ]"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "jinja",
+        "explanation": "Both the `if` and the `for` logic blocks must be explicitly closed."
+    }
+]

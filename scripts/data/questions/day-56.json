@@ -1,0 +1,294 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "By default, in which directory must HTML files be placed for Flask's `render_template()` function to find them?",
+        "options": [
+            "static",
+            "html",
+            "templates",
+            "views"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "Flask looks for HTML templates in a folder named 'templates' located in the same directory as the application module."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the correct syntax to pass a variable named `user_name` to a template titled 'index.html'?",
+        "options": [
+            "render_template('index.html', user_name)",
+            "render_template('index.html', name=user_name)",
+            "render_template('index.html').with(user_name)",
+            "render_template('index.html', {'name': user_name})"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "Variables are passed to templates as keyword arguments in the `render_template` function."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which Flask function should be used to generate URLs for static files like CSS or images to ensure they work even if the application moves?",
+        "options": [
+            "get_url()",
+            "static_url()",
+            "url_for()",
+            "build_path()"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "`url_for('static', filename='...')` is the standard way to dynamically create paths for static resources."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Where should you store CSS, JavaScript, and image files in a standard Flask project structure?",
+        "options": [
+            "templates/",
+            "assets/",
+            "public/",
+            "static/"
+        ],
+        "correct_index": 3,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "Flask reserves the 'static' directory for non-template files that should be served directly to the browser."
+    },
+    {
+        "question_type": "mcq",
+        "text": "In a Jinja2 template, what is the syntax used for displaying the value of a variable passed from Flask?",
+        "options": [
+            "{% variable %}",
+            "{{ variable }}",
+            "[[ variable ]]",
+            "<% variable %>"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "jinja",
+        "explanation": "Double curly braces `{{ }}` are used for expressions/output in Jinja2 templates."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How can you return a custom HTTP status code, such as 404, when rendering a template?",
+        "options": [
+            "render_template('404.html', code=404)",
+            "render_template('404.html'), 404",
+            "return 404, render_template('404.html')",
+            "Flask.abort(404, template='404.html')"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "explanation": "Flask allows returning a tuple where the second element is the status code: `return render_template('page.html'), 404`."
+    },
+    {
+        "question_type": "mcq",
+        "text": "When using `url_for('static', filename='css/styles.css')`, what does the 'static' string refer to?",
+        "options": [
+            "The exact folder name on disk.",
+            "The name of the Flask function that serves static files.",
+            "The route decorator `@app.route('/static')`.",
+            "A reserved keyword that cannot be changed."
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "explanation": "`url_for` takes the name of the function (the endpoint). By default, Flask creates a function named `static` to serve files from the `static` folder."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What happens if you try to use `render_template()` on a file that does not exist in the `templates` folder?",
+        "options": [
+            "Flask returns an empty string.",
+            "The browser displays a directory listing.",
+            "Flask raises a `jinja2.exceptions.TemplateNotFound` error.",
+            "It renders the file as plain text from the root directory."
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "explanation": "Flask will raise a `TemplateNotFound` exception if it cannot find the specified file within its configured template folders."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which of the following is the best practice for integrating a third-party HTML template (like HTML5 UP) into Flask?",
+        "options": [
+            "Put all files in the root folder and change nothing.",
+            "Keep HTML in templates/ and move assets (CSS/JS/Images) to static/, then update paths with `url_for`.",
+            "Put everything in static/ and use `app.send_static_file()` for the HTML.",
+            "Modify the HTML file to include Python code directly."
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "explanation": "The standard workflow is to separate templates from static assets and use Flask's routing and `url_for` to link them."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does the `__name__` argument passed to `Flask(__name__)` help the framework accomplish?",
+        "options": [
+            "It sets the application's unique ID for the database.",
+            "It helps Flask determine the root path of the application to find templates and static files.",
+            "It defines the username of the developer for logging.",
+            "It is a required placeholder that has no functional purpose anymore."
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "explanation": "Flask uses the module name to calculate the path to the application resources."
+    },
+    {
+        "question_type": "mcq",
+        "text": "If your Flask app is in a package, where does Flask look for the `templates` folder?",
+        "options": [
+            "Inside the package directory.",
+            "In the parent directory of the package.",
+            "In the user's home directory.",
+            "In the system's /var/www folder."
+        ],
+        "correct_index": 0,
+        "difficulty": "hard",
+        "topic_tag": "flask",
+        "explanation": "When the app is defined inside a package, Flask defaults to looking for `templates` and `static` inside that package's directory."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How can you specify a custom template folder named 'my_views' instead of the default 'templates' when initializing Flask?",
+        "options": [
+            "app.template_folder = 'my_views'",
+            "app = Flask(__name__, template_folder='my_views')",
+            "app = Flask(__name__).set_templates('my_views')",
+            "Custom folders are not supported in Flask."
+        ],
+        "correct_index": 1,
+        "difficulty": "hard",
+        "topic_tag": "flask",
+        "explanation": "The `template_folder` and `static_folder` can be customized during the `Flask` object initialization."
+    },
+    {
+        "question_type": "coding",
+        "text": "Basic HTML Rendering\nCreate a Flask route for the root URL ('/') that renders a template named 'index.html'.",
+        "starter_code": "from flask import Flask, render_template\n\napp = Flask(__name__)\n\n# Define your route here",
+        "test_cases": [
+            {
+                "function_call": "app.view_functions['index'].__name__",
+                "expected": "'index'"
+            },
+            {
+                "function_call": "app.url_map.bind('localhost').match('/')",
+                "expected": "('index', {})"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "solution_code": "from flask import Flask, render_template\n\napp = Flask(__name__)\n\n@app.route('/')\ndef index():\n    return render_template('index.html')",
+        "explanation": "Use the `@app.route('/')` decorator and return the result of `render_template('index.html')`."
+    },
+    {
+        "question_type": "coding",
+        "text": "Passing Variables to Templates\nCreate a route '/user/<username>' that renders 'profile.html' and passes the `username` to the template as a variable named `name`.",
+        "starter_code": "from flask import Flask, render_template\n\napp = Flask(__name__)\n\n# Define the route",
+        "test_cases": [
+            {
+                "function_call": "app.url_map.bind('localhost').match('/user/angela')",
+                "expected": "('profile', {'username': 'angela'})"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "solution_code": "from flask import Flask, render_template\n\napp = Flask(__name__)\n\n@app.route('/user/<username>')\ndef profile(username):\n    return render_template('profile.html', name=username)",
+        "explanation": "Define a route with a dynamic segment `<username>`, then pass it to `render_template` as a keyword argument."
+    },
+    {
+        "question_type": "coding",
+        "text": "URL Building for Static Assets\nWrite a function `get_js_link()` that returns the string you would use inside a Jinja template to link to a file at 'static/js/script.js' using `url_for` logic.",
+        "starter_code": "def get_js_link():\n    # Return the Jinja string\n    return ''",
+        "test_cases": [
+            {
+                "function_call": "get_js_link()",
+                "expected": "{{ url_for('static', filename='js/script.js') }}"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "solution_code": "def get_js_link():\n    return \"{{ url_for('static', filename='js/script.js') }}\"",
+        "explanation": "In Jinja, use `{{ url_for('static', filename='path/to/file') }}`."
+    },
+    {
+        "question_type": "coding",
+        "text": "Rendering multiple dynamic values\nCreate a route '/card' that renders 'card.html' with two variables: `title` set to 'My Site' and `year` set to 2024.",
+        "starter_code": "from flask import Flask, render_template\n\napp = Flask(__name__)\n\n# Your code here",
+        "test_cases": [
+            {
+                "function_call": "app.url_map.bind('localhost').match('/card')",
+                "expected": "('card_page', {})"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "solution_code": "from flask import Flask, render_template\n\napp = Flask(__name__)\n\n@app.route('/card')\ndef card_page():\n    return render_template('card.html', title='My Site', year=2024)",
+        "explanation": "You can pass any number of keyword arguments to `render_template`."
+    },
+    {
+        "question_type": "coding",
+        "text": "Flask Static Folder Path\nWrite a python snippet that would get the absolute path to the 'static' folder for an app defined as `app = Flask(__name__)`.",
+        "starter_code": "from flask import Flask\napp = Flask(__name__)\n\ndef get_static_path():\n    # Return the path\n    return ''",
+        "test_cases": [
+            {
+                "function_call": "get_static_path().endswith('static')",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "hard",
+        "topic_tag": "flask",
+        "solution_code": "from flask import Flask\napp = Flask(__name__)\n\ndef get_static_path():\n    return app.static_folder",
+        "explanation": "The `app.static_folder` attribute holds the path to the static directory."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the following Flask route that is failing to render the template correctly.",
+        "code": "from flask import Flask, render_template\n\napp = Flask(__name__)\n\n@app.route('/')\ndef home():\n    # ERROR: Name error or incorrect usage\n    return render('index.html')",
+        "options": [
+            "change render('index.html') to render_template('index.html')",
+            "change render('index.html') to Flask.render('index.html')",
+            "change render('index.html') to app.render('index.html')",
+            "Import index from templates"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "The function name is `render_template`, not `render`."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Correct the Jinja code to properly load the CSS file in the HTML template.",
+        "code": "<!-- In index.html -->\n<link rel=\"stylesheet\" href=\"{{ static/css/style.css }}\">",
+        "options": [
+            "href=\"static/css/style.css\"",
+            "href=\"{{ url_for('static', filename='css/style.css') }}\"",
+            "href=\"{{ load_static('css/style.css') }}\"",
+            "href=\"assets/css/style.css\""
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "explanation": "The proper way to link static files in Flask is using `{{ url_for('static', filename='...') }}`."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Identify the error in passing the `posts` list to the template.",
+        "code": "posts = [{\"title\": \"Hi\"}]\n@app.route('/blog')\ndef blog():\n    return render_template('blog.html', posts)",
+        "options": [
+            "It should be render_template('blog.html', all_posts=posts)",
+            "It should be render_template('blog.html').render(posts)",
+            "It should be render_template('blog.html', {'posts': posts})",
+            "List should be a tuple"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "explanation": "Template variables must be passed as keyword arguments (key=value)."
+    }
+]

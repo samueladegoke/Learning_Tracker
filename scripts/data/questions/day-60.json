@@ -1,0 +1,290 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What is the primary difference between a GET request and a POST request in the context of HTML forms?",
+        "options": [
+            "GET is faster than POST.",
+            "GET sends data in the URL (query string), while POST sends data in the message body.",
+            "POST is only for images, GET is for text.",
+            "There is no functional difference."
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "http",
+        "explanation": "GET requests append data to the URL, making it visible and limited in length. POST requests keep data in the body, which is more secure for passwords and allows for larger payloads."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which HTML attribute of the `<form>` tag specifies the URL where the form data should be sent?",
+        "options": [
+            "method",
+            "src",
+            "action",
+            "href"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "html",
+        "explanation": "The `action` attribute defines the destination URL for the form submission."
+    },
+    {
+        "question_type": "mcq",
+        "text": "In Flask, which object is used to access data submitted via a POST form?",
+        "options": [
+            "request.args",
+            "request.form",
+            "request.data",
+            "request.values"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "`request.form` is a dictionary-like object containing the key-value pairs from a POST request."
+    },
+    {
+        "question_type": "mcq",
+        "text": "By default, which HTTP methods does a Flask route handle if the `methods` argument is not specified?",
+        "options": [
+            "GET only",
+            "POST only",
+            "GET and POST",
+            "All HTTP methods"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "If not specified, `@app.route()` only responds to GET requests."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which Python library is built into the standard library and used for sending emails via SMTP?",
+        "options": [
+            "flask_mail",
+            "smtplib",
+            "email_sender",
+            "requests"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "python",
+        "explanation": "`smtplib` is the built-in module for defining an SMTP client session object that can be used to send mail."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the correct way to allow a route to handle both GET and POST requests in Flask?",
+        "options": [
+            "@app.route('/', methods=['GET', 'POST'])",
+            "@app.route('/', type='both')",
+            "@app.route('/') and @app.route('/', methods=['POST'])",
+            "Flask routes automatically handle both."
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "explanation": "You must explicitly list the allowed methods in the `methods` list argument of the route decorator."
+    },
+    {
+        "question_type": "mcq",
+        "text": "In an HTML `<input>` tag, which attribute is used as the 'key' in the Flask `request.form` dictionary?",
+        "options": [
+            "id",
+            "class",
+            "name",
+            "value"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "html",
+        "explanation": "The `name` attribute of the input field is what Flask uses to identify the data piece on the server side."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why is it important to use `with smtplib.SMTP(...) as connection:` when sending an email?",
+        "options": [
+            "It makes the email send faster.",
+            "It ensures that the connection is automatically closed even if an error occurs.",
+            "It is the only way to log in.",
+            "It allows sending multiple emails at once."
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "python",
+        "explanation": "The `with` statement (context manager) handles resource cleanup, ensuring the SMTP connection is terminated properly."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does `connection.starttls()` do in an SMTP session?",
+        "options": [
+            "It starts the email countdown.",
+            "It puts the SMTP connection in TLS (Transport Layer Security) mode for encryption.",
+            "It validates the recipient's email address.",
+            "It converts the email body to HTML."
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "python",
+        "explanation": "TLS encryption is necessary for securely sending login credentials and email content over the network."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which attribute of the `request` object tells you which HTTP method was used for the current request?",
+        "options": [
+            "request.type",
+            "request.action",
+            "request.method",
+            "request.mode"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "explanation": "You can check `if request.method == 'POST':` to handle form submissions differently from initial page loads."
+    },
+    {
+        "question_type": "mcq",
+        "text": "When sending an email with `smtplib`, what is the purpose of 'App Passwords' (e.g., in Gmail)?",
+        "options": [
+            "To allow the app to bypass two-factor authentication for a specific service.",
+            "To hide your real password from the recipients.",
+            "To send emails to more than 100 people at once.",
+            "App passwords are no longer used."
+        ],
+        "correct_index": 0,
+        "difficulty": "hard",
+        "topic_tag": "security",
+        "explanation": "Sensitive services like Gmail require specialized passwords for less secure apps or scripts to maintain higher account security."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the return type of `request.form.get('username')` if the 'username' field was not included in the form submission?",
+        "options": [
+            "An empty string: \"\"",
+            "None",
+            "A KeyError exception",
+            "The value 'False'"
+        ],
+        "correct_index": 1,
+        "difficulty": "hard",
+        "topic_tag": "flask",
+        "explanation": "The `.get()` method on dictionaries (and `request.form`) returns `None` instead of raising an error if the key is missing."
+    },
+    {
+        "question_type": "coding",
+        "text": "Handling POST Requests\nCreate a Flask route `/login` that handles both GET and POST. If the method is POST, return 'Success', otherwise return 'Login Page'.",
+        "starter_code": "from flask import Flask, request\napp = Flask(__name__)\n\n@app.route('/login', ...)\ndef login():\n    # Check method and return appropriate string\n    pass",
+        "test_cases": [
+            {
+                "function_call": "app.url_map.bind('localhost').match('/login', method='POST')",
+                "expected": "('login', {})"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "solution_code": "from flask import Flask, request\napp = Flask(__name__)\n\n@app.route('/login', methods=['GET', 'POST'])\ndef login():\n    if request.method == 'POST':\n        return 'Success'\n    return 'Login Page'",
+        "explanation": "Use `methods=['GET', 'POST']` and check `request.method`."
+    },
+    {
+        "question_type": "coding",
+        "text": "Accessing Form Data\nIn a POST route, extract the 'email' and 'message' values from the submitted form and return them as a combined string: 'Email: [email], Msg: [message]'.",
+        "starter_code": "from flask import request\n\ndef process_form():\n    # extract 'email' and 'message'\n    return ''",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "solution_code": "from flask import request\n\ndef process_form():\n    email = request.form['email']\n    message = request.form['message']\n    return f'Email: {email}, Msg: {message}'",
+        "explanation": "Use `request.form['key']` or `request.form.get('key')` to access values."
+    },
+    {
+        "question_type": "coding",
+        "text": "Sending a simple email\nWrite a python function `send_alert(msg)` that connects to 'smtp.gmail.com' and sends the message from 'admin@mysite.com' to 'user@gmail.com'. Use dummy credentials 'pass123'.",
+        "starter_code": "import smtplib\n\ndef send_alert(msg):\n    # Connect, login, and send\n    pass",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "python",
+        "solution_code": "import smtplib\n\ndef send_alert(msg):\n    with smtplib.SMTP('smtp.gmail.com') as connection:\n        connection.starttls()\n        connection.login(user='admin@mysite.com', password='pass123')\n        connection.sendmail(\n            from_addr='admin@mysite.com',\n            to_addrs='user@gmail.com',\n            msg=f'Subject:Alert\\n\\n{msg}'\n        )",
+        "explanation": "Use the context manager, starttls, login, and sendmail."
+    },
+    {
+        "question_type": "coding",
+        "text": "HTML Form Structure\nWrite the opening `<form>` tag that would send data to the `/contact` route using the POST method.",
+        "starter_code": "<!-- Opening form tag here -->",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "html",
+        "solution_code": "<form action=\"/contact\" method=\"POST\">",
+        "explanation": "The `action` attribute specifies the URL and `method` specifies HTTP method."
+    },
+    {
+        "question_type": "coding",
+        "text": "Flask Form Redirection\nAfter a successful POST submission in a route named `contact`, redirect the user to the `home` view function.",
+        "starter_code": "from flask import redirect, url_for\n\ndef contact():\n    if request.method == 'POST':\n        # Redirect user to home\n        pass",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "hard",
+        "topic_tag": "flask",
+        "solution_code": "from flask import redirect, url_for\n\ndef contact():\n    if request.method == 'POST':\n        return redirect(url_for('home'))",
+        "explanation": "Combine `redirect()` with `url_for()` to safely navigate to another route after processing data."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The form is submitting data but Flask says the route doesn't exist for POST. Fix the route.",
+        "code": "@app.route('/signup')\ndef signup():\n    return render_template('signup.html')",
+        "options": [
+            "@app.route('/signup', methods=['GET', 'POST'])",
+            "@app.route('/signup', type='POST')",
+            "@app.route('/signup', allow_post=True)",
+            "Add a separate @app.post('/signup') decorator"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "You must explicitly allow POST requests using the `methods` argument."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Identify the logic error in extracting form data.",
+        "code": "@app.route('/submit', methods=['POST'])\ndef submit():\n    name = request.args.get('user_name')\n    return f\"Hello {name}\"",
+        "options": [
+            "Use request.form.get('user_name') instead of request.args",
+            "Use request.data['user_name']",
+            "URL parameters are not allowed in POST",
+            "The method should be GET"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "explanation": "`request.args` is for query strings (GET), while `request.form` is for form bodies (POST)."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The email is being sent but the subject line is appearing in the message body. Fix the message format.",
+        "code": "connection.sendmail(\n    from_addr=\"a@b.com\", \n    to_addrs=\"c@d.com\", \n    msg=\"Hello subject! This is the message.\"\n)",
+        "options": [
+            "msg=\"Subject:Hello\\n\\nThis is the message.\"",
+            "msg=\"{subject: 'Hello', body: 'This is the message'}\"",
+            "msg=\"Hello | This is the message\"",
+            "Use connection.send_with_subject()"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "python",
+        "explanation": "Legacy SMTP requires a specific format: 'Subject:...\n\nBody'."
+    }
+]

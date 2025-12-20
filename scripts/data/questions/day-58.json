@@ -1,0 +1,318 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What is the primary benefit of using a CSS framework like Bootstrap?",
+        "options": [
+            "It makes the website load slower but look better.",
+            "It provides pre-written CSS classes for consistent styling and responsive layout.",
+            "It replaces the need for any HTML code.",
+            "It is the only way to make a website accessible on mobile devices."
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "bootstrap",
+        "explanation": "Bootstrap offers a collection of reusable CSS and JS components that speed up development and ensure consistency across browsers."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How many columns are there in the default Bootstrap grid system?",
+        "options": [
+            "10",
+            "12",
+            "16",
+            "Flexible, can be any number."
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "bootstrap",
+        "explanation": "Bootstrap uses a 12-column grid system, which allows for versatile layouts (e.g., 2, 3, 4, or 6 equal-width columns)."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which Bootstrap class is required to create a responsive, fixed-width content area that centers itself in the middle of the page?",
+        "options": [
+            ".center-block",
+            ".row",
+            ".container",
+            ".col-center"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "bootstrap",
+        "explanation": "The `.container` class sets a `max-width` at each responsive breakpoint and centers the content."
+    },
+    {
+        "question_type": "mcq",
+        "text": "In Bootstrap 5, which class prefix is used for columns on 'Extra Large' screens (>= 1200px)?",
+        "options": [
+            ".col-lg-",
+            ".col-xl-",
+            ".col-xxl-",
+            ".col-md-"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "bootstrap",
+        "explanation": "`.col-xl-` is for extra-large screens. `.col-xxl-` was added for extra-extra-large screens (>= 1400px)."
+    },
+    {
+        "question_type": "mcq",
+        "text": "To create a button with a blue background (primary color), which class combination should you use?",
+        "options": [
+            "btn primary",
+            "button-blue",
+            "btn btn-primary",
+            "btn-blue"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "bootstrap",
+        "explanation": "Bootstrap buttons require the base `.btn` class and a modifier class like `.btn-primary`."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does the `.row` class do in the Bootstrap grid system?",
+        "options": [
+            "It creates a vertical line between columns.",
+            "It acts as a wrapper for columns and provides negative margins to counteract padding.",
+            "It restricts the height of the elements inside it.",
+            "It centers all child elements vertically."
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "bootstrap",
+        "explanation": "`.row` is a flexbox container for columns. Its negative margins ensure that the column gutters align properly with the container edges."
+    },
+    {
+        "question_type": "mcq",
+        "text": "If you apply the class `.col-md-6` to a div, how will it behave on a Small (sm) screen (e.g., a phone)?",
+        "options": [
+            "It will take up 50% of the width.",
+            "It will take up 100% of the width (stacked).",
+            "It will disappear.",
+            "It will take up 6 pixels."
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "bootstrap",
+        "explanation": "Bootstrap classes are mobile-first. A class like `.col-md-` only applies to sizes Medium and up. Below that, columns default to 100% width."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which component would you use for a sliding sequence of images or content?",
+        "options": [
+            "Navbar",
+            "Jumbotron",
+            "Carousel",
+            "Accordion"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "bootstrap",
+        "explanation": "The Carousel component is a slideshow for cycling through a series of content."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you make an image responsive so it never exceeds its parent width and scales elegantly?",
+        "options": [
+            "class=\"res-img\"",
+            "class=\"img-fluid\"",
+            "class=\"image-auto\"",
+            "class=\"img-rounded\""
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "bootstrap",
+        "explanation": "The `.img-fluid` class applies `max-width: 100%;` and `height: auto;` to the image."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the purpose of the 'Mobile-First' philosophy in Bootstrap?",
+        "options": [
+            "Styles are written for desktop first and then shrunk for mobile.",
+            "The base styles are for the smallest screens, and media queries add complexity for larger screens.",
+            "Bootstrap only works on mobile devices.",
+            "Developers must use a phone to write the code."
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "web-design",
+        "explanation": "Mobile-first means that styles outside of media queries are designed for mobile, and then enhanced for higher breakpoints."
+    },
+    {
+        "question_type": "mcq",
+        "text": "In Bootstrap 5, how do you add a margin of size 3 (default unit) to the top of an element?",
+        "options": [
+            "margin-top: 3",
+            "mt-3",
+            "m-t-3",
+            "margin-3-top"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "bootstrap",
+        "explanation": "Bootstrap uses shorthand utility classes like `mt-` for margin-top, `mb-` for margin-bottom, etc."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which class would create a column that takes up 1/3 of the row width on a Large (lg) screen?",
+        "options": [
+            "col-lg-3",
+            "col-lg-4",
+            "col-lg-6",
+            "col-lg-8"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "bootstrap",
+        "explanation": "Since the grid has 12 columns, 1/3 of the width is 12 / 3 = 4 columns (`.col-lg-4`)."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How can you horizontally center text within a Bootstrap component?",
+        "options": [
+            "text-middle",
+            "center-text",
+            "text-center",
+            "align-center"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "bootstrap",
+        "explanation": "The `.text-center` utility class centers text across all viewports."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which component should be used to provide a contextual navigation bar for the entire site?",
+        "options": [
+            "List-group",
+            "Navbar",
+            "Breadcrumbs",
+            "Nav"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "bootstrap",
+        "explanation": "The Navbar is a powerful, responsive navigation header."
+    },
+    {
+        "question_type": "coding",
+        "text": "Bootstrap Grid Layout\nCreate a `<div>` with the correct classes to represent a single row containing two columns. Each column should take up 50% of the width on medium screens and larger.",
+        "starter_code": "<div class=\"row\">\n  <!-- Column 1 -->\n  <div class=\"...\">Col A</div>\n  <!-- Column 2 -->\n  <div class=\"...\">Col B</div>\n</div>",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "bootstrap",
+        "solution_code": "<div class=\"row\">\n  <div class=\"col-md-6\">Col A</div>\n  <div class=\"col-md-6\">Col B</div>\n</div>",
+        "explanation": "Use the `.row` container and two `.col-md-6` divs (12/2=6)."
+    },
+    {
+        "question_type": "coding",
+        "text": "Bootstrap Navbar Structure\nWrap the following high-level tags in the necessary Bootstrap class to make it a light-colored navigation bar with a light background.",
+        "starter_code": "<nav class=\"...\">\n  <div class=\"container-fluid\">\n    <a class=\"navbar-brand\" href=\"#\">TinDog</a>\n  </div>\n</nav>",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "bootstrap",
+        "solution_code": "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <div class=\"container-fluid\">\n    <a class=\"navbar-brand\" href=\"#\">TinDog</a>\n  </div>\n</nav>",
+        "explanation": "A complete navbar usually needs `navbar`, `navbar-expand-lg`, and color utilities like `navbar-light` and `bg-light`."
+    },
+    {
+        "question_type": "coding",
+        "text": "Card Component\nCreate a Bootstrap Card with a title 'Gold Plan' and a button labeled 'Sign Up'.",
+        "starter_code": "<div class=\"card\">\n  <div class=\"card-body\">\n    <!-- Add title and button here -->\n  </div>\n</div>",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "bootstrap",
+        "solution_code": "<div class=\"card\">\n  <div class=\"card-body\">\n    <h5 class=\"card-title\">Gold Plan</h5>\n    <a href=\"#\" class=\"btn btn-primary\">Sign Up</a>\n  </div>\n</div>",
+        "explanation": "Use `.card-title` for the heading and `.btn` classes for the button."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The columns in this row are not aligning side-by-side on medium screens. Fix the class names.",
+        "code": "<div class=\"rows\">\n    <div class=\"col-medium-6\">Left</div>\n    <div class=\"col-medium-6\">Right</div>\n</div>",
+        "options": [
+            "Change 'rows' to 'row' and 'col-medium-6' to 'col-md-6'",
+            "Change 'col-medium-6' to 'column-6'",
+            "Add 'display: flex' to 'rows'",
+            "Remove the outer div"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "bootstrap",
+        "explanation": "Bootstrap uses `.row` (singular) and `.col-md-` for medium screen columns."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Correct the button class to make it a large, red (danger) outline button.",
+        "code": "<button class=\"btn btn-danger btn-large\">Delete</button>",
+        "options": [
+            "class=\"btn btn-outline-danger btn-lg\"",
+            "class=\"btn btn-danger-outline btn-big\"",
+            "class=\"btn outline-red large\"",
+            "class=\"btn btn-warning btn-sm\""
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "bootstrap",
+        "explanation": "Bootstrap uses `btn-outline-*` for outline styles and `btn-lg` for large size."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the responsive grid logic: The user wants 3 columns on large screens, 2 columns on medium, and 1 column on small.",
+        "code": "<!-- Needs fixing -->\n<div class=\"row\">\n    <div class=\"col-sm-12 col-md-4 col-lg-3\">Content</div>\n</div>",
+        "options": [
+            "col-sm-12 col-md-6 col-lg-4",
+            "col-12 col-md-6 col-lg-4",
+            "col-sm-12 col-lg-4",
+            "col-sm-1 col-md-2 col-lg-3"
+        ],
+        "correct_index": 1,
+        "difficulty": "hard",
+        "topic_tag": "bootstrap",
+        "explanation": "Calculations: 12/3 = 4 (lg), 12/2 = 6 (md), 12/1 = 12 (default/sm). So `.col-12 .col-md-6 .col-lg-4` is correct."
+    },
+    {
+        "question_type": "coding",
+        "text": "Bootstrap Spacing Utilities\nApply a padding of size 4 to all sides and a margin-bottom of size 5 to the following div.",
+        "starter_code": "<div class=\"...\">Content</div>",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "bootstrap",
+        "solution_code": "<div class=\"p-4 mb-5\">Content</div>",
+        "explanation": "Bootstrap uses `p-*` for padding and `m*-*` for margins. `mb-5` specifically targets the bottom margin."
+    },
+    {
+        "question_type": "coding",
+        "text": "Responsive Rounded Image\nAdd the necessary Bootstrap classes to make this image responsive and give it rounded corners.",
+        "starter_code": "<img src=\"dog.jpg\" class=\"...\">",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "bootstrap",
+        "solution_code": "<img src=\"dog.jpg\" class=\"img-fluid rounded\">",
+        "explanation": "`.img-fluid` makes the image responsive, and `.rounded` adds subtle border-radius to the corners."
+    }
+]

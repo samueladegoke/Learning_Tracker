@@ -1,0 +1,290 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What is the primary difference between `{{ }}` and `{% %}` in Jinja2?",
+        "options": [
+            "`{{ }}` is for comments, `{% %}` is for logic.",
+            "`{{ }}` is for printing/output, `{% %}` is for control logic (if/for).",
+            "`{{ }}` is for Python code, `{% %}` is for HTML tags.",
+            "There is no difference; they are interchangeable."
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "jinja",
+        "explanation": "Double curly braces are for outputting data, while curly-percent markers are for logic like loops and conditionals."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you end an `if` statement block in a Jinja template?",
+        "options": [
+            "{% stopif %}",
+            "{% end %}",
+            "{% endif %}",
+            "{% finish %}"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "jinja",
+        "explanation": "Unlike Python which uses indentation, Jinja requires explicit closing tags like `{% endif %}`."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which library is commonly used in Flask applications to fetch data from external APIs like Agify or Genderize?",
+        "options": [
+            "flask_api",
+            "requests",
+            "urllib2",
+            "http_fetch"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "python",
+        "explanation": "The `requests` library is the standard for making HTTP requests in Python."
+    },
+    {
+        "question_type": "mcq",
+        "text": "In a Jinja `for` loop, how can you access the current iteration index (starting from 1)?",
+        "options": [
+            "{{ index }}",
+            "{{ loop.index }}",
+            "{{ counter }}",
+            "{{ for.index }}"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "jinja",
+        "explanation": "Jinja provides a `loop` object inside loops, where `loop.index` starts at 1 and `loop.index0` starts at 0."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does it mean to 'write multiline statements' in Jinja?",
+        "options": [
+            "Writing a single line of code that spans multiple physical lines.",
+            "Using tags like `{% %}` to encompass blocks of HTML across multiple lines.",
+            "Writing multiple Python functions inside a single Jinja tag.",
+            "Running the Flask app on multiple servers at once."
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "jinja",
+        "explanation": "Multiline statements refer to logic blocks (like loops) that wrap around multiple lines of HTML content."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which method on a `requests` response object converts the JSON payload into a Python dictionary?",
+        "options": [
+            "response.to_dict()",
+            "response.parse_json()",
+            "response.json()",
+            "json.loads(response)"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "python",
+        "explanation": "The `.json()` method is a convenient way to parse JSON responses directly into Python structures."
+    },
+    {
+        "question_type": "mcq",
+        "text": "If you want to render a sequence of items in a template, which Jinja structure is most appropriate?",
+        "options": [
+            "{% while ... %}",
+            "{% loop ... %}",
+            "{% for ... %}",
+            "{% repeat ... %}"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "jinja",
+        "explanation": "The `{% for item in items %}` syntax is used to iterate over sequences."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the result of `{{ 5 + 10 }}` inside a Jinja template?",
+        "options": [
+            "It displays the string '5 + 10'.",
+            "It displays the number 15.",
+            "It causes a syntax error because math is not allowed in templates.",
+            "It displays '510'."
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "jinja",
+        "explanation": "Jinja supports basic mathematical operations and expressions inside the output tags."
+    },
+    {
+        "question_type": "mcq",
+        "text": "When building a blog capstone, why might you use `url_for()` inside a template to link to a specific blog post route?",
+        "options": [
+            "To make the website load faster.",
+            "To ensure the link still works even if the route URL pattern (e.g., '/post/<id>') changes.",
+            "Because HTML `<a>` tags don't work in Flask without it.",
+            "To automatically translate the page into different languages."
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "explanation": "`url_for` decouples the view function name from the actual URL path, making the application more maintainable."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you add a comment in a Jinja template that will NOT be visible in the browser's 'View Source'?",
+        "options": [
+            "<!-- comment -->",
+            "{# comment #}",
+            "{% # comment %}",
+            "// comment"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "jinja",
+        "explanation": "The `{# ... #}` syntax is for server-side comments that are stripped out before the HTML is sent to the client."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which of these is a valid way to use an 'if-else' logic in Jinja?",
+        "options": [
+            "{% if condition %} A {% else %} B {% endif %}",
+            "{% if condition %} A {% elif %} B {% endif %}",
+            "{% if condition: %} A {% else: %} B",
+            "{% if condition then A else B %}"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "jinja",
+        "explanation": "Jinja uses `{% if ... %}`, optional `{% elif ... %}`, optional `{% else %}`, and requires `{% endif %}`."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is 'Variable Interpolation' in the context of Jinja?",
+        "options": [
+            "Changing the value of a variable in the database.",
+            "The process of replacing placeholders in a template with actual values from Python.",
+            "A security feature that hides variables from the user.",
+            "Storing templates in an external file."
+        ],
+        "correct_index": 1,
+        "difficulty": "hard",
+        "topic_tag": "jinja",
+        "explanation": "Interpolation refers to the dynamic insertion of variable values into the static HTML skeleton."
+    },
+    {
+        "question_type": "coding",
+        "text": "Simple Jinja Loop\nWrite the Jinja template code (HTML snippet) to loop through a list called `all_posts` and display the 'title' of each post in an `<li>` tag within a `<ul>`.",
+        "starter_code": "<ul>\n  {% for post in all_posts %}\n    <!-- Add code here -->\n  {% endfor %}\n</ul>",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "jinja",
+        "solution_code": "<ul>\n  {% for post in all_posts %}\n    <li>{{ post.title }}</li>\n  {% endfor %}\n</ul>",
+        "explanation": "Use `{% for ... %}` and `{{ ... }}` to iterate and output attributes."
+    },
+    {
+        "question_type": "coding",
+        "text": "Integrating Genderize API\nWrite a Python route `/guess/<name>` that uses `requests` to call 'https://api.genderize.io?name=NAME' and passes the resulting 'gender' to a template 'guess.html' as `result_gender`.",
+        "starter_code": "import requests\nfrom flask import Flask, render_template\n\napp = Flask(__name__)\n\n@app.route('/guess/<name>')\ndef guess(name):\n    # Call API and render template\n    pass",
+        "test_cases": [
+            {
+                "function_call": "app.url_map.bind('localhost').match('/guess/peter')",
+                "expected": "('guess', {'name': 'peter'})"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "solution_code": "import requests\nfrom flask import Flask, render_template\n\napp = Flask(__name__)\n\n@app.route('/guess/<name>')\ndef guess(name):\n    response = requests.get(f'https://api.genderize.io?name={name}')\n    data = response.json()\n    gender = data.get('gender')\n    return render_template('guess.html', result_gender=gender)",
+        "explanation": "Fetch data with `requests.get()`, parse with `.json()`, and pass to `render_template`."
+    },
+    {
+        "question_type": "coding",
+        "text": "Jinja If-Else Condition\nCreate a Jinja snippet that checks if a variable `age` is greater than or equal to 18. If yes, display 'Adult'; otherwise, display 'Minor'.",
+        "starter_code": "{% if age >= 18 %}\n  <!-- display Adult -->\n{% else %}\n  <!-- display Minor -->\n{% endif %}",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "jinja",
+        "solution_code": "{% if age >= 18 %}\n  <p>Adult</p>\n{% else %}\n  <p>Minor</p>\n{% endif %}",
+        "explanation": "A basic if-else block in Jinja starts with `{% if ... %}` and ends with `{% endif %}`."
+    },
+    {
+        "question_type": "coding",
+        "text": "URL Building with ID\nInside a Jinja template, write the code to create an `<a>` tag that links to a function named `get_post` which takes an argument `num`. The value passed should be the `id` of the current `blog_post` object.",
+        "starter_code": "<a href=\"{{ url_for(...) }}\">Read More</a>",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "jinja",
+        "solution_code": "<a href=\"{{ url_for('get_post', num=blog_post.id) }}\">Read More</a>",
+        "explanation": "`url_for` accepts keyword arguments that correspond to the dynamic parts of the route definition."
+    },
+    {
+        "question_type": "coding",
+        "text": "Iteration with Loop Stats\nWrite a Jinja loop through `people` that displays 'First!' only for the first person in the list, and 'Normal' for everyone else.",
+        "starter_code": "{% for person in people %}\n  {% if loop.first %}\n    <!-- First! -->\n  {% else %}\n    <!-- Normal -->\n  {% endif %}\n{% endfor %}",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "hard",
+        "topic_tag": "jinja",
+        "solution_code": "{% for person in people %}\n  {% if loop.first %}\n    <p>First!</p>\n  {% else %}\n    <p>Normal</p>\n  {% endif %}\n{% endfor %}",
+        "explanation": "The `loop.first` attribute is a boolean helper provided by Jinja."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Fix the loop syntax to display all names in the `users` list.",
+        "code": "{% for user in users %}\n    <p>{{ user }}</p>\n<!-- ERROR: Missing closing tag -->",
+        "options": [
+            "Add {% endloop %}",
+            "Add {% endfor %}",
+            "Add {% close %}",
+            "Remove the first tag"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "jinja",
+        "explanation": "Every `for` loop in Jinja must be explicitly closed with `{% endfor %}`."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The following code fails to display the 'age' value. Why?",
+        "code": "{% if result %}\n    <p>Age: {% result.age %}</p>\n{% endif %}",
+        "options": [
+            "Missing endif",
+            "Result is a dictionary, use result['age']",
+            "Using logic tags {% %} instead of output tags {{ }}",
+            "Result is not defined"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "jinja",
+        "explanation": "To display/print a variable's value, you must use `{{ result.age }}`."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Correct the routing code to pass the variable correctly to the template.",
+        "code": "@app.route('/blog')\ndef blog_page():\n    my_posts = [\"post1\", \"post2\"]\n    return render_template(\"blog.html\", my_posts)",
+        "options": [
+            "return render_template(\"blog.html\", posts=my_posts)",
+            "return render_template(\"blog.html\").with(my_posts)",
+            "return render_template(\"blog.html\", [my_posts])",
+            "import my_posts into templates"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "explanation": "You must provide a keyword (name) for the variable so it can be accessed in the template."
+    }
+]
