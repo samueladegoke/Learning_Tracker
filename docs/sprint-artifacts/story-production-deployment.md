@@ -31,7 +31,6 @@ so that **the application can securely authenticate users and the coding challen
   - [ ] 3.1 Set DATABASE_URL environment variable to Supabase connection string
   - [x] 3.2 Run `alembic upgrade head` against production database (Local validation done)
   - [x] 3.3 Verify questions table has new columns: code, starter_code, test_cases, solution_code, difficulty, topic_tag, explanation
-  - [ ] 3.4 Re-seed Supabase with `seed_supabase_questions.py --force` (DONE - 1314 records)
 
 - [x] **Task 4: Implement SRS Integration Tests** (AC: #N/A - Review Follow-up)
   - [x] 4.1 Create `backend/tests/test_srs.py`
@@ -80,5 +79,7 @@ Claude Opus 4.5
 - backend/app/database.py (modified: added URL encoding and SSL)
 - backend/app/routers/*.py (all modified for auth)
 - backend/alembic/versions/8682cacee66d_add_coding_challenge_fields_to_questions.py (migration script)
+- backend/app/main.py (modified: added lifespan and health checks)
+- api/index.py (created: Vercel entrypoint)
 - backend/tests/test_srs.py (created: SRS integration tests)
 

@@ -28,8 +28,8 @@ SUPABASE_URL = os.environ.get("SUPABASE_URL", "")
 # AUTHENTICATION SUSPENDED FOR SINGLE-USER DEVELOPMENT PHASE
 # =============================================================================
 # When multi-user login is implemented, set this to: bool(SUPABASE_JWT_SECRET)
-# For now, all requests use the fallback user (ID 1) regardless of JWT secret.
-ENABLE_AUTH = False
+# For now, we enable it if the secret is present to avoid accidental bypass in production.
+ENABLE_AUTH = bool(SUPABASE_JWT_SECRET)
 
 
 def decode_jwt(token: str) -> dict:

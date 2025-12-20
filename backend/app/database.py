@@ -102,6 +102,8 @@ else:
         # We use a custom context to handle Supabase's SSL requirements
         ssl_ctx = ssl.create_default_context()
         ssl_ctx.check_hostname = False
+        # [SECURITY] CERT_NONE is used because Supabase Pooler uses self-signed certificates.
+        # In a high-security environment, the Supabase CA should be provided here.
         ssl_ctx.verify_mode = ssl.CERT_NONE
         connect_args["ssl_context"] = ssl_ctx
 

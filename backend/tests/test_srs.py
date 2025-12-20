@@ -1,7 +1,7 @@
 """Tests for Spaced Repetition System (SRS) endpoints."""
 import pytest
 from datetime import datetime, timedelta
-from backend.app.models import Question, UserQuestionReview
+from ..app.models import Question, UserQuestionReview
 
 def test_get_daily_review_empty(client, seed_test_user):
     """Test daily review returns empty list when no questions are due."""
