@@ -130,9 +130,9 @@ Pyodide may require `SharedArrayBuffer`, which is only available when the page i
   - You can verify in the browser console with `window.crossOriginIsolated === true`.
   - There is an E2E guard test in `frontend/tests/e2e/cross-origin-isolation.spec.ts`.
 
-- **Production (Netlify)**
-  - The same headers are configured in `netlify.toml` under `[[headers]]`.
-  - If you add new third-party scripts/fonts/assets later, they must be served with appropriate CORS/CORP headers or they may be blocked under `COEP: require-corp`.
+- **Production (Vercel)**
+  - The same headers are configured in `vercel.json` under `headers`.
+  - Live URL: https://learning-tracker-nu-tan.vercel.app
 
 ### Deployment & DevOps
 - **Containerization:** Docker (optional)
