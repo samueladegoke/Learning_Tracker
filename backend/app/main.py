@@ -81,16 +81,16 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Include routers
-app.include_router(weeks.router, prefix="/api/weeks", tags=["weeks"])
-app.include_router(tasks.router, prefix="/api/tasks", tags=["tasks"])
-app.include_router(reflections.router, prefix="/api/reflections", tags=["reflections"])
-app.include_router(progress.router, prefix="/api/progress", tags=["progress"])
-app.include_router(badges.router, prefix="/api/badges", tags=["badges"])
-app.include_router(rpg.router, prefix="/api/rpg", tags=["rpg"])
-app.include_router(achievements.router, prefix="/api/achievements", tags=["achievements"])
-app.include_router(quizzes.router, prefix="/api/quizzes", tags=["quizzes"])
-app.include_router(spaced_repetition.router, prefix="/api/srs", tags=["Spaced Repetition"])
+# Include routers - COMMENTED OUT FOR BINARY SEARCH
+# app.include_router(weeks.router, prefix="/api/weeks", tags=["weeks"])
+# app.include_router(tasks.router, prefix="/api/tasks", tags=["tasks"])
+# app.include_router(reflections.router, prefix="/api/reflections", tags=["reflections"])
+# app.include_router(progress.router, prefix="/api/progress", tags=["progress"])
+# app.include_router(badges.router, prefix="/api/badges", tags=["badges"])
+# app.include_router(rpg.router, prefix="/api/rpg", tags=["rpg"])
+# app.include_router(achievements.router, prefix="/api/achievements", tags=["achievements"])
+# app.include_router(quizzes.router, prefix="/api/quizzes", tags=["quizzes"])
+# app.include_router(spaced_repetition.router, prefix="/api/srs", tags=["Spaced Repetition"])
 
 
 @app.get("/api")
