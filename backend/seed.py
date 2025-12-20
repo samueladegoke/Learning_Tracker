@@ -12,8 +12,8 @@ from sqlalchemy.orm import Session
 # Add the app directory to path for imports
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from app.database import engine, SessionLocal, Base
-from app.models import (
+from backend.app.database import engine, SessionLocal, Base
+from backend.app.models import (
     User,
     Week,
     Task,

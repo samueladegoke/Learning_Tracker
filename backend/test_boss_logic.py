@@ -6,10 +6,10 @@ Tests:
 3. Penalty system (single penalty per streak break)
 """
 from datetime import datetime, timedelta
-from app.database import SessionLocal
-from app.models import User, UserQuest, Task
-from app.routers.rpg import check_penalty
-from app.routers.tasks import apply_quest_damage
+from backend.app.database import SessionLocal
+from backend.app.models import User, UserQuest, Task
+from backend.app.routers.rpg import check_penalty
+from backend.app.routers.tasks import apply_quest_damage
 
 def test_penalty_logic():
     """Test that penalty is only applied once per streak break."""

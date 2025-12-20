@@ -8,8 +8,8 @@ def test_health_endpoint(client):
     assert response.status_code == 200
     data = response.json()
     assert data["status"] == "healthy"
-    assert "database" in data
     assert "environment" in data
+    # Basic health no longer contains 'database' (liveness check)
 
 
 def test_root_health_endpoint(client):
@@ -19,7 +19,6 @@ def test_root_health_endpoint(client):
     assert response.status_code == 200
     data = response.json()
     assert data["status"] == "healthy"
-    assert "database" in data
     assert "environment" in data
 
 
@@ -31,3 +30,14 @@ def test_api_root(client):
     data = response.json()
     assert "message" in data
     assert "Learning Tracker API" in data["message"]
+
+
+def test_health_db_endpoint(client):
+    """Test the /api/health/db endpoint returns database status."""
+    response = client.get("/api/health/db")
+
+    assert response.status_code == 200
+    data = response.json()
+    assert "database" in data
+    # In test environment (SQLite memory), it should be connected
+    assert data["database"] == "connected"

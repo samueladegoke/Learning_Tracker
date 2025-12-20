@@ -2,7 +2,7 @@
 Helper function to assign next quest when current one is completed.
 """
 from sqlalchemy.orm import Session
-from app.models import Quest, UserQuest
+from ..models import Quest, UserQuest
 
 
 def assign_next_quest(db: Session, user_id: int) -> UserQuest | None:

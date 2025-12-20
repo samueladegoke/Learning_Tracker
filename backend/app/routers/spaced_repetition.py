@@ -7,9 +7,9 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
 
-from app.database import get_db
-from app.models import User, Question, UserQuestionReview
-from app.auth import get_current_user
+from ..database import get_db
+from ..models import User, Question, UserQuestionReview
+from ..auth import get_current_user
 
 router = APIRouter(tags=["Spaced Repetition"])
 

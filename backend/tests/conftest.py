@@ -4,8 +4,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
-from app.database import Base, get_db
-from app.main import app
+from backend.app.database import Base, get_db
+from backend.app.main import app
 
 
 # Create in-memory SQLite database for testing
@@ -51,7 +51,7 @@ def client(db_session):
 @pytest.fixture
 def seed_test_user(db_session):
     """Seed a test user for authenticated endpoints."""
-    from app.models import User
+    from backend.app.models import User
 
     user = User(id=1, username="test_user", xp=0, level=1)
     db_session.add(user)
@@ -63,7 +63,7 @@ def seed_test_user(db_session):
 @pytest.fixture
 def seed_test_questions(db_session):
     """Seed test questions for quiz endpoints."""
-    from app.models import Question
+    from backend.app.models import Question
 
     questions = [
         Question(
