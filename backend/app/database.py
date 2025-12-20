@@ -110,15 +110,10 @@ else:
         connect_args["connect_timeout"] = 3
 
 
-engine = create_engine(
-    SQLALCHEMY_DATABASE_URL,
-    connect_args=connect_args,
-    poolclass=NullPool
-)
-
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
-Base = declarative_base()
+engine = None
+SessionLocal = lambda: None
+class Base:
+    metadata = type('metadata', (), {'create_all': lambda bind: None})
 
 
 def get_db():

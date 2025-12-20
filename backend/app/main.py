@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from sqlalchemy import text
 
-# from .database import engine, Base, get_db
+from .database import engine, Base, get_db
 # from .routers import weeks, tasks, reflections, progress, badges, rpg, achievements, quizzes, spaced_repetition
 
 # Configure logger
