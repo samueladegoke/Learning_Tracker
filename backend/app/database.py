@@ -99,8 +99,11 @@ else:
         connect_args["timeout"] = 3
         
         # pg8000 SSL configuration for Supabase
-        # We use ssl.create_default_context() to ensure a secure connection
-        connect_args["ssl_context"] = ssl.create_default_context()
+        # We use a custom context to handle Supabase's SSL requirements
+        ssl_ctx = ssl.create_default_context()
+        ssl_ctx.check_hostname = False
+        ssl_ctx.verify_mode = ssl.CERT_NONE
+        connect_args["ssl_context"] = ssl_ctx
 
 
 engine = create_engine(
