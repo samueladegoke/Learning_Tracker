@@ -1,6 +1,6 @@
 import os
 import logging
-from urllib.parse import urlparse, urlunparse, quote_plus
+from urllib.parse import urlparse, urlunparse, quote
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
@@ -38,7 +38,7 @@ def _fix_database_url(url: str) -> str:
     # URL-encode the password if present
     if parsed.password:
         # Re-encode to handle special characters
-        encoded_password = quote_plus(parsed.password)
+        encoded_password = quote(parsed.password)
         # Reconstruct netloc with encoded password
         if parsed.port:
             netloc = f"{parsed.username}:{encoded_password}@{parsed.hostname}:{parsed.port}"
