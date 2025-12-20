@@ -2,18 +2,41 @@ import os
 import sys
 from fastapi import FastAPI
 
-app = FastAPI()
+# Diagnostic logic
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if project_root not in sys.path:
+    sys.path.append(project_root)
 
-@app.get("/api/health")
-def health():
-    return {"status": "bridge_only", "root": os.getcwd(), "path": sys.path[:3]}
+audit_log = []
 
-@app.get("/{rest_of_path:path}")
-def hello(rest_of_path: str):
-    return {"hello": rest_of_path}
+def audit_import(module_name):
+    try:
+        __import__(module_name)
+        audit_log.append(f"SUCCESS: {module_name}")
+        return True
+    except Exception as e:
+        audit_log.append(f"FAILED: {module_name} -> {str(e)}")
+        return False
 
-# Original app import commented out for isolation test
-# try:
-#     from backend.app.main import app
-# except Exception as e:
-#     ...
+# Audit the chain
+audit_import("backend.app.database")
+audit_import("backend.app.models")
+audit_import("backend.app.routers.weeks")
+audit_import("backend.app.main")
+
+try:
+    from backend.app.main import app
+except Exception as e:
+    app = FastAPI()
+    
+    @app.get("/api/health")
+    def error_health():
+        return {
+            "status": "error",
+            "audit": audit_log,
+            "error": str(e)
+        }
+
+@app.get("/api/health/audit")
+def get_audit():
+    return {"audit": audit_log}
