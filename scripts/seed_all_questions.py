@@ -23,7 +23,9 @@ def seed_all_questions():
     total_seeded = 0
     
     # Process all day-X.json files
-    for day_num in range(1, 61):
+    # NOTE: Update the range endpoint when adding new days (e.g., range(1, 66) covers days 1-65)
+    # Last updated: 2025-12-20 for Days 61-65
+    for day_num in range(1, 66):
         json_file = QUESTIONS_DIR / f"day-{day_num}.json"
         
         if not json_file.exists():

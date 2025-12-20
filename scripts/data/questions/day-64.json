@@ -1,0 +1,318 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What is the main project for Day 64?",
+        "options": [
+            "A weather dashboard",
+            "A top 10 movies rating website",
+            "A social media clone",
+            "A file upload service"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "Day 64 focuses on building a 'Top 10 Movies' website where users can rank their favorite films."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which API is used to fetch movie data in Day 64?",
+        "options": [
+            "IMDB API",
+            "The Movie Database (TMDB) API",
+            "OMDb API",
+            "Rotten Tomatoes API"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "api",
+        "explanation": "The TMDB API is a free, popular API for movie information including titles, posters, and descriptions."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does the `nullable=False` constraint do in a SQLAlchemy column?",
+        "options": [
+            "Allows NULL values.",
+            "Prevents the column from being empty (required field).",
+            "Sets a default value of False.",
+            "Converts empty strings to NULL."
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "sqlalchemy",
+        "explanation": "`nullable=False` means the column cannot contain NULL values; it must have a value."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you order SQLAlchemy query results in descending order?",
+        "options": [
+            ".order_by(Model.column.desc())",
+            ".sort_by(desc(Model.column))",
+            ".order(Model.column, 'DESC')",
+            ".reverse().order_by(Model.column)"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "sqlalchemy",
+        "explanation": "Use `.desc()` on the column in `order_by()` to sort in descending order."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What HTTP method is typically used when submitting a form to update a database record?",
+        "options": [
+            "GET",
+            "POST",
+            "PUT",
+            "DELETE"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "http",
+        "explanation": "HTML forms only support GET and POST. POST is used for updates in traditional HTML forms."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the purpose of an API key when using the TMDB API?",
+        "options": [
+            "To style the API response.",
+            "To authenticate and track API usage.",
+            "To cache API responses.",
+            "To format movie titles."
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "api",
+        "explanation": "API keys identify your application and allow the API provider to manage rate limits and access."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which Flask function is used to pass query parameters in a URL?",
+        "options": [
+            "url_for()",
+            "request.form",
+            "redirect()",
+            "request.args"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "explanation": "`url_for('route', param=value)` generates URLs with query parameters."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you access query parameters from a URL in Flask?",
+        "options": [
+            "request.form['param']",
+            "request.args.get('param')",
+            "request.url['param']",
+            "url_for('param')"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "explanation": "`request.args` is a dictionary-like object containing URL query parameters."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does `unique=True` constraint do for a SQLAlchemy column?",
+        "options": [
+            "Ensures no two rows can have the same value in that column.",
+            "Auto-increments the column value.",
+            "Makes the column read-only.",
+            "Indexes the column for faster queries."
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "sqlalchemy",
+        "explanation": "`unique=True` creates a database constraint that prevents duplicate values in that column."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which method would you use to find a movie by its TMDB ID in the database?",
+        "options": [
+            "Movie.query.get_or_404(tmdb_id)",
+            "Movie.query.filter_by(tmdb_id=tmdb_id).first()",
+            "Movie.search(tmdb_id)",
+            "db.find(Movie, tmdb_id)"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "sqlalchemy",
+        "explanation": "`filter_by()` lets you query by any column. `get()` only works with primary keys."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you dynamically update movie rankings after a rating change?",
+        "options": [
+            "Use JavaScript to reorder the DOM.",
+            "Query movies ordered by rating and enumerate in the template.",
+            "Store the ranking as a separate column updated manually.",
+            "Use CSS counters."
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "explanation": "Query all movies sorted by rating, then use enumerate in the template to display ranking."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the purpose of `get_or_404()` in Flask-SQLAlchemy?",
+        "options": [
+            "Returns the record or None.",
+            "Returns the record or raises a 404 HTTP error.",
+            "Creates the record if not found.",
+            "Redirects to a 404 page."
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "sqlalchemy",
+        "explanation": "`get_or_404()` is a convenience method that returns the record or aborts with a 404 error."
+    },
+    {
+        "question_type": "mcq",
+        "text": "When making an API request to TMDB, how do you typically pass the API key?",
+        "options": [
+            "In the request body as JSON.",
+            "As a query parameter: ?api_key=YOUR_KEY",
+            "In the URL path: /api_key/YOUR_KEY/movies",
+            "As a cookie."
+        ],
+        "correct_index": 1,
+        "difficulty": "hard",
+        "topic_tag": "api",
+        "explanation": "TMDB expects the API key as a query parameter in the URL."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the advantage of using environment variables for API keys?",
+        "options": [
+            "They make API calls faster.",
+            "They keep sensitive data out of source code.",
+            "They are required by all APIs.",
+            "They automatically validate the key."
+        ],
+        "correct_index": 1,
+        "difficulty": "hard",
+        "topic_tag": "security",
+        "explanation": "Environment variables prevent API keys from being accidentally committed to version control."
+    },
+    {
+        "question_type": "coding",
+        "text": "Define a Movie Model\\nCreate a SQLAlchemy model called `Movie` with: id, title, year, description, rating, ranking, review, and img_url.",
+        "starter_code": "from flask_sqlalchemy import SQLAlchemy\n\ndb = SQLAlchemy()\n\nclass Movie(db.Model):\n    # Define columns\n    pass",
+        "test_cases": [
+            {
+                "function_call": "hasattr(Movie, 'title')",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "sqlalchemy",
+        "solution_code": "from flask_sqlalchemy import SQLAlchemy\n\ndb = SQLAlchemy()\n\nclass Movie(db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    title = db.Column(db.String(250), unique=True, nullable=False)\n    year = db.Column(db.Integer, nullable=False)\n    description = db.Column(db.String(500), nullable=False)\n    rating = db.Column(db.Float, nullable=True)\n    ranking = db.Column(db.Integer, nullable=True)\n    review = db.Column(db.String(250), nullable=True)\n    img_url = db.Column(db.String(250), nullable=False)",
+        "explanation": "Define all required columns with appropriate types and constraints."
+    },
+    {
+        "question_type": "coding",
+        "text": "TMDB API Search\\nWrite code to search for movies using the TMDB API with a query parameter.",
+        "starter_code": "import requests\nimport os\n\nTMDB_API_KEY = os.environ.get('TMDB_API_KEY')\nquery = 'Matrix'\n\n# Make API request\nresponse = ...",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "api",
+        "solution_code": "import requests\nimport os\n\nTMDB_API_KEY = os.environ.get('TMDB_API_KEY')\nquery = 'Matrix'\n\nresponse = requests.get(\n    'https://api.themoviedb.org/3/search/movie',\n    params={'api_key': TMDB_API_KEY, 'query': query}\n)\ndata = response.json()",
+        "explanation": "Use os.environ.get() for API keys to keep them out of source code. Use requests.get() with params dictionary for query parameters."
+    },
+    {
+        "question_type": "coding",
+        "text": "Update Movie Rating\\nComplete the route to update a movie's rating and review.",
+        "starter_code": "@app.route('/edit', methods=['GET', 'POST'])\ndef edit():\n    movie_id = request.args.get('id')\n    movie = Movie.query.get(movie_id)\n    form = EditForm()\n    if form.validate_on_submit():\n        # Update movie rating and review\n        pass\n    return render_template('edit.html', movie=movie, form=form)",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "solution_code": "@app.route('/edit', methods=['GET', 'POST'])\ndef edit():\n    movie_id = request.args.get('id')\n    movie = Movie.query.get(movie_id)\n    form = EditForm()\n    if form.validate_on_submit():\n        movie.rating = form.rating.data\n        movie.review = form.review.data\n        db.session.commit()\n        return redirect(url_for('home'))\n    return render_template('edit.html', movie=movie, form=form)",
+        "explanation": "Modify movie attributes directly and commit the session."
+    },
+    {
+        "question_type": "coding",
+        "text": "Delete Movie Route\\nCreate a route to delete a movie by its ID.",
+        "starter_code": "@app.route('/delete')\ndef delete():\n    movie_id = request.args.get('id')\n    # Delete movie and redirect to home\n    pass",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "solution_code": "@app.route('/delete')\ndef delete():\n    movie_id = request.args.get('id')\n    movie = Movie.query.get(movie_id)\n    db.session.delete(movie)\n    db.session.commit()\n    return redirect(url_for('home'))",
+        "explanation": "Get the movie, delete it from the session, commit, and redirect."
+    },
+    {
+        "question_type": "coding",
+        "text": "Display Ranked Movies\\nWrite the Jinja2 template loop to display movies with their ranking.",
+        "starter_code": "{% for movie in movies %}\n    <!-- Display ranking and title -->\n{% endfor %}",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "jinja",
+        "solution_code": "{% for movie in movies %}\n    <div class=\"card\">\n        <h2>{{ loop.index }}. {{ movie.title }}</h2>\n        <p>Rating: {{ movie.rating }}/10</p>\n    </div>\n{% endfor %}",
+        "explanation": "Use `loop.index` (1-based) to display the ranking position."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The movie ranking is not updating dynamically. Fix the query.",
+        "code": "movies = Movie.query.all()",
+        "options": [
+            "movies = Movie.query.order_by(Movie.rating.desc()).all()",
+            "movies = Movie.query.sort_by('rating').all()",
+            "movies = db.sort(Movie, 'rating')",
+            "movies = Movie.query.filter(rating > 0).all()"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "sqlalchemy",
+        "explanation": "Order by rating descending so higher-rated movies appear first."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The edit form is not pre-populating with existing data. Fix the form initialization.",
+        "code": "form = EditForm()\nif form.validate_on_submit():\n    ...",
+        "options": [
+            "form = EditForm(obj=movie) to pre-populate from the movie object",
+            "form.populate(movie)",
+            "form = EditForm(data=movie)",
+            "form.load(movie)"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "flask-wtf",
+        "explanation": "Pass `obj=model_instance` to FlaskForm to pre-populate fields with existing data."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The API request is failing with a 401 error. What's likely missing?",
+        "code": "response = requests.get('https://api.themoviedb.org/3/search/movie?query=Matrix')",
+        "options": [
+            "Add the api_key parameter",
+            "Use POST instead of GET",
+            "Add a User-Agent header",
+            "The URL is incorrect"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "api",
+        "explanation": "TMDB requires an API key. Add `api_key=YOUR_KEY` to the query parameters."
+    }
+]

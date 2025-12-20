@@ -1,0 +1,333 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What is SQLite?",
+        "options": [
+            "A cloud-based database service.",
+            "A lightweight, file-based relational database.",
+            "A NoSQL document store.",
+            "A Python web framework."
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "sqlite",
+        "explanation": "SQLite is a self-contained, serverless, file-based SQL database engine."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is SQLAlchemy?",
+        "options": [
+            "A JavaScript ORM.",
+            "A Python ORM (Object-Relational Mapping) library.",
+            "A database visualization tool.",
+            "A Flask authentication extension."
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "sqlalchemy",
+        "explanation": "SQLAlchemy is a powerful Python ORM that allows you to interact with databases using Python objects."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which Flask extension integrates SQLAlchemy with Flask applications?",
+        "options": [
+            "Flask-SQL",
+            "Flask-Database",
+            "Flask-SQLAlchemy",
+            "Flask-ORM"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "Flask-SQLAlchemy simplifies using SQLAlchemy with Flask by providing helper functions and better integration."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the purpose of `db.Model` in Flask-SQLAlchemy?",
+        "options": [
+            "It's the base class for all database models.",
+            "It creates a new database file.",
+            "It defines the database connection string.",
+            "It validates model data."
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "sqlalchemy",
+        "explanation": "Classes that inherit from `db.Model` represent database tables. Each attribute becomes a column."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which SQLAlchemy method is used to define a column with a primary key?",
+        "options": [
+            "db.Column(db.Integer, primary=True)",
+            "db.Column(db.Integer, primary_key=True)",
+            "db.PrimaryKey(db.Integer)",
+            "db.Key(db.Integer)"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "sqlalchemy",
+        "explanation": "Use `primary_key=True` as an argument to `db.Column()` to designate a primary key."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does `db.create_all()` do?",
+        "options": [
+            "Deletes all tables in the database.",
+            "Creates all tables defined by db.Model subclasses.",
+            "Adds all records to the database.",
+            "Connects to a remote database."
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "sqlalchemy",
+        "explanation": "`db.create_all()` creates tables in the database based on your defined models."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which method is used to query all records from a model?",
+        "options": [
+            "Model.all()",
+            "Model.query.all()",
+            "db.select_all(Model)",
+            "Model.get_all()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "sqlalchemy",
+        "explanation": "`Model.query.all()` returns a list of all records in the table."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you retrieve a single record by its primary key in Flask-SQLAlchemy?",
+        "options": [
+            "Model.query.get(id)",
+            "Model.find(id)",
+            "db.get(Model, id)",
+            "Model.select(id)"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "sqlalchemy",
+        "explanation": "`Model.query.get(id)` retrieves a record by its primary key value."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the correct order of operations to add a new record to the database?",
+        "options": [
+            "db.session.commit(), db.session.add(record)",
+            "db.session.add(record), db.session.commit()",
+            "record.save(), db.session.commit()",
+            "db.insert(record)"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "sqlalchemy",
+        "explanation": "First add the record to the session, then commit the session to persist the change."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which method is used to delete a record from the database?",
+        "options": [
+            "record.remove()",
+            "db.session.remove(record)",
+            "db.session.delete(record)",
+            "db.delete(record)"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "sqlalchemy",
+        "explanation": "`db.session.delete(record)` stages the record for deletion. Call `db.session.commit()` to finalize."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you update an existing record in SQLAlchemy?",
+        "options": [
+            "record.update({field: value})",
+            "db.session.update(record)",
+            "Modify the record's attributes directly, then call db.session.commit()",
+            "record.set(field, value)"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "sqlalchemy",
+        "explanation": "SQLAlchemy tracks changes to model attributes. Simply modify them and commit."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does CRUD stand for in the context of database operations?",
+        "options": [
+            "Create, Read, Update, Delete",
+            "Copy, Run, Upload, Download",
+            "Connect, Retrieve, Update, Disconnect",
+            "Cache, Refresh, Undo, Deploy"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "database",
+        "explanation": "CRUD describes the four basic operations for persistent storage: Create, Read, Update, Delete."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which SQLAlchemy type is used for a column that stores text strings?",
+        "options": [
+            "db.Text",
+            "db.String(length)",
+            "db.Varchar",
+            "db.Char"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "sqlalchemy",
+        "explanation": "`db.String(length)` is commonly used for VARCHAR-like columns with a specified maximum length."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What happens if you call `db.create_all()` when the tables already exist?",
+        "options": [
+            "It deletes and recreates all tables.",
+            "It raises an error.",
+            "It does nothing to existing tables (safe to call).",
+            "It updates the table schema."
+        ],
+        "correct_index": 2,
+        "difficulty": "hard",
+        "topic_tag": "sqlalchemy",
+        "explanation": "`db.create_all()` only creates tables that don't exist. It won't modify or delete existing tables."
+    },
+    {
+        "question_type": "coding",
+        "text": "Define a Book Model\\nCreate a SQLAlchemy model called `Book` with columns: id (Integer, primary key), title (String), and rating (Float).",
+        "starter_code": "from flask_sqlalchemy import SQLAlchemy\n\ndb = SQLAlchemy()\n\nclass Book(db.Model):\n    # Define columns\n    pass",
+        "test_cases": [
+            {
+                "function_call": "hasattr(Book, 'id')",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "sqlalchemy",
+        "solution_code": "from flask_sqlalchemy import SQLAlchemy\n\ndb = SQLAlchemy()\n\nclass Book(db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    title = db.Column(db.String(250), nullable=False)\n    rating = db.Column(db.Float)",
+        "explanation": "Each column is defined as a class attribute using db.Column with the appropriate type."
+    },
+    {
+        "question_type": "coding",
+        "text": "Add a Record\\nWrite code to create a new Book with title 'Harry Potter' and rating 9.5, then add it to the database.",
+        "starter_code": "new_book = Book(...)\n# Add to database",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "sqlalchemy",
+        "solution_code": "new_book = Book(title='Harry Potter', rating=9.5)\ndb.session.add(new_book)\ndb.session.commit()",
+        "explanation": "Create a model instance, add to session, then commit to persist."
+    },
+    {
+        "question_type": "coding",
+        "text": "Query All Books\\nWrite code to retrieve all books from the database and store them in a variable called `all_books`.",
+        "starter_code": "# Query all books\nall_books = ...",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "sqlalchemy",
+        "solution_code": "all_books = Book.query.all()",
+        "explanation": "Use `Model.query.all()` to get a list of all records."
+    },
+    {
+        "question_type": "coding",
+        "text": "Filter Query\\nWrite code to find all books with a rating greater than 8.",
+        "starter_code": "# Find books with rating > 8\nhigh_rated_books = ...",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "sqlalchemy",
+        "solution_code": "high_rated_books = Book.query.filter(Book.rating > 8).all()",
+        "explanation": "Use `.filter()` with a condition expression to filter results."
+    },
+    {
+        "question_type": "coding",
+        "text": "Update a Record\\nGiven a book_id, update the book's rating to 10.",
+        "starter_code": "def update_rating(book_id):\n    book = Book.query.get(book_id)\n    # Update rating to 10\n    pass",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "sqlalchemy",
+        "solution_code": "def update_rating(book_id):\n    try:\n        book = Book.query.get(book_id)\n        if book:\n            book.rating = 10\n            db.session.commit()\n    except Exception as e:\n        db.session.rollback()\n        raise e",
+        "explanation": "Modify the attribute directly, then commit the session. Always wrap in try/except and rollback on error."
+    },
+    {
+        "question_type": "coding",
+        "text": "Delete a Record\\nWrite a function to delete a book by its ID.",
+        "starter_code": "def delete_book(book_id):\n    book = Book.query.get(book_id)\n    # Delete book\n    pass",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "sqlalchemy",
+        "solution_code": "def delete_book(book_id):\n    try:\n        book = Book.query.get(book_id)\n        if book:\n            db.session.delete(book)\n            db.session.commit()\n    except Exception as e:\n        db.session.rollback()\n        raise e",
+        "explanation": "Use `db.session.delete()` followed by `db.session.commit()`. Always wrap in try/except and rollback on error."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The book is not being saved to the database. Fix the code.",
+        "code": "new_book = Book(title='1984', rating=9.0)\ndb.session.add(new_book)",
+        "options": [
+            "Add db.session.commit() after adding",
+            "Use db.session.save(new_book)",
+            "Call new_book.save()",
+            "The code is correct"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "sqlalchemy",
+        "explanation": "Changes are not persisted until you call `db.session.commit()`."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The model is not being recognized as a table. Fix the class definition.",
+        "code": "class Movie:\n    id = db.Column(db.Integer, primary_key=True)\n    title = db.Column(db.String(250))",
+        "options": [
+            "class Movie(db.Model):",
+            "class Movie(db.Table):",
+            "Add @db.table decorator",
+            "Use db.create_table(Movie)"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "sqlalchemy",
+        "explanation": "Models must inherit from `db.Model` to be recognized by SQLAlchemy."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The query is returning None even though the book exists. Fix the ID type.",
+        "code": "book = Book.query.get('5')",
+        "options": [
+            "Book.query.get(5) - pass an integer, not a string",
+            "Book.query.find('5')",
+            "Book.query.filter_by(id='5').first()",
+            "The code is correct"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "sqlalchemy",
+        "explanation": "If the primary key is an Integer, you should pass an integer to `.get()`, not a string."
+    }
+]

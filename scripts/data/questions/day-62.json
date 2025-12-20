@@ -1,0 +1,318 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What is the primary project for Day 62?",
+        "options": [
+            "A blog application",
+            "A coffee shop rating website with cafe data stored in CSV",
+            "An e-commerce store",
+            "A weather dashboard"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "Day 62 focuses on building the 'Coffee & Wifi' project where users can add cafe locations to a CSV file."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which WTForms field type is used to create a dropdown menu with predefined options?",
+        "options": [
+            "ChoiceField",
+            "SelectField",
+            "DropdownField",
+            "OptionsField"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "wtforms",
+        "explanation": "SelectField renders a <select> dropdown. You define choices as a list of tuples: [(value, label), ...]."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you define the choices for a SelectField in WTForms?",
+        "options": [
+            "choices='option1,option2,option3'",
+            "choices=[('value1', 'Label 1'), ('value2', 'Label 2')]",
+            "options=['option1', 'option2']",
+            "select_options={'opt1': 'Label 1'}"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "wtforms",
+        "explanation": "Choices are defined as a list of tuples where the first element is the value and the second is the display label."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which Python module is used to read and write CSV files?",
+        "options": [
+            "json",
+            "csv",
+            "pandas",
+            "xlrd"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "python",
+        "explanation": "The built-in `csv` module provides functionality to read from and write to CSV files."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the correct way to open a file for appending in Python?",
+        "options": [
+            "open('file.csv', 'r')",
+            "open('file.csv', 'w')",
+            "open('file.csv', 'a')",
+            "open('file.csv', 'x')"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "python",
+        "explanation": "Mode 'a' opens the file for appending. Data is written at the end without overwriting existing content."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which Bootstrap-Flask component can automatically render a WTForm with Bootstrap styling?",
+        "options": [
+            "{{ form.render() }}",
+            "{{ render_form(form) }}",
+            "{{ bootstrap.form(form) }}",
+            "{{ wtf.quick_form(form) }}"
+        ],
+        "correct_index": 3,
+        "difficulty": "easy",
+        "topic_tag": "bootstrap-flask",
+        "explanation": "Bootstrap-Flask provides `wtf.quick_form()` to quickly render a form with Bootstrap classes."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which of the following is the correct syntax to write a row to a CSV file?",
+        "options": [
+            "csv.write(row)",
+            "writer.writerow(['col1', 'col2'])",
+            "file.write_csv(row)",
+            "csv.append(row)"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "python",
+        "explanation": "After creating a `csv.writer(file)` object, you use `writer.writerow([list of values])` to write a row."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does `coerce=str` do in a SelectField?",
+        "options": [
+            "Converts the selected value to a string before storing.",
+            "Forces the label to be a string.",
+            "Adds a string validator.",
+            "Disables type checking."
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "wtforms",
+        "explanation": "The `coerce` parameter specifies a function to convert the submitted value to a specific type."
+    },
+    {
+        "question_type": "mcq",
+        "text": "When reading a CSV file in Python, which object iterates over each row as a list?",
+        "options": [
+            "csv.DictReader",
+            "csv.reader",
+            "csv.listReader",
+            "csv.rowIterator"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "python",
+        "explanation": "`csv.reader(file)` returns an iterator where each row is a list of strings. DictReader returns dictionaries."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why is `newline=''` often used when opening a CSV file for writing in Python?",
+        "options": [
+            "To compress the file.",
+            "To prevent extra blank lines from being inserted between rows.",
+            "To enable binary mode.",
+            "To format the output as JSON."
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "python",
+        "explanation": "On Windows, not using `newline=''` can result in extra blank rows being added due to how line endings are handled."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which validator would you use to ensure a URL field contains a valid URL?",
+        "options": [
+            "URLValidator()",
+            "URL()",
+            "ValidURL()",
+            "URLCheck()"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "wtforms",
+        "explanation": "WTForms provides a `URL()` validator that checks if the input looks like a valid URL."
+    },
+    {
+        "question_type": "mcq",
+        "text": "In the Coffee & Wifi project, what data structure is typically used to store cafe ratings?",
+        "options": [
+            "SQL Database",
+            "JSON file",
+            "CSV file",
+            "Redis cache"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "explanation": "The project uses a simple CSV file to store cafe data, demonstrating file-based persistence."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you import the `wtf` module from Bootstrap-Flask for quick form rendering?",
+        "options": [
+            "from bootstrap import wtf",
+            "{% from 'bootstrap5/form.html' import render_form %}",
+            "import wtf from 'bootstrap-flask'",
+            "{{ import wtf }}"
+        ],
+        "correct_index": 1,
+        "difficulty": "hard",
+        "topic_tag": "bootstrap-flask",
+        "explanation": "In Jinja2, you import macros from Bootstrap-Flask templates using the `{% from '...' import ... %}` syntax."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the purpose of the `render_kw` argument in a WTForms field?",
+        "options": [
+            "To add custom HTML attributes to the rendered input element.",
+            "To define render functions.",
+            "To specify the rendering engine.",
+            "To control the order of rendering."
+        ],
+        "correct_index": 0,
+        "difficulty": "hard",
+        "topic_tag": "wtforms",
+        "explanation": "`render_kw` accepts a dictionary of HTML attributes like `{'class': 'form-control', 'placeholder': 'Enter text'}`."
+    },
+    {
+        "question_type": "coding",
+        "text": "SelectField for Ratings\\nCreate a SelectField named 'coffee_rating' with choices from '☕' to '☕☕☕☕☕' (1-5 coffee emojis).",
+        "starter_code": "from wtforms import SelectField\n\ncoffee_rating = SelectField('Coffee Rating', choices=[...])",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "wtforms",
+        "solution_code": "from wtforms import SelectField\n\ncoffee_rating = SelectField('Coffee Rating', choices=[\n    ('☕', '☕'),\n    ('☕☕', '☕☕'),\n    ('☕☕☕', '☕☕☕'),\n    ('☕☕☕☕', '☕☕☕☕'),\n    ('☕☕☕☕☕', '☕☕☕☕☕')\n])",
+        "explanation": "Define choices as a list of (value, label) tuples."
+    },
+    {
+        "question_type": "coding",
+        "text": "Reading a CSV File\\nWrite code to read all rows from 'cafes.csv' and store them in a list called `all_cafes`.",
+        "starter_code": "import csv\n\nwith open('cafes.csv', 'r') as file:\n    # Read all rows into all_cafes\n    all_cafes = []",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "python",
+        "solution_code": "import csv\n\nwith open('cafes.csv', 'r') as file:\n    reader = csv.reader(file)\n    all_cafes = list(reader)",
+        "explanation": "Use `csv.reader()` to create an iterator, then convert to a list."
+    },
+    {
+        "question_type": "coding",
+        "text": "Appending to a CSV\\nWrite code to append a new cafe row ['Starbucks', 'London', '☕☕☕'] to 'cafes.csv'.",
+        "starter_code": "import csv\n\n# Append new cafe row\nnew_cafe = ['Starbucks', 'London', '☕☕☕']",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "python",
+        "solution_code": "import csv\n\nnew_cafe = ['Starbucks', 'London', '☕☕☕']\n\nwith open('cafes.csv', mode='a', newline='') as file:\n    writer = csv.writer(file)\n    writer.writerow(new_cafe)",
+        "explanation": "Open in append mode ('a'), create a writer, and use writerow() with the list of values."
+    },
+    {
+        "question_type": "coding",
+        "text": "Complete Cafe Form\\nCreate a FlaskForm with fields: cafe_name (StringField), location (StringField), and has_wifi (BooleanField).",
+        "starter_code": "from flask_wtf import FlaskForm\nfrom wtforms import StringField, BooleanField, SubmitField\nfrom wtforms.validators import DataRequired\n\nclass CafeForm(FlaskForm):\n    # Define fields\n    pass",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "flask-wtf",
+        "solution_code": "from flask_wtf import FlaskForm\nfrom wtforms import StringField, BooleanField, SubmitField\nfrom wtforms.validators import DataRequired\n\nclass CafeForm(FlaskForm):\n    cafe_name = StringField('Cafe Name', validators=[DataRequired()])\n    location = StringField('Location', validators=[DataRequired()])\n    has_wifi = BooleanField('Has Wifi?')\n    submit = SubmitField('Add Cafe')",
+        "explanation": "Define each field as a class attribute with appropriate field types and validators."
+    },
+    {
+        "question_type": "coding",
+        "text": "Form to CSV\\nGiven a submitted form, extract `form.cafe_name.data` and `form.location.data` and write them as a new row.",
+        "starter_code": "import csv\n\ndef save_cafe(form):\n    # Write form data to cafes.csv\n    pass",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "flask-wtf",
+        "solution_code": "import csv\n\ndef save_cafe(form):\n    with open('cafes.csv', mode='a', newline='') as file:\n        writer = csv.writer(file)\n        writer.writerow([form.cafe_name.data, form.location.data])",
+        "explanation": "Access form field data via `.data` attribute and write as a list to the CSV."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The CSV file has extra blank lines between rows on Windows. Fix the file opening.",
+        "code": "with open('cafes.csv', 'a') as file:\n    writer = csv.writer(file)\n    writer.writerow(data)",
+        "options": [
+            "with open('cafes.csv', 'a', newline='') as file:",
+            "with open('cafes.csv', 'ab') as file:",
+            "with open('cafes.csv', 'a', encoding='utf-8') as file:",
+            "Use csv.write() instead"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "python",
+        "explanation": "Adding `newline=''` prevents the CSV module from adding extra line breaks on Windows."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The SelectField is not showing any options. Fix the choices definition.",
+        "code": "wifi = SelectField('Wifi', choices='Yes,No')",
+        "options": [
+            "choices=[('Yes', 'Yes'), ('No', 'No')]",
+            "choices={'Yes': 'Yes', 'No': 'No'}",
+            "options=['Yes', 'No']",
+            "choices=('Yes', 'No')"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "wtforms",
+        "explanation": "Choices must be a list of tuples: [(value, label), ...]."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The form data is coming back as None. Fix the route to properly pass the form.",
+        "code": "@app.route('/add', methods=['GET', 'POST'])\ndef add_cafe():\n    if request.method == 'POST':\n        name = request.form.get('cafe_name')\n    return render_template('add.html')",
+        "options": [
+            "Create a CafeForm instance and pass it to the template and use form.validate_on_submit()",
+            "Add action='/add' to the HTML form",
+            "Change methods to ['POST']",
+            "Import request from flask_wtf"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "flask-wtf",
+        "explanation": "When using Flask-WTF, you should create a form instance, validate it, and pass it to the template."
+    }
+]

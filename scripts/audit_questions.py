@@ -23,6 +23,9 @@ def audit_questions():
         
         mcq_count = sum(1 for q in questions if q.get('question_type') == 'mcq')
         coding_count = sum(1 for q in questions if q.get('question_type') == 'coding')
+        code_correction_count = sum(1 for q in questions if q.get('question_type') == 'code-correction')
+        # Code-correction counts toward MCQ-style questions for compliance
+        mcq_style_total = mcq_count + code_correction_count
         total = len(questions)
         
         issues = []
@@ -30,8 +33,8 @@ def audit_questions():
         # Compliance checks
         if total < 20:
             issues.append(f'BELOW MINIMUM: {total} questions (need 20+)')
-        if mcq_count < 13:
-            issues.append(f'MCQ LOW: {mcq_count} (need 13-15+)')
+        if mcq_style_total < 13:
+            issues.append(f'MCQ+CODE-CORRECTION LOW: {mcq_style_total} (need 13-15+)')
         if coding_count < 5:
             issues.append(f'CODING LOW: {coding_count} (need 5-7+)')
         

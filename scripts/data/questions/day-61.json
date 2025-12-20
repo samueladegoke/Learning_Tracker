@@ -1,0 +1,318 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What is Flask-WTF?",
+        "options": [
+            "A database extension for Flask.",
+            "An extension that integrates WTForms with Flask for form handling.",
+            "A CSS framework for Flask templates.",
+            "A testing framework for Flask applications."
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask-wtf",
+        "explanation": "Flask-WTF is a simple integration of Flask and WTForms, including CSRF protection, file uploads, and form validation."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which class should your form class inherit from when using Flask-WTF?",
+        "options": [
+            "WTForm",
+            "FlaskForm",
+            "Form",
+            "BaseForm"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask-wtf",
+        "explanation": "In Flask-WTF, forms inherit from `FlaskForm`, which provides CSRF protection and integrates with Flask's request handling."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does CSRF stand for in the context of web security?",
+        "options": [
+            "Cross-Site Request Forgery",
+            "Client-Side Response Format",
+            "Content Security Request Form",
+            "Cookie Session Request Filter"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "security",
+        "explanation": "CSRF (Cross-Site Request Forgery) is an attack that tricks a user into submitting unwanted requests. Flask-WTF protects against this by default."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which configuration is required for Flask-WTF to enable CSRF protection?",
+        "options": [
+            "DEBUG = True",
+            "CSRF_ENABLED = True",
+            "SECRET_KEY = 'some-secret-string'",
+            "FORM_PROTECTION = 'csrf'"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "flask-wtf",
+        "explanation": "Flask-WTF uses the app's `SECRET_KEY` to generate and verify CSRF tokens."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which method on a FlaskForm object checks if the form was submitted via POST and passed all validations?",
+        "options": [
+            "form.is_valid()",
+            "form.validate()",
+            "form.validate_on_submit()",
+            "form.check_submission()"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "flask-wtf",
+        "explanation": "`validate_on_submit()` returns `True` only if the form was submitted (POST) and all validators passed."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which WTForms field type would you use for an email input?",
+        "options": [
+            "StringField",
+            "EmailField",
+            "TextField",
+            "PasswordField"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "wtforms",
+        "explanation": "`EmailField` renders an `<input type='email'>` element and can be combined with an Email validator."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the purpose of validators in WTForms?",
+        "options": [
+            "To style the form fields in CSS.",
+            "To check if the submitted data meets certain criteria (e.g., required, length).",
+            "To store form data in the database.",
+            "To render the form as JSON."
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "wtforms",
+        "explanation": "Validators are functions that ensure form data meets requirements like minimum length, non-empty, or correct format."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which validator ensures that a form field is not left empty?",
+        "options": [
+            "Length()",
+            "Optional()",
+            "DataRequired()",
+            "InputRequired()"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "wtforms",
+        "explanation": "`DataRequired()` checks that the field contains data after type coercion. `InputRequired()` is similar but checks raw input."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you access the data submitted to a StringField named 'username' in a FlaskForm?",
+        "options": [
+            "form.username",
+            "form.username.data",
+            "form.get('username')",
+            "form['username']"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "flask-wtf",
+        "explanation": "Each form field has a `.data` attribute that contains the submitted (or default) value."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does the `Length(min=8)` validator do?",
+        "options": [
+            "Ensures the field value is exactly 8 characters.",
+            "Ensures the field value has at least 8 characters.",
+            "Limits the database column to 8 characters.",
+            "Sets the input field max-width to 8rem."
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "wtforms",
+        "explanation": "`Length(min=8)` requires the input to be at least 8 characters. You can also set `max=` for an upper limit."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which template tag must be included inside your `<form>` to prevent CSRF attacks when using Flask-WTF?",
+        "options": [
+            "{{ csrf_token }}",
+            "{{ form.hidden_tag() }}",
+            "{% include 'csrf.html' %}",
+            "{{ form.validate() }}"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "flask-wtf",
+        "explanation": "`{{ form.hidden_tag() }}` renders a hidden input with the CSRF token and any other hidden fields."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the purpose of Jinja2 template inheritance in Flask?",
+        "options": [
+            "To create child templates that extend a base layout.",
+            "To automatically validate all forms.",
+            "To connect templates to the database.",
+            "To cache templates for faster rendering."
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "jinja",
+        "explanation": "Template inheritance allows you to define a base structure (with blocks) that child templates can override."
+    },
+    {
+        "question_type": "mcq",
+        "text": "In Jinja2, which tag pair defines a block that can be overridden by child templates?",
+        "options": [
+            "{% section %}...{% endsection %}",
+            "{% block name %}...{% endblock %}",
+            "{% override %}...{% endoverride %}",
+            "<!-- block -->...<!-- endblock -->"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "jinja",
+        "explanation": "`{% block name %}...{% endblock %}` defines a named block that child templates can replace or extend."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the `EqualTo` validator used for in WTForms?",
+        "options": [
+            "To compare a field's value against a constant.",
+            "To ensure two form fields have matching values (e.g., password confirmation).",
+            "To validate that a number equals a specific value.",
+            "To check if the form was submitted two times."
+        ],
+        "correct_index": 1,
+        "difficulty": "hard",
+        "topic_tag": "wtforms",
+        "explanation": "`EqualTo('other_field')` validates that the current field's data matches the specified field's data."
+    },
+    {
+        "question_type": "coding",
+        "text": "Create a FlaskForm\\nDefine a simple `LoginForm` class with two fields: `email` (StringField) and `password` (PasswordField), and a submit button.",
+        "starter_code": "from flask_wtf import FlaskForm\nfrom wtforms import StringField, PasswordField, SubmitField\n\nclass LoginForm(FlaskForm):\n    # Define email, password, and submit fields\n    pass",
+        "test_cases": [
+            {
+                "function_call": "hasattr(LoginForm, 'email')",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "flask-wtf",
+        "solution_code": "from flask_wtf import FlaskForm\nfrom wtforms import StringField, PasswordField, SubmitField\n\nclass LoginForm(FlaskForm):\n    email = StringField('Email')\n    password = PasswordField('Password')\n    submit = SubmitField('Login')",
+        "explanation": "Define class attributes using WTForms field types. The first argument is the label."
+    },
+    {
+        "question_type": "coding",
+        "text": "Add Validators\\nAdd a `DataRequired` and `Email` validator to an email field definition.",
+        "starter_code": "from wtforms import StringField\nfrom wtforms.validators import DataRequired, Email\n\nemail = StringField('Email', validators=[...])",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "wtforms",
+        "solution_code": "from wtforms import StringField\nfrom wtforms.validators import DataRequired, Email\n\nemail = StringField('Email', validators=[DataRequired(), Email()])",
+        "explanation": "Validators are passed as a list to the `validators` argument."
+    },
+    {
+        "question_type": "coding",
+        "text": "Handle Form Submission\\nComplete this Flask route to process a `LoginForm`. If valid, return 'Success', otherwise render the form.",
+        "starter_code": "from flask import render_template\nfrom forms import LoginForm\n\n@app.route('/login', methods=['GET', 'POST'])\ndef login():\n    form = LoginForm()\n    # Check if form is valid and submitted\n    pass",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "flask-wtf",
+        "solution_code": "from flask import render_template\nfrom forms import LoginForm\n\n@app.route('/login', methods=['GET', 'POST'])\ndef login():\n    form = LoginForm()\n    if form.validate_on_submit():\n        return 'Success'\n    return render_template('login.html', form=form)",
+        "explanation": "`validate_on_submit()` checks if it's a POST request AND all validators pass."
+    },
+    {
+        "question_type": "coding",
+        "text": "Password Confirmation\\nCreate a `RegistrationForm` with `password` and `confirm_password` fields where `confirm_password` uses the `EqualTo` validator.",
+        "starter_code": "from flask_wtf import FlaskForm\nfrom wtforms import PasswordField, SubmitField\nfrom wtforms.validators import DataRequired, EqualTo\n\nclass RegistrationForm(FlaskForm):\n    password = PasswordField('Password', validators=[DataRequired()])\n    # Add confirm_password field\n    submit = SubmitField('Register')",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "wtforms",
+        "solution_code": "from flask_wtf import FlaskForm\nfrom wtforms import PasswordField, SubmitField\nfrom wtforms.validators import DataRequired, EqualTo\n\nclass RegistrationForm(FlaskForm):\n    password = PasswordField('Password', validators=[DataRequired()])\n    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])\n    submit = SubmitField('Register')",
+        "explanation": "`EqualTo('password')` references the 'password' field by name and ensures both values match."
+    },
+    {
+        "question_type": "coding",
+        "text": "Render Form in Template\\nWrite the Jinja2 code to render a Flask-WTF form with the CSRF token and the 'email' field.",
+        "starter_code": "<form method=\"POST\">\n    <!-- Render hidden tag and email field -->\n</form>",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "flask-wtf",
+        "solution_code": "<form method=\"POST\">\n    {{ form.hidden_tag() }}\n    {{ form.email.label }}\n    {{ form.email() }}\n    {{ form.submit() }}\n</form>",
+        "explanation": "`form.hidden_tag()` renders the CSRF token. Each field can be called as a function to render the HTML element."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The form is not submitting. Identify the missing element.",
+        "code": "<form method=\"POST\">\n    {{ form.email.label }}\n    {{ form.email() }}\n    {{ form.submit() }}\n</form>",
+        "options": [
+            "Add {{ form.hidden_tag() }} for CSRF protection",
+            "Change method to GET",
+            "Add action=\"/submit\" to the form",
+            "Include a <script> tag for form submission"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "flask-wtf",
+        "explanation": "Flask-WTF requires a CSRF token, rendered by `form.hidden_tag()`, for POST requests to be valid."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The validation message 'Passwords must match' never appears. Fix the validator.",
+        "code": "confirm_password = PasswordField('Confirm', validators=[EqualTo('password')])",
+        "options": [
+            "EqualTo('password', message='Passwords must match')",
+            "EqualTo(password)",
+            "Match('password')",
+            "DataRequired(message='Passwords must match')"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "wtforms",
+        "explanation": "Validators accept a `message` argument to customize the error text shown to the user."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The form class is not working because it's missing something important. Fix it.",
+        "code": "from flask_wtf import FlaskForm\nfrom wtforms import StringField\n\nclass ContactForm:\n    name = StringField('Name')",
+        "options": [
+            "class ContactForm(FlaskForm):",
+            "Add @form_handler above the class",
+            "Import Form from wtforms",
+            "Add form.init() inside the class"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "flask-wtf",
+        "explanation": "Form classes must inherit from `FlaskForm` to gain CSRF protection and Flask integration."
+    }
+]

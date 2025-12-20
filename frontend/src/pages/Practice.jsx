@@ -68,6 +68,11 @@ const DeepDiveDay57 = lazy(() => import('../components/content/DeepDive/Day57'))
 const DeepDiveDay58 = lazy(() => import('../components/content/DeepDive/Day58'))
 const DeepDiveDay59 = lazy(() => import('../components/content/DeepDive/Day59'))
 const DeepDiveDay60 = lazy(() => import('../components/content/DeepDive/Day60'))
+const DeepDiveDay61 = lazy(() => import('../components/content/DeepDive/Day61'))
+const DeepDiveDay62 = lazy(() => import('../components/content/DeepDive/Day62'))
+const DeepDiveDay63 = lazy(() => import('../components/content/DeepDive/Day63'))
+const DeepDiveDay64 = lazy(() => import('../components/content/DeepDive/Day64'))
+const DeepDiveDay65 = lazy(() => import('../components/content/DeepDive/Day65'))
 
 // Loading fallback component for lazy-loaded DeepDive content
 const DeepDiveLoader = () => (
@@ -557,6 +562,46 @@ const DAY_META = {
         quizId: 'day-60-practice',
         level: 'advanced',
         topics: ['html-forms', 'post-requests', 'smtplib', 'email-automation']
+    },
+    'day-61': {
+        label: 'Day 61',
+        title: 'Day 61: Flask-WTForms',
+        subtitle: 'Build advanced forms with FlaskForm classes, validators, and CSRF protection.',
+        quizId: 'day-61-practice',
+        level: 'advanced',
+        topics: ['flask-wtf', 'wtforms', 'validators', 'csrf', 'template-inheritance']
+    },
+    'day-62': {
+        label: 'Day 62',
+        title: 'Day 62: Coffee & Wifi Project',
+        subtitle: 'Combine WTForms, Bootstrap, and CSV file handling in a real project.',
+        quizId: 'day-62-practice',
+        level: 'advanced',
+        topics: ['wtforms', 'csv', 'bootstrap-flask', 'file-handling']
+    },
+    'day-63': {
+        label: 'Day 63',
+        title: 'Day 63: SQLite & SQLAlchemy',
+        subtitle: 'Learn ORM fundamentals with SQLAlchemy and perform CRUD operations.',
+        quizId: 'day-63-practice',
+        level: 'advanced',
+        topics: ['sqlite', 'sqlalchemy', 'orm', 'crud', 'flask-sqlalchemy']
+    },
+    'day-64': {
+        label: 'Day 64',
+        title: 'Day 64: Top 10 Movies Website',
+        subtitle: 'Build a movie ranking website using SQLAlchemy and the TMDB API.',
+        quizId: 'day-64-practice',
+        level: 'advanced',
+        topics: ['sqlalchemy', 'tmdb-api', 'ranking', 'crud']
+    },
+    'day-65': {
+        label: 'Day 65',
+        title: 'Day 65: Web Design School',
+        subtitle: 'Master UX/UI principles, color theory, typography, and design best practices.',
+        quizId: 'day-65-practice',
+        level: 'advanced',
+        topics: ['ux', 'ui', 'color-theory', 'typography', 'web-design']
     }
 }
 
@@ -861,7 +906,12 @@ function DeepDive({ activeDay }) {
         'day-57': DeepDiveDay57,
         'day-58': DeepDiveDay58,
         'day-59': DeepDiveDay59,
-        'day-60': DeepDiveDay60
+        'day-60': DeepDiveDay60,
+        'day-61': DeepDiveDay61,
+        'day-62': DeepDiveDay62,
+        'day-63': DeepDiveDay63,
+        'day-64': DeepDiveDay64,
+        'day-65': DeepDiveDay65
     }
     const Component = components[activeDay]
     if (!Component) {

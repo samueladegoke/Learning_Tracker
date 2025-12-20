@@ -1,0 +1,332 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What is the main focus of Day 65?",
+        "options": [
+            "Building a REST API",
+            "Web design principles including UX/UI, color theory, and typography",
+            "Database optimization",
+            "Authentication with Flask"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "design",
+        "explanation": "Day 65 is 'Web Design School' focusing on design principles to make websites people will love."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does UX stand for?",
+        "options": [
+            "Universal Exchange",
+            "User Experience",
+            "Unified Extension",
+            "User Execution"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "ux",
+        "explanation": "UX (User Experience) refers to how a user feels when interacting with a product or website."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does UI stand for?",
+        "options": [
+            "User Interface",
+            "Universal Integration",
+            "Unified Implementation",
+            "User Interaction"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "ui",
+        "explanation": "UI (User Interface) refers to the visual elements and interactive components of a product."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which of the following is a primary color in the RGB color model?",
+        "options": [
+            "Yellow",
+            "Purple",
+            "Blue",
+            "Orange"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "color-theory",
+        "explanation": "RGB stands for Red, Green, Blue - the primary colors used in digital displays."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What are complementary colors?",
+        "options": [
+            "Colors that are next to each other on the color wheel.",
+            "Colors that are opposite each other on the color wheel.",
+            "Different shades of the same color.",
+            "Colors that blend together when mixed."
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "color-theory",
+        "explanation": "Complementary colors are opposite on the color wheel and create high contrast when used together."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the difference between serif and sans-serif fonts?",
+        "options": [
+            "Serif fonts are modern; sans-serif fonts are traditional.",
+            "Serif fonts have decorative strokes at the ends of letters; sans-serif fonts don't.",
+            "Sans-serif fonts are only used for headlines.",
+            "There is no difference."
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "typography",
+        "explanation": "Serif fonts (like Times New Roman) have small strokes at the ends of characters. Sans-serif (like Arial) don't."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the recommended maximum number of font families to use on a single website?",
+        "options": [
+            "1",
+            "2-3",
+            "5-6",
+            "As many as needed"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "typography",
+        "explanation": "Using 2-3 font families maintains visual consistency while allowing for hierarchy."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is 'visual hierarchy' in web design?",
+        "options": [
+            "The order in which files are loaded.",
+            "The arrangement of elements to show their order of importance.",
+            "The folder structure of a project.",
+            "The CSS cascade order."
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "ui",
+        "explanation": "Visual hierarchy uses size, color, and placement to guide users' attention to the most important elements first."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is 'white space' (or negative space) in design?",
+        "options": [
+            "Space that is always colored white.",
+            "Empty space between and around elements.",
+            "The background color of a website.",
+            "Space reserved for advertisements."
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "ui",
+        "explanation": "White space refers to empty areas in a design that help elements breathe and improve readability."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the 60-30-10 rule in color design?",
+        "options": [
+            "60% of users prefer blue, 30% prefer green, 10% prefer red.",
+            "A color ratio: 60% dominant color, 30% secondary color, 10% accent color.",
+            "A performance optimization guideline.",
+            "A rule about image dimensions."
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "color-theory",
+        "explanation": "The 60-30-10 rule creates balanced color schemes: 60% dominant, 30% secondary, 10% accent."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the purpose of a 'call to action' (CTA) button?",
+        "options": [
+            "To display contact information.",
+            "To encourage users to take a specific action (sign up, buy, etc.).",
+            "To navigate to the home page.",
+            "To show loading progress."
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "ux",
+        "explanation": "CTAs guide users toward conversion goals like signing up, purchasing, or subscribing."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is 'responsive design'?",
+        "options": [
+            "A design that responds to user clicks quickly.",
+            "A design that adapts to different screen sizes and devices.",
+            "A design that uses JavaScript for animations.",
+            "A design with fast server response times."
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "ui",
+        "explanation": "Responsive design ensures websites look good on all devices, from phones to desktop monitors."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which website can you use to find harmonious color palettes?",
+        "options": [
+            "GitHub",
+            "Color Hunt or Adobe Color",
+            "Stack Overflow",
+            "NPM"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "color-theory",
+        "explanation": "Color Hunt and Adobe Color are popular tools for discovering and creating color palettes."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is 'contrast' in web design?",
+        "options": [
+            "The difference in brightness between two colors.",
+            "The difference in visual properties that makes elements distinguishable.",
+            "The space between paragraphs.",
+            "The speed of page loading."
+        ],
+        "correct_index": 1,
+        "difficulty": "hard",
+        "topic_tag": "ui",
+        "explanation": "Contrast creates visual interest and helps distinguish different elements. It's crucial for accessibility."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the F-pattern in web design?",
+        "options": [
+            "A layout that looks like the letter F.",
+            "The natural eye-scanning pattern users follow when reading web content.",
+            "A CSS framework.",
+            "A font family."
+        ],
+        "correct_index": 1,
+        "difficulty": "hard",
+        "topic_tag": "ux",
+        "explanation": "Studies show users scan web pages in an F-shaped pattern: across the top, then down the left side."
+    },
+    {
+        "question_type": "coding",
+        "text": "CSS Color Variables\\nDefine CSS custom properties for a primary color (#3B82F6) and an accent color (#10B981).",
+        "starter_code": ":root {\n    /* Define color variables */\n}",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "css",
+        "solution_code": ":root {\n    --primary-color: #3B82F6;\n    --accent-color: #10B981;\n}",
+        "explanation": "CSS custom properties (variables) make it easy to maintain consistent colors across a design."
+    },
+    {
+        "question_type": "coding",
+        "text": "Typography Scale\\nCreate CSS for a heading hierarchy: h1 (2.5rem), h2 (2rem), h3 (1.5rem).",
+        "starter_code": "/* Define heading styles */",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "typography",
+        "solution_code": "h1 {\n    font-size: 2.5rem;\n    font-weight: 700;\n}\n\nh2 {\n    font-size: 2rem;\n    font-weight: 600;\n}\n\nh3 {\n    font-size: 1.5rem;\n    font-weight: 600;\n}",
+        "explanation": "A consistent type scale creates visual hierarchy and improves readability."
+    },
+    {
+        "question_type": "coding",
+        "text": "Button Styling\\nCreate a CTA button style with padding, rounded corners, and a hover effect.",
+        "starter_code": ".cta-button {\n    /* Style the button */\n}",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "css",
+        "solution_code": ".cta-button {\n    padding: 12px 24px;\n    background-color: var(--primary-color);\n    color: white;\n    border: none;\n    border-radius: 8px;\n    cursor: pointer;\n    transition: background-color 0.3s ease;\n}\n\n.cta-button:hover {\n    background-color: #2563EB;\n}",
+        "explanation": "Good button design includes padding, clear colors, and interactive feedback on hover."
+    },
+    {
+        "question_type": "coding",
+        "text": "Responsive Container\\nCreate a container class that centers content and has max-width of 1200px with auto margins.",
+        "starter_code": ".container {\n    /* Make it centered and responsive */\n}",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "css",
+        "solution_code": ".container {\n    max-width: 1200px;\n    margin: 0 auto;\n    padding: 0 20px;\n}",
+        "explanation": "max-width with margin: 0 auto centers content while keeping it responsive."
+    },
+    {
+        "question_type": "coding",
+        "text": "Card Component\\nCreate a card style with shadow, rounded corners, and padding.",
+        "starter_code": ".card {\n    /* Style the card */\n}",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "css",
+        "solution_code": ".card {\n    background-color: white;\n    border-radius: 12px;\n    padding: 24px;\n    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);\n}",
+        "explanation": "Cards with shadows create depth and visual separation between content sections."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The text is hard to read against the background. Fix the contrast issue.",
+        "code": ".header {\n    background-color: #333;\n    color: #666;\n}",
+        "options": [
+            "color: #fff; (use white text on dark background)",
+            "background-color: #fff;",
+            "font-size: 24px;",
+            "opacity: 0.5;"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "accessibility",
+        "explanation": "Low contrast between text and background makes content hard to read. Use high contrast colors."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The design looks cluttered. What CSS property should be increased?",
+        "code": ".content {\n    margin: 0;\n    padding: 5px;\n}",
+        "options": [
+            "Increase padding and margin for more white space",
+            "Add more borders",
+            "Decrease font-size",
+            "Add more colors"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "ui",
+        "explanation": "Increasing padding and margins adds white space, making the design feel less cluttered."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The website uses 5 different fonts. What's the design problem?",
+        "code": "h1 { font-family: 'Roboto'; }\nh2 { font-family: 'Open Sans'; }\np { font-family: 'Lato'; }\na { font-family: 'Montserrat'; }\nbutton { font-family: 'Poppins'; }",
+        "options": [
+            "Too many fonts - reduce to 2-3 for consistency",
+            "Fonts are too small",
+            "Need to add more colors",
+            "This is actually good practice"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "typography",
+        "explanation": "Using too many fonts creates visual chaos. Limit to 2-3 font families maximum."
+    }
+]
