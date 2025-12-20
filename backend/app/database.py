@@ -112,8 +112,7 @@ else:
 
 engine = None
 SessionLocal = lambda: None
-class Base:
-    metadata = type('metadata', (), {'create_all': lambda bind: None})
+Base = declarative_base()
 
 
 def get_db():
