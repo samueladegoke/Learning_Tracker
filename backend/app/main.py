@@ -43,7 +43,6 @@ app = FastAPI(
     title="Learning Tracker API",
     description="API for the AI Learning Roadmap Tracker",
     version="1.0.0",
-    root_path=root_path,
     lifespan=lifespan
 )
 
