@@ -105,8 +105,9 @@ else:
     connect_args = {}
     if is_postgres:
         # Add timeout to prevent hanging in serverless environments
-        # connect_timeout is for psycopg2 (unit is seconds)
-        connect_args["connect_timeout"] = 10
+        # connect_timeout is for psycopg2 (unit is seconds). 
+        # Reducing to 3s to avoid Vercel function timeout (10s default).
+        connect_args["connect_timeout"] = 3
 
 
 engine = create_engine(

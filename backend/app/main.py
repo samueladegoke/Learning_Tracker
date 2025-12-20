@@ -104,25 +104,27 @@ def root():
 
 
 @app.get("/api/health")
-def health_check_api(db: Session = Depends(get_db)):
-    """Health check with basic DB connectivity test."""
-    db_status = "unknown"
-    try:
-        # Simple connectivity test
-        db.execute(text("SELECT 1"))
-        db_status = "connected"
-    except Exception as e:
-        db_status = f"disconnected: {str(e)}"
-    
+def health_check_api():
+    """Simple liveness check - no dependencies."""
     return {
         "status": "healthy",
-        "database": db_status,
         "environment": os.getenv("VERCEL_ENV", "production" if os.getenv("VERCEL") else "development")
     }
 
 
+@app.get("/api/health/db")
+def health_check_db(db: Session = Depends(get_db)):
+    """Deep health check with DB connectivity test."""
+    try:
+        db.execute(text("SELECT 1"))
+        return {"database": "connected"}
+    except Exception as e:
+        return {"database": f"disconnected: {str(e)}"}
+
+
 @app.get("/health")
-def health_check(db: Session = Depends(get_db)):
+def health_check():
     """Alias for /api/health."""
-    return health_check_api(db)
+    return health_check_api()
+
 
