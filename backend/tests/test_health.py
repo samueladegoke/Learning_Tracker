@@ -6,7 +6,10 @@ def test_health_endpoint(client):
     response = client.get("/api/health")
 
     assert response.status_code == 200
-    assert response.json() == {"status": "healthy"}
+    data = response.json()
+    assert data["status"] == "healthy"
+    assert "database" in data
+    assert "environment" in data
 
 
 def test_root_health_endpoint(client):
@@ -14,7 +17,10 @@ def test_root_health_endpoint(client):
     response = client.get("/health")
 
     assert response.status_code == 200
-    assert response.json() == {"status": "healthy"}
+    data = response.json()
+    assert data["status"] == "healthy"
+    assert "database" in data
+    assert "environment" in data
 
 
 def test_api_root(client):

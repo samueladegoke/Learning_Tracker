@@ -1,35 +1,56 @@
 import os
 import logging
-from fastapi import FastAPI
+from contextlib import asynccontextmanager
+from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
+from sqlalchemy.orm import Session
+from sqlalchemy import text
 
-from .database import engine, Base
+from .database import engine, Base, get_db
 from .routers import weeks, tasks, reflections, progress, badges, rpg, achievements, quizzes, spaced_repetition
 
 # Configure logger
 logger = logging.getLogger(__name__)
 
-# Create database tables
-Base.metadata.create_all(bind=engine)
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """
+    Handle app startup and shutdown safely.
+    Moves blocking DB initialization out of the top-level module code.
+    """
+    # Startup: Try to create tables if they don't exist
+    # This is a fallback for the development/single-user phase.
+    # In full production, we should rely solely on Alembic migrations.
+    try:
+        # Wrap in a short timeout or just try-except to prevent boot-looping
+        Base.metadata.create_all(bind=engine)
+        logger.info("[Lifespan] Database initialization sync complete.")
+    except Exception as e:
+        # FAIL SOFT: Log the error but allow the app to start
+        # This allows the health check and documentation to be accessible
+        logger.error(f"[Lifespan] Database table creation failed: {e}")
+
+    yield
+    # Shutdown logic (if any) can go here
+
 
 # Determine root path (essential for Vercel routing)
 # Vercel rewrites /api/... to /api/index.py, so we need to tell FastAPI that /api is the root
-# Hardcoding to /api for Vercel deployment stability
 root_path = "/api"
 
 app = FastAPI(
     title="Learning Tracker API",
     description="API for the AI Learning Roadmap Tracker",
     version="1.0.0",
-    root_path=root_path
+    root_path=root_path,
+    lifespan=lifespan
 )
 
 # =============================================================================
 # CORS Configuration
 # =============================================================================
 # Restrict to known development and production origins
-# ALLOWED_ORIGINS can be set as a comma-separated list in environment variables
-
 DEFAULT_ORIGINS = (
     "http://localhost:5173,"
     "http://localhost:5174,"
@@ -39,25 +60,15 @@ DEFAULT_ORIGINS = (
 )
 
 def get_allowed_origins():
-    """
-    Parse and validate CORS origins from environment variable.
-    Filters out empty strings and validates URL format.
-    """
     origins_str = os.getenv("ALLOWED_ORIGINS", DEFAULT_ORIGINS)
     origins = [origin.strip() for origin in origins_str.split(",")]
-
-    # Filter out empty strings and validate basic URL structure
     valid_origins = []
     for origin in origins:
-        if not origin:
-            continue
-        # Basic validation: must start with http:// or https://
+        if not origin: continue
         if origin.startswith("http://") or origin.startswith("https://"):
             valid_origins.append(origin)
         else:
-            # Log warning for invalid origins (only in development)
             logger.warning(f"[CORS] Invalid origin ignored: {origin}")
-
     return valid_origins if valid_origins else ["http://localhost:5173"]
 
 ALLOWED_ORIGINS = get_allowed_origins()
@@ -70,7 +81,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Include routers with /api prefix for Vercel compatibility
+# Include routers
 app.include_router(weeks.router, prefix="/api/weeks", tags=["weeks"])
 app.include_router(tasks.router, prefix="/api/tasks", tags=["tasks"])
 app.include_router(reflections.router, prefix="/api/reflections", tags=["reflections"])
@@ -93,10 +104,25 @@ def root():
 
 
 @app.get("/api/health")
-def health_check_api():
-    return {"status": "healthy"}
+def health_check_api(db: Session = Depends(get_db)):
+    """Health check with basic DB connectivity test."""
+    db_status = "unknown"
+    try:
+        # Simple connectivity test
+        db.execute(text("SELECT 1"))
+        db_status = "connected"
+    except Exception as e:
+        db_status = f"disconnected: {str(e)}"
+    
+    return {
+        "status": "healthy",
+        "database": db_status,
+        "environment": os.getenv("VERCEL_ENV", "production" if os.getenv("VERCEL") else "development")
+    }
 
 
 @app.get("/health")
-def health_check():
-    return {"status": "healthy"}
+def health_check(db: Session = Depends(get_db)):
+    """Alias for /api/health."""
+    return health_check_api(db)
+

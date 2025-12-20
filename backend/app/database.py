@@ -79,7 +79,8 @@ SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL")
 # Log database configuration status (without exposing credentials)
 if SQLALCHEMY_DATABASE_URL:
     # Determine database type without exposing connection details
-    if "postgresql" in SQLALCHEMY_DATABASE_URL or "postgres" in SQLALCHEMY_DATABASE_URL:
+    is_postgres = "postgresql" in SQLALCHEMY_DATABASE_URL or "postgres" in SQLALCHEMY_DATABASE_URL
+    if is_postgres:
         logger.info("Database: PostgreSQL (production)")
     elif "sqlite" in SQLALCHEMY_DATABASE_URL:
         logger.info("Database: SQLite (development)")
@@ -90,6 +91,7 @@ if SQLALCHEMY_DATABASE_URL:
     SQLALCHEMY_DATABASE_URL = _fix_database_url(SQLALCHEMY_DATABASE_URL)
 else:
     logger.info("Database: SQLite fallback (no DATABASE_URL configured)")
+    is_postgres = False
 
 if not SQLALCHEMY_DATABASE_URL:
     # Anchor the SQLite database path to the backend directory so it is stable
@@ -99,7 +101,12 @@ if not SQLALCHEMY_DATABASE_URL:
     SQLALCHEMY_DATABASE_URL = f"sqlite:///{DB_PATH}"
     connect_args = {"check_same_thread": False}
 else:
+    # Production connection args
     connect_args = {}
+    if is_postgres:
+        # Add timeout to prevent hanging in serverless environments
+        # connect_timeout is for psycopg2 (unit is seconds)
+        connect_args["connect_timeout"] = 10
 
 
 engine = create_engine(
