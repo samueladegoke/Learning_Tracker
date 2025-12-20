@@ -1,5 +1,6 @@
 import os
 import logging
+import ssl
 from urllib.parse import urlparse, urlunparse, quote
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
@@ -59,19 +60,6 @@ def _fix_database_url(url: str) -> str:
         # Re-parse after reconstruction
         parsed = urlparse(url)
 
-    # Append sslmode=require if not already present
-    if "sslmode" not in (parsed.query or ""):
-        separator = "&" if parsed.query else ""
-        new_query = f"{parsed.query}{separator}sslmode=require"
-        url = urlunparse((
-            parsed.scheme,
-            parsed.netloc,
-            parsed.path,
-            parsed.params,
-            new_query,
-            parsed.fragment
-        ))
-
     return url
 
 
@@ -109,6 +97,10 @@ else:
         # timeout is for pg8000 (unit is seconds). 
         # Reducing to 3s to avoid Vercel function timeout (10s default).
         connect_args["timeout"] = 3
+        
+        # pg8000 SSL configuration for Supabase
+        # We use ssl.create_default_context() to ensure a secure connection
+        connect_args["ssl_context"] = ssl.create_default_context()
 
 
 engine = create_engine(
