@@ -110,8 +110,8 @@ else:
         connect_args["connect_timeout"] = 3
 
 
-engine = None
-SessionLocal = lambda: None
+engine = create_engine("sqlite:///test.db", poolclass=NullPool)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
 
