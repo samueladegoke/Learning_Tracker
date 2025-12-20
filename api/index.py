@@ -18,11 +18,10 @@ def audit_import(module_name):
         audit_log.append(f"FAILED: {module_name} -> {str(e)}")
         return False
 
-# Audit the chain
+# Audit the chain - focus on the suspects
+audit_import("psycopg2")
+audit_import("sqlalchemy")
 audit_import("backend.app.database")
-audit_import("backend.app.models")
-audit_import("backend.app.routers.weeks")
-audit_import("backend.app.main")
 
 try:
     from backend.app.main import app
