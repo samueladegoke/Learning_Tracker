@@ -1,5 +1,6 @@
 import os
 import logging
+from urllib.parse import urlparse, urlunparse, quote_plus
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
@@ -11,6 +12,66 @@ logger = logging.getLogger(__name__)
 
 # Load environment variables from .env file
 load_dotenv()
+
+
+def _fix_database_url(url: str) -> str:
+    """
+    Fix common issues with DATABASE_URL for SQLAlchemy + Supabase:
+    1. Replace 'postgres://' with 'postgresql://' (SQLAlchemy requirement)
+    2. URL-encode the password to handle special characters (@, #, %, etc.)
+    3. Append 'sslmode=require' for Supabase Pooler connections
+    """
+    if not url:
+        return url
+
+    # Fix scheme for SQLAlchemy
+    if url.startswith("postgres://"):
+        url = url.replace("postgres://", "postgresql://", 1)
+
+    # Parse the URL to encode the password
+    parsed = urlparse(url)
+
+    # Only process PostgreSQL URLs
+    if not parsed.scheme.startswith("postgresql"):
+        return url
+
+    # URL-encode the password if present
+    if parsed.password:
+        # Re-encode to handle special characters
+        encoded_password = quote_plus(parsed.password)
+        # Reconstruct netloc with encoded password
+        if parsed.port:
+            netloc = f"{parsed.username}:{encoded_password}@{parsed.hostname}:{parsed.port}"
+        else:
+            netloc = f"{parsed.username}:{encoded_password}@{parsed.hostname}"
+
+        # Rebuild URL with encoded password
+        url = urlunparse((
+            parsed.scheme,
+            netloc,
+            parsed.path,
+            parsed.params,
+            parsed.query,
+            parsed.fragment
+        ))
+        # Re-parse after reconstruction
+        parsed = urlparse(url)
+
+    # Append sslmode=require if not already present
+    if "sslmode" not in (parsed.query or ""):
+        separator = "&" if parsed.query else ""
+        new_query = f"{parsed.query}{separator}sslmode=require"
+        url = urlunparse((
+            parsed.scheme,
+            parsed.netloc,
+            parsed.path,
+            parsed.params,
+            new_query,
+            parsed.fragment
+        ))
+
+    return url
+
 
 # Check for DATABASE_URL environment variable (used by Render/Supabase)
 SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL")
@@ -24,12 +85,11 @@ if SQLALCHEMY_DATABASE_URL:
         logger.info("Database: SQLite (development)")
     else:
         logger.info("Database: External connection configured")
+
+    # Apply fixes for PostgreSQL URLs
+    SQLALCHEMY_DATABASE_URL = _fix_database_url(SQLALCHEMY_DATABASE_URL)
 else:
     logger.info("Database: SQLite fallback (no DATABASE_URL configured)")
-
-if SQLALCHEMY_DATABASE_URL and SQLALCHEMY_DATABASE_URL.startswith("postgres://"):
-    # Fix for SQLAlchemy requiring postgresql:// scheme
-    SQLALCHEMY_DATABASE_URL = SQLALCHEMY_DATABASE_URL.replace("postgres://", "postgresql://", 1)
 
 if not SQLALCHEMY_DATABASE_URL:
     # Anchor the SQLite database path to the backend directory so it is stable

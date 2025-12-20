@@ -72,9 +72,12 @@ Claude Opus 4.5
 - Force disabled Auth via `auth.py:ENABLE_AUTH=False` per Sam's request.
 - Fixed `story-production-deployment.md` discrepancies found in code review.
 - Implemented 4 SRS integration tests in `backend/tests/test_srs.py`.
+- Added `_fix_database_url()` to handle password encoding and sslmode=require for Supabase Pooler.
 
 ### File List
 - backend/app/auth.py (modified: suspended auth)
+- backend/app/database.py (modified: added URL encoding and SSL)
 - backend/app/routers/*.py (all modified for auth)
 - backend/alembic/versions/8682cacee66d_add_coding_challenge_fields_to_questions.py (migration script)
 - backend/tests/test_srs.py (created: SRS integration tests)
+
