@@ -24,9 +24,11 @@ def _fix_database_url(url: str) -> str:
     if not url:
         return url
 
-    # Fix scheme for SQLAlchemy
+    # Fix scheme for SQLAlchemy+pg8000
     if url.startswith("postgres://"):
-        url = url.replace("postgres://", "postgresql://", 1)
+        url = url.replace("postgres://", "postgresql+pg8000://", 1)
+    elif url.startswith("postgresql://"):
+        url = url.replace("postgresql://", "postgresql+pg8000://", 1)
 
     # Parse the URL to encode the password
     parsed = urlparse(url)
@@ -104,14 +106,19 @@ else:
     # Production connection args
     connect_args = {}
     if is_postgres:
-        # Add timeout to prevent hanging in serverless environments
-        # connect_timeout is for psycopg2 (unit is seconds). 
+        # timeout is for pg8000 (unit is seconds). 
         # Reducing to 3s to avoid Vercel function timeout (10s default).
-        connect_args["connect_timeout"] = 3
+        connect_args["timeout"] = 3
 
 
-engine = create_engine("sqlite:///test.db", poolclass=NullPool)
+engine = create_engine(
+    SQLALCHEMY_DATABASE_URL,
+    connect_args=connect_args,
+    poolclass=NullPool
+)
+
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
 Base = declarative_base()
 
 

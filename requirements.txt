@@ -3,7 +3,7 @@ sqlalchemy==2.0.23
 pydantic==2.5.2
 python-multipart==0.0.6
 mangum==0.17.0
-# psycopg2-binary==2.9.9
+pg8000==1.30.3
 python-dotenv>=1.0.0
 pyjwt>=2.8.0
 pypdf==6.4.1
