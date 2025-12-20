@@ -182,7 +182,7 @@ We are prioritizing **Depth over Breadth**. Instead of adding half-baked multi-u
 ## Functional Requirements
 
 ### 1. The Learning Engine (Core Loop)
-*   **FR1 (Content Access):** Users can access all Daily Content (Videos, Transcripts, Quizzes) without explicit login (System uses implicit `DEFAULT_USER_ID`).
+*   **FR1 (Content Access):** Users can access all Daily Content (Videos, Transcripts, Quizzes) without explicit login (System uses `DEV_USER_ID` fallback in development).
 *   **FR2 (Completion Tracking):** Users can mark a Day or specific Task as "Completed".
 *   **FR3 (Streak Logic):** The System calculates "Current Streak" based on consecutive days with >0 completed tasks, resetting after 48h inactivity.
 *   **FR4 (Progress Persistence):** The System persists completion status to both `localStorage` (Immediate) and Backend Database (Async).

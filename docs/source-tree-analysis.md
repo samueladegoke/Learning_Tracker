@@ -22,7 +22,7 @@ Generated: 2025-12-10
 │   ├── src/                 # Source code
 │   │   ├── api/             # API Client layer
 │   │   ├── components/      # Reusable UI components
-│   │   ├── contexts/        # React Contexts (PythonProvider)
+│   │   ├── contexts/        # React Contexts (PythonContext)
 │   │   ├── pages/           # Page definitions (Routing targets)
 │   │   └── App.jsx          # Root component & Routing
 │   ├── public/              # Static assets

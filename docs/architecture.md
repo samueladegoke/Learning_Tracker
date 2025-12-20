@@ -59,7 +59,7 @@ This is a brownfield project with a stable, functioning MVP. We are adopting the
 **Language & Runtime:**
 *   **Frontend:** JavaScript (ESNext) running in Browser.
 *   **Backend:** Python 3.10+ (FastAPI).
-*   **WASM:** Pyodide `^0.24.1` pinned for consistent offline execution.
+*   **WASM:** Pyodide `^0.27.5` pinned for consistent execution.
 
 **Styling Solution:**
 *   **Tailwind CSS 3.3:** Utility-first styling for rapid UI development.
@@ -104,6 +104,10 @@ This is a brownfield project with a stable, functioning MVP. We are adopting the
     *   `localStorage`: Source of Truth for User Progress (Synchronous, blocking, immediate availability).
     *   `IndexedDB`: Secondary storage for Logs/Metrics/Audits (Asynchronous, bulk storage).
     *   `PostgreSQL`: Cloud Backup/Sync Target (Ultimate durability).
+
+### Connection Strategy
+*   **Pooling:** `NullPool` (SQLAlchemy).
+    *   **Rationale:** Standard pooling causes issues in serverless (Vercel) + transaction pooler (Supabase) environments. Disabling client-side pooling prevents connection exhaustion.
 
 ### Authentication & Security
 
@@ -442,15 +446,6 @@ graph TD
 7. **Frontend** receives result and triggers animations (Level Up Modal, Confetti).
 8. **Frontend** updates local Context with new user stats.
 
-### Quiz Data Flow (Supabase Direct)
-
-1. **User** navigates to `/practice` and selects a Day.
-2. **Frontend** calls `quizApi.getQuestions(quizId)` → Supabase directly.
-3. **Frontend** renders questions (MCQ, Coding, Code-Correction).
-4. **User** submits answers.
-5. **Frontend** calls `quizApi.submitQuiz()` → Supabase directly.
-6. **Score** is calculated client-side and stored in Supabase.
-
-> Note: Quiz API bypasses FastAPI backend for performance. See `frontend/src/api/quizApi.js`.
+> Note: All API calls are routed through the FastAPI backend via `frontend/src/api/client.js` for centralized auth and validation.
 
 

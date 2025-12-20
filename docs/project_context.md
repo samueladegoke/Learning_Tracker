@@ -36,7 +36,7 @@ optimized_for_llm: true
 - **Sync/Async Boundary:** Use `def` (sync) for routes with SQLAlchemy `Session`. NEVER use `async def` with blocking ORM calls.
 - **Pydantic V2:** Use `class Config: from_attributes = True` for ORM serialization (NOT `orm_mode`).
 - **Database Migrations:** Modification of `models.py` MUST be followed by `alembic revision --autogenerate`.
-- **Absolute Imports:** Use `from app.models import ...` to avoid circular import hell.
+- **Import Strategy:** Use **Relative Imports** (`from ..models import ...`) within the `app` package to ensure Vercel compatibility and prevent deployment circularity. Use absolute imports only for external scripts or test suites.
 
 ### Framework-Specific Rules
 
