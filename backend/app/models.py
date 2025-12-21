@@ -73,6 +73,11 @@ class Task(Base):
 class UserTaskStatus(Base):
     __tablename__ = "user_task_statuses"
 
+    # Composite index for faster lookups and uniqueness constraint
+    __table_args__ = (
+        Index('ix_user_task_statuses_user_task', 'user_id', 'task_id', unique=True),
+    )
+
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     task_id = Column(Integer, ForeignKey("tasks.id"), nullable=False)

@@ -107,6 +107,19 @@ def submit_quiz(submission: QuizSubmission, user: User = Depends(get_current_use
     if not questions:
         raise HTTPException(status_code=404, detail="Quiz not found")
 
+    # Rate limiting: Check for duplicate submission within 30 seconds
+    recent_submission = db.query(QuizResult).filter(
+        QuizResult.user_id == user.id,
+        QuizResult.quiz_id == submission.quiz_id,
+        QuizResult.completed_at >= datetime.utcnow() - timedelta(seconds=30)
+    ).first()
+    
+    if recent_submission:
+        raise HTTPException(
+            status_code=429, 
+            detail="Please wait before submitting the same quiz again"
+        )
+
     questions_map = {q.id: q for q in questions}
 
     score = 0
