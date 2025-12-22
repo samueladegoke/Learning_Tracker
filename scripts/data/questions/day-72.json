@@ -1,0 +1,434 @@
+[
+  {
+    "quiz_id": "day-72-practice",
+    "question_type": "mcq",
+    "text": "What is a Pandas DataFrame?",
+    "options": [
+      "A 1D array of numbers",
+      "A 2D data structure with labeled axes (rows and columns), similar to a spreadsheet",
+      "A specialized Python function for reading text files",
+      "A type of chart used in Matplotlib"
+    ],
+    "correct_index": 1,
+    "explanation": "DataFrames are the core data structure in Pandas, representing tabular data with rows and columns.",
+    "difficulty": "easy",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-72-practice",
+    "question_type": "mcq",
+    "text": "Which method is used to see the first 5 rows of a DataFrame?",
+    "options": [
+      "df.first(5)",
+      "df.start()",
+      "df.head()",
+      "df.show()"
+    ],
+    "correct_index": 2,
+    "explanation": "By default, 'df.head()' returns the first 5 rows of the DataFrame.",
+    "difficulty": "easy",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-72-practice",
+    "question_type": "mcq",
+    "text": "How can you see the number of rows and columns in a DataFrame?",
+    "options": [
+      "df.size()",
+      "df.dimensions",
+      "df.shape",
+      "df.length"
+    ],
+    "correct_index": 2,
+    "explanation": "'df.shape' is an attribute that returns a tuple representing (rows, columns).",
+    "difficulty": "easy",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-72-practice",
+    "question_type": "mcq",
+    "text": "What does 'df.idxmax()' return?",
+    "options": [
+      "The highest numerical value in the column",
+      "The count of maximum values",
+      "The index (row label) where the maximum value is located",
+      "The column name that contains the maximum value"
+    ],
+    "correct_index": 2,
+    "explanation": "While '.max()' returns the value itself, '.idxmax()' returns the index of the row where that value resides.",
+    "difficulty": "medium",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-72-practice",
+    "question_type": "mcq",
+    "text": "Which method is used to remove rows containing missing (NaN) values?",
+    "options": [
+      "df.clear_na()",
+      "df.dropna()",
+      "df.remove_empty()",
+      "df.delete_nans()"
+    ],
+    "correct_index": 1,
+    "explanation": "'.dropna()' is the standard Pandas method for cleaning up rows with missing data.",
+    "difficulty": "easy",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-72-practice",
+    "question_type": "mcq",
+    "text": "How do you access all data in a single column named 'Salary'?",
+    "options": [
+      "df.select('Salary')",
+      "df.get('Salary')",
+      "df['Salary']",
+      "df{Salary}"
+    ],
+    "correct_index": 2,
+    "explanation": "Square bracket notation 'df['column_name']' is the most common way to select a single column.",
+    "difficulty": "easy",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-72-practice",
+    "question_type": "mcq",
+    "text": "What is the purpose of the '.groupby()' method?",
+    "options": [
+      "To sort the dataframe by a specific column",
+      "To combine rows with the same value in a specific column into groups for aggregation",
+      "To delete columns that are not useful",
+      "To merge two different dataframes together"
+    ],
+    "correct_index": 1,
+    "explanation": "Grouping allows you to perform operations like .mean() or .sum() on specific categories (e.g., average salary per department).",
+    "difficulty": "medium",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-72-practice",
+    "question_type": "mcq",
+    "text": "If 'df.tail(10)' is called, what is displayed?",
+    "options": [
+      "The middle 10 rows",
+      "The first 10 rows",
+      "The last 10 rows",
+      "A 10-column summary of the data"
+    ],
+    "correct_index": 2,
+    "explanation": "'.tail(n)' returns the last n rows of the DataFrame.",
+    "difficulty": "easy",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-72-practice",
+    "question_type": "mcq",
+    "text": "How do you sort a DataFrame named 'df' by a column 'Potential' in descending order?",
+    "options": [
+      "df.sort('Potential')",
+      "df.sort_values('Potential', ascending=False)",
+      "df.order_by('Potential', desc=True)",
+      "df.rank('Potential', reverse=True)"
+    ],
+    "correct_index": 1,
+    "explanation": "'.sort_values()' is used for sorting, and 'ascending=False' makes it descending.",
+    "difficulty": "medium",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-72-practice",
+    "question_type": "mcq",
+    "text": "What does '.isna()' do in Pandas?",
+    "options": [
+      "Checks if the dataframe is empty",
+      "Returns a boolean mask indicating where values are missing (NaN)",
+      "Automatically fills missing values with the mean",
+      "Returns the name of the author of the dataset"
+    ],
+    "correct_index": 1,
+    "explanation": "'.isna()' (or its alias '.isnull()') identifies missing data points.",
+    "difficulty": "easy",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-72-practice",
+    "question_type": "mcq",
+    "text": "To access a specific cell at a given row index and column name, which method is best?",
+    "options": [
+      "df.cell(index, label)",
+      "df.loc[index, label]",
+      "df.find(index, label)",
+      "df.at_position(index, label)"
+    ],
+    "correct_index": 1,
+    "explanation": "'.loc' is label-based indexing, allowing you to select specific cells by row index and column identifier.",
+    "difficulty": "medium",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-72-practice",
+    "question_type": "mcq",
+    "text": "What is NaN an abbreviation for in Data Science?",
+    "options": [
+      "Never At Night",
+      "Not a Number",
+      "New Automated Network",
+      "Network Access Node"
+    ],
+    "correct_index": 1,
+    "explanation": "NaN represents missing or undefined values in numeric datasets.",
+    "difficulty": "easy",
+    "topic_tag": "data-science"
+  },
+  {
+    "quiz_id": "day-72-practice",
+    "question_type": "mcq",
+    "text": "Which attribute returns a list of all column names in the DataFrame?",
+    "options": [
+      "df.names",
+      "df.headers",
+      "df.columns",
+      "df.keys()"
+    ],
+    "correct_index": 2,
+    "explanation": "The '.columns' attribute provides access to the index of column labels.",
+    "difficulty": "easy",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-72-practice",
+    "question_type": "mcq",
+    "text": "What happens if you run 'df.dropna(axis=1)'?",
+    "options": [
+      "It deletes all rows with missing values",
+      "It deletes all columns that contain at least one missing value",
+      "It deletes only columns that are entirely NaN",
+      "It doesn't do anything because axis=1 is default"
+    ],
+    "correct_index": 1,
+    "explanation": "In Pandas, axis=0 refers to rows (default) and axis=1 refers to columns.",
+    "difficulty": "hard",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-72-practice",
+    "question_type": "mcq",
+    "text": "How do you count the number of non-missing values in each column?",
+    "options": [
+      "df.sum()",
+      "df.length()",
+      "df.count()",
+      "df.total()"
+    ],
+    "correct_index": 2,
+    "explanation": "'.count()' returns the number of non-NA cells for each column or row.",
+    "difficulty": "medium",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-72-practice",
+    "question_type": "mcq",
+    "text": "What does the '.describe()' method do?",
+    "options": [
+      "Prints a summary of the code history",
+      "Returns a string describing the purpose of the Pandas library",
+      "Generates descriptive statistics like mean, std, min, and quartiles for numeric columns",
+      "Draws a histogram of the data"
+    ],
+    "correct_index": 2,
+    "explanation": "It is a quick way to get a statistical overview of your numeric data.",
+    "difficulty": "easy",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-72-practice",
+    "question_type": "mcq",
+    "text": "Which command allows you to view the data types of each column in your DataFrame?",
+    "options": [
+      "df.types",
+      "df.format",
+      "df.dtypes",
+      "df.info()"
+    ],
+    "correct_index": 2,
+    "explanation": "'.dtypes' returns the data type of each column (e.g., float64, int64, object).",
+    "difficulty": "medium",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-72-practice",
+    "question_type": "mcq",
+    "text": "How would you create a new column 'Total' which is the sum of columns 'A' and 'B'?",
+    "options": [
+      "df.add_column('Total', df['A'] + df['B'])",
+      "df['Total'] = df['A'] + df['B']",
+      "df.append({'Total': df['A'] + df['B']})",
+      "new_col = df['A'].sum(df['B'])"
+    ],
+    "correct_index": 1,
+    "explanation": "You can create or update columns using the assignment operator directly on the DataFrame.",
+    "difficulty": "medium",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-72-practice",
+    "question_type": "mcq",
+    "text": "What does the '.insert()' method do in Pandas?",
+    "options": [
+      "Adds a new row at the end",
+      "Adds a new column at a specific index location",
+      "Inserts a value into a specific cell",
+      "Connects to a SQL database to insert data"
+    ],
+    "correct_index": 1,
+    "explanation": "'.insert(loc, column, value)' allows you to place a new column at a specific position instead of just at the end.",
+    "difficulty": "hard",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-72-practice",
+    "question_type": "mcq",
+    "text": "In 'df.groupby('Category').count()', what is the result?",
+    "options": [
+      "The total number of rows in the category",
+      "A series showing the count of non-NaN values for each column, grouped by 'Category'",
+      "The average value for each category",
+      "It sorts the dataframe by Category"
+    ],
+    "correct_index": 1,
+    "explanation": "Aggregating after grouping summarizes the data for each group.",
+    "difficulty": "hard",
+    "topic_tag": "pandas"
+  },
+  {
+    "question_type": "coding",
+    "text": "DataFrame Shape\n\nWrite a function that returns the number of rows in a DataFrame.",
+    "starter_code": "import pandas as pd\n\ndef count_rows(df):\n    # Return the number of rows\n    pass",
+    "test_cases": [
+      {
+        "function_call": "count_rows(pd.DataFrame({'a': [1,2,3]}))",
+        "expected": "3"
+      },
+      {
+        "function_call": "count_rows(pd.DataFrame({'a': [1,2,3,4,5]}))",
+        "expected": "5"
+      }
+    ],
+    "solution_code": "import pandas as pd\n\ndef count_rows(df):\n    return df.shape[0]",
+    "explanation": "df.shape returns a tuple (rows, columns). The first element [0] is the row count.",
+    "difficulty": "easy",
+    "topic_tag": "pandas"
+  },
+  {
+    "question_type": "coding",
+    "text": "Find Column Maximum\n\nWrite a function that returns the maximum value from a specific column.",
+    "starter_code": "import pandas as pd\n\ndef get_max(df, column_name):\n    # Return the maximum value in the column\n    pass",
+    "test_cases": [
+      {
+        "function_call": "get_max(pd.DataFrame({'Salary': [50000, 60000, 55000]}), 'Salary')",
+        "expected": "60000"
+      },
+      {
+        "function_call": "get_max(pd.DataFrame({'Age': [25, 30, 22]}), 'Age')",
+        "expected": "30"
+      }
+    ],
+    "solution_code": "import pandas as pd\n\ndef get_max(df, column_name):\n    return df[column_name].max()",
+    "explanation": "Access the column with df[column_name] then use .max() to get the highest value.",
+    "difficulty": "easy",
+    "topic_tag": "pandas"
+  },
+  {
+    "question_type": "coding",
+    "text": "Drop Missing Values\n\nWrite a function that returns a DataFrame with all rows containing NaN removed.",
+    "starter_code": "import pandas as pd\n\ndef clean_data(df):\n    # Return df without rows that have NaN\n    pass",
+    "test_cases": [
+      {
+        "function_call": "len(clean_data(pd.DataFrame({'a': [1, None, 3]})))",
+        "expected": "2"
+      },
+      {
+        "function_call": "clean_data(pd.DataFrame({'a': [1, 2, 3]})).shape[0]",
+        "expected": "3"
+      }
+    ],
+    "solution_code": "import pandas as pd\n\ndef clean_data(df):\n    return df.dropna()",
+    "explanation": "The dropna() method removes all rows that contain at least one NaN value.",
+    "difficulty": "easy",
+    "topic_tag": "pandas"
+  },
+  {
+    "question_type": "coding",
+    "text": "Sort DataFrame\n\nWrite a function that sorts a DataFrame by a column in descending order.",
+    "starter_code": "import pandas as pd\n\ndef sort_descending(df, column_name):\n    # Sort df by column_name descending\n    pass",
+    "test_cases": [
+      {
+        "function_call": "sort_descending(pd.DataFrame({'score': [10, 30, 20]}), 'score')['score'].tolist()",
+        "expected": "[30, 20, 10]"
+      }
+    ],
+    "solution_code": "import pandas as pd\n\ndef sort_descending(df, column_name):\n    return df.sort_values(column_name, ascending=False)",
+    "explanation": "sort_values() sorts by the specified column. ascending=False gives descending order.",
+    "difficulty": "medium",
+    "topic_tag": "pandas"
+  },
+  {
+    "question_type": "coding",
+    "text": "Add Calculated Column\n\nWrite a function that adds a 'Total' column which is the sum of 'A' and 'B' columns.",
+    "starter_code": "import pandas as pd\n\ndef add_total_column(df):\n    # Add a 'Total' column = A + B\n    pass",
+    "test_cases": [
+      {
+        "function_call": "add_total_column(pd.DataFrame({'A': [1, 2], 'B': [3, 4]}))['Total'].tolist()",
+        "expected": "[4, 6]"
+      }
+    ],
+    "solution_code": "import pandas as pd\n\ndef add_total_column(df):\n    df['Total'] = df['A'] + df['B']\n    return df",
+    "explanation": "Create a new column by assigning the result of an operation on existing columns.",
+    "difficulty": "medium",
+    "topic_tag": "pandas"
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The code crashes when accessing a column with NaN values. Fix it.",
+    "code": "mean_salary = df['Salary'].sum() / len(df['Salary'])",
+    "options": [
+      "Use df['Salary'].mean() which automatically handles NaN values",
+      "Convert NaN to strings first",
+      "Use df.Salary() instead",
+      "Add .astype(int) to the column"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "pandas",
+    "explanation": "The .mean() method automatically ignores NaN values, while manual division will be affected by them."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The code throws KeyError when accessing a column. Debug it.",
+    "code": "highest = df.idxmax['Salary']",
+    "options": [
+      "Use parentheses: df['Salary'].idxmax()",
+      "Change 'idxmax' to 'max_index'",
+      "Remove the column name",
+      "Add .values at the end"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "pandas",
+    "explanation": "idxmax is a method and requires parentheses. Also, access the column first, then call idxmax()."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The sort operation is not working as expected. Find the bug.",
+    "code": "df.sort_values('Age', descending=True)",
+    "options": [
+      "Change 'descending' to 'ascending=False'",
+      "Use df.order_by() instead",
+      "Add inplace=True",
+      "Remove the True parameter"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "pandas",
+    "explanation": "The correct parameter is 'ascending=False', not 'descending=True'."
+  }
+]

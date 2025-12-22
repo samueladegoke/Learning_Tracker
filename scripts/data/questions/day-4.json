@@ -364,5 +364,50 @@
     "explanation": "random.random() gives 0-1. Multiply by 100 to get 0-100.",
     "difficulty": "easy",
     "topic_tag": "random"
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The random number generation throws NameError. Debug it.",
+    "code": "number = randint(1, 10)\nprint(number)",
+    "options": [
+      "Import random module and use random.randint(1, 10)",
+      "Use random(1, 10) instead",
+      "Add quotes around randint",
+      "Use int(rand(1, 10))"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "random",
+    "explanation": "randint is a function in the random module. You must import random first, then call random.randint()."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The code throws IndexError when accessing list elements. Fix it.",
+    "code": "fruits = ['apple', 'banana', 'cherry']\nprint(fruits[3])",
+    "options": [
+      "Use index 2 instead of 3; lists are 0-indexed so the last item is at len-1",
+      "Add a fourth fruit to the list",
+      "Use fruits[-3] instead",
+      "Convert 3 to a string"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "indexing",
+    "explanation": "Lists use 0-based indexing. A 3-item list has indices 0, 1, 2. Index 3 is out of range."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The random range doesn't include 10 as expected. Debug it.",
+    "code": "import random\ndice = random.randrange(1, 10)\nprint(dice)  # Should include 10",
+    "options": [
+      "Use random.randint(1, 10) which includes both endpoints, or randrange(1, 11)",
+      "Change 10 to 10.0",
+      "Use random.random(1, 10)",
+      "Add inclusive=True parameter"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "random",
+    "explanation": "randrange excludes the stop value (like range). Use randint for inclusive endpoints, or randrange(1, 11)."
   }
 ]

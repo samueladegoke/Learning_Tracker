@@ -329,5 +329,50 @@
     "topic_tag": "project",
     "solution_code": "def find_highest_bidder(bids):\n    highest_bid = -1\n    winner = ''\n    for bidder in bids:\n        bid_amount = bids[bidder]\n        if bid_amount > highest_bid:\n            highest_bid = bid_amount\n            winner = bidder\n    return (winner, highest_bid)",
     "explanation": "Use the 'in' keyword to check membership. It returns True if the item exists in the collection."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The dictionary access throws KeyError. Fix it.",
+    "code": "student = {\"name\": \"Alice\", \"age\": 20}\nprint(student[\"grade\"])",
+    "options": [
+      "Use .get() method: student.get(\"grade\", \"N/A\")",
+      "Use student(\"grade\")",
+      "Use student.grade",
+      "Add quotes around student"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "dictionaries",
+    "explanation": ".get() returns None or a default value if the key does not exist."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Adding a new key-value pair is not working. Debug it.",
+    "code": "scores = {}\nscores.add(\"Alice\", 100)",
+    "options": [
+      "Use assignment syntax: scores[\"Alice\"] = 100",
+      "Use scores.insert(\"Alice\", 100)",
+      "Use scores.append({\"Alice\": 100})",
+      "Use scores.update(\"Alice\")"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "dictionaries",
+    "explanation": "Dictionaries use bracket notation: dict[key] = value"
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The nested dictionary access fails. Fix the syntax.",
+    "code": "travel = {\"France\": {\"cities\": [\"Paris\", \"Lyon\"]}}\nprint(travel.France.cities)",
+    "options": [
+      "Use bracket notation: travel[\"France\"][\"cities\"]",
+      "Use travel->France->cities",
+      "Use travel.get.France.cities",
+      "Cast to object first"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "dictionaries",
+    "explanation": "Python dicts use bracket notation, not dot notation."
   }
 ]

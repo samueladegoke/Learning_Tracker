@@ -341,5 +341,50 @@
     "topic_tag": "computer-ai",
     "explanation": "Dealer must draw to 16 and stand on soft 17 (standard rule). Here we check < 17.",
     "question_type": "coding"
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The ace value logic is wrong. Fix the conditional.",
+    "code": "ace_value = 11 or 1",
+    "options": [
+      "Use conditional: ace_value = 11 if total <= 10 else 1",
+      "Use ace_value = 11 | 1",
+      "Use random.choice([11, 1])",
+      "Remove the or"
+    ],
+    "correct_index": 0,
+    "difficulty": "hard",
+    "topic_tag": "game_logic",
+    "explanation": "\"or\" returns the first truthy value. Use conditional logic."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The card dealing always gives the same card. Debug it.",
+    "code": "import random\ncards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]\ncard = cards[0]",
+    "options": [
+      "Use random.choice(cards)",
+      "Use cards.pop()",
+      "Use cards.random()",
+      "Sort cards first"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "random",
+    "explanation": "cards[0] always gets the first card. Use random.choice()."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The score comparison uses wrong operator. Fix it.",
+    "code": "if user_score = 21:\n    print(\"Blackjack!\")",
+    "options": [
+      "Use == for comparison: if user_score == 21:",
+      "Use === operator",
+      "Use is 21",
+      "Use equals(21)"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "operators",
+    "explanation": "= is assignment, == is comparison."
   }
 ]

@@ -393,5 +393,50 @@
     "explanation": "Use if/elif/else for base price, then a separate if statement to add photo cost if requested.",
     "difficulty": "hard",
     "topic_tag": "control_flow"
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The if statement throws an IndentationError. Fix it.",
+    "code": "if age >= 18:\nprint(\"You can vote\")",
+    "options": [
+      "Indent the print statement: add 4 spaces before print()",
+      "Remove the colon after the condition",
+      "Add curly braces around the code block",
+      "Put print on the same line as if"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "control_flow",
+    "explanation": "Python uses indentation to define code blocks. The code inside an if statement must be indented (usually 4 spaces)."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The comparison always assigns instead of comparing. Find the bug.",
+    "code": "if password = \"secret\":\n    print(\"Access granted\")",
+    "options": [
+      "Use == for comparison instead of = for assignment",
+      "Use === for comparison",
+      "Remove the quotes around secret",
+      "Use .equals() method"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "operators",
+    "explanation": "A single = is assignment, == is comparison. Use == to check equality in conditions."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The logical operator is causing a NameError. Debug it.",
+    "code": "if age >= 18 AND has_id:\n    print(\"Can enter\")",
+    "options": [
+      "Use lowercase 'and' instead of 'AND'",
+      "Use && instead of AND",
+      "Remove the spaces around AND",
+      "Use 'both' instead of 'AND'"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "logical_operators",
+    "explanation": "Python logical operators are lowercase: and, or, not. AND (uppercase) is not recognized."
   }
 ]

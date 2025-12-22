@@ -1,0 +1,422 @@
+[
+  {
+    "quiz_id": "day-74-practice",
+    "question_type": "mcq",
+    "text": "What does the '.value_counts()' method return?",
+    "options": [
+      "The sum of all values in a column",
+      "A Series containing counts of unique values in a column",
+      "The average value of a column",
+      "The list of non-NaN values"
+    ],
+    "correct_index": 1,
+    "explanation": "'.value_counts()' is used to find the frequency of each unique item in a column (e.g., how many red LEGO bricks vs blue LEGO bricks).",
+    "difficulty": "easy",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-74-practice",
+    "question_type": "mcq",
+    "text": "In relational databases, what is a 'Primary Key'?",
+    "options": [
+      "The password to access the database",
+      "A column that uniquely identifies each row in a table",
+      "A column that must be shared between all tables",
+      "The first column in every dataset"
+    ],
+    "correct_index": 1,
+    "explanation": "Primary keys ensure that every record can be referenced uniquely, like a student ID or a barcode.",
+    "difficulty": "medium",
+    "topic_tag": "database"
+  },
+  {
+    "quiz_id": "day-74-practice",
+    "question_type": "mcq",
+    "text": "Which method is used to combine two DataFrames based on a shared column?",
+    "options": [
+      "df.combine()",
+      "df.join()",
+      "pd.merge()",
+      "pd.concat()"
+    ],
+    "correct_index": 2,
+    "explanation": "'.merge()' is the standard way to combine datasets using keys, similar to a JOIN in SQL.",
+    "difficulty": "easy",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-74-practice",
+    "question_type": "mcq",
+    "text": "How do you perform multiple distinct aggregations (e.g., count and max) on a grouped DataFrame?",
+    "options": [
+      "df.groupby('A').calc({'B': 'count', 'C': 'max'})",
+      "df.groupby('A').agg({'B': 'count', 'C': 'max'})",
+      "df.groupby('A').sum({'B': 'count', 'C': 'max'})",
+      "df.groupby('A').apply(['count', 'max'])"
+    ],
+    "correct_index": 1,
+    "explanation": "The '.agg()' method allows you to pass a dictionary where keys are columns and values are the functions to apply.",
+    "difficulty": "hard",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-74-practice",
+    "question_type": "mcq",
+    "text": "What is a 'Foreign Key'?",
+    "options": [
+      "A key that comes from a different programming language",
+      "An ID in one table that refers to a Primary Key in another table",
+      "A column that contains text only",
+      "A key used for encrypting data"
+    ],
+    "correct_index": 1,
+    "explanation": "Foreign keys create relationships between tables by pointing to the unique identifier of a record in a different table.",
+    "difficulty": "medium",
+    "topic_tag": "database"
+  },
+  {
+    "quiz_id": "day-74-practice",
+    "question_type": "mcq",
+    "text": "When merging, what does the parameter 'on' specify?",
+    "options": [
+      "The name of the resulting merged dataframe",
+      "The column name(s) common to both dataframes to use for the merge",
+      "The row index to start from",
+      "Whether to overwrite existing data"
+    ],
+    "correct_index": 1,
+    "explanation": "Example: 'pd.merge(df1, df2, on='id')' links the tables using the 'id' column.",
+    "difficulty": "easy",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-74-practice",
+    "question_type": "mcq",
+    "text": "How do you rename a column 'old_name' to 'new_name' in Pandas?",
+    "options": [
+      "df.rename(columns={'old_name': 'new_name'})",
+      "df.change_name('old_name', 'new_name')",
+      "df.columns['old_name'] = 'new_name'",
+      "df.replace('old_name', 'new_name')"
+    ],
+    "correct_index": 0,
+    "explanation": "The '.rename()' method with a dictionary is the standard way to rename specific columns.",
+    "difficulty": "medium",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-74-practice",
+    "question_type": "mcq",
+    "text": "What happens in a 'merged_df' if two merged tables both have a column named 'name'?",
+    "options": [
+      "Pandas deletes one automatically",
+      "Pandas throws an error",
+      "Pandas appends suffixes like _x and _y to distinguish them (e.g., name_x, name_y)",
+      "The columns are merged into one"
+    ],
+    "correct_index": 2,
+    "explanation": "Suffixes are used to resolve name collisions while preserving data from both tables.",
+    "difficulty": "hard",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-74-practice",
+    "question_type": "mcq",
+    "text": "Which slicing notation would you use to get the top 5 rows of a sorted DataFrame?",
+    "options": [
+      "df[0..5]",
+      "df[:5]",
+      "df[5:]",
+      "df[1:5]"
+    ],
+    "correct_index": 1,
+    "explanation": "In Python slicing, ':5' means from the beginning up to (but not including) index 5.",
+    "difficulty": "easy",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-74-practice",
+    "question_type": "mcq",
+    "text": "In Matplotlib, what does 'plt.gca()' do?",
+    "options": [
+      "Generates a Chart Automatically",
+      "Gets Current Axes",
+      "Groups Columns Alphabetically",
+      "Graphically Corrects Alignment"
+    ],
+    "correct_index": 1,
+    "explanation": "'gca' stands for Get Current Axes, which is necessary when customizing plots or creating twin axes.",
+    "difficulty": "medium",
+    "topic_tag": "matplotlib"
+  },
+  {
+    "quiz_id": "day-74-practice",
+    "question_type": "mcq",
+    "text": "When creating a chart with two different Y-axes, which method is used to 'duplicate' the X-axis?",
+    "options": [
+      "ax.copy()",
+      "ax.twinx()",
+      "ax.double_x()",
+      "ax.clone()"
+    ],
+    "correct_index": 1,
+    "explanation": "'.twinx()' creates a new axes object that shares the same X-axis but allows for a separate Y-axis scale.",
+    "difficulty": "hard",
+    "topic_tag": "matplotlib"
+  },
+  {
+    "quiz_id": "day-74-practice",
+    "question_type": "mcq",
+    "text": "To plot a bar chart instead of a line chart, which method do you use?",
+    "options": [
+      "plt.line(type='bar')",
+      "plt.bar()",
+      "plt.box()",
+      "plt.histogram()"
+    ],
+    "correct_index": 1,
+    "explanation": "'plt.bar(x, height)' is used for creating bar charts.",
+    "difficulty": "easy",
+    "topic_tag": "matplotlib"
+  },
+  {
+    "quiz_id": "day-74-practice",
+    "question_type": "mcq",
+    "text": "What is the result of 'pd.merge(df1, df2, on='id').shape' if both dataframes have 10 rows and matching IDs?",
+    "options": [
+      "(10, combined_columns)",
+      "(20, combined_columns)",
+      "(10, 2)",
+      "(20, 10)"
+    ],
+    "correct_index": 0,
+    "explanation": "If the IDs match 1-to-1, the number of rows remains the same, but columns from both tables are present.",
+    "difficulty": "medium",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-74-practice",
+    "question_type": "mcq",
+    "text": "How do you count unique entries in a column named 'color'?",
+    "options": [
+      "df['color'].unique_count()",
+      "df['color'].nunique()",
+      "df['color'].sum_unique()",
+      "df['color'].count(distinct=True)"
+    ],
+    "correct_index": 1,
+    "explanation": "'.nunique()' returns the count of unique items, while '.unique()' returns the items themselves.",
+    "difficulty": "medium",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-74-practice",
+    "question_type": "mcq",
+    "text": "Which aggregator function in '.agg()' would you use to find the average number of parts in LEGO sets?",
+    "options": [
+      "'average'",
+      "'avg'",
+      "'mean'",
+      "'total_avg'"
+    ],
+    "correct_index": 2,
+    "explanation": "In Pandas/Python, 'mean' is the standard terminology for average.",
+    "difficulty": "easy",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-74-practice",
+    "question_type": "mcq",
+    "text": "In 'plt.plot(x, y, color='orange')', what does 'x' usually represent in a time-series aggregation?",
+    "options": [
+      "The data points (e.g. number of sets)",
+      "The index or time labels (e.g. years)",
+      "The color scheme",
+      "The legend text"
+    ],
+    "correct_index": 1,
+    "explanation": "When plotting over time, the time component usually sits on the horizontal X-axis.",
+    "difficulty": "easy",
+    "topic_tag": "matplotlib"
+  },
+  {
+    "quiz_id": "day-74-practice",
+    "question_type": "mcq",
+    "text": "If you merge on 'id' and 'df1' has an ID that 'df2' does not have, what is the default behavior?",
+    "options": [
+      "The row is kept with NaNs for df2's columns",
+      "The row is excluded from the new dataframe (Inner Join)",
+      "An error is thrown",
+      "Pandas asks the user for input"
+    ],
+    "correct_index": 1,
+    "explanation": "By default, 'pd.merge' performs an 'inner' join, only keeping rows where the key exists in both tables.",
+    "difficulty": "hard",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-74-practice",
+    "question_type": "mcq",
+    "text": "What does a larger number of parts in a LEGO set usually signify over time in the LEGO dataset study?",
+    "options": [
+      "Sets are becoming simpler",
+      "Sets are becoming more complex/detailed",
+      "LEGO is using larger single pieces",
+      "The dataset is biased toward newer sets"
+    ],
+    "correct_index": 1,
+    "explanation": "The study shows a trend where the average part count per set has steadily increased over the decades.",
+    "difficulty": "medium",
+    "topic_tag": "data-science"
+  },
+  {
+    "quiz_id": "day-74-practice",
+    "question_type": "mcq",
+    "text": "How can you see only the theme names and set names from a merged DataFrame 'df'?",
+    "options": [
+      "df.show('theme', 'set')",
+      "df[['theme', 'set']]",
+      "df.select('theme', 'set')",
+      "df['theme', 'set']"
+    ],
+    "correct_index": 1,
+    "explanation": "To select multiple columns, you must pass a list within the square brackets 'df[[col1, col2]]'.",
+    "difficulty": "medium",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-74-practice",
+    "question_type": "mcq",
+    "text": "What is the purpose of 'rename(columns=...)'?",
+    "options": [
+      "To fix spelling errors in the data itself",
+      "To make column headers more descriptive or distinguish columns after a merge",
+      "To change the data type of the headers",
+      "To sort the columns alphabetically"
+    ],
+    "correct_index": 1,
+    "explanation": "Renaming is vital for clarity, especially when merges create repetitive names like 'name_x' and 'name_y'.",
+    "difficulty": "easy",
+    "topic_tag": "pandas"
+  },
+  {
+    "question_type": "coding",
+    "text": "Count Unique Values\n\nWrite a function that returns a value_counts Series for a specified column.",
+    "starter_code": "import pandas as pd\n\ndef count_values(df, column_name):\n    # Return value counts\n    pass",
+    "test_cases": [
+      {
+        "function_call": "count_values(pd.DataFrame({'color': ['red', 'blue', 'red']}), 'color')['red']",
+        "expected": "2"
+      }
+    ],
+    "solution_code": "import pandas as pd\n\ndef count_values(df, column_name):\n    return df[column_name].value_counts()",
+    "explanation": "value_counts() returns a Series with unique values as index and their counts as values.",
+    "difficulty": "easy",
+    "topic_tag": "pandas"
+  },
+  {
+    "question_type": "coding",
+    "text": "Group and Aggregate\n\nWrite a function that groups by a column and returns the mean of another column.",
+    "starter_code": "import pandas as pd\n\ndef group_mean(df, group_col, value_col):\n    # Group by group_col, return mean of value_col\n    pass",
+    "test_cases": [
+      {
+        "function_call": "group_mean(pd.DataFrame({'cat': ['A','A','B'], 'val': [10, 20, 30]}), 'cat', 'val')['A']",
+        "expected": "15.0"
+      }
+    ],
+    "solution_code": "import pandas as pd\n\ndef group_mean(df, group_col, value_col):\n    return df.groupby(group_col)[value_col].mean()",
+    "explanation": "groupby() groups rows, then you select the column and apply .mean() to get the average per group.",
+    "difficulty": "medium",
+    "topic_tag": "pandas"
+  },
+  {
+    "question_type": "coding",
+    "text": "Merge Two DataFrames\n\nWrite a function that merges two DataFrames on a common column.",
+    "starter_code": "import pandas as pd\n\ndef merge_dfs(df1, df2, key_column):\n    # Merge on key_column\n    pass",
+    "test_cases": [
+      {
+        "function_call": "merge_dfs(pd.DataFrame({'id': [1], 'a': ['x']}), pd.DataFrame({'id': [1], 'b': ['y']}), 'id').shape[1]",
+        "expected": "3"
+      }
+    ],
+    "solution_code": "import pandas as pd\n\ndef merge_dfs(df1, df2, key_column):\n    return pd.merge(df1, df2, on=key_column)",
+    "explanation": "pd.merge() combines DataFrames like a SQL JOIN, matching rows where the key column values are equal.",
+    "difficulty": "medium",
+    "topic_tag": "pandas"
+  },
+  {
+    "question_type": "coding",
+    "text": "Apply Multiple Aggregations\n\nWrite a function that groups by 'category' and returns both count and sum of 'value'.",
+    "starter_code": "import pandas as pd\n\ndef multi_agg(df):\n    # Group by 'category', return count and sum of 'value'\n    pass",
+    "test_cases": [
+      {
+        "function_call": "'count' in multi_agg(pd.DataFrame({'category': ['A'], 'value': [10]})).columns",
+        "expected": "True"
+      }
+    ],
+    "solution_code": "import pandas as pd\n\ndef multi_agg(df):\n    return df.groupby('category')['value'].agg(['count', 'sum'])",
+    "explanation": "Use .agg() with a list of function names to apply multiple aggregations at once.",
+    "difficulty": "hard",
+    "topic_tag": "pandas"
+  },
+  {
+    "question_type": "coding",
+    "text": "Select Multiple Columns\n\nWrite a function that returns only the specified columns from a DataFrame.",
+    "starter_code": "import pandas as pd\n\ndef select_columns(df, columns):\n    # Return only the specified columns\n    pass",
+    "test_cases": [
+      {
+        "function_call": "select_columns(pd.DataFrame({'a': [1], 'b': [2], 'c': [3]}), ['a', 'c']).columns.tolist()",
+        "expected": "['a', 'c']"
+      }
+    ],
+    "solution_code": "import pandas as pd\n\ndef select_columns(df, columns):\n    return df[columns]",
+    "explanation": "Pass a list of column names to df[columns] to select multiple columns at once.",
+    "difficulty": "easy",
+    "topic_tag": "pandas"
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The merge returns an empty DataFrame. Debug the issue.",
+    "code": "merged = pd.merge(df1, df2, on='ID')\n# df1 has 'id' (lowercase), df2 has 'ID' (uppercase)",
+    "options": [
+      "Rename columns to match case, or use left_on='id', right_on='ID'",
+      "Use pd.concat() instead",
+      "Add how='outer' parameter",
+      "Remove the on parameter"
+    ],
+    "correct_index": 0,
+    "difficulty": "hard",
+    "topic_tag": "pandas",
+    "explanation": "Pandas merge is case-sensitive. Column names must match exactly or use left_on/right_on."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The aggregation fails with an error. Find the bug.",
+    "code": "result = df.groupby('category').agg(count='value', sum='value')",
+    "options": [
+      "Use a dictionary: .agg({'value': ['count', 'sum']})",
+      "Use .apply() instead",
+      "Remove the groupby",
+      "Add reset_index()"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "pandas",
+    "explanation": "The agg() method takes a dictionary with column names as keys and aggregation functions as values."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "Selecting multiple columns returns a DataFrame with wrong columns. Debug it.",
+    "code": "subset = df['name', 'age']",
+    "options": [
+      "Use double brackets: df[['name', 'age']]",
+      "Use df.get('name', 'age')",
+      "Add .select() method",
+      "Use tuple instead of comma"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "pandas",
+    "explanation": "To select multiple columns, pass a list inside the brackets: df[['col1', 'col2']]."
+  }
+]

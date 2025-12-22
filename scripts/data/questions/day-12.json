@@ -370,5 +370,50 @@
     "topic_tag": "number-guessing-game",
     "explanation": "Combine conditions with 'or' to check for multiple game-over states.",
     "question_type": "coding"
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The global variable is not updating. Fix it.",
+    "code": "score = 0\ndef increase_score():\n    score = score + 1",
+    "options": [
+      "Add global keyword: global score",
+      "Use score := score + 1",
+      "Pass score as parameter",
+      "Use external score"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "scope",
+    "explanation": "To modify a global variable, use the global keyword."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The inner function cannot access outer variable. Debug it.",
+    "code": "def outer():\n    x = 10\n    def inner():\n        x = x + 1\n    inner()\n    return x",
+    "options": [
+      "Use nonlocal x in inner function",
+      "Use global x",
+      "Pass x as parameter",
+      "Remove inner function"
+    ],
+    "correct_index": 0,
+    "difficulty": "hard",
+    "topic_tag": "scope",
+    "explanation": "Use nonlocal to modify an enclosing scope variable."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The constant is being modified. Fix the convention.",
+    "code": "PI = 3.14159\nPI = 3.14",
+    "options": [
+      "Remove the second assignment - constants should not be reassigned",
+      "Use const PI",
+      "Use PI.freeze()",
+      "Use immutable(PI)"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "scope",
+    "explanation": "Python uses UPPER_CASE naming convention for constants."
   }
 ]

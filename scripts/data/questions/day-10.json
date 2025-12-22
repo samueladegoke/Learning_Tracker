@@ -359,5 +359,50 @@
     "topic_tag": "chaining-functions",
     "solution_code": "def double_text(text):\n    return text + text\n\ndef shout(text):\n    return text.upper()\n\ndef shout_double(text):\n    return shout(double_text(text))",
     "explanation": "Convert strings to consistent case for comparison. Use .lower() or .upper() to normalize input."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The function should return multiple values. Fix it.",
+    "code": "def min_max(numbers):\n    return min(numbers)",
+    "options": [
+      "Return a tuple: return min(numbers), max(numbers)",
+      "Use return [min, max]",
+      "Call return twice",
+      "Use yield instead"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "functions",
+    "explanation": "Return multiple values as a tuple: return value1, value2"
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The docstring is not showing in help(). Fix the placement.",
+    "code": "def calculate():\n    result = 42\n    \"\"\"Returns a calculation result\"\"\"\n    return result",
+    "options": [
+      "Move docstring to first line after def",
+      "Use # comment instead",
+      "Add print before docstring",
+      "Use help= parameter"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "documentation",
+    "explanation": "Docstrings must be the first statement in a function body."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The returned value is a string instead of number. Fix it.",
+    "code": "def add_numbers():\n    a = input(\"First: \")\n    b = input(\"Second: \")\n    return a + b",
+    "options": [
+      "Convert inputs to int: return int(a) + int(b)",
+      "Use sum(a, b)",
+      "Use a - b",
+      "Remove the + operator"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "type_conversion",
+    "explanation": "input() returns strings. Convert to int for math."
   }
 ]

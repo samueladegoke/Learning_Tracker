@@ -372,5 +372,50 @@
     "topic_tag": "coffee-machine-format",
     "explanation": "Use f-strings to construct the multi-line report string matching the requirements.",
     "question_type": "coding"
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The resource check always passes. Debug the condition.",
+    "code": "if resources[\"water\"] > recipe[\"water\"]:",
+    "options": [
+      "Use >= for sufficient resources",
+      "Use == instead",
+      "Swap the comparison",
+      "Use .has() method"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "logic",
+    "explanation": "Check if resources are greater than OR EQUAL to requirements."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The money calculation loses precision. Fix the float issue.",
+    "code": "total = 0.1 + 0.2\nif total == 0.3:",
+    "options": [
+      "Use round() for comparison: if round(total, 2) == 0.3:",
+      "Use total is 0.3",
+      "Use decimal module",
+      "Use int(total) == 0"
+    ],
+    "correct_index": 0,
+    "difficulty": "hard",
+    "topic_tag": "floats",
+    "explanation": "Floating point arithmetic has precision issues. Use round()."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The recipe lookup fails. Debug the dictionary access.",
+    "code": "recipes = {\"espresso\": {}}\nrecipe = recipes[user_choice]",
+    "options": [
+      "Use lowercase: recipe = recipes[user_choice.lower()]",
+      "Use case-insensitive dict",
+      "Add \"Espresso\" to recipes",
+      "Use recipes.get()"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "strings",
+    "explanation": "Dictionary keys are case-sensitive. Convert input to lowercase."
   }
 ]

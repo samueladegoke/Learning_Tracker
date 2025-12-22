@@ -1,0 +1,476 @@
+[
+  {
+    "quiz_id": "day-71-practice",
+    "question_type": "mcq",
+    "text": "What is the primary purpose of a WSGI server like Gunicorn in a production environment?",
+    "options": [
+      "To serve static files like CSS and images only",
+      "To provide a more robust, multi-worker interface for handling HTTP requests than the built-in Flask dev server",
+      "To compile Python code into machine code for faster execution",
+      "To act as a database management system"
+    ],
+    "correct_index": 1,
+    "explanation": "The built-in Flask server is only intended for development and is single-threaded. Gunicorn creates multiple worker processes to handle many concurrent users.",
+    "difficulty": "medium",
+    "topic_tag": "deployment"
+  },
+  {
+    "quiz_id": "day-71-practice",
+    "question_type": "mcq",
+    "text": "Why should sensitive data like API keys not be hardcoded in your source code?",
+    "options": [
+      "It makes the code run slower",
+      "It increases the file size of the Python script",
+      "The keys will be exposed to anyone who can see the repository, especially if pushed to a public site like GitHub",
+      "Python 3.10+ prevents scripts from running if they contain string literals longer than 64 characters"
+    ],
+    "correct_index": 2,
+    "explanation": "Hardcoding secrets is a major security risk. If you push code to GitHub, anyone can view your secrets and misuse them.",
+    "difficulty": "easy",
+    "topic_tag": "security"
+  },
+  {
+    "quiz_id": "day-71-practice",
+    "question_type": "mcq",
+    "text": "Which Python module is used to retrieve environment variables?",
+    "options": [
+      "sys",
+      "env",
+      "os",
+      "pathlib"
+    ],
+    "correct_index": 2,
+    "explanation": "The 'os' module provides 'os.environ.get()', which allows you to safely retrieve environment variables from the server.",
+    "difficulty": "easy",
+    "topic_tag": "deployment"
+  },
+  {
+    "quiz_id": "day-71-practice",
+    "question_type": "mcq",
+    "text": "What does a 'Procfile' specify for platforms like Heroku or Render?",
+    "options": [
+      "The list of Python packages to install",
+      "The metadata of the project like author and version",
+      "The command that should be executed to start the web application",
+      "The CSS styles for the admin dashboard"
+    ],
+    "correct_index": 2,
+    "explanation": "Identified by its lack of file extension, the Procfile tells the hosting provider how to run your app, such as 'web: gunicorn main:app'.",
+    "difficulty": "medium",
+    "topic_tag": "deployment"
+  },
+  {
+    "quiz_id": "day-71-practice",
+    "question_type": "mcq",
+    "text": "Why is SQLite often unsuitable for production apps on platforms like Heroku?",
+    "options": [
+      "SQLite is too slow for any website",
+      "Heroku uses an ephemeral file system, meaning the .db file will be wiped whenever the server restarts or 'cycles'",
+      "SQLite doesn't support basic SQL commands",
+      "Heroku blocks all connections to .db files for security reasons"
+    ],
+    "correct_index": 1,
+    "explanation": "Since SQLite stores data in a local file, that file is lost when the server's disk disappears (ephemeral storage). Production apps use external databases like PostgreSQL.",
+    "difficulty": "hard",
+    "topic_tag": "database"
+  },
+  {
+    "quiz_id": "day-71-practice",
+    "question_type": "mcq",
+    "text": "Which command is used to generate a list of all installed dependencies in a project?",
+    "options": [
+      "pip list --save",
+      "pip dump dependencies.txt",
+      "pip freeze > requirements.txt",
+      "python generate_reqs.py"
+    ],
+    "correct_index": 2,
+    "explanation": "'pip freeze' outputs all installed packages and their versions, which are then redirected into a 'requirements.txt' file for use by the server.",
+    "difficulty": "easy",
+    "topic_tag": "deployment"
+  },
+  {
+    "quiz_id": "day-71-practice",
+    "question_type": "mcq",
+    "text": "In a Gunicorn command 'gunicorn app:main', what does 'app' refer to?",
+    "options": [
+      "The name of the Python variable for the Flask instance",
+      "The name of the Python file (module) without the .py extension",
+      "The name of the virtual environment",
+      "The folder where the static files are located"
+    ],
+    "correct_index": 1,
+    "explanation": "The first part of the 'module:variable' pair refers to the module name (e.g., 'app.py' becomes 'app').",
+    "difficulty": "medium",
+    "topic_tag": "deployment"
+  },
+  {
+    "quiz_id": "day-71-practice",
+    "question_type": "mcq",
+    "text": "What is PostgreSQL?",
+    "options": [
+      "A Python library for web scraping",
+      "An advanced, open-source relational database management system (RDBMS)",
+      "A type of HTTP request method",
+      "A frontend CSS framework"
+    ],
+    "correct_index": 1,
+    "explanation": "PostgreSQL is a powerful, production-ready database frequently used in web development.",
+    "difficulty": "easy",
+    "topic_tag": "database"
+  },
+  {
+    "quiz_id": "day-71-practice",
+    "question_type": "mcq",
+    "text": "Which package is commonly used in Flask apps to load environment variables from a .env file during development?",
+    "options": [
+      "flask-envs",
+      "python-dotenv",
+      "env-manager",
+      "py-config"
+    ],
+    "correct_index": 1,
+    "explanation": "'python-dotenv' allows you to create a local '.env' file that gets loaded into environment variables, mimicking production settings.",
+    "difficulty": "medium",
+    "topic_tag": "deployment"
+  },
+  {
+    "quiz_id": "day-71-practice",
+    "question_type": "mcq",
+    "text": "When deploying, why should you use 'os.environ.get('PORT', 5000)' instead of a fixed port like 5000?",
+    "options": [
+      "Production servers use much higher port numbers for speed",
+      "Cloud platforms assign a random port via an environment variable, and your app must listen on that specific port",
+      "Python requires dynamic port assignment to enable threading",
+      "It's just a convention and has no functional impact"
+    ],
+    "correct_index": 1,
+    "explanation": "Platforms like Render or Heroku dynamicallly allocate a port and inject it as the 'PORT' environment variable.",
+    "difficulty": "hard",
+    "topic_tag": "deployment"
+  },
+  {
+    "quiz_id": "day-71-practice",
+    "question_type": "mcq",
+    "text": "Which of these is a valid PostgreSQL connection string format for SQLAlchemy?",
+    "options": [
+      "db://postgres:user@password/dbname",
+      "postgresql://username:password@host:port/database",
+      "sqlite:///postgres.db",
+      "psql.connect(path='db_url')"
+    ],
+    "correct_index": 1,
+    "explanation": "PostgreSQL uses the 'postgresql://' prefix followed by credentials, host, and database name.",
+    "difficulty": "medium",
+    "topic_tag": "database"
+  },
+  {
+    "quiz_id": "day-71-practice",
+    "question_type": "mcq",
+    "text": "What is 'Gunicorn' an abbreviation for?",
+    "options": [
+      "Global Unicorn",
+      "Green Unicorn",
+      "Go Unicorn",
+      "Generic Unicorn"
+    ],
+    "correct_index": 1,
+    "explanation": "Gunicorn stands for Green Unicorn, and it is a Python WSGI HTTP Server for UNIX.",
+    "difficulty": "easy",
+    "topic_tag": "deployment"
+  },
+  {
+    "quiz_id": "day-71-practice",
+    "question_type": "mcq",
+    "text": "How does 'pip freeze' output differ from 'pip list'?",
+    "options": [
+      "pip freeze only shows packages you installed manually",
+      "pip list only shows packages in the current project",
+      "pip freeze uses the 'package==version' format required for requirements.txt",
+      "pip list is much faster"
+    ],
+    "correct_index": 2,
+    "explanation": "While both show installed packages, 'pip freeze' formats them specifically as 'pkg==ver' which is the standard for dependency files.",
+    "difficulty": "medium",
+    "topic_tag": "deployment"
+  },
+  {
+    "quiz_id": "day-71-practice",
+    "question_type": "mcq",
+    "text": "What is the 'root' of a Git project?",
+    "options": [
+      "The folder containing the .git directory",
+      "The first commit ever made",
+      "The admin user of the GitHub repository",
+      "The highest level folder in the operating system"
+    ],
+    "correct_index": 0,
+    "explanation": "The directory where 'git init' was run is considered the repository root.",
+    "difficulty": "easy",
+    "topic_tag": "git"
+  },
+  {
+    "quiz_id": "day-71-practice",
+    "question_type": "mcq",
+    "text": "When using Gunicorn, how can you increase the number of worker processes to handle more traffic?",
+    "options": [
+      "Use the --workers (or -w) flag",
+      "It scales automatically based on RAM",
+      "You must run the command multiple times in different terminals",
+      "Workers are fixed at 1 per 2GB of storage"
+    ],
+    "correct_index": 0,
+    "explanation": "Example: 'gunicorn -w 4 main:app' would start 4 worker processes.",
+    "difficulty": "hard",
+    "topic_tag": "deployment"
+  },
+  {
+    "quiz_id": "day-71-practice",
+    "question_type": "mcq",
+    "text": "Which of these is NOT a common hosting platform for Flask apps?",
+    "options": [
+      "Render",
+      "Fly.io",
+      "GitHub Pages",
+      "DigitalOcean"
+    ],
+    "correct_index": 2,
+    "explanation": "GitHub Pages only hosts static sites (HTML/CSS/JS). It cannot run server-side Python code.",
+    "difficulty": "medium",
+    "topic_tag": "deployment"
+  },
+  {
+    "quiz_id": "day-71-practice",
+    "question_type": "mcq",
+    "text": "What does a '500 Internal Server Error' usually indicate after deployment?",
+    "options": [
+      "The user's internet is disconnected",
+      "A crash in the server-side code (e.g., missing env var or database connection failure)",
+      "The URL path is incorrect (404 alternative)",
+      "The website has too many images"
+    ],
+    "correct_index": 1,
+    "explanation": "A 500 error means the Python code ran into an exception it couldn't handle, often due to configuration issues in production.",
+    "difficulty": "medium",
+    "topic_tag": "deployment"
+  },
+  {
+    "quiz_id": "day-71-practice",
+    "question_type": "mcq",
+    "text": "Which file is used to ignore certain files from being tracked by Git?",
+    "options": [
+      ".gitignore",
+      ".env",
+      "exclude.txt",
+      "git.config"
+    ],
+    "correct_index": 0,
+    "explanation": "The '.gitignore' file contains patterns of files/folders that Git should completely ignore.",
+    "difficulty": "easy",
+    "topic_tag": "git"
+  },
+  {
+    "quiz_id": "day-71-practice",
+    "question_type": "mcq",
+    "text": "What is the 'SECRET_KEY' typically used for in Flask?",
+    "options": [
+      "To encrypt the entire database",
+      "To sign session cookies and prevent tampering",
+      "To lock the admin dashboard with a password",
+      "To hide the source code from hackers"
+    ],
+    "correct_index": 1,
+    "explanation": "The secret key is used by Flask's session management to ensure users don't modify their own cookies.",
+    "difficulty": "hard",
+    "topic_tag": "security"
+  },
+  {
+    "quiz_id": "day-71-practice",
+    "question_type": "mcq",
+    "text": "Which database driver is commonly used to connect Python to PostgreSQL?",
+    "options": [
+      "psycopg2",
+      "pg-connector",
+      "postgres-py",
+      "sqlalchemy-psql"
+    ],
+    "correct_index": 0,
+    "explanation": "'psycopg2' (or its binary version) is the most popular PostgreSQL adapter for Python.",
+    "difficulty": "medium",
+    "topic_tag": "database"
+  },
+  {
+    "quiz_id": "day-71-practice",
+    "question_type": "mcq",
+    "text": "What happens if you run 'git init' inside an existing Git repository?",
+    "options": [
+      "It deletes the old repository",
+      "It creates a sub-repository",
+      "It re-initializes (safe to run, won't overwrite existing history)",
+      "The computer will explode"
+    ],
+    "correct_index": 2,
+    "explanation": "Running 'git init' on an existing repository is safe and is often used to pick up new configuration changes.",
+    "difficulty": "medium",
+    "topic_tag": "git"
+  },
+  {
+    "quiz_id": "day-71-practice",
+    "question_type": "mcq",
+    "text": "Why do we typically use 0.0.0.0 as the host when binding a production server?",
+    "options": [
+      "It's a faster IP address than 127.0.0.1",
+      "It tells the server to listen on all available network interfaces",
+      "It means the server is in 'stealth mode'",
+      "It's required by the HTTP/3 protocol"
+    ],
+    "correct_index": 1,
+    "explanation": "Binding to 0.0.0.0 ensures the server is accessible from external requests, not just locally.",
+    "difficulty": "hard",
+    "topic_tag": "deployment"
+  },
+  {
+    "question_type": "coding",
+    "text": "Write a Procfile for a Flask App\n\nCreate the content for a Procfile that starts a Flask app using Gunicorn with 4 workers.",
+    "starter_code": "# Write the Procfile content as a string\nprocfile_content = \"\"",
+    "test_cases": [
+      {
+        "function_call": "'gunicorn' in procfile_content.lower()",
+        "expected": "True"
+      },
+      {
+        "function_call": "'web:' in procfile_content.lower() or 'web :' in procfile_content.lower()",
+        "expected": "True"
+      }
+    ],
+    "solution_code": "procfile_content = \"web: gunicorn -w 4 app:app\"",
+    "explanation": "The Procfile tells Heroku/Render how to start the app. 'web:' denotes a web process, gunicorn is the WSGI server, and -w 4 sets 4 workers.",
+    "difficulty": "medium",
+    "topic_tag": "deployment"
+  },
+  {
+    "question_type": "coding",
+    "text": "Create a requirements.txt Entry\n\nWrite a function that returns a list of common Flask deployment dependencies.",
+    "starter_code": "def get_requirements():\n    # Return a list of package names\n    pass",
+    "test_cases": [
+      {
+        "function_call": "'flask' in [r.lower() for r in get_requirements()]",
+        "expected": "True"
+      },
+      {
+        "function_call": "'gunicorn' in [r.lower() for r in get_requirements()]",
+        "expected": "True"
+      }
+    ],
+    "solution_code": "def get_requirements():\n    return ['Flask', 'gunicorn', 'psycopg2-binary', 'python-dotenv']",
+    "explanation": "Flask is the web framework, gunicorn is the WSGI server, psycopg2-binary is for PostgreSQL, and python-dotenv loads .env files.",
+    "difficulty": "easy",
+    "topic_tag": "deployment"
+  },
+  {
+    "question_type": "coding",
+    "text": "Environment Variable Loader\n\nWrite a function that safely retrieves an environment variable with a default fallback.",
+    "starter_code": "import os\n\ndef get_env(key, default=None):\n    # Return the env var or default\n    pass",
+    "test_cases": [
+      {
+        "function_call": "get_env('NONEXISTENT_VAR_12345', 'fallback')",
+        "expected": "fallback"
+      },
+      {
+        "function_call": "get_env('PATH') is not None",
+        "expected": "True"
+      }
+    ],
+    "solution_code": "import os\n\ndef get_env(key, default=None):\n    return os.environ.get(key, default)",
+    "explanation": "os.environ.get() retrieves the variable if it exists, otherwise returns the default value. This prevents KeyError exceptions.",
+    "difficulty": "easy",
+    "topic_tag": "deployment"
+  },
+  {
+    "question_type": "coding",
+    "text": "Database URL Parser\n\nWrite a function that checks if a DATABASE_URL is for PostgreSQL (starts with 'postgres').",
+    "starter_code": "def is_postgres(url):\n    # Return True if it's a PostgreSQL URL\n    pass",
+    "test_cases": [
+      {
+        "function_call": "is_postgres('postgres://user:pass@host:5432/db')",
+        "expected": "True"
+      },
+      {
+        "function_call": "is_postgres('postgresql://user:pass@host/db')",
+        "expected": "True"
+      },
+      {
+        "function_call": "is_postgres('sqlite:///app.db')",
+        "expected": "False"
+      }
+    ],
+    "solution_code": "def is_postgres(url):\n    return url.startswith('postgres://') or url.startswith('postgresql://')",
+    "explanation": "PostgreSQL URLs can start with either 'postgres://' or 'postgresql://'. Checking both ensures compatibility.",
+    "difficulty": "medium",
+    "topic_tag": "deployment"
+  },
+  {
+    "question_type": "coding",
+    "text": "Gunicorn Command Builder\n\nWrite a function that builds a gunicorn command string with configurable workers and port.",
+    "starter_code": "def build_gunicorn_cmd(app_module, workers=2, port=8000):\n    # Return the gunicorn command string\n    pass",
+    "test_cases": [
+      {
+        "function_call": "build_gunicorn_cmd('app:app')",
+        "expected": "gunicorn -w 2 -b 0.0.0.0:8000 app:app"
+      },
+      {
+        "function_call": "build_gunicorn_cmd('main:application', workers=4, port=5000)",
+        "expected": "gunicorn -w 4 -b 0.0.0.0:5000 main:application"
+      }
+    ],
+    "solution_code": "def build_gunicorn_cmd(app_module, workers=2, port=8000):\n    return f'gunicorn -w {workers} -b 0.0.0.0:{port} {app_module}'",
+    "explanation": "-w sets workers, -b binds to an address:port. Using 0.0.0.0 allows external connections.",
+    "difficulty": "medium",
+    "topic_tag": "deployment"
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The Procfile fails to start Gunicorn. Identify the fix.",
+    "code": "web gunicorn app:app",
+    "options": [
+      "Add a colon after 'web' → 'web: gunicorn app:app'",
+      "Change 'gunicorn' to 'python'",
+      "Add 'flask run' instead",
+      "Remove the app:app part"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "deployment",
+    "explanation": "Procfile process types require a colon separator between the name and the command."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The environment variable is not loading. Find the error.",
+    "code": "import os\napi_key = os.env['API_KEY']",
+    "options": [
+      "Use os.environ.get('API_KEY') instead of os.env['API_KEY']",
+      "Use os.getenv['API_KEY'] instead",
+      "Add quotes around API_KEY",
+      "Import env from os"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "deployment",
+    "explanation": "Python uses os.environ (or os.environ.get()) to access environment variables, not os.env."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "SQLAlchemy fails to connect to PostgreSQL on Heroku. Debug the DATABASE_URL handling.",
+    "code": "DATABASE_URL = os.environ.get('DATABASE_URL')\napp.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL",
+    "options": [
+      "Replace 'postgres://' with 'postgresql://' in DATABASE_URL if present",
+      "Add 'sqlite:///' prefix to DATABASE_URL",
+      "Change to app.config['DATABASE_URL']",
+      "Remove os.environ.get and hardcode the URL"
+    ],
+    "correct_index": 0,
+    "difficulty": "hard",
+    "topic_tag": "deployment",
+    "explanation": "Heroku uses 'postgres://' but SQLAlchemy 1.4+ requires 'postgresql://'. You must replace the prefix."
+  }
+]

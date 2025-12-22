@@ -416,5 +416,50 @@
     "explanation": "Python allows easy swapping by returning a tuple with the values in reversed order.",
     "difficulty": "medium",
     "topic_tag": "variables"
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The print statement throws a SyntaxError. Fix it.",
+    "code": "print(Hello World)",
+    "options": [
+      "Add quotes around Hello World: print(\"Hello World\")",
+      "Use curly braces: print({Hello World})",
+      "Add 'str' before: print(str Hello World)",
+      "Use capital P: Print(Hello World)"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "print",
+    "explanation": "Strings must be enclosed in quotation marks in Python."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The variable assignment fails. Find the error.",
+    "code": "2name = \"Alice\"",
+    "options": [
+      "Variable names cannot start with a number; use name2 or _2name",
+      "Use double equals: 2name == \"Alice\"",
+      "Remove the quotes: 2name = Alice",
+      "Add 'var' keyword: var 2name = \"Alice\""
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "variables",
+    "explanation": "Python variable names must start with a letter or underscore, not a number."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The input prompt doesn't display. Debug the code.",
+    "code": "name = input\nprint(\"Hello, \" + name)",
+    "options": [
+      "Add parentheses to call input: name = input(\"Enter name: \")",
+      "Use raw_input instead",
+      "Add quotes around input",
+      "Swap the lines"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "input",
+    "explanation": "input is a function and must be called with parentheses: input(). Add a prompt string inside."
   }
 ]

@@ -323,5 +323,50 @@
     "topic_tag": "lists",
     "solution_code": "def create_display(word):\n    display = []\n    for _ in word:\n        display.append('_')\n    return display",
     "explanation": "Loop through each character in the word and append an underscore for each one. The underscore variable _ is convention when we don't need the actual value."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The hangman game crashes with IndexError. Fix it.",
+    "code": "word = \"hello\"\nguess = \"z\"\nif word[guess]:",
+    "options": [
+      "Use \"in\" operator: if guess in word:",
+      "Use find() method",
+      "Convert guess to int",
+      "Use word.index(guess)"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "strings",
+    "explanation": "Use \"in\" keyword to check if a character exists in a string, not indexing."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The display string is not updating correctly. Debug it.",
+    "code": "display = \"_____\"\ndisplay[0] = \"h\"",
+    "options": [
+      "Strings are immutable; use a list instead: display = list(\"_____\")",
+      "Use display.replace()",
+      "Use display += \"h\"",
+      "Cast to mutable string"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "strings",
+    "explanation": "Strings are immutable in Python. Convert to a list to modify individual characters."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The game continues even when the word is guessed. Fix the condition.",
+    "code": "while \"_\" in display and lives > 0:\n    if display == word:",
+    "options": [
+      "Compare as strings: if \"\".join(display) == word: when using list",
+      "Use display is word",
+      "Use display.equals(word)",
+      "Remove the while condition"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "control_flow",
+    "explanation": "If display is a list, join it to compare with the word string."
   }
 ]

@@ -1,0 +1,333 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What is the main purpose of version control?",
+        "options": [
+            "To make code run faster",
+            "To track changes and enable rollbacks",
+            "To compress code files",
+            "To encrypt source code"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "git",
+        "explanation": "Version control tracks changes over time, allowing you to revert to previous versions and collaborate."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What command initializes a new Git repository?",
+        "options": [
+            "git start",
+            "git init",
+            "git create",
+            "git new"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "git",
+        "explanation": "git init creates a new .git folder and initializes version control in the directory."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What command stages ALL files for commit?",
+        "options": [
+            "git add --all",
+            "git add .",
+            "git stage *",
+            "git commit -a"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "git",
+        "explanation": "git add . stages all changed files in the current directory and subdirectories."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does `git status` show?",
+        "options": [
+            "The commit history",
+            "Files that are modified, staged, or untracked",
+            "The remote repository URL",
+            "Branch comparison"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "git",
+        "explanation": "git status shows the current state of your working directory and staging area."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What flag adds a commit message inline?",
+        "options": [
+            "-msg",
+            "-m",
+            "--message",
+            "-c"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "git",
+        "explanation": "git commit -m \"message\" allows you to write the commit message inline."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What command pushes your commits to GitHub?",
+        "options": [
+            "git upload",
+            "git push",
+            "git send",
+            "git sync"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "git",
+        "explanation": "git push uploads your local commits to the remote repository (like GitHub)."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What command downloads a repository from GitHub?",
+        "options": [
+            "git download",
+            "git clone",
+            "git fetch",
+            "git grab"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "git",
+        "explanation": "git clone creates a local copy of a remote repository including all history."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What command creates AND switches to a new branch?",
+        "options": [
+            "git branch new-branch",
+            "git checkout -b new-branch",
+            "git switch new-branch",
+            "git create new-branch"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "git",
+        "explanation": "git checkout -b branch-name creates a new branch and switches to it in one command."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does `git merge` do?",
+        "options": [
+            "Deletes a branch",
+            "Combines changes from one branch into another",
+            "Creates a new branch",
+            "Reverts to a previous commit"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "git",
+        "explanation": "git merge integrates changes from one branch into the current branch."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is a 'fork' on GitHub?",
+        "options": [
+            "A way to delete a repository",
+            "A copy of someone else's repository to your account",
+            "A type of branch",
+            "A commit message style"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "github",
+        "explanation": "Forking creates your own copy of someone else's repository, allowing you to make changes."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is a Pull Request (PR)?",
+        "options": [
+            "Downloading code from GitHub",
+            "A proposal to merge your changes into another repository",
+            "A request for help",
+            "Pulling the latest changes"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "github",
+        "explanation": "A Pull Request asks the repository owner to review and merge your changes."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What file tells Git which files to ignore?",
+        "options": [
+            ".ignore",
+            ".gitignore",
+            "ignore.txt",
+            ".git-exclude"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "git",
+        "explanation": ".gitignore lists files and patterns that Git should not track (like .env or node_modules)."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What command shows the commit history?",
+        "options": [
+            "git history",
+            "git log",
+            "git show",
+            "git commits"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "git",
+        "explanation": "git log displays the commit history with hashes, authors, dates, and messages."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What command updates your local repo with remote changes?",
+        "options": [
+            "git fetch",
+            "git pull",
+            "git update",
+            "git sync"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "git",
+        "explanation": "git pull fetches and merges remote changes into your current branch."
+    },
+    {
+        "question_type": "coding",
+        "text": "Git Init and Commit\\\\nWrite commands to init a repo, add all files, and make the first commit.",
+        "starter_code": "# Initialize, add, and commit\\n# Write your git commands here",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "git",
+        "solution_code": "git init\\ngit add .\\ngit commit -m 'Initial commit'",
+        "explanation": "git init creates the repo, git add . stages files, git commit saves them with a message."
+    },
+    {
+        "question_type": "coding",
+        "text": "Push to GitHub\\\\nWrite commands to connect to a remote and push for the first time.",
+        "starter_code": "# Add remote and push\\n# URL: https://github.com/user/repo.git",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "git",
+        "solution_code": "git remote add origin https://github.com/user/repo.git\\ngit push -u origin main",
+        "explanation": "git remote add connects to GitHub. -u sets upstream for future pushes."
+    },
+    {
+        "question_type": "coding",
+        "text": "Feature Branch\\\\nCreate a new feature branch and switch to it.",
+        "starter_code": "# Create and switch to feature/login branch",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "git",
+        "solution_code": "git checkout -b feature/login",
+        "explanation": "git checkout -b creates a new branch and switches to it in one command."
+    },
+    {
+        "question_type": "coding",
+        "text": "Merge Branch\\\\nMerge feature/auth into main branch.",
+        "starter_code": "# Switch to main and merge feature/auth",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "git",
+        "solution_code": "git checkout main\\ngit merge feature/auth",
+        "explanation": "First checkout the target branch (main), then merge the feature branch into it."
+    },
+    {
+        "question_type": "coding",
+        "text": "Clone Repository\\\\nClone a repository from GitHub to your local machine.",
+        "starter_code": "# Clone https://github.com/user/project.git",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "git",
+        "solution_code": "git clone https://github.com/user/project.git",
+        "explanation": "git clone downloads the entire repository including history."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The commit fails because files aren't staged. Fix it.",
+        "code": "git init\ngit commit -m 'Initial commit'",
+        "options": [
+            "Add git add . before the commit",
+            "Use git commit -a instead",
+            "Add --force to commit",
+            "Remove the commit message"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "git",
+        "explanation": "Files must be staged with git add before they can be committed."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The push to GitHub fails because no remote is set. Fix it.",
+        "code": "git add .\ngit commit -m 'Add feature'\ngit push",
+        "options": [
+            "Add git remote add origin URL before push",
+            "Use git push --force",
+            "Change to git upload",
+            "Add -m flag to push"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "git",
+        "explanation": "You must add a remote (git remote add origin URL) before pushing."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Branch was created but not switched. Fix it.",
+        "code": "git branch feature/new\n# Still on main branch",
+        "options": [
+            "Use git checkout feature/new or git checkout -b feature/new",
+            "Use git switch --force",
+            "Delete and recreate the branch",
+            "Add --switch flag"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "git",
+        "explanation": "git branch only creates a branch. Use checkout or checkout -b to also switch."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The .env file with secrets got committed. What should have been done?",
+        "code": "git add .\ngit commit -m 'Add project files'",
+        "options": [
+            "Create .gitignore with .env before adding files",
+            "Use git add --exclude .env",
+            "Encrypt .env before committing",
+            "Compress .env before adding"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "git",
+        "explanation": "Create a .gitignore file with .env listed BEFORE adding files to prevent tracking secrets."
+    }
+]

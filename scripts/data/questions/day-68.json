@@ -1,0 +1,333 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What is authentication?",
+        "options": [
+            "Checking if a server is online",
+            "Verifying who a user is",
+            "Encrypting data in transit",
+            "Creating a database connection"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "auth",
+        "explanation": "Authentication is the process of verifying a user's identity, typically through username/password."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the key difference between encryption and hashing?",
+        "options": [
+            "Encryption is faster",
+            "Encryption is reversible, hashing is not",
+            "Hashing uses more memory",
+            "There is no difference"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "security",
+        "explanation": "Encryption can be reversed with a key. Hashing is one-way - you cannot get the original value back."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which Werkzeug function creates a password hash?",
+        "options": [
+            "hash_password()",
+            "generate_password_hash()",
+            "create_hash()",
+            "password_to_hash()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "werkzeug",
+        "explanation": "generate_password_hash() from werkzeug.security creates secure password hashes."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does 'salting' a password do?",
+        "options": [
+            "Makes it taste better",
+            "Adds random characters before hashing to prevent rainbow table attacks",
+            "Encrypts the password twice",
+            "Removes special characters"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "security",
+        "explanation": "Salting adds random characters to passwords, so identical passwords produce different hashes."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which Flask extension manages user sessions?",
+        "options": [
+            "Flask-Session",
+            "Flask-Login",
+            "Flask-Auth",
+            "Flask-User"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "Flask-Login handles user session management, login/logout, and current_user access."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What must a User model inherit to work with Flask-Login?",
+        "options": [
+            "db.Model only",
+            "UserMixin",
+            "LoginMixin",
+            "AuthMixin"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask-login",
+        "explanation": "UserMixin provides required methods like is_authenticated, is_active, get_id()."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does the @login_manager.user_loader decorator do?",
+        "options": [
+            "Loads the login form",
+            "Defines how to load a user from their ID stored in session",
+            "Logs in the user automatically",
+            "Creates new users"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "flask-login",
+        "explanation": "The user_loader callback tells Flask-Login how to reload a user from their stored session ID."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which function verifies a password against its hash?",
+        "options": [
+            "verify_password()",
+            "check_password_hash()",
+            "compare_hash()",
+            "password_matches()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "werkzeug",
+        "explanation": "check_password_hash(hash, password) returns True if the password matches the hash."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What algorithm does Werkzeug use by default for password hashing?",
+        "options": [
+            "MD5",
+            "SHA-1",
+            "PBKDF2 with SHA-256",
+            "Base64"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "security",
+        "explanation": "Werkzeug uses pbkdf2:sha256, a secure key derivation function designed for passwords."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you access the currently logged-in user in Flask-Login?",
+        "options": [
+            "session.user",
+            "current_user",
+            "flask.user",
+            "login.user"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask-login",
+        "explanation": "current_user is a proxy that represents the logged-in user or an anonymous user."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What Flask function displays one-time messages like login errors?",
+        "options": [
+            "message()",
+            "flash()",
+            "alert()",
+            "notify()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "flash() stores a message to be shown on the next request, perfect for login feedback."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why should you never store passwords in plain text?",
+        "options": [
+            "It uses too much storage",
+            "If the database is breached, all passwords are exposed",
+            "It's against Python syntax",
+            "It slows down the server"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "security",
+        "explanation": "Plain text passwords in a breach expose all users. Hashing protects passwords even if the database is stolen."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is a rainbow table attack?",
+        "options": [
+            "A colorful UI exploit",
+            "Using pre-computed hashes to crack passwords",
+            "A denial of service attack",
+            "Injecting rainbow colors into CSS"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "security",
+        "explanation": "Rainbow tables are lookup tables of pre-computed hashes. Salting defeats them by making each hash unique."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does `login_user(user)` do?",
+        "options": [
+            "Creates a new user account",
+            "Logs the user in and creates a session",
+            "Sends a login email",
+            "Hashes the user's password"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask-login",
+        "explanation": "login_user() marks the user as logged in and stores their ID in the session."
+    },
+    {
+        "question_type": "coding",
+        "text": "Hash Password\\\\nHash a password using Werkzeug with PBKDF2 and salt length of 8.",
+        "starter_code": "from werkzeug.security import generate_password_hash\\n\\ndef hash_password(password):\\n    # Return hashed password\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "werkzeug",
+        "solution_code": "from werkzeug.security import generate_password_hash\\n\\ndef hash_password(password):\\n    return generate_password_hash(\\n        password,\\n        method='pbkdf2:sha256',\\n        salt_length=8\\n    )",
+        "explanation": "Use generate_password_hash with method and salt_length parameters for secure hashing."
+    },
+    {
+        "question_type": "coding",
+        "text": "Verify Password\\\\nCheck if a plain password matches a stored hash.",
+        "starter_code": "from werkzeug.security import check_password_hash\\n\\ndef verify_password(stored_hash, password):\\n    # Return True if password matches\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "werkzeug",
+        "solution_code": "from werkzeug.security import check_password_hash\\n\\ndef verify_password(stored_hash, password):\\n    return check_password_hash(stored_hash, password)",
+        "explanation": "check_password_hash compares the password with the stored hash and returns a boolean."
+    },
+    {
+        "question_type": "coding",
+        "text": "User Model\\\\nCreate a User model that works with Flask-Login.",
+        "starter_code": "from flask_login import UserMixin\\nfrom flask_sqlalchemy import SQLAlchemy\\n\\ndb = SQLAlchemy()\\n\\n# Create User class\\nclass User():\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "flask-login",
+        "solution_code": "from flask_login import UserMixin\\nfrom flask_sqlalchemy import SQLAlchemy\\n\\ndb = SQLAlchemy()\\n\\nclass User(UserMixin, db.Model):\\n    id = db.Column(db.Integer, primary_key=True)\\n    email = db.Column(db.String(100), unique=True)\\n    password = db.Column(db.String(100))\\n    name = db.Column(db.String(100))",
+        "explanation": "Inherit from both UserMixin (for Flask-Login) and db.Model (for SQLAlchemy)."
+    },
+    {
+        "question_type": "coding",
+        "text": "User Loader\\\\nCreate the required user_loader callback for Flask-Login.",
+        "starter_code": "from flask_login import LoginManager\\n\\nlogin_manager = LoginManager()\\n\\n# Add user loader callback\\ndef load_user(user_id):\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "flask-login",
+        "solution_code": "from flask_login import LoginManager\\n\\nlogin_manager = LoginManager()\\n\\n@login_manager.user_loader\\ndef load_user(user_id):\\n    return db.get_or_404(User, user_id)",
+        "explanation": "The user_loader decorator registers a callback that loads users by their stored session ID."
+    },
+    {
+        "question_type": "coding",
+        "text": "Register Route\\\\nCreate a registration route that hashes the password before saving.",
+        "starter_code": "@app.route('/register', methods=['GET', 'POST'])\\ndef register():\\n    if request.method == 'POST':\\n        # Hash password and create user\\n        pass\\n    return render_template('register.html')",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "solution_code": "@app.route('/register', methods=['GET', 'POST'])\\ndef register():\\n    if request.method == 'POST':\\n        hashed_password = generate_password_hash(\\n            request.form.get('password'),\\n            method='pbkdf2:sha256',\\n            salt_length=8\\n        )\\n        new_user = User(\\n            email=request.form.get('email'),\\n            password=hashed_password,\\n            name=request.form.get('name')\\n        )\\n        db.session.add(new_user)\\n        db.session.commit()\\n        login_user(new_user)\\n        return redirect(url_for('home'))\\n    return render_template('register.html')",
+        "explanation": "Hash the password before storing, then optionally log the user in immediately."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The password is stored in plain text. Fix this security vulnerability.",
+        "code": "@app.route('/register', methods=['POST'])\ndef register():\n    new_user = User(\n        email=request.form.get('email'),\n        password=request.form.get('password')\n    )\n    db.session.add(new_user)\n    db.session.commit()",
+        "options": [
+            "Hash the password with generate_password_hash() before storing",
+            "Encrypt the password with base64",
+            "Store password in a separate table",
+            "Use a longer password field"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "security",
+        "explanation": "Always hash passwords with generate_password_hash() before storing in the database."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The User model doesn't work with Flask-Login. What's missing?",
+        "code": "class User(db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    email = db.Column(db.String(100))\n    password = db.Column(db.String(100))",
+        "options": [
+            "Add UserMixin to the class inheritance",
+            "Add a username column",
+            "Import Flask-Login",
+            "Add is_authenticated method"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "flask-login",
+        "explanation": "The User class must inherit from UserMixin to work with Flask-Login."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Login always fails even with correct password. Find the bug.",
+        "code": "@app.route('/login', methods=['POST'])\ndef login():\n    user = User.query.filter_by(email=request.form.get('email')).first()\n    if user and user.password == request.form.get('password'):\n        login_user(user)\n        return redirect(url_for('home'))\n    return redirect(url_for('login'))",
+        "options": [
+            "Use check_password_hash() instead of == comparison",
+            "Change filter_by to get",
+            "Add .one() instead of .first()",
+            "Remove the user check"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "security",
+        "explanation": "Hashed passwords can't be compared with ==. Use check_password_hash(hash, password)."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Flask-Login fails to load users. What's missing?",
+        "code": "from flask_login import LoginManager\n\nlogin_manager = LoginManager()\nlogin_manager.init_app(app)\n\n# No user_loader defined",
+        "options": [
+            "Add @login_manager.user_loader decorator with a function that loads user by ID",
+            "Add login_manager.user_class = User",
+            "Call login_manager.load_user()",
+            "Import UserMixin"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "flask-login",
+        "explanation": "Flask-Login requires a user_loader callback to know how to load users from their session ID."
+    }
+]

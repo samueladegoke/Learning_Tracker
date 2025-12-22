@@ -291,5 +291,50 @@
     "topic_tag": "logic",
     "solution_code": "def move_all(cars, dist):\n    for car in cars:\n        car['x'] -= dist\n    return cars",
     "explanation": "Use the 'in' keyword to check membership. It returns True if the item exists in the collection."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The cars are not appearing randomly. Fix spawn logic.",
+    "code": "car.goto(-300, 0)",
+    "options": [
+      "Add random y: car.goto(-300, random.randint(-250, 250))",
+      "Use car.random_position()",
+      "Set car.y = random",
+      "Move to random x"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "random",
+    "explanation": "Use random.randint() to spawn cars at different y positions."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The turtle cannot cross because cars are too fast. Debug timing.",
+    "code": "car_speed = 50\ncar.forward(car_speed)",
+    "options": [
+      "Start with lower speed: car_speed = 5",
+      "Use time.sleep()",
+      "Make turtle faster",
+      "Remove car_speed"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "game_balance",
+    "explanation": "Start with slower car speed."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "New cars spawn every frame causing lag. Fix spawn rate.",
+    "code": "while True:\n    new_car = Car()",
+    "options": [
+      "Add random chance: if random.randint(1, 6) == 1:",
+      "Remove the loop",
+      "Limit car count",
+      "Use object pooling"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "game_logic",
+    "explanation": "Use random chance to control car creation rate."
   }
 ]

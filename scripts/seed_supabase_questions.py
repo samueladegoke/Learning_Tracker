@@ -59,7 +59,7 @@ def seed_questions(quiz_id: str, questions: list) -> dict:
         record = {
             'quiz_id': quiz_id,
             'question_type': q.get('question_type', 'mcq'),
-            'text': q['text'],
+            'text': q.get('text') or q.get('question_text'),
             'code': q.get('code'),  # For code-correction questions
             'options': json.dumps(options),
             'correct_index': q.get('correct_index', 0),
@@ -67,7 +67,7 @@ def seed_questions(quiz_id: str, questions: list) -> dict:
             'test_cases': json.dumps(q.get('test_cases')) if q.get('test_cases') else None,
             'explanation': q.get('explanation'),
             'difficulty': q.get('difficulty', 'medium'),
-            'topic_tag': q.get('topic_tag')
+            'topic_tag': q.get('topic_tag') or q.get('topic')
         }
         records.append(record)
     
@@ -90,9 +90,16 @@ def validate_question_schema(question: dict, index: int, filename: str):
     required_base = ['text', 'difficulty', 'topic_tag']
     
     # Check base fields
-    for field in required_base:
-        if field not in question:
-            raise ValueError(f"Missing required field '{field}' in {filename} at index {index}")
+    has_text = 'text' in question or 'question_text' in question
+    if not has_text:
+        raise ValueError(f"Missing required field 'text' or 'question_text' in {filename} at index {index}")
+    
+    if 'difficulty' not in question:
+        raise ValueError(f"Missing required field 'difficulty' in {filename} at index {index}")
+    
+    has_topic = 'topic_tag' in question or 'topic' in question
+    if not has_topic:
+        raise ValueError(f"Missing required field 'topic_tag' or 'topic' in {filename} at index {index}")
             
     # Check type-specific fields
     q_type = question.get('question_type', 'mcq')

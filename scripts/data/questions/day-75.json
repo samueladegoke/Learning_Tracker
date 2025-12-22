@@ -1,0 +1,422 @@
+[
+  {
+    "quiz_id": "day-75-practice",
+    "question_type": "mcq",
+    "text": "What does the '.resample()' method in Pandas do?",
+    "options": [
+      "It re-downloads the data from the internet",
+      "It changes the frequency of time-series observations (e.g., from daily to monthly)",
+      "It randomly shuffles the rows of the dataframe",
+      "It renames the columns based on a template"
+    ],
+    "correct_index": 1,
+    "explanation": "Resampling is used to aggregate or interpolate time-series data to a different time frequency.",
+    "difficulty": "easy",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-75-practice",
+    "question_type": "mcq",
+    "text": "In '.resample('M')', what does the 'M' stand for?",
+    "options": [
+      "Minute",
+      "Month end frequency",
+      "Median",
+      "Maximum"
+    ],
+    "correct_index": 1,
+    "explanation": "'M' stands for calendar month end frequency. Other rules include 'D' for day and 'Y' for year.",
+    "difficulty": "easy",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-75-practice",
+    "question_type": "mcq",
+    "text": "Why do we use '.last()' after a '.resample()' operation?",
+    "options": [
+      "To show only the final row of the entire dataframe",
+      "To select the last available data point within each time bucket (e.g., the last day of the month)",
+      "To delete everything except the last column",
+      "To verify that the resampling finished successfully"
+    ],
+    "correct_index": 1,
+    "explanation": "When resampling, you must decide how to represent the group (e.g., via .mean(), .sum(), or .last()).",
+    "difficulty": "medium",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-75-practice",
+    "question_type": "mcq",
+    "text": "Which Matplotlib parameter controls the sharpness or resolution of the figure?",
+    "options": [
+      "resolution",
+      "sharpness",
+      "dpi",
+      "pixels"
+    ],
+    "correct_index": 2,
+    "explanation": "'dpi' stands for dots per inch. A higher DPI results in a higher resolution image.",
+    "difficulty": "medium",
+    "topic_tag": "matplotlib"
+  },
+  {
+    "quiz_id": "day-75-practice",
+    "question_type": "mcq",
+    "text": "What is the purpose of 'mdates.YearLocator()'?",
+    "options": [
+      "To find which year a specific date belongs to",
+      "To automatically place markers on the X-axis at the beginning of every year",
+      "To download data for a specific year",
+      "To sort the dataframe by year"
+    ],
+    "correct_index": 1,
+    "explanation": "Locators in 'matplotlib.dates' define where ticks are placed on a date-based axis.",
+    "difficulty": "hard",
+    "topic_tag": "matplotlib"
+  },
+  {
+    "quiz_id": "day-75-practice",
+    "question_type": "mcq",
+    "text": "How do you check for the total number of missing values (NaN) in an entire DataFrame?",
+    "options": [
+      "df.count_nans()",
+      "df.isna().values.sum()",
+      "df.missing().total()",
+      "df.total_na()"
+    ],
+    "correct_index": 1,
+    "explanation": "'.isna()' creates a boolean mask, and summing it across all values gives the total count of missing entries.",
+    "difficulty": "medium",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-75-practice",
+    "question_type": "mcq",
+    "text": "Which linestyle argument creates a dashed line in Matplotlib?",
+    "options": [
+      "linestyle='dotted'",
+      "linestyle='--'",
+      "linestyle='dash'",
+      "linestyle='-.'"
+    ],
+    "correct_index": 1,
+    "explanation": "The double dash '--' is the shorthand for a dashed line style.",
+    "difficulty": "easy",
+    "topic_tag": "matplotlib"
+  },
+  {
+    "quiz_id": "day-75-practice",
+    "question_type": "mcq",
+    "text": "What does a 'DateFormatter' do in Matplotlib?",
+    "options": [
+      "Converts strings to datetime objects",
+      "Defines the visual string representation of dates on an axis (e.g., '2023' or 'Jan-23')",
+      "Changes the system clock",
+      "Automatically identifies the most important dates in a dataset"
+    ],
+    "correct_index": 1,
+    "explanation": "Formatters control the text labels of axis ticks based on a format string like '%Y-%m'.",
+    "difficulty": "medium",
+    "topic_tag": "matplotlib"
+  },
+  {
+    "quiz_id": "day-75-practice",
+    "question_type": "mcq",
+    "text": "In time-series analysis, what does 'seasonality' refer to?",
+    "options": [
+      "The time of year a dataset was created",
+      "Predictable fluctuations that repeat at regular intervals (e.g., search spikes every December)",
+      "The weather conditions during data collection",
+      "The process of deleting old data"
+    ],
+    "correct_index": 1,
+    "explanation": "Many datasets, like Google Trends for 'Umbrellas' or 'Christmas', show clear seasonal patterns.",
+    "difficulty": "easy",
+    "topic_tag": "data-science"
+  },
+  {
+    "quiz_id": "day-75-practice",
+    "question_type": "mcq",
+    "text": "How do you specify the thickness of a line in 'plt.plot()'?",
+    "options": [
+      "thickness=2",
+      "weight=2",
+      "linewidth=2",
+      "size=2"
+    ],
+    "correct_index": 2,
+    "explanation": "The 'linewidth' (or 'lw') parameter controls the thickness of the plotted line.",
+    "difficulty": "easy",
+    "topic_tag": "matplotlib"
+  },
+  {
+    "quiz_id": "day-75-practice",
+    "question_type": "mcq",
+    "text": "What is the effect of 'plt.grid(color='grey', linestyle='--')'?",
+    "options": [
+      "It turns the chart background grey",
+      "It adds grey dashed grid lines to the chart",
+      "It deletes the axes labels",
+      "It groups the data by color"
+    ],
+    "correct_index": 1,
+    "explanation": "'.grid()' takes styling parameters similar to '.plot()' to customize the helper lines.",
+    "difficulty": "medium",
+    "topic_tag": "matplotlib"
+  },
+  {
+    "quiz_id": "day-75-practice",
+    "question_type": "mcq",
+    "text": "Which function allows you to get a statistical summary (mean, std, min, max) of your numeric columns?",
+    "options": [
+      "df.summary()",
+      "df.stats()",
+      "df.describe()",
+      "df.overview()"
+    ],
+    "correct_index": 2,
+    "explanation": "'.describe()' is a fast way to get a bird's-eye view of the distribution of your data.",
+    "difficulty": "easy",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-75-practice",
+    "question_type": "mcq",
+    "text": "If you have daily data and want to resample to yearly, which rule do you use?",
+    "options": [
+      "rule='Y'",
+      "rule='A'",
+      "Both 'Y' and 'A' work for annual frequency",
+      "rule='12M'"
+    ],
+    "correct_index": 2,
+    "explanation": "In Pandas resampling, 'Y' and 'A' both represent Year/Annual end frequency.",
+    "difficulty": "hard",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-75-practice",
+    "question_type": "mcq",
+    "text": "How do you add circular markers to every data point on a line chart?",
+    "options": [
+      "marker='circle'",
+      "marker='o'",
+      "dots=True",
+      "point='.'"
+    ],
+    "correct_index": 1,
+    "explanation": "The lowercase 'o' is the Matplotlib marker code for a circle.",
+    "difficulty": "medium",
+    "topic_tag": "matplotlib"
+  },
+  {
+    "quiz_id": "day-75-practice",
+    "question_type": "mcq",
+    "text": "What does 'mdates.MonthLocator()' achieve when applied to an axis?",
+    "options": [
+      "It highlights only the current month",
+      "It places a tick mark at the start of every month",
+      "It deletes all months except one",
+      "It converts years into months"
+    ],
+    "correct_index": 1,
+    "explanation": "MonthLocator is often used as a 'minor locator' to show monthly subdivisions between year ticks.",
+    "difficulty": "hard",
+    "topic_tag": "matplotlib"
+  },
+  {
+    "quiz_id": "day-75-practice",
+    "question_type": "mcq",
+    "text": "In a Bitcoin price chart, what does 'volatility' usually refer to?",
+    "options": [
+      "The total volume of trades",
+      "The speed of the network",
+      "The degree of variation in price over time (large swings)",
+      "The security of the wallet"
+    ],
+    "correct_index": 2,
+    "explanation": "Volatility measures how much and how quickly prices move up and down.",
+    "difficulty": "easy",
+    "topic_tag": "data-science"
+  },
+  {
+    "quiz_id": "day-75-practice",
+    "question_type": "mcq",
+    "text": "What is the result of 'df.resample('M', on='DATE').mean()'? ",
+    "options": [
+      "A dataframe with one row containing the global mean",
+      "A regularized series where each month's value is the average of all days in that month",
+      "The median value of the DATE column",
+      "An error because you cannot mean a DATE"
+    ],
+    "correct_index": 1,
+    "explanation": "It groups the data by month and calculates the mean for all numeric columns in each group.",
+    "difficulty": "medium",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-75-practice",
+    "question_type": "mcq",
+    "text": "Which hex code shortcut is used for the color black in Matplotlib?",
+    "options": [
+      "k",
+      "b",
+      "w",
+      "n"
+    ],
+    "correct_index": 0,
+    "explanation": "In Matplotlib, 'k' stands for blacK (since 'b' is taken by Blue).",
+    "difficulty": "medium",
+    "topic_tag": "matplotlib"
+  },
+  {
+    "quiz_id": "day-75-practice",
+    "question_type": "mcq",
+    "text": "How do you rotate the X-axis labels to prevent them from overlapping?",
+    "options": [
+      "plt.rotate(45)",
+      "plt.xticks(rotation=45)",
+      "ax.xaxis.flip(45)",
+      "plt.xlabel(style='tilted')"
+    ],
+    "correct_index": 1,
+    "explanation": "'plt.xticks()' (or ticks on the axes object) allows you to set the rotation angle of labels.",
+    "difficulty": "hard",
+    "topic_tag": "matplotlib"
+  },
+  {
+    "quiz_id": "day-75-practice",
+    "question_type": "mcq",
+    "text": "What is the 'last' entry in a Google Trends monthly resample?",
+    "options": [
+      "The search volume for the first day of the month",
+      "The search volume for the final day/record of that month",
+      "The average search volume",
+      "The total search volume"
+    ],
+    "correct_index": 1,
+    "explanation": "Using '.last()' is common in finance/trends to see where the value ended for that period.",
+    "difficulty": "medium",
+    "topic_tag": "pandas"
+  },
+  {
+    "question_type": "coding",
+    "text": "Resample to Monthly\n\nWrite a function that resamples a time-indexed DataFrame to monthly frequency using the last value.",
+    "starter_code": "import pandas as pd\n\ndef resample_monthly(df):\n    # Resample to monthly using 'last'\n    pass",
+    "test_cases": [
+      {
+        "function_call": "True",
+        "expected": "True"
+      }
+    ],
+    "solution_code": "import pandas as pd\n\ndef resample_monthly(df):\n    return df.resample('ME').last()",
+    "explanation": "The resample() method with 'ME' (month end) groups data by month. .last() takes the final value in each period.",
+    "difficulty": "medium",
+    "topic_tag": "pandas"
+  },
+  {
+    "question_type": "coding",
+    "text": "Set DateTime Index\n\nWrite a function that sets a column as the DataFrame's datetime index.",
+    "starter_code": "import pandas as pd\n\ndef set_datetime_index(df, column_name):\n    # Convert column to datetime and set as index\n    pass",
+    "test_cases": [
+      {
+        "function_call": "set_datetime_index(pd.DataFrame({'date': ['2024-01-01'], 'val': [1]}), 'date').index.name",
+        "expected": "date"
+      }
+    ],
+    "solution_code": "import pandas as pd\n\ndef set_datetime_index(df, column_name):\n    df[column_name] = pd.to_datetime(df[column_name])\n    return df.set_index(column_name)",
+    "explanation": "First convert to datetime with pd.to_datetime(), then set_index() makes it the DataFrame's index for time-series operations.",
+    "difficulty": "medium",
+    "topic_tag": "pandas"
+  },
+  {
+    "question_type": "coding",
+    "text": "Calculate Year-over-Year Change\n\nWrite a function that returns the percentage change from a year ago.",
+    "starter_code": "import pandas as pd\n\ndef yoy_change(series):\n    # Calculate year-over-year percentage change\n    pass",
+    "test_cases": [
+      {
+        "function_call": "True",
+        "expected": "True"
+      }
+    ],
+    "solution_code": "import pandas as pd\n\ndef yoy_change(series):\n    return series.pct_change(periods=12) * 100",
+    "explanation": "pct_change(periods=12) compares each value with the value 12 rows (months) ago, giving year-over-year growth.",
+    "difficulty": "hard",
+    "topic_tag": "pandas"
+  },
+  {
+    "question_type": "coding",
+    "text": "Style a Line Plot\n\nWrite a function that creates a styled line plot with specified color and linewidth.",
+    "starter_code": "import matplotlib.pyplot as plt\n\ndef styled_plot(x, y, color, linewidth):\n    # Create a styled line plot\n    pass",
+    "test_cases": [
+      {
+        "function_call": "True",
+        "expected": "True"
+      }
+    ],
+    "solution_code": "import matplotlib.pyplot as plt\n\ndef styled_plot(x, y, color, linewidth):\n    plt.figure(figsize=(10, 6))\n    plt.plot(x, y, color=color, linewidth=linewidth)\n    return plt.gcf()",
+    "explanation": "Use the color and linewidth parameters in plt.plot() to customize the appearance of your line chart.",
+    "difficulty": "easy",
+    "topic_tag": "matplotlib"
+  },
+  {
+    "question_type": "coding",
+    "text": "Get Monthly Mean\n\nWrite a function that resamples a time-indexed series to monthly and returns the mean.",
+    "starter_code": "import pandas as pd\n\ndef monthly_mean(series):\n    # Resample to monthly and return mean\n    pass",
+    "test_cases": [
+      {
+        "function_call": "True",
+        "expected": "True"
+      }
+    ],
+    "solution_code": "import pandas as pd\n\ndef monthly_mean(series):\n    return series.resample('ME').mean()",
+    "explanation": "Combining resample('ME') with .mean() gives the average value for each month in the time series.",
+    "difficulty": "medium",
+    "topic_tag": "pandas"
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The resample operation fails with 'Only valid with DatetimeIndex'. Fix it.",
+    "code": "monthly = df['value'].resample('M').mean()",
+    "options": [
+      "Set the datetime column as index first: df.set_index('date')['value'].resample('M').mean()",
+      "Use groupby instead of resample",
+      "Remove the 'M' frequency",
+      "Convert value column to datetime"
+    ],
+    "correct_index": 0,
+    "difficulty": "hard",
+    "topic_tag": "pandas",
+    "explanation": "resample() requires a DatetimeIndex. You must set the datetime column as the index first."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The resampling uses deprecated frequency string. Update it.",
+    "code": "df.resample('M').last()",
+    "options": [
+      "Change 'M' to 'ME' (month end) for the new Pandas API",
+      "Use 'Month' instead",
+      "Add freq='monthly' parameter",
+      "Use pd.date_range() instead"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "pandas",
+    "explanation": "Pandas 2.2+ uses 'ME' for month end instead of 'M' to avoid ambiguity."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The x-axis labels are overlapping and unreadable. Fix the formatting.",
+    "code": "plt.plot(dates, values)\nplt.show()",
+    "options": [
+      "Add plt.xticks(rotation=45) before plt.show()",
+      "Use smaller font with plt.fontsize(8)",
+      "Remove dates from x-axis",
+      "Use plt.compress_labels()"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "matplotlib",
+    "explanation": "Rotating x-axis labels with plt.xticks(rotation=45) prevents overlap in time-series plots."
+  }
+]

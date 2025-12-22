@@ -399,5 +399,50 @@
     "topic_tag": "controls",
     "solution_code": "def is_valid_turn(current_heading, new_heading):\n    opposite = (current_heading + 180) % 360\n    return new_heading != opposite",
     "explanation": "Use modulo (%) to check divisibility or wrap around indices. Returns the remainder of division."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The time.sleep() is making the game unresponsive. Debug it.",
+    "code": "while True:\n    time.sleep(10)\n    snake.move()",
+    "options": [
+      "Use smaller delay: time.sleep(0.1)",
+      "Remove time.sleep entirely",
+      "Use snake.sleep(10)",
+      "Move sleep after move()"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "timing",
+    "explanation": "Long sleep times freeze the game. Use small values like 0.1."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The screen update shows flicker. Fix the update method.",
+    "code": "screen.tracer(1)\nwhile True:\n    screen.update()",
+    "options": [
+      "Turn off auto-update with screen.tracer(0)",
+      "Remove screen.update()",
+      "Use screen.refresh()",
+      "Set screen.tracer(100)"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "turtle",
+    "explanation": "screen.tracer(0) disables auto-updates."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The snake segments are not following each other. Fix the movement.",
+    "code": "for seg in segments:\n    seg.forward(20)",
+    "options": [
+      "Move segments in reverse order: for seg in reversed(segments[1:]):",
+      "Use segments.sort()",
+      "Remove the loop",
+      "Move head first"
+    ],
+    "correct_index": 0,
+    "difficulty": "hard",
+    "topic_tag": "game_logic",
+    "explanation": "Each segment should move to the position of the one ahead."
   }
 ]

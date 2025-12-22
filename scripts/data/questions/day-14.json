@@ -371,5 +371,50 @@
     "topic_tag": "higher-lower-random",
     "explanation": "random.choice(seq) returns a random element from the non-empty sequence seq.",
     "question_type": "coding"
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The random selection picks the same item twice. Fix it.",
+    "code": "import random\nperson_a = random.choice(data)\nperson_b = random.choice(data)",
+    "options": [
+      "Use random.sample(data, 2) for unique items",
+      "Remove person_a from data first",
+      "Check if same and repick",
+      "Use random.unique()"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "random",
+    "explanation": "Use random.sample(data, 2) to get 2 unique items."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The comparison returns wrong result for equal values.",
+    "code": "if followers_a > followers_b:\n    answer = \"a\"\nelse:\n    answer = \"b\"",
+    "options": [
+      "Add elif for equality: elif followers_a == followers_b: answer = \"tie\"",
+      "Use >= instead",
+      "Swap the conditions",
+      "Use max() function"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "game_logic",
+    "explanation": "Handle the tie case explicitly with elif."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The game data access syntax is wrong. Fix it.",
+    "code": "data = [{\"name\": \"A\", \"followers\": 100}]\nprint(data.name)",
+    "options": [
+      "Use indexing and key: data[0][\"name\"]",
+      "Use data->name",
+      "Use data.get(name)",
+      "Use data(\"name\")"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "dictionaries",
+    "explanation": "data is a list of dicts. Access list item [0], then dict key [\"name\"]."
   }
 ]

@@ -315,5 +315,50 @@
     "difficulty": "easy",
     "topic_tag": "loops",
     "explanation": "The 'break' statement immediately terminates the loop and resumes execution at the next statement after the loop."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The function definition throws SyntaxError. Fix it.",
+    "code": "def greet\n    print('Hello')",
+    "options": [
+      "Add parentheses and colon: def greet():",
+      "Use 'function' keyword instead of 'def'",
+      "Remove the indentation",
+      "Add 'return' before print"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "functions",
+    "explanation": "Function definitions require parentheses (for parameters) and a colon: def function_name():"
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The function is not executing. Debug the call.",
+    "code": "def say_hello():\n    print('Hello!')\n\nsay_hello",
+    "options": [
+      "Add parentheses to call the function: say_hello()",
+      "Use 'call say_hello'",
+      "Add 'run' before say_hello",
+      "Move the function call inside the function"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "functions",
+    "explanation": "To call a function, you must include parentheses: function_name(). Without them, it just references the function object."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The while loop should stop when count reaches 5, but it runs forever. Fix it.",
+    "code": "count = 0\nwhile count != 5:\n    print(count)\n    count += 2",
+    "options": [
+      "Change condition to count < 5 since count skips over 5 (0, 2, 4, 6...)",
+      "Use count == 5 instead",
+      "Remove the += 2",
+      "Add break after print"
+    ],
+    "correct_index": 0,
+    "difficulty": "hard",
+    "topic_tag": "loops",
+    "explanation": "count goes 0, 2, 4, 6... and never equals exactly 5. Use < or <= for safer comparisons."
   }
 ]

@@ -287,5 +287,50 @@
     "topic_tag": "pandas",
     "solution_code": "def convert(s):\n    return s.to_list()",
     "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The CSV reading returns dict instead of values. Debug pandas.",
+    "code": "import pandas\ndf = pandas.read_csv(\"data.csv\")\nfor row in df:",
+    "options": [
+      "Use iterrows(): for index, row in df.iterrows():",
+      "Use df.rows()",
+      "Use df.values()",
+      "Use for row in df.data:"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "pandas",
+    "explanation": "Use iterrows() for row-by-row access."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The DataFrame column access fails. Fix the syntax.",
+    "code": "df = pandas.read_csv(\"data.csv\")\ncities = df.City",
+    "options": [
+      "Use bracket notation: df[\"City\"]",
+      "Use df.get(City)",
+      "Use df.column(\"City\")",
+      "Import City first"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "pandas",
+    "explanation": "Use bracket notation df[\"column\"] for reliable access."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The to_dict() is not giving expected format. Fix the parameter.",
+    "code": "result = df.to_dict()",
+    "options": [
+      "Use records format: df.to_dict(orient=\"records\")",
+      "Use df.to_rows()",
+      "Use list(df)",
+      "Transpose first"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "pandas",
+    "explanation": "to_dict(orient=\"records\") gives a list of row dictionaries."
   }
 ]

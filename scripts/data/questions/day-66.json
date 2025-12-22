@@ -1,0 +1,333 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What does REST stand for?",
+        "options": [
+            "Remote Execution State Transfer",
+            "REpresentational State Transfer",
+            "Resource Entity State Type",
+            "Reliable Endpoint Service Technology"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "rest",
+        "explanation": "REST stands for REpresentational State Transfer, an architectural style for designing web APIs proposed by Roy Fielding."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which HTTP verb is used to CREATE a new resource?",
+        "options": [
+            "GET",
+            "PUT",
+            "POST",
+            "PATCH"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "http-verbs",
+        "explanation": "POST is used to create new resources. It corresponds to the 'Create' operation in CRUD."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which HTTP verb is used to READ/fetch resources?",
+        "options": [
+            "GET",
+            "POST",
+            "DELETE",
+            "PATCH"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "http-verbs",
+        "explanation": "GET is used to retrieve/read resources from the server without modifying them."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the difference between PUT and PATCH?",
+        "options": [
+            "PUT creates, PATCH deletes",
+            "PUT replaces entire resource, PATCH updates part of it",
+            "PUT is faster than PATCH",
+            "There is no difference"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "http-verbs",
+        "explanation": "PUT replaces the entire resource (like a new bicycle), while PATCH updates only specific fields (like just the wheel)."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What Flask function converts Python dictionaries to JSON responses?",
+        "options": [
+            "json.dumps()",
+            "jsonify()",
+            "to_json()",
+            "serialize()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "Flask's jsonify() function converts Python dictionaries to proper JSON responses with correct headers."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What HTTP status code indicates a resource was NOT found?",
+        "options": [
+            "200",
+            "201",
+            "400",
+            "404"
+        ],
+        "correct_index": 3,
+        "difficulty": "easy",
+        "topic_tag": "http-status",
+        "explanation": "404 (Not Found) indicates the requested resource doesn't exist on the server."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What HTTP status code indicates a resource was successfully CREATED?",
+        "options": [
+            "200",
+            "201",
+            "204",
+            "301"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "http-status",
+        "explanation": "201 (Created) is returned when a new resource has been successfully created via POST."
+    },
+    {
+        "question_type": "mcq",
+        "text": "In RESTful routing, what does `GET /cafes` typically return?",
+        "options": [
+            "A single cafe",
+            "All cafes",
+            "Deletes all cafes",
+            "Creates a new cafe"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "rest",
+        "explanation": "GET on a collection endpoint (/cafes) returns all resources in that collection."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What tool is commonly used to test API endpoints?",
+        "options": [
+            "Visual Studio Code",
+            "Postman",
+            "Chrome Browser",
+            "Notepad"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "testing",
+        "explanation": "Postman is a popular tool for testing APIs, allowing you to send any HTTP request with custom headers and body."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What process converts a SQLAlchemy object to JSON?",
+        "options": [
+            "Parsing",
+            "Serialization",
+            "Compilation",
+            "Encryption"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "explanation": "Serialization is the process of converting objects (like database models) into JSON format for API responses."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which HTTP verb should be used to UPDATE a resource's price only?",
+        "options": [
+            "GET",
+            "POST",
+            "PUT",
+            "PATCH"
+        ],
+        "correct_index": 3,
+        "difficulty": "medium",
+        "topic_tag": "http-verbs",
+        "explanation": "PATCH is ideal for partial updates (just one field). PUT would require sending all fields to replace the entire resource."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What decorator specifies which HTTP methods a Flask route accepts?",
+        "options": [
+            "@app.get()",
+            "@app.route(..., methods=['GET'])",
+            "@app.http('GET')",
+            "@app.accept('GET')"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "explanation": "The methods parameter in @app.route() specifies which HTTP verbs the route accepts."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does the 's' in HTTPs stand for?",
+        "options": [
+            "Speed",
+            "Secure",
+            "Server",
+            "State"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "http",
+        "explanation": "HTTPs stands for HTTP Secure - encrypted HTTP requests that protect data in transit."
+    },
+    {
+        "question_type": "mcq",
+        "text": "In REST, what does the URL represent?",
+        "options": [
+            "The action to perform",
+            "The resource being accessed",
+            "The HTTP method",
+            "The server name"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "rest",
+        "explanation": "In REST, the URL represents the resource (noun), while the HTTP verb represents the action (verb)."
+    },
+    {
+        "question_type": "coding",
+        "text": "Random Cafe API\\\\nComplete the Flask route that returns a random cafe as JSON.",
+        "starter_code": "import random\\nfrom flask import jsonify\\n\\n@app.route('/random')\\ndef get_random_cafe():\\n    cafes = Cafe.query.all()\\n    random_cafe = random.choice(cafes)\\n    # Return JSON with name and location\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "solution_code": "import random\\nfrom flask import jsonify\\n\\n@app.route('/random')\\ndef get_random_cafe():\\n    cafes = Cafe.query.all()\\n    random_cafe = random.choice(cafes)\\n    return jsonify(cafe={\\n        'name': random_cafe.name,\\n        'location': random_cafe.location\\n    })",
+        "explanation": "Use jsonify() to convert a dictionary to a JSON response. Structure the data as needed."
+    },
+    {
+        "question_type": "coding",
+        "text": "POST Route\\\\nCreate a Flask route that accepts POST requests to add a new cafe.",
+        "starter_code": "from flask import request, jsonify\\n\\n# Create route for adding cafes\\ndef add_cafe():\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "solution_code": "from flask import request, jsonify\\n\\n@app.route('/add', methods=['POST'])\\ndef add_cafe():\\n    new_cafe = Cafe(\\n        name=request.form.get('name'),\\n        location=request.form.get('location')\\n    )\\n    db.session.add(new_cafe)\\n    db.session.commit()\\n    return jsonify(response={'success': 'Cafe added.'}), 201",
+        "explanation": "Use methods=['POST'] and request.form.get() to access form data. Return 201 status for created resources."
+    },
+    {
+        "question_type": "coding",
+        "text": "PATCH Route\\\\nCreate a route that updates only the coffee price of a cafe.",
+        "starter_code": "from flask import request, jsonify\\n\\n# Create PATCH route to update price\\ndef update_price(cafe_id):\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "solution_code": "from flask import request, jsonify\\n\\n@app.route('/update-price/<int:cafe_id>', methods=['PATCH'])\\ndef update_price(cafe_id):\\n    cafe = db.get_or_404(Cafe, cafe_id)\\n    new_price = request.args.get('new_price')\\n    cafe.coffee_price = new_price\\n    db.session.commit()\\n    return jsonify(response={'success': 'Price updated.'})",
+        "explanation": "PATCH updates only specific fields. Use db.get_or_404() to handle missing resources gracefully."
+    },
+    {
+        "question_type": "coding",
+        "text": "DELETE Route\\\\nCreate a route that deletes a cafe by ID with API key authentication.",
+        "starter_code": "from flask import request, jsonify\\n\\nTOP_SECRET_API_KEY = 'TopSecretKey'\\n\\ndef delete_cafe(cafe_id):\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "hard",
+        "topic_tag": "flask",
+        "solution_code": "from flask import request, jsonify\\n\\nTOP_SECRET_API_KEY = 'TopSecretKey'\\n\\n@app.route('/report-closed/<int:cafe_id>', methods=['DELETE'])\\ndef delete_cafe(cafe_id):\\n    api_key = request.args.get('api-key')\\n    if api_key == TOP_SECRET_API_KEY:\\n        cafe = db.get_or_404(Cafe, cafe_id)\\n        db.session.delete(cafe)\\n        db.session.commit()\\n        return jsonify(response={'success': 'Cafe deleted.'}), 200\\n    return jsonify(error={'Forbidden': 'Invalid API key.'}), 403",
+        "explanation": "DELETE routes often require authentication. Check API key before allowing destructive operations."
+    },
+    {
+        "question_type": "coding",
+        "text": "Search Route\\\\nCreate a route that searches cafes by location query parameter.",
+        "starter_code": "from flask import request, jsonify\\n\\ndef search_cafes():\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "solution_code": "from flask import request, jsonify\\n\\n@app.route('/search')\\ndef search_cafes():\\n    location = request.args.get('loc')\\n    results = Cafe.query.filter_by(location=location).all()\\n    if results:\\n        return jsonify(cafes=[cafe.to_dict() for cafe in results])\\n    return jsonify(error={'Not Found': 'No cafes at that location.'}), 404",
+        "explanation": "Use request.args.get() for query parameters. Return appropriate status codes based on results."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "This route should only accept POST requests but accepts GET too. Fix it.",
+        "code": "@app.route('/add')\ndef add_cafe():\n    new_cafe = Cafe(name=request.form.get('name'))\n    db.session.add(new_cafe)\n    db.session.commit()\n    return jsonify(success=True)",
+        "options": [
+            "Add methods=['POST'] to the route decorator",
+            "Change @app.route to @app.post",
+            "Add if request.method == 'POST' check",
+            "Remove the route decorator"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "By default, routes accept GET. Add methods=['POST'] to restrict to POST only."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The API returns plain text instead of JSON. Fix it.",
+        "code": "@app.route('/cafe/<int:id>')\ndef get_cafe(id):\n    cafe = Cafe.query.get(id)\n    return {'name': cafe.name, 'location': cafe.location}",
+        "options": [
+            "Wrap the return with jsonify()",
+            "Change return to print()",
+            "Add Content-Type header manually",
+            "Use json.dumps()"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "Use jsonify() to properly convert dictionaries to JSON with correct Content-Type headers."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The route doesn't return the correct status code for created resources.",
+        "code": "@app.route('/add', methods=['POST'])\ndef add_cafe():\n    new_cafe = Cafe(name=request.form.get('name'))\n    db.session.add(new_cafe)\n    db.session.commit()\n    return jsonify(success='Cafe added.')",
+        "options": [
+            "Add , 201 after the jsonify() call",
+            "Change to return 'Created', 201",
+            "Add response.status = 201",
+            "Use abort(201)"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "http-status",
+        "explanation": "Return status 201 (Created) after successfully creating a resource: return jsonify(...), 201"
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The cafe is not being saved to the database. Fix the issue.",
+        "code": "@app.route('/add', methods=['POST'])\ndef add_cafe():\n    new_cafe = Cafe(name=request.form.get('name'))\n    db.session.add(new_cafe)\n    return jsonify(success='Cafe added.'), 201",
+        "options": [
+            "Add db.session.commit() before the return",
+            "Change db.session.add to db.session.save",
+            "Add new_cafe.save()",
+            "Remove db.session.add()"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "explanation": "You must call db.session.commit() to persist changes to the database."
+    }
+]

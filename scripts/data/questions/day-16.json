@@ -399,5 +399,50 @@
     "topic_tag": "oop",
     "solution_code": "class BankAccount:\n    def __init__(self):\n        self.balance = 0\n    \n    def deposit(self, amount):\n        self.balance += amount\n    \n    def withdraw(self, amount):\n        if amount > self.balance:\n            return False\n        self.balance -= amount\n        return True\n\ndef test_account(deposits, withdrawals):\n    acc = BankAccount()\n    for d in deposits:\n        acc.deposit(d)\n    for w in withdrawals:\n        acc.withdraw(w)\n    return acc.balance",
     "explanation": "Use the 'in' keyword to check membership. It returns True if the item exists in the collection."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The class instantiation syntax is wrong. Fix it.",
+    "code": "my_car = Car.new(\"red\")",
+    "options": [
+      "Use parentheses: my_car = Car(\"red\")",
+      "Use Car.create(\"red\")",
+      "Use new Car(\"red\")",
+      "Use Car.init(\"red\")"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "oop",
+    "explanation": "Instantiate classes with ClassName(args), not .new()."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The method is missing the self parameter. Fix it.",
+    "code": "class Dog:\n    def bark():\n        print(\"Woof!\")",
+    "options": [
+      "Add self parameter: def bark(self):",
+      "Use @staticmethod",
+      "Remove the class",
+      "Use def bark(@self):"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "oop",
+    "explanation": "Instance methods need self as the first parameter."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The attribute access is failing. Debug the init method.",
+    "code": "class Person:\n    def __init__(self, name):\n        name = name\n\np = Person(\"Alice\")\nprint(p.name)",
+    "options": [
+      "Use self.name = name to store on object",
+      "Use this.name = name",
+      "Use Person.name = name",
+      "Add @property decorator"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "oop",
+    "explanation": "Use self.attribute = value to store attributes."
   }
 ]

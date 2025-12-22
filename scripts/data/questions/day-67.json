@@ -1,0 +1,319 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What is the main goal of Day 67?",
+        "options": [
+            "Build a REST API from scratch",
+            "Add RESTful routing to the blog project",
+            "Learn about databases",
+            "Deploy the blog to production"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "overview",
+        "explanation": "Day 67 focuses on upgrading the blog to use RESTful routing with proper HTTP methods for CRUD operations."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which Flask method automatically returns 404 if a resource doesn't exist?",
+        "options": [
+            "db.query.get()",
+            "db.get_or_404()",
+            "db.find_or_fail()",
+            "db.session.get()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "db.get_or_404(Model, id) returns the resource or automatically aborts with a 404 error."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you pre-populate a WTForm with existing data?",
+        "options": [
+            "Form(data=existing_data)",
+            "Pass field values as keyword arguments to Form()",
+            "Form.load(existing_data)",
+            "Form.populate(existing_data)"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "wtforms",
+        "explanation": "Pass existing values as keyword arguments: CreatePostForm(title=post.title, body=post.body)"
+    },
+    {
+        "question_type": "mcq",
+        "text": "What method saves changes to an existing database record?",
+        "options": [
+            "db.session.add()",
+            "db.session.commit()",
+            "db.session.update()",
+            "db.session.save()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "sqlalchemy",
+        "explanation": "After modifying object attributes, call db.session.commit() to save changes."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does `validate_on_submit()` return if the form has errors?",
+        "options": [
+            "None",
+            "An error message",
+            "False",
+            "Raises an exception"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "wtforms",
+        "explanation": "validate_on_submit() returns False if validation fails, allowing you to re-render the form with errors."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why do we use GET instead of DELETE for the delete button in HTML forms?",
+        "options": [
+            "DELETE is slower",
+            "HTML forms don't natively support DELETE method",
+            "GET is more secure",
+            "DELETE requires JavaScript"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "http",
+        "explanation": "HTML forms only support GET and POST. DELETE requires JavaScript or a proper API client."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What Flask function redirects to a different route?",
+        "options": [
+            "goto()",
+            "redirect()",
+            "navigate()",
+            "route_to()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "Use redirect(url_for('route_name')) to redirect users to a different page."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does `url_for()` return?",
+        "options": [
+            "The route decorator",
+            "The URL string for a given route function",
+            "The HTTP method",
+            "The template name"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "url_for('function_name') returns the URL path associated with that route function."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you pass a URL parameter in `url_for()`?",
+        "options": [
+            "url_for('show_post', post_id=1)",
+            "url_for('show_post/1')",
+            "url_for('show_post').param(1)",
+            "url_for('show_post')[1]"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "Pass URL parameters as keyword arguments: url_for('show_post', post_id=1)"
+    },
+    {
+        "question_type": "mcq",
+        "text": "What SQLAlchemy method removes a record from the database?",
+        "options": [
+            "db.session.remove()",
+            "db.session.delete()",
+            "db.session.drop()",
+            "db.session.destroy()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "sqlalchemy",
+        "explanation": "db.session.delete(object) marks the object for deletion, then commit() persists it."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the purpose of passing `is_edit=True` to the template?",
+        "options": [
+            "Enable edit mode in the database",
+            "Change the submit button text from 'Create' to 'Update'",
+            "Lock the form for editing",
+            "Show additional fields"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "templates",
+        "explanation": "The is_edit flag helps the template conditionally render different button text or headings."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What Flask extension provides rich text editing capabilities?",
+        "options": [
+            "Flask-Editor",
+            "Flask-CKEditor",
+            "Flask-WYSIWYG",
+            "Flask-RichText"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "explanation": "Flask-CKEditor integrates CKEditor for WYSIWYG text editing in forms."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does `result.scalars().all()` return?",
+        "options": [
+            "A single object",
+            "A list of model objects",
+            "A dictionary",
+            "A SQLAlchemy query"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "sqlalchemy",
+        "explanation": "scalars().all() extracts the model objects from the result and returns them as a list."
+    },
+    {
+        "question_type": "coding",
+        "text": "Delete Route\\\\nComplete the route to delete a blog post and redirect to home.",
+        "starter_code": "@app.route('/delete/<int:post_id>')\\ndef delete_post(post_id):\\n    # Get the post and delete it\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "solution_code": "@app.route('/delete/<int:post_id>')\\ndef delete_post(post_id):\\n    post_to_delete = db.get_or_404(BlogPost, post_id)\\n    db.session.delete(post_to_delete)\\n    db.session.commit()\\n    return redirect(url_for('get_all_posts'))",
+        "explanation": "Use db.get_or_404() to get the post, delete it, commit, then redirect to the home page."
+    },
+    {
+        "question_type": "coding",
+        "text": "Edit Form Pre-population\\\\nCreate an edit route that pre-fills the form with existing post data.",
+        "starter_code": "@app.route('/edit/<int:post_id>', methods=['GET', 'POST'])\\ndef edit_post(post_id):\\n    post = db.get_or_404(BlogPost, post_id)\\n    # Create form with pre-filled data\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "wtforms",
+        "solution_code": "@app.route('/edit/<int:post_id>', methods=['GET', 'POST'])\\ndef edit_post(post_id):\\n    post = db.get_or_404(BlogPost, post_id)\\n    edit_form = CreatePostForm(\\n        title=post.title,\\n        subtitle=post.subtitle,\\n        author=post.author,\\n        body=post.body\\n    )\\n    if edit_form.validate_on_submit():\\n        post.title = edit_form.title.data\\n        db.session.commit()\\n        return redirect(url_for('show_post', post_id=post.id))\\n    return render_template('make-post.html', form=edit_form)",
+        "explanation": "Pass existing values as keyword arguments to the form constructor to pre-populate fields."
+    },
+    {
+        "question_type": "coding",
+        "text": "Show Single Post\\\\nCreate a route that displays a single blog post by ID.",
+        "starter_code": "def show_post(post_id):\\n    # Get post and render template\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "solution_code": "@app.route('/post/<int:post_id>')\\ndef show_post(post_id):\\n    requested_post = db.get_or_404(BlogPost, post_id)\\n    return render_template('post.html', post=requested_post)",
+        "explanation": "Use URL parameters with <int:post_id> and db.get_or_404() the render the specific post."
+    },
+    {
+        "question_type": "coding",
+        "text": "Create New Post\\\\nComplete the route to create a new blog post from form data.",
+        "starter_code": "@app.route('/new-post', methods=['GET', 'POST'])\\ndef add_new_post():\\n    form = CreatePostForm()\\n    if form.validate_on_submit():\\n        # Create and save new post\\n        pass\\n    return render_template('make-post.html', form=form)",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "solution_code": "@app.route('/new-post', methods=['GET', 'POST'])\\ndef add_new_post():\\n    form = CreatePostForm()\\n    if form.validate_on_submit():\\n        new_post = BlogPost(\\n            title=form.title.data,\\n            subtitle=form.subtitle.data,\\n            body=form.body.data,\\n            author=form.author.data\\n        )\\n        db.session.add(new_post)\\n        db.session.commit()\\n        return redirect(url_for('get_all_posts'))\\n    return render_template('make-post.html', form=form)",
+        "explanation": "Create a new BlogPost with form.field.data values, add to session, commit, and redirect."
+    },
+    {
+        "question_type": "coding",
+        "text": "Get All Posts\\\\nCreate the home route that fetches and displays all blog posts.",
+        "starter_code": "@app.route('/')\\ndef get_all_posts():\\n    # Fetch all posts and render\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "solution_code": "@app.route('/')\\ndef get_all_posts():\\n    result = db.session.execute(db.select(BlogPost))\\n    posts = result.scalars().all()\\n    return render_template('index.html', all_posts=posts)",
+        "explanation": "Use db.select() to query all posts, then pass them to the template as all_posts."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The form never validates. What's missing?",
+        "code": "@app.route('/new-post')\ndef add_new_post():\n    form = CreatePostForm()\n    if form.validate_on_submit():\n        # Create post...\n        pass\n    return render_template('make-post.html', form=form)",
+        "options": [
+            "Add methods=['GET', 'POST'] to the route",
+            "Change validate_on_submit() to validate()",
+            "Add form.validate() before the if",
+            "Import WTForms"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "Routes default to GET only. You must add methods=['GET', 'POST'] to accept form submissions."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The post is deleted but not saved. Fix it.",
+        "code": "@app.route('/delete/<int:post_id>')\ndef delete_post(post_id):\n    post = db.get_or_404(BlogPost, post_id)\n    db.session.delete(post)\n    return redirect(url_for('get_all_posts'))",
+        "options": [
+            "Add db.session.commit() after delete()",
+            "Change delete() to remove()",
+            "Add post.delete()",
+            "Use db.session.flush()"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "sqlalchemy",
+        "explanation": "You must call db.session.commit() to persist the deletion to the database."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The edit doesn't update the database. Why?",
+        "code": "@app.route('/edit/<int:post_id>', methods=['GET', 'POST'])\ndef edit_post(post_id):\n    post = db.get_or_404(BlogPost, post_id)\n    form = CreatePostForm(title=post.title)\n    if form.validate_on_submit():\n        post.title = form.title.data\n        return redirect(url_for('show_post', post_id=post.id))\n    return render_template('make-post.html', form=form)",
+        "options": [
+            "Add db.session.commit() before redirect",
+            "Use db.session.update(post)",
+            "Call post.save()",
+            "Add db.session.add(post)"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "sqlalchemy",
+        "explanation": "Changes to model attributes aren't persisted until you call db.session.commit()."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The redirect isn't working. What's wrong?",
+        "code": "if form.validate_on_submit():\n    new_post = BlogPost(title=form.title.data)\n    db.session.add(new_post)\n    db.session.commit()\n    return redirect('get_all_posts')",
+        "options": [
+            "Change redirect('get_all_posts') to redirect(url_for('get_all_posts'))",
+            "Use return 'get_all_posts'",
+            "Change to redirect('/home')",
+            "Add import redirect"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "redirect() expects a URL, not a function name. Use url_for() to get the URL from the function name."
+    }
+]

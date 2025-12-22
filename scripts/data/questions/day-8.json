@@ -329,5 +329,50 @@
     "topic_tag": "functions",
     "solution_code": "def diff(x, y):\n    return x - y",
     "explanation": "Check the condition and return immediately when it's met. Return a default value if the loop completes without finding a match."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The function returns None instead of the result. Fix it.",
+    "code": "def add(a, b):\n    result = a + b\n\nprint(add(3, 5))",
+    "options": [
+      "Add return statement: return result",
+      "Change print to return in the call",
+      "Use global result",
+      "Add print(result) in function"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "functions",
+    "explanation": "Functions need a return statement to send values back. Without return, they return None."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The Caesar cipher wraps incorrectly past z. Debug it.",
+    "code": "new_index = ord(letter) + shift\nnew_letter = chr(new_index)",
+    "options": [
+      "Use modulo to wrap: new_index = (ord(letter) - 97 + shift) % 26 + 97",
+      "Use abs(new_index)",
+      "Use int(new_index)",
+      "Subtract shift instead"
+    ],
+    "correct_index": 0,
+    "difficulty": "hard",
+    "topic_tag": "caesar_cipher",
+    "explanation": "Use modulo 26 to wrap the alphabet."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The function parameter is not using the passed value. Debug it.",
+    "code": "def greet(name):\n    name = \"World\"\n    print(f\"Hello, {name}!\")",
+    "options": [
+      "Remove the reassignment name = \"World\"",
+      "Use global name",
+      "Pass name by reference",
+      "Use *name"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "functions",
+    "explanation": "The parameter is immediately overwritten. Remove the reassignment."
   }
 ]

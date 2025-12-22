@@ -283,5 +283,50 @@
     "topic_tag": "strings",
     "solution_code": "def personalize(text, name):\n    return text.replace(\"[name]\", name)",
     "explanation": "Use list indexing to access specific elements. Negative indices count from the end."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The file content is not being read. Debug the file mode.",
+    "code": "with open(\"data.txt\", \"w\") as file:\n    content = file.read()",
+    "options": [
+      "Use read mode: open(\"data.txt\", \"r\")",
+      "Use file.get()",
+      "Use file.content()",
+      "Remove the with"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "files",
+    "explanation": "Mode \"w\" is for writing. Use \"r\" for reading."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The file path is not found. Fix the relative path.",
+    "code": "open(\"data/file.txt\")",
+    "options": [
+      "Check path or use absolute path: open(\"./file.txt\")",
+      "Use file://data/file.txt",
+      "Use os.find()",
+      "Add try/except"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "paths",
+    "explanation": "Relative paths are from the working directory."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The file write is missing data. Debug the flush.",
+    "code": "file = open(\"log.txt\", \"w\")\nfile.write(\"log entry\")",
+    "options": [
+      "Close file or use with: file.close()",
+      "Use file.flush()",
+      "Use file.save()",
+      "Write twice"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "files",
+    "explanation": "Always close files or use \"with\" to flush data."
   }
 ]

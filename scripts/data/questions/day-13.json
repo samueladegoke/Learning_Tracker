@@ -380,5 +380,50 @@
     "topic_tag": "debugging-fizzbuzz",
     "explanation": "The FizzBuzz check must come FIRST. If we check 'divisible by 3' first, 15 matches that and we never reach the 'FizzBuzz' condition.",
     "question_type": "coding"
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The comparison evaluates incorrectly. Debug it.",
+    "code": "age = input(\"Age: \")\nif age > 18:\n    print(\"Adult\")",
+    "options": [
+      "Convert to int: if int(age) > 18:",
+      "Use age.value > 18",
+      "Use age >= 18",
+      "Remove quotes from 18"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "debugging",
+    "explanation": "input() returns a string. Convert to int for comparison."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The code has an off-by-one error. Fix it.",
+    "code": "for i in range(1, 100):\n    print(i)",
+    "options": [
+      "Use range(1, 101) to include 100",
+      "Add print(100) after loop",
+      "Use range(0, 100)",
+      "Use <= in condition"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "debugging",
+    "explanation": "range() excludes the stop value. Use range(1, 101)."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The variable is used before assignment. Debug it.",
+    "code": "print(message)\nmessage = \"Hello World\"",
+    "options": [
+      "Define variable before using: move message = \"Hello World\" above print",
+      "Use declare message",
+      "Use lazy message",
+      "Add quotes around message in print"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "debugging",
+    "explanation": "Variables must be defined before they are used."
   }
 ]

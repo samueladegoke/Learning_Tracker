@@ -288,5 +288,50 @@
     "topic_tag": "inheritance",
     "solution_code": "class Animal:\n    def speak(self):\n        return \"Sound\"\n\nclass Cat(Animal):\n    def speak(self):\n        return \"Meow\"",
     "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The snake can reverse direction into itself. Prevent it.",
+    "code": "if key == \"Down\":\n    snake.direction = \"down\"",
+    "options": [
+      "Check current direction: if snake.direction != \"up\":",
+      "Use snake.safe_move()",
+      "Add collision check",
+      "Ignore key input"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "game_logic",
+    "explanation": "Prevent 180-degree turns by checking current direction."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The scoreboard is not displaying correctly. Debug the turtle write.",
+    "code": "scoreboard.write(score)",
+    "options": [
+      "Add alignment and font: write(score, align=\"center\", font=(\"Arial\", 24, \"normal\"))",
+      "Use scoreboard.print(score)",
+      "Use print(score)",
+      "Use scoreboard.text = score"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "turtle",
+    "explanation": "Turtle write() accepts align and font parameters."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The inherited class is not getting parent methods. Fix it.",
+    "code": "class Scoreboard(Turtle):\n    def __init__(self):\n        self.score = 0",
+    "options": [
+      "Call parent init: super().__init__()",
+      "Use Turtle.__init__()",
+      "Add self.Turtle()",
+      "Import Turtle"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "inheritance",
+    "explanation": "Call super().__init__() in child __init__."
   }
 ]

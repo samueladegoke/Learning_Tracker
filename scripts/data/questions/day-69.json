@@ -1,0 +1,319 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What is the main goal of Day 69?",
+        "options": [
+            "Create a REST API",
+            "Add a user system to the blog with authentication",
+            "Deploy the blog to production",
+            "Add database migrations"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "overview",
+        "explanation": "Day 69 adds user registration, login, protected routes, and user-post relationships to the blog."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What decorator restricts a route to logged-in users only?",
+        "options": [
+            "@protected",
+            "@login_required",
+            "@auth_needed",
+            "@secure"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask-login",
+        "explanation": "@login_required from Flask-Login restricts access to authenticated users only."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What Flask function returns an HTTP error response?",
+        "options": [
+            "error()",
+            "abort()",
+            "fail()",
+            "reject()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "abort(status_code) immediately stops the request and returns an HTTP error."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What HTTP status code means 'Forbidden'?",
+        "options": [
+            "401",
+            "403",
+            "404",
+            "500"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "http",
+        "explanation": "403 Forbidden means the request is understood but the user doesn't have permission."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What SQLAlchemy column type creates a foreign key relationship?",
+        "options": [
+            "db.Reference()",
+            "db.ForeignKey()",
+            "db.Link()",
+            "db.Relation()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "sqlalchemy",
+        "explanation": "db.ForeignKey('table.column') creates a reference to another table's primary key."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What SQLAlchemy function creates a bidirectional relationship?",
+        "options": [
+            "db.relation()",
+            "relationship()",
+            "db.link()",
+            "connect()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "sqlalchemy",
+        "explanation": "relationship() from sqlalchemy.orm creates ORM relationships between models."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does `back_populates` do in a SQLAlchemy relationship?",
+        "options": [
+            "Deletes related records",
+            "Creates the reverse side of the relationship",
+            "Populates default values",
+            "Backs up the database"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "sqlalchemy",
+        "explanation": "back_populates links both sides of a relationship so both objects reference each other."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What functools decorator should you use when creating custom decorators?",
+        "options": [
+            "@wrapper",
+            "@wraps",
+            "@preserve",
+            "@meta"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "python",
+        "explanation": "@wraps(f) preserves the original function's name and docstring in the wrapper."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you check if the current user is the admin (user ID 1)?",
+        "options": [
+            "current_user.is_admin",
+            "current_user.id == 1",
+            "current_user.role == 'admin'",
+            "session.is_admin"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask-login",
+        "explanation": "Check current_user.id == 1 to verify the first registered user (typically admin)."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What attribute checks if a user is logged in?",
+        "options": [
+            "current_user.logged_in",
+            "current_user.is_authenticated",
+            "current_user.is_active",
+            "current_user.session"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask-login",
+        "explanation": "is_authenticated returns True for logged-in users, False for anonymous users."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What service provides automatic profile pictures based on email?",
+        "options": [
+            "ProfilePic",
+            "Gravatar",
+            "AvatarAPI",
+            "EmailPhoto"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "web",
+        "explanation": "Gravatar provides profile images based on email hash. Many sites use it."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you flash a message to the user?",
+        "options": [
+            "message('text')",
+            "flash('text')",
+            "alert('text')",
+            "notify('text')"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "flash() stores a message to display on the next request (after redirect)."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What Jinja template tag checks if a user is logged in?",
+        "options": [
+            "{% if logged_in %}",
+            "{% if current_user.is_authenticated %}",
+            "{% if session.user %}",
+            "{% if user.exists %}"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "jinja",
+        "explanation": "current_user.is_authenticated is available in templates to check login status."
+    },
+    {
+        "question_type": "coding",
+        "text": "Admin Decorator\\\\nCreate a custom decorator that only allows user ID 1 to access a route.",
+        "starter_code": "from functools import wraps\\nfrom flask import abort\\nfrom flask_login import current_user\\n\\ndef admin_only(f):\\n    # Your code here\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "solution_code": "from functools import wraps\\nfrom flask import abort\\nfrom flask_login import current_user\\n\\ndef admin_only(f):\\n    @wraps(f)\\n    def decorated_function(*args, **kwargs):\\n        if current_user.id != 1:\\n            return abort(403)\\n        return f(*args, **kwargs)\\n    return decorated_function",
+        "explanation": "Use @wraps to preserve metadata, check current_user.id, and abort(403) if not admin."
+    },
+    {
+        "question_type": "coding",
+        "text": "User Model Relationship\\\\nAdd a posts relationship to the User model.",
+        "starter_code": "from sqlalchemy.orm import relationship\\n\\nclass User(UserMixin, db.Model):\\n    __tablename__ = 'users'\\n    id = db.Column(db.Integer, primary_key=True)\\n    name = db.Column(db.String(100))\\n    # Add posts relationship\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "sqlalchemy",
+        "solution_code": "from sqlalchemy.orm import relationship\\n\\nclass User(UserMixin, db.Model):\\n    __tablename__ = 'users'\\n    id = db.Column(db.Integer, primary_key=True)\\n    name = db.Column(db.String(100))\\n    posts = relationship('BlogPost', back_populates='author')",
+        "explanation": "Use relationship() with back_populates to create a bidirectional relationship."
+    },
+    {
+        "question_type": "coding",
+        "text": "Foreign Key\\\\nAdd a foreign key to BlogPost linking it to users.",
+        "starter_code": "class BlogPost(db.Model):\\n    __tablename__ = 'blog_posts'\\n    id = db.Column(db.Integer, primary_key=True)\\n    title = db.Column(db.String(250))\\n    # Add author_id foreign key\\n    pass",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "sqlalchemy",
+        "solution_code": "class BlogPost(db.Model):\\n    __tablename__ = 'blog_posts'\\n    id = db.Column(db.Integer, primary_key=True)\\n    title = db.Column(db.String(250))\\n    author_id = db.Column(db.Integer, db.ForeignKey('users.id'))\\n    author = relationship('User', back_populates='posts')",
+        "explanation": "db.ForeignKey('table.column') creates the foreign key. relationship() enables ORM access."
+    },
+    {
+        "question_type": "coding",
+        "text": "Check Email Exists\\\\nComplete the registration check for existing emails.",
+        "starter_code": "@app.route('/register', methods=['GET', 'POST'])\\ndef register():\\n    form = RegisterForm()\\n    if form.validate_on_submit():\\n        # Check if email already exists\\n        pass\\n    return render_template('register.html', form=form)",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "solution_code": "@app.route('/register', methods=['GET', 'POST'])\\ndef register():\\n    form = RegisterForm()\\n    if form.validate_on_submit():\\n        user = db.session.execute(\\n            db.select(User).where(User.email == form.email.data)\\n        ).scalar()\\n        if user:\\n            flash('Email already exists!')\\n            return redirect(url_for('login'))\\n        # Continue with registration...\\n    return render_template('register.html', form=form)",
+        "explanation": "Query for existing email and flash a message if found before creating new user."
+    },
+    {
+        "question_type": "coding",
+        "text": "Login with Check\\\\nComplete the login route with password verification.",
+        "starter_code": "@app.route('/login', methods=['GET', 'POST'])\\ndef login():\\n    form = LoginForm()\\n    if form.validate_on_submit():\\n        user = User.query.filter_by(email=form.email.data).first()\\n        # Verify password and login\\n        pass\\n    return render_template('login.html', form=form)",
+        "test_cases": [
+            {
+                "function_call": "True",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "solution_code": "@app.route('/login', methods=['GET', 'POST'])\\ndef login():\\n    form = LoginForm()\\n    if form.validate_on_submit():\\n        user = User.query.filter_by(email=form.email.data).first()\\n        if not user:\\n            flash('Email not found.')\\n            return redirect(url_for('login'))\\n        elif not check_password_hash(user.password, form.password.data):\\n            flash('Incorrect password.')\\n            return redirect(url_for('login'))\\n        else:\\n            login_user(user)\\n            return redirect(url_for('get_all_posts'))\\n    return render_template('login.html', form=form)",
+        "explanation": "Check for user existence, verify password with check_password_hash, then login_user()."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The posts relationship isn't working. What's wrong?",
+        "code": "class User(db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    posts = relationship('BlogPost')\n\nclass BlogPost(db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    author_id = db.Column(db.Integer)",
+        "options": [
+            "Add db.ForeignKey('users.id') to author_id",
+            "Change relationship to db.relationship",
+            "Add primary_key to posts",
+            "Import relationship from flask"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "sqlalchemy",
+        "explanation": "The foreign key column must reference the parent table: db.ForeignKey('users.id')"
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The custom decorator breaks the function. What's missing?",
+        "code": "def admin_only(f):\n    def decorated_function(*args, **kwargs):\n        if current_user.id != 1:\n            return abort(403)\n        return f(*args, **kwargs)\n    return decorated_function",
+        "options": [
+            "Add @wraps(f) above the inner function",
+            "Change def to async def",
+            "Add return at the end",
+            "Remove *args, **kwargs"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "python",
+        "explanation": "@wraps(f) preserves the original function's name and metadata, preventing Flask routing issues."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The flash message never appears. What's wrong?",
+        "code": "@app.route('/login', methods=['POST'])\ndef login():\n    user = User.query.filter_by(email=request.form['email']).first()\n    if not user:\n        flash('User not found')\n    return render_template('login.html')",
+        "options": [
+            "Add return redirect(url_for('login')) after flash",
+            "Change flash to message",
+            "Add flash to template",
+            "Import flash from jinja2"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "explanation": "Flash messages appear on the NEXT request. Without redirect, the message is consumed on the same request."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "Unauthorized users can still access this route. Fix it.",
+        "code": "@app.route('/admin-panel')\ndef admin_panel():\n    if current_user.id != 1:\n        pass\n    return render_template('admin.html')",
+        "options": [
+            "Change pass to return abort(403)",
+            "Add @login_required decorator",
+            "Change if to while",
+            "Remove the if statement"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "The pass statement does nothing. Use abort(403) to deny access to non-admin users."
+    }
+]

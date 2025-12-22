@@ -445,5 +445,50 @@
     "explanation": "Use type() to get the type, then access __name__ to get just the type name as a string.",
     "difficulty": "hard",
     "topic_tag": "type_checking"
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The code throws TypeError when printing. Fix it.",
+    "code": "age = 25\nprint(\"You are \" + age + \" years old\")",
+    "options": [
+      "Convert age to string: print(\"You are \" + str(age) + \" years old\")",
+      "Remove the + signs: print(\"You are age years old\")",
+      "Use int() on age: print(\"You are \" + int(age) + \" years old\")",
+      "Add quotes around age: print(\"You are \" + \"age\" + \" years old\")"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "type_conversion",
+    "explanation": "You cannot concatenate a string and integer with +. Use str() to convert the integer, or use an f-string."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The type() check is not working correctly. Debug it.",
+    "code": "number = \"42\"\nif type(number) == int:\n    print(\"It's an integer\")",
+    "options": [
+      "The number is a string '42', not an int. Use int(number) to convert, or compare to str",
+      "Use type(number) == 'int' with quotes",
+      "Use typeof(number) instead",
+      "Add parentheses: type((number))"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "type_checking",
+    "explanation": "\"42\" is a string, not an integer. type(\"42\") returns <class 'str'>, not <class 'int'>."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The f-string is printing literally instead of the variable value. Fix it.",
+    "code": "score = 100\nprint(\"Your score is {score}\")",
+    "options": [
+      "Add f prefix: print(f\"Your score is {score}\")",
+      "Remove the curly braces: print(\"Your score is score\")",
+      "Use format(): print(\"{score}\".format())",
+      "Change to single quotes: print('Your score is {score}')"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "f_strings",
+    "explanation": "Without the 'f' prefix, curly braces are treated as literal characters. Add f before the quote to make it an f-string."
   }
 ]

@@ -73,6 +73,16 @@ const DeepDiveDay62 = lazy(() => import('../components/content/DeepDive/Day62'))
 const DeepDiveDay63 = lazy(() => import('../components/content/DeepDive/Day63'))
 const DeepDiveDay64 = lazy(() => import('../components/content/DeepDive/Day64'))
 const DeepDiveDay65 = lazy(() => import('../components/content/DeepDive/Day65'))
+const DeepDiveDay66 = lazy(() => import('../components/content/DeepDive/Day66'))
+const DeepDiveDay67 = lazy(() => import('../components/content/DeepDive/Day67'))
+const DeepDiveDay68 = lazy(() => import('../components/content/DeepDive/Day68'))
+const DeepDiveDay69 = lazy(() => import('../components/content/DeepDive/Day69'))
+const DeepDiveDay70 = lazy(() => import('../components/content/DeepDive/Day70'))
+const DeepDiveDay71 = lazy(() => import('../components/content/DeepDive/Day71'))
+const DeepDiveDay72 = lazy(() => import('../components/content/DeepDive/Day72'))
+const DeepDiveDay73 = lazy(() => import('../components/content/DeepDive/Day73'))
+const DeepDiveDay74 = lazy(() => import('../components/content/DeepDive/Day74'))
+const DeepDiveDay75 = lazy(() => import('../components/content/DeepDive/Day75'))
 
 // Loading fallback component for lazy-loaded DeepDive content
 const DeepDiveLoader = () => (
@@ -602,6 +612,86 @@ const DAY_META = {
         quizId: 'day-65-practice',
         level: 'advanced',
         topics: ['ux', 'ui', 'color-theory', 'typography', 'web-design']
+    },
+    'day-66': {
+        label: 'Day 66',
+        title: 'Day 66: Building Your Own API with RESTful Routing',
+        subtitle: 'Create RESTful APIs with Flask using HTTP verbs, jsonify, and serialization.',
+        quizId: 'day-66-practice',
+        level: 'advanced',
+        topics: ['rest', 'http-verbs', 'flask-api', 'jsonify', 'serialization']
+    },
+    'day-67': {
+        label: 'Day 67',
+        title: 'Day 67: Blog Capstone Part 3 - RESTful Routing',
+        subtitle: 'Add CRUD operations to your blog with RESTful routes.',
+        quizId: 'day-67-practice',
+        level: 'advanced',
+        topics: ['crud', 'restful-blog', 'wtforms', 'flask']
+    },
+    'day-68': {
+        label: 'Day 68',
+        title: 'Day 68: Authentication with Flask',
+        subtitle: 'Secure your app with password hashing, salting, and Flask-Login.',
+        quizId: 'day-68-practice',
+        level: 'advanced',
+        topics: ['authentication', 'hashing', 'werkzeug', 'flask-login']
+    },
+    'day-69': {
+        label: 'Day 69',
+        title: 'Day 69: Blog Capstone Part 4 - Adding Users',
+        subtitle: 'Complete the blog with user registration, protected routes, and relationships.',
+        quizId: 'day-69-practice',
+        level: 'advanced',
+        topics: ['users', 'relationships', 'decorators', 'authorization']
+    },
+    'day-70': {
+        label: 'Day 70',
+        title: 'Day 70: Git, GitHub and Version Control',
+        subtitle: 'Master Git commands, branching, merging, and pull requests.',
+        quizId: 'day-70-practice',
+        level: 'advanced',
+        topics: ['git', 'github', 'version-control', 'branching']
+    },
+    'day-71': {
+        label: 'Day 71',
+        title: 'Day 71: Deploying Your Web Application',
+        subtitle: 'Go live with Gunicorn, environment variables, and PostgreSQL.',
+        quizId: 'day-71-practice',
+        level: 'advanced',
+        topics: ['gunicorn', 'env-vars', 'postgresql']
+    },
+    'day-72': {
+        label: 'Day 72',
+        title: 'Day 72: Data Exploration with Pandas',
+        subtitle: 'Explore, clean, and analyze data using DataFrames.',
+        quizId: 'day-72-practice',
+        level: 'advanced',
+        topics: ['pandas', 'dataframes', 'cleaning']
+    },
+    'day-73': {
+        label: 'Day 73',
+        title: 'Day 73: Data Visualisation with Matplotlib',
+        subtitle: 'Create line charts, pivot data, and smooth time-series.',
+        quizId: 'day-73-practice',
+        level: 'advanced',
+        topics: ['matplotlib', 'time-series', 'pivoting']
+    },
+    'day-74': {
+        label: 'Day 74',
+        title: 'Day 74: Aggregate & Merge Data with Pandas',
+        subtitle: 'Master .agg(), .merge(), and relational data concepts.',
+        quizId: 'day-74-practice',
+        level: 'advanced',
+        topics: ['aggregation', 'merging', 'relational']
+    },
+    'day-75': {
+        label: 'Day 75',
+        title: 'Day 75: Google Trends Data & Time Series',
+        subtitle: 'Resample time-series and polish charts with Matplotlib.',
+        quizId: 'day-75-practice',
+        level: 'advanced',
+        topics: ['resampling', 'visual-polish', 'google-trends']
     }
 }
 
@@ -911,7 +1001,17 @@ function DeepDive({ activeDay }) {
         'day-62': DeepDiveDay62,
         'day-63': DeepDiveDay63,
         'day-64': DeepDiveDay64,
-        'day-65': DeepDiveDay65
+        'day-65': DeepDiveDay65,
+        'day-66': DeepDiveDay66,
+        'day-67': DeepDiveDay67,
+        'day-68': DeepDiveDay68,
+        'day-69': DeepDiveDay69,
+        'day-70': DeepDiveDay70,
+        'day-71': DeepDiveDay71,
+        'day-72': DeepDiveDay72,
+        'day-73': DeepDiveDay73,
+        'day-74': DeepDiveDay74,
+        'day-75': DeepDiveDay75
     }
     const Component = components[activeDay]
     if (!Component) {

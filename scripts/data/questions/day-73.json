@@ -1,0 +1,422 @@
+[
+  {
+    "quiz_id": "day-73-practice",
+    "question_type": "mcq",
+    "text": "Which Pandas function is used to convert strings into actual datetime objects?",
+    "options": [
+      "pd.convert_date()",
+      "pd.to_datetime()",
+      "pd.make_time()",
+      "pd.format_date()"
+    ],
+    "correct_index": 1,
+    "explanation": "'pd.to_datetime()' is essential for time-series analysis as it allows Matplotlib to understand the chronological order of data points.",
+    "difficulty": "easy",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-73-practice",
+    "question_type": "mcq",
+    "text": "What does the '.pivot()' method do to a DataFrame?",
+    "options": [
+      "It rotates the axis of a chart",
+      "It reshapes data by turning unique values from one column into multiple new columns",
+      "It deletes all duplicate rows",
+      "It converts the dataframe into a list"
+    ],
+    "correct_index": 1,
+    "explanation": "Pivoting is used to transform 'long' format data into 'wide' format, making it easier to compare categories.",
+    "difficulty": "medium",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-73-practice",
+    "question_type": "mcq",
+    "text": "If a DataFrame has missing values after a pivot, which method can be used to replace them with zero?",
+    "options": [
+      "df.replace_nan(0)",
+      "df.zero_fill()",
+      "df.fillna(0)",
+      "df.mask(0)"
+    ],
+    "correct_index": 2,
+    "explanation": "'.fillna(value)' is used to replace NaN (Not a Number) values with a specified value.",
+    "difficulty": "easy",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-73-practice",
+    "question_type": "mcq",
+    "text": "In Matplotlib, how do you set the width and height of the chart?",
+    "options": [
+      "plt.size(10, 6)",
+      "plt.dimensions(10, 6)",
+      "plt.figure(figsize=(10, 6))",
+      "plt.plot(width=10, height=6)"
+    ],
+    "correct_index": 2,
+    "explanation": "The 'figsize' parameter in 'plt.figure()' defines the dimensions of the plotting area in inches.",
+    "difficulty": "medium",
+    "topic_tag": "matplotlib"
+  },
+  {
+    "quiz_id": "day-73-practice",
+    "question_type": "mcq",
+    "text": "What is the purpose of 'plt.legend()'?",
+    "options": [
+      "To add a title to the chart",
+      "To create a background grid",
+      "To display a box identifying which data series each line represents",
+      "To save the chart as an image"
+    ],
+    "correct_index": 2,
+    "explanation": "Legends are crucial when plotting multiple lines on the same chart to tell them apart.",
+    "difficulty": "easy",
+    "topic_tag": "matplotlib"
+  },
+  {
+    "quiz_id": "day-73-practice",
+    "question_type": "mcq",
+    "text": "Which method is used to 'smooth' jagged data by calculating a moving average?",
+    "options": [
+      "df.average()",
+      "df.rolling().mean()",
+      "df.smooth()",
+      "df.flatten()"
+    ],
+    "correct_index": 1,
+    "explanation": "'.rolling(window=n).mean()' calculates the average of 'n' consecutive data points, reducing noise in time-series plots.",
+    "difficulty": "hard",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-73-practice",
+    "question_type": "mcq",
+    "text": "What does a 'window' size of 12 represent in a rolling mean on monthly data?",
+    "options": [
+      "A 12-month (1 year) moving average",
+      "The first 12 rows only",
+      "A calculation that ignores the first 12 days",
+      "12 different lines on the graph"
+    ],
+    "correct_index": 0,
+    "explanation": "The window parameter defines the number of periods to include in each average calculation.",
+    "difficulty": "medium",
+    "topic_tag": "data-science"
+  },
+  {
+    "quiz_id": "day-73-practice",
+    "question_type": "mcq",
+    "text": "Which of these is the correct way to add a label to the horizontal axis?",
+    "options": [
+      "plt.x_text('Date')",
+      "plt.label_x('Date')",
+      "plt.xlabel('Date')",
+      "plt.axis_x('Date')"
+    ],
+    "correct_index": 2,
+    "explanation": "'plt.xlabel()' and 'plt.ylabel()' are used to label the X and Y axes respectively.",
+    "difficulty": "easy",
+    "topic_tag": "matplotlib"
+  },
+  {
+    "quiz_id": "day-73-practice",
+    "question_type": "mcq",
+    "text": "How can you change the range of values displayed on the vertical axis?",
+    "options": [
+      "plt.range(0, 100)",
+      "plt.ylim(0, 100)",
+      "plt.y_bounds(0, 100)",
+      "plt.limit_y(0, 100)"
+    ],
+    "correct_index": 1,
+    "explanation": "'plt.ylim()' sets the lower and upper limits of the Y-axis.",
+    "difficulty": "medium",
+    "topic_tag": "matplotlib"
+  },
+  {
+    "quiz_id": "day-73-practice",
+    "question_type": "mcq",
+    "text": "What module must be imported to use Matplotlib's pyplot interface?",
+    "options": [
+      "import matplotlib as plt",
+      "import matplotlib.pyplot as plt",
+      "import pyplot as plt",
+      "import pandas.plotting as plt"
+    ],
+    "correct_index": 1,
+    "explanation": "The 'pyplot' sub-module provides the MATLAB-like interface for plotting.",
+    "difficulty": "easy",
+    "topic_tag": "matplotlib"
+  },
+  {
+    "quiz_id": "day-73-practice",
+    "question_type": "mcq",
+    "text": "Which of these is NOT a valid Matplotlib plot type?",
+    "options": [
+      "plt.plot()",
+      "plt.scatter()",
+      "plt.bar()",
+      "plt.dataframe()"
+    ],
+    "correct_index": 3,
+    "explanation": "Matplotlib has specific functions for different chart types; '.dataframe()' is not one of them.",
+    "difficulty": "easy",
+    "topic_tag": "matplotlib"
+  },
+  {
+    "quiz_id": "day-73-practice",
+    "question_type": "mcq",
+    "text": "What happens if you run 'plt.show()' before adding labels or a legend?",
+    "options": [
+      "The chart is displayed without labels or legends because they are added to the figure object in order",
+      "Matplotlib throws an error",
+      "Labels are added automatically using AI",
+      "The chart is saved to a file instead of being shown"
+    ],
+    "correct_index": 0,
+    "explanation": "'plt.show()' renders the current state of the figure. Any commands after 'plt.show()' will not affect the displayed chart.",
+    "difficulty": "medium",
+    "topic_tag": "matplotlib"
+  },
+  {
+    "quiz_id": "day-73-practice",
+    "question_type": "mcq",
+    "text": "How do you clear the current figure to start a new plot?",
+    "options": [
+      "plt.clear()",
+      "plt.clf()",
+      "plt.new()",
+      "plt.reset()"
+    ],
+    "correct_index": 1,
+    "explanation": "'plt.clf()' stands for 'clear figure'.",
+    "difficulty": "hard",
+    "topic_tag": "matplotlib"
+  },
+  {
+    "quiz_id": "day-73-practice",
+    "question_type": "mcq",
+    "text": "Which attribute allows you to access the year component of a Datetime column in Pandas?",
+    "options": [
+      "df['column'].year",
+      "df['column'].dt.year",
+      "df['column'].get_year()",
+      "df['column'].time.year"
+    ],
+    "correct_index": 1,
+    "explanation": "The '.dt' accessor provides various datetime-specific properties like .year, .month, .day, etc.",
+    "difficulty": "medium",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-73-practice",
+    "question_type": "mcq",
+    "text": "What does a jagged line with many spikes usually indicate in data science?",
+    "options": [
+      "Highly accurate data",
+      "Noise or high variance in short-term observations",
+      "The chart is broken",
+      "The data is sorted incorrectly"
+    ],
+    "correct_index": 1,
+    "explanation": "Daily or weekly data often fluctuates significantly, making it hard to see long-term trends without smoothing.",
+    "difficulty": "easy",
+    "topic_tag": "data-science"
+  },
+  {
+    "quiz_id": "day-73-practice",
+    "question_type": "mcq",
+    "text": "In '.rolling(window=5)', what does the 'window' parameter represent?",
+    "options": [
+      "The number of rows to average together",
+      "The width of the chart",
+      "The number of columns to group",
+      "The transparency of the line"
+    ],
+    "correct_index": 0,
+    "explanation": "A window of 5 means each point on the new line is the average of the current point and the previous 4 points.",
+    "difficulty": "medium",
+    "topic_tag": "pandas"
+  },
+  {
+    "quiz_id": "day-73-practice",
+    "question_type": "mcq",
+    "text": "If you want to plot three lines on one chart, how many 'plt.plot()' calls do you need?",
+    "options": [
+      "One",
+      "Three",
+      "Six",
+      "It depends on the RAM"
+    ],
+    "correct_index": 1,
+    "explanation": "You call '.plot()' for each data series you want to add to the current figure.",
+    "difficulty": "easy",
+    "topic_tag": "matplotlib"
+  },
+  {
+    "quiz_id": "day-73-practice",
+    "question_type": "mcq",
+    "text": "How do you change the color of a line in 'plt.plot()'?",
+    "options": [
+      "plt.plot(x, y, color='red')",
+      "plt.plot(x, y, c='r')",
+      "Both are correct",
+      "Neither is correct"
+    ],
+    "correct_index": 2,
+    "explanation": "Matplotlib accepts both 'color' and the shorthand 'c' for specifying line colors.",
+    "difficulty": "medium",
+    "topic_tag": "matplotlib"
+  },
+  {
+    "quiz_id": "day-73-practice",
+    "question_type": "mcq",
+    "text": "What is 'plt.grid()' used for?",
+    "options": [
+      "To align images in a dashboard",
+      "To show horizontal and vertical guide lines on the chart",
+      "To perform a grid search for machine learning",
+      "To divide the dataframe into blocks"
+    ],
+    "correct_index": 1,
+    "explanation": "Grids help users read exact values from the axes more easily.",
+    "difficulty": "easy",
+    "topic_tag": "matplotlib"
+  },
+  {
+    "quiz_id": "day-73-practice",
+    "question_type": "mcq",
+    "text": "Why do we use '.isna().values.any()' before plotting?",
+    "options": [
+      "To check for corrupted data files",
+      "To find out if there are any missing values that might cause gaps or errors in our chart",
+      "To verify if the dataframe is actually a dataframe",
+      "To count the number of columns"
+    ],
+    "correct_index": 1,
+    "explanation": "Identifying missing data is a prerequisite for cleaning (e.g., via .fillna()) before visualization.",
+    "difficulty": "hard",
+    "topic_tag": "pandas"
+  },
+  {
+    "question_type": "coding",
+    "text": "Create a Basic Line Plot\n\nWrite a function that creates and returns a simple line plot of y values against x values using Matplotlib.",
+    "starter_code": "import matplotlib.pyplot as plt\n\ndef create_line_plot(x, y):\n    # Create a line plot\n    pass",
+    "test_cases": [
+      {
+        "function_call": "True",
+        "expected": "True"
+      }
+    ],
+    "solution_code": "import matplotlib.pyplot as plt\n\ndef create_line_plot(x, y):\n    plt.figure()\n    plt.plot(x, y)\n    return plt.gcf()",
+    "explanation": "Use plt.plot(x, y) to create a line chart. plt.gcf() returns the current figure for further manipulation.",
+    "difficulty": "easy",
+    "topic_tag": "matplotlib"
+  },
+  {
+    "question_type": "coding",
+    "text": "Add Labels to a Chart\n\nWrite a function that sets the title, x-label, and y-label for a Matplotlib chart.",
+    "starter_code": "import matplotlib.pyplot as plt\n\ndef add_labels(title, x_label, y_label):\n    # Set title, xlabel, and ylabel\n    pass",
+    "test_cases": [
+      {
+        "function_call": "True",
+        "expected": "True"
+      }
+    ],
+    "solution_code": "import matplotlib.pyplot as plt\n\ndef add_labels(title, x_label, y_label):\n    plt.title(title)\n    plt.xlabel(x_label)\n    plt.ylabel(y_label)",
+    "explanation": "Use plt.title(), plt.xlabel(), and plt.ylabel() to add descriptive labels to your chart.",
+    "difficulty": "easy",
+    "topic_tag": "matplotlib"
+  },
+  {
+    "question_type": "coding",
+    "text": "Calculate Rolling Mean\n\nWrite a function that returns the 7-day rolling mean of a Pandas Series.",
+    "starter_code": "import pandas as pd\n\ndef rolling_mean_7(series):\n    # Return 7-day rolling mean\n    pass",
+    "test_cases": [
+      {
+        "function_call": "rolling_mean_7(pd.Series([1,2,3,4,5,6,7,8,9,10])).iloc[-1]",
+        "expected": "7.0"
+      }
+    ],
+    "solution_code": "import pandas as pd\n\ndef rolling_mean_7(series):\n    return series.rolling(window=7).mean()",
+    "explanation": "The rolling() method creates a moving window, and .mean() calculates the average within that window.",
+    "difficulty": "medium",
+    "topic_tag": "pandas"
+  },
+  {
+    "question_type": "coding",
+    "text": "Convert String to Datetime\n\nWrite a function that converts a column of date strings to Pandas datetime objects.",
+    "starter_code": "import pandas as pd\n\ndef convert_dates(df, column_name):\n    # Convert the column to datetime\n    pass",
+    "test_cases": [
+      {
+        "function_call": "str(convert_dates(pd.DataFrame({'date': ['2024-01-01']}), 'date')['date'].dtype)",
+        "expected": "datetime64[ns]"
+      }
+    ],
+    "solution_code": "import pandas as pd\n\ndef convert_dates(df, column_name):\n    df[column_name] = pd.to_datetime(df[column_name])\n    return df",
+    "explanation": "pd.to_datetime() parses date strings and converts them to proper datetime objects for time-series analysis.",
+    "difficulty": "easy",
+    "topic_tag": "pandas"
+  },
+  {
+    "question_type": "coding",
+    "text": "Fill Missing Values\n\nWrite a function that replaces NaN values in a DataFrame with zeros.",
+    "starter_code": "import pandas as pd\n\ndef fill_with_zeros(df):\n    # Replace NaN with 0\n    pass",
+    "test_cases": [
+      {
+        "function_call": "fill_with_zeros(pd.DataFrame({'a': [1, None, 3]}))['a'].tolist()",
+        "expected": "[1.0, 0.0, 3.0]"
+      }
+    ],
+    "solution_code": "import pandas as pd\n\ndef fill_with_zeros(df):\n    return df.fillna(0)",
+    "explanation": "The fillna() method replaces all NaN values with the specified value, commonly used after pivot operations.",
+    "difficulty": "easy",
+    "topic_tag": "pandas"
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The chart shows no labels. Debug the code order.",
+    "code": "plt.plot(x, y)\nplt.show()\nplt.xlabel('Date')\nplt.ylabel('Value')",
+    "options": [
+      "Move plt.xlabel() and plt.ylabel() before plt.show()",
+      "Add plt.refresh() after labels",
+      "Use plt.label() instead",
+      "Remove plt.show() entirely"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "matplotlib",
+    "explanation": "plt.show() renders the figure. Any commands after it won't affect the displayed chart."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The rolling mean calculation returns all NaN values. Fix it.",
+    "code": "smoothed = df['value'].rolling(window=7).average()",
+    "options": [
+      "Change .average() to .mean()",
+      "Remove the window parameter",
+      "Use .smooth() instead",
+      "Add .fillna(0) before rolling"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "pandas",
+    "explanation": "The correct method is .mean(), not .average(). average() doesn't exist in Pandas rolling."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The datetime conversion fails with an error. Find the issue.",
+    "code": "df['date'] = pd.datetime(df['date'])",
+    "options": [
+      "Use pd.to_datetime() instead of pd.datetime()",
+      "Add format='%Y-%m-%d' parameter",
+      "Convert to string first",
+      "Use datetime.strptime() instead"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "pandas",
+    "explanation": "pd.to_datetime() is the correct function for converting columns. pd.datetime doesn't exist."
+  }
+]

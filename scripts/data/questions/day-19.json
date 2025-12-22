@@ -395,5 +395,50 @@
     "topic_tag": "state",
     "solution_code": "class StateTracker:\n    def __init__(self):\n        self.count = 0\n    \n    def record(self):\n        self.count += 1\n    \n    def get_count(self):\n        return self.count\n\ndef test_state():\n    t1 = StateTracker()\n    t2 = StateTracker()\n    for _ in range(3): t1.record()\n    for _ in range(5): t2.record()\n    return (t1.get_count(), t2.get_count())",
     "explanation": "Use the 'in' keyword to check membership. It returns True if the item exists in the collection."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The event listener is not working. Debug the binding.",
+    "code": "screen.onkey(move_forward(), \"Up\")",
+    "options": [
+      "Remove parentheses: screen.onkey(move_forward, \"Up\")",
+      "Use screen.bind(\"Up\", move_forward)",
+      "Add return to move_forward",
+      "Use lambda instead"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "events",
+    "explanation": "Pass function reference without parentheses."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The keyboard input is not responding. Fix the screen setup.",
+    "code": "screen.onkey(go_up, \"Up\")",
+    "options": [
+      "Add screen.listen() after binding keys",
+      "Use screen.wait()",
+      "Add time.sleep(1)",
+      "Use input() instead"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "events",
+    "explanation": "screen.listen() is required to start listening for key events."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The turtle position is not updating. Debug the method call.",
+    "code": "turtle.forward\nturtle.left",
+    "options": [
+      "Add parentheses: turtle.forward(100)",
+      "Use turtle.move()",
+      "Use turtle->forward",
+      "Add self before turtle"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "turtle",
+    "explanation": "Methods need parentheses to be called."
   }
 ]

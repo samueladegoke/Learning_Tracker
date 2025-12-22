@@ -299,5 +299,50 @@
     "topic_tag": "logic",
     "solution_code": "def can_move_up(y_cor):\n    return y_cor < 250",
     "explanation": "Process the input according to the requirements and return the result. Make sure to handle edge cases."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The paddle moves too slowly. Fix the movement increment.",
+    "code": "def go_up(self):\n    self.sety(self.ycor() + 10)",
+    "options": [
+      "Increase the step: self.sety(self.ycor() + 20)",
+      "Use self.forward(10)",
+      "Multiply by speed",
+      "Use time.sleep(0)"
+    ],
+    "correct_index": 0,
+    "difficulty": "easy",
+    "topic_tag": "game_logic",
+    "explanation": "Increase the y increment for faster paddle movement."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The ball bounces incorrectly off wall. Fix the angle calculation.",
+    "code": "ball.bounce_x()",
+    "options": [
+      "Use heading calculation: ball.setheading(180 - ball.heading())",
+      "Use ball.reverse()",
+      "Use ball.reflect()",
+      "Add random bounce"
+    ],
+    "correct_index": 0,
+    "difficulty": "hard",
+    "topic_tag": "physics",
+    "explanation": "Use heading calculation for proper reflection angle."
+  },
+  {
+    "question_type": "code-correction",
+    "text": "The game detects collision too late. Fix the distance check.",
+    "code": "if ball.distance(paddle) < 50 and ball.xcor() < -350:",
+    "options": [
+      "Check collision before the wall: ball.xcor() > -350",
+      "Use collision library",
+      "Make paddle wider",
+      "Check every frame"
+    ],
+    "correct_index": 0,
+    "difficulty": "medium",
+    "topic_tag": "collision",
+    "explanation": "Check collision before the ball passes the paddle."
   }
 ]
