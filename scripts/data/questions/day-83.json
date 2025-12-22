@@ -1,0 +1,260 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "Which decorator defines a route in Flask?",
+        "options": [
+            "@flask.route",
+            "@app.route",
+            "@route",
+            "@url"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "@app.route() decorator maps a URL to a function."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does render_template() do in Flask?",
+        "options": [
+            "Returns JSON",
+            "Renders Jinja2 templates to HTML",
+            "Creates a new template",
+            "Validates templates"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "render_template() processes Jinja2 templates and returns HTML."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you access form data in a POST request?",
+        "options": [
+            "request.args",
+            "request.form",
+            "request.data",
+            "request.post"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "request.form contains form data from POST requests."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which HTTP status code indicates 'Created'?",
+        "options": [
+            "200",
+            "201",
+            "204",
+            "301"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "http",
+        "explanation": "201 Created is returned when a new resource is successfully created."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does request.get_json() return?",
+        "options": [
+            "Raw string",
+            "Parsed JSON as dict",
+            "JSON file",
+            "HTTP headers"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "get_json() parses the request body as JSON and returns a Python dict."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which Flask extension is used for database ORM?",
+        "options": [
+            "Flask-DB",
+            "Flask-SQLAlchemy",
+            "Flask-ORM",
+            "Flask-SQL"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "Flask-SQLAlchemy integrates SQLAlchemy ORM with Flask."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does Jinja2's {{ variable }} syntax do?",
+        "options": [
+            "Creates a comment",
+            "Outputs the variable value",
+            "Defines a variable",
+            "Creates a loop"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "jinja2",
+        "explanation": "Double braces output the value of a variable in the template."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you extend a base template in Jinja2?",
+        "options": [
+            "{% include 'base.html' %}",
+            "{% extends 'base.html' %}",
+            "{% import 'base.html' %}",
+            "{% use 'base.html' %}"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "jinja2",
+        "explanation": "{% extends %} inherits from a parent template."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does abort(404) do in Flask?",
+        "options": [
+            "Returns 404 status",
+            "Raises HTTPException with 404",
+            "Logs an error",
+            "Redirects to 404 page"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "explanation": "abort() raises an HTTPException that Flask handles as an error response."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which method creates database tables from models?",
+        "options": [
+            "db.create()",
+            "db.create_all()",
+            "db.init()",
+            "db.migrate()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "sqlalchemy",
+        "explanation": "db.create_all() creates all tables defined by models."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does url_for('static', filename='style.css') return?",
+        "options": [
+            "CSS content",
+            "URL path to static file",
+            "File object",
+            "Template object"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "explanation": "url_for() generates URLs for static files and routes."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is a Flask Blueprint used for?",
+        "options": [
+            "Drawing diagrams",
+            "Organizing routes into modules",
+            "Creating templates",
+            "Database migrations"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "explanation": "Blueprints help organize large applications by grouping related routes."
+    },
+    {
+        "question_type": "coding",
+        "text": "Create a Flask route that returns JSON with a greeting message.",
+        "starter_code": "from flask import Flask, jsonify\n\napp = Flask(__name__)\n\n# Create route /api/greet that returns {'message': 'Hello!'}\n",
+        "solution": "from flask import Flask, jsonify\n\napp = Flask(__name__)\n\n@app.route('/api/greet')\ndef greet():\n    return jsonify({'message': 'Hello!'})",
+        "test_cases": "with app.test_client() as client:\n    resp = client.get('/api/greet')\n    assert resp.status_code == 200\n    assert resp.json['message'] == 'Hello!'",
+        "difficulty": "easy",
+        "topic_tag": "flask"
+    },
+    {
+        "question_type": "coding",
+        "text": "Create a POST endpoint that accepts JSON and returns the data with an added 'processed' field.",
+        "starter_code": "from flask import Flask, request, jsonify\n\napp = Flask(__name__)\n\n# Create POST /api/process\n",
+        "solution": "from flask import Flask, request, jsonify\n\napp = Flask(__name__)\n\n@app.route('/api/process', methods=['POST'])\ndef process():\n    data = request.get_json()\n    data['processed'] = True\n    return jsonify(data), 201",
+        "test_cases": "with app.test_client() as client:\n    resp = client.post('/api/process', json={'name': 'test'})\n    assert resp.status_code == 201\n    assert resp.json['processed'] == True",
+        "difficulty": "medium",
+        "topic_tag": "flask"
+    },
+    {
+        "question_type": "coding",
+        "text": "Define a SQLAlchemy model for a User with id, username, and email.",
+        "starter_code": "from flask_sqlalchemy import SQLAlchemy\n\ndb = SQLAlchemy()\n\n# Define User model\n",
+        "solution": "from flask_sqlalchemy import SQLAlchemy\n\ndb = SQLAlchemy()\n\nclass User(db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    username = db.Column(db.String(80), unique=True, nullable=False)\n    email = db.Column(db.String(120), unique=True, nullable=False)",
+        "test_cases": "assert hasattr(User, 'id')\nassert hasattr(User, 'username')\nassert hasattr(User, 'email')",
+        "difficulty": "medium",
+        "topic_tag": "sqlalchemy"
+    },
+    {
+        "question_type": "coding",
+        "text": "Create a route with a dynamic URL parameter for user ID.",
+        "starter_code": "from flask import Flask\n\napp = Flask(__name__)\n\n# Create route /user/<user_id> that returns 'User ID: {id}'\n",
+        "solution": "from flask import Flask\n\napp = Flask(__name__)\n\n@app.route('/user/<int:user_id>')\ndef get_user(user_id):\n    return f'User ID: {user_id}'",
+        "test_cases": "with app.test_client() as client:\n    resp = client.get('/user/42')\n    assert b'User ID: 42' in resp.data",
+        "difficulty": "easy",
+        "topic_tag": "flask"
+    },
+    {
+        "question_type": "coding",
+        "text": "Create a Jinja2 template that extends base.html and overrides a content block.",
+        "starter_code": "# Write the template code as a string\ntemplate = '''\n# Your Jinja2 template here\n'''",
+        "solution": "template = '''\n{% extends \"base.html\" %}\n{% block content %}\n<h1>Welcome</h1>\n<p>This is the home page.</p>\n{% endblock %}\n'''",
+        "test_cases": "assert '{% extends' in template\nassert '{% block content %}' in template\nassert '{% endblock %}' in template",
+        "difficulty": "easy",
+        "topic_tag": "jinja2"
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The Flask route returns 'Not Found'. Fix the methods parameter.",
+        "code": "@app.route('/api/data')\ndef post_data():\n    data = request.get_json()  # Only GET allowed by default\n    return jsonify(data)",
+        "options": [
+            "Add methods=['POST']: @app.route('/api/data', methods=['POST'])",
+            "Use @app.post instead",
+            "Add request_method='POST'",
+            "Use request.post()"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "Routes only accept GET by default. Add methods=['POST'] for POST requests."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The template variable shows nothing. Fix the Jinja2 syntax.",
+        "code": "<p>Hello, { name }!</p>",
+        "options": [
+            "Use double braces: {{ name }}",
+            "Use {% name %}",
+            "Use {# name #}",
+            "Use ${ name }"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "jinja2",
+        "explanation": "Jinja2 uses {{ }} for outputting variables, not single braces."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The SQLAlchemy query returns None. Fix the filter syntax.",
+        "code": "user = User.query.filter(username='alice').first()",
+        "options": [
+            "Use filter_by: User.query.filter_by(username='alice').first()",
+            "Use User.get(username='alice')",
+            "Use User.find(username='alice')",
+            "Use == comparison"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "sqlalchemy",
+        "explanation": "filter() uses column comparisons. filter_by() uses keyword arguments."
+    }
+]

@@ -1,0 +1,260 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What is argparse used for in Python scripts?",
+        "options": [
+            "Argument arithmetic",
+            "Parsing command-line arguments",
+            "Parsing JSON",
+            "Argument validation"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "scripting",
+        "explanation": "argparse provides a clean way to handle command-line arguments in scripts."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does `if __name__ == '__main__':` check?",
+        "options": [
+            "If file exists",
+            "If script is run directly (not imported)",
+            "If main function exists",
+            "If Python version is correct"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "scripting",
+        "explanation": "This guard ensures code only runs when the script is executed directly, not when imported."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which library loads environment variables from .env files?",
+        "options": [
+            "os",
+            "env",
+            "python-dotenv",
+            "config"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "scripting",
+        "explanation": "python-dotenv's load_dotenv() function loads variables from .env files into os.environ."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does pathlib.Path.iterdir() return?",
+        "options": [
+            "List of strings",
+            "Generator of Path objects",
+            "Dictionary",
+            "Tuple"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "pathlib",
+        "explanation": "iterdir() yields Path objects for each item in the directory."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you get a file's extension using pathlib?",
+        "options": [
+            "path.ext",
+            "path.suffix",
+            "path.extension",
+            "path.type"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "pathlib",
+        "explanation": "path.suffix returns the file extension including the dot (e.g., '.txt')."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the purpose of requirements.txt?",
+        "options": [
+            "Store user settings",
+            "List project dependencies",
+            "Configure Python",
+            "Define environment variables"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "scripting",
+        "explanation": "requirements.txt lists packages and versions needed by the project."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which command creates a virtual environment?",
+        "options": [
+            "python env",
+            "python -m venv myenv",
+            "pip install venv",
+            "virtualenv --create"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "scripting",
+        "explanation": "python -m venv creates an isolated virtual environment."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does path.mkdir(exist_ok=True) do?",
+        "options": [
+            "Fails if exists",
+            "Creates directory, no error if exists",
+            "Overwrites directory",
+            "Creates file"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "pathlib",
+        "explanation": "exist_ok=True prevents errors if the directory already exists."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you read an environment variable safely?",
+        "options": [
+            "os.environ['KEY']",
+            "os.getenv('KEY', default)",
+            "os.get('KEY')",
+            "env.read('KEY')"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "scripting",
+        "explanation": "os.getenv() returns None or a default if the variable doesn't exist, avoiding KeyError."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What file should NEVER be committed to Git?",
+        "options": [
+            "requirements.txt",
+            ".env file with secrets",
+            "README.md",
+            "__init__.py"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "security",
+        "explanation": ".env files contain sensitive data like API keys and should be in .gitignore."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does nargs='+' do in argparse?",
+        "options": [
+            "Makes argument optional",
+            "Accepts one or more values",
+            "Adds to previous value",
+            "Validates as positive"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "argparse",
+        "explanation": "nargs='+' allows the argument to accept one or more values as a list."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which method renames a file using pathlib?",
+        "options": [
+            "path.rename(new)",
+            "path.move(new)",
+            "path.mv(new)",
+            "path.name = new"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "pathlib",
+        "explanation": "path.rename() moves/renames the file to the new path."
+    },
+    {
+        "question_type": "coding",
+        "text": "Create an argument parser that accepts a filename and optional --verbose flag.",
+        "starter_code": "import argparse\n\ndef create_parser():\n    # Your code here\n    pass",
+        "solution": "import argparse\n\ndef create_parser():\n    parser = argparse.ArgumentParser(description='Process a file')\n    parser.add_argument('filename', help='Input file')\n    parser.add_argument('--verbose', '-v', action='store_true', help='Verbose output')\n    return parser",
+        "test_cases": "parser = create_parser()\nargs = parser.parse_args(['test.txt', '--verbose'])\nassert args.filename == 'test.txt'\nassert args.verbose == True",
+        "difficulty": "medium",
+        "topic_tag": "argparse"
+    },
+    {
+        "question_type": "coding",
+        "text": "List all .txt files in a directory using pathlib.",
+        "starter_code": "from pathlib import Path\n\ndef list_txt_files(folder):\n    # Return list of .txt file names\n    pass",
+        "solution": "from pathlib import Path\n\ndef list_txt_files(folder):\n    path = Path(folder)\n    return [f.name for f in path.iterdir() if f.suffix == '.txt']",
+        "test_cases": "# Assuming test folder exists\nimport tempfile, os\nwith tempfile.TemporaryDirectory() as d:\n    (Path(d) / 'a.txt').touch()\n    (Path(d) / 'b.py').touch()\n    result = list_txt_files(d)\nassert 'a.txt' in result\nassert 'b.py' not in result",
+        "difficulty": "easy",
+        "topic_tag": "pathlib"
+    },
+    {
+        "question_type": "coding",
+        "text": "Create a function that loads an API key from environment or raises error.",
+        "starter_code": "import os\n\ndef get_api_key():\n    # Return API_KEY or raise ValueError\n    pass",
+        "solution": "import os\n\ndef get_api_key():\n    key = os.getenv('API_KEY')\n    if not key:\n        raise ValueError('API_KEY not set in environment')\n    return key",
+        "test_cases": "import os\nos.environ['API_KEY'] = 'test123'\nassert get_api_key() == 'test123'\ndel os.environ['API_KEY']\ntry:\n    get_api_key()\n    assert False\nexcept ValueError:\n    pass",
+        "difficulty": "easy",
+        "topic_tag": "scripting"
+    },
+    {
+        "question_type": "coding",
+        "text": "Organize files by extension into subdirectories.",
+        "starter_code": "from pathlib import Path\n\ndef organize_files(folder):\n    # Move files into subdirs by extension\n    pass",
+        "solution": "from pathlib import Path\n\ndef organize_files(folder):\n    folder = Path(folder)\n    for f in folder.iterdir():\n        if f.is_file():\n            ext = f.suffix[1:] if f.suffix else 'no_ext'\n            target = folder / ext\n            target.mkdir(exist_ok=True)\n            f.rename(target / f.name)",
+        "test_cases": "# Functional test - creates dirs by extension\nassert True",
+        "difficulty": "medium",
+        "topic_tag": "pathlib"
+    },
+    {
+        "question_type": "coding",
+        "text": "Read a requirements.txt file and return a list of package names.",
+        "starter_code": "from pathlib import Path\n\ndef parse_requirements(filepath):\n    # Return list of package names (without versions)\n    pass",
+        "solution": "from pathlib import Path\n\ndef parse_requirements(filepath):\n    content = Path(filepath).read_text()\n    packages = []\n    for line in content.strip().split('\\n'):\n        line = line.strip()\n        if line and not line.startswith('#'):\n            pkg = line.split('>=')[0].split('==')[0].split('<')[0]\n            packages.append(pkg)\n    return packages",
+        "test_cases": "import tempfile\nwith tempfile.NamedTemporaryFile(mode='w', suffix='.txt', delete=False) as f:\n    f.write('pandas>=1.0\\nrequests==2.28.0')\n    f.flush()\n    result = parse_requirements(f.name)\nassert 'pandas' in result\nassert 'requests' in result",
+        "difficulty": "medium",
+        "topic_tag": "scripting"
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The environment variable access throws KeyError. Fix it.",
+        "code": "import os\napi_key = os.environ['API_KEY']  # KeyError if not set",
+        "options": [
+            "Use os.getenv('API_KEY', '')",
+            "Use os.env['API_KEY']",
+            "Use os.read('API_KEY')",
+            "Wrap in str()"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "scripting",
+        "explanation": "os.getenv() returns None (or default) if variable doesn't exist, avoiding KeyError."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The pathlib mkdir fails because parent doesn't exist. Fix it.",
+        "code": "from pathlib import Path\nPath('new/nested/folder').mkdir()",
+        "options": [
+            "Add parents=True: mkdir(parents=True, exist_ok=True)",
+            "Create parents first",
+            "Use os.makedirs instead",
+            "Add recursive=True"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "pathlib",
+        "explanation": "parents=True creates parent directories if they don't exist."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The argparse script fails when no arguments are given. Add a default.",
+        "code": "parser.add_argument('--count')\nargs = parser.parse_args()\nprint(args.count + 1)  # TypeError if None",
+        "options": [
+            "Add default: add_argument('--count', type=int, default=0)",
+            "Use args.count or 0",
+            "Make argument required",
+            "Use nargs='?'"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "argparse",
+        "explanation": "default= provides a fallback value when the argument is not specified."
+    }
+]

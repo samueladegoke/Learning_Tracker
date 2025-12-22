@@ -1,0 +1,260 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "Which Plotly function creates a choropleth map?",
+        "options": [
+            "px.map()",
+            "px.choropleth()",
+            "px.geo()",
+            "px.worldmap()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "plotly",
+        "explanation": "px.choropleth() creates maps where regions are colored based on data values."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does the 'locationmode' parameter specify in a choropleth?",
+        "options": [
+            "Map projection",
+            "How to identify geographic regions",
+            "Color scale",
+            "Zoom level"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "plotly",
+        "explanation": "locationmode tells Plotly how to match data to regions: 'country names', 'ISO-3', or 'USA-states'."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which chart type shows hierarchical data as nested rings?",
+        "options": [
+            "Pie chart",
+            "Treemap",
+            "Sunburst chart",
+            "Donut chart"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "plotly",
+        "explanation": "Sunburst charts display hierarchical data with each level as a concentric ring."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What parameter in px.sunburst() defines the hierarchy levels?",
+        "options": [
+            "hierarchy",
+            "levels",
+            "path",
+            "tree"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "plotly",
+        "explanation": "The 'path' parameter specifies the column order for the hierarchy (e.g., [category, subcategory])."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you group a DataFrame by multiple columns in Pandas?",
+        "options": [
+            "df.group(['col1', 'col2'])",
+            "df.groupby(['col1', 'col2'])",
+            "df.by(['col1', 'col2'])",
+            "df.aggregate(['col1', 'col2'])"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "pandas",
+        "explanation": "groupby() accepts a list of column names for multi-level grouping."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does value_counts() return?",
+        "options": [
+            "Sum of values",
+            "Count of unique values",
+            "Mean of values",
+            "Sorted values"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "pandas",
+        "explanation": "value_counts() returns a Series with the count of each unique value."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which Seaborn function creates a line plot for time series?",
+        "options": [
+            "sns.plotline()",
+            "sns.lineplot()",
+            "sns.timeseries()",
+            "sns.line()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "seaborn",
+        "explanation": "lineplot() creates line plots, often used for time series visualization."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Who was the first female Nobel laureate?",
+        "options": [
+            "Rosalind Franklin",
+            "Marie Curie",
+            "Dorothy Hodgkin",
+            "Barbara McClintock"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "domain",
+        "explanation": "Marie Curie won the Physics prize in 1903 and Chemistry in 1911."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does .unstack() do to a grouped DataFrame?",
+        "options": [
+            "Removes the index",
+            "Pivots the innermost index to columns",
+            "Sorts the data",
+            "Flattens to 1D"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "pandas",
+        "explanation": "unstack() pivots the innermost row index level to become columns, useful for cross-tabulations."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What color scale is recommended for continuous numeric data?",
+        "options": [
+            "Categorical palette",
+            "Viridis or similar",
+            "Rainbow",
+            "Black and white"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "visualization",
+        "explanation": "Perceptually uniform scales like Viridis accurately represent numeric magnitude."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you reset the index of a DataFrame after groupby?",
+        "options": [
+            "df.reset()",
+            "df.reset_index()",
+            "df.flatten()",
+            "df.ungroup()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "pandas",
+        "explanation": "reset_index() converts the index back to regular columns."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which rolling function smooths time series data?",
+        "options": [
+            "df.smooth()",
+            "df.rolling().mean()",
+            "df.average()",
+            "df.filter()"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "pandas",
+        "explanation": "rolling(window).mean() calculates a moving average to smooth noisy data."
+    },
+    {
+        "question_type": "coding",
+        "text": "Count Nobel prizes by birth country and return a DataFrame.",
+        "starter_code": "import pandas as pd\n\ndf = pd.DataFrame({\n    'name': ['A', 'B', 'C', 'D'],\n    'birth_country': ['USA', 'UK', 'USA', 'Germany']\n})\n\ndef count_by_country(df):\n    # Your code here\n    pass",
+        "solution": "import pandas as pd\n\ndf = pd.DataFrame({\n    'name': ['A', 'B', 'C', 'D'],\n    'birth_country': ['USA', 'UK', 'USA', 'Germany']\n})\n\ndef count_by_country(df):\n    counts = df['birth_country'].value_counts().reset_index()\n    counts.columns = ['country', 'prizes']\n    return counts",
+        "test_cases": "result = count_by_country(df)\nassert result[result['country'] == 'USA']['prizes'].values[0] == 2",
+        "difficulty": "easy",
+        "topic_tag": "pandas"
+    },
+    {
+        "question_type": "coding",
+        "text": "Create a choropleth map showing prizes by country.",
+        "starter_code": "import plotly.express as px\nimport pandas as pd\n\ndata = pd.DataFrame({'country': ['USA', 'UK', 'Germany'], 'prizes': [400, 100, 80]})\n\ndef create_choropleth(data):\n    # Your code here\n    pass",
+        "solution": "import plotly.express as px\nimport pandas as pd\n\ndata = pd.DataFrame({'country': ['USA', 'UK', 'Germany'], 'prizes': [400, 100, 80]})\n\ndef create_choropleth(data):\n    fig = px.choropleth(data, locations='country', locationmode='country names', color='prizes')\n    return fig",
+        "test_cases": "fig = create_choropleth(data)\nassert fig is not None",
+        "difficulty": "medium",
+        "topic_tag": "plotly"
+    },
+    {
+        "question_type": "coding",
+        "text": "Group data by year and sex, then count occurrences.",
+        "starter_code": "import pandas as pd\n\ndf = pd.DataFrame({\n    'year': [2020, 2020, 2020, 2021, 2021],\n    'sex': ['M', 'F', 'M', 'F', 'F']\n})\n\ndef group_by_year_sex(df):\n    # Return grouped counts\n    pass",
+        "solution": "import pandas as pd\n\ndf = pd.DataFrame({\n    'year': [2020, 2020, 2020, 2021, 2021],\n    'sex': ['M', 'F', 'M', 'F', 'F']\n})\n\ndef group_by_year_sex(df):\n    return df.groupby(['year', 'sex']).size()",
+        "test_cases": "result = group_by_year_sex(df)\nassert result[(2020, 'M')] == 2\nassert result[(2021, 'F')] == 2",
+        "difficulty": "medium",
+        "topic_tag": "pandas"
+    },
+    {
+        "question_type": "coding",
+        "text": "Create a sunburst chart with category and subcategory hierarchy.",
+        "starter_code": "import plotly.express as px\nimport pandas as pd\n\ndf = pd.DataFrame({\n    'category': ['A', 'A', 'B'],\n    'subcategory': ['A1', 'A2', 'B1'],\n    'value': [10, 20, 30]\n})\n\ndef create_sunburst(df):\n    # Your code here\n    pass",
+        "solution": "import plotly.express as px\nimport pandas as pd\n\ndf = pd.DataFrame({\n    'category': ['A', 'A', 'B'],\n    'subcategory': ['A1', 'A2', 'B1'],\n    'value': [10, 20, 30]\n})\n\ndef create_sunburst(df):\n    fig = px.sunburst(df, path=['category', 'subcategory'], values='value')\n    return fig",
+        "test_cases": "fig = create_sunburst(df)\nassert fig is not None",
+        "difficulty": "medium",
+        "topic_tag": "plotly"
+    },
+    {
+        "question_type": "coding",
+        "text": "Calculate a 3-period rolling average of a Series.",
+        "starter_code": "import pandas as pd\n\ns = pd.Series([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])\n\ndef rolling_avg(s, window=3):\n    # Your code here\n    pass",
+        "solution": "import pandas as pd\n\ns = pd.Series([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])\n\ndef rolling_avg(s, window=3):\n    return s.rolling(window).mean()",
+        "test_cases": "result = rolling_avg(s)\nassert result.iloc[2] == 2.0\nassert result.iloc[9] == 9.0",
+        "difficulty": "easy",
+        "topic_tag": "pandas"
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The choropleth map shows no data. Debug the location matching.",
+        "code": "fig = px.choropleth(df, locations='country_code', color='prizes')\n# country_code contains full names like 'United States'",
+        "options": [
+            "Add locationmode='country names'",
+            "Use ISO-3 codes instead",
+            "Add scope='world'",
+            "Use px.map instead"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "plotly",
+        "explanation": "Default locationmode expects ISO-3 codes. For full names, set locationmode='country names'."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The sunburst chart shows an error. Fix the path parameter.",
+        "code": "fig = px.sunburst(df, path='category')",
+        "options": [
+            "Make path a list: path=['category']",
+            "Use hierarchy='category'",
+            "Use levels='category'",
+            "Add root parameter"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "plotly",
+        "explanation": "The path parameter must be a list of columns, even if there's only one level."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The groupby operation returns unexpected NaN values. Fix it.",
+        "code": "df.groupby('year')['prize'].sum()\n# Some years have no prizes, resulting in NaN",
+        "options": [
+            "Use fillna(0) after groupby: .sum().fillna(0)",
+            "Use dropna() before groupby",
+            "Use count() instead of sum()",
+            "Remove years with no data"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "pandas",
+        "explanation": "fillna(0) replaces NaN with 0 for years with no matching data."
+    }
+]

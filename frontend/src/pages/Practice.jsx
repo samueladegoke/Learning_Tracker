@@ -83,6 +83,16 @@ const DeepDiveDay72 = lazy(() => import('../components/content/DeepDive/Day72'))
 const DeepDiveDay73 = lazy(() => import('../components/content/DeepDive/Day73'))
 const DeepDiveDay74 = lazy(() => import('../components/content/DeepDive/Day74'))
 const DeepDiveDay75 = lazy(() => import('../components/content/DeepDive/Day75'))
+const DeepDiveDay76 = lazy(() => import('../components/content/DeepDive/Day76'))
+const DeepDiveDay77 = lazy(() => import('../components/content/DeepDive/Day77'))
+const DeepDiveDay78 = lazy(() => import('../components/content/DeepDive/Day78'))
+const DeepDiveDay79 = lazy(() => import('../components/content/DeepDive/Day79'))
+const DeepDiveDay80 = lazy(() => import('../components/content/DeepDive/Day80'))
+const DeepDiveDay81 = lazy(() => import('../components/content/DeepDive/Day81'))
+const DeepDiveDay82 = lazy(() => import('../components/content/DeepDive/Day82'))
+const DeepDiveDay83 = lazy(() => import('../components/content/DeepDive/Day83'))
+const DeepDiveDay84 = lazy(() => import('../components/content/DeepDive/Day84'))
+const DeepDiveDay85 = lazy(() => import('../components/content/DeepDive/Day85'))
 
 // Loading fallback component for lazy-loaded DeepDive content
 const DeepDiveLoader = () => (
@@ -692,6 +702,86 @@ const DAY_META = {
         quizId: 'day-75-practice',
         level: 'advanced',
         topics: ['resampling', 'visual-polish', 'google-trends']
+    },
+    'day-76': {
+        label: 'Day 76',
+        title: 'Day 76: Plotly Charts & App Store Analysis',
+        subtitle: 'Create beautiful interactive charts with Plotly Express.',
+        quizId: 'day-76-practice',
+        level: 'advanced',
+        topics: ['plotly', 'data-cleaning', 'visualization']
+    },
+    'day-77': {
+        label: 'Day 77',
+        title: 'Day 77: NumPy & N-Dimensional Arrays',
+        subtitle: 'Master vectorized operations and array manipulation.',
+        quizId: 'day-77-practice',
+        level: 'advanced',
+        topics: ['numpy', 'arrays', 'broadcasting']
+    },
+    'day-78': {
+        label: 'Day 78',
+        title: 'Day 78: Linear Regression & Seaborn',
+        subtitle: 'Visualize relationships and fit regression models.',
+        quizId: 'day-78-practice',
+        level: 'advanced',
+        topics: ['seaborn', 'regression', 'sklearn']
+    },
+    'day-79': {
+        label: 'Day 79',
+        title: 'Day 79: Nobel Prize Data Analysis',
+        subtitle: 'Explore historical data with choropleth maps and sunburst charts.',
+        quizId: 'day-79-practice',
+        level: 'advanced',
+        topics: ['plotly', 'choropleth', 'analysis']
+    },
+    'day-80': {
+        label: 'Day 80',
+        title: 'Day 80: T-Tests & Statistical Analysis',
+        subtitle: 'Discover significance with hypothesis testing.',
+        quizId: 'day-80-practice',
+        level: 'advanced',
+        topics: ['statistics', 't-test', 'scipy']
+    },
+    'day-81': {
+        label: 'Day 81',
+        title: 'Day 81: Capstone - Predict House Prices',
+        subtitle: 'Apply ML skills to a real regression problem.',
+        quizId: 'day-81-practice',
+        level: 'advanced',
+        topics: ['sklearn', 'regression', 'feature-engineering']
+    },
+    'day-82': {
+        label: 'Day 82',
+        title: 'Day 82: Python Scripting Portfolio',
+        subtitle: 'Build professional automation scripts.',
+        quizId: 'day-82-practice',
+        level: 'advanced',
+        topics: ['argparse', 'pathlib', 'scripting']
+    },
+    'day-83': {
+        label: 'Day 83',
+        title: 'Day 83: Flask Web Development',
+        subtitle: 'Create RESTful APIs and web applications.',
+        quizId: 'day-83-practice',
+        level: 'advanced',
+        topics: ['flask', 'api', 'sqlalchemy']
+    },
+    'day-84': {
+        label: 'Day 84',
+        title: 'Day 84: Python Automation',
+        subtitle: 'Automate tasks with scraping and scheduling.',
+        quizId: 'day-84-practice',
+        level: 'advanced',
+        topics: ['automation', 'beautifulsoup', 'schedule']
+    },
+    'day-85': {
+        label: 'Day 85',
+        title: 'Day 85: Tkinter GUI Portfolio',
+        subtitle: 'Build desktop applications with Python.',
+        quizId: 'day-85-practice',
+        level: 'advanced',
+        topics: ['tkinter', 'gui', 'events']
     }
 }
 
@@ -1011,7 +1101,17 @@ function DeepDive({ activeDay }) {
         'day-72': DeepDiveDay72,
         'day-73': DeepDiveDay73,
         'day-74': DeepDiveDay74,
-        'day-75': DeepDiveDay75
+        'day-75': DeepDiveDay75,
+        'day-76': DeepDiveDay76,
+        'day-77': DeepDiveDay77,
+        'day-78': DeepDiveDay78,
+        'day-79': DeepDiveDay79,
+        'day-80': DeepDiveDay80,
+        'day-81': DeepDiveDay81,
+        'day-82': DeepDiveDay82,
+        'day-83': DeepDiveDay83,
+        'day-84': DeepDiveDay84,
+        'day-85': DeepDiveDay85
     }
     const Component = components[activeDay]
     if (!Component) {

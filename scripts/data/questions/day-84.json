@@ -1,0 +1,260 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "Which library is commonly used for web scraping in Python?",
+        "options": [
+            "requests only",
+            "BeautifulSoup with requests",
+            "urllib only",
+            "http.client"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "scraping",
+        "explanation": "BeautifulSoup parses HTML, and requests fetches web pages."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does soup.select('.class-name') return?",
+        "options": [
+            "First element with class",
+            "List of elements with class",
+            "Class definition",
+            "CSS styles"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "beautifulsoup",
+        "explanation": "select() returns a list of all elements matching the CSS selector."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which library is used for scheduling Python tasks?",
+        "options": [
+            "timer",
+            "schedule",
+            "cron",
+            "clock"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "automation",
+        "explanation": "The 'schedule' library provides a simple API for job scheduling."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does schedule.every(10).minutes.do(job) do?",
+        "options": [
+            "Runs job once in 10 minutes",
+            "Runs job every 10 minutes",
+            "Waits 10 minutes",
+            "Runs job 10 times"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "schedule",
+        "explanation": "This schedules the job function to run every 10 minutes."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which MIME type is used for HTML emails?",
+        "options": [
+            "text/plain",
+            "text/html",
+            "text/email",
+            "application/html"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "email",
+        "explanation": "text/html allows HTML formatting in email content."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does smtplib.SMTP.starttls() do?",
+        "options": [
+            "Starts the server",
+            "Enables TLS encryption",
+            "Closes connection",
+            "Sends email"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "email",
+        "explanation": "starttls() upgrades the connection to TLS encryption for security."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is ETL in data processing?",
+        "options": [
+            "Error Testing Loop",
+            "Extract, Transform, Load",
+            "Efficient Task Loading",
+            "Export To Local"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "automation",
+        "explanation": "ETL is a common data pipeline pattern."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which pandas method writes data to a SQL database?",
+        "options": [
+            "df.to_database()",
+            "df.to_sql()",
+            "df.save_sql()",
+            "df.export_sql()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "pandas",
+        "explanation": "to_sql() writes the DataFrame to a SQL table."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does schedule.run_pending() do?",
+        "options": [
+            "Creates new jobs",
+            "Runs all scheduled jobs that are due",
+            "Clears schedule",
+            "Pauses schedule"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "schedule",
+        "explanation": "run_pending() checks and executes any jobs due to run."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which Python module is used for logging?",
+        "options": [
+            "log",
+            "logger",
+            "logging",
+            "debug"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "logging",
+        "explanation": "The logging module provides flexible logging."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does soup.find() return if element is not found?",
+        "options": [
+            "Empty string",
+            "None",
+            "Error",
+            "False"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "beautifulsoup",
+        "explanation": "find() returns None if no matching element is found."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which parameter in to_sql() prevents errors if table exists?",
+        "options": [
+            "overwrite=True",
+            "if_exists='replace'",
+            "exists='ignore'",
+            "force=True"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "pandas",
+        "explanation": "if_exists='replace' drops and recreates the table."
+    },
+    {
+        "question_type": "coding",
+        "text": "Fetch a webpage and extract all links using BeautifulSoup.",
+        "starter_code": "from bs4 import BeautifulSoup\n\ndef get_links(html):\n    # Return list of href values\n    pass",
+        "solution": "from bs4 import BeautifulSoup\n\ndef get_links(html):\n    soup = BeautifulSoup(html, 'html.parser')\n    return [a.get('href') for a in soup.find_all('a') if a.get('href')]",
+        "test_cases": "html = '<a href=\"url1\">X</a><a href=\"url2\">Y</a>'\nresult = get_links(html)\nassert 'url1' in result\nassert 'url2' in result",
+        "difficulty": "medium",
+        "topic_tag": "beautifulsoup"
+    },
+    {
+        "question_type": "coding",
+        "text": "Schedule a function to run every 30 seconds.",
+        "starter_code": "import schedule\n\ndef my_job():\n    print('Running...')\n\ndef setup_schedule():\n    # Schedule my_job every 30 seconds\n    pass",
+        "solution": "import schedule\n\ndef my_job():\n    print('Running...')\n\ndef setup_schedule():\n    schedule.every(30).seconds.do(my_job)\n    return schedule.jobs",
+        "test_cases": "jobs = setup_schedule()\nassert len(jobs) > 0",
+        "difficulty": "easy",
+        "topic_tag": "schedule"
+    },
+    {
+        "question_type": "coding",
+        "text": "Create a basic logging setup that writes to a file.",
+        "starter_code": "import logging\n\ndef setup_logging(filename):\n    # Configure logging to write to filename\n    pass",
+        "solution": "import logging\n\ndef setup_logging(filename):\n    logging.basicConfig(filename=filename, level=logging.INFO)\n    return logging.getLogger()",
+        "test_cases": "logger = setup_logging('test.log')\nassert logger is not None",
+        "difficulty": "medium",
+        "topic_tag": "logging"
+    },
+    {
+        "question_type": "coding",
+        "text": "Extract text content from all paragraph tags on a page.",
+        "starter_code": "from bs4 import BeautifulSoup\n\nhtml = '<html><body><p>Hello</p><p>World</p></body></html>'\n\ndef get_paragraphs(html):\n    pass",
+        "solution": "from bs4 import BeautifulSoup\n\nhtml = '<html><body><p>Hello</p><p>World</p></body></html>'\n\ndef get_paragraphs(html):\n    soup = BeautifulSoup(html, 'html.parser')\n    return [p.text for p in soup.find_all('p')]",
+        "test_cases": "result = get_paragraphs(html)\nassert result == ['Hello', 'World']",
+        "difficulty": "easy",
+        "topic_tag": "beautifulsoup"
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a DataFrame to a SQLite database table.",
+        "starter_code": "import pandas as pd\nimport sqlite3\n\ndf = pd.DataFrame({'name': ['Alice', 'Bob'], 'age': [25, 30]})\n\ndef save_to_db(df, table_name, db_path):\n    pass",
+        "solution": "import pandas as pd\nimport sqlite3\n\ndf = pd.DataFrame({'name': ['Alice', 'Bob'], 'age': [25, 30]})\n\ndef save_to_db(df, table_name, db_path):\n    conn = sqlite3.connect(db_path)\n    df.to_sql(table_name, conn, if_exists='replace', index=False)\n    conn.close()",
+        "test_cases": "assert callable(save_to_db)",
+        "difficulty": "medium",
+        "topic_tag": "pandas"
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The scraper returns empty results. Fix the parser.",
+        "code": "from bs4 import BeautifulSoup\nsoup = BeautifulSoup(html)\nitems = soup.select('.product')",
+        "options": [
+            "Specify parser: BeautifulSoup(html, 'html.parser')",
+            "Use soup.find instead",
+            "Add encoding",
+            "Use lxml"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "beautifulsoup",
+        "explanation": "BeautifulSoup requires a parser argument."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The schedule never runs. Fix the missing loop.",
+        "code": "import schedule\nschedule.every(1).hour.do(job)",
+        "options": [
+            "Add: while True: schedule.run_pending(); time.sleep(1)",
+            "Use schedule.start()",
+            "Call schedule.run()",
+            "Add schedule.wait()"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "schedule",
+        "explanation": "schedule needs a loop to keep checking pending jobs."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The email fails to send. Fix the authentication order.",
+        "code": "server = smtplib.SMTP('smtp.gmail.com', 587)\nserver.login(user, password)\nserver.starttls()",
+        "options": [
+            "Move starttls() before login()",
+            "Use port 465",
+            "Remove starttls()",
+            "Add server.connect()"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "email",
+        "explanation": "starttls() must be called before login()."
+    }
+]

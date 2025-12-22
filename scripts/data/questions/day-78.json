@@ -1,0 +1,260 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "Which Seaborn function creates a scatter plot with a regression line?",
+        "options": [
+            "sns.scatterplot()",
+            "sns.regplot()",
+            "sns.lineplot()",
+            "sns.relplot()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "seaborn",
+        "explanation": "regplot() creates a scatter plot with a fitted regression line and confidence interval."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does the shaded area around a regression line represent in Seaborn?",
+        "options": [
+            "Standard deviation",
+            "Confidence interval",
+            "Error range",
+            "Data density"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "seaborn",
+        "explanation": "The shaded area shows the confidence interval (typically 95%) for the regression estimate."
+    },
+    {
+        "question_type": "mcq",
+        "text": "In linear regression, what does the slope (m) in y = mx + b represent?",
+        "options": [
+            "The starting point",
+            "The rate of change",
+            "The prediction error",
+            "The data spread"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "regression",
+        "explanation": "The slope indicates how much y changes for each unit change in x."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What R² value indicates a perfect fit in linear regression?",
+        "options": [
+            "0",
+            "0.5",
+            "1",
+            "-1"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "regression",
+        "explanation": "R² = 1 means the model explains 100% of the variance in the data (perfect fit)."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which sklearn class is used for linear regression?",
+        "options": [
+            "LogisticRegression",
+            "LinearRegression",
+            "RegressionModel",
+            "LinearModel"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "sklearn",
+        "explanation": "LinearRegression from sklearn.linear_model fits ordinary least squares regression."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the difference between regplot() and lmplot() in Seaborn?",
+        "options": [
+            "lmplot can create faceted plots",
+            "regplot is faster",
+            "lmplot uses matplotlib",
+            "No difference"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "seaborn",
+        "explanation": "lmplot() creates a FacetGrid and supports col, row, and hue parameters for multiple subplots."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does RMSE stand for in model evaluation?",
+        "options": [
+            "Root Mean Squared Error",
+            "Random Model Selection Error",
+            "Regression Mean Standard Error",
+            "Root Model Standard Estimate"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "regression",
+        "explanation": "RMSE measures the average magnitude of prediction errors in the same units as the target."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which Seaborn function sets the visual style of plots?",
+        "options": [
+            "sns.style()",
+            "sns.set_style()",
+            "sns.theme()",
+            "sns.set_theme()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "seaborn",
+        "explanation": "set_style() sets the aesthetic style. Options include 'whitegrid', 'darkgrid', 'white', 'dark'."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What shape should X be when fitting a sklearn model?",
+        "options": [
+            "1D array",
+            "2D array (samples × features)",
+            "Dictionary",
+            "List of tuples"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "sklearn",
+        "explanation": "sklearn expects X as a 2D array where rows are samples and columns are features."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which method fits a sklearn model to training data?",
+        "options": [
+            "model.train()",
+            "model.fit()",
+            "model.learn()",
+            "model.build()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "sklearn",
+        "explanation": "fit() is the standard method to train sklearn models on data."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does the intercept (b) represent in y = mx + b?",
+        "options": [
+            "The slope angle",
+            "The y value when x is 0",
+            "The x value when y is 0",
+            "The correlation coefficient"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "regression",
+        "explanation": "The intercept is where the line crosses the y-axis (x = 0)."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which parameter in lmplot() colors points by category?",
+        "options": [
+            "color",
+            "col",
+            "hue",
+            "palette"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "seaborn",
+        "explanation": "hue assigns different colors to categories and creates separate regression lines."
+    },
+    {
+        "question_type": "coding",
+        "text": "Create a regression plot using Seaborn for x='tip' and y='total_bill'.",
+        "starter_code": "import seaborn as sns\nimport matplotlib.pyplot as plt\n\ntips = sns.load_dataset('tips')\n\ndef create_regplot(data):\n    # Your code here\n    pass",
+        "solution": "import seaborn as sns\nimport matplotlib.pyplot as plt\n\ntips = sns.load_dataset('tips')\n\ndef create_regplot(data):\n    ax = sns.regplot(x='tip', y='total_bill', data=data)\n    return ax",
+        "test_cases": "ax = create_regplot(tips)\nassert ax is not None",
+        "difficulty": "easy",
+        "topic_tag": "seaborn"
+    },
+    {
+        "question_type": "coding",
+        "text": "Fit a LinearRegression model and return the slope (coefficient).",
+        "starter_code": "from sklearn.linear_model import LinearRegression\nimport numpy as np\n\nX = np.array([[1], [2], [3], [4], [5]])\ny = np.array([2, 4, 6, 8, 10])\n\ndef get_slope(X, y):\n    # Your code here\n    pass",
+        "solution": "from sklearn.linear_model import LinearRegression\nimport numpy as np\n\nX = np.array([[1], [2], [3], [4], [5]])\ny = np.array([2, 4, 6, 8, 10])\n\ndef get_slope(X, y):\n    model = LinearRegression()\n    model.fit(X, y)\n    return model.coef_[0]",
+        "test_cases": "slope = get_slope(X, y)\nassert slope == 2.0",
+        "difficulty": "medium",
+        "topic_tag": "sklearn"
+    },
+    {
+        "question_type": "coding",
+        "text": "Calculate R² score for predictions vs actual values.",
+        "starter_code": "from sklearn.metrics import r2_score\nimport numpy as np\n\ny_true = np.array([3, 5, 7, 9])\ny_pred = np.array([2.5, 5.5, 7, 8.5])\n\ndef calculate_r2(y_true, y_pred):\n    # Your code here\n    pass",
+        "solution": "from sklearn.metrics import r2_score\nimport numpy as np\n\ny_true = np.array([3, 5, 7, 9])\ny_pred = np.array([2.5, 5.5, 7, 8.5])\n\ndef calculate_r2(y_true, y_pred):\n    return r2_score(y_true, y_pred)",
+        "test_cases": "r2 = calculate_r2(y_true, y_pred)\nassert r2 > 0.9",
+        "difficulty": "easy",
+        "topic_tag": "sklearn"
+    },
+    {
+        "question_type": "coding",
+        "text": "Create faceted regression plots by 'smoker' status using lmplot.",
+        "starter_code": "import seaborn as sns\n\ntips = sns.load_dataset('tips')\n\ndef faceted_regplot(data):\n    # Your code here\n    pass",
+        "solution": "import seaborn as sns\n\ntips = sns.load_dataset('tips')\n\ndef faceted_regplot(data):\n    g = sns.lmplot(x='tip', y='total_bill', hue='smoker', data=data)\n    return g",
+        "test_cases": "g = faceted_regplot(tips)\nassert g is not None",
+        "difficulty": "medium",
+        "topic_tag": "seaborn"
+    },
+    {
+        "question_type": "coding",
+        "text": "Split data into train and test sets (80/20) and return the shapes.",
+        "starter_code": "from sklearn.model_selection import train_test_split\nimport numpy as np\n\nX = np.random.rand(100, 3)\ny = np.random.rand(100)\n\ndef split_data(X, y):\n    # Return X_train shape and X_test shape\n    pass",
+        "solution": "from sklearn.model_selection import train_test_split\nimport numpy as np\n\nX = np.random.rand(100, 3)\ny = np.random.rand(100)\n\ndef split_data(X, y):\n    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n    return X_train.shape, X_test.shape",
+        "test_cases": "train_shape, test_shape = split_data(X, y)\nassert train_shape[0] == 80\nassert test_shape[0] == 20",
+        "difficulty": "easy",
+        "topic_tag": "sklearn"
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The model fit fails with a ValueError. Fix the feature shape.",
+        "code": "from sklearn.linear_model import LinearRegression\nimport pandas as pd\n\ndf = pd.DataFrame({'x': [1, 2, 3], 'y': [2, 4, 6]})\nmodel = LinearRegression()\nmodel.fit(df['x'], df['y'])",
+        "options": [
+            "Use 2D array: model.fit(df[['x']], df['y'])",
+            "Use df.x.values",
+            "Use model.fit(x=df['x'], y=df['y'])",
+            "Convert y to 2D as well"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "sklearn",
+        "explanation": "sklearn requires X to be 2D. Use df[['x']] (double brackets) instead of df['x']."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The regplot shows no regression line. Debug the issue.",
+        "code": "import seaborn as sns\nsns.regplot(x='tip', y='total_bill', data=tips, fit_reg=False)",
+        "options": [
+            "Remove fit_reg=False or set fit_reg=True",
+            "Add line=True parameter",
+            "Use lmplot instead",
+            "Add scatter=True"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "seaborn",
+        "explanation": "fit_reg=False disables the regression line. Remove it or set to True."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The R² calculation returns NaN. Fix the issue.",
+        "code": "from sklearn.metrics import r2_score\ny_true = [1, 2, 3]\ny_pred = [1, 2]  # Different length!",
+        "options": [
+            "Ensure y_true and y_pred have the same length",
+            "Use mean_squared_error instead",
+            "Convert to numpy arrays",
+            "Add a third prediction"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "sklearn",
+        "explanation": "y_true and y_pred must have the same number of elements."
+    }
+]

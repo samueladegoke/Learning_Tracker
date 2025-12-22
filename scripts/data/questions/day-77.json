@@ -1,0 +1,260 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What is the correct way to create a NumPy array from a list?",
+        "options": [
+            "np.array(1, 2, 3)",
+            "np.array([1, 2, 3])",
+            "np.list([1, 2, 3])",
+            "np.create([1, 2, 3])"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "numpy",
+        "explanation": "np.array() requires a list (or tuple) as input, not separate arguments."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does `arr.shape` return for a 2D array with 3 rows and 4 columns?",
+        "options": [
+            "(4, 3)",
+            "(3, 4)",
+            "[3, 4]",
+            "3x4"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "numpy",
+        "explanation": "Shape is a tuple of (rows, columns), so 3 rows × 4 columns = (3, 4)."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which NumPy function creates an array of zeros?",
+        "options": [
+            "np.empty()",
+            "np.zeros()",
+            "np.null()",
+            "np.blank()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "numpy",
+        "explanation": "np.zeros() creates an array filled with zeros. np.ones() fills with ones."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is broadcasting in NumPy?",
+        "options": [
+            "Sending arrays over network",
+            "Printing array contents",
+            "Operating on arrays of different shapes",
+            "Converting arrays to strings"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "numpy",
+        "explanation": "Broadcasting allows NumPy to perform operations on arrays of different shapes by 'stretching' smaller arrays."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does `np.arange(0, 10, 2)` return?",
+        "options": [
+            "[0, 2, 4, 6, 8]",
+            "[0, 2, 4, 6, 8, 10]",
+            "[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]",
+            "[2, 4, 6, 8, 10]"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "numpy",
+        "explanation": "arange(start, stop, step) creates values from 0 to 10 (exclusive) with step 2."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you select all rows and the first 2 columns of a 2D array?",
+        "options": [
+            "arr[0:2, :]",
+            "arr[:, 0:2]",
+            "arr[0:2]",
+            "arr[:2]"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "numpy",
+        "explanation": "arr[:, 0:2] selects all rows (:) and columns 0 and 1 (0:2)."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the result of `np.array([1, 2, 3]) * 2`?",
+        "options": [
+            "[1, 2, 3, 1, 2, 3]",
+            "[2, 4, 6]",
+            "Error",
+            "[1, 2, 3, 2]"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "numpy",
+        "explanation": "NumPy performs element-wise multiplication, so each element is multiplied by 2."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which function calculates the dot product of two arrays?",
+        "options": [
+            "np.multiply()",
+            "np.dot()",
+            "np.product()",
+            "np.cross()"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "numpy",
+        "explanation": "np.dot() computes the dot product. np.multiply() does element-wise multiplication."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does `arr[arr > 5]` return?",
+        "options": [
+            "A boolean array",
+            "Elements greater than 5",
+            "The index of 5",
+            "True or False"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "numpy",
+        "explanation": "Boolean indexing returns the elements that satisfy the condition."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you reshape a 1D array of 12 elements into a 3x4 matrix?",
+        "options": [
+            "arr.reshape(3, 4)",
+            "arr.resize(3, 4)",
+            "arr.transform(3, 4)",
+            "np.matrix(arr, 3, 4)"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "numpy",
+        "explanation": "reshape() returns a new array with the specified shape. The total elements must match."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the dtype of `np.array([1.5, 2.5, 3.5])`?",
+        "options": [
+            "int64",
+            "float64",
+            "str",
+            "object"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "numpy",
+        "explanation": "NumPy infers float64 for arrays containing decimal numbers."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which function returns evenly spaced numbers over a specified interval?",
+        "options": [
+            "np.arange()",
+            "np.linspace()",
+            "np.range()",
+            "np.span()"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "numpy",
+        "explanation": "linspace(start, stop, num) creates 'num' evenly spaced values between start and stop (inclusive)."
+    },
+    {
+        "question_type": "coding",
+        "text": "Create a 3x3 identity matrix using NumPy.",
+        "starter_code": "import numpy as np\n\ndef create_identity():\n    # Your code here\n    pass",
+        "solution": "import numpy as np\n\ndef create_identity():\n    return np.eye(3)",
+        "test_cases": "result = create_identity()\nassert result.shape == (3, 3)\nassert result[0, 0] == 1\nassert result[0, 1] == 0",
+        "difficulty": "easy",
+        "topic_tag": "numpy"
+    },
+    {
+        "question_type": "coding",
+        "text": "Calculate the mean and standard deviation of an array.",
+        "starter_code": "import numpy as np\n\narr = np.array([10, 20, 30, 40, 50])\n\ndef stats(arr):\n    # Return (mean, std)\n    pass",
+        "solution": "import numpy as np\n\narr = np.array([10, 20, 30, 40, 50])\n\ndef stats(arr):\n    return np.mean(arr), np.std(arr)",
+        "test_cases": "mean, std = stats(arr)\nassert mean == 30.0\nassert round(std, 2) == 14.14",
+        "difficulty": "easy",
+        "topic_tag": "numpy"
+    },
+    {
+        "question_type": "coding",
+        "text": "Filter an array to return only values greater than 10 and less than 50.",
+        "starter_code": "import numpy as np\n\narr = np.array([5, 15, 25, 55, 35, 8, 60])\n\ndef filter_range(arr):\n    # Your code here\n    pass",
+        "solution": "import numpy as np\n\narr = np.array([5, 15, 25, 55, 35, 8, 60])\n\ndef filter_range(arr):\n    return arr[(arr > 10) & (arr < 50)]",
+        "test_cases": "result = filter_range(arr)\nassert list(result) == [15, 25, 35]",
+        "difficulty": "medium",
+        "topic_tag": "numpy"
+    },
+    {
+        "question_type": "coding",
+        "text": "Reshape a 1D array of 12 elements into a 4x3 matrix.",
+        "starter_code": "import numpy as np\n\narr = np.arange(12)\n\ndef reshape_array(arr):\n    # Your code here\n    pass",
+        "solution": "import numpy as np\n\narr = np.arange(12)\n\ndef reshape_array(arr):\n    return arr.reshape(4, 3)",
+        "test_cases": "result = reshape_array(arr)\nassert result.shape == (4, 3)\nassert result[0, 0] == 0\nassert result[3, 2] == 11",
+        "difficulty": "easy",
+        "topic_tag": "numpy"
+    },
+    {
+        "question_type": "coding",
+        "text": "Multiply two matrices using NumPy.",
+        "starter_code": "import numpy as np\n\na = np.array([[1, 2], [3, 4]])\nb = np.array([[5, 6], [7, 8]])\n\ndef matrix_multiply(a, b):\n    # Your code here\n    pass",
+        "solution": "import numpy as np\n\na = np.array([[1, 2], [3, 4]])\nb = np.array([[5, 6], [7, 8]])\n\ndef matrix_multiply(a, b):\n    return np.dot(a, b)",
+        "test_cases": "result = matrix_multiply(a, b)\nassert result[0, 0] == 19\nassert result[1, 1] == 50",
+        "difficulty": "medium",
+        "topic_tag": "numpy"
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The array creation throws a TypeError. Fix it.",
+        "code": "import numpy as np\na = np.array(1, 2, 3, 4)",
+        "options": [
+            "Use a list: np.array([1, 2, 3, 4])",
+            "Use np.create(1, 2, 3, 4)",
+            "Use np.list(1, 2, 3, 4)",
+            "Add dtype parameter"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "numpy",
+        "explanation": "np.array() takes a single iterable (list, tuple), not separate arguments."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The boolean indexing fails with an error. Fix the condition.",
+        "code": "import numpy as np\narr = np.array([1, 2, 3, 4, 5])\nresult = arr[arr > 2 and arr < 5]",
+        "options": [
+            "Use & instead of 'and': arr[(arr > 2) & (arr < 5)]",
+            "Use 'or' instead of 'and'",
+            "Use np.and(arr > 2, arr < 5)",
+            "Remove the second condition"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "numpy",
+        "explanation": "NumPy requires & for element-wise AND. Python's 'and' doesn't work with arrays."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The reshape operation fails. Fix the dimensions.",
+        "code": "import numpy as np\narr = np.arange(10)\nreshaped = arr.reshape(3, 4)",
+        "options": [
+            "Change to reshape(2, 5) or reshape(5, 2) - total must equal 10",
+            "Use reshape(3, 4, order='C')",
+            "Use resize instead of reshape",
+            "Add padding to array first"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "numpy",
+        "explanation": "Reshape requires the total elements to remain the same. 10 elements can be 2x5 or 5x2, not 3x4."
+    }
+]

@@ -1,0 +1,260 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "Which Plotly module provides high-level functions like `px.scatter()` and `px.bar()`?",
+        "options": [
+            "plotly.graph_objects",
+            "plotly.express",
+            "plotly.subplots",
+            "plotly.figure_factory"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "plotly",
+        "explanation": "plotly.express (px) provides high-level, concise functions for common chart types."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What parameter creates a donut chart instead of a pie chart in Plotly?",
+        "options": [
+            "ring=True",
+            "donut=True",
+            "hole=0.4",
+            "center=0.4"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "plotly",
+        "explanation": "The 'hole' parameter creates a donut chart by specifying the size of the center hole (0-1)."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you display an interactive Plotly figure?",
+        "options": [
+            "fig.display()",
+            "fig.show()",
+            "plt.show()",
+            "fig.render()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "plotly",
+        "explanation": "fig.show() renders the interactive Plotly figure in the browser or notebook."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which parameter in px.scatter() controls the size of points based on data?",
+        "options": [
+            "point_size",
+            "scale",
+            "size",
+            "marker_size"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "plotly",
+        "explanation": "The 'size' parameter scales point sizes based on a column in the data."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What color scale name creates a rainbow-like gradient in Plotly?",
+        "options": [
+            "rainbow",
+            "Viridis",
+            "jet",
+            "spectrum"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "plotly",
+        "explanation": "Viridis is a popular perceptually uniform color scale. Plotly also supports 'Plasma', 'Inferno', etc."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you remove commas from a Pandas string column like '1,000,000'?",
+        "options": [
+            "df['col'].remove(',')",
+            "df['col'].str.replace(',', '')",
+            "df['col'].strip(',')",
+            "df['col'].delete(',')"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "data_cleaning",
+        "explanation": "Use .str.replace(',', '') to remove all commas from string values."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which method converts a string column to numeric values in Pandas?",
+        "options": [
+            "df['col'].to_int()",
+            "pd.to_numeric(df['col'])",
+            "df['col'].as_number()",
+            "int(df['col'])"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "data_cleaning",
+        "explanation": "pd.to_numeric() converts string values to numeric, with options for handling errors."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does `df.dropna(subset=['Rating'])` do?",
+        "options": [
+            "Drops the Rating column",
+            "Drops rows where Rating is NaN",
+            "Fills NaN with 'Rating'",
+            "Replaces Rating with NaN"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "data_cleaning",
+        "explanation": "dropna(subset=['Rating']) removes rows that have NaN values in the 'Rating' column."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which Plotly chart type shows the distribution of a categorical variable as segments of a circle?",
+        "options": [
+            "Bar chart",
+            "Pie chart",
+            "Histogram",
+            "Scatter plot"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "plotly",
+        "explanation": "Pie charts show proportions of categories as angular segments of a circle."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What parameter in px.bar() groups bars by a categorical variable?",
+        "options": [
+            "group",
+            "hue",
+            "color",
+            "category"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "plotly",
+        "explanation": "The 'color' parameter groups bars by category and assigns different colors."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you update the layout of a Plotly figure after creation?",
+        "options": [
+            "fig.set_layout()",
+            "fig.update_layout()",
+            "fig.layout =",
+            "fig.modify_layout()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "plotly",
+        "explanation": "update_layout() modifies figure properties like title, axes, and margins."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which parameter shows additional data when hovering over points in Plotly?",
+        "options": [
+            "tooltip",
+            "hover_name",
+            "label",
+            "info"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "plotly",
+        "explanation": "hover_name specifies which column to display as the primary hover text."
+    },
+    {
+        "question_type": "coding",
+        "text": "Create a bar chart using Plotly Express that shows app installs by category. Return the figure object.",
+        "starter_code": "import plotly.express as px\nimport pandas as pd\n\ndf = pd.DataFrame({\n    'Category': ['Games', 'Tools', 'Social'],\n    'Installs': [1000000, 500000, 750000]\n})\n\ndef create_bar_chart(df):\n    # Your code here\n    pass",
+        "solution": "import plotly.express as px\nimport pandas as pd\n\ndf = pd.DataFrame({\n    'Category': ['Games', 'Tools', 'Social'],\n    'Installs': [1000000, 500000, 750000]\n})\n\ndef create_bar_chart(df):\n    fig = px.bar(df, x='Category', y='Installs')\n    return fig",
+        "test_cases": "fig = create_bar_chart(df)\nassert fig is not None\nassert 'bar' in str(type(fig.data[0])).lower()",
+        "difficulty": "easy",
+        "topic_tag": "plotly"
+    },
+    {
+        "question_type": "coding",
+        "text": "Create a scatter plot with size based on 'reviews' column and color based on 'category'. Return the figure.",
+        "starter_code": "import plotly.express as px\nimport pandas as pd\n\ndf = pd.DataFrame({\n    'size': [10, 20, 30],\n    'rating': [4.0, 4.5, 3.5],\n    'reviews': [100, 500, 200],\n    'category': ['A', 'B', 'A']\n})\n\ndef create_scatter(df):\n    # Your code here\n    pass",
+        "solution": "import plotly.express as px\nimport pandas as pd\n\ndf = pd.DataFrame({\n    'size': [10, 20, 30],\n    'rating': [4.0, 4.5, 3.5],\n    'reviews': [100, 500, 200],\n    'category': ['A', 'B', 'A']\n})\n\ndef create_scatter(df):\n    fig = px.scatter(df, x='size', y='rating', size='reviews', color='category')\n    return fig",
+        "test_cases": "fig = create_scatter(df)\nassert fig is not None\nassert len(fig.data) > 0",
+        "difficulty": "medium",
+        "topic_tag": "plotly"
+    },
+    {
+        "question_type": "coding",
+        "text": "Clean the 'installs' column by removing '+' and ',' characters, then convert to integer.",
+        "starter_code": "import pandas as pd\n\ndf = pd.DataFrame({'installs': ['1,000+', '5,000,000+', '100+']})\n\ndef clean_installs(df):\n    # Your code here\n    pass",
+        "solution": "import pandas as pd\n\ndf = pd.DataFrame({'installs': ['1,000+', '5,000,000+', '100+']})\n\ndef clean_installs(df):\n    df['installs'] = df['installs'].str.replace(',', '').str.replace('+', '')\n    df['installs'] = pd.to_numeric(df['installs'])\n    return df",
+        "test_cases": "result = clean_installs(df.copy())\nassert result['installs'].iloc[0] == 1000\nassert result['installs'].iloc[1] == 5000000",
+        "difficulty": "easy",
+        "topic_tag": "data_cleaning"
+    },
+    {
+        "question_type": "coding",
+        "text": "Create a donut chart showing category distribution. The hole should be 40% of the chart.",
+        "starter_code": "import plotly.express as px\nimport pandas as pd\n\ndf = pd.DataFrame({'category': ['A', 'B', 'C'], 'count': [30, 50, 20]})\n\ndef create_donut(df):\n    # Your code here\n    pass",
+        "solution": "import plotly.express as px\nimport pandas as pd\n\ndf = pd.DataFrame({'category': ['A', 'B', 'C'], 'count': [30, 50, 20]})\n\ndef create_donut(df):\n    fig = px.pie(df, names='category', values='count', hole=0.4)\n    return fig",
+        "test_cases": "fig = create_donut(df)\nassert fig is not None",
+        "difficulty": "easy",
+        "topic_tag": "plotly"
+    },
+    {
+        "question_type": "coding",
+        "text": "Group apps by category and calculate the average rating for each.",
+        "starter_code": "import pandas as pd\n\ndf = pd.DataFrame({\n    'category': ['Games', 'Games', 'Tools', 'Tools'],\n    'rating': [4.0, 4.5, 3.5, 4.0]\n})\n\ndef avg_rating_by_category(df):\n    # Your code here\n    pass",
+        "solution": "import pandas as pd\n\ndf = pd.DataFrame({\n    'category': ['Games', 'Games', 'Tools', 'Tools'],\n    'rating': [4.0, 4.5, 3.5, 4.0]\n})\n\ndef avg_rating_by_category(df):\n    return df.groupby('category')['rating'].mean()",
+        "test_cases": "result = avg_rating_by_category(df)\nassert result['Games'] == 4.25\nassert result['Tools'] == 3.75",
+        "difficulty": "medium",
+        "topic_tag": "pandas"
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The Plotly bar chart throws an error. Fix the code.",
+        "code": "import plotly.express as px\nfig = px.bar(x='Category', y='Installs', data=df)",
+        "options": [
+            "Change 'data' to 'data_frame': px.bar(data_frame=df, x='Category', y='Installs')",
+            "Use px.bar(df['Category'], df['Installs'])",
+            "Add df before x and y",
+            "Use plt.bar instead"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "plotly",
+        "explanation": "Plotly Express uses 'data_frame' parameter (or as first positional arg), not 'data'."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The scatter plot is not showing different sizes. Debug the issue.",
+        "code": "fig = px.scatter(df, x='rating', y='reviews', size='installs')\n# installs column contains strings like '1,000+'",
+        "options": [
+            "Clean installs column first: df['installs'] = pd.to_numeric(df['installs'].str.replace('[,+]', '', regex=True))",
+            "Use size=int(installs)",
+            "Add size_max parameter",
+            "Remove size parameter"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "data_cleaning",
+        "explanation": "The size parameter requires numeric values. Clean the string data first."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The figure is not displaying interactively. Fix it.",
+        "code": "import plotly.express as px\nfig = px.bar(df, x='x', y='y')\nprint(fig)",
+        "options": [
+            "Use fig.show() instead of print(fig)",
+            "Use display(fig)",
+            "Use fig.render()",
+            "Add plt.show()"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "plotly",
+        "explanation": "fig.show() renders the interactive Plotly figure. print() just shows the object representation."
+    }
+]

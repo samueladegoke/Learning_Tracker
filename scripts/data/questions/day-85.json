@@ -1,0 +1,260 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "Which Python library provides built-in GUI capabilities?",
+        "options": [
+            "pygame",
+            "tkinter",
+            "qt",
+            "gui"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "tkinter",
+        "explanation": "Tkinter is Python's standard GUI library, included with Python."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does root.mainloop() do in Tkinter?",
+        "options": [
+            "Creates window",
+            "Starts the event loop",
+            "Closes window",
+            "Updates widgets"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "tkinter",
+        "explanation": "mainloop() starts the event loop that listens for events and updates the GUI."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which layout manager places widgets in a grid?",
+        "options": [
+            "pack()",
+            "grid()",
+            "place()",
+            "layout()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "tkinter",
+        "explanation": "grid() arranges widgets in rows and columns."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does the 'command' parameter do in a Button?",
+        "options": [
+            "Sets button text",
+            "Sets click handler function",
+            "Sets button color",
+            "Sets button size"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "tkinter",
+        "explanation": "command specifies the function to call when the button is clicked."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you get text from an Entry widget?",
+        "options": [
+            "entry.text",
+            "entry.get()",
+            "entry.value",
+            "entry.read()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "tkinter",
+        "explanation": "get() returns the current text in the Entry widget."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which method shows a message box with OK button?",
+        "options": [
+            "messagebox.show()",
+            "messagebox.showinfo()",
+            "messagebox.alert()",
+            "messagebox.display()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "tkinter",
+        "explanation": "showinfo() displays an information dialog with an OK button."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does sticky='nsew' do in grid()?",
+        "options": [
+            "Centers widget",
+            "Expands widget in all directions",
+            "Hides widget",
+            "Moves widget"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "tkinter",
+        "explanation": "sticky controls how widget expands: n=north, s=south, e=east, w=west."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which widget displays a dropdown menu?",
+        "options": [
+            "OptionMenu",
+            "Dropdown",
+            "Select",
+            "Choice"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "tkinter",
+        "explanation": "OptionMenu or ttk.Combobox create dropdown selections."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you bind a keyboard event to a function?",
+        "options": [
+            "widget.on('key', func)",
+            "widget.bind('<Key>', func)",
+            "widget.keyboard(func)",
+            "widget.key = func"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "tkinter",
+        "explanation": "bind() connects events like '<Key>' or '<Return>' to handler functions."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What tool creates standalone .exe from Python?",
+        "options": [
+            "py2exe",
+            "pyinstaller",
+            "python-compile",
+            "exe-maker"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "packaging",
+        "explanation": "PyInstaller bundles Python apps into standalone executables."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which ttk method sets the visual theme?",
+        "options": [
+            "style.set()",
+            "style.theme_use()",
+            "style.apply()",
+            "ttk.theme()"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "tkinter",
+        "explanation": "theme_use() switches between available themes like 'clam', 'alt', etc."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does columnspan=2 do in grid()?",
+        "options": [
+            "Creates 2 columns",
+            "Widget spans 2 columns",
+            "Adds 2px spacing",
+            "Widget is in column 2"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "tkinter",
+        "explanation": "columnspan makes the widget occupy multiple columns."
+    },
+    {
+        "question_type": "coding",
+        "text": "Create a Tkinter window with title 'My App' and size 300x200.",
+        "starter_code": "import tkinter as tk\n\ndef create_window():\n    # Your code here\n    pass",
+        "solution": "import tkinter as tk\n\ndef create_window():\n    root = tk.Tk()\n    root.title('My App')\n    root.geometry('300x200')\n    return root",
+        "test_cases": "root = create_window()\nassert root.title() == 'My App'\nroot.destroy()",
+        "difficulty": "easy",
+        "topic_tag": "tkinter"
+    },
+    {
+        "question_type": "coding",
+        "text": "Create a button that shows 'Clicked!' in a messagebox when pressed.",
+        "starter_code": "import tkinter as tk\nfrom tkinter import messagebox\n\nroot = tk.Tk()\n\ndef create_button(root):\n    # Your code here\n    pass",
+        "solution": "import tkinter as tk\nfrom tkinter import messagebox\n\nroot = tk.Tk()\n\ndef create_button(root):\n    def on_click():\n        messagebox.showinfo('Info', 'Clicked!')\n    btn = tk.Button(root, text='Click Me', command=on_click)\n    return btn",
+        "test_cases": "btn = create_button(root)\nassert btn is not None\nroot.destroy()",
+        "difficulty": "easy",
+        "topic_tag": "tkinter"
+    },
+    {
+        "question_type": "coding",
+        "text": "Create an Entry widget and a function that returns its value.",
+        "starter_code": "import tkinter as tk\n\nroot = tk.Tk()\n\ndef create_entry_with_getter(root):\n    # Return (entry, get_value_func)\n    pass",
+        "solution": "import tkinter as tk\n\nroot = tk.Tk()\n\ndef create_entry_with_getter(root):\n    entry = tk.Entry(root)\n    def get_value():\n        return entry.get()\n    return entry, get_value",
+        "test_cases": "entry, getter = create_entry_with_getter(root)\nassert callable(getter)\nroot.destroy()",
+        "difficulty": "easy",
+        "topic_tag": "tkinter"
+    },
+    {
+        "question_type": "coding",
+        "text": "Create a form with Label, Entry, and Button using grid layout.",
+        "starter_code": "import tkinter as tk\nfrom tkinter import ttk\n\nroot = tk.Tk()\n\ndef create_form(root):\n    # Create: Label 'Name:', Entry, Button 'Submit'\n    pass",
+        "solution": "import tkinter as tk\nfrom tkinter import ttk\n\nroot = tk.Tk()\n\ndef create_form(root):\n    label = ttk.Label(root, text='Name:')\n    label.grid(row=0, column=0)\n    entry = ttk.Entry(root)\n    entry.grid(row=0, column=1)\n    button = ttk.Button(root, text='Submit')\n    button.grid(row=1, column=0, columnspan=2)\n    return label, entry, button",
+        "test_cases": "widgets = create_form(root)\nassert len(widgets) == 3\nroot.destroy()",
+        "difficulty": "medium",
+        "topic_tag": "tkinter"
+    },
+    {
+        "question_type": "coding",
+        "text": "Bind the Enter key to submit a form.",
+        "starter_code": "import tkinter as tk\n\nroot = tk.Tk()\nsubmit_called = [False]\n\ndef submit():\n    submit_called[0] = True\n\ndef setup_binding(root):\n    # Bind Enter to submit()\n    pass",
+        "solution": "import tkinter as tk\n\nroot = tk.Tk()\nsubmit_called = [False]\n\ndef submit():\n    submit_called[0] = True\n\ndef setup_binding(root):\n    root.bind('<Return>', lambda e: submit())",
+        "test_cases": "setup_binding(root)\nroot.destroy()",
+        "difficulty": "medium",
+        "topic_tag": "tkinter"
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The button click doesn't work. Fix the command parameter.",
+        "code": "btn = tk.Button(root, text='Click', command=my_func())",
+        "options": [
+            "Remove parentheses: command=my_func",
+            "Use command=lambda: my_func",
+            "Use on_click=my_func",
+            "Add return statement"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "tkinter",
+        "explanation": "command needs function reference, not function call. Remove ()."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The grid layout shows nothing. Fix the missing pack/grid.",
+        "code": "label = tk.Label(root, text='Hello')\n# label never appears",
+        "options": [
+            "Add label.grid(row=0, column=0) or label.pack()",
+            "Use label.show()",
+            "Use label.display()",
+            "Add root.update()"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "tkinter",
+        "explanation": "Widgets must be placed with pack(), grid(), or place() to appear."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The window closes immediately. Fix the missing mainloop.",
+        "code": "root = tk.Tk()\nlabel = tk.Label(root, text='Hello').pack()",
+        "options": [
+            "Add root.mainloop() at the end",
+            "Add root.run()",
+            "Add root.start()",
+            "Add tk.run()"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "tkinter",
+        "explanation": "mainloop() keeps the window open and responsive."
+    }
+]
