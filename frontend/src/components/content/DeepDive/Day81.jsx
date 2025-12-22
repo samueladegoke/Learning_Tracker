@@ -101,16 +101,16 @@ y_pred = model.predict(X_test)
 # Metrics
 r2 = r2_score(y_test, y_pred)
 rmse = np.sqrt(mean_squared_error(y_test, y_pred))
-print(f"R²: {r2:.3f}, RMSE: ${rmse * 1000:.0f}")
+print(f"R²: {r2:.3f}, RMSE: \$\${rmse * 1000:.0f}")
 
-                    # Residual plot
-                    residuals = y_test - y_pred
-                    plt.scatter(y_pred, residuals, alpha=0.5)
-                    plt.axhline(y=0, color='r', linestyle='--')
-                    plt.xlabel("Predicted")
-                    plt.ylabel("Residuals")
+# Residual plot
+residuals = y_test - y_pred
+plt.scatter(y_pred, residuals, alpha=0.5)
+plt.axhline(y=0, color='r', linestyle='--')
+plt.xlabel("Predicted")
+plt.ylabel("Residuals")
 plt.show()`}
-                    language="python"
+                        language="python"
                     />
                 </section>
             </div>

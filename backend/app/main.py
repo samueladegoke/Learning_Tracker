@@ -54,6 +54,9 @@ DEFAULT_ORIGINS = (
     "http://localhost:5173,"
     "http://localhost:5174,"
     "http://localhost:5175,"
+    "http://127.0.0.1:5173,"
+    "http://127.0.0.1:5174,"
+    "http://127.0.0.1:5175,"
     "http://localhost:8000,"
     "https://learning-tracker-nu-tan.vercel.app"
 )
@@ -68,7 +71,10 @@ def get_allowed_origins():
             valid_origins.append(origin)
         else:
             logger.warning(f"[CORS] Invalid origin ignored: {origin}")
-    return valid_origins if valid_origins else ["http://localhost:5173"]
+    result = valid_origins if valid_origins else ["http://localhost:5173"]
+    if os.getenv("LOG_LEVEL", "").upper() == "DEBUG":
+        logger.info(f"[CORS] Allowed origins: {result}")
+    return result
 
 ALLOWED_ORIGINS = get_allowed_origins()
 

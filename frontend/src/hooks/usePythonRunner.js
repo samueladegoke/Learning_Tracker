@@ -72,6 +72,22 @@ export function usePythonRunner() {
     const results = []
     const RESULT_DELIMITER = '___RESULT_DELIMITER___'
 
+    // Support raw assertion scripts for more complex coding challenges
+    if (typeof testCases === 'string') {
+      // Basic validation: must be non-empty and look like Python assertions
+      if (!testCases.trim() || testCases.length > 5000) {
+        return [{ passed: false, expected: 'Valid assertion script', actual: 'Invalid test script', input: 'Validation', error: 'Test script is empty or too long' }]
+      }
+      const result = await runCode(`${code}\n${testCases}`)
+      return [{
+        passed: !result.error,
+        expected: 'All assertions pass',
+        actual: result.error ? 'Assertion failed or code error' : 'Passed',
+        input: 'Assertion Script',
+        error: result.error
+      }]
+    }
+
     for (const test of testCases) {
       // Validate test case structure before use
       if (!test || typeof test.function_call !== 'string') {

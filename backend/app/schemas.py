@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Optional, List, Any
+from typing import Optional, List, Any, Union, Dict
 from pydantic import BaseModel
 
 
@@ -209,7 +209,7 @@ class QuestionResponse(BaseModel):
     options: List[str] = []  # For MCQ/code-correction
     correct_index: Optional[int] = None # For immediate feedback
     starter_code: Optional[str] = None  # For coding questions
-    test_cases: Optional[List[Any]] = None  # For coding questions
+    test_cases: Optional[Union[List[Dict[str, Any]], str]] = None  # List for structured, str for assertions
     explanation: Optional[str] = None  # Shown after submission
     difficulty: Optional[str] = None
     topic_tag: Optional[str] = None

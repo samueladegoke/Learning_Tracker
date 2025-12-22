@@ -857,6 +857,7 @@ function Practice() {
             if (!quizId) return
 
             setLoading(true)
+            setQuizData({ questions: [], hasCoding: false })
             try {
                 const questions = await quizzesAPI.getQuestions(quizId)
                 if (active) {
@@ -1003,6 +1004,7 @@ function Practice() {
                 {!loading && activeTab === 'deep-dive' && <DeepDive activeDay={activeDay} />}
                 {!loading && activeTab === 'practice' && (
                     <Quiz
+                        key={`${activeDay}-practice`}
                         quizId={currentDay.quizId}
                         activeDay={activeDay}
                         initialQuestions={quizData.questions.filter(q => q.question_type !== 'coding')}
@@ -1012,6 +1014,7 @@ function Practice() {
                 )}
                 {!loading && activeTab === 'challenges' && (
                     <Quiz
+                        key={`${activeDay}-challenges`}
                         quizId={currentDay.quizId}
                         activeDay={activeDay}
                         initialQuestions={quizData.questions.filter(q => q.question_type === 'coding')}
@@ -1141,18 +1144,18 @@ function Quiz({ quizId, activeDay, initialQuestions = [], isChallengeTab = false
         if (initialQuestions && initialQuestions.length > 0) {
             setQuestions(initialQuestions)
             setLoading(false)
-            // Reset state for new question set
-            setCurrentQ(0)
-            setAnswers({})
-            setShowResult(false)
-            setResultData(null)
         } else if (!isReviewMode && quizId) {
             loadQuiz(quizId)
         } else if (isReviewMode && initialQuestions && initialQuestions.length === 0) {
-            // In review mode with no questions - either loading or truly empty
             setQuestions([])
             setLoading(false)
         }
+
+        // Reset local state whenever props change
+        setCurrentQ(0)
+        setAnswers({})
+        setShowResult(false)
+        setResultData(null)
     }, [quizId, initialQuestions, isReviewMode])
 
     const loadQuiz = async (targetQuizId) => {

@@ -1,260 +1,308 @@
 [
     {
         "question_type": "mcq",
-        "text": "Which library is commonly used for web scraping in Python?",
+        "text": "Which module is used to run external commands and scripts in Python?",
         "options": [
-            "requests only",
-            "BeautifulSoup with requests",
-            "urllib only",
-            "http.client"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "scraping",
-        "explanation": "BeautifulSoup parses HTML, and requests fetches web pages."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does soup.select('.class-name') return?",
-        "options": [
-            "First element with class",
-            "List of elements with class",
-            "Class definition",
-            "CSS styles"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "beautifulsoup",
-        "explanation": "select() returns a list of all elements matching the CSS selector."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Which library is used for scheduling Python tasks?",
-        "options": [
-            "timer",
-            "schedule",
-            "cron",
-            "clock"
+            "os.system",
+            "subprocess",
+            "shutil",
+            "sys"
         ],
         "correct_index": 1,
         "difficulty": "easy",
         "topic_tag": "automation",
-        "explanation": "The 'schedule' library provides a simple API for job scheduling."
+        "explanation": "The subprocess module is the recommended way to spawn new processes and connect to their input/output/error pipes."
     },
     {
         "question_type": "mcq",
-        "text": "What does schedule.every(10).minutes.do(job) do?",
+        "text": "How do you copy a file including its metadata (like permissions) using shutil?",
         "options": [
-            "Runs job once in 10 minutes",
-            "Runs job every 10 minutes",
-            "Waits 10 minutes",
-            "Runs job 10 times"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "schedule",
-        "explanation": "This schedules the job function to run every 10 minutes."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Which MIME type is used for HTML emails?",
-        "options": [
-            "text/plain",
-            "text/html",
-            "text/email",
-            "application/html"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "email",
-        "explanation": "text/html allows HTML formatting in email content."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does smtplib.SMTP.starttls() do?",
-        "options": [
-            "Starts the server",
-            "Enables TLS encryption",
-            "Closes connection",
-            "Sends email"
+            "shutil.copy()",
+            "shutil.copy2()",
+            "shutil.move()",
+            "shutil.replicate()"
         ],
         "correct_index": 1,
         "difficulty": "medium",
-        "topic_tag": "email",
-        "explanation": "starttls() upgrades the connection to TLS encryption for security."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is ETL in data processing?",
-        "options": [
-            "Error Testing Loop",
-            "Extract, Transform, Load",
-            "Efficient Task Loading",
-            "Export To Local"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
         "topic_tag": "automation",
-        "explanation": "ETL is a common data pipeline pattern."
+        "explanation": "shutil.copy2() is identical to shutil.copy(), but also attempts to preserve file metadata."
     },
     {
         "question_type": "mcq",
-        "text": "Which pandas method writes data to a SQL database?",
+        "text": "What does subprocess.run(..., capture_output=True) do?",
         "options": [
-            "df.to_database()",
-            "df.to_sql()",
-            "df.save_sql()",
-            "df.export_sql()"
+            "Suppresses all output",
+            "Saves the command output to a file",
+            "Captures stdout and stderr in the return object",
+            "Runs the command in the background"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "automation",
+        "explanation": "capture_output=True captures the standard output and standard error so you can access them via result.stdout and result.stderr."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which symbol represents 'one or more' in a regular expression (regex)?",
+        "options": [
+            "*",
+            "+",
+            "?",
+            "$"
         ],
         "correct_index": 1,
         "difficulty": "easy",
-        "topic_tag": "pandas",
-        "explanation": "to_sql() writes the DataFrame to a SQL table."
+        "topic_tag": "regex",
+        "explanation": "The '+' quantifier matches 1 or more occurrences of the preceding element."
     },
     {
         "question_type": "mcq",
-        "text": "What does schedule.run_pending() do?",
+        "text": "In argparse, how do you define an optional argument that acts as a flag (True/False)?",
         "options": [
-            "Creates new jobs",
-            "Runs all scheduled jobs that are due",
-            "Clears schedule",
-            "Pauses schedule"
+            "add_argument('--flag', type=bool)",
+            "add_argument('--flag', action='store_true')",
+            "add_argument('--flag', value='toggle')",
+            "add_argument('--flag', mode='boolean')"
         ],
         "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "schedule",
-        "explanation": "run_pending() checks and executes any jobs due to run."
+        "difficulty": "medium",
+        "topic_tag": "argparse",
+        "explanation": "action='store_true' makes the argument optional and sets it to True if present, False otherwise."
     },
     {
         "question_type": "mcq",
-        "text": "Which Python module is used for logging?",
+        "text": "What is the result of re.findall(r'\\d+', 'Price: 123, Qty: 5')?",
         "options": [
-            "log",
-            "logger",
-            "logging",
-            "debug"
+            "['1', '2', '3', '5']",
+            "['123', '5']",
+            "['123']",
+            "Error"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "regex",
+        "explanation": "\\d+ matches sequences of digits. re.findall returns all non-overlapping matches as a list of strings."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you recursively delete a directory tree using shutil?",
+        "options": [
+            "shutil.delete()",
+            "shutil.rmdir()",
+            "shutil.rmtree()",
+            "shutil.remove()"
         ],
         "correct_index": 2,
         "difficulty": "easy",
-        "topic_tag": "logging",
-        "explanation": "The logging module provides flexible logging."
+        "topic_tag": "automation",
+        "explanation": "shutil.rmtree() deletes an entire directory tree; all contents must be removed for a directory to be deleted by os.rmdir."
     },
     {
         "question_type": "mcq",
-        "text": "What does soup.find() return if element is not found?",
+        "text": "What does subprocess.check_call() do if the command returns a non-zero exit code?",
         "options": [
-            "Empty string",
-            "None",
-            "Error",
-            "False"
+            "Ignores it",
+            "Returns False",
+            "Raises a CalledProcessError",
+            "Prints a warning"
         ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "beautifulsoup",
-        "explanation": "find() returns None if no matching element is found."
+        "correct_index": 2,
+        "difficulty": "hard",
+        "topic_tag": "automation",
+        "explanation": "check_call() raises CalledProcessError if the return code is non-zero, making it useful for strict script automation."
     },
     {
         "question_type": "mcq",
-        "text": "Which parameter in to_sql() prevents errors if table exists?",
+        "text": "Which regex pattern matches a valid email address structure (simplified)?",
         "options": [
-            "overwrite=True",
-            "if_exists='replace'",
-            "exists='ignore'",
-            "force=True"
+            "r'.*@.*\\..*'",
+            "r'[a-z]@[a-z]'",
+            "r'email:.*'",
+            "r'\\w@\\w'"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "regex",
+        "explanation": "r'.*@.*\\..*' is a very simplified pattern checking for anything, '@', anything, '.', and anything."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the purpose of shutil.make_archive()?",
+        "options": [
+            "To backup the system",
+            "To create a zip or tar file of a directory",
+            "To save database snapshots",
+            "To encrypt files"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "automation",
+        "explanation": "make_archive() creates an archive file (like zip or tar) from a base directory."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you check if a regex match exists at the BEGINNING of a string?",
+        "options": [
+            "re.search()",
+            "re.match()",
+            "re.findall()",
+            "re.start()"
         ],
         "correct_index": 1,
         "difficulty": "medium",
-        "topic_tag": "pandas",
-        "explanation": "if_exists='replace' drops and recreates the table."
+        "topic_tag": "regex",
+        "explanation": "re.match() checks for a match only at the beginning of the string, while re.search() checks anywhere."
+    },
+    {
+        "question_type": "mcq",
+        "text": "In argparse, what does nargs='+' mean?",
+        "options": [
+            "The value must be a positive number",
+            "One or more arguments are expected",
+            "The argument is optional",
+            "The argument must be a string"
+        ],
+        "correct_index": 1,
+        "difficulty": "hard",
+        "topic_tag": "argparse",
+        "explanation": "nargs='+' gathers one or more command-line arguments into a list."
     },
     {
         "question_type": "coding",
-        "text": "Fetch a webpage and extract all links using BeautifulSoup.",
-        "starter_code": "from bs4 import BeautifulSoup\n\ndef get_links(html):\n    # Return list of href values\n    pass",
-        "solution": "from bs4 import BeautifulSoup\n\ndef get_links(html):\n    soup = BeautifulSoup(html, 'html.parser')\n    return [a.get('href') for a in soup.find_all('a') if a.get('href')]",
-        "test_cases": "html = '<a href=\"url1\">X</a><a href=\"url2\">Y</a>'\nresult = get_links(html)\nassert 'url1' in result\nassert 'url2' in result",
+        "text": "File Extension Filter\nWrite a function that returns a list of files from a provided list that match a certain extension using regex.",
+        "starter_code": "import re\n\ndef filter_files(files, ext):\n    # Return only files ending with .ext (case insensitive)\n    # Example: filter_files(['a.txt', 'b.jpg'], 'txt') -> ['a.txt']\n    return []",
+        "test_cases": "files = ['data.csv', 'image.PNG', 'script.py', 'backup.CSV']\nresult = filter_files(files, 'csv')\nassert len(result) == 2\nassert 'data.csv' in result\nassert 'backup.CSV' in result\nassert 'script.py' not in result",
+        "difficulty": "hard",
+        "topic_tag": "regex",
+        "solution_code": "import re\n\ndef filter_files(files, ext):\n    pattern = re.compile(f'\\.{ext}$', re.IGNORECASE)\n    return [f for f in files if pattern.search(f)]",
+        "explanation": "Use re.compile with re.IGNORECASE to handle different cases. The pattern '\\.ext$' ensures the extension is at the end of the string."
+    },
+    {
+        "question_type": "coding",
+        "text": "Command Formatter\nWrite a function that takes a command name and a dictionary of flags, and returns a list suitable for subprocess.run.",
+        "starter_code": "def format_cmd(command, flags):\n    # Example: format_cmd('ls', {'l': True, 'a': True}) -> ['ls', '-l', '-a']\n    return []",
+        "test_cases": "res = format_cmd('git', {'version': True})\nassert res == ['git', '--version']\nres2 = format_cmd('ls', {'l': True, 'a': True})\nassert 'ls' in res2\nassert '-l' in res2\nassert '-a' in res2",
         "difficulty": "medium",
-        "topic_tag": "beautifulsoup"
-    },
-    {
-        "question_type": "coding",
-        "text": "Schedule a function to run every 30 seconds.",
-        "starter_code": "import schedule\n\ndef my_job():\n    print('Running...')\n\ndef setup_schedule():\n    # Schedule my_job every 30 seconds\n    pass",
-        "solution": "import schedule\n\ndef my_job():\n    print('Running...')\n\ndef setup_schedule():\n    schedule.every(30).seconds.do(my_job)\n    return schedule.jobs",
-        "test_cases": "jobs = setup_schedule()\nassert len(jobs) > 0",
-        "difficulty": "easy",
-        "topic_tag": "schedule"
-    },
-    {
-        "question_type": "coding",
-        "text": "Create a basic logging setup that writes to a file.",
-        "starter_code": "import logging\n\ndef setup_logging(filename):\n    # Configure logging to write to filename\n    pass",
-        "solution": "import logging\n\ndef setup_logging(filename):\n    logging.basicConfig(filename=filename, level=logging.INFO)\n    return logging.getLogger()",
-        "test_cases": "logger = setup_logging('test.log')\nassert logger is not None",
-        "difficulty": "medium",
-        "topic_tag": "logging"
-    },
-    {
-        "question_type": "coding",
-        "text": "Extract text content from all paragraph tags on a page.",
-        "starter_code": "from bs4 import BeautifulSoup\n\nhtml = '<html><body><p>Hello</p><p>World</p></body></html>'\n\ndef get_paragraphs(html):\n    pass",
-        "solution": "from bs4 import BeautifulSoup\n\nhtml = '<html><body><p>Hello</p><p>World</p></body></html>'\n\ndef get_paragraphs(html):\n    soup = BeautifulSoup(html, 'html.parser')\n    return [p.text for p in soup.find_all('p')]",
-        "test_cases": "result = get_paragraphs(html)\nassert result == ['Hello', 'World']",
-        "difficulty": "easy",
-        "topic_tag": "beautifulsoup"
-    },
-    {
-        "question_type": "coding",
-        "text": "Write a DataFrame to a SQLite database table.",
-        "starter_code": "import pandas as pd\nimport sqlite3\n\ndf = pd.DataFrame({'name': ['Alice', 'Bob'], 'age': [25, 30]})\n\ndef save_to_db(df, table_name, db_path):\n    pass",
-        "solution": "import pandas as pd\nimport sqlite3\n\ndf = pd.DataFrame({'name': ['Alice', 'Bob'], 'age': [25, 30]})\n\ndef save_to_db(df, table_name, db_path):\n    conn = sqlite3.connect(db_path)\n    df.to_sql(table_name, conn, if_exists='replace', index=False)\n    conn.close()",
-        "test_cases": "assert callable(save_to_db)",
-        "difficulty": "medium",
-        "topic_tag": "pandas"
+        "topic_tag": "automation",
+        "solution_code": "def format_cmd(command, flags):\n    cmd = [command]\n    for key, value in flags.items():\n        if value:\n            prefix = '-' if len(key) == 1 else '--'\n            cmd.append(f'{prefix}{key}')\n    return cmd",
+        "explanation": "Construct a list starting with the command name. Iterate through flags; if the value is True, append the flag with '-' for single-letter keys or '--' for longer names."
     },
     {
         "question_type": "code-correction",
-        "text": "The scraper returns empty results. Fix the parser.",
-        "code": "from bs4 import BeautifulSoup\nsoup = BeautifulSoup(html)\nitems = soup.select('.product')",
+        "text": "The regex is supposed to find all email addresses, but it only finds the first one. Fix it.",
+        "code": "import re\ntext = 'Contact: a@b.com, support@site.org'\nmatch = re.match(r'[\\w.]+@[\\w.]+', text)\nprint(match.group())",
         "options": [
-            "Specify parser: BeautifulSoup(html, 'html.parser')",
-            "Use soup.find instead",
-            "Add encoding",
-            "Use lxml"
+            "Use re.findall() instead of re.match()",
+            "Add a 'g' flag to re.match()",
+            "Use re.search() in a loop",
+            "Change the regex to end with '$'"
         ],
         "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "regex",
+        "explanation": "re.match() and re.search() only return the first match. re.findall() returns a list of all matches found in the entire string."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the correct way to capture both stdout and stderr from subprocess.run()?",
+        "options": [
+            "subprocess.run(cmd, capture_all=True)",
+            "subprocess.run(cmd, capture_output=True)",
+            "subprocess.run(cmd, get_output=True)",
+            "subprocess.run(cmd, pipe=True)"
+        ],
+        "correct_index": 1,
         "difficulty": "easy",
-        "topic_tag": "beautifulsoup",
-        "explanation": "BeautifulSoup requires a parser argument."
+        "topic_tag": "automation",
+        "explanation": "capture_output=True is shorthand for stdout=PIPE, stderr=PIPE."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which re function returns a match object at the first location where the pattern matches?",
+        "options": [
+            "re.match()",
+            "re.search()",
+            "re.findall()",
+            "re.split()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "regex",
+        "explanation": "re.search() scans the entire string for the first match. re.match() only checks at the beginning."
+    },
+    {
+        "question_type": "coding",
+        "text": "Directory Size Calculator\nWrite a function that calculates the total size in bytes of all files in a directory (non-recursive).",
+        "starter_code": "import os\n\ndef dir_size(path):\n    # Return total bytes of all files in path\n    return 0",
+        "test_cases": "import os\nos.makedirs('/tmp/test_dir', exist_ok=True)\nwith open('/tmp/test_dir/a.txt', 'w') as f: f.write('hello')\nwith open('/tmp/test_dir/b.txt', 'w') as f: f.write('world!')\nresult = dir_size('/tmp/test_dir')\nassert result == 11, f'Expected 11, got {result}'",
+        "difficulty": "medium",
+        "topic_tag": "automation",
+        "solution_code": "import os\n\ndef dir_size(path):\n    total = 0\n    for f in os.listdir(path):\n        fp = os.path.join(path, f)\n        if os.path.isfile(fp):\n            total += os.path.getsize(fp)\n    return total",
+        "explanation": "Use os.listdir() to iterate, os.path.join() for full path, and os.path.getsize() for file size."
+    },
+    {
+        "question_type": "coding",
+        "text": "Phone Number Extractor\nWrite a function that extracts all phone numbers (format: XXX-XXX-XXXX) from a text string.",
+        "starter_code": "import re\n\ndef extract_phones(text):\n    # Return list of phone numbers in XXX-XXX-XXXX format\n    return []",
+        "test_cases": "text = 'Call 123-456-7890 or 987-654-3210 today!'\nresult = extract_phones(text)\nassert len(result) == 2\nassert '123-456-7890' in result\nassert '987-654-3210' in result",
+        "difficulty": "medium",
+        "topic_tag": "regex",
+        "solution_code": "import re\n\ndef extract_phones(text):\n    pattern = r'\\d{3}-\\d{3}-\\d{4}'\n    return re.findall(pattern, text)",
+        "explanation": "Use \\d{3} to match 3 digits, hyphen as literal, then \\d{4} for 4 digits."
+    },
+    {
+        "question_type": "coding",
+        "text": "Environment Variable Parser\nWrite a function that parses KEY=VALUE pairs from a list of strings into a dictionary.",
+        "starter_code": "def parse_env(lines):\n    # Parse 'KEY=VALUE' strings into dict\n    return {}",
+        "test_cases": "lines = ['DB_HOST=localhost', 'PORT=5432', 'DEBUG=true']\nresult = parse_env(lines)\nassert result['DB_HOST'] == 'localhost'\nassert result['PORT'] == '5432'\nassert result['DEBUG'] == 'true'",
+        "difficulty": "easy",
+        "topic_tag": "automation",
+        "solution_code": "def parse_env(lines):\n    env = {}\n    for line in lines:\n        key, value = line.split('=', 1)\n        env[key] = value\n    return env",
+        "explanation": "Split each line on '=' with maxsplit=1 to handle values containing '='."
     },
     {
         "question_type": "code-correction",
-        "text": "The schedule never runs. Fix the missing loop.",
-        "code": "import schedule\nschedule.every(1).hour.do(job)",
+        "text": "The subprocess call hangs when reading large output. Fix it.",
+        "code": "import subprocess\nresult = subprocess.run(['ls', '-la'], stdout=subprocess.PIPE)\noutput = result.stdout",
         "options": [
-            "Add: while True: schedule.run_pending(); time.sleep(1)",
-            "Use schedule.start()",
-            "Call schedule.run()",
-            "Add schedule.wait()"
+            "Add text=True to decode output as string",
+            "Use capture_output=True instead",
+            "Add timeout parameter to prevent hangs",
+            "Change PIPE to DEVNULL"
         ],
-        "correct_index": 0,
-        "difficulty": "medium",
-        "topic_tag": "schedule",
-        "explanation": "schedule needs a loop to keep checking pending jobs."
+        "correct_index": 2,
+        "difficulty": "hard",
+        "topic_tag": "automation",
+        "explanation": "Adding timeout prevents indefinite blocking on commands that might hang."
     },
     {
         "question_type": "code-correction",
-        "text": "The email fails to send. Fix the authentication order.",
-        "code": "server = smtplib.SMTP('smtp.gmail.com', 587)\nserver.login(user, password)\nserver.starttls()",
+        "text": "The regex fails to match multi-line strings. Fix it.",
+        "code": "import re\ntext = 'Line1\\nLine2\\nLine3'\nmatches = re.findall(r'^Line', text)",
         "options": [
-            "Move starttls() before login()",
-            "Use port 465",
-            "Remove starttls()",
-            "Add server.connect()"
+            "Add re.MULTILINE flag",
+            "Change ^ to \\n",
+            "Use re.search() instead",
+            "Remove the ^ anchor"
         ],
         "correct_index": 0,
         "difficulty": "medium",
-        "topic_tag": "email",
-        "explanation": "starttls() must be called before login()."
+        "topic_tag": "regex",
+        "explanation": "re.MULTILINE makes ^ match at the start of each line, not just the string."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The shutil.copy() fails silently when destination exists. Fix it to raise an error.",
+        "code": "import shutil\nshutil.copy('source.txt', 'dest.txt')",
+        "options": [
+            "Check if dest exists with os.path.exists() first and raise FileExistsError",
+            "Use shutil.copy2() instead",
+            "Add overwrite=False parameter",
+            "Use shutil.move() instead"
+        ],
+        "correct_index": 0,
+        "difficulty": "hard",
+        "topic_tag": "automation",
+        "explanation": "shutil.copy() overwrites silently. To prevent this, check existence first and raise explicitly."
     }
 ]

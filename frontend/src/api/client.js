@@ -1,6 +1,6 @@
 import { supabase } from '../lib/supabase'
 
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000/api'
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8001/api'
 
 let cachedSession = null;
 let lastSessionFetch = 0;
@@ -8,6 +8,8 @@ const SESSION_CACHE_TTL = 30000; // 30 seconds
 
 async function fetchAPI(endpoint, options = {}) {
   const url = `${API_BASE}${endpoint}`
+  // Debug logging only in development
+  if (import.meta.env.DEV) console.log('[API Fetch]', url)
 
   // Get current session for auth token with 30s caching
   const now = Date.now();
