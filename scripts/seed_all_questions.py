@@ -22,15 +22,18 @@ def seed_all_questions():
     
     total_seeded = 0
     
-    # Process all day-X.json files
-    # NOTE: Update the range endpoint when adding new days (e.g., range(1, 86) covers days 1-85)
-    # Last updated: 2025-12-22 for Days 76-85
-    for day_num in range(1, 86):
-        json_file = QUESTIONS_DIR / f"day-{day_num}.json"
-        
-        if not json_file.exists():
-            print(f"⚠️  day-{day_num}.json not found, skipping.")
-            continue
+    # Auto-discover all day-X.json files (no more manual range updates needed)
+    json_files = sorted(
+        QUESTIONS_DIR.glob("day-*.json"),
+        key=lambda p: int(p.stem.split("-")[1])  # Sort by day number
+    )
+    
+    if not json_files:
+        print("⚠️  No day-*.json files found in questions directory!")
+        return
+    
+    for json_file in json_files:
+        day_num = int(json_file.stem.split("-")[1])
         
         with open(json_file, 'r', encoding='utf-8') as f:
             questions = json.load(f)

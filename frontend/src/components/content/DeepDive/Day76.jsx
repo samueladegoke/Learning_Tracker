@@ -14,7 +14,8 @@ export default function DeepDiveDay76() {
                         <strong>Plotly</strong> creates interactive, publication-quality graphs. Unlike Matplotlib's static images, Plotly charts allow users to hover, zoom, and pan—perfect for data exploration.
                     </p>
                     <CodeBlock
-                        code={`import plotly.express as px
+                        code={`import pandas as pd
+import plotly.express as px
 
 # Load the Android App Store dataset
 df = pd.read_csv("apps.csv")
