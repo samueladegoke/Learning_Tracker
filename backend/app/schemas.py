@@ -220,3 +220,35 @@ class QuestionResponse(BaseModel):
 class QuizSubmission(BaseModel):
     quiz_id: str
     answers: dict[str, Any]  # question_id -> answer (int for MCQ, dict for coding)
+
+
+class QuestionPublicResponse(BaseModel):
+    """Question data without answers - safe to expose publicly."""
+    id: int
+    quiz_id: str
+    question_type: str = "mcq"  # mcq, coding, code-correction
+    text: str
+    code: Optional[str] = None  # For code-correction questions
+    options: List[str] = []  # For MCQ/code-correction
+    starter_code: Optional[str] = None  # For coding questions
+    test_cases: Optional[Union[List[Dict[str, Any]], str]] = None  # Required for client-side test runner
+    difficulty: Optional[str] = None
+    topic_tag: Optional[str] = None
+
+    class Config:
+        from_attributes = True
+
+
+class AnswerSubmission(BaseModel):
+    """Single answer submission for verification."""
+    question_id: int
+    answer: Any  # int for MCQ, dict for coding
+
+
+class AnswerVerifyResponse(BaseModel):
+    """Response after verifying an answer."""
+    question_id: int
+    is_correct: bool
+    correct_index: Optional[int] = None  # For MCQ/code-correction
+    explanation: Optional[str] = None
+

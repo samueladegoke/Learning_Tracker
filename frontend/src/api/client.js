@@ -100,6 +100,10 @@ export const quizzesAPI = {
     method: 'POST',
     body: JSON.stringify(data),
   }),
+  verifyAnswer: (quizId, questionId, answer) => fetchAPI(`/quizzes/${quizId}/verify`, {
+    method: 'POST',
+    body: JSON.stringify({ question_id: questionId, answer }),
+  }),
 }
 
 // Spaced Repetition System (SRS) API

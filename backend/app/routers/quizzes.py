@@ -6,7 +6,7 @@ from sqlalchemy import func
 
 from ..database import get_db
 from ..models import QuizResult, User, Question, Achievement, UserAchievement, UserQuestionReview
-from ..schemas import QuizSubmission, QuestionResponse
+from ..schemas import QuizSubmission, QuestionResponse, QuestionPublicResponse, AnswerSubmission, AnswerVerifyResponse
 from ..auth import get_current_user
 from datetime import datetime, timedelta
 
@@ -44,9 +44,9 @@ def get_quiz_leaderboard(limit: int = 20, offset: int = 0, db: Session = Depends
     ]
 
 
-@router.get("/{quiz_id}/questions", response_model=List[QuestionResponse])
+@router.get("/{quiz_id}/questions", response_model=List[QuestionPublicResponse])
 def get_quiz_questions(quiz_id: str, user: User = Depends(get_current_user), db: Session = Depends(get_db)):
-    """Get questions for a specific quiz (without correct answers or solution_code)."""
+    """Get questions for a specific quiz (without correct answers or explanations)."""
     questions = db.query(Question).filter(Question.quiz_id == quiz_id).all()
 
     # Parse options/test_cases JSON strings to lists
@@ -62,22 +62,47 @@ def get_quiz_questions(quiz_id: str, user: User = Depends(get_current_user), db:
         except (json.JSONDecodeError, TypeError):
             test_cases_list = None
 
-        response.append(QuestionResponse(
+        response.append(QuestionPublicResponse(
             id=q.id,
             quiz_id=q.quiz_id,
             question_type=q.question_type or "mcq",
             text=q.text,
             code=q.code,  # For code-correction questions
             options=options_list,
-            correct_index=q.correct_index,
             starter_code=q.starter_code,
             test_cases=test_cases_list,
-            explanation=q.explanation,
             difficulty=q.difficulty,
             topic_tag=q.topic_tag
         ))
 
     return response
+
+
+@router.post("/{quiz_id}/verify", response_model=AnswerVerifyResponse)
+def verify_answer(quiz_id: str, submission: AnswerSubmission, user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+    """Verify a single answer and return the correct answer + explanation."""
+    question = db.query(Question).filter(
+        Question.quiz_id == quiz_id,
+        Question.id == submission.question_id
+    ).first()
+    
+    if not question:
+        raise HTTPException(status_code=404, detail="Question not found")
+    
+    question_type = question.question_type or 'mcq'
+    is_correct = False
+    
+    if question_type in ('mcq', 'code-correction'):
+        is_correct = isinstance(submission.answer, int) and question.correct_index == submission.answer
+    elif question_type == 'coding':
+        is_correct = isinstance(submission.answer, dict) and submission.answer.get('allPassed', False)
+    
+    return AnswerVerifyResponse(
+        question_id=question.id,
+        is_correct=is_correct,
+        correct_index=question.correct_index,
+        explanation=question.explanation
+    )
 
 
 def award_achievement_for_quiz(db: Session, user_id: int, achievement_id: str) -> tuple[bool, int]:

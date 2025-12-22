@@ -1139,6 +1139,7 @@ function Quiz({ quizId, activeDay, initialQuestions = [], isChallengeTab = false
     const [quizStats, setQuizStats] = useState(null)
     const [xpWarning, setXpWarning] = useState(null)
     const [masteryMessage, setMasteryMessage] = useState(null)
+    const [verifiedAnswers, setVerifiedAnswers] = useState({}) // { questionId: { correct_index, explanation, is_correct } }
 
     useEffect(() => {
         if (initialQuestions && initialQuestions.length > 0) {
@@ -1209,21 +1210,31 @@ function Quiz({ quizId, activeDay, initialQuestions = [], isChallengeTab = false
             [questionId]: optionIndex
         }))
 
-        if (isReviewMode) {
-            const isCorrect = Number(optionIndex) === Number(questions[currentQ].correct_index)
-            try {
-                const srsResult = await srsAPI.submitResult({
-                    review_id: questions[currentQ].id, // For SRS, the id is the review_id
-                    was_correct: isCorrect
-                })
+        // Call verify endpoint to get correct answer and explanation
+        try {
+            const verifyResult = await quizzesAPI.verifyAnswer(quizId, questionId, optionIndex)
+            setVerifiedAnswers(prev => ({
+                ...prev,
+                [questionId]: verifyResult
+            }))
 
-                if (srsResult?.message) {
-                    setMasteryMessage(srsResult.message)
-                    setTimeout(() => setMasteryMessage(null), 4000)
+            if (isReviewMode) {
+                try {
+                    const srsResult = await srsAPI.submitResult({
+                        review_id: questionId,
+                        was_correct: verifyResult.is_correct
+                    })
+
+                    if (srsResult?.message) {
+                        setMasteryMessage(srsResult.message)
+                        setTimeout(() => setMasteryMessage(null), 4000)
+                    }
+                } catch (err) {
+                    console.error('SRS Submit Failed:', err)
                 }
-            } catch (err) {
-                console.error('SRS Submit Failed:', err)
             }
+        } catch (err) {
+            console.error('Verify answer failed:', err)
         }
     }
 
@@ -1388,15 +1399,11 @@ function Quiz({ quizId, activeDay, initialQuestions = [], isChallengeTab = false
     const finishQuiz = async () => {
         if (isReviewMode) {
             // In review mode, items are submitted individually. 
-            // We just show the local completion summary.
+            // We just show the local completion summary using verifiedAnswers.
             const total = questions.length
-            const correct = Object.values(answers).filter((val, idx) => {
-                const q = questions.find(q => q.id === parseInt(Object.keys(answers)[idx]))
-                if (!q) return false
-                if (q.question_type === 'mcq' || q.question_type === 'code-correction') {
-                    return val === q.correct_index
-                }
-                return val.allPassed
+            const correct = questions.filter(q => {
+                const verified = verifiedAnswers[q.id]
+                return verified?.is_correct
             }).length
 
             setResultData({
@@ -1605,51 +1612,62 @@ function Quiz({ quizId, activeDay, initialQuestions = [], isChallengeTab = false
 
                 {/* MCQ Options */}
                 {isMCQ && currentQuestion.options && (
-                    <div className="space-y-3">
-                        {currentQuestion.options.map((opt, idx) => {
-                            const isCorrect = Number(idx) === Number(currentQuestion.correct_index)
-                            const isSelected = selectedOption === idx
-                            const showCorrectness = selectedOption !== undefined
+                    <>
+                        <div className="space-y-3">
+                            {currentQuestion.options.map((opt, idx) => {
+                                const verified = verifiedAnswers[currentQuestion.id]
+                                const isCorrect = verified && idx === verified.correct_index
+                                const isSelected = selectedOption === idx
+                                const showCorrectness = verified !== undefined
 
-                            let buttonClass = 'bg-surface-700/50 border-surface-600 hover:bg-surface-700 hover:border-surface-500 text-surface-200'
-                            let badgeClass = 'bg-surface-600 text-surface-300'
+                                let buttonClass = 'bg-surface-700/50 border-surface-600 hover:bg-surface-700 hover:border-surface-500 text-surface-200'
+                                let badgeClass = 'bg-surface-600 text-surface-300'
 
-                            if (showCorrectness) {
-                                if (isCorrect) {
-                                    buttonClass = 'bg-green-500/20 border-green-500 text-green-200'
-                                    badgeClass = 'bg-green-500 text-white'
+                                if (showCorrectness) {
+                                    if (isCorrect) {
+                                        buttonClass = 'bg-green-500/20 border-green-500 text-green-200'
+                                        badgeClass = 'bg-green-500 text-white'
+                                    } else if (isSelected) {
+                                        buttonClass = 'bg-red-500/20 border-red-500 text-red-200'
+                                        badgeClass = 'bg-red-500 text-white'
+                                    }
                                 } else if (isSelected) {
-                                    buttonClass = 'bg-red-500/20 border-red-500 text-red-200'
-                                    badgeClass = 'bg-red-500 text-white'
+                                    buttonClass = 'bg-primary-600/20 border-primary-500 text-primary-200'
+                                    badgeClass = 'bg-primary-500 text-white'
                                 }
-                            } else if (isSelected) {
-                                buttonClass = 'bg-primary-600/20 border-primary-500 text-primary-200'
-                                badgeClass = 'bg-primary-500 text-white'
-                            }
 
-                            return (
-                                <button
-                                    key={idx}
-                                    onClick={() => !showCorrectness && handleMCQAnswer(idx)}
-                                    disabled={showCorrectness}
-                                    className={`w-full text-left p-4 rounded-xl border transition-all duration-200 flex justify-between items-center ${buttonClass} ${showCorrectness ? 'cursor-default' : ''}`}
-                                >
-                                    <div className="flex items-center gap-3">
-                                        <span className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm font-medium ${badgeClass}`}>
-                                            {String.fromCharCode(65 + idx)}
-                                        </span>
-                                        <span className="font-mono text-sm whitespace-pre-wrap">{opt}</span>
-                                    </div>
-                                    {showCorrectness && isCorrect && (
-                                        <Check className="w-5 h-5 text-green-400" />
-                                    )}
-                                    {showCorrectness && isSelected && !isCorrect && (
-                                        <X className="w-5 h-5 text-red-400" />
-                                    )}
-                                </button>
-                            )
-                        })}
-                    </div>
+                                return (
+                                    <button
+                                        key={idx}
+                                        onClick={() => !showCorrectness && handleMCQAnswer(idx)}
+                                        disabled={showCorrectness}
+                                        className={`w-full text-left p-4 rounded-xl border transition-all duration-200 flex justify-between items-center ${buttonClass} ${showCorrectness ? 'cursor-default' : ''}`}
+                                    >
+                                        <div className="flex items-center gap-3">
+                                            <span className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm font-medium ${badgeClass}`}>
+                                                {String.fromCharCode(65 + idx)}
+                                            </span>
+                                            <span className="font-mono text-sm whitespace-pre-wrap">{opt}</span>
+                                        </div>
+                                        {showCorrectness && isCorrect && (
+                                            <Check className="w-5 h-5 text-green-400" />
+                                        )}
+                                        {showCorrectness && isSelected && !isCorrect && (
+                                            <X className="w-5 h-5 text-red-400" />
+                                        )}
+                                    </button>
+                                )
+                            })}
+                        </div>
+
+                        {/* Show explanation after answer */}
+                        {verifiedAnswers[currentQuestion.id]?.explanation && (
+                            <div className="mt-4 p-4 rounded-xl bg-surface-700/50 border border-surface-600">
+                                <div className="text-xs text-primary-400 mb-2 uppercase tracking-wider font-medium">Explanation</div>
+                                <p className="text-surface-200 text-sm">{verifiedAnswers[currentQuestion.id].explanation}</p>
+                            </div>
+                        )}
+                    </>
                 )}
 
                 {/* Code Correction - Shows buggy code + MCQ options for fix */}
@@ -1663,9 +1681,10 @@ function Quiz({ quizId, activeDay, initialQuestions = [], isChallengeTab = false
                         {/* Options for correction */}
                         <div className="space-y-3">
                             {currentQuestion.options?.map((opt, idx) => {
-                                const isCorrect = idx === currentQuestion.correct_index
+                                const verified = verifiedAnswers[currentQuestion.id]
+                                const isCorrect = verified && idx === verified.correct_index
                                 const isSelected = selectedOption === idx
-                                const showCorrectness = selectedOption !== undefined
+                                const showCorrectness = verified !== undefined
 
                                 let buttonClass = 'bg-surface-700/50 border-surface-600 hover:bg-surface-700 hover:border-surface-500 text-surface-200'
                                 let badgeClass = 'bg-surface-600 text-surface-300'
