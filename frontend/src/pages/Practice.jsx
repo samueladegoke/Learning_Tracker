@@ -1235,6 +1235,8 @@ function Quiz({ quizId, activeDay, initialQuestions = [], isChallengeTab = false
             }
         } catch (err) {
             console.error('Verify answer failed:', err)
+            setXpWarning('Failed to verify answer. Please try again.')
+            setTimeout(() => setXpWarning(null), 3000)
         }
     }
 
@@ -1247,20 +1249,33 @@ function Quiz({ quizId, activeDay, initialQuestions = [], isChallengeTab = false
 
         const { allPassed } = result
 
-        if (isReviewMode) {
-            try {
-                const srsResult = await srsAPI.submitResult({
-                    review_id: questions[currentQ].id,
-                    was_correct: allPassed
-                })
+        // Call verify endpoint to get explanation for coding questions
+        try {
+            const verifyResult = await quizzesAPI.verifyAnswer(quizId, questionId, result)
+            setVerifiedAnswers(prev => ({
+                ...prev,
+                [questionId]: verifyResult
+            }))
 
-                if (srsResult?.message) {
-                    setMasteryMessage(srsResult.message)
-                    setTimeout(() => setMasteryMessage(null), 4000)
+            if (isReviewMode) {
+                try {
+                    const srsResult = await srsAPI.submitResult({
+                        review_id: questionId,
+                        was_correct: allPassed
+                    })
+
+                    if (srsResult?.message) {
+                        setMasteryMessage(srsResult.message)
+                        setTimeout(() => setMasteryMessage(null), 4000)
+                    }
+                } catch (err) {
+                    console.error('SRS Submit Failed:', err)
                 }
-            } catch (err) {
-                console.error('SRS Submit Failed:', err)
             }
+        } catch (err) {
+            console.error('Verify answer failed:', err)
+            setXpWarning('Failed to verify answer. Please try again.')
+            setTimeout(() => setXpWarning(null), 3000)
         }
         if (allPassed) {
             // Trigger animation for cleared challenge
@@ -1725,6 +1740,14 @@ function Quiz({ quizId, activeDay, initialQuestions = [], isChallengeTab = false
                                 )
                             })}
                         </div>
+
+                        {/* Show explanation after answer */}
+                        {verifiedAnswers[currentQuestion.id]?.explanation && (
+                            <div className="mt-4 p-4 rounded-xl bg-surface-700/50 border border-surface-600">
+                                <div className="text-xs text-orange-400 mb-2 uppercase tracking-wider font-medium">Explanation</div>
+                                <p className="text-surface-200 text-sm">{verifiedAnswers[currentQuestion.id].explanation}</p>
+                            </div>
+                        )}
                     </div>
                 )}
 
@@ -1746,6 +1769,14 @@ function Quiz({ quizId, activeDay, initialQuestions = [], isChallengeTab = false
                                     ? <div className="flex items-center gap-2"><Check className="w-4 h-4" /> All {selectedOption.total} test cases passed!</div>
                                     : `${selectedOption.passed} of ${selectedOption.total} test cases passed`
                                 }
+                            </div>
+                        )}
+
+                        {/* Show explanation after coding challenge */}
+                        {verifiedAnswers[currentQuestion.id]?.explanation && (
+                            <div className="mt-4 p-4 rounded-xl bg-surface-700/50 border border-surface-600">
+                                <div className="text-xs text-orange-400 mb-2 uppercase tracking-wider font-medium">Explanation</div>
+                                <p className="text-surface-200 text-sm">{verifiedAnswers[currentQuestion.id].explanation}</p>
                             </div>
                         )}
                     </div>
