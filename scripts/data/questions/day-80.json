@@ -171,7 +171,7 @@
         "question_type": "coding",
         "text": "Perform a t-test comparing two groups and return the p-value.",
         "starter_code": "from scipy import stats\nimport numpy as np\n\ngroup1 = np.array([10, 12, 14, 16, 18])\ngroup2 = np.array([8, 10, 11, 13, 15])\n\ndef compare_groups(g1, g2):\n    # Return p-value\n    pass",
-        "solution": "from scipy import stats\nimport numpy as np\n\ngroup1 = np.array([10, 12, 14, 16, 18])\ngroup2 = np.array([8, 10, 11, 13, 15])\n\ndef compare_groups(g1, g2):\n    t_stat, p_value = stats.ttest_ind(g1, g2)\n    return p_value",
+        "solution_code": "from scipy import stats\nimport numpy as np\n\ngroup1 = np.array([10, 12, 14, 16, 18])\ngroup2 = np.array([8, 10, 11, 13, 15])\n\ndef compare_groups(g1, g2):\n    t_stat, p_value = stats.ttest_ind(g1, g2)\n    return p_value",
         "test_cases": "pval = compare_groups(group1, group2)\nassert 0 < pval < 1",
         "difficulty": "easy",
         "topic_tag": "scipy"
@@ -180,7 +180,7 @@
         "question_type": "coding",
         "text": "Create overlapping histograms for before/after data using Seaborn.",
         "starter_code": "import seaborn as sns\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nbefore = np.random.normal(10, 2, 100)\nafter = np.random.normal(5, 2, 100)\n\ndef plot_distributions(before, after):\n    # Your code here\n    pass",
-        "solution": "import seaborn as sns\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nbefore = np.random.normal(10, 2, 100)\nafter = np.random.normal(5, 2, 100)\n\ndef plot_distributions(before, after):\n    sns.histplot(before, kde=True, label='Before', alpha=0.5)\n    sns.histplot(after, kde=True, label='After', alpha=0.5)\n    plt.legend()\n    return plt.gca()",
+        "solution_code": "import seaborn as sns\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nbefore = np.random.normal(10, 2, 100)\nafter = np.random.normal(5, 2, 100)\n\ndef plot_distributions(before, after):\n    sns.histplot(before, kde=True, label='Before', alpha=0.5)\n    sns.histplot(after, kde=True, label='After', alpha=0.5)\n    plt.legend()\n    return plt.gca()",
         "test_cases": "ax = plot_distributions(before, after)\nassert ax is not None",
         "difficulty": "medium",
         "topic_tag": "seaborn"
@@ -189,7 +189,7 @@
         "question_type": "coding",
         "text": "Calculate a 95% confidence interval for a sample mean.",
         "starter_code": "from scipy import stats\nimport numpy as np\n\ndata = np.array([5.1, 5.5, 4.8, 5.2, 5.0, 5.3, 4.9, 5.4])\n\ndef confidence_interval(data, confidence=0.95):\n    # Return (lower, upper) bounds\n    pass",
-        "solution": "from scipy import stats\nimport numpy as np\n\ndata = np.array([5.1, 5.5, 4.8, 5.2, 5.0, 5.3, 4.9, 5.4])\n\ndef confidence_interval(data, confidence=0.95):\n    n = len(data)\n    mean = np.mean(data)\n    se = stats.sem(data)\n    h = se * stats.t.ppf((1 + confidence) / 2, n - 1)\n    return mean - h, mean + h",
+        "solution_code": "from scipy import stats\nimport numpy as np\n\ndata = np.array([5.1, 5.5, 4.8, 5.2, 5.0, 5.3, 4.9, 5.4])\n\ndef confidence_interval(data, confidence=0.95):\n    n = len(data)\n    mean = np.mean(data)\n    se = stats.sem(data)\n    h = se * stats.t.ppf((1 + confidence) / 2, n - 1)\n    return mean - h, mean + h",
         "test_cases": "lower, upper = confidence_interval(data)\nassert lower < 5.15 < upper",
         "difficulty": "hard",
         "topic_tag": "scipy"
@@ -198,7 +198,7 @@
         "question_type": "coding",
         "text": "Test if the difference is significant at α=0.05 and return True/False.",
         "starter_code": "from scipy import stats\nimport numpy as np\n\ng1 = np.array([20, 22, 19, 21, 23])\ng2 = np.array([15, 17, 16, 14, 18])\n\ndef is_significant(g1, g2, alpha=0.05):\n    # Return True if significant, False otherwise\n    pass",
-        "solution": "from scipy import stats\nimport numpy as np\n\ng1 = np.array([20, 22, 19, 21, 23])\ng2 = np.array([15, 17, 16, 14, 18])\n\ndef is_significant(g1, g2, alpha=0.05):\n    _, p = stats.ttest_ind(g1, g2)\n    return p < alpha",
+        "solution_code": "from scipy import stats\nimport numpy as np\n\ng1 = np.array([20, 22, 19, 21, 23])\ng2 = np.array([15, 17, 16, 14, 18])\n\ndef is_significant(g1, g2, alpha=0.05):\n    _, p = stats.ttest_ind(g1, g2)\n    return p < alpha",
         "test_cases": "result = is_significant(g1, g2)\nassert result == True",
         "difficulty": "medium",
         "topic_tag": "scipy"
@@ -207,7 +207,7 @@
         "question_type": "coding",
         "text": "Calculate the mean and standard deviation for before and after groups.",
         "starter_code": "import numpy as np\n\nbefore = np.array([10.5, 9.8, 11.2, 10.0, 9.5])\nafter = np.array([5.2, 4.8, 5.5, 5.0, 4.7])\n\ndef summary_stats(before, after):\n    # Return dict with means and stds\n    pass",
-        "solution": "import numpy as np\n\nbefore = np.array([10.5, 9.8, 11.2, 10.0, 9.5])\nafter = np.array([5.2, 4.8, 5.5, 5.0, 4.7])\n\ndef summary_stats(before, after):\n    return {\n        'before_mean': np.mean(before),\n        'before_std': np.std(before),\n        'after_mean': np.mean(after),\n        'after_std': np.std(after)\n    }",
+        "solution_code": "import numpy as np\n\nbefore = np.array([10.5, 9.8, 11.2, 10.0, 9.5])\nafter = np.array([5.2, 4.8, 5.5, 5.0, 4.7])\n\ndef summary_stats(before, after):\n    return {\n        'before_mean': np.mean(before),\n        'before_std': np.std(before),\n        'after_mean': np.mean(after),\n        'after_std': np.std(after)\n    }",
         "test_cases": "stats_out = summary_stats(before, after)\nassert stats_out['before_mean'] > stats_out['after_mean']",
         "difficulty": "easy",
         "topic_tag": "numpy"

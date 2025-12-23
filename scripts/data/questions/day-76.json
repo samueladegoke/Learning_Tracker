@@ -171,7 +171,7 @@
         "question_type": "coding",
         "text": "Create a bar chart using Plotly Express that shows app installs by category. Return the figure object.",
         "starter_code": "import plotly.express as px\nimport pandas as pd\n\ndf = pd.DataFrame({\n    'Category': ['Games', 'Tools', 'Social'],\n    'Installs': [1000000, 500000, 750000]\n})\n\ndef create_bar_chart(df):\n    # Your code here\n    pass",
-        "solution": "import plotly.express as px\nimport pandas as pd\n\ndf = pd.DataFrame({\n    'Category': ['Games', 'Tools', 'Social'],\n    'Installs': [1000000, 500000, 750000]\n})\n\ndef create_bar_chart(df):\n    fig = px.bar(df, x='Category', y='Installs')\n    return fig",
+        "solution_code": "import plotly.express as px\nimport pandas as pd\n\ndf = pd.DataFrame({\n    'Category': ['Games', 'Tools', 'Social'],\n    'Installs': [1000000, 500000, 750000]\n})\n\ndef create_bar_chart(df):\n    fig = px.bar(df, x='Category', y='Installs')\n    return fig",
         "test_cases": "fig = create_bar_chart(df)\nassert fig is not None\nassert 'bar' in str(type(fig.data[0])).lower()",
         "difficulty": "easy",
         "topic_tag": "plotly"
@@ -180,7 +180,7 @@
         "question_type": "coding",
         "text": "Create a scatter plot with size based on 'reviews' column and color based on 'category'. Return the figure.",
         "starter_code": "import plotly.express as px\nimport pandas as pd\n\ndf = pd.DataFrame({\n    'size': [10, 20, 30],\n    'rating': [4.0, 4.5, 3.5],\n    'reviews': [100, 500, 200],\n    'category': ['A', 'B', 'A']\n})\n\ndef create_scatter(df):\n    # Your code here\n    pass",
-        "solution": "import plotly.express as px\nimport pandas as pd\n\ndf = pd.DataFrame({\n    'size': [10, 20, 30],\n    'rating': [4.0, 4.5, 3.5],\n    'reviews': [100, 500, 200],\n    'category': ['A', 'B', 'A']\n})\n\ndef create_scatter(df):\n    fig = px.scatter(df, x='size', y='rating', size='reviews', color='category')\n    return fig",
+        "solution_code": "import plotly.express as px\nimport pandas as pd\n\ndf = pd.DataFrame({\n    'size': [10, 20, 30],\n    'rating': [4.0, 4.5, 3.5],\n    'reviews': [100, 500, 200],\n    'category': ['A', 'B', 'A']\n})\n\ndef create_scatter(df):\n    fig = px.scatter(df, x='size', y='rating', size='reviews', color='category')\n    return fig",
         "test_cases": "fig = create_scatter(df)\nassert fig is not None\nassert len(fig.data) > 0",
         "difficulty": "medium",
         "topic_tag": "plotly"
@@ -189,7 +189,7 @@
         "question_type": "coding",
         "text": "Clean the 'installs' column by removing '+' and ',' characters, then convert to integer.",
         "starter_code": "import pandas as pd\n\ndf = pd.DataFrame({'installs': ['1,000+', '5,000,000+', '100+']})\n\ndef clean_installs(df):\n    # Your code here\n    pass",
-        "solution": "import pandas as pd\n\ndf = pd.DataFrame({'installs': ['1,000+', '5,000,000+', '100+']})\n\ndef clean_installs(df):\n    df['installs'] = df['installs'].str.replace(',', '').str.replace('+', '')\n    df['installs'] = pd.to_numeric(df['installs'])\n    return df",
+        "solution_code": "import pandas as pd\n\ndf = pd.DataFrame({'installs': ['1,000+', '5,000,000+', '100+']})\n\ndef clean_installs(df):\n    df['installs'] = df['installs'].str.replace(',', '').str.replace('+', '')\n    df['installs'] = pd.to_numeric(df['installs'])\n    return df",
         "test_cases": "result = clean_installs(df.copy())\nassert result['installs'].iloc[0] == 1000\nassert result['installs'].iloc[1] == 5000000",
         "difficulty": "easy",
         "topic_tag": "data_cleaning"
@@ -198,7 +198,7 @@
         "question_type": "coding",
         "text": "Create a donut chart showing category distribution. The hole should be 40% of the chart.",
         "starter_code": "import plotly.express as px\nimport pandas as pd\n\ndf = pd.DataFrame({'category': ['A', 'B', 'C'], 'count': [30, 50, 20]})\n\ndef create_donut(df):\n    # Your code here\n    pass",
-        "solution": "import plotly.express as px\nimport pandas as pd\n\ndf = pd.DataFrame({'category': ['A', 'B', 'C'], 'count': [30, 50, 20]})\n\ndef create_donut(df):\n    fig = px.pie(df, names='category', values='count', hole=0.4)\n    return fig",
+        "solution_code": "import plotly.express as px\nimport pandas as pd\n\ndf = pd.DataFrame({'category': ['A', 'B', 'C'], 'count': [30, 50, 20]})\n\ndef create_donut(df):\n    fig = px.pie(df, names='category', values='count', hole=0.4)\n    return fig",
         "test_cases": "fig = create_donut(df)\nassert fig is not None",
         "difficulty": "easy",
         "topic_tag": "plotly"
@@ -207,7 +207,7 @@
         "question_type": "coding",
         "text": "Group apps by category and calculate the average rating for each.",
         "starter_code": "import pandas as pd\n\ndf = pd.DataFrame({\n    'category': ['Games', 'Games', 'Tools', 'Tools'],\n    'rating': [4.0, 4.5, 3.5, 4.0]\n})\n\ndef avg_rating_by_category(df):\n    # Your code here\n    pass",
-        "solution": "import pandas as pd\n\ndf = pd.DataFrame({\n    'category': ['Games', 'Games', 'Tools', 'Tools'],\n    'rating': [4.0, 4.5, 3.5, 4.0]\n})\n\ndef avg_rating_by_category(df):\n    return df.groupby('category')['rating'].mean()",
+        "solution_code": "import pandas as pd\n\ndf = pd.DataFrame({\n    'category': ['Games', 'Games', 'Tools', 'Tools'],\n    'rating': [4.0, 4.5, 3.5, 4.0]\n})\n\ndef avg_rating_by_category(df):\n    return df.groupby('category')['rating'].mean()",
         "test_cases": "result = avg_rating_by_category(df)\nassert result['Games'] == 4.25\nassert result['Tools'] == 3.75",
         "difficulty": "medium",
         "topic_tag": "pandas"

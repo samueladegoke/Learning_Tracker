@@ -171,7 +171,7 @@
         "question_type": "coding",
         "text": "Create a regression plot using Seaborn for x='tip' and y='total_bill'.",
         "starter_code": "import seaborn as sns\nimport matplotlib.pyplot as plt\n\ntips = sns.load_dataset('tips')\n\ndef create_regplot(data):\n    # Your code here\n    pass",
-        "solution": "import seaborn as sns\nimport matplotlib.pyplot as plt\n\ntips = sns.load_dataset('tips')\n\ndef create_regplot(data):\n    ax = sns.regplot(x='tip', y='total_bill', data=data)\n    return ax",
+        "solution_code": "import seaborn as sns\nimport matplotlib.pyplot as plt\n\ntips = sns.load_dataset('tips')\n\ndef create_regplot(data):\n    ax = sns.regplot(x='tip', y='total_bill', data=data)\n    return ax",
         "test_cases": "ax = create_regplot(tips)\nassert ax is not None",
         "difficulty": "easy",
         "topic_tag": "seaborn"
@@ -180,7 +180,7 @@
         "question_type": "coding",
         "text": "Fit a LinearRegression model and return the slope (coefficient).",
         "starter_code": "from sklearn.linear_model import LinearRegression\nimport numpy as np\n\nX = np.array([[1], [2], [3], [4], [5]])\ny = np.array([2, 4, 6, 8, 10])\n\ndef get_slope(X, y):\n    # Your code here\n    pass",
-        "solution": "from sklearn.linear_model import LinearRegression\nimport numpy as np\n\nX = np.array([[1], [2], [3], [4], [5]])\ny = np.array([2, 4, 6, 8, 10])\n\ndef get_slope(X, y):\n    model = LinearRegression()\n    model.fit(X, y)\n    return model.coef_[0]",
+        "solution_code": "from sklearn.linear_model import LinearRegression\nimport numpy as np\n\nX = np.array([[1], [2], [3], [4], [5]])\ny = np.array([2, 4, 6, 8, 10])\n\ndef get_slope(X, y):\n    model = LinearRegression()\n    model.fit(X, y)\n    return model.coef_[0]",
         "test_cases": "slope = get_slope(X, y)\nassert slope == 2.0",
         "difficulty": "medium",
         "topic_tag": "sklearn"
@@ -189,7 +189,7 @@
         "question_type": "coding",
         "text": "Calculate R² score for predictions vs actual values.",
         "starter_code": "from sklearn.metrics import r2_score\nimport numpy as np\n\ny_true = np.array([3, 5, 7, 9])\ny_pred = np.array([2.5, 5.5, 7, 8.5])\n\ndef calculate_r2(y_true, y_pred):\n    # Your code here\n    pass",
-        "solution": "from sklearn.metrics import r2_score\nimport numpy as np\n\ny_true = np.array([3, 5, 7, 9])\ny_pred = np.array([2.5, 5.5, 7, 8.5])\n\ndef calculate_r2(y_true, y_pred):\n    return r2_score(y_true, y_pred)",
+        "solution_code": "from sklearn.metrics import r2_score\nimport numpy as np\n\ny_true = np.array([3, 5, 7, 9])\ny_pred = np.array([2.5, 5.5, 7, 8.5])\n\ndef calculate_r2(y_true, y_pred):\n    return r2_score(y_true, y_pred)",
         "test_cases": "r2 = calculate_r2(y_true, y_pred)\nassert r2 > 0.9",
         "difficulty": "easy",
         "topic_tag": "sklearn"
@@ -198,7 +198,7 @@
         "question_type": "coding",
         "text": "Create faceted regression plots by 'smoker' status using lmplot.",
         "starter_code": "import seaborn as sns\n\ntips = sns.load_dataset('tips')\n\ndef faceted_regplot(data):\n    # Your code here\n    pass",
-        "solution": "import seaborn as sns\n\ntips = sns.load_dataset('tips')\n\ndef faceted_regplot(data):\n    g = sns.lmplot(x='tip', y='total_bill', hue='smoker', data=data)\n    return g",
+        "solution_code": "import seaborn as sns\n\ntips = sns.load_dataset('tips')\n\ndef faceted_regplot(data):\n    g = sns.lmplot(x='tip', y='total_bill', hue='smoker', data=data)\n    return g",
         "test_cases": "g = faceted_regplot(tips)\nassert g is not None",
         "difficulty": "medium",
         "topic_tag": "seaborn"
@@ -207,7 +207,7 @@
         "question_type": "coding",
         "text": "Split data into train and test sets (80/20) and return the shapes.",
         "starter_code": "from sklearn.model_selection import train_test_split\nimport numpy as np\n\nX = np.random.rand(100, 3)\ny = np.random.rand(100)\n\ndef split_data(X, y):\n    # Return X_train shape and X_test shape\n    pass",
-        "solution": "from sklearn.model_selection import train_test_split\nimport numpy as np\n\nX = np.random.rand(100, 3)\ny = np.random.rand(100)\n\ndef split_data(X, y):\n    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n    return X_train.shape, X_test.shape",
+        "solution_code": "from sklearn.model_selection import train_test_split\nimport numpy as np\n\nX = np.random.rand(100, 3)\ny = np.random.rand(100)\n\ndef split_data(X, y):\n    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n    return X_train.shape, X_test.shape",
         "test_cases": "train_shape, test_shape = split_data(X, y)\nassert train_shape[0] == 80\nassert test_shape[0] == 20",
         "difficulty": "easy",
         "topic_tag": "sklearn"

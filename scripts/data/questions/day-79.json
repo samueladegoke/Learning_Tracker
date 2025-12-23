@@ -171,7 +171,7 @@
         "question_type": "coding",
         "text": "Count Nobel prizes by birth country and return a DataFrame.",
         "starter_code": "import pandas as pd\n\ndf = pd.DataFrame({\n    'name': ['A', 'B', 'C', 'D'],\n    'birth_country': ['USA', 'UK', 'USA', 'Germany']\n})\n\ndef count_by_country(df):\n    # Your code here\n    pass",
-        "solution": "import pandas as pd\n\ndf = pd.DataFrame({\n    'name': ['A', 'B', 'C', 'D'],\n    'birth_country': ['USA', 'UK', 'USA', 'Germany']\n})\n\ndef count_by_country(df):\n    counts = df['birth_country'].value_counts().reset_index()\n    counts.columns = ['country', 'prizes']\n    return counts",
+        "solution_code": "import pandas as pd\n\ndf = pd.DataFrame({\n    'name': ['A', 'B', 'C', 'D'],\n    'birth_country': ['USA', 'UK', 'USA', 'Germany']\n})\n\ndef count_by_country(df):\n    counts = df['birth_country'].value_counts().reset_index()\n    counts.columns = ['country', 'prizes']\n    return counts",
         "test_cases": "result = count_by_country(df)\nassert result[result['country'] == 'USA']['prizes'].values[0] == 2",
         "difficulty": "easy",
         "topic_tag": "pandas"
@@ -180,7 +180,7 @@
         "question_type": "coding",
         "text": "Create a choropleth map showing prizes by country.",
         "starter_code": "import plotly.express as px\nimport pandas as pd\n\ndata = pd.DataFrame({'country': ['USA', 'UK', 'Germany'], 'prizes': [400, 100, 80]})\n\ndef create_choropleth(data):\n    # Your code here\n    pass",
-        "solution": "import plotly.express as px\nimport pandas as pd\n\ndata = pd.DataFrame({'country': ['USA', 'UK', 'Germany'], 'prizes': [400, 100, 80]})\n\ndef create_choropleth(data):\n    fig = px.choropleth(data, locations='country', locationmode='country names', color='prizes')\n    return fig",
+        "solution_code": "import plotly.express as px\nimport pandas as pd\n\ndata = pd.DataFrame({'country': ['USA', 'UK', 'Germany'], 'prizes': [400, 100, 80]})\n\ndef create_choropleth(data):\n    fig = px.choropleth(data, locations='country', locationmode='country names', color='prizes')\n    return fig",
         "test_cases": "fig = create_choropleth(data)\nassert fig is not None",
         "difficulty": "medium",
         "topic_tag": "plotly"
@@ -189,7 +189,7 @@
         "question_type": "coding",
         "text": "Group data by year and sex, then count occurrences.",
         "starter_code": "import pandas as pd\n\ndf = pd.DataFrame({\n    'year': [2020, 2020, 2020, 2021, 2021],\n    'sex': ['M', 'F', 'M', 'F', 'F']\n})\n\ndef group_by_year_sex(df):\n    # Return grouped counts\n    pass",
-        "solution": "import pandas as pd\n\ndf = pd.DataFrame({\n    'year': [2020, 2020, 2020, 2021, 2021],\n    'sex': ['M', 'F', 'M', 'F', 'F']\n})\n\ndef group_by_year_sex(df):\n    return df.groupby(['year', 'sex']).size()",
+        "solution_code": "import pandas as pd\n\ndf = pd.DataFrame({\n    'year': [2020, 2020, 2020, 2021, 2021],\n    'sex': ['M', 'F', 'M', 'F', 'F']\n})\n\ndef group_by_year_sex(df):\n    return df.groupby(['year', 'sex']).size()",
         "test_cases": "result = group_by_year_sex(df)\nassert result[(2020, 'M')] == 2\nassert result[(2021, 'F')] == 2",
         "difficulty": "medium",
         "topic_tag": "pandas"
@@ -198,7 +198,7 @@
         "question_type": "coding",
         "text": "Create a sunburst chart with category and subcategory hierarchy.",
         "starter_code": "import plotly.express as px\nimport pandas as pd\n\ndf = pd.DataFrame({\n    'category': ['A', 'A', 'B'],\n    'subcategory': ['A1', 'A2', 'B1'],\n    'value': [10, 20, 30]\n})\n\ndef create_sunburst(df):\n    # Your code here\n    pass",
-        "solution": "import plotly.express as px\nimport pandas as pd\n\ndf = pd.DataFrame({\n    'category': ['A', 'A', 'B'],\n    'subcategory': ['A1', 'A2', 'B1'],\n    'value': [10, 20, 30]\n})\n\ndef create_sunburst(df):\n    fig = px.sunburst(df, path=['category', 'subcategory'], values='value')\n    return fig",
+        "solution_code": "import plotly.express as px\nimport pandas as pd\n\ndf = pd.DataFrame({\n    'category': ['A', 'A', 'B'],\n    'subcategory': ['A1', 'A2', 'B1'],\n    'value': [10, 20, 30]\n})\n\ndef create_sunburst(df):\n    fig = px.sunburst(df, path=['category', 'subcategory'], values='value')\n    return fig",
         "test_cases": "fig = create_sunburst(df)\nassert fig is not None",
         "difficulty": "medium",
         "topic_tag": "plotly"
@@ -207,7 +207,7 @@
         "question_type": "coding",
         "text": "Calculate a 3-period rolling average of a Series.",
         "starter_code": "import pandas as pd\n\ns = pd.Series([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])\n\ndef rolling_avg(s, window=3):\n    # Your code here\n    pass",
-        "solution": "import pandas as pd\n\ns = pd.Series([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])\n\ndef rolling_avg(s, window=3):\n    return s.rolling(window).mean()",
+        "solution_code": "import pandas as pd\n\ns = pd.Series([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])\n\ndef rolling_avg(s, window=3):\n    return s.rolling(window).mean()",
         "test_cases": "result = rolling_avg(s)\nassert result.iloc[2] == 2.0\nassert result.iloc[9] == 9.0",
         "difficulty": "easy",
         "topic_tag": "pandas"

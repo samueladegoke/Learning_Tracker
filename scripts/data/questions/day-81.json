@@ -171,7 +171,7 @@
         "question_type": "coding",
         "text": "Split data into 80% train and 20% test with random_state=42.",
         "starter_code": "from sklearn.model_selection import train_test_split\nimport numpy as np\n\nX = np.random.rand(100, 4)\ny = np.random.rand(100)\n\ndef split(X, y):\n    # Return X_train, X_test, y_train, y_test\n    pass",
-        "solution": "from sklearn.model_selection import train_test_split\nimport numpy as np\n\nX = np.random.rand(100, 4)\ny = np.random.rand(100)\n\ndef split(X, y):\n    return train_test_split(X, y, test_size=0.2, random_state=42)",
+        "solution_code": "from sklearn.model_selection import train_test_split\nimport numpy as np\n\nX = np.random.rand(100, 4)\ny = np.random.rand(100)\n\ndef split(X, y):\n    return train_test_split(X, y, test_size=0.2, random_state=42)",
         "test_cases": "X_train, X_test, y_train, y_test = split(X, y)\nassert len(X_train) == 80\nassert len(X_test) == 20",
         "difficulty": "easy",
         "topic_tag": "sklearn"
@@ -180,7 +180,7 @@
         "question_type": "coding",
         "text": "Fill missing values with column medians and return the DataFrame.",
         "starter_code": "import pandas as pd\nimport numpy as np\n\ndf = pd.DataFrame({'A': [1, np.nan, 3], 'B': [4, 5, np.nan]})\n\ndef fill_missing(df):\n    # Your code here\n    pass",
-        "solution": "import pandas as pd\nimport numpy as np\n\ndf = pd.DataFrame({'A': [1, np.nan, 3], 'B': [4, 5, np.nan]})\n\ndef fill_missing(df):\n    return df.fillna(df.median())",
+        "solution_code": "import pandas as pd\nimport numpy as np\n\ndf = pd.DataFrame({'A': [1, np.nan, 3], 'B': [4, 5, np.nan]})\n\ndef fill_missing(df):\n    return df.fillna(df.median())",
         "test_cases": "result = fill_missing(df.copy())\nassert result.isna().sum().sum() == 0\nassert result['A'].iloc[1] == 2.0",
         "difficulty": "easy",
         "topic_tag": "pandas"
@@ -189,7 +189,7 @@
         "question_type": "coding",
         "text": "Train a LinearRegression model and return the R² score on test data.",
         "starter_code": "from sklearn.linear_model import LinearRegression\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import r2_score\nimport numpy as np\n\nX = np.array([[1], [2], [3], [4], [5], [6], [7], [8], [9], [10]])\ny = np.array([2, 4, 6, 8, 10, 12, 14, 16, 18, 20])\n\ndef train_and_score(X, y):\n    # Your code here\n    pass",
-        "solution": "from sklearn.linear_model import LinearRegression\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import r2_score\nimport numpy as np\n\nX = np.array([[1], [2], [3], [4], [5], [6], [7], [8], [9], [10]])\ny = np.array([2, 4, 6, 8, 10, 12, 14, 16, 18, 20])\n\ndef train_and_score(X, y):\n    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n    model = LinearRegression()\n    model.fit(X_train, y_train)\n    y_pred = model.predict(X_test)\n    return r2_score(y_test, y_pred)",
+        "solution_code": "from sklearn.linear_model import LinearRegression\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import r2_score\nimport numpy as np\n\nX = np.array([[1], [2], [3], [4], [5], [6], [7], [8], [9], [10]])\ny = np.array([2, 4, 6, 8, 10, 12, 14, 16, 18, 20])\n\ndef train_and_score(X, y):\n    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n    model = LinearRegression()\n    model.fit(X_train, y_train)\n    y_pred = model.predict(X_test)\n    return r2_score(y_test, y_pred)",
         "test_cases": "score = train_and_score(X, y)\nassert score > 0.99",
         "difficulty": "medium",
         "topic_tag": "sklearn"
@@ -198,7 +198,7 @@
         "question_type": "coding",
         "text": "Calculate RMSE for predictions vs actual values.",
         "starter_code": "from sklearn.metrics import mean_squared_error\nimport numpy as np\n\ny_true = np.array([3, 5, 7, 9])\ny_pred = np.array([2.5, 5.5, 6.5, 9.5])\n\ndef calculate_rmse(y_true, y_pred):\n    # Your code here\n    pass",
-        "solution": "from sklearn.metrics import mean_squared_error\nimport numpy as np\n\ny_true = np.array([3, 5, 7, 9])\ny_pred = np.array([2.5, 5.5, 6.5, 9.5])\n\ndef calculate_rmse(y_true, y_pred):\n    return np.sqrt(mean_squared_error(y_true, y_pred))",
+        "solution_code": "from sklearn.metrics import mean_squared_error\nimport numpy as np\n\ny_true = np.array([3, 5, 7, 9])\ny_pred = np.array([2.5, 5.5, 6.5, 9.5])\n\ndef calculate_rmse(y_true, y_pred):\n    return np.sqrt(mean_squared_error(y_true, y_pred))",
         "test_cases": "rmse = calculate_rmse(y_true, y_pred)\nassert 0 < rmse < 1",
         "difficulty": "easy",
         "topic_tag": "sklearn"
@@ -207,7 +207,7 @@
         "question_type": "coding",
         "text": "Find the top 3 features most correlated with the target column 'price'.",
         "starter_code": "import pandas as pd\nimport numpy as np\n\ndf = pd.DataFrame({\n    'size': [100, 200, 150, 300],\n    'rooms': [2, 4, 3, 5],\n    'age': [10, 5, 8, 2],\n    'price': [200, 400, 300, 600]\n})\n\ndef top_correlated(df, target='price', n=3):\n    # Return list of top n feature names\n    pass",
-        "solution": "import pandas as pd\nimport numpy as np\n\ndf = pd.DataFrame({\n    'size': [100, 200, 150, 300],\n    'rooms': [2, 4, 3, 5],\n    'age': [10, 5, 8, 2],\n    'price': [200, 400, 300, 600]\n})\n\ndef top_correlated(df, target='price', n=3):\n    corr = df.corr()[target].drop(target).abs().sort_values(ascending=False)\n    return corr.head(n).index.tolist()",
+        "solution_code": "import pandas as pd\nimport numpy as np\n\ndf = pd.DataFrame({\n    'size': [100, 200, 150, 300],\n    'rooms': [2, 4, 3, 5],\n    'age': [10, 5, 8, 2],\n    'price': [200, 400, 300, 600]\n})\n\ndef top_correlated(df, target='price', n=3):\n    corr = df.corr()[target].drop(target).abs().sort_values(ascending=False)\n    return corr.head(n).index.tolist()",
         "test_cases": "result = top_correlated(df)\nassert len(result) == 3\nassert 'size' in result or 'rooms' in result",
         "difficulty": "medium",
         "topic_tag": "pandas"

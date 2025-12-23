@@ -171,7 +171,7 @@
         "question_type": "coding",
         "text": "Create a 3x3 identity matrix using NumPy.",
         "starter_code": "import numpy as np\n\ndef create_identity():\n    # Your code here\n    pass",
-        "solution": "import numpy as np\n\ndef create_identity():\n    return np.eye(3)",
+        "solution_code": "import numpy as np\n\ndef create_identity():\n    return np.eye(3)",
         "test_cases": "result = create_identity()\nassert result.shape == (3, 3)\nassert result[0, 0] == 1\nassert result[0, 1] == 0",
         "difficulty": "easy",
         "topic_tag": "numpy"
@@ -180,7 +180,7 @@
         "question_type": "coding",
         "text": "Calculate the mean and standard deviation of an array.",
         "starter_code": "import numpy as np\n\narr = np.array([10, 20, 30, 40, 50])\n\ndef stats(arr):\n    # Return (mean, std)\n    pass",
-        "solution": "import numpy as np\n\narr = np.array([10, 20, 30, 40, 50])\n\ndef stats(arr):\n    return np.mean(arr), np.std(arr)",
+        "solution_code": "import numpy as np\n\narr = np.array([10, 20, 30, 40, 50])\n\ndef stats(arr):\n    return np.mean(arr), np.std(arr)",
         "test_cases": "mean, std = stats(arr)\nassert mean == 30.0\nassert round(std, 2) == 14.14",
         "difficulty": "easy",
         "topic_tag": "numpy"
@@ -189,7 +189,7 @@
         "question_type": "coding",
         "text": "Filter an array to return only values greater than 10 and less than 50.",
         "starter_code": "import numpy as np\n\narr = np.array([5, 15, 25, 55, 35, 8, 60])\n\ndef filter_range(arr):\n    # Your code here\n    pass",
-        "solution": "import numpy as np\n\narr = np.array([5, 15, 25, 55, 35, 8, 60])\n\ndef filter_range(arr):\n    return arr[(arr > 10) & (arr < 50)]",
+        "solution_code": "import numpy as np\n\narr = np.array([5, 15, 25, 55, 35, 8, 60])\n\ndef filter_range(arr):\n    return arr[(arr > 10) & (arr < 50)]",
         "test_cases": "result = filter_range(arr)\nassert list(result) == [15, 25, 35]",
         "difficulty": "medium",
         "topic_tag": "numpy"
@@ -198,7 +198,7 @@
         "question_type": "coding",
         "text": "Reshape a 1D array of 12 elements into a 4x3 matrix.",
         "starter_code": "import numpy as np\n\narr = np.arange(12)\n\ndef reshape_array(arr):\n    # Your code here\n    pass",
-        "solution": "import numpy as np\n\narr = np.arange(12)\n\ndef reshape_array(arr):\n    return arr.reshape(4, 3)",
+        "solution_code": "import numpy as np\n\narr = np.arange(12)\n\ndef reshape_array(arr):\n    return arr.reshape(4, 3)",
         "test_cases": "result = reshape_array(arr)\nassert result.shape == (4, 3)\nassert result[0, 0] == 0\nassert result[3, 2] == 11",
         "difficulty": "easy",
         "topic_tag": "numpy"
@@ -207,7 +207,7 @@
         "question_type": "coding",
         "text": "Multiply two matrices using NumPy.",
         "starter_code": "import numpy as np\n\na = np.array([[1, 2], [3, 4]])\nb = np.array([[5, 6], [7, 8]])\n\ndef matrix_multiply(a, b):\n    # Your code here\n    pass",
-        "solution": "import numpy as np\n\na = np.array([[1, 2], [3, 4]])\nb = np.array([[5, 6], [7, 8]])\n\ndef matrix_multiply(a, b):\n    return np.dot(a, b)",
+        "solution_code": "import numpy as np\n\na = np.array([[1, 2], [3, 4]])\nb = np.array([[5, 6], [7, 8]])\n\ndef matrix_multiply(a, b):\n    return np.dot(a, b)",
         "test_cases": "result = matrix_multiply(a, b)\nassert result[0, 0] == 19\nassert result[1, 1] == 50",
         "difficulty": "medium",
         "topic_tag": "numpy"

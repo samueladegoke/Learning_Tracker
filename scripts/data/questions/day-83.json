@@ -171,7 +171,7 @@
         "question_type": "coding",
         "text": "Create a Flask route that returns JSON with a greeting message.",
         "starter_code": "from flask import Flask, jsonify\n\napp = Flask(__name__)\n\n# Create route /api/greet that returns {'message': 'Hello!'}\n",
-        "solution": "from flask import Flask, jsonify\n\napp = Flask(__name__)\n\n@app.route('/api/greet')\ndef greet():\n    return jsonify({'message': 'Hello!'})",
+        "solution_code": "from flask import Flask, jsonify\n\napp = Flask(__name__)\n\n@app.route('/api/greet')\ndef greet():\n    return jsonify({'message': 'Hello!'})",
         "test_cases": "with app.test_client() as client:\n    resp = client.get('/api/greet')\n    assert resp.status_code == 200\n    assert resp.json['message'] == 'Hello!'",
         "difficulty": "easy",
         "topic_tag": "flask"
@@ -180,7 +180,7 @@
         "question_type": "coding",
         "text": "Create a POST endpoint that accepts JSON and returns the data with an added 'processed' field.",
         "starter_code": "from flask import Flask, request, jsonify\n\napp = Flask(__name__)\n\n# Create POST /api/process\n",
-        "solution": "from flask import Flask, request, jsonify\n\napp = Flask(__name__)\n\n@app.route('/api/process', methods=['POST'])\ndef process():\n    data = request.get_json()\n    data['processed'] = True\n    return jsonify(data), 201",
+        "solution_code": "from flask import Flask, request, jsonify\n\napp = Flask(__name__)\n\n@app.route('/api/process', methods=['POST'])\ndef process():\n    data = request.get_json()\n    data['processed'] = True\n    return jsonify(data), 201",
         "test_cases": "with app.test_client() as client:\n    resp = client.post('/api/process', json={'name': 'test'})\n    assert resp.status_code == 201\n    assert resp.json['processed'] == True",
         "difficulty": "medium",
         "topic_tag": "flask"
@@ -189,7 +189,7 @@
         "question_type": "coding",
         "text": "Define a SQLAlchemy model for a User with id, username, and email.",
         "starter_code": "from flask_sqlalchemy import SQLAlchemy\n\ndb = SQLAlchemy()\n\n# Define User model\n",
-        "solution": "from flask_sqlalchemy import SQLAlchemy\n\ndb = SQLAlchemy()\n\nclass User(db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    username = db.Column(db.String(80), unique=True, nullable=False)\n    email = db.Column(db.String(120), unique=True, nullable=False)",
+        "solution_code": "from flask_sqlalchemy import SQLAlchemy\n\ndb = SQLAlchemy()\n\nclass User(db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    username = db.Column(db.String(80), unique=True, nullable=False)\n    email = db.Column(db.String(120), unique=True, nullable=False)",
         "test_cases": "assert hasattr(User, 'id')\nassert hasattr(User, 'username')\nassert hasattr(User, 'email')",
         "difficulty": "medium",
         "topic_tag": "sqlalchemy"
@@ -198,7 +198,7 @@
         "question_type": "coding",
         "text": "Create a route with a dynamic URL parameter for user ID.",
         "starter_code": "from flask import Flask\n\napp = Flask(__name__)\n\n# Create route /user/<user_id> that returns 'User ID: {id}'\n",
-        "solution": "from flask import Flask\n\napp = Flask(__name__)\n\n@app.route('/user/<int:user_id>')\ndef get_user(user_id):\n    return f'User ID: {user_id}'",
+        "solution_code": "from flask import Flask\n\napp = Flask(__name__)\n\n@app.route('/user/<int:user_id>')\ndef get_user(user_id):\n    return f'User ID: {user_id}'",
         "test_cases": "with app.test_client() as client:\n    resp = client.get('/user/42')\n    assert b'User ID: 42' in resp.data",
         "difficulty": "easy",
         "topic_tag": "flask"
@@ -207,7 +207,7 @@
         "question_type": "coding",
         "text": "Create a Jinja2 template that extends base.html and overrides a content block.",
         "starter_code": "# Write the template code as a string\ntemplate = '''\n# Your Jinja2 template here\n'''",
-        "solution": "template = '''\n{% extends \"base.html\" %}\n{% block content %}\n<h1>Welcome</h1>\n<p>This is the home page.</p>\n{% endblock %}\n'''",
+        "solution_code": "template = '''\n{% extends \"base.html\" %}\n{% block content %}\n<h1>Welcome</h1>\n<p>This is the home page.</p>\n{% endblock %}\n'''",
         "test_cases": "assert '{% extends' in template\nassert '{% block content %}' in template\nassert '{% endblock %}' in template",
         "difficulty": "easy",
         "topic_tag": "jinja2"
