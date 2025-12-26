@@ -94,15 +94,25 @@ export const rpgAPI = {
 // Quizzes API
 export const quizzesAPI = {
   getQuestions: (quizId) => fetchAPI(`/quizzes/${quizId}/questions`),
+  getDayQuestions: (quizId) => fetchAPI(`/quizzes/${quizId}/questions`),
   getCompleted: () => fetchAPI('/quizzes/completed'),
   getLeaderboard: (limit = 20) => fetchAPI(`/quizzes/leaderboard?limit=${limit}`),
+  // M2 Fix: Accept score parameter for persistence
+  completeQuiz: (quizId, score = 0) => fetchAPI(`/quizzes/${quizId}/complete`, {
+    method: 'POST',
+    body: JSON.stringify({ score }),
+  }),
   submit: (data) => fetchAPI('/quizzes/submit', {
     method: 'POST',
     body: JSON.stringify(data),
   }),
-  verifyAnswer: (quizId, questionId, answer) => fetchAPI(`/quizzes/${quizId}/verify`, {
+  // M3 Fix: Explicit check for answer_index to determine MCQ vs Coding
+  verifyAnswer: (questionId, data) => fetchAPI(`/quizzes/verify`, {
     method: 'POST',
-    body: JSON.stringify({ question_id: questionId, answer }),
+    body: JSON.stringify({
+      question_id: questionId,
+      answer: data.answer_index !== undefined ? data.answer_index : data.code
+    }),
   }),
 }
 
@@ -110,6 +120,11 @@ export const quizzesAPI = {
 export const srsAPI = {
   getDailyReview: () => fetchAPI('/srs/daily-review'),
   submitResult: (data) => fetchAPI('/srs/review-result', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  }),
+  // M1 Fix: Alias for Quiz.jsx compatibility
+  submitReview: (data) => fetchAPI('/srs/review-result', {
     method: 'POST',
     body: JSON.stringify(data),
   }),

@@ -1,6 +1,7 @@
 import json
 from typing import List
 from fastapi import APIRouter, Depends, HTTPException
+from pydantic import BaseModel
 from sqlalchemy.orm import Session
 from sqlalchemy import func
 
@@ -8,6 +9,7 @@ from ..database import get_db
 from ..models import QuizResult, User, Question, Achievement, UserAchievement, UserQuestionReview
 from ..schemas import QuizSubmission, QuestionResponse, QuestionPublicResponse, AnswerSubmission, AnswerVerifyResponse
 from ..auth import get_current_user
+from ..routers.spaced_repetition import SRS_INTERVALS
 from datetime import datetime, timedelta
 
 router = APIRouter()
@@ -78,9 +80,61 @@ def get_quiz_questions(quiz_id: str, user: User = Depends(get_current_user), db:
     return response
 
 
+# M2 Fix: Pydantic model for complete_quiz request
+class QuizCompleteRequest(BaseModel):
+    score: int = 0
+
+
+@router.post("/{quiz_id}/complete")
+def complete_quiz(quiz_id: str, request: QuizCompleteRequest = None, user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+    """Mark a quiz as completed for the current user."""
+    # Check if already completed today
+    existing = db.query(QuizResult).filter(
+        QuizResult.user_id == user.id,
+        QuizResult.quiz_id == quiz_id,
+        QuizResult.completed_at >= datetime.utcnow().replace(hour=0, minute=0, second=0, microsecond=0)
+    ).first()
+    
+    if existing:
+        return {"status": "already_completed", "quiz_id": quiz_id}
+    
+    # Count questions for this quiz
+    question_count = db.query(Question).filter(Question.quiz_id == quiz_id).count()
+    
+    # M2 Fix: Use score from request body
+    score = request.score if request else 0
+    
+    # Create completion record with actual score
+    result = QuizResult(
+        user_id=user.id,
+        quiz_id=quiz_id,
+        score=score,
+        total_questions=question_count,
+        completed_at=datetime.utcnow()
+    )
+    db.add(result)
+    db.commit()
+    
+    return {"status": "completed", "quiz_id": quiz_id, "score": score}
+
+
+# H2 Fix: Extracted shared verification logic to eliminate duplication
+def _verify_answer_logic(question: Question, answer) -> tuple[bool, int, str]:
+    """Shared verification logic. Returns (is_correct, correct_index, explanation)."""
+    question_type = question.question_type or 'mcq'
+    is_correct = False
+    
+    if question_type in ('mcq', 'code-correction'):
+        is_correct = isinstance(answer, int) and question.correct_index == answer
+    elif question_type == 'coding':
+        is_correct = isinstance(answer, dict) and answer.get('allPassed', False)
+    
+    return is_correct, question.correct_index, question.explanation
+
+
 @router.post("/{quiz_id}/verify", response_model=AnswerVerifyResponse)
-def verify_answer(quiz_id: str, submission: AnswerSubmission, user: User = Depends(get_current_user), db: Session = Depends(get_db)):
-    """Verify a single answer and return the correct answer + explanation."""
+def verify_answer_with_quiz(quiz_id: str, submission: AnswerSubmission, user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+    """Verify a single answer (deprecated - use /verify instead)."""
     question = db.query(Question).filter(
         Question.quiz_id == quiz_id,
         Question.id == submission.question_id
@@ -89,19 +143,31 @@ def verify_answer(quiz_id: str, submission: AnswerSubmission, user: User = Depen
     if not question:
         raise HTTPException(status_code=404, detail="Question not found")
     
-    question_type = question.question_type or 'mcq'
-    is_correct = False
-    
-    if question_type in ('mcq', 'code-correction'):
-        is_correct = isinstance(submission.answer, int) and question.correct_index == submission.answer
-    elif question_type == 'coding':
-        is_correct = isinstance(submission.answer, dict) and submission.answer.get('allPassed', False)
+    is_correct, correct_index, explanation = _verify_answer_logic(question, submission.answer)
     
     return AnswerVerifyResponse(
         question_id=question.id,
         is_correct=is_correct,
-        correct_index=question.correct_index,
-        explanation=question.explanation
+        correct_index=correct_index,
+        explanation=explanation
+    )
+
+
+@router.post("/verify", response_model=AnswerVerifyResponse)
+def verify_answer(submission: AnswerSubmission, user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+    """Verify a single answer by question ID only."""
+    question = db.query(Question).filter(Question.id == submission.question_id).first()
+    
+    if not question:
+        raise HTTPException(status_code=404, detail="Question not found")
+    
+    is_correct, correct_index, explanation = _verify_answer_logic(question, submission.answer)
+    
+    return AnswerVerifyResponse(
+        question_id=question.id,
+        is_correct=is_correct,
+        correct_index=correct_index,
+        explanation=explanation
     )
 
 
@@ -183,7 +249,6 @@ def submit_quiz(submission: QuizSubmission, user: User = Depends(get_current_use
     db.add(result)
 
     # --- SRS Auto-Queueing: Add incorrectly answered questions to review queue ---
-    srs_intervals = [1, 3, 7, 14]  # Same intervals as spaced_repetition router
     failed_question_ids = []
     for q_id_str, answer in submission.answers.items():
         try:
@@ -217,7 +282,7 @@ def submit_quiz(submission: QuizSubmission, user: User = Depends(get_current_use
             # Reset interval for re-failed question
             existing_review.interval_index = 0
             existing_review.success_count = 0
-            existing_review.due_date = datetime.utcnow() + timedelta(days=srs_intervals[0])
+            existing_review.due_date = datetime.utcnow() + timedelta(days=SRS_INTERVALS[0])
             existing_review.is_mastered = False
         else:
             # Create new review entry
@@ -225,7 +290,7 @@ def submit_quiz(submission: QuizSubmission, user: User = Depends(get_current_use
                 user_id=user.id,
                 question_id=q_id,
                 interval_index=0,
-                due_date=datetime.utcnow() + timedelta(days=srs_intervals[0]),
+                due_date=datetime.utcnow() + timedelta(days=SRS_INTERVALS[0]),
                 success_count=0,
                 is_mastered=False
             )
