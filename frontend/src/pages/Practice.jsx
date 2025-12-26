@@ -10,7 +10,7 @@ import {
 } from 'lucide-react'
 
 import { quizzesAPI } from '../api/client'
-import { DAY_META } from '@data/dayMeta.js'
+import { DAY_META } from '../data/dayMeta.js'
 
 // Custom Components
 import { DeepDiveRenderer } from '../components/practice/DeepDiveRenderer'
