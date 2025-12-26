@@ -278,7 +278,7 @@ class UserQuestionReview(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False, index=True)
-    question_id = Column(Integer, ForeignKey("questions.id"), nullable=False)
+    question_id = Column(Integer, ForeignKey("questions.id"), nullable=False, index=True)
     interval_index = Column(Integer, default=0)  # 0=1d, 1=3d, 2=7d, 3=14d
     due_date = Column(DateTime, nullable=False, index=True)
     success_count = Column(Integer, default=0)

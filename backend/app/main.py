@@ -132,7 +132,3 @@ def health_check():
     """Alias for /api/health."""
     return health_check_api()
 
-
-
-
-

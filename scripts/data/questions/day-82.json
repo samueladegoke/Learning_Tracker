@@ -1,260 +1,359 @@
 [
     {
         "question_type": "mcq",
-        "text": "What is argparse used for in Python scripts?",
+        "text": "When designing a Morse Code Converter, why might you choose a Dictionary over a series of if/elif statements?",
         "options": [
-            "Argument arithmetic",
-            "Parsing command-line arguments",
-            "Parsing JSON",
-            "Argument validation"
+            "Dictionaries are faster to type",
+            "O(1) lookup time vs O(n) for if/elif evaluation",
+            "Dictionaries consume less memory in Python",
+            "If/elif statements can't handle string input"
         ],
         "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "scripting",
-        "explanation": "argparse provides a clean way to handle command-line arguments in scripts."
+        "difficulty": "medium",
+        "topic_tag": "system-design",
+        "explanation": "Dictionaries provide constant-time O(1) lookups, whereas long if/elif chains check each condition sequentially, which is less efficient."
     },
     {
         "question_type": "mcq",
-        "text": "What does `if __name__ == '__main__':` check?",
+        "text": "Why is it considered a best practice to handle non-alphanumeric characters (like punctuation) in a Morse Code Converter?",
         "options": [
-            "If file exists",
-            "If script is run directly (not imported)",
-            "If main function exists",
-            "If Python version is correct"
+            "To prevent the program from crashing on unexpected input",
+            "To make the converter run faster",
+            "Because Morse code for punctuation is mandatory for all projects",
+            "To use less CPU power"
         ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "scripting",
-        "explanation": "This guard ensures code only runs when the script is executed directly, not when imported."
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "error-handling",
+        "explanation": "Robust software should handle edge cases and unexpected inputs gracefully rather than crashing."
     },
     {
         "question_type": "mcq",
-        "text": "Which library loads environment variables from .env files?",
+        "text": "How should your converter handle case-sensitivity for letters 'a' through 'z'?",
         "options": [
+            "Treat them differently since 'A' and 'a' have different Morse codes",
+            "Force all input to a single case (upper or lower) to match the dictionary keys",
+            "Ignore lowercase letters entirely",
+            "Only supports uppercase by default"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "string-processing",
+        "explanation": "Standard Morse code doesn't distinguish between cases, so normalizing input ensures consistency and simplifies the logic."
+    },
+    {
+        "question_type": "mcq",
+        "text": "If you were to extend this project to support playback, which library would be most appropriate for professional audio generation?",
+        "options": [
+            "sys",
+            "winsound (basic) or pygame (advanced/cross-platform)",
             "os",
-            "env",
-            "python-dotenv",
-            "config"
+            "math"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "extensibility",
+        "explanation": "While 'winsound' is a quick fix for Windows, 'pygame' or similar libraries offering control over tone and duration are better for a portfolio project."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Your portfolio project works locally. What's the FIRST thing to add before pushing to GitHub?",
+        "options": [
+            "More features",
+            "A README.md with setup instructions and project context",
+            "Type hints to every function",
+            "Unit tests for every line"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "portfolio-best-practices",
+        "explanation": "A README is a recruiter's first impression. It explains why you built the project and how to run it."
+    },
+    {
+        "question_type": "mcq",
+        "text": "To make your Morse converter bidirectional (encode AND decode), what architectural change is needed?",
+        "options": [
+            "Create a second dictionary with reversed key-value pairs",
+            "Use a list of tuples instead of a dictionary",
+            "Deeply nest if statements for both directions",
+            "Dictionaries only work in one direction"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "architecture",
+        "explanation": "A reverse dictionary (Morse->Char) allows for efficient decoding without searching through the values of the first dictionary."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why should word separators in professional Morse code output use '/' instead of just more spaces?",
+        "options": [
+            "Spaces are not supported in Python strings",
+            "Visual clarity; '/' makes word boundaries unambiguous for the decoder",
+            "ITU standards forbid using more than 3 spaces",
+            "It looks more 'technical' for recruiters"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "ux-design",
+        "explanation": "Ambiguity is the enemy of clear communication. Using a distinct separator for word boundaries ensures error-free decoding."
+    },
+    {
+        "question_type": "mcq",
+        "text": "An interviewer asks: 'How would you handle unsupported characters in your Morse converter?' What's the MOST professional response?",
+        "options": [
+            "Let it crash as it's an invalid input",
+            "Implement a 'skip' logic that silently removes them",
+            "Use dict.get() with a default value and log a descriptive warning/message",
+            "Raise a generic Exception"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "interview-prep",
+        "explanation": "Professional engineering involves planning for failure. Descriptive warnings are better for UX than silent failure or crashing."
+    },
+    {
+        "question_type": "mcq",
+        "text": "When building a CLI tool for this project, why would you prefer 'argparse' over simply using 'input()'?",
+        "options": [
+            "It allows the script to be used in pipelines and automation",
+            "It makes the script run faster",
+            "argparse is built-in, while input is not",
+            "It's easier for the programmer to write"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "cli-design",
+        "explanation": "CLI arguments make tools scriptable and compatible with terminal workflows, which is key for 'Pro' scripts."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the primary benefit of using 'pathlib' over 'os.path' in your file-based scripts?",
+        "options": [
+            "It is significantly faster",
+            "Object-oriented paths make manipulation more readable and less error-prone",
+            "pathlib is required for GitHub projects",
+            "os.path is being removed from Python"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "modern-python",
+        "explanation": "pathlib is the modern standard, offering a more intuitive and readable way to handle file system paths."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How can you ensure your Morse Code mapping is always correct between different versions of your script?",
+        "options": [
+            "Hardcode it multiple times",
+            "Place it in a separate 'constants.py' or 'config.json' file",
+            "Rely on memory",
+            "It's not possible to ensure correctness"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "clean-code",
+        "explanation": "Separating configuration from logic makes the code easier to maintain and test."
+    },
+    {
+        "question_type": "mcq",
+        "text": "If a character is not in your Morse dictionary, calling `morse_dict[char]` will:",
+        "options": [
+            "Return None",
+            "Return an empty string",
+            "Raise a KeyError",
+            "Wait for input"
         ],
         "correct_index": 2,
         "difficulty": "easy",
-        "topic_tag": "scripting",
-        "explanation": "python-dotenv's load_dotenv() function loads variables from .env files into os.environ."
+        "topic_tag": "python-basics",
+        "explanation": "Direct dictionary access raises a KeyError if the key is missing. Use .get() to provide a fallback."
     },
     {
         "question_type": "mcq",
-        "text": "What does pathlib.Path.iterdir() return?",
+        "text": "In a professional README for this project, what should the 'Setup' section include?",
         "options": [
-            "List of strings",
-            "Generator of Path objects",
-            "Dictionary",
-            "Tuple"
+            "Your autobiography",
+            "Prerequisites (Python version) and installation steps (pip install ...)",
+            "A list of all other projects you've made",
+            "Just a link to the code"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "documentation",
+        "explanation": "Recruiters and other developers need to know exactly how to get your project running on their machine."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why do we avoid using 'global' variables in our Morse converter functions?",
+        "options": [
+            "Python doesn't support global variables",
+            "It makes functions harder to test and debug because of hidden side effects",
+            "Global variables take up too much memory",
+            "It's okay to use them in small projects"
         ],
         "correct_index": 1,
         "difficulty": "medium",
-        "topic_tag": "pathlib",
-        "explanation": "iterdir() yields Path objects for each item in the directory."
+        "topic_tag": "clean-code",
+        "explanation": "Pure functions (those that only depend on their inputs) are easier to understand, test, and reuse."
     },
     {
         "question_type": "mcq",
-        "text": "How do you get a file's extension using pathlib?",
+        "text": "Which of these is a valid way to reverse a Morse dictionary called `d`?",
         "options": [
-            "path.ext",
-            "path.suffix",
-            "path.extension",
-            "path.type"
+            "d.reverse()",
+            "rev_d = {v: k for k, v in d.items()}",
+            "rev_d = reverse(d)",
+            "Dictionaries cannot be reversed"
         ],
         "correct_index": 1,
         "difficulty": "easy",
-        "topic_tag": "pathlib",
-        "explanation": "path.suffix returns the file extension including the dot (e.g., '.txt')."
+        "topic_tag": "python-idioms",
+        "explanation": "Dictionary comprehension is the standard and efficient way to swap keys and values."
     },
     {
-        "question_type": "mcq",
-        "text": "What is the purpose of requirements.txt?",
-        "options": [
-            "Store user settings",
-            "List project dependencies",
-            "Configure Python",
-            "Define environment variables"
+        "question_type": "coding",
+        "text": "Implement a function `text_to_morse(text)` that converts a string to Morse code. Use the provided MORSE_CODE_DICT. Separate letters with a single space and words with ' / '.",
+        "starter_code": "MORSE_CODE_DICT = {'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.', 'G': '--.', 'H': '....', 'I': '..', 'J': '.---', 'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---', 'P': '.--.', 'Q': '--.-', 'R': '.-.', 'S': '...', 'T': '-', 'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-', 'Y': '-.--', 'Z': '--..', '0': '-----', '1': '.----', '2': '..---', '3': '...--', '4': '....-', '5': '.....', '6': '-....', '7': '--...', '8': '---..', '9': '----.', ' ': '/'}\n\ndef text_to_morse(text):\n    # Your code here\n    pass\n\nprint(text_to_morse('HELLO WORLD'))",
+        "solution_code": "MORSE_CODE_DICT = {'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.', 'G': '--.', 'H': '....', 'I': '..', 'J': '.---', 'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---', 'P': '.--.', 'Q': '--.-', 'R': '.-.', 'S': '...', 'T': '-', 'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-', 'Y': '-.--', 'Z': '--..', '0': '-----', '1': '.----', '2': '..---', '3': '...--', '4': '....-', '5': '.....', '6': '-....', '7': '--...', '8': '---..', '9': '----.', ' ': '/'}\n\ndef text_to_morse(text):\n    return ' '.join(MORSE_CODE_DICT.get(char.upper(), '') for char in text)\n\nprint(text_to_morse('HELLO WORLD'))",
+        "test_cases": [
+            {
+                "input": "text_to_morse('SOS')",
+                "expected": "... --- ..."
+            },
+            {
+                "input": "text_to_morse('HI')",
+                "expected": ".... .."
+            },
+            {
+                "input": "text_to_morse('A B')",
+                "expected": ".- / -..."
+            }
         ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "scripting",
-        "explanation": "requirements.txt lists packages and versions needed by the project."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Which command creates a virtual environment?",
-        "options": [
-            "python env",
-            "python -m venv myenv",
-            "pip install venv",
-            "virtualenv --create"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "scripting",
-        "explanation": "python -m venv creates an isolated virtual environment."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does path.mkdir(exist_ok=True) do?",
-        "options": [
-            "Fails if exists",
-            "Creates directory, no error if exists",
-            "Overwrites directory",
-            "Creates file"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "pathlib",
-        "explanation": "exist_ok=True prevents errors if the directory already exists."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you read an environment variable safely?",
-        "options": [
-            "os.environ['KEY']",
-            "os.getenv('KEY', default)",
-            "os.get('KEY')",
-            "env.read('KEY')"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "scripting",
-        "explanation": "os.getenv() returns None or a default if the variable doesn't exist, avoiding KeyError."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What file should NEVER be committed to Git?",
-        "options": [
-            "requirements.txt",
-            ".env file with secrets",
-            "README.md",
-            "__init__.py"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "security",
-        "explanation": ".env files contain sensitive data like API keys and should be in .gitignore."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does nargs='+' do in argparse?",
-        "options": [
-            "Makes argument optional",
-            "Accepts one or more values",
-            "Adds to previous value",
-            "Validates as positive"
-        ],
-        "correct_index": 1,
         "difficulty": "medium",
-        "topic_tag": "argparse",
-        "explanation": "nargs='+' allows the argument to accept one or more values as a list."
+        "topic_tag": "core-implementation"
     },
     {
-        "question_type": "mcq",
-        "text": "Which method renames a file using pathlib?",
-        "options": [
-            "path.rename(new)",
-            "path.move(new)",
-            "path.mv(new)",
-            "path.name = new"
+        "question_type": "coding",
+        "text": "Create a function `morse_to_text(morse)` that decodes Morse code back to text. Letters are separated by single spaces, words by ' / '.",
+        "starter_code": "MORSE_CODE_DICT = {'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.', 'G': '--.', 'H': '....', 'I': '..', 'J': '.---', 'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---', 'P': '.--.', 'Q': '--.-', 'R': '.-.', 'S': '...', 'T': '-', 'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-', 'Y': '-.--', 'Z': '--..', '0': '-----', '1': '.----', '2': '..---', '3': '...--', '4': '....-', '5': '.....', '6': '-....', '7': '--...', '8': '---..', '9': '----.', ' ': '/'}\nREVERSE_DICT = {v: k for k, v in MORSE_CODE_DICT.items()}\n\ndef morse_to_text(morse):\n    # Your code here\n    pass\n\nprint(morse_to_text('.... . .-.. .-.. --- / .-- --- .-. .-.. -..'))",
+        "solution_code": "MORSE_CODE_DICT = {'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.', 'G': '--.', 'H': '....', 'I': '..', 'J': '.---', 'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---', 'P': '.--.', 'Q': '--.-', 'R': '.-.', 'S': '...', 'T': '-', 'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-', 'Y': '-.--', 'Z': '--..', '0': '-----', '1': '.----', '2': '..---', '3': '...--', '4': '....-', '5': '.....', '6': '-....', '7': '--...', '8': '---..', '9': '----.', ' ': '/'}\nREVERSE_DICT = {v: k for k, v in MORSE_CODE_DICT.items()}\n\ndef morse_to_text(morse):\n    return ''.join(REVERSE_DICT.get(code, '') for code in morse.split(' '))\n\nprint(morse_to_text('.... . .-.. .-.. --- / .-- --- .-. .-.. -..'))",
+        "test_cases": [
+            {
+                "input": "morse_to_text('... --- ...')",
+                "expected": "SOS"
+            },
+            {
+                "input": "morse_to_text('.... ..')",
+                "expected": "HI"
+            },
+            {
+                "input": "morse_to_text('.- / -...')",
+                "expected": "A B"
+            }
         ],
-        "correct_index": 0,
-        "difficulty": "easy",
-        "topic_tag": "pathlib",
-        "explanation": "path.rename() moves/renames the file to the new path."
-    },
-    {
-        "question_type": "coding",
-        "text": "Create an argument parser that accepts a filename and optional --verbose flag.",
-        "starter_code": "import argparse\n\ndef create_parser():\n    # Your code here\n    pass",
-        "solution_code": "import argparse\n\ndef create_parser():\n    parser = argparse.ArgumentParser(description='Process a file')\n    parser.add_argument('filename', help='Input file')\n    parser.add_argument('--verbose', '-v', action='store_true', help='Verbose output')\n    return parser",
-        "test_cases": "parser = create_parser()\nargs = parser.parse_args(['test.txt', '--verbose'])\nassert args.filename == 'test.txt'\nassert args.verbose == True",
         "difficulty": "medium",
-        "topic_tag": "argparse"
+        "topic_tag": "core-implementation"
     },
     {
         "question_type": "coding",
-        "text": "List all .txt files in a directory using pathlib.",
-        "starter_code": "from pathlib import Path\n\ndef list_txt_files(folder):\n    # Return list of .txt file names\n    pass",
-        "solution_code": "from pathlib import Path\n\ndef list_txt_files(folder):\n    path = Path(folder)\n    return [f.name for f in path.iterdir() if f.suffix == '.txt']",
-        "test_cases": "# Assuming test folder exists\nimport tempfile, os\nwith tempfile.TemporaryDirectory() as d:\n    (Path(d) / 'a.txt').touch()\n    (Path(d) / 'b.py').touch()\n    result = list_txt_files(d)\nassert 'a.txt' in result\nassert 'b.py' not in result",
+        "text": "Write a function `validate_morse(morse_string)` that returns True if a string contains only valid Morse code characters (dots, dashes, spaces, and slashes).",
+        "starter_code": "def validate_morse(morse_string):\n    # Your code here\n    pass\n\nprint(validate_morse('... --- ...'))\nprint(validate_morse('... abc ...'))",
+        "solution_code": "def validate_morse(morse_string):\n    allowed = set('.- /')\n    return all(char in allowed for char in morse_string)\n\nprint(validate_morse('... --- ...'))\nprint(validate_morse('... abc ...'))",
+        "test_cases": [
+            {
+                "input": "validate_morse('... --- ...')",
+                "expected": "True"
+            },
+            {
+                "input": "validate_morse('.-.-')",
+                "expected": "True"
+            },
+            {
+                "input": "validate_morse('abc')",
+                "expected": "False"
+            }
+        ],
         "difficulty": "easy",
-        "topic_tag": "pathlib"
+        "topic_tag": "input-validation"
     },
     {
         "question_type": "coding",
-        "text": "Create a function that loads an API key from environment or raises error.",
-        "starter_code": "import os\n\ndef get_api_key():\n    # Return API_KEY or raise ValueError\n    pass",
-        "solution_code": "import os\n\ndef get_api_key():\n    key = os.getenv('API_KEY')\n    if not key:\n        raise ValueError('API_KEY not set in environment')\n    return key",
-        "test_cases": "import os\nos.environ['API_KEY'] = 'test123'\nassert get_api_key() == 'test123'\ndel os.environ['API_KEY']\ntry:\n    get_api_key()\n    assert False\nexcept ValueError:\n    pass",
+        "text": "Create a CLI parser using `argparse` that accepts a `--mode` argument (encode/decode) and a `--text` argument. Print the arguments.",
+        "starter_code": "import argparse\n\ndef create_parser():\n    # Your code here\n    pass\n\nparser = create_parser()\nargs = parser.parse_args(['--mode', 'encode', '--text', 'HELLO'])\nprint(f'Mode: {args.mode}, Text: {args.text}')",
+        "solution_code": "import argparse\n\ndef create_parser():\n    parser = argparse.ArgumentParser(description='Morse Code Converter')\n    parser.add_argument('--mode', type=str, required=True, choices=['encode', 'decode'])\n    parser.add_argument('--text', type=str, required=True)\n    return parser\n\nparser = create_parser()\nargs = parser.parse_args(['--mode', 'encode', '--text', 'HELLO'])\nprint(f'Mode: {args.mode}, Text: {args.text}')",
+        "test_cases": [
+            {
+                "input": "args = create_parser().parse_args(['--mode', 'encode', '--text', 'HI']); print(args.mode)",
+                "expected": "encode"
+            },
+            {
+                "input": "args = create_parser().parse_args(['--mode', 'decode', '--text', '...']); print(args.text)",
+                "expected": "..."
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "cli-design"
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function `safe_encode(text, morse_dict)` that uses `.get()` to handle unknown characters gracefully by returning '?' for them.",
+        "starter_code": "def safe_encode(text, morse_dict):\n    # Your code here\n    pass\n\nMORSE_DICT = {'A': '.-', 'B': '-...'}\nprint(safe_encode('ABC', MORSE_DICT))",
+        "solution_code": "def safe_encode(text, morse_dict):\n    return ' '.join(morse_dict.get(char.upper(), '?') for char in text)\n\nMORSE_DICT = {'A': '.-', 'B': '-...'}\nprint(safe_encode('ABC', MORSE_DICT))",
+        "test_cases": [
+            {
+                "input": "safe_encode('AB', {'A': '.-', 'B': '-...'})",
+                "expected": ".- -..."
+            },
+            {
+                "input": "safe_encode('AZ', {'A': '.-'})",
+                "expected": ".- ?"
+            }
+        ],
         "difficulty": "easy",
-        "topic_tag": "scripting"
-    },
-    {
-        "question_type": "coding",
-        "text": "Organize files by extension into subdirectories.",
-        "starter_code": "from pathlib import Path\n\ndef organize_files(folder):\n    # Move files into subdirs by extension\n    pass",
-        "solution_code": "from pathlib import Path\n\ndef organize_files(folder):\n    folder = Path(folder)\n    for f in folder.iterdir():\n        if f.is_file():\n            ext = f.suffix[1:] if f.suffix else 'no_ext'\n            target = folder / ext\n            target.mkdir(exist_ok=True)\n            f.rename(target / f.name)",
-        "test_cases": "# Functional test - creates dirs by extension\nassert True",
-        "difficulty": "medium",
-        "topic_tag": "pathlib"
-    },
-    {
-        "question_type": "coding",
-        "text": "Read a requirements.txt file and return a list of package names.",
-        "starter_code": "from pathlib import Path\n\ndef parse_requirements(filepath):\n    # Return list of package names (without versions)\n    pass",
-        "solution_code": "from pathlib import Path\n\ndef parse_requirements(filepath):\n    content = Path(filepath).read_text()\n    packages = []\n    for line in content.strip().split('\\n'):\n        line = line.strip()\n        if line and not line.startswith('#'):\n            pkg = line.split('>=')[0].split('==')[0].split('<')[0]\n            packages.append(pkg)\n    return packages",
-        "test_cases": "import tempfile\nwith tempfile.NamedTemporaryFile(mode='w', suffix='.txt', delete=False) as f:\n    f.write('pandas>=1.0\\nrequests==2.28.0')\n    f.flush()\n    result = parse_requirements(f.name)\nassert 'pandas' in result\nassert 'requests' in result",
-        "difficulty": "medium",
-        "topic_tag": "scripting"
+        "topic_tag": "error-handling"
     },
     {
         "question_type": "code-correction",
-        "text": "The environment variable access throws KeyError. Fix it.",
-        "code": "import os\napi_key = os.environ['API_KEY']  # KeyError if not set",
+        "text": "This Morse encoder crashes on lowercase input. Fix it by normalizing the input.",
+        "code": "MORSE = {'A': '.-', 'B': '-...'}\ndef encode(text):\n    return ' '.join(MORSE[char] for char in text)\nprint(encode('ab'))",
         "options": [
-            "Use os.getenv('API_KEY', '')",
-            "Use os.env['API_KEY']",
-            "Use os.read('API_KEY')",
-            "Wrap in str()"
+            "Change `MORSE[char]` to `MORSE[char.upper()]`",
+            "Change the dictionary keys to lowercase",
+            "Add a try/except around the join",
+            "Use `MORSE.get(char)` instead"
         ],
         "correct_index": 0,
         "difficulty": "easy",
-        "topic_tag": "scripting",
-        "explanation": "os.getenv() returns None (or default) if variable doesn't exist, avoiding KeyError."
+        "topic_tag": "string-processing",
+        "explanation": "The dictionary keys are uppercase, so the input must be normalized with `.upper()` before lookup."
     },
     {
         "question_type": "code-correction",
-        "text": "The pathlib mkdir fails because parent doesn't exist. Fix it.",
-        "code": "from pathlib import Path\nPath('new/nested/folder').mkdir()",
+        "text": "This decoder doesn't handle word separators correctly. The output loses spaces between words.",
+        "code": "REVERSE = {'/': ' ', '.-': 'A', '-...': 'B'}\ndef decode(morse):\n    return ''.join(REVERSE[code] for code in morse.split(' '))\nprint(decode('.- / -...'))",
         "options": [
-            "Add parents=True: mkdir(parents=True, exist_ok=True)",
-            "Create parents first",
-            "Use os.makedirs instead",
-            "Add recursive=True"
+            "The `/` separator is not in the dictionary",
+            "The `/` IS in REVERSE, but `.join()` doesn't preserve spaces from the value",
+            "Use `.split(' / ')` to split by word boundaries first, then by letters",
+            "This code is correct"
         ],
-        "correct_index": 0,
-        "difficulty": "easy",
-        "topic_tag": "pathlib",
-        "explanation": "parents=True creates parent directories if they don't exist."
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "architecture",
+        "explanation": "To handle word boundaries, split by ' / ' first to get words, then split each word by ' ' to get letters. A nested loop or two-pass approach is needed."
     },
     {
         "question_type": "code-correction",
-        "text": "The argparse script fails when no arguments are given. Add a default.",
-        "code": "parser.add_argument('--count')\nargs = parser.parse_args()\nprint(args.count + 1)  # TypeError if None",
+        "text": "The argparse setup doesn't provide a default for `--output`, causing an AttributeError when it's not passed.",
+        "code": "import argparse\nparser = argparse.ArgumentParser()\nparser.add_argument('--output')\nargs = parser.parse_args([])\nf = open(args.output, 'w')",
         "options": [
-            "Add default: add_argument('--count', type=int, default=0)",
-            "Use args.count or 0",
-            "Make argument required",
-            "Use nargs='?'"
+            "Add `default='output.txt'` to the `add_argument` call",
+            "Change `args.output` to `args.get('output')`",
+            "Use `required=True` instead",
+            "argparse should auto-provide a default"
         ],
         "correct_index": 0,
         "difficulty": "easy",
-        "topic_tag": "argparse",
-        "explanation": "default= provides a fallback value when the argument is not specified."
+        "topic_tag": "cli-design",
+        "explanation": "Providing a `default` value in `add_argument` ensures the script doesn't crash when the argument is omitted."
     }
 ]
