@@ -8,7 +8,7 @@ import { quizzesAPI, srsAPI } from '../api/client'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 
 // Extracted data and components
-import { DAY_META } from '../data/dayMeta'
+import { DAY_META } from '@/data/dayMeta'
 import { DeepDiveLoader } from '../components/content/DeepDiveLoader'
 import { PracticeLoadingSkeleton, QuizLoadingSkeleton } from '../components/PracticeLoadingSkeleton'
 import DaySelectorBar from '../components/Quiz/DaySelectorBar'

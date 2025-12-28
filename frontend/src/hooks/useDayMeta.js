@@ -1,4 +1,4 @@
-import { DAY_META } from '../data/dayMeta'
+import { DAY_META } from '@/data/dayMeta'
 
 // Project start date constant (outside hook to avoid recreation)
 const PROJECT_START_DATE = new Date('2025-11-20')

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Sparkles, CheckCircle, Flame } from 'lucide-react'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
-import { DAY_META } from '../../data/dayMeta'
+import { DAY_META } from '@/data/dayMeta'
 
 function DaySelectorBar({
     activeDay,
@@ -38,10 +38,10 @@ function DaySelectorBar({
                                             aria-label={`Day ${meta.label}: ${meta.title}`}
                                             aria-current={isActive ? 'true' : undefined}
                                             className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-all whitespace-nowrap flex items-center gap-1.5 sm:gap-2 border snap-start min-w-[3.5rem] sm:min-w-fit relative ${isActive
-                                                    ? 'bg-primary-500/15 text-primary-400 border-primary-500/50 scale-105 shadow-lg shadow-primary-500/25'
-                                                    : isToday
-                                                        ? 'bg-accent-500/10 text-accent-400 border-accent-500/40 hover:bg-accent-500/20'
-                                                        : 'text-surface-400 border-transparent hover:text-surface-200 hover:bg-surface-800/50 active:bg-surface-700/50'
+                                                ? 'bg-primary-500/15 text-primary-400 border-primary-500/50 scale-105 shadow-lg shadow-primary-500/25'
+                                                : isToday
+                                                    ? 'bg-accent-500/10 text-accent-400 border-accent-500/40 hover:bg-accent-500/20'
+                                                    : 'text-surface-400 border-transparent hover:text-surface-200 hover:bg-surface-800/50 active:bg-surface-700/50'
                                                 }`}
                                         >
                                             {isToday && !isActive && (
