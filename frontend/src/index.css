@@ -23,6 +23,35 @@
   code {
     @apply font-mono;
   }
+
+  :root {
+    /* Dark theme as default - matches surface-950 (#020617) */
+    --background: 222 47% 5%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 8%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 8%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 48 96% 53%;
+    --primary-foreground: 222 47% 5%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 292 84% 61%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 48 96% 53%;
+    --chart-1: 48 96% 53%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 292 84% 61%;
+    --chart-4: 173 58% 39%;
+    --chart-5: 340 75% 55%;
+    --radius: 0.5rem;
+  }
 }
 
 @layer components {
@@ -68,6 +97,11 @@
 
   .badge-surface {
     @apply badge bg-surface-700/30 text-surface-300 border border-surface-600/30;
+  }
+
+  /* Practice page tab triggers */
+  .tab-trigger {
+    @apply px-6 py-3 text-sm font-medium rounded-none border-b-2 border-transparent data-[state=active]:border-primary-500 data-[state=active]:text-primary-400 data-[state=active]:bg-transparent data-[state=active]:shadow-none text-surface-400 hover:text-surface-200 bg-transparent transition-all;
   }
 }
 

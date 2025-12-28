@@ -24,6 +24,13 @@ import { soundManager } from '../utils/SoundManager'
 
 import CurrentSyncStatus from '../components/CurrentSyncStatus'
 
+// Shadcn UI Components
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
+import { Progress } from '@/components/ui/progress'
+
+// Loading States
+import { DashboardLoadingSkeleton } from '../components/DashboardLoadingSkeleton'
+
 // Animated Number Component
 function NumberTicker({ value, className = "" }) {
   const ref = useRef(null)
@@ -191,18 +198,7 @@ function Dashboard() {
   }
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="text-center">
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-            className="w-12 h-12 border-4 border-primary-500 border-t-transparent rounded-full mx-auto mb-4"
-          />
-          <p className="text-surface-400 font-mono text-sm animate-pulse">Synchronizing timeline...</p>
-        </div>
-      </div>
-    )
+    return <DashboardLoadingSkeleton />
   }
 
   if (error) {
@@ -359,29 +355,33 @@ function Dashboard() {
         </div>
 
         <div className="space-y-6">
-          <motion.div variants={itemVariants} className="card p-6">
-            <h3 className="text-lg font-semibold text-surface-100 mb-4 flex items-center gap-2">
-              <Compass className="w-5 h-5 text-primary-400" /> Navigation
-            </h3>
-            <div className="space-y-2">
-              {[
-                { to: "/planner", icon: Map, title: "World Map", subtitle: "View full roadmap" },
-                { to: "/reflections", icon: Scroll, title: "Chronicles", subtitle: "Write reflections" },
-                { to: "/progress", icon: Trophy, title: "Hall of Fame", subtitle: "View badges" }
-              ].map((item) => (
-                <Link
-                  key={item.to}
-                  to={item.to}
-                  className="flex items-center gap-4 p-4 rounded-xl bg-surface-800/30 hover:bg-surface-800/60 transition-all border border-transparent hover:border-surface-700 group relative overflow-hidden"
-                >
-                  <item.icon className="w-6 h-6 text-surface-500 group-hover:text-primary-400 group-hover:scale-110 transition-all duration-300" />
-                  <div className="relative z-10">
-                    <p className="font-bold text-surface-200 group-hover:text-white transition-colors">{item.title}</p>
-                    <p className="text-xs text-surface-500 group-hover:text-surface-400 transition-colors uppercase tracking-wide">{item.subtitle}</p>
-                  </div>
-                </Link>
-              ))}
-            </div>
+          <motion.div variants={itemVariants}>
+            <Card className="bg-surface-900/60 border-white/5">
+              <CardHeader className="pb-4">
+                <CardTitle className="text-lg font-semibold text-surface-100 flex items-center gap-2">
+                  <Compass className="w-5 h-5 text-primary-400" /> Navigation
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-2">
+                {[
+                  { to: "/planner", icon: Map, title: "World Map", subtitle: "View full roadmap" },
+                  { to: "/reflections", icon: Scroll, title: "Chronicles", subtitle: "Write reflections" },
+                  { to: "/progress", icon: Trophy, title: "Hall of Fame", subtitle: "View badges" }
+                ].map((item) => (
+                  <Link
+                    key={item.to}
+                    to={item.to}
+                    className="flex items-center gap-4 p-4 rounded-xl bg-surface-800/30 hover:bg-surface-800/60 transition-all border border-transparent hover:border-surface-700 group relative overflow-hidden"
+                  >
+                    <item.icon className="w-6 h-6 text-surface-500 group-hover:text-primary-400 group-hover:scale-110 transition-all duration-300" />
+                    <div className="relative z-10">
+                      <p className="font-bold text-surface-200 group-hover:text-white transition-colors">{item.title}</p>
+                      <p className="text-xs text-surface-500 group-hover:text-surface-400 transition-colors uppercase tracking-wide">{item.subtitle}</p>
+                    </div>
+                  </Link>
+                ))}
+              </CardContent>
+            </Card>
           </motion.div>
 
           {activeChallenge && (

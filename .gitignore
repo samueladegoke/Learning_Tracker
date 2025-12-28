@@ -38,6 +38,7 @@ yarn-error.log*
 # Frontend build
 frontend/dist/
 frontend/build/
+frontend/build_log.txt
 
 # Environment variables
 .env

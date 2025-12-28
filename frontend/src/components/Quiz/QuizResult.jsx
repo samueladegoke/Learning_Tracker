@@ -12,18 +12,20 @@ function QuizResult({
 }) {
     const [showConfetti, setShowConfetti] = useState(false)
 
-    if (!resultData) return null
-
-    const percentage = Math.round((resultData.score / resultData.total_questions) * 100)
+    const percentage = resultData
+        ? Math.round((resultData.score / resultData.total_questions) * 100)
+        : 0
     const isPerfect = percentage === 100
     const isPassing = percentage >= 70
 
     // Trigger confetti on mount for good scores
     useEffect(() => {
-        if (isPerfect || isPassing) {
+        if (resultData && (isPerfect || isPassing)) {
             setShowConfetti(true)
         }
-    }, [isPerfect, isPassing])
+    }, [resultData, isPerfect, isPassing])
+
+    if (!resultData) return null
 
     return (
         <>

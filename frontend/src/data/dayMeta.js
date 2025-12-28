@@ -1,3 +1,8 @@
+/**
+ * Day metadata for the 100 Days of Code curriculum
+ * Extracted from Practice.jsx for better maintainability
+ */
+
 export const DAY_META = {
     'day-1': {
         label: 'Day 1',
@@ -44,7 +49,7 @@ export const DAY_META = {
         title: 'Day 6: Python Functions & Karel',
         subtitle: 'Defining Functions, While Loops, and Algorithmic Thinking.',
         quizId: 'day-6-practice',
-        level: 'Beginner',
+        level: 'beginner',
         topics: ['functions', 'while-loops', 'indentation', 'algorithms']
     },
     'day-7': {
@@ -52,7 +57,7 @@ export const DAY_META = {
         title: 'Day 7: Hangman Project',
         subtitle: 'Flowcharts, Lists, Strings, and Building a Complete Game.',
         quizId: 'day-7-practice',
-        level: 'Beginner',
+        level: 'beginner',
         topics: ['flowcharts', 'lists', 'strings', 'modules']
     },
     'day-8': {
@@ -680,3 +685,4 @@ export const DAY_META = {
         topics: ['tkinter', 'gui', 'events']
     }
 }
+
