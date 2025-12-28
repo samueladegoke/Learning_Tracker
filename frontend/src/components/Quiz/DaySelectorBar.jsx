@@ -1,7 +1,7 @@
 import React from 'react'
 import { Sparkles, CheckCircle, Flame } from 'lucide-react'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
-import { DAY_META } from '@/data/dayMeta'
+import { DAY_META } from '@/data/dayMeta.js'
 
 function DaySelectorBar({
     activeDay,

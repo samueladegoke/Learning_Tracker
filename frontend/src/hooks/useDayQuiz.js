@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { quizzesAPI, srsAPI } from '../api/client'
-import { DAY_META } from '@/data/dayMeta'
+import { DAY_META } from '@/data/dayMeta.js'
 
 /**
  * Custom hook for managing day-specific quiz data fetching.
