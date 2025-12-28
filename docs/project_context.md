@@ -1,134 +1,228 @@
----
-project_name: '100 Days of Code'
-user_name: 'Sam'
-date: '2025-12-10'
-sections_completed: ['technology_stack', 'language_rules', 'framework_rules', 'testing_rules', 'quality_rules', 'workflow_rules', 'anti_patterns']
-status: 'complete'
-rule_count: 48
-optimized_for_llm: true
----
+# Project Context - 100 Days of Code Learning Tracker
 
-# Project Context
-
-## Technology Stack & Versions
-
-### Core Frameworks
-- **Frontend:** React `^18.2.0` (Vite `^5.0.0`)
-- **Backend:** FastAPI `0.104.1` (Python 3.10+)
-- **Database:** PostgreSQL (Production) / SQLite (Dev) via SQLAlchemy `2.0.23`
-
-### Key Libraries
-- **Styling:** TailwindCSS `^3.3.5` + `lucide-react` (Icons) + `framer-motion` (Animation)
-- **State/Logic:** `pyodide` `^0.27.5` (Python in Browser)
-- **Backend Utils:** `alembic` `1.13.0` (Migrations), `uvicorn` `0.24.0`
-
-## Critical Implementation Rules
-
-### Language-Specific Rules
-
-#### JavaScript (Frontend)
-- **Async Patterns:** Always use `async/await` for API calls; avoid `.then()` chains.
-- **Environment:** Use `import.meta.env.VITE_*` exclusively (Vite standard).
-- **Imports:** Use named exports for API clients (e.g., `import { tasksAPI } ...`).
-- **Strict Mode:** Components must be resilient to double-mounting (React Strict Mode).
-
-#### Python (Backend)
-- **Sync/Async Boundary:** Use `def` (sync) for routes with SQLAlchemy `Session`. NEVER use `async def` with blocking ORM calls.
-- **Pydantic V2:** Use `class Config: from_attributes = True` for ORM serialization (NOT `orm_mode`).
-- **Database Migrations:** Modification of `models.py` MUST be followed by `alembic revision --autogenerate`.
-- **Import Strategy:** Use **Relative Imports** (`from ..models import ...`) within the `app` package to ensure Vercel compatibility and prevent deployment circularity. Use absolute imports only for external scripts or test suites.
-
-### Framework-Specific Rules
-
-#### React (Frontend)
-- **Concurrency Pattern:** Use `executionMutex` (Promise chaining via `useRef`) for serializing async Pyodide operations.
-- **Router Compatibility:** Maintain `future` flags in `BrowserRouter` for React Router v7 readiness.
-- **Hooks Usage:** Encapsulate complex logic (like Pyodide interaction) in custom hooks (`usePythonRunner`).
-- **State Management:** Use `React Context` + `useMemo` for global services. Avoid Redux for this scale.
-- **Styling:** TailwindCSS classes ONLY.
-- **Directory Structure:** Components in `src/components/`, pages in `src/pages/`, API clients in `src/api/`.
-
-### Data & Persistence Rules
-- **API Client:** ALL API calls must go through `src/api/client.js` (centralized fetch wrapper).
-- **Server-First:** Data is fetched from backend on page load. No localStorage caching currently implemented.
-- **Error Handling:** Display user-friendly error states when API calls fail.
-- **Future Consideration:** Local-First/Offline patterns are documented in `architecture.md` as Phase 2 goals.
-
-### Testing Rules
-
-#### Frontend (Playwright)
-- **E2E Focus:** Primary verification via `npm test` (Playwright).
-- **Selectors:** Use user-facing role assertions (e.g., `getByRole('button', ...)`). avoid XPath.
-- **Visuals:** Explicitly verify "Electric Banana" theme elements (e.g. `.animate-float`).
-
-#### Backend (Manual Scripts)
-- **Execution Helper:** Use `backend/recreate_schema.sql` to reset DB state before running complex logic tests.
-- **Pattern:** Standalone scripts (e.g., `test_boss_logic.py`) must handle their own `SessionLocal` lifecycle and rollback.
-- **Future Goal:** Adopt `pytest` for unit testing logic (currently missing).
-
-### Code Quality & Style Rules
-
-#### Styling & Conventions
-- **Implicit Standards:** No automated linter/formatter (ESLint/Ruff) detected. Agents must **mimic existing style** exactly.
-- **Frontend Naming:** PascalCase for components (`TaskCard.jsx`). CamelCase for hooks/utils.
-- **Backend Naming:** Snake_case for modules (`tasks.py`) and variables.
-- **Comments:** Prefer self-documenting code. Use docstrings `"""` for complex logic only.
-
-#### Directory Structure
-- `frontend/src/components`: UI components only.
-- `backend/app/routers`: Logic split by domain (weeks, tasks, rpg).
-
-### Development Workflow Rules
-
-#### Project Management
-- **Artifacts:** Work is tracked via Epics/Stories in `docs/sprint-artifacts/`.
-- **Checklist:** `task.md` must be updated to reflect current progress.
-
-#### Git / Repository
-- **Ignored Files:** NEVER commit `seed_data.json`, `.env`, or `node_modules`.
-- **Commit Messages:** Use semantic prefixes (e.g., `feat:`, `fix:`, `docs:`).
-
-#### Deployment
-- **Supabase:** DB changes in production require `alembic` migrations (never direct mutations).
-- **Vercel:** Frontend rewrites `/api/*` to backend. Maintain this contract.
-
-### Critical Don't-Miss Rules
-
-#### Anti-Patterns to Avoid
-- **Frontend:** NEVER use `fetch` directly; always use `api/client.js`.
-- **Backend:** NEVER hardcode user ID `1` in production logic (except for dev/seeding).
-- **Styling:** NEVER leave `className` strings messy; use the `cn()` utility if available or keep them sorted.
-
-#### Edge Cases
-- **Pyodide Loading:** Always handle `isReady` state. The Python runtime takes seconds to load; UI must reflect this.
-- **Data Sync:** API errors should display user-friendly messages. Toast notifications are the current standard.
-
-#### Security & Env
-- **CORS:** Restricted to localhost dev ports and production Vercel URL (`https://learning-tracker-nu-tan.vercel.app`).
-- **Secrets:** `.env` variables are the ONLY place for keys.
+> **Generated:** 2025-12-28  
+> **Scan Level:** Exhaustive  
+> **Status:** Active Development (MVP Complete)
 
 ---
 
-## Usage Guidelines
+## Executive Summary
 
-**For AI Agents:**
+A gamified Python learning platform tracking 100-day coding journey with RPG mechanics, spaced repetition quizzes, and interactive code execution via Pyodide.
 
-- Read this file before implementing any code
-- Follow ALL rules exactly as documented
-- When in doubt, prefer the more restrictive option
-- Update this file if new patterns emerge
+---
 
-**For Humans:**
+## Project Classification
 
-- Keep this file lean and focused on agent needs
-- Update when technology stack changes
-- Review quarterly for outdated rules
-- Remove rules that become obvious over time
+| Attribute | Value |
+|-----------|-------|
+| **Type** | Multi-part (Frontend + Backend) |
+| **Architecture** | Server-First with Client-Side Code Execution |
+| **Deployment** | Vercel (auto-deploy from GitHub) |
+| **Production URL** | https://learning-tracker-nu-tan.vercel.app |
 
-Last Updated: 2025-12-13
+---
 
+## Technology Stack
 
+### Frontend
+| Category | Technology | Version |
+|----------|------------|---------|
+| Framework | React | 18.2.0 |
+| Build Tool | Vite | 5.0.0 |
+| Styling | Tailwind CSS | 3.3.5 |
+| UI Primitives | Radix UI (Shadcn) | Latest |
+| Animation | Framer Motion | 12.23.25 |
+| Code Execution | Pyodide | 0.27.5 |
+| Code Editor | CodeMirror | 6.x |
+| Auth | Supabase JS | 2.86.0 |
+| Testing | Vitest + Playwright | Latest |
 
+### Backend
+| Category | Technology | Version |
+|----------|------------|---------|
+| Framework | FastAPI | 0.104.1 |
+| ORM | SQLAlchemy | 2.0.23 |
+| Database | PostgreSQL (Supabase) | - |
+| Migrations | Alembic | 1.13.0+ |
+| Auth | PyJWT | 2.8.0+ |
+| Serverless | Mangum | 0.17.0 |
 
+### Fonts (Design System)
+| Purpose | Font Family |
+|---------|-------------|
+| Display/Headings | Outfit |
+| Body Text | DM Sans |
+| Code/Mono | JetBrains Mono |
 
+---
 
+## Architecture Overview
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                        FRONTEND                              │
+│  React + Vite + Tailwind + Radix UI                         │
+│  ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐           │
+│  │Dashboard│ │Practice │ │Progress │ │Planner  │           │
+│  └────┬────┘ └────┬────┘ └────┬────┘ └────┬────┘           │
+│       │           │           │           │                 │
+│       └───────────┴───────────┴───────────┘                 │
+│                       │                                      │
+│              ┌────────▼────────┐  ┌──────────────┐          │
+│              │   API Client    │  │   Pyodide    │          │
+│              │   (client.js)   │  │ (Web Worker) │          │
+│              └────────┬────────┘  └──────────────┘          │
+└───────────────────────┼──────────────────────────────────────┘
+                        │ HTTPS + JWT
+┌───────────────────────▼──────────────────────────────────────┐
+│                        BACKEND                                │
+│  FastAPI + SQLAlchemy + Alembic                              │
+│  ┌──────────────────────────────────────────────────┐       │
+│  │                    Routers                         │       │
+│  │  /quizzes  /tasks  /srs  /rpg  /progress  /weeks │       │
+│  └────────────────────────┬─────────────────────────┘       │
+│                           │                                  │
+│              ┌────────────▼────────────┐                    │
+│              │   SQLAlchemy Models     │                    │
+│              │   (19 entities)         │                    │
+│              └────────────┬────────────┘                    │
+│                           │                                  │
+└───────────────────────────┼──────────────────────────────────┘
+                            │
+                  ┌─────────▼─────────┐
+                  │     Supabase      │
+                  │   PostgreSQL DB   │
+                  │   + Auth          │
+                  └───────────────────┘
+```
+
+---
+
+## Frontend Structure
+
+### Pages (6)
+| Page | Path | Description |
+|------|------|-------------|
+| Dashboard | `/` | XP, Level, Streak, Hearts, Boss Battle status |
+| Practice | `/practice` | Quiz + DeepDive + Code Editor (per day) |
+| Planner | `/planner` | Weekly task management |
+| Progress | `/progress` | Stats, achievements, badges |
+| Calendar | `/calendar` | Activity heatmap |
+| Reflections | `/reflections` | Weekly check-ins |
+
+### Components (125+)
+| Category | Count | Examples |
+|----------|-------|----------|
+| Quiz | 7 | Quiz.jsx, QuestionRenderer, OptionButton |
+| UI Primitives | 6 | Button, Card, Tabs, Tooltip, Progress, Skeleton |
+| Content (DeepDive) | 86 | Day1.jsx - Day86.jsx |
+| RPG/Gamification | 10+ | CharacterCard, ShopModal, QuestLog |
+| Utility | 5+ | ErrorBoundary, LoadingSkeletons |
+
+### Design System
+- **Color Palette:** Primary (Gold #facc15), Accent (Fuchsia #d946ef), Surface (Slate scale)
+- **Dark Theme:** Default, using CSS variables in `:root`
+- **Animations:** pulse-slow, float, glow (custom keyframes)
+- **Border Radius:** CSS variable `--radius` based system
+
+---
+
+## Backend Structure
+
+### API Routers (10)
+| Router | Endpoints | Description |
+|--------|-----------|-------------|
+| quizzes | 6 | Quiz questions, verification, leaderboard |
+| tasks | 3 | Task CRUD, completion tracking |
+| spaced_repetition | 4 | SRS daily review, result submission |
+| rpg | 3 | Game state, shop, XP awards |
+| progress | 2 | User stats, calendar data |
+| weeks | 3 | Week data, curriculum structure |
+| reflections | 3 | Weekly journal entries |
+| badges | 1 | Badge catalog |
+| achievements | 1 | Achievement catalog |
+
+### Database Models (19)
+| Model | Purpose |
+|-------|---------|
+| User | Core user with XP, level, gold, streak, hearts |
+| Task, UserTaskStatus | 100-day curriculum tasks |
+| Question, QuizResult | MCQ and coding questions |
+| UserQuestionReview | Spaced repetition state (SM2) |
+| Badge, UserBadge | Collectible badges |
+| Achievement, UserAchievement | Milestone achievements |
+| Quest, QuestTask, UserQuest | Boss battle system |
+| Challenge, UserChallenge | Time-limited challenges |
+| UserInventory | Purchased items |
+| Week, Reflection | Weekly curriculum and journals |
+
+---
+
+## Key Features (Current State)
+
+### ✅ Implemented
+- Dashboard with full RPG stats display
+- 80+ days of DeepDive educational content
+- Quiz system with MCQ + Coding challenges
+- Spaced Repetition System (SRS) for review
+- Pyodide-based Python code execution in browser
+- Supabase authentication
+- Leaderboard with pagination
+- Activity calendar heatmap
+- Weekly reflections
+- Shop system (XP → Items)
+
+### 🔄 Recent Changes (2025-12-28)
+- Typography updated: Outfit + DM Sans fonts
+- CSS variables fixed for dark theme consistency
+- Code review fixes: refetch hook, Date optimization
+
+### ⏳ Deferred (Phase 2)
+- Offline-first PWA capabilities
+- Web Worker Pyodide hardening
+- Background sync engine
+
+---
+
+## Development Setup
+
+```bash
+# Frontend
+cd frontend
+npm install
+npm run dev        # localhost:5173
+
+# Backend
+cd backend
+python -m venv .venv
+source .venv/bin/activate  # or .venv\Scripts\activate on Windows
+pip install -r requirements.txt
+uvicorn app.main:app --reload --port 8000
+```
+
+---
+
+## Critical Files
+
+| Purpose | Path |
+|---------|------|
+| Frontend Entry | `frontend/src/main.jsx` |
+| App Router | `frontend/src/App.jsx` |
+| API Client | `frontend/src/api/client.js` |
+| Design Tokens | `frontend/tailwind.config.js` |
+| CSS Variables | `frontend/src/index.css` |
+| Backend Entry | `backend/app/main.py` |
+| DB Models | `backend/app/models.py` |
+| Auth | `backend/app/auth.py` |
+| Migrations | `backend/alembic/` |
+
+---
+
+## AI Agent Guidelines
+
+1. **Dark Theme First** - All UI uses dark backgrounds (surface-950)
+2. **Shadcn Primitives** - Use existing Radix UI components from `src/components/ui/`
+3. **API Pattern** - All endpoints require JWT auth via `get_current_user`
+4. **Gamification** - XP/Gold awarded through task completion cascades
+5. **Font Classes** - Use `font-display` for headings, `font-body` for text, `font-mono` for code

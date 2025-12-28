@@ -29,7 +29,7 @@ workflow_status:
         - id: "prd"
           status: "docs/prd.md"
         - id: "create-ux-design"
-          status: "pending"
+          status: "docs/project-planning-artifacts/ux-design-specification.md"
 
     - name: "Solutioning"
       workflows:
