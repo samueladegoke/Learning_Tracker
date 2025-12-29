@@ -1,308 +1,184 @@
 [
     {
         "question_type": "mcq",
-        "text": "Which module is used to run external commands and scripts in Python?",
+        "text": "When representing a 3x3 Tic-Tac-Toe board as a 1D list of length 9, how do you calculate the 1D index from a row 'r' and column 'c' (where r,c are 0-2)?",
         "options": [
-            "os.system",
-            "subprocess",
-            "shutil",
-            "sys"
+            "index = r + c",
+            "index = (r * 3) + c",
+            "index = (c * 3) + r",
+            "index = r * c"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "data-structures",
+        "explanation": "To flatten a 2D coordinate into a 1D index, you multiply the row index by the width of the row (3) and add the column index."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the primary benefit of using a Tuple of Tuples to store winning combinations like [(0,1,2), (3,4,5)...] in Python?",
+        "options": [
+            "Tuples are faster for mathematical calculations",
+            "Immutability prevents accidental modification of game rules at runtime",
+            "Tuples consume more memory which is better for modern systems",
+            "Tuples allow for easy sorting of winning lines"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "best-practices",
+        "explanation": "Tuples are immutable. Storing game constants in a tuple ensures that the 'winning conditions' cannot be accidentally changed during game execution."
+    },
+    {
+        "question_type": "mcq",
+        "text": "In a professional game loop, why is it better to handle user input inside a 'while' loop with 'try/except' rather than a simple 'input()' call?",
+        "options": [
+            "To make the game run at 60 FPS",
+            "To prevent the program from crashing if a user enters a non-integer character (like 'X' instead of '5')",
+            "Because Python 3 requires try/except for all input",
+            "To allow the user to quit the game faster"
         ],
         "correct_index": 1,
         "difficulty": "easy",
-        "topic_tag": "automation",
-        "explanation": "The subprocess module is the recommended way to spawn new processes and connect to their input/output/error pipes."
+        "topic_tag": "robust-programming",
+        "explanation": "User input is unpredictable. Robust CLI apps use try/except to catch ValueErrors when casting strings to integers."
     },
     {
         "question_type": "mcq",
-        "text": "How do you copy a file including its metadata (like permissions) using shutil?",
+        "text": "Which design pattern is most closely followed by the 'Listen -> Update -> Render' sequence in your Tic Tac Toe project?",
         "options": [
-            "shutil.copy()",
-            "shutil.copy2()",
-            "shutil.move()",
-            "shutil.replicate()"
+            "Singleton Pattern",
+            "State Machine / Game Loop Pattern",
+            "Factory Pattern",
+            "Decorator Pattern"
         ],
         "correct_index": 1,
         "difficulty": "medium",
-        "topic_tag": "automation",
-        "explanation": "shutil.copy2() is identical to shutil.copy(), but also attempts to preserve file metadata."
+        "topic_tag": "architecture",
+        "explanation": "The game loop is a standard engine pattern where the game transitions between states (Turn X, Turn O, Win, Draw) based on input."
     },
     {
         "question_type": "mcq",
-        "text": "What does subprocess.run(..., capture_output=True) do?",
+        "text": "How do you check for a 'Draw' (Tie) in Tic Tac Toe efficiently if no winner is found?",
         "options": [
-            "Suppresses all output",
-            "Saves the command output to a file",
-            "Captures stdout and stderr in the return object",
-            "Runs the command in the background"
-        ],
-        "correct_index": 2,
-        "difficulty": "medium",
-        "topic_tag": "automation",
-        "explanation": "capture_output=True captures the standard output and standard error so you can access them via result.stdout and result.stderr."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Which symbol represents 'one or more' in a regular expression (regex)?",
-        "options": [
-            "*",
-            "+",
-            "?",
-            "$"
+            "Count how many 'X's are on the board",
+            "Check if ' ' (empty space) is not present in the board list/array",
+            "Ask the players if they want to stop",
+            "Wait for a 10-minute timer to expire"
         ],
         "correct_index": 1,
         "difficulty": "easy",
-        "topic_tag": "regex",
-        "explanation": "The '+' quantifier matches 1 or more occurrences of the preceding element."
+        "topic_tag": "game-logic",
+        "explanation": "If the board is fully populated (no empty spaces) and no one has met the win condition, the game is a draw."
     },
     {
         "question_type": "mcq",
-        "text": "In argparse, how do you define an optional argument that acts as a flag (True/False)?",
+        "text": "If you wanted to build an 'Unbeatable' computer opponent for Tic Tac Toe, which algorithm would you implement?",
         "options": [
-            "add_argument('--flag', type=bool)",
-            "add_argument('--flag', action='store_true')",
-            "add_argument('--flag', value='toggle')",
-            "add_argument('--flag', mode='boolean')"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "argparse",
-        "explanation": "action='store_true' makes the argument optional and sets it to True if present, False otherwise."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the result of re.findall(r'\\d+', 'Price: 123, Qty: 5')?",
-        "options": [
-            "['1', '2', '3', '5']",
-            "['123', '5']",
-            "['123']",
-            "Error"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "regex",
-        "explanation": "\\d+ matches sequences of digits. re.findall returns all non-overlapping matches as a list of strings."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you recursively delete a directory tree using shutil?",
-        "options": [
-            "shutil.delete()",
-            "shutil.rmdir()",
-            "shutil.rmtree()",
-            "shutil.remove()"
-        ],
-        "correct_index": 2,
-        "difficulty": "easy",
-        "topic_tag": "automation",
-        "explanation": "shutil.rmtree() deletes an entire directory tree; all contents must be removed for a directory to be deleted by os.rmdir."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What does subprocess.check_call() do if the command returns a non-zero exit code?",
-        "options": [
-            "Ignores it",
-            "Returns False",
-            "Raises a CalledProcessError",
-            "Prints a warning"
-        ],
-        "correct_index": 2,
-        "difficulty": "hard",
-        "topic_tag": "automation",
-        "explanation": "check_call() raises CalledProcessError if the return code is non-zero, making it useful for strict script automation."
-    },
-    {
-        "question_type": "mcq",
-        "text": "Which regex pattern matches a valid email address structure (simplified)?",
-        "options": [
-            "r'.*@.*\\..*'",
-            "r'[a-z]@[a-z]'",
-            "r'email:.*'",
-            "r'\\w@\\w'"
-        ],
-        "correct_index": 0,
-        "difficulty": "medium",
-        "topic_tag": "regex",
-        "explanation": "r'.*@.*\\..*' is a very simplified pattern checking for anything, '@', anything, '.', and anything."
-    },
-    {
-        "question_type": "mcq",
-        "text": "What is the purpose of shutil.make_archive()?",
-        "options": [
-            "To backup the system",
-            "To create a zip or tar file of a directory",
-            "To save database snapshots",
-            "To encrypt files"
-        ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "automation",
-        "explanation": "make_archive() creates an archive file (like zip or tar) from a base directory."
-    },
-    {
-        "question_type": "mcq",
-        "text": "How do you check if a regex match exists at the BEGINNING of a string?",
-        "options": [
-            "re.search()",
-            "re.match()",
-            "re.findall()",
-            "re.start()"
-        ],
-        "correct_index": 1,
-        "difficulty": "medium",
-        "topic_tag": "regex",
-        "explanation": "re.match() checks for a match only at the beginning of the string, while re.search() checks anywhere."
-    },
-    {
-        "question_type": "mcq",
-        "text": "In argparse, what does nargs='+' mean?",
-        "options": [
-            "The value must be a positive number",
-            "One or more arguments are expected",
-            "The argument is optional",
-            "The argument must be a string"
+            "Binary Search",
+            "Minimax Algorithm",
+            "Bubble Sort",
+            "Dijkstra's Algorithm"
         ],
         "correct_index": 1,
         "difficulty": "hard",
-        "topic_tag": "argparse",
-        "explanation": "nargs='+' gathers one or more command-line arguments into a list."
+        "topic_tag": "ai-logic",
+        "explanation": "Minimax is a decision-making algorithm used in game theory for two-player zero-sum games to find the optimal move."
     },
     {
         "question_type": "coding",
-        "text": "File Extension Filter\nWrite a function that returns a list of files from a provided list that match a certain extension using regex.",
-        "starter_code": "import re\n\ndef filter_files(files, ext):\n    # Return only files ending with .ext (case insensitive)\n    # Example: filter_files(['a.txt', 'b.jpg'], 'txt') -> ['a.txt']\n    return []",
-        "test_cases": "files = ['data.csv', 'image.PNG', 'script.py', 'backup.CSV']\nresult = filter_files(files, 'csv')\nassert len(result) == 2\nassert 'data.csv' in result\nassert 'backup.CSV' in result\nassert 'script.py' not in result",
-        "difficulty": "hard",
-        "topic_tag": "regex",
-        "solution_code": "import re\n\ndef filter_files(files, ext):\n    pattern = re.compile(f'\\.{ext}$', re.IGNORECASE)\n    return [f for f in files if pattern.search(f)]",
-        "explanation": "Use re.compile with re.IGNORECASE to handle different cases. The pattern '\\.ext$' ensures the extension is at the end of the string."
+        "text": "Draw Detector\nWrite a function `is_draw(board)` that takes a list of 9 characters ('X', 'O', or ' ') and returns `True` if the board is full and there are no empty spaces left.",
+        "starter_code": "def is_draw(board):\n    # TODO: Return True if no ' ' remains in the list\n    pass",
+        "solution_code": "def is_draw(board):\n    return \" \" not in board",
+        "test_cases": "assert is_draw(['X', 'O', 'X', 'O', 'X', 'O', 'O', 'X', 'O']) == True\nassert is_draw(['X', ' ', 'X', 'O', 'X', 'O', 'O', 'X', 'O']) == False",
+        "difficulty": "easy",
+        "topic_tag": "game-logic",
+        "explanation": "The simplest way to check if a list is full in this context is to check for the absence of the placeholder space character."
     },
     {
         "question_type": "coding",
-        "text": "Command Formatter\nWrite a function that takes a command name and a dictionary of flags, and returns a list suitable for subprocess.run.",
-        "starter_code": "def format_cmd(command, flags):\n    # Example: format_cmd('ls', {'l': True, 'a': True}) -> ['ls', '-l', '-a']\n    return []",
-        "test_cases": "res = format_cmd('git', {'version': True})\nassert res == ['git', '--version']\nres2 = format_cmd('ls', {'l': True, 'a': True})\nassert 'ls' in res2\nassert '-l' in res2\nassert '-a' in res2",
+        "text": "Valid Move Checker\nImplement a function `valid_move(board, position)` that returns `True` if the position (0-8) is within range AND the corresponding cell on the board is currently empty (' ').",
+        "starter_code": "def valid_move(board, position):\n    # position is 0-8\n    pass",
+        "solution_code": "def valid_move(board, position):\n    if 0 <= position <= 8:\n        return board[position] == \" \"\n    return False",
+        "test_cases": "board = ['X', ' ', 'O', ' ', ' ', ' ', ' ', ' ', ' ']\nassert valid_move(board, 1) == True\nassert valid_move(board, 0) == False\nassert valid_move(board, 10) == False",
         "difficulty": "medium",
-        "topic_tag": "automation",
-        "solution_code": "def format_cmd(command, flags):\n    cmd = [command]\n    for key, value in flags.items():\n        if value:\n            prefix = '-' if len(key) == 1 else '--'\n            cmd.append(f'{prefix}{key}')\n    return cmd",
-        "explanation": "Construct a list starting with the command name. Iterate through flags; if the value is True, append the flag with '-' for single-letter keys or '--' for longer names."
+        "topic_tag": "validation",
+        "explanation": "Validation requires checking both the bounds of the list and the state of the specific index."
+    },
+    {
+        "question_type": "coding",
+        "text": "Diagonal Win Check\nWrite a function `check_diagonals(board)` that checks specifically the two diagonal win paths on a 3x3 board (indices 0,4,8 and 2,4,6). Return the player ('X' or 'O') if a win exists, otherwise None.",
+        "starter_code": "def check_diagonals(board):\n    # indices: 0 1 2\n    #          3 4 5\n    #          6 7 8\n    pass",
+        "solution_code": "def check_diagonals(board):\n    if board[0] == board[4] == board[8] != \" \":\n        return board[0]\n    if board[2] == board[4] == board[6] != \" \":\n        return board[2]\n    return None",
+        "test_cases": "b1 = ['X', ' ', ' ', ' ', 'X', ' ', ' ', ' ', 'X']\nassert check_diagonals(b1) == 'X'\nb2 = [' ', ' ', 'O', ' ', 'O', ' ', 'O', ' ', ' ']\nassert check_diagonals(b2) == 'O'\nb3 = ['X', ' ', 'O', ' ', 'X', ' ', ' ', ' ', ' ']\nassert check_diagonals(b3) == None",
+        "difficulty": "hard",
+        "topic_tag": "game-logic",
+        "explanation": "Explicitly checking the values at diagonal indices and ensuring they are not empty is a common logic branch in grid games."
+    },
+    {
+        "question_type": "coding",
+        "text": "Score Tracker\nWrite a function `update_score(scores, winner)` that takes a dictionary `scores = {'X': 0, 'O': 0, 'Draw': 0}` and increments the value for the winner. If winner is None, increment 'Draw'.",
+        "starter_code": "def update_score(scores, winner):\n    # winner is 'X', 'O', or None\n    pass",
+        "solution_code": "def update_score(scores, winner):\n    if winner:\n        scores[winner] += 1\n    else:\n        scores['Draw'] += 1\n    return scores",
+        "test_cases": "s = {'X': 0, 'O': 0, 'Draw': 0}\nupdate_score(s, 'X')\nassert s['X'] == 1\nupdate_score(s, None)\nassert s['Draw'] == 1",
+        "difficulty": "medium",
+        "topic_tag": "state-management",
+        "explanation": "Using a dictionary for scores is a scalable implementation pattern for portfolio projects."
     },
     {
         "question_type": "code-correction",
-        "text": "The regex is supposed to find all email addresses, but it only finds the first one. Fix it.",
-        "code": "import re\ntext = 'Contact: a@b.com, support@site.org'\nmatch = re.match(r'[\\w.]+@[\\w.]+', text)\nprint(match.group())",
+        "text": "The index calculation for a 2D-to-1D conversion is wrong. Fix it.",
+        "code": "def get_index(row, col):\n    # Trying to convert 0-2 (row/col) to 0-8 index\n    return row + col * 3",
         "options": [
-            "Use re.findall() instead of re.match()",
-            "Add a 'g' flag to re.match()",
-            "Use re.search() in a loop",
-            "Change the regex to end with '$'"
+            "return row * 3 + col",
+            "return col * 3 + row",
+            "return (row + 1) * (col + 1) - 1",
+            "return row + col"
         ],
         "correct_index": 0,
         "difficulty": "medium",
-        "topic_tag": "regex",
-        "explanation": "re.match() and re.search() only return the first match. re.findall() returns a list of all matches found in the entire string."
+        "topic_tag": "index-math",
+        "explanation": "In row-major order (standard for 2D arrays), row is the major axis, so multiply row by the width of the board (3) and add the column."
+    },
+    {
+        "question_type": "code-correction",
+        "text": "The player toggle logic is stuck on 'X'. Fix it so it alternates properly.",
+        "code": "current_player = 'X'\ndef switch_player():\n    if current_player == 'X':\n        current_player = 'O'\n    else:\n        current_player = 'X'",
+        "options": [
+            "Use the global keyword: global current_player",
+            "Change 'if' to 'while'",
+            "Use return 'O' if player == 'X' else 'X'",
+            "Use a for loop"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "scope",
+        "explanation": "To modify a global variable inside a function in Python, you must declare it as 'global'. Better design would be to return the new value and assign it outside."
     },
     {
         "question_type": "mcq",
-        "text": "What is the correct way to capture both stdout and stderr from subprocess.run()?",
+        "text": "In game development, what is 'Idempotency' in the context of a Render function?",
         "options": [
-            "subprocess.run(cmd, capture_all=True)",
-            "subprocess.run(cmd, capture_output=True)",
-            "subprocess.run(cmd, get_output=True)",
-            "subprocess.run(cmd, pipe=True)"
+            "Calling render twice with the same state should produce the same visual output without side effects",
+            "The function should only run once per game",
+            "The function should randomly change the board colors",
+            "It means the game cannot be played twice"
         ],
-        "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "automation",
-        "explanation": "capture_output=True is shorthand for stdout=PIPE, stderr=PIPE."
+        "correct_index": 0,
+        "difficulty": "hard",
+        "topic_tag": "architecture",
+        "explanation": "Pure UI/Render functions should be idempotent; they should reflect the current state perfectly without modifying the state itself."
     },
     {
         "question_type": "mcq",
-        "text": "Which re function returns a match object at the first location where the pattern matches?",
+        "text": "Why is it sometimes better to use 'ANSI escape codes' in a CLI Tic Tac Toe game?",
         "options": [
-            "re.match()",
-            "re.search()",
-            "re.findall()",
-            "re.split()"
+            "To speed up the Python interpreter",
+            "To add colors (Red for X, Blue for O) and clear the screen for a better UX",
+            "To encrypt the game data",
+            "To allow the game to run on older hardware"
         ],
         "correct_index": 1,
-        "difficulty": "easy",
-        "topic_tag": "regex",
-        "explanation": "re.search() scans the entire string for the first match. re.match() only checks at the beginning."
-    },
-    {
-        "question_type": "coding",
-        "text": "Directory Size Calculator\nWrite a function that calculates the total size in bytes of all files in a directory (non-recursive).",
-        "starter_code": "import os\n\ndef dir_size(path):\n    # Return total bytes of all files in path\n    return 0",
-        "test_cases": "import os\nos.makedirs('/tmp/test_dir', exist_ok=True)\nwith open('/tmp/test_dir/a.txt', 'w') as f: f.write('hello')\nwith open('/tmp/test_dir/b.txt', 'w') as f: f.write('world!')\nresult = dir_size('/tmp/test_dir')\nassert result == 11, f'Expected 11, got {result}'",
         "difficulty": "medium",
-        "topic_tag": "automation",
-        "solution_code": "import os\n\ndef dir_size(path):\n    total = 0\n    for f in os.listdir(path):\n        fp = os.path.join(path, f)\n        if os.path.isfile(fp):\n            total += os.path.getsize(fp)\n    return total",
-        "explanation": "Use os.listdir() to iterate, os.path.join() for full path, and os.path.getsize() for file size."
-    },
-    {
-        "question_type": "coding",
-        "text": "Phone Number Extractor\nWrite a function that extracts all phone numbers (format: XXX-XXX-XXXX) from a text string.",
-        "starter_code": "import re\n\ndef extract_phones(text):\n    # Return list of phone numbers in XXX-XXX-XXXX format\n    return []",
-        "test_cases": "text = 'Call 123-456-7890 or 987-654-3210 today!'\nresult = extract_phones(text)\nassert len(result) == 2\nassert '123-456-7890' in result\nassert '987-654-3210' in result",
-        "difficulty": "medium",
-        "topic_tag": "regex",
-        "solution_code": "import re\n\ndef extract_phones(text):\n    pattern = r'\\d{3}-\\d{3}-\\d{4}'\n    return re.findall(pattern, text)",
-        "explanation": "Use \\d{3} to match 3 digits, hyphen as literal, then \\d{4} for 4 digits."
-    },
-    {
-        "question_type": "coding",
-        "text": "Environment Variable Parser\nWrite a function that parses KEY=VALUE pairs from a list of strings into a dictionary.",
-        "starter_code": "def parse_env(lines):\n    # Parse 'KEY=VALUE' strings into dict\n    return {}",
-        "test_cases": "lines = ['DB_HOST=localhost', 'PORT=5432', 'DEBUG=true']\nresult = parse_env(lines)\nassert result['DB_HOST'] == 'localhost'\nassert result['PORT'] == '5432'\nassert result['DEBUG'] == 'true'",
-        "difficulty": "easy",
-        "topic_tag": "automation",
-        "solution_code": "def parse_env(lines):\n    env = {}\n    for line in lines:\n        key, value = line.split('=', 1)\n        env[key] = value\n    return env",
-        "explanation": "Split each line on '=' with maxsplit=1 to handle values containing '='."
-    },
-    {
-        "question_type": "code-correction",
-        "text": "The subprocess call hangs when reading large output. Fix it.",
-        "code": "import subprocess\nresult = subprocess.run(['ls', '-la'], stdout=subprocess.PIPE)\noutput = result.stdout",
-        "options": [
-            "Add text=True to decode output as string",
-            "Use capture_output=True instead",
-            "Add timeout parameter to prevent hangs",
-            "Change PIPE to DEVNULL"
-        ],
-        "correct_index": 2,
-        "difficulty": "hard",
-        "topic_tag": "automation",
-        "explanation": "Adding timeout prevents indefinite blocking on commands that might hang."
-    },
-    {
-        "question_type": "code-correction",
-        "text": "The regex fails to match multi-line strings. Fix it.",
-        "code": "import re\ntext = 'Line1\\nLine2\\nLine3'\nmatches = re.findall(r'^Line', text)",
-        "options": [
-            "Add re.MULTILINE flag",
-            "Change ^ to \\n",
-            "Use re.search() instead",
-            "Remove the ^ anchor"
-        ],
-        "correct_index": 0,
-        "difficulty": "medium",
-        "topic_tag": "regex",
-        "explanation": "re.MULTILINE makes ^ match at the start of each line, not just the string."
-    },
-    {
-        "question_type": "code-correction",
-        "text": "The shutil.copy() fails silently when destination exists. Fix it to raise an error.",
-        "code": "import shutil\nshutil.copy('source.txt', 'dest.txt')",
-        "options": [
-            "Check if dest exists with os.path.exists() first and raise FileExistsError",
-            "Use shutil.copy2() instead",
-            "Add overwrite=False parameter",
-            "Use shutil.move() instead"
-        ],
-        "correct_index": 0,
-        "difficulty": "hard",
-        "topic_tag": "automation",
-        "explanation": "shutil.copy() overwrites silently. To prevent this, check existence first and raise explicitly."
+        "topic_tag": "ux-design",
+        "explanation": "ANSI codes allow for colored output and screen clearing ('\\033[H\\033[J'), which transforms a basic text log into a professional-feeling app."
     }
 ]

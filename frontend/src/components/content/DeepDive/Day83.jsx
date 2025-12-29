@@ -1,162 +1,157 @@
 import CodeBlock from '../../CodeBlock'
-import { Lightbulb, Globe, Server, Database, Layout, Shield } from 'lucide-react'
+import { Lightbulb, Rocket, Target, Layers, ListChecks, AlertTriangle, MessageSquare, Star, Globe, Server, Shield } from 'lucide-react'
 
 export default function DeepDiveDay83() {
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2 space-y-8 text-surface-200 leading-relaxed">
-                {/* Section 1: Flask Portfolio Projects */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 pb-12">
+            {/* Main Content Area */}
+            <div className="lg:col-span-2 space-y-12">
+
+                {/* 01. The Brief */}
                 <section className="space-y-4">
-                    <h2 className="text-2xl font-bold text-surface-100 flex items-center gap-2">
-                        <span className="text-primary-400">01.</span> <Globe className="w-6 h-6 text-primary-400" /> Web Development Portfolio
+                    <h2 className="text-2xl font-bold text-white flex items-center gap-3">
+                        <span className="text-amber-400">01.</span>
+                        <Rocket className="w-6 h-6 text-amber-400" />
+                        The Brief
                     </h2>
-                    <p>
-                        Portfolio projects demonstrate your ability to build <strong>full-stack web applications</strong>. Flask provides the backend; you can add any frontend you like.
-                    </p>
+                    <div className="bg-surface-800/40 p-6 rounded-xl border border-surface-700/50 shadow-inner italic text-surface-200">
+                        "Build a professional personal portfolio website using Flask to showcase your projects and skills. The site should be modular, secure, and ready for deployment."
+                        <div className="mt-4 not-italic space-y-2">
+                            <p className="font-bold text-white text-sm">Deliverables:</p>
+                            <ul className="list-disc list-inside text-sm space-y-1">
+                                <li>Flask server with dynamic routing</li>
+                                <li>Jinja2 template inheritance for DRY codebase</li>
+                                <li>Projects section powered by a data structure or database</li>
+                                <li>Contact form with email notification system</li>
+                                <li>Responsive UI with modern CSS</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                {/* 02. Architecture */}
+                <section className="space-y-4">
+                    <h2 className="text-2xl font-bold text-white flex items-center gap-3">
+                        <span className="text-amber-400">02.</span>
+                        <Layers className="w-6 h-6 text-amber-400" />
+                        System Architecture
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="p-4 rounded-xl bg-surface-800/20 border border-surface-700/50">
+                            <h4 className="font-bold text-white text-sm mb-2">Core Pattern</h4>
+                            <p className="text-sm text-surface-300">MVC (Model-View-Controller) lite with Server-Side Rendering (SSR) via Flask and Jinja2.</p>
+                        </div>
+                        <div className="p-4 rounded-xl bg-surface-800/20 border border-surface-700/50">
+                            <h4 className="font-bold text-white text-sm mb-2">Data Flow</h4>
+                            <p className="text-sm text-surface-300">Client Request → Flask Route Handler → Data Retrieval (JSON/Dict) → Jinja2 Context Injector → HTML Response.</p>
+                        </div>
+                    </div>
                     <CodeBlock
-                        code={`from flask import Flask, render_template, request, jsonify
-
-app = Flask(__name__)
-
-@app.route("/")
-def home():
-    return render_template("index.html")
-
-@app.route("/api/data", methods=["POST"])
-def api_data():
-    data = request.get_json()
-    # Process the data
-    result = process(data)
-    return jsonify({"result": result})
-
-if __name__ == "__main__":
-    app.run(debug=True)`}
+                        code={`@app.route("/projects")
+def projects():
+    all_projects = db.get_all() # Or a locally defined list
+    return render_template("projects.html", projects=all_projects)`}
                         language="python"
                     />
                 </section>
 
-                {/* Section 2: RESTful API Design */}
+                {/* 03. Milestones */}
                 <section className="space-y-4">
-                    <h2 className="text-2xl font-bold text-surface-100 flex items-center gap-2">
-                        <span className="text-primary-400">02.</span> <Server className="w-6 h-6 text-primary-400" /> RESTful API Design
+                    <h2 className="text-2xl font-bold text-white flex items-center gap-3">
+                        <span className="text-amber-400">03.</span>
+                        <ListChecks className="w-6 h-6 text-amber-400" />
+                        Action Plan
                     </h2>
-                    <p>
-                        A well-designed API follows REST conventions: use HTTP methods (GET, POST, PUT, DELETE) and proper status codes.
-                    </p>
-                    <CodeBlock
-                        code={`from flask import Flask, jsonify, request, abort
-
-app = Flask(__name__)
-items = []
-
-@app.route("/api/items", methods=["GET"])
-def get_items():
-    return jsonify(items), 200
-
-@app.route("/api/items", methods=["POST"])
-def create_item():
-    if not request.json or "name" not in request.json:
-        abort(400)  # Bad Request
-    item = {"id": len(items) + 1, "name": request.json["name"]}
-    items.append(item)
-    return jsonify(item), 201  # Created
-
-@app.route("/api/items/<int:item_id>", methods=["DELETE"])
-def delete_item(item_id):
-    item = next((i for i in items if i["id"] == item_id), None)
-    if item is None:
-        abort(404)  # Not Found
-    items.remove(item)
-    return "", 204  # No Content`}
-                        language="python"
-                    />
+                    <div className="space-y-4">
+                        <div className="flex gap-4">
+                            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-surface-700 flex items-center justify-center text-amber-400 font-bold">1</div>
+                            <div>
+                                <h4 className="text-white font-bold">Setup & Routing</h4>
+                                <p className="text-sm text-surface-300">Initialize Flask and create a base.html template with the header/footer.</p>
+                            </div>
+                        </div>
+                        <div className="flex gap-4">
+                            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-surface-700 flex items-center justify-center text-amber-400 font-bold">2</div>
+                            <div>
+                                <h4 className="text-white font-bold">Project Catalog</h4>
+                                <p className="text-sm text-surface-300">Create a JSON structure for your projects and map it to a dynamic view.</p>
+                            </div>
+                        </div>
+                        <div className="flex gap-4">
+                            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-surface-700 flex items-center justify-center text-amber-400 font-bold">3</div>
+                            <div>
+                                <h4 className="text-white font-bold">Integration</h4>
+                                <p className="text-sm text-surface-300">Implement smtplib to send emails from the contact form.</p>
+                            </div>
+                        </div>
+                    </div>
                 </section>
 
-                {/* Section 3: Database Integration */}
+                {/* 04. Pitfalls */}
                 <section className="space-y-4">
-                    <h2 className="text-2xl font-bold text-surface-100 flex items-center gap-2">
-                        <span className="text-primary-400">03.</span> <Database className="w-6 h-6 text-primary-400" /> Database with SQLAlchemy
+                    <h2 className="text-2xl font-bold text-white flex items-center gap-3">
+                        <span className="text-amber-400">04.</span>
+                        <AlertTriangle className="w-6 h-6 text-amber-400" />
+                        Common Pitfalls
                     </h2>
-                    <p>
-                        Use SQLAlchemy ORM to interact with databases without writing raw SQL.
-                    </p>
-                    <CodeBlock
-                        code={`from flask_sqlalchemy import SQLAlchemy
-
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///app.db"
-db = SQLAlchemy(app)
-
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    
-    def to_dict(self):
-        return {"id": self.id, "username": self.username}
-
-# Create tables
-with app.app_context():
-    db.create_all()`}
-                        language="python"
-                    />
-                </section>
-
-                {/* Section 4: Templates and Static Files */}
-                <section className="space-y-4">
-                    <h2 className="text-2xl font-bold text-surface-100 flex items-center gap-2">
-                        <span className="text-primary-400">04.</span> <Layout className="w-6 h-6 text-primary-400" /> Jinja Templates
-                    </h2>
-                    <p>
-                        Jinja2 templates let you generate dynamic HTML. Use template inheritance to avoid repetition.
-                    </p>
-                    <CodeBlock
-                        code={`{# templates/base.html #}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{% block title %}My App{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    {% block content %}{% endblock %}
-</body>
-</html>
-
-{# templates/home.html #}
-{% extends "base.html" %}
-{% block title %}Home{% endblock %}
-{% block content %}
-    <h1>Welcome, {{ user.username }}!</h1>
-{% endblock %}`}
-                        language="html"
-                    />
+                    <div className="space-y-3">
+                        <div className="p-4 rounded-lg bg-red-500/5 border border-red-500/20">
+                            <h4 className="font-bold text-red-400 text-sm">Hardcoded Secrets</h4>
+                            <p className="text-xs text-red-300/60 mt-1">Never put your email password or API keys directly in app.py. Use environment variables.</p>
+                        </div>
+                        <div className="p-4 rounded-lg bg-red-500/5 border border-red-500/20">
+                            <h4 className="font-bold text-red-400 text-sm">Static Asset Paths</h4>
+                            <p className="text-xs text-red-300/60 mt-1">Forgetting to use <code>{"{{ url_for('static', filename='...') }}"}</code> causes broken CSS/Images on deployment.</p>
+                        </div>
+                    </div>
                 </section>
             </div>
 
-            {/* Sidebar Area */}
+            {/* Sidebar */}
             <div className="space-y-6">
-                <div className="bg-surface-800/30 p-6 rounded-xl border border-surface-700 sticky top-24">
-                    <h3 className="text-lg font-bold text-surface-100 mb-4 flex items-center gap-2">
-                        <Lightbulb className="w-5 h-5 text-yellow-500" /> Pro Tips
+                {/* Recommended Tech Stack */}
+                <div className="bg-surface-800/30 p-6 rounded-2xl border border-surface-700/50 backdrop-blur-sm">
+                    <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                        <Target className="w-5 h-5 text-amber-400" /> Recommended Stack
                     </h3>
                     <div className="space-y-4">
+                        <div className="flex items-center gap-3 p-3 rounded-xl bg-surface-700/30 border border-surface-600/30">
+                            <Server className="w-5 h-5 text-blue-400" />
+                            <div>
+                                <p className="text-xs font-bold text-white">Flask</p>
+                                <p className="text-[10px] text-surface-400">Micro-framework</p>
+                            </div>
+                        </div>
+                        <div className="flex items-center gap-3 p-3 rounded-xl bg-surface-700/30 border border-surface-600/30">
+                            <Globe className="w-5 h-5 text-green-400" />
+                            <div>
+                                <p className="text-xs font-bold text-white">Bootstrap/Tailwind</p>
+                                <p className="text-[10px] text-surface-400">Frontend Styling</p>
+                            </div>
+                        </div>
+                        <div className="flex items-center gap-3 p-3 rounded-xl bg-surface-700/30 border border-surface-600/30">
+                            <Shield className="w-5 h-5 text-purple-400" />
+                            <div>
+                                <p className="text-xs font-bold text-white">Python Dotenv</p>
+                                <p className="text-[10px] text-surface-400">Secrets Management</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Interview Prep */}
+                <div className="bg-surface-800/30 p-6 rounded-2xl border border-surface-700/50 backdrop-blur-sm">
+                    <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                        <MessageSquare className="w-5 h-5 text-amber-400" /> Interview Prep
+                    </h3>
+                    <div className="space-y-4 text-sm text-surface-300">
                         <div>
-                            <h4 className="font-medium text-primary-400 text-sm uppercase tracking-wider mb-1"><Shield className="w-4 h-4 inline" /> Security</h4>
-                            <p className="text-sm text-surface-400">
-                                Never trust user input. Use <code>escape()</code> and parameterized queries to prevent XSS and SQL injection.
-                            </p>
+                            <p className="font-bold text-white mb-1">State Management</p>
+                            <p className="text-[11px] leading-relaxed">"How would you handle user sessions for a logged-in admin area?" (Expect: Flask Session/Cookies explanation)</p>
                         </div>
                         <div>
-                            <h4 className="font-medium text-primary-400 text-sm uppercase tracking-wider mb-1">Blueprints</h4>
-                            <p className="text-sm text-surface-400">
-                                For larger apps, use Flask Blueprints to organize routes into modules.
-                            </p>
-                        </div>
-                        <div>
-                            <h4 className="font-medium text-primary-400 text-sm uppercase tracking-wider mb-1">Portfolio Ideas</h4>
-                            <p className="text-sm text-surface-400">
-                                Blog, task manager, URL shortener, weather dashboard, portfolio website.
-                            </p>
+                            <p className="font-bold text-white mb-1">Template Inheritance</p>
+                            <p className="text-[11px] leading-relaxed">"What is the benefit of Jinja2 template inheritance?" (Expect: DRY principles, central layout management)</p>
                         </div>
                     </div>
                 </div>
