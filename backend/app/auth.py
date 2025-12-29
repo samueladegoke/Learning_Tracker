@@ -23,6 +23,12 @@ security = HTTPBearer(auto_error=False)
 # The JWT secret can be found in Supabase Dashboard -> Settings -> API -> JWT Secret
 SUPABASE_JWT_SECRET = os.environ.get("SUPABASE_JWT_SECRET", "")
 SUPABASE_URL = os.environ.get("SUPABASE_URL", "")
+ALLOW_DEV_AUTH = os.environ.get("ALLOW_DEV_AUTH", "").lower() in ("1", "true", "yes")
+IS_PRODUCTION = (
+    os.environ.get("VERCEL_ENV", "").lower() == "production"
+    or os.environ.get("ENVIRONMENT", "").lower() == "production"
+    or os.environ.get("APP_ENV", "").lower() == "production"
+)
 
 # =============================================================================
 # AUTHENTICATION SUSPENDED FOR SINGLE-USER DEVELOPMENT PHASE
@@ -76,6 +82,11 @@ def get_current_user(
     """
     # Development mode fallback - NOT RECOMMENDED FOR PRODUCTION
     if not ENABLE_AUTH:
+        if IS_PRODUCTION and not ALLOW_DEV_AUTH:
+            raise HTTPException(
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                detail="Auth not configured for production environment"
+            )
         # Check for a dedicated dev user in the env, else use the first user
         dev_user_id = int(os.environ.get("DEV_USER_ID", 1))
         user = db.query(User).filter(User.id == dev_user_id).first()
@@ -156,6 +167,11 @@ def get_optional_user(
     Optional auth dependency for endpoints that work with or without auth.
     Returns None if no valid token is provided.
     """
+    if not ENABLE_AUTH and IS_PRODUCTION and not ALLOW_DEV_AUTH:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Auth not configured for production environment"
+        )
     if not credentials:
         if not ENABLE_AUTH:
             # Dev mode - return default user

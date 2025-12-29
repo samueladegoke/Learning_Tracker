@@ -120,14 +120,16 @@ function Quiz({
     }
 
     const handleMCQAnswer = async (optionIndex) => {
-        const questionId = questions[currentQ].id
-        setAnswers(prev => ({ ...prev, [questionId]: optionIndex }))
+        const currentQuestion = questions[currentQ]
+        const reviewId = currentQuestion.id
+        const questionId = currentQuestion.question_id ?? reviewId
+        setAnswers(prev => ({ ...prev, [reviewId]: optionIndex }))
         try {
             const verifyResult = await quizzesAPI.verifyAnswer(questionId, { answer_index: optionIndex })
-            setVerifiedAnswers(prev => ({ ...prev, [questionId]: verifyResult }))
+            setVerifiedAnswers(prev => ({ ...prev, [reviewId]: verifyResult }))
             if (isReviewMode) {
                 const srsResult = await srsAPI.submitResult({
-                    review_id: questionId,
+                    review_id: reviewId,
                     was_correct: verifyResult.is_correct
                 })
                 if (srsResult?.message) {
@@ -141,15 +143,18 @@ function Quiz({
     }
 
     const handleCodingResult = async (result) => {
-        const questionId = questions[currentQ].id
-        setAnswers(prev => ({ ...prev, [questionId]: result }))
+        const currentQuestion = questions[currentQ]
+        const reviewId = currentQuestion.id
+        const questionId = currentQuestion.question_id ?? reviewId
+        const passed = Boolean(result?.allPassed)
+        setAnswers(prev => ({ ...prev, [reviewId]: result }))
         try {
-            const verifyResult = await quizzesAPI.verifyAnswer(questionId, { code: result.code })
-            setVerifiedAnswers(prev => ({ ...prev, [questionId]: verifyResult }))
+            const verifyResult = await quizzesAPI.verifyAnswer(questionId, { answer: { allPassed: passed } })
+            setVerifiedAnswers(prev => ({ ...prev, [reviewId]: verifyResult }))
             if (isReviewMode) {
                 const srsResult = await srsAPI.submitResult({
-                    review_id: questionId,
-                    was_correct: result.allPassed
+                    review_id: reviewId,
+                    was_correct: passed
                 })
                 if (srsResult?.message) {
                     setMasteryMessage(srsResult.message)
@@ -159,7 +164,7 @@ function Quiz({
         } catch (err) {
             setXpWarning('Verification failed.')
         }
-        if (result.allPassed) {
+        if (passed) {
             setIsChallengeCleared?.(true)
             setTimeout(() => setIsChallengeCleared?.(false), 3000)
         }

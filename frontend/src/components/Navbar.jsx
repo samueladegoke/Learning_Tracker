@@ -30,7 +30,7 @@ function Navbar() {
               transition={{ duration: 0.5, type: "spring" }}
               className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg shadow-primary-900/30 group-hover:shadow-primary-900/50 transition-shadow overflow-hidden bg-surface-900 border border-white/10"
             >
-              <img src="/assets/logo.png" alt="Logo" className="w-full h-full object-cover" />
+              <img src={`${import.meta.env.BASE_URL}assets/logo.png`} alt="Logo" className="w-full h-full object-cover" />
             </motion.div>
             <div className="hidden sm:block">
               <h1 className="font-display font-bold text-lg text-surface-100 tracking-tight">Learning Tracker</h1>

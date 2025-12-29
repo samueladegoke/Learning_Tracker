@@ -26,7 +26,6 @@ class ReviewQuestionOut(BaseModel):
     question_type: str
     code: str | None = None
     options: List[str] = []
-    correct_index: int | None = None
     starter_code: str | None = None
     test_cases: List[dict] | None = None
     topic_tag: str | None = None
@@ -102,7 +101,6 @@ def get_daily_review(
                 question_type=q.question_type or "mcq",
                 code=q.code,
                 options=options_list,
-                correct_index=q.correct_index,
                 starter_code=q.starter_code,
                 test_cases=test_cases_list,
                 topic_tag=q.topic_tag,

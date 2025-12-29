@@ -17,12 +17,12 @@ def test_get_quiz_questions(client, seed_test_user, seed_test_questions):
     data = response.json()
     assert len(data) == 2
 
-    # Check question structure (correct_index and explanation should be present for immediate feedback)
+    # Check question structure (public payload should not include answers or explanations)
     first_question = data[0]
     assert "text" in first_question
     assert "options" in first_question
-    assert "correct_index" in first_question  # Shared for immediate feedback
-    assert "explanation" in first_question    # Shared for immediate feedback
+    assert "correct_index" not in first_question
+    assert "explanation" not in first_question
 
 
 def test_get_completed_quizzes_empty(client, seed_test_user):

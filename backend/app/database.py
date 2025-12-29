@@ -14,6 +14,9 @@ logger = logging.getLogger(__name__)
 # Load environment variables from .env file
 load_dotenv()
 
+SUPABASE_SSL_INSECURE = os.environ.get("SUPABASE_SSL_INSECURE", "").lower() in ("1", "true", "yes")
+SUPABASE_SSL_CA = os.environ.get("SUPABASE_SSL_CA", "")
+
 
 def _fix_database_url(url: str) -> str:
     """
@@ -99,12 +102,14 @@ else:
         connect_args["timeout"] = 3
         
         # pg8000 SSL configuration for Supabase
-        # We use a custom context to handle Supabase's SSL requirements
+        # Prefer verified TLS; allow explicit insecure override for pooler edge cases.
         ssl_ctx = ssl.create_default_context()
-        ssl_ctx.check_hostname = False
-        # [SECURITY] CERT_NONE is used because Supabase Pooler uses self-signed certificates.
-        # In a high-security environment, the Supabase CA should be provided here.
-        ssl_ctx.verify_mode = ssl.CERT_NONE
+        if SUPABASE_SSL_CA:
+            ssl_ctx.load_verify_locations(cafile=SUPABASE_SSL_CA)
+        if SUPABASE_SSL_INSECURE:
+            ssl_ctx.check_hostname = False
+            # [SECURITY] CERT_NONE should be used only when no CA is available.
+            ssl_ctx.verify_mode = ssl.CERT_NONE
         connect_args["ssl_context"] = ssl_ctx
 
 

@@ -111,7 +111,9 @@ export const quizzesAPI = {
     method: 'POST',
     body: JSON.stringify({
       question_id: questionId,
-      answer: data.answer_index !== undefined ? data.answer_index : data.code
+      answer: data.answer !== undefined
+        ? data.answer
+        : (data.answer_index !== undefined ? data.answer_index : data.code)
     }),
   }),
 }
@@ -131,4 +133,3 @@ export const srsAPI = {
   addToReview: (questionId) => fetchAPI(`/srs/add-to-review/${questionId}`, { method: 'POST' }),
   getStats: () => fetchAPI('/srs/stats'),
 }
-

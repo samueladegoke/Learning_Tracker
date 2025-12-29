@@ -27,7 +27,7 @@ const CharacterCard = ({ rpgState, progress }) => {
                 {/* Avatar Section */}
                 <div className="relative">
                     <div className="w-24 h-24 rounded-2xl bg-surface-800 border-2 border-primary-500/30 flex items-center justify-center shadow-lg shadow-primary-900/20 overflow-hidden">
-                        <img src="/assets/avatar.png" alt="Avatar" className="w-full h-full object-cover" />
+                        <img src={`${import.meta.env.BASE_URL}assets/avatar.png`} alt="Avatar" className="w-full h-full object-cover" />
                     </div>
                     <div className="absolute -bottom-3 -right-3 w-8 h-8 bg-surface-900 rounded-lg border border-surface-700 flex items-center justify-center text-xs font-bold text-primary-400 shadow-sm">
                         {rpgState.level}

@@ -1,6 +1,7 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session, joinedload
+from sqlalchemy import func
 
 from ..database import get_db
 from ..models import (
@@ -169,6 +170,118 @@ def total_tasks_completed(db: Session, user_id: int) -> int:
         .filter(UserTaskStatus.user_id == user_id, UserTaskStatus.completed)
         .count()
     )
+
+
+def _remove_user_badge(db: Session, user: User, badge_code: str) -> None:
+    badge = db.query(Badge).filter(Badge.badge_id == badge_code).first()
+    if not badge:
+        return
+    user_badge = (
+        db.query(UserBadge)
+        .filter(UserBadge.user_id == user.id, UserBadge.badge_id == badge.id)
+        .first()
+    )
+    if not user_badge:
+        return
+    db.delete(user_badge)
+    multiplier = REWARD_MULTIPLIER.get(badge.difficulty or "normal", 1.0)
+    xp_bonus = int(badge.xp_value * multiplier)
+    gold_bonus = xp_bonus // 10
+    user.xp = max(0, user.xp - xp_bonus)
+    user.gold = max(0, user.gold - gold_bonus)
+
+
+def _remove_user_achievement(db: Session, user: User, achievement_code: str) -> None:
+    achievement = (
+        db.query(Achievement)
+        .filter(Achievement.achievement_id == achievement_code)
+        .first()
+    )
+    if not achievement:
+        return
+    user_achievement = (
+        db.query(UserAchievement)
+        .filter(UserAchievement.user_id == user.id, UserAchievement.achievement_id == achievement.id)
+        .first()
+    )
+    if not user_achievement:
+        return
+    db.delete(user_achievement)
+    multiplier = REWARD_MULTIPLIER.get(achievement.difficulty or "normal", 1.0)
+    xp_bonus = int(achievement.xp_value * multiplier)
+    gold_bonus = xp_bonus // 10
+    user.xp = max(0, user.xp - xp_bonus)
+    user.gold = max(0, user.gold - gold_bonus)
+
+
+def _recalculate_streak(db: Session, user: User) -> None:
+    completed_dates = (
+        db.query(func.date(UserTaskStatus.completed_at))
+        .filter(
+            UserTaskStatus.user_id == user.id,
+            UserTaskStatus.completed,
+            UserTaskStatus.completed_at.isnot(None),
+        )
+        .distinct()
+        .all()
+    )
+    if not completed_dates:
+        user.streak = 0
+        user.last_checkin_at = None
+        return
+
+    date_set = {row[0] for row in completed_dates if row[0]}
+    most_recent = max(date_set)
+    streak = 1
+    cursor = most_recent
+    while (cursor - timedelta(days=1)) in date_set:
+        cursor -= timedelta(days=1)
+        streak += 1
+
+    user.streak = streak
+    latest_completion = (
+        db.query(func.max(UserTaskStatus.completed_at))
+        .filter(
+            UserTaskStatus.user_id == user.id,
+            UserTaskStatus.completed,
+            UserTaskStatus.completed_at.isnot(None),
+        )
+        .scalar()
+    )
+    user.last_checkin_at = latest_completion
+    user.best_streak = max(user.best_streak or 0, user.streak)
+
+
+def _rollback_active_quest(
+    db: Session,
+    user: User,
+    xp_delta: int,
+    completed_at: datetime | None
+) -> None:
+    if not completed_at or xp_delta <= 0:
+        return
+    quest = active_user_quest(db, user.id)
+    if not quest or not quest.quest or not quest.started_at:
+        return
+    if completed_at < quest.started_at:
+        return
+    boss_hp = quest.quest.boss_hp
+    current_hp = quest.boss_hp_remaining if quest.boss_hp_remaining is not None else boss_hp
+    quest.boss_hp_remaining = min(boss_hp, current_hp + xp_delta)
+    db.add(quest)
+
+
+def _rollback_challenge_progress(db: Session, user_id: int) -> None:
+    active = (
+        db.query(UserChallenge)
+        .options(joinedload(UserChallenge.challenge))
+        .filter(UserChallenge.user_id == user_id, UserChallenge.completed_at.is_(None))
+        .all()
+    )
+    for uc in active:
+        if uc.progress and uc.progress > 0:
+            uc.progress = max(0, uc.progress - 1)
+            db.add(uc)
 
 
 @router.post("/{task_id}/complete", response_model=TaskCompletionResult)
@@ -419,21 +532,56 @@ def uncomplete_task(task_id: str, user: User = Depends(get_current_user), db: Se
     level_up = False
 
     if status and status.completed:
+        xp_before = user.xp
+        gold_before = user.gold
+        level_before = user.level
+        completed_at = status.completed_at
+
         # Remove XP from user
         difficulty_multiplier = DIFFICULTY_MULTIPLIER.get(task.difficulty or "normal", 1.0)
         xp_delta = int(task.xp_reward * difficulty_multiplier)
         gold_delta = xp_delta // 10
         user.xp = max(0, user.xp - xp_delta)
         user.gold = max(0, user.gold - gold_delta)
-        new_level = level_from_xp(user.xp)
-        level_up = new_level > user.level
-        user.level = new_level
-        xp_gained = -xp_delta
-        gold_gained = -gold_delta
 
         # Mark as incomplete
         status.completed = False
         status.completed_at = None
+        db.flush()
+
+        _rollback_active_quest(db, user, xp_delta, completed_at)
+        _rollback_challenge_progress(db, user.id)
+        _recalculate_streak(db, user)
+
+        if not check_week_completion(db, task.week_id, user.id):
+            week = db.query(Week).filter(Week.id == task.week_id).first()
+            if week:
+                _remove_user_badge(db, user, f"b-week-{week.week_number}")
+
+        if not check_all_weeks_completed(db, user.id):
+            _remove_user_badge(db, user, "b-bootcamp-finish")
+            _remove_user_achievement(db, user, "a-all-weeks")
+
+        tasks_done = total_tasks_completed(db, user.id)
+        task_achievements = [
+            (1, "a-first-task"),
+            (10, "a-ten-tasks"),
+            (50, "a-fifty-tasks"),
+            (100, "a-hundred-tasks"),
+        ]
+        for threshold, achievement_code in task_achievements:
+            if tasks_done < threshold:
+                _remove_user_achievement(db, user, achievement_code)
+
+        for threshold, badge_code in STREAK_BADGES.items():
+            if user.streak < threshold:
+                _remove_user_badge(db, user, badge_code)
+
+        user.level = level_from_xp(user.xp)
+        level_up = user.level > level_before
+        xp_gained = user.xp - xp_before
+        gold_gained = user.gold - gold_before
+
         db.commit()
 
     return TaskCompletionResult(

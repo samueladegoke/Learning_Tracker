@@ -142,8 +142,7 @@ export function Quiz({ quizId, onComplete }) {
         if (result.allPassed) {
             try {
                 const verification = await quizzesAPI.verifyAnswer(currentQuestion.id, {
-                    code: result.code,
-                    is_mcq: false
+                    answer: { allPassed: Boolean(result?.allPassed) }
                 })
                 setVerifiedAnswers(prev => ({ ...prev, [currentQuestion.id]: verification }))
                 setScore(prev => prev + 1)
