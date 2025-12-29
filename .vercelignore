@@ -27,7 +27,7 @@ extract_day1_content.py
 generate_day1.py
 day1_extracted_content.json
 seed_data.json
-data/
+/data/
 
 # --- Testing & Reports ---
 e2e/
