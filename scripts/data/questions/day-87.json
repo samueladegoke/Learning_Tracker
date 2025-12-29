@@ -1,0 +1,207 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What method is used to detect collisions between sprites in Pygame?",
+        "options": [
+            "sprite.collide()",
+            "pygame.sprite.spritecollide()",
+            "rect.intersect()",
+            "collision.detect()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "pygame",
+        "explanation": "pygame.sprite.spritecollide() detects collisions between a sprite and a group of sprites."
+    },
+    {
+        "question_type": "mcq",
+        "text": "In Breakout, what happens when the ball hits the paddle?",
+        "options": [
+            "Game ends",
+            "Ball bounces back",
+            "Paddle shrinks",
+            "Ball speeds up only"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "breakout-game",
+        "explanation": "The ball's vertical velocity is reversed when it hits the paddle."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which Pygame constant represents 60 frames per second?",
+        "options": [
+            "pygame.FPS",
+            "clock.tick(60)",
+            "pygame.time.Clock()",
+            "60"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "pygame",
+        "explanation": "clock.tick(60) limits the game loop to 60 iterations per second."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is 'tunneling' in game physics?",
+        "options": [
+            "Ball going underground",
+            "Fast objects passing through barriers",
+            "Creating tunnels",
+            "Network lag"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "game-physics",
+        "explanation": "Tunneling occurs when an object moves so fast it passes through collision boundaries in a single frame."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you reverse the ball's horizontal direction in Pygame?",
+        "options": [
+            "ball.x = -ball.x",
+            "ball.speed_x *= -1",
+            "ball.direction = 'left'",
+            "ball.reverse()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "pygame",
+        "explanation": "Multiplying the velocity by -1 reverses the direction while maintaining speed."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What pygame.sprite.Group method removes a sprite from the group?",
+        "options": [
+            "remove()",
+            "delete()",
+            "kill()",
+            "Both A and C"
+        ],
+        "correct_index": 3,
+        "difficulty": "medium",
+        "topic_tag": "pygame",
+        "explanation": "Both group.remove(sprite) and sprite.kill() can remove a sprite from groups."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What attribute stores a sprite's position and size in Pygame?",
+        "options": [
+            "sprite.pos",
+            "sprite.rect",
+            "sprite.bounds",
+            "sprite.area"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "pygame",
+        "explanation": "The rect attribute is a pygame.Rect that stores position (x, y) and dimensions (width, height)."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that checks if the ball hit the left or right wall and returns True if so.",
+        "starter_code": "def hit_side_wall(ball_x, ball_radius, screen_width):\n    # Return True if ball touches left or right edge\n    pass",
+        "solution_code": "def hit_side_wall(ball_x, ball_radius, screen_width):\n    return ball_x - ball_radius <= 0 or ball_x + ball_radius >= screen_width",
+        "test_cases": [
+            {
+                "input": "(5, 10, 800)",
+                "expected": "True"
+            },
+            {
+                "input": "(400, 10, 800)",
+                "expected": "False"
+            },
+            {
+                "input": "(795, 10, 800)",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "breakout-game",
+        "explanation": "Check if ball position minus radius touches left edge (0) or plus radius touches right edge."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that reverses the ball's vertical velocity when it hits the paddle.",
+        "starter_code": "def bounce_off_paddle(speed_y):\n    # Return the new vertical speed after bouncing\n    pass",
+        "solution_code": "def bounce_off_paddle(speed_y):\n    return abs(speed_y) * -1",
+        "test_cases": [
+            {
+                "input": "(5)",
+                "expected": "-5"
+            },
+            {
+                "input": "(-5)",
+                "expected": "-5"
+            },
+            {
+                "input": "(3)",
+                "expected": "-3"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "breakout-game",
+        "explanation": "After hitting paddle, ball should always move upward (negative y in Pygame)."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that creates a grid of brick positions given rows, cols, brick width/height, and spacing.",
+        "starter_code": "def create_brick_positions(rows, cols, width, height, spacing):\n    # Return list of (x, y) tuples for brick top-left corners\n    pass",
+        "solution_code": "def create_brick_positions(rows, cols, width, height, spacing):\n    positions = []\n    for row in range(rows):\n        for col in range(cols):\n            x = col * (width + spacing)\n            y = row * (height + spacing)\n            positions.append((x, y))\n    return positions",
+        "test_cases": [
+            {
+                "input": "(2, 3, 50, 20, 5)",
+                "expected": "[(0, 0), (55, 0), (110, 0), (0, 25), (55, 25), (110, 25)]"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "breakout-game",
+        "explanation": "Nested loops create a grid; each position is offset by (width + spacing) for columns and (height + spacing) for rows."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that calculates the player's score based on bricks destroyed.",
+        "starter_code": "def calculate_score(bricks_destroyed, points_per_brick=10):\n    # Return total score\n    pass",
+        "solution_code": "def calculate_score(bricks_destroyed, points_per_brick=10):\n    return bricks_destroyed * points_per_brick",
+        "test_cases": [
+            {
+                "input": "(5, 10)",
+                "expected": "50"
+            },
+            {
+                "input": "(0, 10)",
+                "expected": "0"
+            },
+            {
+                "input": "(10, 20)",
+                "expected": "200"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "breakout-game",
+        "explanation": "Simple multiplication of bricks destroyed by points per brick."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that determines if the game is over (ball below screen or all bricks destroyed).",
+        "starter_code": "def is_game_over(ball_y, screen_height, bricks_remaining):\n    # Return (game_over: bool, won: bool)\n    pass",
+        "solution_code": "def is_game_over(ball_y, screen_height, bricks_remaining):\n    if ball_y > screen_height:\n        return (True, False)  # Lost\n    if bricks_remaining == 0:\n        return (True, True)   # Won\n    return (False, False)",
+        "test_cases": [
+            {
+                "input": "(650, 600, 5)",
+                "expected": "(True, False)"
+            },
+            {
+                "input": "(300, 600, 0)",
+                "expected": "(True, True)"
+            },
+            {
+                "input": "(300, 600, 5)",
+                "expected": "(False, False)"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "breakout-game",
+        "explanation": "Game ends when ball goes below screen (lose) or no bricks remain (win)."
+    }
+]

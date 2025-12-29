@@ -1,0 +1,154 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What is the purpose of data visualization?",
+        "options": [
+            "Encrypt data",
+            "Communicate insights through graphics",
+            "Compress data",
+            "Delete data"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "data-science",
+        "explanation": "Visualization makes data insights accessible by representing them graphically."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is a correlation in data analysis?",
+        "options": [
+            "Error correction",
+            "Statistical relationship between variables",
+            "Data type",
+            "File format"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "data-science",
+        "explanation": "Correlation measures how strongly two variables are related to each other."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is Exploratory Data Analysis (EDA)?",
+        "options": [
+            "Machine learning",
+            "Initial investigation of data patterns",
+            "Database design",
+            "Web scraping"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "data-science",
+        "explanation": "EDA is the process of analyzing datasets to summarize characteristics and discover patterns."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does df.isnull().sum() return?",
+        "options": [
+            "Total rows",
+            "Count of missing values per column",
+            "Column names",
+            "Data types"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "pandas",
+        "explanation": "isnull() creates a boolean mask; sum() counts True values (missing) per column."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the purpose of normalizing data in analysis?",
+        "options": [
+            "Make it bigger",
+            "Enable fair comparison across populations",
+            "Delete outliers",
+            "Encrypt data"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "data-science",
+        "explanation": "Normalization (e.g., per-capita rates) allows fair comparison between different-sized groups."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What chart type is best for showing distribution of a single variable?",
+        "options": [
+            "Line chart",
+            "Histogram",
+            "Pie chart",
+            "Scatter plot"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "visualization",
+        "explanation": "Histograms show the distribution and frequency of values in a single variable."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why is context important when presenting data?",
+        "options": [
+            "Makes charts prettier",
+            "Prevents misinterpretation",
+            "Reduces file size",
+            "Speeds up loading"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "data-science",
+        "explanation": "Context helps readers understand what the data means and prevents misleading conclusions."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What library creates statistical visualizations with Pandas integration?",
+        "options": [
+            "plotly",
+            "seaborn",
+            "bokeh",
+            "pygal"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "visualization",
+        "explanation": "Seaborn works seamlessly with Pandas and provides statistical visualization functions."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that calculates the percentage of missing values per column.",
+        "starter_code": "def missing_percentage(df):\n    # Return Series with column names and missing percentages\n    pass",
+        "solution_code": "def missing_percentage(df):\n    return (df.isnull().sum() / len(df)) * 100",
+        "test_cases": [],
+        "difficulty": "medium",
+        "topic_tag": "pandas",
+        "explanation": "Divide missing count by total rows and multiply by 100."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that creates a bar chart showing counts by category.",
+        "starter_code": "import matplotlib.pyplot as plt\n\ndef plot_category_counts(df, column):\n    # Create and show bar chart\n    pass",
+        "solution_code": "import matplotlib.pyplot as plt\n\ndef plot_category_counts(df, column):\n    df[column].value_counts().plot(kind='bar')\n    plt.xlabel(column)\n    plt.ylabel('Count')\n    plt.tight_layout()\n    plt.show()",
+        "test_cases": [],
+        "difficulty": "medium",
+        "topic_tag": "visualization",
+        "explanation": "Use value_counts().plot(kind='bar') to visualize category frequencies."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that filters a DataFrame to rows within a year range.",
+        "starter_code": "def filter_by_years(df, year_column, start_year, end_year):\n    # Return filtered DataFrame\n    pass",
+        "solution_code": "def filter_by_years(df, year_column, start_year, end_year):\n    return df[(df[year_column] >= start_year) & (df[year_column] <= end_year)]",
+        "test_cases": [],
+        "difficulty": "medium",
+        "topic_tag": "pandas",
+        "explanation": "Use boolean indexing with & to combine multiple conditions."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that exports a DataFrame summary to a markdown file.",
+        "starter_code": "def export_summary(df, filepath):\n    # Write df.describe() as markdown to file\n    pass",
+        "solution_code": "def export_summary(df, filepath):\n    summary = df.describe().to_markdown()\n    with open(filepath, 'w') as f:\n        f.write('# Data Summary\\n\\n')\n        f.write(summary)",
+        "test_cases": [],
+        "difficulty": "medium",
+        "topic_tag": "pandas",
+        "explanation": "Use to_markdown() to convert DataFrame to markdown table format."
+    }
+]

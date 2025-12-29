@@ -683,6 +683,125 @@ export const DAY_META = {
         quizId: 'day-85-practice',
         level: 'advanced',
         topics: ['tkinter', 'gui', 'events']
+    },
+    'day-86': {
+        label: 'Day 86',
+        title: 'Day 86: Typing Speed Test App',
+        subtitle: 'Build a GUI application to measure typing speed and accuracy (Tkinter).',
+        quizId: 'day-86-practice',
+        level: 'advanced',
+        topics: ['tkinter', 'gui', 'events', 'performance']
+    },
+    'day-87': {
+        label: 'Day 87',
+        title: 'Day 87: Breakout Game Clone',
+        subtitle: 'Recreate the classic arcade game using Pygame with physics and levels.',
+        quizId: 'day-87-practice',
+        level: 'advanced',
+        topics: ['pygame', 'game-physics', 'collision', 'oop']
+    },
+    'day-88': {
+        label: 'Day 88',
+        title: 'Day 88: Cafe & Wifi CRUD App',
+        subtitle: 'Build a full-stack Flask web application for crowdsourcing cafe data.',
+        quizId: 'day-88-practice',
+        level: 'advanced',
+        topics: ['flask', 'crud', 'sqlalchemy', 'bootstrap']
+    },
+    'day-89': {
+        label: 'Day 89',
+        title: 'Day 89: Disappearing Text App',
+        subtitle: 'Design a high-stakes writing app that deletes text if you stop typing.',
+        quizId: 'day-89-practice',
+        level: 'advanced',
+        topics: ['javascript', 'events', 'dom-manipulation', 'ux']
+    },
+    'day-90': {
+        label: 'Day 90',
+        title: 'Day 90: PDF to Audiobook',
+        subtitle: 'Convert PDF text into spoken word audio files using Python and TTS.',
+        quizId: 'day-90-practice',
+        level: 'advanced',
+        topics: ['python', 'pyttsx3', 'pdf-parsing', 'automation']
+    },
+    'day-91': {
+        label: 'Day 91',
+        title: 'Day 91: Image Palette Generator',
+        subtitle: 'Extract dominant colors from images using machine learning and Flask.',
+        quizId: 'day-91-practice',
+        level: 'advanced',
+        topics: ['flask', 'machine-learning', 'opencv', 'colors']
+    },
+    'day-92': {
+        label: 'Day 92',
+        title: 'Day 92: Rental Listing Scraper',
+        subtitle: 'Automate hunting for apartments by scraping rental sites with Selenium.',
+        quizId: 'day-92-practice',
+        level: 'advanced',
+        topics: ['selenium', 'web-scraping', 'automation', 'forms']
+    },
+    'day-93': {
+        label: 'Day 93',
+        title: 'Day 93: Dino Game Bot',
+        subtitle: 'Build an automation bot that plays the Chrome Dino game perfectly.',
+        quizId: 'day-93-practice',
+        level: 'advanced',
+        topics: ['pyautogui', 'cv2', 'automation', 'game-loops']
+    },
+    'day-94': {
+        label: 'Day 94',
+        title: 'Day 94: HN Email Digest',
+        subtitle: 'Scrape Hacker News for top stories and send a custom daily email digest.',
+        quizId: 'day-94-practice',
+        level: 'advanced',
+        topics: ['beautifulsoup', 'smtplib', 'scraping', 'email']
+    },
+    'day-95': {
+        label: 'Day 95',
+        title: 'Day 95: Space Invaders Pro',
+        subtitle: 'Develop a professional version of Space Invaders with advanced patterns.',
+        quizId: 'day-95-practice',
+        level: 'advanced',
+        topics: ['pygame', 'oop', 'design-patterns', 'game-dev']
+    },
+    'day-96': {
+        label: 'Day 96',
+        title: 'Day 96: Custom API Website',
+        subtitle: 'Build a professional portal for publicizing your own custom APIs.',
+        quizId: 'day-96-practice',
+        level: 'advanced',
+        topics: ['api', 'rest', 'documentation', 'flask']
+    },
+    'day-97': {
+        label: 'Day 97',
+        title: 'Day 97: E-commerce Shop',
+        subtitle: 'Build a full e-commerce storefront with integrated payment processing.',
+        quizId: 'day-97-practice',
+        level: 'advanced',
+        topics: ['flask', 'payments', 'stripe', 'databases']
+    },
+    'day-98': {
+        label: 'Day 98',
+        title: 'Day 98: Specialized Automation',
+        subtitle: 'Create a highly tailored automation solution for a complex repetitive task.',
+        quizId: 'day-98-practice',
+        level: 'advanced',
+        topics: ['automation', 'pathlib', 'resilience', 'python']
+    },
+    'day-99': {
+        label: 'Day 99',
+        title: 'Day 99: Space Race Analysis',
+        subtitle: 'Perform deep data analysis on 60+ years of space race historical data.',
+        quizId: 'day-99-practice',
+        level: 'advanced',
+        topics: ['pandas', 'plotly', 'data-viz', 'analysis']
+    },
+    'day-100': {
+        label: 'Day 100',
+        title: 'Day 100: Capstone Data Science',
+        subtitle: 'Final data science project analyzing global police incident data.',
+        quizId: 'day-100-practice',
+        level: 'advanced',
+        topics: ['data-science', 'eda', 'visualization', 'final-project']
     }
 }
-

@@ -151,6 +151,21 @@ const DEEP_DIVE_COMPONENTS = {
     'day-83': lazy(() => import('./DeepDive/Day83')),
     'day-84': lazy(() => import('./DeepDive/Day84')),
     'day-85': lazy(() => import('./DeepDive/Day85')),
+    'day-86': lazy(() => import('./DeepDive/Day86')),
+    'day-87': lazy(() => import('./DeepDive/Day87')),
+    'day-88': lazy(() => import('./DeepDive/Day88')),
+    'day-89': lazy(() => import('./DeepDive/Day89')),
+    'day-90': lazy(() => import('./DeepDive/Day90')),
+    'day-91': lazy(() => import('./DeepDive/Day91')),
+    'day-92': lazy(() => import('./DeepDive/Day92')),
+    'day-93': lazy(() => import('./DeepDive/Day93')),
+    'day-94': lazy(() => import('./DeepDive/Day94')),
+    'day-95': lazy(() => import('./DeepDive/Day95')),
+    'day-96': lazy(() => import('./DeepDive/Day96')),
+    'day-97': lazy(() => import('./DeepDive/Day97')),
+    'day-98': lazy(() => import('./DeepDive/Day98')),
+    'day-99': lazy(() => import('./DeepDive/Day99')),
+    'day-100': lazy(() => import('./DeepDive/Day100')),
 }
 
 /**

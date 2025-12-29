@@ -1,0 +1,185 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What year was the original Space Invaders released?",
+        "options": [
+            "1970",
+            "1978",
+            "1985",
+            "1992"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "game-history",
+        "explanation": "Space Invaders was released in 1978 and became one of the first major arcade hits."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What programming concept do enemies in Space Invaders demonstrate?",
+        "options": [
+            "Recursion",
+            "Finite state machines",
+            "Object-oriented programming",
+            "Network protocols"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "game-dev",
+        "explanation": "Each enemy is typically an object/class instance with properties like position, speed, and health."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the main game loop pattern in Pygame?",
+        "options": [
+            "while running: process_event, update, draw",
+            "for frame in game: render()",
+            "game.start()",
+            "pygame.run()"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "pygame",
+        "explanation": "The game loop continuously processes events, updates state, and renders to screen."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you handle keyboard input in Pygame?",
+        "options": [
+            "input()",
+            "pygame.event.get()",
+            "keyboard.listen()",
+            "pygame.key()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "pygame",
+        "explanation": "pygame.event.get() returns a list of all events including keyboard inputs."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What creates a bullet in Space Invaders when the player shoots?",
+        "options": [
+            "Instantiate a new Bullet sprite",
+            "Call shoot()",
+            "pygame.bullet()",
+            "Add velocity"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "space-invaders",
+        "explanation": "Creating a new sprite instance and adding it to sprite groups is the standard pattern."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do enemies move in classic Space Invaders?",
+        "options": [
+            "Random directions",
+            "Side-to-side, then down",
+            "Straight down",
+            "Chase player"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "space-invaders",
+        "explanation": "Enemies move horizontally, reverse at screen edge, and move down one row."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is a sprite group in Pygame?",
+        "options": [
+            "Collection of sprites for batch operations",
+            "Single sprite",
+            "Animation frames",
+            "Sound effects"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "pygame",
+        "explanation": "Sprite groups allow batch updating, drawing, and collision detection for multiple sprites."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you limit firing rate in a shooting game?",
+        "options": [
+            "Remove fire button",
+            "Use a cooldown timer",
+            "Count bullets only",
+            "Slow game speed"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "space-invaders",
+        "explanation": "A cooldown timer prevents firing until a minimum time has passed since last shot."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that moves the player left or right based on input.",
+        "starter_code": "def move_player(player_x, speed, direction, screen_width):\n    # Return new x position, clamped to screen\n    pass",
+        "solution_code": "def move_player(player_x, speed, direction, screen_width):\n    new_x = player_x + (speed * direction)\n    return max(0, min(new_x, screen_width))",
+        "test_cases": [
+            {
+                "input": "(400, 5, 1, 800)",
+                "expected": "405"
+            },
+            {
+                "input": "(0, 5, -1, 800)",
+                "expected": "0"
+            },
+            {
+                "input": "(795, 5, 1, 800)",
+                "expected": "800"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "space-invaders",
+        "explanation": "Add direction * speed to position and clamp between 0 and screen_width."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that creates a row of enemies at evenly spaced positions.",
+        "starter_code": "def create_enemy_row(y, num_enemies, spacing, start_x):\n    # Return list of (x, y) positions\n    pass",
+        "solution_code": "def create_enemy_row(y, num_enemies, spacing, start_x):\n    return [(start_x + i * spacing, y) for i in range(num_enemies)]",
+        "test_cases": [
+            {
+                "input": "(50, 5, 60, 100)",
+                "expected": "[(100, 50), (160, 50), (220, 50), (280, 50), (340, 50)]"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "space-invaders",
+        "explanation": "Use list comprehension to generate positions at regular intervals."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that checks if a bullet hit any enemy and returns the hit enemy.",
+        "starter_code": "def check_bullet_hits(bullet_rect, enemies):\n    # Return first enemy hit or None\n    pass",
+        "solution_code": "def check_bullet_hits(bullet_rect, enemies):\n    for enemy in enemies:\n        if bullet_rect.colliderect(enemy.rect):\n            return enemy\n    return None",
+        "test_cases": [],
+        "difficulty": "medium",
+        "topic_tag": "pygame",
+        "explanation": "Loop through enemies and use colliderect() to check for collision."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that implements a cooldown timer for shooting.",
+        "starter_code": "def can_shoot(last_shot_time, current_time, cooldown):\n    # Return True if enough time has passed\n    pass",
+        "solution_code": "def can_shoot(last_shot_time, current_time, cooldown):\n    return current_time - last_shot_time >= cooldown",
+        "test_cases": [
+            {
+                "input": "(0, 500, 250)",
+                "expected": "True"
+            },
+            {
+                "input": "(0, 100, 250)",
+                "expected": "False"
+            },
+            {
+                "input": "(1000, 1250, 250)",
+                "expected": "True"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "space-invaders",
+        "explanation": "Compare elapsed time since last shot against cooldown duration."
+    }
+]

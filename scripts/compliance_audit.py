@@ -23,7 +23,7 @@ def audit_all_days():
     failing = 0
     no_data = 0
 
-    for day_num in range(1, 86):
+    for day_num in range(1, 101):
         quiz_id = f"day-{day_num}-practice"
         is_portfolio = day_num >= 82
         rules = PORTFOLIO_RULES if is_portfolio else STANDARD_RULES
@@ -83,7 +83,7 @@ def audit_all_days():
     print("\n" + "=" * 60)
     print("CONTENT COMPLIANCE AUDIT REPORT")
     print("=" * 60)
-    print(f"Days Audited: 85")
+    print(f"Days Audited: 100")
     print(f"✅ Passing: {passing}")
     print(f"❌ Failing: {failing}")
     print(f"⚠️  No Data: {no_data}")

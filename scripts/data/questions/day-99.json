@@ -1,0 +1,154 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What is a DataFrame in Pandas?",
+        "options": [
+            "Image format",
+            "2D tabular data structure",
+            "Database connection",
+            "Chart type"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "pandas",
+        "explanation": "A DataFrame is Pandas' primary data structure - a 2D labeled table with rows and columns."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does the Space Race dataset typically contain?",
+        "options": [
+            "Social media posts",
+            "Historical rocket launch data",
+            "Weather information",
+            "Stock prices"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "data-science",
+        "explanation": "The Space Race dataset contains historical data about rocket launches, missions, and outcomes."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What library is used for data manipulation in Python?",
+        "options": [
+            "numpy",
+            "pandas",
+            "scipy",
+            "matplotlib"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "pandas",
+        "explanation": "Pandas is the primary library for data manipulation and analysis in Python."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does df.groupby() do in Pandas?",
+        "options": [
+            "Sorts data",
+            "Groups data for aggregation",
+            "Filters data",
+            "Merges dataframes"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "pandas",
+        "explanation": "groupby() splits data into groups for applying aggregate functions like sum, mean, count."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What method converts a column to datetime format?",
+        "options": [
+            "to_date()",
+            "pd.to_datetime()",
+            "astype('date')",
+            "parse_date()"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "pandas",
+        "explanation": "pd.to_datetime() converts strings or objects to pandas datetime objects."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What library creates interactive visualizations?",
+        "options": [
+            "matplotlib",
+            "seaborn",
+            "plotly",
+            "turtle"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "visualization",
+        "explanation": "Plotly creates interactive, web-based visualizations that can be zoomed and hovered."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does df.describe() show?",
+        "options": [
+            "Column names",
+            "Summary statistics",
+            "Data types",
+            "Missing values"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "pandas",
+        "explanation": "describe() returns count, mean, std, min, max, and quartiles for numeric columns."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you extract the year from a datetime column?",
+        "options": [
+            "df['date'].year",
+            "df['date'].dt.year",
+            "year(df['date'])",
+            "df['date'].get_year()"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "pandas",
+        "explanation": "The .dt accessor provides datetime properties like year, month, day."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that loads a CSV and returns a DataFrame.",
+        "starter_code": "import pandas as pd\n\ndef load_csv(path):\n    # Return DataFrame\n    pass",
+        "solution_code": "import pandas as pd\n\ndef load_csv(path):\n    return pd.read_csv(path)",
+        "test_cases": [],
+        "difficulty": "easy",
+        "topic_tag": "pandas",
+        "explanation": "pd.read_csv() loads CSV files into a DataFrame."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that counts launches per year from a DataFrame with a 'Year' column.",
+        "starter_code": "def launches_per_year(df):\n    # Return Series with year as index, count as values\n    pass",
+        "solution_code": "def launches_per_year(df):\n    return df.groupby('Year').size()",
+        "test_cases": [],
+        "difficulty": "medium",
+        "topic_tag": "pandas",
+        "explanation": "Use groupby() and size() to count rows per year."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that creates a line chart using Plotly.",
+        "starter_code": "import plotly.express as px\n\ndef create_line_chart(x, y, title):\n    # Return Plotly figure\n    pass",
+        "solution_code": "import plotly.express as px\n\ndef create_line_chart(x, y, title):\n    return px.line(x=x, y=y, title=title)",
+        "test_cases": [],
+        "difficulty": "easy",
+        "topic_tag": "visualization",
+        "explanation": "px.line() creates an interactive line chart from x and y data."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that calculates the success rate from a status column.",
+        "starter_code": "def success_rate(df, status_column, success_value='Success'):\n    # Return percentage of successful entries\n    pass",
+        "solution_code": "def success_rate(df, status_column, success_value='Success'):\n    success_count = (df[status_column] == success_value).sum()\n    return (success_count / len(df)) * 100",
+        "test_cases": [],
+        "difficulty": "medium",
+        "topic_tag": "pandas",
+        "explanation": "Count matches, divide by total rows, multiply by 100 for percentage."
+    }
+]

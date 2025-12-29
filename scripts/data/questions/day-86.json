@@ -1,0 +1,211 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What does WPM stand for in typing tests?",
+        "options": [
+            "Words Per Minute",
+            "Write Per Moment",
+            "Word Power Metric",
+            "Writing Performance Measure"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "typing-test",
+        "explanation": "WPM (Words Per Minute) is the standard measure of typing speed."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What standard formula calculates WPM?",
+        "options": [
+            "characters / time",
+            "(characters / 5) / minutes",
+            "words / seconds",
+            "keystrokes * 60"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "typing-test",
+        "explanation": "WPM = (typed characters / 5) / elapsed minutes. A 'word' averages 5 characters."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which Tkinter method binds a callback to keyboard events?",
+        "options": [
+            "on_key()",
+            "bind()",
+            "connect()",
+            "attach()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "tkinter",
+        "explanation": "widget.bind('<KeyPress>', callback) binds keyboard events in Tkinter."
+    },
+    {
+        "question_type": "mcq",
+        "text": "When should the timer start in a typing test?",
+        "options": [
+            "On page load",
+            "When user clicks start",
+            "On first keypress",
+            "After 3-second countdown"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "typing-test",
+        "explanation": "Starting on first keypress gives the most accurate measurement of typing speed."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you get the current time in Python?",
+        "options": [
+            "datetime.now()",
+            "time.time()",
+            "clock.current()",
+            "Both A and B"
+        ],
+        "correct_index": 3,
+        "difficulty": "easy",
+        "topic_tag": "python-time",
+        "explanation": "Both datetime.now() and time.time() can get current time; time.time() returns Unix timestamp."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is a good accuracy target for typing?",
+        "options": [
+            "75%",
+            "85%",
+            "95%+",
+            "100% only"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "typing-test",
+        "explanation": "95%+ accuracy is considered proficient; 100% is ideal but the target is typically 95%+."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that calculates WPM given total characters typed and elapsed seconds.",
+        "starter_code": "def calculate_wpm(chars_typed, elapsed_seconds):\n    # Return WPM (words per minute)\n    pass",
+        "solution_code": "def calculate_wpm(chars_typed, elapsed_seconds):\n    if elapsed_seconds <= 0:\n        return 0\n    words = chars_typed / 5\n    minutes = elapsed_seconds / 60\n    return words / minutes",
+        "test_cases": [
+            {
+                "input": "(250, 60)",
+                "expected": "50.0"
+            },
+            {
+                "input": "(100, 30)",
+                "expected": "40.0"
+            },
+            {
+                "input": "(0, 60)",
+                "expected": "0.0"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "typing-test",
+        "explanation": "WPM formula: (characters/5) / (seconds/60). Guard against division by zero."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that calculates typing accuracy given correct and total characters.",
+        "starter_code": "def calculate_accuracy(correct_chars, total_chars):\n    # Return accuracy as percentage\n    pass",
+        "solution_code": "def calculate_accuracy(correct_chars, total_chars):\n    if total_chars == 0:\n        return 100.0\n    return (correct_chars / total_chars) * 100",
+        "test_cases": [
+            {
+                "input": "(95, 100)",
+                "expected": "95.0"
+            },
+            {
+                "input": "(50, 50)",
+                "expected": "100.0"
+            },
+            {
+                "input": "(0, 0)",
+                "expected": "100.0"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "typing-test",
+        "explanation": "Accuracy = (correct/total) * 100. Return 100% if no characters typed yet."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that compares typed text with expected text and returns number of matching characters.",
+        "starter_code": "def count_correct_chars(typed, expected):\n    # Return count of matching characters at same positions\n    pass",
+        "solution_code": "def count_correct_chars(typed, expected):\n    count = 0\n    for i, char in enumerate(typed):\n        if i < len(expected) and char == expected[i]:\n            count += 1\n    return count",
+        "test_cases": [
+            {
+                "input": "('hello', 'hello')",
+                "expected": "5"
+            },
+            {
+                "input": "('hallo', 'hello')",
+                "expected": "4"
+            },
+            {
+                "input": "('hi', 'hello')",
+                "expected": "1"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "typing-test",
+        "explanation": "Compare each character at the same index in both strings."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that formats WPM with one decimal place for display.",
+        "starter_code": "def format_wpm(wpm):\n    # Return formatted string like '65.4 WPM'\n    pass",
+        "solution_code": "def format_wpm(wpm):\n    return f'{wpm:.1f} WPM'",
+        "test_cases": [
+            {
+                "input": "(65.432)",
+                "expected": "'65.4 WPM'"
+            },
+            {
+                "input": "(100.0)",
+                "expected": "'100.0 WPM'"
+            },
+            {
+                "input": "(0)",
+                "expected": "'0.0 WPM'"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "python-strings",
+        "explanation": "Use f-string with :.1f format specifier for one decimal place."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a timer class that tracks elapsed time from when start() is called.",
+        "starter_code": "import time\n\nclass Timer:\n    def __init__(self):\n        self.start_time = None\n    \n    def start(self):\n        # Start the timer\n        pass\n    \n    def elapsed(self):\n        # Return elapsed seconds\n        pass",
+        "solution_code": "import time\n\nclass Timer:\n    def __init__(self):\n        self.start_time = None\n    \n    def start(self):\n        self.start_time = time.time()\n    \n    def elapsed(self):\n        if self.start_time is None:\n            return 0\n        return time.time() - self.start_time",
+        "test_cases": [],
+        "difficulty": "medium",
+        "topic_tag": "python-oop",
+        "explanation": "Store start time when start() is called; elapsed() returns current time minus start time."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that highlights incorrect characters by wrapping them in asterisks.",
+        "starter_code": "def highlight_errors(typed, expected):\n    # Return typed string with errors wrapped in *\n    pass",
+        "solution_code": "def highlight_errors(typed, expected):\n    result = []\n    for i, char in enumerate(typed):\n        if i >= len(expected) or char != expected[i]:\n            result.append(f'*{char}*')\n        else:\n            result.append(char)\n    return ''.join(result)",
+        "test_cases": [
+            {
+                "input": "('hallo', 'hello')",
+                "expected": "'h*a*llo'"
+            },
+            {
+                "input": "('hello', 'hello')",
+                "expected": "'hello'"
+            },
+            {
+                "input": "('hx', 'hello')",
+                "expected": "'h*x*'"
+            }
+        ],
+        "difficulty": "hard",
+        "topic_tag": "typing-test",
+        "explanation": "Compare each character; wrap mismatches or extra characters in asterisks."
+    }
+]

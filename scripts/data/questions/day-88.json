@@ -1,0 +1,164 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What is Flask?",
+        "options": [
+            "Database",
+            "Python web framework",
+            "JavaScript library",
+            "Operating system"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "Flask is a lightweight Python web framework for building web applications."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does CRUD stand for?",
+        "options": [
+            "Create Read Update Delete",
+            "Copy Run Upload Download",
+            "Change Request Update Deploy",
+            "Code Review Unit Debug"
+        ],
+        "correct_index": 0,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "CRUD stands for Create, Read, Update, Delete - the four basic database operations."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which Flask decorator creates a route for the homepage?",
+        "options": [
+            "@app.home('/')",
+            "@app.route('/')",
+            "@route('/')",
+            "@flask.get('/')"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "@app.route('/') decorates a function to handle requests to the root URL."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which SQLAlchemy method adds a new record to the database?",
+        "options": [
+            "db.add()",
+            "db.session.add()",
+            "db.insert()",
+            "db.create()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "sqlalchemy",
+        "explanation": "db.session.add(object) stages a new record for insertion into the database."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you save changes to the database in SQLAlchemy?",
+        "options": [
+            "db.save()",
+            "db.session.commit()",
+            "db.write()",
+            "db.session.flush()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "sqlalchemy",
+        "explanation": "db.session.commit() persists all staged changes to the database."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which method retrieves all records from a SQLAlchemy model?",
+        "options": [
+            "Model.all()",
+            "Model.query.all()",
+            "Model.get_all()",
+            "db.query(Model)"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "sqlalchemy",
+        "explanation": "Model.query.all() returns a list of all records for that model."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which Jinja2 syntax renders a variable in a template?",
+        "options": [
+            "{% variable %}",
+            "{{ variable }}",
+            "{# variable #}",
+            "<%= variable %>"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "jinja2",
+        "explanation": "Double curly braces {{ }} output the value of a variable in Jinja2."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What HTTP method is typically used to submit form data for creating resources?",
+        "options": [
+            "GET",
+            "POST",
+            "PUT",
+            "DELETE"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "POST is used to submit data to create new resources; GET should not modify server state."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a Flask route that returns 'Hello World' at the root URL.",
+        "starter_code": "from flask import Flask\napp = Flask(__name__)\n\n# Define the route here\n",
+        "solution_code": "from flask import Flask\napp = Flask(__name__)\n\n@app.route('/')\ndef home():\n    return 'Hello World'",
+        "test_cases": [],
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "Use @app.route('/') decorator and return a string from the function."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a SQLAlchemy model for a Task with id (integer, primary key), title (string), and done (boolean).",
+        "starter_code": "from flask_sqlalchemy import SQLAlchemy\ndb = SQLAlchemy()\n\n# Define Task model here\n",
+        "solution_code": "from flask_sqlalchemy import SQLAlchemy\ndb = SQLAlchemy()\n\nclass Task(db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    title = db.Column(db.String(100), nullable=False)\n    done = db.Column(db.Boolean, default=False)",
+        "test_cases": [],
+        "difficulty": "medium",
+        "topic_tag": "sqlalchemy",
+        "explanation": "Define a class inheriting from db.Model with Column definitions for each field."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that toggles a task's done status and saves it to the database.",
+        "starter_code": "def toggle_task(task, db):\n    # Toggle task.done and commit\n    pass",
+        "solution_code": "def toggle_task(task, db):\n    task.done = not task.done\n    db.session.commit()",
+        "test_cases": [],
+        "difficulty": "medium",
+        "topic_tag": "sqlalchemy",
+        "explanation": "Flip the boolean value and call db.session.commit() to persist the change."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that deletes a task by ID from the database.",
+        "starter_code": "def delete_task(task_id, Task, db):\n    # Find and delete the task\n    pass",
+        "solution_code": "def delete_task(task_id, Task, db):\n    task = Task.query.get(task_id)\n    if task:\n        db.session.delete(task)\n        db.session.commit()",
+        "test_cases": [],
+        "difficulty": "medium",
+        "topic_tag": "sqlalchemy",
+        "explanation": "Use query.get() to find by primary key, then delete() and commit()."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that counts incomplete tasks from a list of Task objects.",
+        "starter_code": "def count_incomplete(tasks):\n    # Return count of tasks where done is False\n    pass",
+        "solution_code": "def count_incomplete(tasks):\n    return sum(1 for task in tasks if not task.done)",
+        "test_cases": [],
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "Use a generator expression to count tasks where done is False."
+    }
+]

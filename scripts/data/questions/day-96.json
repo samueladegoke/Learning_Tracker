@@ -1,0 +1,167 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What does API stand for?",
+        "options": [
+            "Advanced Python Integration",
+            "Application Programming Interface",
+            "Automated Processing Input",
+            "Application Protocol Interface"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "api",
+        "explanation": "API (Application Programming Interface) defines how software components should interact."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is REST?",
+        "options": [
+            "Database type",
+            "Architectural style for web services",
+            "Python library",
+            "HTML element"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "api",
+        "explanation": "REST (Representational State Transfer) is an architectural style using HTTP methods for APIs."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What Python library makes HTTP requests?",
+        "options": [
+            "http",
+            "requests",
+            "urllib",
+            "Both B and C"
+        ],
+        "correct_index": 3,
+        "difficulty": "easy",
+        "topic_tag": "api",
+        "explanation": "Both requests and urllib can make HTTP requests; requests is more user-friendly."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does response.json() return?",
+        "options": [
+            "String",
+            "Dictionary",
+            "List",
+            "Depends on API"
+        ],
+        "correct_index": 3,
+        "difficulty": "medium",
+        "topic_tag": "api",
+        "explanation": "response.json() parses JSON; the result type depends on whether the API returns an object or array."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What HTTP status code indicates success?",
+        "options": [
+            "100",
+            "200",
+            "404",
+            "500"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "api",
+        "explanation": "200 OK indicates the request was successful."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What should you check before using API response data?",
+        "options": [
+            "File size",
+            "Status code",
+            "Font color",
+            "Browser version"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "api",
+        "explanation": "Always check the status code to ensure the request succeeded before parsing data."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Where should API keys be stored?",
+        "options": [
+            "In source code",
+            "Environment variables",
+            "Public README",
+            "HTML comments"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "api",
+        "explanation": "API keys should be in environment variables, never in source code or public files."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is rate limiting in APIs?",
+        "options": [
+            "Speed of internet",
+            "Maximum requests allowed per time period",
+            "Data compression",
+            "Authentication"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "api",
+        "explanation": "Rate limiting restricts how many API requests you can make in a given timeframe."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that fetches data from an API and returns it as a dictionary.",
+        "starter_code": "import requests\n\ndef fetch_api(url):\n    # Fetch and return JSON data, or None if failed\n    pass",
+        "solution_code": "import requests\n\ndef fetch_api(url):\n    response = requests.get(url)\n    if response.status_code == 200:\n        return response.json()\n    return None",
+        "test_cases": [],
+        "difficulty": "easy",
+        "topic_tag": "api",
+        "explanation": "Make GET request, check status code, and return parsed JSON."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that adds a timeout to API requests.",
+        "starter_code": "import requests\n\ndef fetch_with_timeout(url, timeout_seconds=5):\n    # Return data or None if timeout/error\n    pass",
+        "solution_code": "import requests\n\ndef fetch_with_timeout(url, timeout_seconds=5):\n    try:\n        response = requests.get(url, timeout=timeout_seconds)\n        return response.json()\n    except requests.exceptions.Timeout:\n        return None",
+        "test_cases": [],
+        "difficulty": "medium",
+        "topic_tag": "api",
+        "explanation": "Pass timeout parameter to requests.get() and catch Timeout exception."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that caches API responses to avoid repeated requests.",
+        "starter_code": "cache = {}\n\ndef fetch_cached(url):\n    # Return from cache if exists, else fetch and cache\n    pass",
+        "solution_code": "cache = {}\n\ndef fetch_cached(url):\n    if url in cache:\n        return cache[url]\n    import requests\n    response = requests.get(url)\n    if response.status_code == 200:\n        cache[url] = response.json()\n        return cache[url]\n    return None",
+        "test_cases": [],
+        "difficulty": "medium",
+        "topic_tag": "api",
+        "explanation": "Check if URL is in cache first; if not, fetch, store, and return."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that extracts a specific field from an API response safely.",
+        "starter_code": "def get_field(data, field, default=None):\n    # Safely get field from dict, return default if missing\n    pass",
+        "solution_code": "def get_field(data, field, default=None):\n    if isinstance(data, dict):\n        return data.get(field, default)\n    return default",
+        "test_cases": [
+            {
+                "input": "({'name': 'John'}, 'name', 'Unknown')",
+                "expected": "'John'"
+            },
+            {
+                "input": "({'name': 'John'}, 'age', 0)",
+                "expected": "0"
+            },
+            {
+                "input": "(None, 'name', 'default')",
+                "expected": "'default'"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "api",
+        "explanation": "Use dict.get() with default value, handling None input case."
+    }
+]

@@ -1,0 +1,154 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What is the difference between static and dynamic web content?",
+        "options": [
+            "File size",
+            "Static is plain HTML; dynamic is JavaScript-rendered",
+            "Color scheme",
+            "Server location"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "web-scraping",
+        "explanation": "Dynamic content is rendered by JavaScript after page load; static content is in the initial HTML."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why is it ethical to check robots.txt before scraping?",
+        "options": [
+            "Legal requirement",
+            "Respects website owner's scraping preferences",
+            "Faster loading",
+            "Required by browser"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "web-scraping",
+        "explanation": "robots.txt indicates which parts of a site allow or disallow automated access."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is Selenium primarily used for?",
+        "options": [
+            "Data analysis",
+            "Browser automation",
+            "Machine learning",
+            "File compression"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "selenium",
+        "explanation": "Selenium automates web browsers for testing and web scraping dynamic content."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What method finds an element by CSS selector in Selenium?",
+        "options": [
+            "find_by_css()",
+            "driver.find_element(By.CSS_SELECTOR, 'selector')",
+            "driver.css_select()",
+            "query_selector()"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "selenium",
+        "explanation": "driver.find_element(By.CSS_SELECTOR, 'selector') locates elements using CSS selectors."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why use Selenium instead of requests for some websites?",
+        "options": [
+            "Faster",
+            "Handles JavaScript-rendered content",
+            "Better error handling",
+            "Smaller file size"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "selenium",
+        "explanation": "Selenium runs a real browser that executes JavaScript, unlike requests which only gets raw HTML."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is web scraping?",
+        "options": [
+            "Deleting websites",
+            "Extracting data from websites",
+            "Building websites",
+            "Testing websites"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "web-scraping",
+        "explanation": "Web scraping is the process of extracting data from websites programmatically."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does BeautifulSoup do?",
+        "options": [
+            "Renders JavaScript",
+            "Parses HTML/XML",
+            "Makes HTTP requests",
+            "Automates browsers"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "web-scraping",
+        "explanation": "BeautifulSoup parses and navigates HTML/XML documents for data extraction."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is a WebDriver in Selenium?",
+        "options": [
+            "A Python class",
+            "Interface to control browsers",
+            "HTTP client",
+            "HTML parser"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "selenium",
+        "explanation": "WebDriver is the interface that allows programmatic control of web browsers."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that initializes a Chrome WebDriver.",
+        "starter_code": "from selenium import webdriver\n\ndef get_chrome_driver():\n    # Return Chrome WebDriver instance\n    pass",
+        "solution_code": "from selenium import webdriver\n\ndef get_chrome_driver():\n    return webdriver.Chrome()",
+        "test_cases": [],
+        "difficulty": "easy",
+        "topic_tag": "selenium",
+        "explanation": "Call webdriver.Chrome() to create a new Chrome browser instance."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that extracts all links from a page using Selenium.",
+        "starter_code": "from selenium.webdriver.common.by import By\n\ndef get_all_links(driver):\n    # Return list of href values\n    pass",
+        "solution_code": "from selenium.webdriver.common.by import By\n\ndef get_all_links(driver):\n    elements = driver.find_elements(By.TAG_NAME, 'a')\n    return [el.get_attribute('href') for el in elements if el.get_attribute('href')]",
+        "test_cases": [],
+        "difficulty": "medium",
+        "topic_tag": "selenium",
+        "explanation": "Find all anchor tags and extract their href attributes."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that waits for an element to be present on the page.",
+        "starter_code": "from selenium.webdriver.support.ui import WebDriverWait\nfrom selenium.webdriver.support import expected_conditions as EC\nfrom selenium.webdriver.common.by import By\n\ndef wait_for_element(driver, css_selector, timeout=10):\n    # Wait and return element\n    pass",
+        "solution_code": "from selenium.webdriver.support.ui import WebDriverWait\nfrom selenium.webdriver.support import expected_conditions as EC\nfrom selenium.webdriver.common.by import By\n\ndef wait_for_element(driver, css_selector, timeout=10):\n    return WebDriverWait(driver, timeout).until(\n        EC.presence_of_element_located((By.CSS_SELECTOR, css_selector))\n    )",
+        "test_cases": [],
+        "difficulty": "hard",
+        "topic_tag": "selenium",
+        "explanation": "WebDriverWait with expected_conditions waits for element presence."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that fills a text input field using Selenium.",
+        "starter_code": "def fill_input(element, text):\n    # Clear and type text\n    pass",
+        "solution_code": "def fill_input(element, text):\n    element.clear()\n    element.send_keys(text)",
+        "test_cases": [],
+        "difficulty": "easy",
+        "topic_tag": "selenium",
+        "explanation": "Clear existing content first, then use send_keys() to type new text."
+    }
+]

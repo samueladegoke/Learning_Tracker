@@ -1,0 +1,154 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What is Hacker News?",
+        "options": [
+            "Hacking tutorial site",
+            "Tech news aggregator by Y Combinator",
+            "Social media platform",
+            "Email service"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "web-scraping",
+        "explanation": "Hacker News is a tech-focused news site run by startup incubator Y Combinator."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is a digest email?",
+        "options": [
+            "Encrypted email",
+            "Summary of content sent periodically",
+            "Spam email",
+            "Forwarded message"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "email",
+        "explanation": "A digest email summarizes content (like top stories) sent on a regular schedule."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What library is used for web scraping static HTML in Python?",
+        "options": [
+            "selenium",
+            "beautifulsoup4",
+            "requests",
+            "Both B and C"
+        ],
+        "correct_index": 3,
+        "difficulty": "easy",
+        "topic_tag": "web-scraping",
+        "explanation": "requests fetches HTML and BeautifulSoup parses it; they're commonly used together."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What CSS selector selects all elements with class 'item'?",
+        "options": [
+            "#item",
+            ".item",
+            "item",
+            "*item"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "web-scraping",
+        "explanation": "The dot prefix (.) selects elements by class name in CSS selectors."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which Python library sends emails via SMTP?",
+        "options": [
+            "emaillib",
+            "smtplib",
+            "mailpy",
+            "sendmail"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "email",
+        "explanation": "smtplib is Python's standard library for sending emails via SMTP protocol."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is an App Password in Gmail?",
+        "options": [
+            "Main password",
+            "Special password for third-party apps",
+            "Backup password",
+            "Admin password"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "email",
+        "explanation": "App Passwords are 16-character codes that allow less secure apps to access Gmail."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What port is commonly used for SMTP with TLS?",
+        "options": [
+            "25",
+            "80",
+            "587",
+            "443"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "email",
+        "explanation": "Port 587 is the standard for SMTP with STARTTLS encryption."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What method in BeautifulSoup finds all matching elements?",
+        "options": [
+            "find()",
+            "find_all()",
+            "select_all()",
+            "query_all()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "web-scraping",
+        "explanation": "find_all() returns a list of all elements matching the criteria."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that fetches a webpage and returns a BeautifulSoup object.",
+        "starter_code": "import requests\nfrom bs4 import BeautifulSoup\n\ndef get_soup(url):\n    # Fetch and parse HTML\n    pass",
+        "solution_code": "import requests\nfrom bs4 import BeautifulSoup\n\ndef get_soup(url):\n    response = requests.get(url)\n    return BeautifulSoup(response.text, 'html.parser')",
+        "test_cases": [],
+        "difficulty": "easy",
+        "topic_tag": "web-scraping",
+        "explanation": "Use requests.get() to fetch HTML and BeautifulSoup to parse it."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that extracts all story titles from Hacker News HTML.",
+        "starter_code": "def get_hn_titles(soup):\n    # Return list of story titles\n    pass",
+        "solution_code": "def get_hn_titles(soup):\n    title_elements = soup.select('.titleline > a')\n    return [el.text for el in title_elements]",
+        "test_cases": [],
+        "difficulty": "medium",
+        "topic_tag": "web-scraping",
+        "explanation": "Use CSS selector to find title links and extract their text content."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that formats stories as an HTML email body.",
+        "starter_code": "def format_email_html(stories):\n    # Return HTML string with list of stories\n    # stories is list of {'title': str, 'link': str}\n    pass",
+        "solution_code": "def format_email_html(stories):\n    html = '<h1>Top Hacker News Stories</h1><ul>'\n    for story in stories:\n        html += f'<li><a href=\"{story[\"link\"]}\">{story[\"title\"]}</a></li>'\n    html += '</ul>'\n    return html",
+        "test_cases": [],
+        "difficulty": "medium",
+        "topic_tag": "email",
+        "explanation": "Build HTML string with header and list items containing links."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that sends an email using smtplib.",
+        "starter_code": "import smtplib\nfrom email.mime.text import MIMEText\n\ndef send_email(sender, password, recipient, subject, body):\n    # Send email via Gmail SMTP\n    pass",
+        "solution_code": "import smtplib\nfrom email.mime.text import MIMEText\n\ndef send_email(sender, password, recipient, subject, body):\n    msg = MIMEText(body, 'html')\n    msg['Subject'] = subject\n    msg['From'] = sender\n    msg['To'] = recipient\n    \n    with smtplib.SMTP('smtp.gmail.com', 587) as server:\n        server.starttls()\n        server.login(sender, password)\n        server.send_message(msg)",
+        "test_cases": [],
+        "difficulty": "hard",
+        "topic_tag": "email",
+        "explanation": "Create MIMEText message, connect to SMTP server with TLS, login, and send."
+    }
+]

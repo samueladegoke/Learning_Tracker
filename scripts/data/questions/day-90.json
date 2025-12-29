@@ -1,0 +1,154 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What is TTS?",
+        "options": [
+            "Time To Start",
+            "Text To Speech",
+            "Test To Ship",
+            "Type To Save"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "tts",
+        "explanation": "TTS (Text To Speech) converts written text into spoken audio."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What format does pyttsx3 output by default?",
+        "options": [
+            "MP3 file",
+            "WAV file",
+            "Direct audio output",
+            "FLAC file"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "tts",
+        "explanation": "pyttsx3 outputs directly to speakers by default; use save_to_file() to save audio."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which library extracts text from PDF files in Python?",
+        "options": [
+            "pdfextract",
+            "PyPDF2",
+            "pdf2text",
+            "pdflib"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "pdf",
+        "explanation": "PyPDF2 is a popular library for reading and extracting text from PDF files."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which library converts text to speech in Python?",
+        "options": [
+            "speech",
+            "pyttsx3",
+            "talker",
+            "voicepy"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "tts",
+        "explanation": "pyttsx3 is an offline text-to-speech library that works across platforms."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does pyttsx3 engine.runAndWait() do?",
+        "options": [
+            "Initializes engine",
+            "Blocks until speech finishes",
+            "Stops speaking",
+            "Saves audio"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "tts",
+        "explanation": "runAndWait() processes all queued say() calls and blocks until speech is complete."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What method reads a specific page from a PDF in PyPDF2?",
+        "options": [
+            "reader.pages[0]",
+            "reader.getPage(0)",
+            "reader.read_page(0)",
+            "Both A and B"
+        ],
+        "correct_index": 3,
+        "difficulty": "medium",
+        "topic_tag": "pdf",
+        "explanation": "Both reader.pages[0] (newer) and reader.getPage(0) (deprecated) access page objects."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you set the speech rate in pyttsx3?",
+        "options": [
+            "engine.rate = 150",
+            "engine.setProperty('rate', 150)",
+            "engine.speed(150)",
+            "engine.configure(rate=150)"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "tts",
+        "explanation": "engine.setProperty('rate', value) sets the speaking speed in words per minute."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the main challenge with scanned PDFs?",
+        "options": [
+            "File size",
+            "No text layer - needs OCR",
+            "Password protection",
+            "Encoding issues"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "pdf",
+        "explanation": "Scanned PDFs are images without text; they require OCR to extract readable text."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that extracts text from all pages of a PDF file.",
+        "starter_code": "from PyPDF2 import PdfReader\n\ndef extract_all_text(pdf_path):\n    # Return combined text from all pages\n    pass",
+        "solution_code": "from PyPDF2 import PdfReader\n\ndef extract_all_text(pdf_path):\n    reader = PdfReader(pdf_path)\n    text = ''\n    for page in reader.pages:\n        text += page.extract_text() or ''\n    return text",
+        "test_cases": [],
+        "difficulty": "medium",
+        "topic_tag": "pdf",
+        "explanation": "Loop through reader.pages and concatenate extract_text() from each page."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that speaks given text using pyttsx3.",
+        "starter_code": "import pyttsx3\n\ndef speak_text(text):\n    # Initialize engine and speak the text\n    pass",
+        "solution_code": "import pyttsx3\n\ndef speak_text(text):\n    engine = pyttsx3.init()\n    engine.say(text)\n    engine.runAndWait()",
+        "test_cases": [],
+        "difficulty": "easy",
+        "topic_tag": "tts",
+        "explanation": "Initialize the engine, queue text with say(), and execute with runAndWait()."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that counts the number of pages in a PDF.",
+        "starter_code": "from PyPDF2 import PdfReader\n\ndef count_pages(pdf_path):\n    # Return the number of pages\n    pass",
+        "solution_code": "from PyPDF2 import PdfReader\n\ndef count_pages(pdf_path):\n    reader = PdfReader(pdf_path)\n    return len(reader.pages)",
+        "test_cases": [],
+        "difficulty": "easy",
+        "topic_tag": "pdf",
+        "explanation": "The pages property is a list; len() returns the page count."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that sets the speech rate to a custom value.",
+        "starter_code": "import pyttsx3\n\ndef set_speech_rate(engine, rate):\n    # Set the speaking rate\n    pass",
+        "solution_code": "import pyttsx3\n\ndef set_speech_rate(engine, rate):\n    engine.setProperty('rate', rate)",
+        "test_cases": [],
+        "difficulty": "easy",
+        "topic_tag": "tts",
+        "explanation": "Use setProperty('rate', value) to adjust words per minute."
+    }
+]

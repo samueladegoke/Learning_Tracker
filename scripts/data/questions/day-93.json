@@ -1,0 +1,154 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What is GUI automation?",
+        "options": [
+            "Creating GUIs",
+            "Programmatically controlling mouse and keyboard",
+            "Web scraping",
+            "Database management"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "automation",
+        "explanation": "GUI automation simulates user input (mouse, keyboard) to control applications."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What safety feature can disable PyAutoGUI in emergencies?",
+        "options": [
+            "pyautogui.FAILSAFE",
+            "pyautogui.PAUSE",
+            "pyautogui.STOP",
+            "pyautogui.EXIT"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "pyautogui",
+        "explanation": "Moving mouse to corner (0,0) with FAILSAFE=True raises an exception to stop automation."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What library is used for GUI automation in Python?",
+        "options": [
+            "selenium",
+            "pyautogui",
+            "tkinter",
+            "pygame"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "automation",
+        "explanation": "PyAutoGUI provides functions for controlling mouse and keyboard programmatically."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What function takes a screenshot in PyAutoGUI?",
+        "options": [
+            "capture()",
+            "grab()",
+            "screenshot()",
+            "snap()"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "pyautogui",
+        "explanation": "pyautogui.screenshot() captures the entire screen as a PIL Image."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you simulate pressing the spacebar in PyAutoGUI?",
+        "options": [
+            "pyautogui.key('space')",
+            "pyautogui.press('space')",
+            "pyautogui.type('space')",
+            "pyautogui.spacebar()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "pyautogui",
+        "explanation": "pyautogui.press('space') simulates pressing and releasing the spacebar."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What method gets the color of a pixel at a specific coordinate?",
+        "options": [
+            "getpixel()",
+            "color_at()",
+            "pixel()",
+            "get_color()"
+        ],
+        "correct_index": 0,
+        "difficulty": "medium",
+        "topic_tag": "image-processing",
+        "explanation": "image.getpixel((x, y)) returns the RGB tuple at the specified coordinates."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What parameter limits the screenshot to a specific region?",
+        "options": [
+            "area",
+            "region",
+            "bounds",
+            "rect"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "pyautogui",
+        "explanation": "screenshot(region=(x, y, width, height)) captures only a specific screen area."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why is the Dino game a good automation target for beginners?",
+        "options": [
+            "Complex physics",
+            "Simple obstacle detection",
+            "Requires login",
+            "3D graphics"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "automation",
+        "explanation": "The game has simple visuals where obstacles can be detected by checking pixel colors."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that checks if a pixel at (x, y) is dark (any RGB value < 100).",
+        "starter_code": "def is_dark_pixel(image, x, y):\n    # Return True if pixel is dark\n    pass",
+        "solution_code": "def is_dark_pixel(image, x, y):\n    pixel = image.getpixel((x, y))\n    return any(v < 100 for v in pixel[:3])",
+        "test_cases": [],
+        "difficulty": "medium",
+        "topic_tag": "image-processing",
+        "explanation": "Get the pixel RGB values and check if any component is below threshold."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that takes a screenshot of a specific region.",
+        "starter_code": "import pyautogui\n\ndef capture_region(x, y, width, height):\n    # Return screenshot of region\n    pass",
+        "solution_code": "import pyautogui\n\ndef capture_region(x, y, width, height):\n    return pyautogui.screenshot(region=(x, y, width, height))",
+        "test_cases": [],
+        "difficulty": "easy",
+        "topic_tag": "pyautogui",
+        "explanation": "Pass the region tuple to screenshot() to capture a specific area."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that scans a row of pixels for any dark pixel (obstacle detection).",
+        "starter_code": "def detect_obstacle(image, y, start_x, end_x, threshold=100):\n    # Return True if any dark pixel found in row\n    pass",
+        "solution_code": "def detect_obstacle(image, y, start_x, end_x, threshold=100):\n    for x in range(start_x, end_x):\n        pixel = image.getpixel((x, y))\n        if pixel[0] < threshold:\n            return True\n    return False",
+        "test_cases": [],
+        "difficulty": "medium",
+        "topic_tag": "automation",
+        "explanation": "Loop through x coordinates at the given y level and check brightness."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a simple game bot loop that jumps when an obstacle is detected.",
+        "starter_code": "import pyautogui\nimport time\n\ndef game_bot(detection_region, check_interval=0.01):\n    # Continuously check and jump if needed\n    pass",
+        "solution_code": "import pyautogui\nimport time\n\ndef game_bot(detection_region, check_interval=0.01):\n    while True:\n        img = pyautogui.screenshot(region=detection_region)\n        # Check for dark pixel (obstacle)\n        for x in range(img.width):\n            if img.getpixel((x, img.height // 2))[0] < 100:\n                pyautogui.press('space')\n                break\n        time.sleep(check_interval)",
+        "test_cases": [],
+        "difficulty": "hard",
+        "topic_tag": "automation",
+        "explanation": "Continuously capture, detect obstacles, and trigger jump when found."
+    }
+]

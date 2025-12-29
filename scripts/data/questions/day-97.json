@@ -1,0 +1,172 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What is Stripe commonly used for?",
+        "options": [
+            "Database storage",
+            "Payment processing",
+            "User authentication",
+            "Image hosting"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "ecommerce",
+        "explanation": "Stripe is a popular payment processing platform for online transactions."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is the checkout process in e-commerce?",
+        "options": [
+            "User login",
+            "Final steps to complete a purchase",
+            "Adding items to cart",
+            "Product search"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "ecommerce",
+        "explanation": "Checkout involves reviewing cart, entering payment/shipping info, and confirming the order."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is a shopping cart in e-commerce?",
+        "options": [
+            "Payment processor",
+            "Temporary storage for selected items",
+            "Shipping tracker",
+            "Product catalog"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "ecommerce",
+        "explanation": "A shopping cart stores items the user wants to purchase before checkout."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Where should cart data be stored in Flask?",
+        "options": [
+            "Database only",
+            "Session",
+            "Cookies only",
+            "URL parameters"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "explanation": "Flask sessions store user-specific data securely on the server side."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Why should you recalculate prices server-side at checkout?",
+        "options": [
+            "Faster loading",
+            "Prevent price tampering",
+            "Better UX",
+            "Reduce bandwidth"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "ecommerce",
+        "explanation": "Client-submitted prices can be manipulated; always verify prices from the database."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What makes session.modified = True do in Flask?",
+        "options": [
+            "Creates session",
+            "Marks session as changed for saving",
+            "Deletes session",
+            "Encrypts session"
+        ],
+        "correct_index": 1,
+        "difficulty": "hard",
+        "topic_tag": "flask",
+        "explanation": "When modifying mutable objects in session, set modified = True to ensure changes are saved."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What is CSRF protection?",
+        "options": [
+            "Encryption method",
+            "Defense against cross-site request forgery",
+            "Database backup",
+            "Image optimization"
+        ],
+        "correct_index": 1,
+        "difficulty": "medium",
+        "topic_tag": "security",
+        "explanation": "CSRF tokens prevent malicious sites from making unauthorized requests on behalf of users."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you remove an item from a list in Python session?",
+        "options": [
+            "delete()",
+            "remove() or pop()",
+            "clear()",
+            "unset()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "python",
+        "explanation": "list.remove(item) or list.pop(index) removes items from Python lists."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that adds a product ID to the cart stored in session.",
+        "starter_code": "def add_to_cart(session, product_id):\n    # Add product_id to cart list in session\n    pass",
+        "solution_code": "def add_to_cart(session, product_id):\n    if 'cart' not in session:\n        session['cart'] = []\n    session['cart'].append(product_id)\n    session.modified = True",
+        "test_cases": [],
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "explanation": "Initialize cart if needed, append product, and mark session as modified."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that calculates the total price of items in the cart.",
+        "starter_code": "def calculate_total(cart_items):\n    # cart_items is list of {'price': float}\n    # Return total price\n    pass",
+        "solution_code": "def calculate_total(cart_items):\n    return sum(item['price'] for item in cart_items)",
+        "test_cases": [
+            {
+                "input": "([{'price': 10}, {'price': 20}])",
+                "expected": "30"
+            },
+            {
+                "input": "([])",
+                "expected": "0"
+            },
+            {
+                "input": "([{'price': 9.99}])",
+                "expected": "9.99"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "ecommerce",
+        "explanation": "Use sum() with a generator expression to total all prices."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that removes a product from the cart by ID.",
+        "starter_code": "def remove_from_cart(session, product_id):\n    # Remove first occurrence of product_id from cart\n    pass",
+        "solution_code": "def remove_from_cart(session, product_id):\n    if 'cart' in session and product_id in session['cart']:\n        session['cart'].remove(product_id)\n        session.modified = True",
+        "test_cases": [],
+        "difficulty": "medium",
+        "topic_tag": "flask",
+        "explanation": "Check if cart exists and product is in it, then remove and mark modified."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that counts how many of each product are in the cart.",
+        "starter_code": "def count_cart_items(cart):\n    # Return dict of {product_id: count}\n    pass",
+        "solution_code": "def count_cart_items(cart):\n    from collections import Counter\n    return dict(Counter(cart))",
+        "test_cases": [
+            {
+                "input": "([1, 2, 1, 3, 1])",
+                "expected": "{1: 3, 2: 1, 3: 1}"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "python",
+        "explanation": "Use Counter from collections to count occurrences of each item."
+    }
+]

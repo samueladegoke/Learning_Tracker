@@ -1,0 +1,184 @@
+[
+    {
+        "question_type": "mcq",
+        "text": "What is the purpose of the disappearing text app?",
+        "options": [
+            "File management",
+            "Encourage continuous writing by deleting text if idle",
+            "Email client",
+            "Image editing"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "project-concept",
+        "explanation": "The app motivates users to keep writing by clearing text if they stop typing for too long."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What does setInterval() do in JavaScript?",
+        "options": [
+            "Executes once after delay",
+            "Repeats execution at fixed intervals",
+            "Stops execution",
+            "Creates variable"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "javascript",
+        "explanation": "setInterval() repeatedly calls a function at specified time intervals."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which JavaScript function executes code after a delay?",
+        "options": [
+            "setInterval()",
+            "setTimeout()",
+            "delay()",
+            "wait()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "javascript",
+        "explanation": "setTimeout() executes a function once after a specified delay in milliseconds."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How do you cancel a setTimeout before it fires?",
+        "options": [
+            "cancelTimeout()",
+            "clearTimeout()",
+            "stopTimeout()",
+            "removeTimeout()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "javascript",
+        "explanation": "clearTimeout(timerId) cancels a previously scheduled timeout."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What event fires every time a user types in an input?",
+        "options": [
+            "onchange",
+            "onkeypress",
+            "oninput",
+            "ontype"
+        ],
+        "correct_index": 2,
+        "difficulty": "medium",
+        "topic_tag": "javascript",
+        "explanation": "The 'input' event fires immediately on every input change, unlike 'change' which fires on blur."
+    },
+    {
+        "question_type": "mcq",
+        "text": "How many milliseconds are in 5 seconds?",
+        "options": [
+            "50",
+            "500",
+            "5000",
+            "50000"
+        ],
+        "correct_index": 2,
+        "difficulty": "easy",
+        "topic_tag": "javascript",
+        "explanation": "1 second = 1000 milliseconds, so 5 seconds = 5000 milliseconds."
+    },
+    {
+        "question_type": "mcq",
+        "text": "What property clears the content of a textarea?",
+        "options": [
+            "textarea.clear()",
+            "textarea.value = ''",
+            "textarea.text = ''",
+            "textarea.innerHTML = ''"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "javascript",
+        "explanation": "Setting textarea.value = '' clears the text content of a textarea element."
+    },
+    {
+        "question_type": "mcq",
+        "text": "Which Flask function renders a template file?",
+        "options": [
+            "flask.render()",
+            "render_template()",
+            "template.render()",
+            "flask.template()"
+        ],
+        "correct_index": 1,
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "render_template('file.html') renders a Jinja2 template from the templates folder."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write JavaScript that clears a textarea after 5 seconds of no typing.",
+        "starter_code": "let timer;\nconst textarea = document.querySelector('textarea');\n\ntextarea.addEventListener('input', () => {\n    // Reset and set timer\n});",
+        "solution_code": "let timer;\nconst textarea = document.querySelector('textarea');\n\ntextarea.addEventListener('input', () => {\n    clearTimeout(timer);\n    timer = setTimeout(() => {\n        textarea.value = '';\n    }, 5000);\n});",
+        "test_cases": [],
+        "difficulty": "medium",
+        "topic_tag": "javascript",
+        "explanation": "Clear existing timer on each input, then set a new 5-second timer to clear the textarea."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that returns the remaining seconds before timeout given start time and timeout duration.",
+        "starter_code": "def get_remaining_seconds(start_time, timeout_seconds, current_time):\n    # Return seconds remaining, minimum 0\n    pass",
+        "solution_code": "def get_remaining_seconds(start_time, timeout_seconds, current_time):\n    elapsed = current_time - start_time\n    remaining = timeout_seconds - elapsed\n    return max(0, remaining)",
+        "test_cases": [
+            {
+                "input": "(0, 5, 3)",
+                "expected": "2"
+            },
+            {
+                "input": "(0, 5, 5)",
+                "expected": "0"
+            },
+            {
+                "input": "(0, 5, 7)",
+                "expected": "0"
+            }
+        ],
+        "difficulty": "medium",
+        "topic_tag": "python",
+        "explanation": "Calculate elapsed time, subtract from timeout, and return max(0, remaining)."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a Flask route that returns a template with a countdown variable.",
+        "starter_code": "from flask import Flask, render_template\napp = Flask(__name__)\n\n# Create route that passes countdown=5 to template\n",
+        "solution_code": "from flask import Flask, render_template\napp = Flask(__name__)\n\n@app.route('/')\ndef home():\n    return render_template('index.html', countdown=5)",
+        "test_cases": [],
+        "difficulty": "easy",
+        "topic_tag": "flask",
+        "explanation": "Pass keyword arguments to render_template() to make variables available in the template."
+    },
+    {
+        "question_type": "coding",
+        "text": "Write a function that checks if text is empty or only whitespace.",
+        "starter_code": "def is_empty_text(text):\n    # Return True if text is empty or only whitespace\n    pass",
+        "solution_code": "def is_empty_text(text):\n    return not text or text.strip() == ''",
+        "test_cases": [
+            {
+                "input": "('')",
+                "expected": "True"
+            },
+            {
+                "input": "('   ')",
+                "expected": "True"
+            },
+            {
+                "input": "('hello')",
+                "expected": "False"
+            },
+            {
+                "input": "('  hi  ')",
+                "expected": "False"
+            }
+        ],
+        "difficulty": "easy",
+        "topic_tag": "python",
+        "explanation": "Use strip() to remove whitespace and check if result is empty."
+    }
+]
