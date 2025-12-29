@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
   LayoutDashboard,
@@ -6,10 +6,16 @@ import {
   Calendar,
   BookOpen,
   TrendingUp,
-  Swords
+  Swords,
+  LogOut,
+  User
 } from 'lucide-react'
+import { useAuth } from '../contexts/AuthContext'
 
 function Navbar() {
+  const { user, isAuthenticated, signOut } = useAuth()
+  const navigate = useNavigate()
+
   const navItems = [
     { to: '/', label: 'Dashboard', icon: LayoutDashboard },
     { to: '/planner', label: 'Planner', icon: Map },
@@ -18,6 +24,11 @@ function Navbar() {
     { to: '/progress', label: 'Progress', icon: TrendingUp },
     { to: '/practice', label: 'Practice', icon: Swords },
   ]
+
+  const handleSignOut = async () => {
+    await signOut()
+    navigate('/login')
+  }
 
   return (
     <nav className="sticky top-0 z-50 bg-surface-950/80 backdrop-blur-xl border-b border-surface-800/50">
@@ -68,6 +79,41 @@ function Navbar() {
               </NavLink>
             ))}
           </div>
+
+          {/* User Section */}
+          <div className="flex items-center gap-3">
+            {isAuthenticated ? (
+              <>
+                {/* User Email */}
+                <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-surface-800/50 rounded-lg border border-surface-700/30">
+                  <User className="w-4 h-4 text-surface-400" />
+                  <span className="text-sm text-surface-300 max-w-[150px] truncate">
+                    {user?.email?.split('@')[0]}
+                  </span>
+                </div>
+
+                {/* Logout Button */}
+                <motion.button
+                  onClick={handleSignOut}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center gap-2 px-3 py-2 text-surface-400 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors"
+                  title="Sign Out"
+                >
+                  <LogOut className="w-4 h-4" />
+                  <span className="hidden lg:inline text-sm font-medium">Logout</span>
+                </motion.button>
+              </>
+            ) : (
+              <NavLink
+                to="/login"
+                className="flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-500 text-white rounded-lg font-medium text-sm transition-colors"
+              >
+                <User className="w-4 h-4" />
+                <span>Sign In</span>
+              </NavLink>
+            )}
+          </div>
         </div>
       </div>
     </nav>
@@ -75,4 +121,5 @@ function Navbar() {
 }
 
 export default Navbar
+
 

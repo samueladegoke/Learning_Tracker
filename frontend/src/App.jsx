@@ -1,13 +1,16 @@
 import { Component } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { PythonProvider } from './contexts/PythonContext'
+import { AuthProvider } from './contexts/AuthContext'
 import Navbar from './components/Navbar'
+import ProtectedRoute from './components/ProtectedRoute'
 import Dashboard from './pages/Dashboard'
 import Planner from './pages/Planner'
 import Reflections from './pages/Reflections'
 import Progress from './pages/Progress'
 import Calendar from './pages/Calendar'
 import Practice from './pages/Practice'
+import Login from './pages/Login'
 
 /**
  * Error Boundary Component
@@ -50,11 +53,11 @@ class ErrorBoundary extends Component {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
               </svg>
             </div>
-            
+
             <h1 className="text-2xl font-bold text-surface-100 mb-2">
               Something went wrong
             </h1>
-            
+
             <p className="text-surface-400 mb-6">
               An unexpected error occurred. Don't worry - your progress is safe.
             </p>
@@ -97,24 +100,56 @@ function App() {
   return (
     <ErrorBoundary>
       <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-        <PythonProvider>
-          <div className="min-h-screen">
-            <Navbar />
-            <main className="container mx-auto px-4 py-8 max-w-7xl">
-              <Routes>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="/planner" element={<Planner />} />
-                <Route path="/reflections" element={<Reflections />} />
-                <Route path="/progress" element={<Progress />} />
-                <Route path="/calendar" element={<Calendar />} />
-                <Route path="/practice" element={<Practice />} />
-              </Routes>
-            </main>
-          </div>
-        </PythonProvider>
+        <AuthProvider>
+          <PythonProvider>
+            <Routes>
+              {/* Public route - Login page (no navbar) */}
+              <Route path="/login" element={<Login />} />
+
+              {/* Protected routes with navbar */}
+              <Route path="/*" element={
+                <div className="min-h-screen">
+                  <Navbar />
+                  <main className="container mx-auto px-4 py-8 max-w-7xl">
+                    <Routes>
+                      <Route path="/" element={
+                        <ProtectedRoute>
+                          <Dashboard />
+                        </ProtectedRoute>
+                      } />
+                      <Route path="/planner" element={
+                        <ProtectedRoute>
+                          <Planner />
+                        </ProtectedRoute>
+                      } />
+                      <Route path="/reflections" element={
+                        <ProtectedRoute>
+                          <Reflections />
+                        </ProtectedRoute>
+                      } />
+                      <Route path="/progress" element={
+                        <ProtectedRoute>
+                          <Progress />
+                        </ProtectedRoute>
+                      } />
+                      <Route path="/calendar" element={
+                        <ProtectedRoute>
+                          <Calendar />
+                        </ProtectedRoute>
+                      } />
+                      {/* Practice page is PUBLIC for demo purposes */}
+                      <Route path="/practice" element={<Practice />} />
+                    </Routes>
+                  </main>
+                </div>
+              } />
+            </Routes>
+          </PythonProvider>
+        </AuthProvider>
       </BrowserRouter>
     </ErrorBoundary>
   )
 }
 
 export default App
+
