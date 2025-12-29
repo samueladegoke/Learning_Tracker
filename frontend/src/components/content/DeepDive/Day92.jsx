@@ -1,5 +1,5 @@
 import CodeBlock from '../../CodeBlock'
-import { Target, Layers, CheckCircle2, GitBranch, MessageSquareQuote, Sparkles, AlertTriangle, Image, Palette } from 'lucide-react'
+import { Target, Layers, CheckCircle2, GitBranch, MessageSquareQuote, Sparkles, AlertTriangle, Globe, FileText } from 'lucide-react'
 
 export default function DeepDiveDay92() {
     return (
@@ -29,14 +29,14 @@ export default function DeepDiveDay92() {
                     </h2>
                     <div className="grid grid-cols-2 gap-4">
                         <div className="bg-surface-800/30 p-4 rounded-lg border border-surface-700 flex items-start gap-3">
-                            <Image className="w-5 h-5 text-green-400 mt-1 shrink-0" />
+                            <Globe className="w-5 h-5 text-green-400 mt-1 shrink-0" />
                             <div>
                                 <h4 className="font-semibold text-surface-100">Selenium</h4>
                                 <p className="text-sm text-surface-400">Browser automation for dynamic content.</p>
                             </div>
                         </div>
                         <div className="bg-surface-800/30 p-4 rounded-lg border border-surface-700 flex items-start gap-3">
-                            <Palette className="w-5 h-5 text-blue-400 mt-1 shrink-0" />
+                            <FileText className="w-5 h-5 text-blue-400 mt-1 shrink-0" />
                             <div>
                                 <h4 className="font-semibold text-surface-100">BeautifulSoup</h4>
                                 <p className="text-sm text-surface-400">HTML parsing and extraction.</p>
