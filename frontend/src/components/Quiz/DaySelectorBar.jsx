@@ -49,7 +49,7 @@ function DaySelectorBar({
 
     return (
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-4">
-            <div className="flex-1">
+            <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between mb-3 gap-2">
                     <h2 className="text-xs font-bold text-surface-500 uppercase tracking-widest">Chronicles of Code</h2>
                     <div className="flex items-center gap-2">
@@ -144,7 +144,7 @@ function DaySelectorBar({
                 </div>
                 {!showSearch && (
                     <TooltipProvider delayDuration={300}>
-                        <div className="flex gap-1.5 sm:gap-2 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-surface-700 snap-x snap-mandatory scroll-smooth -mx-2 px-2">
+                        <div className="flex gap-1.5 sm:gap-2 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-surface-700 snap-x snap-mandatory scroll-smooth">
                             {Object.entries(DAY_META).map(([key, meta]) => {
                                 const isCompleted = completedQuizzes.includes(meta.quizId)
                                 const isToday = key === todayKey
