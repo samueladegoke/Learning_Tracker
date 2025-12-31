@@ -117,8 +117,8 @@ def validate_question_schema(question: dict, index: int, filename: str):
     elif q_type == 'coding':
         if 'solution_code' not in question:
             raise ValueError(f"Coding question missing 'solution_code' in {filename} at index {index}")
-        # Validate test_cases is present and non-empty
-        if 'test_cases' not in question or not question['test_cases']:
+        # Validate test_cases is present (can be empty)
+        if 'test_cases' not in question:
             raise ValueError(f"Coding question missing 'test_cases' in {filename} at index {index}")
         if 'starter_code' not in question:
             print(f"  ⚠️ Warning: Coding question missing 'starter_code' in {filename} at index {index}")
