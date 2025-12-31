@@ -49,7 +49,7 @@ function DaySelectorBar({
 
     return (
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-4">
-            <div className="flex-1 overflow-hidden">
+            <div className="flex-1">
                 <div className="flex items-center justify-between mb-3 gap-2">
                     <h2 className="text-xs font-bold text-surface-500 uppercase tracking-widest">Chronicles of Code</h2>
                     <div className="flex items-center gap-2">
