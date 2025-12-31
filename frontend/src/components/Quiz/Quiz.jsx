@@ -171,6 +171,12 @@ function Quiz({
     }
 
     const finishQuiz = async () => {
+        const answeredCount = Object.keys(answers).length
+        if (answeredCount < questions.length) {
+            const confirm = window.confirm(`You have only answered ${answeredCount} out of ${questions.length} questions. Are you sure you want to submit?`)
+            if (!confirm) return
+        }
+
         if (isReviewMode) {
             const total = questions.length
             const correct = questions.filter(q => verifiedAnswers[q.id]?.is_correct).length

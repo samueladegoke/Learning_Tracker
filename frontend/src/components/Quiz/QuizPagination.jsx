@@ -72,13 +72,18 @@ function QuizPagination({
 
             <button
                 onClick={onNext}
-                disabled={!isAnswered && isMCQ}
-                className={`px-6 py-2.5 rounded-xl font-bold transition-all flex items-center gap-2 shadow-lg active:scale-95 ${isAnswered || !isMCQ
-                    ? 'bg-gradient-to-r from-primary-600 to-primary-500 text-white shadow-primary-900/40 hover:from-primary-500 hover:to-primary-400'
-                    : 'bg-surface-700 text-surface-500 cursor-not-allowed border border-white/5 opacity-50'
+                className={`px-6 py-2.5 rounded-xl font-bold transition-all flex items-center gap-2 shadow-lg active:scale-95 ${currentQ === questions.length - 1
+                        ? (Object.keys(answers).length === questions.length)
+                            ? 'bg-gradient-to-r from-primary-600 to-primary-500 text-white shadow-primary-900/40 hover:from-primary-500 hover:to-primary-400'
+                            : 'bg-surface-800 text-surface-400 border border-surface-700 hover:bg-surface-700'
+                        : 'bg-primary-600/10 text-primary-400 border border-primary-500/30 hover:bg-primary-600/20'
                     }`}
             >
-                {currentQ < questions.length - 1 ? <>Next <ArrowRight className="w-4 h-4" /></> : 'Submit Quiz'}
+                {currentQ < questions.length - 1 ? (
+                    <>Next <ArrowRight className="w-4 h-4" /></>
+                ) : (
+                    Object.keys(answers).length === questions.length ? 'Submit Quiz' : 'Finish Quiz (Skip Remaining)'
+                )}
             </button>
         </div>
     )

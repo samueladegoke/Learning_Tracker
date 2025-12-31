@@ -30,6 +30,7 @@ import { Progress } from '@/components/ui/progress'
 
 // Loading States
 import { DashboardLoadingSkeleton } from '../components/DashboardLoadingSkeleton'
+import OnboardingBanner from '../components/OnboardingBanner'
 
 // Animated Number Component
 function NumberTicker({ value, className = "" }) {
@@ -245,6 +246,13 @@ function Dashboard() {
       className="space-y-6 pb-12"
     >
       <CurrentSyncStatus />
+
+      {/* Onboarding for new users */}
+      {progress?.completion_percentage === 0 && (
+        <motion.div variants={itemVariants}>
+          <OnboardingBanner />
+        </motion.div>
+      )}
 
       <motion.div variants={itemVariants} whileHover={{ y: -5 }} className="relative z-20">
         <CharacterCard rpgState={rpgState} progress={progress} />
