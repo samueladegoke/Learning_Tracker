@@ -2,6 +2,7 @@ import { Component } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { PythonProvider } from './contexts/PythonContext'
 import { AuthProvider } from './contexts/AuthContext'
+import { CourseProvider } from './contexts/CourseContext'
 import Navbar from './components/Navbar'
 import ProtectedRoute from './components/ProtectedRoute'
 import Dashboard from './pages/Dashboard'
@@ -101,50 +102,52 @@ function App() {
     <ErrorBoundary>
       <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <AuthProvider>
-          <PythonProvider>
-            <Routes>
-              {/* Public route - Login page (no navbar) */}
-              <Route path="/login" element={<Login />} />
+          <CourseProvider>
+            <PythonProvider>
+              <Routes>
+                {/* Public route - Login page (no navbar) */}
+                <Route path="/login" element={<Login />} />
 
-              {/* Protected routes with navbar */}
-              <Route path="/*" element={
-                <div className="min-h-screen">
-                  <Navbar />
-                  <main className="container mx-auto px-4 py-8 max-w-7xl">
-                    <Routes>
-                      <Route path="/" element={
-                        <ProtectedRoute>
-                          <Dashboard />
-                        </ProtectedRoute>
-                      } />
-                      <Route path="/planner" element={
-                        <ProtectedRoute>
-                          <Planner />
-                        </ProtectedRoute>
-                      } />
-                      <Route path="/reflections" element={
-                        <ProtectedRoute>
-                          <Reflections />
-                        </ProtectedRoute>
-                      } />
-                      <Route path="/progress" element={
-                        <ProtectedRoute>
-                          <Progress />
-                        </ProtectedRoute>
-                      } />
-                      <Route path="/calendar" element={
-                        <ProtectedRoute>
-                          <Calendar />
-                        </ProtectedRoute>
-                      } />
-                      {/* Practice page is PUBLIC for demo purposes */}
-                      <Route path="/practice" element={<Practice />} />
-                    </Routes>
-                  </main>
-                </div>
-              } />
-            </Routes>
-          </PythonProvider>
+                {/* Protected routes with navbar */}
+                <Route path="/*" element={
+                  <div className="min-h-screen">
+                    <Navbar />
+                    <main className="container mx-auto px-4 py-8 max-w-7xl">
+                      <Routes>
+                        <Route path="/" element={
+                          <ProtectedRoute>
+                            <Dashboard />
+                          </ProtectedRoute>
+                        } />
+                        <Route path="/planner" element={
+                          <ProtectedRoute>
+                            <Planner />
+                          </ProtectedRoute>
+                        } />
+                        <Route path="/reflections" element={
+                          <ProtectedRoute>
+                            <Reflections />
+                          </ProtectedRoute>
+                        } />
+                        <Route path="/progress" element={
+                          <ProtectedRoute>
+                            <Progress />
+                          </ProtectedRoute>
+                        } />
+                        <Route path="/calendar" element={
+                          <ProtectedRoute>
+                            <Calendar />
+                          </ProtectedRoute>
+                        } />
+                        {/* Practice page is PUBLIC for demo purposes */}
+                        <Route path="/practice" element={<Practice />} />
+                      </Routes>
+                    </main>
+                  </div>
+                } />
+              </Routes>
+            </PythonProvider>
+          </CourseProvider>
         </AuthProvider>
       </BrowserRouter>
     </ErrorBoundary>

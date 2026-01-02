@@ -286,17 +286,17 @@ function CodeEditor({
           <button
             onClick={handleRun}
             disabled={!isReady || isRunning}
-            className="px-5 py-2 bg-surface-700 hover:bg-surface-600 disabled:opacity-50 disabled:cursor-not-allowed text-surface-200 text-xs font-bold uppercase tracking-wider rounded-lg transition-all flex items-center gap-2 shadow-lg shadow-black/20 active:scale-95"
+            className="px-5 py-2 min-h-[44px] min-w-[44px] bg-surface-700 hover:bg-surface-600 disabled:opacity-50 disabled:cursor-not-allowed text-surface-200 text-xs font-bold uppercase tracking-wider rounded-lg transition-all flex items-center gap-2 shadow-lg shadow-black/20 active:scale-95"
           >
-            <Play className="w-3.5 h-3.5 fill-current" /> Execute
+            <Play className="w-3.5 h-3.5 fill-current" /> Run Code
           </button>
           {testCases.length > 0 && (
             <button
               onClick={handleSubmit}
               disabled={!isReady || isRunning}
-              className="px-5 py-2 bg-primary-600 hover:bg-primary-500 disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-all flex items-center gap-2 shadow-lg shadow-primary-900/40 active:scale-95"
+              className="px-5 py-2 min-h-[44px] min-w-[44px] bg-primary-600 hover:bg-primary-500 disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-all flex items-center gap-2 shadow-lg shadow-primary-900/40 active:scale-95"
             >
-              <Send className="w-3.5 h-3.5" /> Deploy Code
+              <Send className="w-3.5 h-3.5" /> Submit Solution
             </button>
           )}
         </div>

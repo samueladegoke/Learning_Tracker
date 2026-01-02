@@ -1,8 +1,9 @@
 import { Sparkles, CheckCircle } from 'lucide-react'
+import { useCourse } from '../../contexts/CourseContext'
 
 export function DaySelector({ activeDay, setActiveDay, completedQuizzes, dayMeta }) {
-    // L2 Fix: Use env variable with fallback for deployment flexibility
-    const PROJECT_START_DATE = new Date(import.meta.env.VITE_PROJECT_START_DATE || '2025-11-20')
+    // Get startDate from CourseContext for consistent date handling
+    const { startDate } = useCourse()
 
     // Derive max available day from dayMeta keys
     const maxAvailableDay = Math.max(
@@ -12,7 +13,7 @@ export function DaySelector({ activeDay, setActiveDay, completedQuizzes, dayMeta
     // Calculate current day based on date (for Jump to Today)
     const getTodayKey = () => {
         const now = new Date()
-        const diffDays = Math.floor((now - PROJECT_START_DATE) / (1000 * 60 * 60 * 24))
+        const diffDays = Math.floor((now - startDate) / (1000 * 60 * 60 * 24))
         const day = Math.min(maxAvailableDay, Math.max(1, diffDays + 1))
         return `day-${day}`
     }

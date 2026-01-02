@@ -1,16 +1,21 @@
 import { DAY_META } from '@/data/dayMeta.js'
 
-// Project start date constant (outside hook to avoid recreation)
-const PROJECT_START_DATE = new Date('2025-11-20')
+// Default project start date (can be overridden via options)
+const DEFAULT_START_DATE = new Date('2025-11-20')
+const DEFAULT_TOTAL_DAYS = 100
 
 /**
  * Custom hook for accessing day metadata.
  * Provides computed properties and helper functions for day navigation.
  * 
  * @param {string} activeDay - The active day key (e.g., 'day-1')
+ * @param {Object} options - Configuration options
+ * @param {Date} options.startDate - Project start date (default: 2025-11-20)
+ * @param {number} options.totalDays - Total days in course (default: 100)
  * @returns {Object} Day metadata and navigation helpers
  */
-function useDayMeta(activeDay) {
+function useDayMeta(activeDay, options = {}) {
+    const { startDate = DEFAULT_START_DATE, totalDays = DEFAULT_TOTAL_DAYS } = options
     const currentDay = DAY_META[activeDay] || null
 
     /**
@@ -18,8 +23,8 @@ function useDayMeta(activeDay) {
      */
     const getTodayKey = () => {
         const now = new Date()
-        const diffDays = Math.floor((now - PROJECT_START_DATE) / (1000 * 60 * 60 * 24))
-        const day = Math.min(100, Math.max(1, diffDays + 1))
+        const diffDays = Math.floor((now - startDate) / (1000 * 60 * 60 * 24))
+        const day = Math.min(totalDays, Math.max(1, diffDays + 1))
         return `day-${day}`
     }
 

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Navigate, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useAuth } from '../contexts/AuthContext'
+import { useCourse } from '../contexts/CourseContext'
 import { Mail, Lock, ArrowRight, Loader2, Eye, EyeOff, Sparkles, AlertCircle, CheckCircle } from 'lucide-react'
 
 /**
@@ -10,6 +11,7 @@ import { Mail, Lock, ArrowRight, Loader2, Eye, EyeOff, Sparkles, AlertCircle, Ch
  */
 export default function Login() {
     const { signIn, signUp, isAuthenticated, loading: authLoading } = useAuth()
+    const { title } = useCourse()
     const location = useLocation()
 
     const [isSignUp, setIsSignUp] = useState(false)
@@ -131,7 +133,7 @@ export default function Login() {
                             transition={{ delay: 0.2 }}
                         >
                             <Sparkles className="w-4 h-4 text-primary-400" />
-                            <span className="text-sm font-medium text-primary-300">100 Days of Code</span>
+                            <span className="text-sm font-medium text-primary-300">{title}</span>
                         </motion.div>
 
                         <motion.h1

@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Trophy, Brain } from 'lucide-react'
 import { quizzesAPI, srsAPI } from '../api/client'
+import { useCourse } from '../contexts/CourseContext'
 
 // Shadcn UI Components
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
@@ -15,12 +16,14 @@ import DaySelectorBar from '../components/Quiz/DaySelectorBar'
 import Quiz from '../components/Quiz/Quiz'
 
 function Practice() {
+    // Get course config from context
+    const { startDate, totalDays } = useCourse()
+
     // Calculate today's day dynamically
-    const PROJECT_START_DATE = new Date('2025-11-20')
     const getTodayKey = () => {
         const now = new Date()
-        const diffDays = Math.floor((now - PROJECT_START_DATE) / (1000 * 60 * 60 * 24))
-        const day = Math.min(100, Math.max(1, diffDays + 1))
+        const diffDays = Math.floor((now - startDate) / (1000 * 60 * 60 * 24))
+        const day = Math.min(totalDays, Math.max(1, diffDays + 1))
         return `day-${day}`
     }
 

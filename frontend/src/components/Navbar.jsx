@@ -11,9 +11,11 @@ import {
   User
 } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
+import { useCourse } from '../contexts/CourseContext'
 
 function Navbar() {
   const { user, isAuthenticated, signOut } = useAuth()
+  const { title } = useCourse()
   const navigate = useNavigate()
 
   const navItems = [
@@ -45,7 +47,7 @@ function Navbar() {
             </motion.div>
             <div className="hidden sm:block">
               <h1 className="font-display font-bold text-lg text-surface-100 tracking-tight">Learning Tracker</h1>
-              <p className="text-xs text-surface-500 -mt-0.5 font-medium">100 Days of Code</p>
+              <p className="text-xs text-surface-500 -mt-0.5 font-medium">{title}</p>
             </div>
           </NavLink>
 
