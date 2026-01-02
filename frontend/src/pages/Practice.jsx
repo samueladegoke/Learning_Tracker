@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Trophy, Brain } from 'lucide-react'
 import { quizzesAPI, srsAPI } from '../api/client'
 import { useCourse } from '../contexts/CourseContext'
+import { useAuth } from '../contexts/AuthContext'
 
 // Shadcn UI Components
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
@@ -18,6 +19,8 @@ import Quiz from '../components/Quiz/Quiz'
 function Practice() {
     // Get course config from context
     const { startDate, totalDays } = useCourse()
+    // Get auth state to guard user-specific API calls
+    const { isAuthenticated } = useAuth()
 
     // Calculate today's day dynamically
     const getTodayKey = () => {
@@ -50,11 +53,14 @@ function Practice() {
 
     const currentDay = DAY_META[activeDay]
 
+    // Only fetch completed quizzes if authenticated (prevents 401 for guests)
     useEffect(() => {
-        quizzesAPI.getCompleted()
-            .then(setCompletedQuizzes)
-            .catch(err => console.error('Failed to load completed quizzes:', err))
-    }, [])
+        if (isAuthenticated) {
+            quizzesAPI.getCompleted()
+                .then(setCompletedQuizzes)
+                .catch(err => console.error('Failed to load completed quizzes:', err))
+        }
+    }, [isAuthenticated])
 
     useEffect(() => {
         let active = true
@@ -62,11 +68,21 @@ function Practice() {
             setLoading(true)
             try {
                 if (isReviewMode) {
+                    // SRS review requires authentication
+                    if (!isAuthenticated) {
+                        if (active) setQuizData({ questions: [], hasCoding: false })
+                        return
+                    }
                     const data = await srsAPI.getDailyReview()
                     if (active) setQuizData({ questions: data.questions || [], hasCoding: false })
                 } else {
                     const quizId = currentDay?.quizId
                     if (!quizId) return
+                    // Quiz questions require authentication
+                    if (!isAuthenticated) {
+                        if (active) setQuizData({ questions: [], hasCoding: false })
+                        return
+                    }
                     const questions = await quizzesAPI.getQuestions(quizId)
                     if (active) {
                         const hasCoding = questions.some(q => q.question_type === 'coding')
@@ -81,7 +97,7 @@ function Practice() {
         }
         loadDayData()
         return () => { active = false }
-    }, [activeDay, isReviewMode, currentDay?.quizId])
+    }, [activeDay, isReviewMode, currentDay?.quizId, isAuthenticated])
 
     return (
         <div className="space-y-8 pb-12 px-4 sm:px-6 lg:px-8">
