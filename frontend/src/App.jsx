@@ -4,7 +4,6 @@ import { PythonProvider } from './contexts/PythonContext'
 import { AuthProvider } from './contexts/AuthContext'
 import { CourseProvider } from './contexts/CourseContext'
 import Navbar from './components/Navbar'
-import ProtectedRoute from './components/ProtectedRoute'
 import Dashboard from './pages/Dashboard'
 import Planner from './pages/Planner'
 import Reflections from './pages/Reflections'
@@ -114,31 +113,11 @@ function App() {
                     <Navbar />
                     <main className="container mx-auto px-4 py-8 max-w-7xl">
                       <Routes>
-                        <Route path="/" element={
-                          <ProtectedRoute>
-                            <Dashboard />
-                          </ProtectedRoute>
-                        } />
-                        <Route path="/planner" element={
-                          <ProtectedRoute>
-                            <Planner />
-                          </ProtectedRoute>
-                        } />
-                        <Route path="/reflections" element={
-                          <ProtectedRoute>
-                            <Reflections />
-                          </ProtectedRoute>
-                        } />
-                        <Route path="/progress" element={
-                          <ProtectedRoute>
-                            <Progress />
-                          </ProtectedRoute>
-                        } />
-                        <Route path="/calendar" element={
-                          <ProtectedRoute>
-                            <Calendar />
-                          </ProtectedRoute>
-                        } />
+                        <Route path="/" element={<Dashboard />} />
+                        <Route path="/planner" element={<Planner />} />
+                        <Route path="/reflections" element={<Reflections />} />
+                        <Route path="/progress" element={<Progress />} />
+                        <Route path="/calendar" element={<Calendar />} />
                         {/* Practice page is PUBLIC for demo purposes */}
                         <Route path="/practice" element={<Practice />} />
                       </Routes>

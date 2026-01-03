@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Trophy, Brain } from 'lucide-react'
+import { Trophy, Brain, Lock } from 'lucide-react'
 import { quizzesAPI, srsAPI } from '../api/client'
 import { useCourse } from '../contexts/CourseContext'
 import { useAuth } from '../contexts/AuthContext'
@@ -18,7 +18,7 @@ import Quiz from '../components/Quiz/Quiz'
 
 function Practice() {
     // Get course config from context
-    const { startDate, totalDays } = useCourse()
+    const { startDate, totalDays, guestPrompts } = useCourse()
     // Get auth state to guard user-specific API calls
     const { isAuthenticated } = useAuth()
 
@@ -99,6 +99,85 @@ function Practice() {
         return () => { active = false }
     }, [activeDay, isReviewMode, currentDay?.quizId, isAuthenticated])
 
+
+
+    // Unified Guest prompt component for Practice page tabs
+    const GuestPracticePrompt = ({ type = 'practice' }) => {
+        const config = {
+            'deep-dive': {
+                icon: <Lock className="w-16 h-16 text-primary-400 mx-auto mb-6 opacity-70" />,
+                title: guestPrompts.practiceDeepDive,
+                desc: guestPrompts.practiceDeepDiveDesc,
+                cta: 'Sign In to View'
+            },
+            'practice': {
+                icon: <Lock className="w-16 h-16 text-primary-400 mx-auto mb-6 opacity-70" />,
+                title: guestPrompts.practiceQuiz,
+                desc: guestPrompts.practiceQuizDesc,
+                cta: 'Go to Sign In'
+            },
+            'challenges': {
+                icon: <Lock className="w-16 h-16 text-primary-400 mx-auto mb-6 opacity-70" />,
+                title: guestPrompts.practiceChallenge,
+                desc: guestPrompts.practiceChallengeDesc,
+                cta: 'Go to Sign In'
+            }
+        }[type] || {}
+
+        return (
+            <motion.div
+                role="region"
+                aria-label={`Sign in required for ${type} content`}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="card p-12 text-center max-w-2xl mx-auto bg-surface-900/60 border-white/5 backdrop-blur-sm shadow-2xl"
+            >
+                {config.icon}
+                <h2 className="text-3xl font-bold text-surface-100 mb-4 font-display">
+                    {config.title}
+                </h2>
+                <p className="text-surface-400 text-lg mb-10 max-w-md mx-auto leading-relaxed">
+                    {config.desc}
+                </p>
+                <Link
+                    to="/login"
+                    className="btn-primary px-10 py-4 text-xl inline-block shadow-lg shadow-primary-900/50 hover:scale-105 active:scale-95 transition-all"
+                >
+                    {config.cta}
+                </Link>
+            </motion.div>
+        )
+    }
+
+    // Handle Review Mode for guests - show full-page prompt
+    if (isReviewMode && !isAuthenticated) {
+        return (
+            <div className="space-y-8 pb-12 px-4 sm:px-6 lg:px-8">
+                <motion.div
+                    role="region"
+                    aria-label="Sign in required for memory training"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="card p-12 text-center max-w-2xl mx-auto bg-gradient-to-br from-primary-900/20 to-surface-900 border-primary-500/10"
+                >
+                    <Brain className="w-20 h-20 text-primary-400 mx-auto mb-6" />
+                    <h1 className="text-4xl font-bold text-surface-100 mb-4 font-display">
+                        {guestPrompts.practiceReview}
+                    </h1>
+                    <p className="text-surface-400 text-lg mb-8 max-w-md mx-auto">
+                        {guestPrompts.practiceReviewDesc}
+                    </p>
+                    <Link
+                        to="/login"
+                        className="px-8 py-4 bg-primary-600 hover:bg-primary-500 text-white rounded-xl font-bold text-lg transition-all shadow-xl shadow-primary-900/40 hover:scale-105 active:scale-95 inline-block"
+                    >
+                        Sign In to Start Training
+                    </Link>
+                </motion.div>
+            </div>
+        )
+    }
+
     return (
         <div className="space-y-8 pb-12 px-4 sm:px-6 lg:px-8">
             <header className="space-y-3">
@@ -168,28 +247,40 @@ function Practice() {
                         ) : (
                             <>
                                 <TabsContent value="deep-dive" className="mt-0">
-                                    <DeepDiveLoader activeDay={activeDay} />
+                                    {!isAuthenticated ? (
+                                        <GuestPracticePrompt type="deep-dive" />
+                                    ) : (
+                                        <DeepDiveLoader activeDay={activeDay} />
+                                    )}
                                 </TabsContent>
                                 <TabsContent value="practice" className="mt-0">
-                                    <Quiz
-                                        key={`${activeDay}-practice`}
-                                        quizId={currentDay.quizId}
-                                        activeDay={activeDay}
-                                        initialQuestions={quizData.questions.filter(q => q.question_type !== 'coding')}
-                                        setIsChallengeCleared={setIsChallengeCleared}
-                                        isReviewMode={isReviewMode}
-                                    />
+                                    {!isAuthenticated ? (
+                                        <GuestPracticePrompt type="practice" />
+                                    ) : (
+                                        <Quiz
+                                            key={`${activeDay}-practice`}
+                                            quizId={currentDay.quizId}
+                                            activeDay={activeDay}
+                                            initialQuestions={quizData.questions.filter(q => q.question_type !== 'coding')}
+                                            setIsChallengeCleared={setIsChallengeCleared}
+                                            isReviewMode={isReviewMode}
+                                        />
+                                    )}
                                 </TabsContent>
                                 <TabsContent value="challenges" className="mt-0">
-                                    <Quiz
-                                        key={`${activeDay}-challenges`}
-                                        quizId={currentDay.quizId}
-                                        activeDay={activeDay}
-                                        initialQuestions={quizData.questions.filter(q => q.question_type === 'coding')}
-                                        isChallengeTab={true}
-                                        setIsChallengeCleared={setIsChallengeCleared}
-                                        isReviewMode={isReviewMode}
-                                    />
+                                    {!isAuthenticated ? (
+                                        <GuestPracticePrompt type="challenges" />
+                                    ) : (
+                                        <Quiz
+                                            key={`${activeDay}-challenges`}
+                                            quizId={currentDay.quizId}
+                                            activeDay={activeDay}
+                                            initialQuestions={quizData.questions.filter(q => q.question_type === 'coding')}
+                                            isChallengeTab={true}
+                                            setIsChallengeCleared={setIsChallengeCleared}
+                                            isReviewMode={isReviewMode}
+                                        />
+                                    )}
                                 </TabsContent>
                             </>
                         )}

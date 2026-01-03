@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Trophy, Target, Flame, Calendar as CalendarIcon, AlertTriangle, Star, Zap, Crown, Skull, Award, CheckCircle2 } from 'lucide-react'
+import { useAuth } from '../contexts/AuthContext'
+import { useCourse } from '../contexts/CourseContext'
 import { progressAPI, badgesAPI, achievementsAPI, weeksAPI } from '../api/client'
 import Leaderboard from '../components/Leaderboard'
 import ProgressRing from '../components/ProgressRing'
@@ -8,6 +11,8 @@ import ProgressBar from '../components/ProgressBar'
 import BadgeCard from '../components/BadgeCard'
 
 function Progress() {
+  const { isAuthenticated } = useAuth()
+  const { guestPrompts } = useCourse()
   const [progress, setProgress] = useState(null)
   const [badges, setBadges] = useState([])
   const [achievements, setAchievements] = useState([])
@@ -36,8 +41,12 @@ function Progress() {
   }
 
   useEffect(() => {
-    fetchData()
-  }, [])
+    if (isAuthenticated) {
+      fetchData()
+    } else {
+      setLoading(false)
+    }
+  }, [isAuthenticated])
 
   if (loading) {
     return (
@@ -66,6 +75,30 @@ function Progress() {
   // Level progress is now calculated on the server
   const levelProgress = progress?.level_progress || 0
   const xpToNextLevel = progress?.xp_to_next_level || 100
+
+  if (!isAuthenticated) {
+    return (
+      <motion.div
+        role="region"
+        aria-label="Sign in required for progress tracking"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="card p-12 text-center max-w-2xl mx-auto bg-surface-900/40 border-white/5 mt-10"
+      >
+        <Trophy className="w-16 h-16 text-surface-600 mx-auto mb-6 opacity-50" />
+        <h2 className="text-3xl font-bold text-surface-100 mb-4 font-display">{guestPrompts.progressHeading}</h2>
+        <p className="text-surface-500 text-lg mb-8 max-w-md mx-auto">
+          {guestPrompts.progressDescription}
+        </p>
+        <Link
+          to="/login"
+          className="btn-primary px-8 py-3 text-lg inline-block"
+        >
+          {guestPrompts.guestCta}
+        </Link>
+      </motion.div>
+    )
+  }
 
   return (
     <div className="space-y-8">
@@ -238,9 +271,9 @@ function Progress() {
                       <div className="flex items-start gap-3">
                         {/* Icon */}
                         <div className={`p-2 rounded-lg ${rarity === 'epic' ? 'bg-purple-500/20 text-purple-400' :
-                            rarity === 'hard' ? 'bg-amber-500/20 text-amber-400' :
-                              rarity === 'normal' ? 'bg-primary-500/20 text-primary-400' :
-                                'bg-surface-600/50 text-surface-400'
+                          rarity === 'hard' ? 'bg-amber-500/20 text-amber-400' :
+                            rarity === 'normal' ? 'bg-primary-500/20 text-primary-400' :
+                              'bg-surface-600/50 text-surface-400'
                           }`}>
                           {getIcon()}
                         </div>
@@ -255,9 +288,9 @@ function Progress() {
                       {/* Footer */}
                       <div className="flex items-center justify-between mt-3 pt-2 border-t border-white/5">
                         <span className={`text-[10px] font-bold uppercase tracking-wider ${rarity === 'epic' ? 'text-purple-400' :
-                            rarity === 'hard' ? 'text-amber-400' :
-                              rarity === 'normal' ? 'text-primary-400' :
-                                'text-surface-500'
+                          rarity === 'hard' ? 'text-amber-400' :
+                            rarity === 'normal' ? 'text-primary-400' :
+                              'text-surface-500'
                           }`}>
                           {rarity}
                         </span>

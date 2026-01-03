@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react'
 import { AlertTriangle, BookX } from 'lucide-react'
 import { weeksAPI, tasksAPI } from '../api/client'
+import { useAuth } from '../contexts/AuthContext'
 import WeekAccordion from '../components/WeekAccordion'
 import ProgressBar from '../components/ProgressBar'
 
 function Planner() {
+  const { isAuthenticated } = useAuth()
+  const { guestPrompts } = useCourse()
   const [weeks, setWeeks] = useState([])
   const [weekTasks, setWeekTasks] = useState({})
   const [loading, setLoading] = useState(true)
@@ -33,8 +36,14 @@ function Planner() {
   }
 
   useEffect(() => {
-    fetchWeeks()
-  }, [])
+    if (isAuthenticated) {
+      fetchWeeks()
+    } else {
+      setLoading(false)
+    }
+  }, [isAuthenticated])
+
+  const canEdit = isAuthenticated
 
   const loadWeekTasks = async (weekId) => {
     if (weekTasks[weekId]) return // Already loaded
@@ -102,11 +111,15 @@ function Planner() {
   const overallProgress = totalTasks > 0 ? (completedTasks / totalTasks) * 100 : 0
 
   return (
-    <div className="space-y-8">
+    <div
+      role="region"
+      aria-label="Learning roadmap and course curriculum"
+      className="space-y-8"
+    >
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-surface-100 mb-2">Learning Roadmap</h1>
-        <p className="text-surface-500">Your focused 8-week bootcamp refresh to review Python fundamentals with intent.</p>
+        <h1 className="text-3xl font-bold text-surface-100 mb-2">{guestPrompts.plannerHeading}</h1>
+        <p className="text-surface-500">{guestPrompts.plannerDescription}</p>
       </div>
 
       {/* Overall Progress */}
@@ -132,7 +145,7 @@ function Planner() {
             <WeekAccordion
               week={week}
               tasks={weekTasks[week.id]}
-              onTaskToggle={handleTaskToggle}
+              onTaskToggle={canEdit ? handleTaskToggle : null}
               initialOpen={week.id === expandedWeek}
             />
           </div>

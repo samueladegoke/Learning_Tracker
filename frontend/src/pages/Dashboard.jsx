@@ -21,6 +21,8 @@ import QuestLog from '../components/QuestLog'
 import ShopModal from '../components/ShopModal'
 import DailyReviewWidget from '../components/DailyReviewWidget'
 import { soundManager } from '../utils/SoundManager'
+import { useAuth } from '../contexts/AuthContext'
+import { useCourse } from '../contexts/CourseContext'
 
 import CurrentSyncStatus from '../components/CurrentSyncStatus'
 
@@ -73,6 +75,8 @@ const itemVariants = {
 }
 
 function Dashboard() {
+  const { isAuthenticated } = useAuth()
+  const { guestPrompts } = useCourse()
   const [progress, setProgress] = useState(null)
   const [currentWeek, setCurrentWeek] = useState(null)
   const [rpgState, setRpgState] = useState(null)
@@ -154,8 +158,12 @@ function Dashboard() {
   }
 
   useEffect(() => {
-    fetchData()
-  }, [])
+    if (isAuthenticated) {
+      fetchData()
+    } else {
+      setLoading(false)
+    }
+  }, [isAuthenticated])
 
   const handleTaskToggle = async (taskId, complete) => {
     // Deep clone to preserve original state on revert
@@ -233,15 +241,72 @@ function Dashboard() {
     ? (activeChallenge.progress / activeChallenge.goal) * 100
     : 0
 
-  const getBadgeName = (badgeId) => {
-    if (!badgeId) return null
-    const badge = badges.find(b => b.badge_id === badgeId)
-    return badge ? badge.name : badgeId
+
+  if (!isAuthenticated) {
+    return (
+      <motion.div
+        role="region"
+        aria-label="Guest welcome and sign-in prompt"
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
+        className="space-y-8 pb-12"
+      >
+        <div className="card p-12 text-center bg-gradient-to-br from-primary-900/10 to-surface-900 border-primary-500/10 relative overflow-hidden">
+          <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
+            <Compass className="w-64 h-64 text-primary-400" />
+          </div>
+          <motion.div variants={itemVariants} className="max-w-2xl mx-auto space-y-6 relative z-10">
+            <h1 className="text-4xl md:text-5xl font-bold text-surface-100 font-display">
+              {guestPrompts.dashboardHeading.split('Python').map((part, i, arr) =>
+                i < arr.length - 1 ? <span key={i}>{part}<span className="text-primary-400">Python</span></span> : part
+              )}
+            </h1>
+            <p className="text-xl text-surface-400 leading-relaxed">
+              {guestPrompts.dashboardSubheading}
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+              <Link
+                to="/login"
+                className="px-8 py-4 bg-primary-600 hover:bg-primary-500 text-white rounded-xl font-bold text-lg transition-all shadow-xl shadow-primary-900/40 hover:scale-105 active:scale-95 w-full sm:w-auto"
+              >
+                {guestPrompts.dashboardCta}
+              </Link>
+              <Link
+                to="/practice"
+                className="px-8 py-4 bg-surface-800 hover:bg-surface-700 text-surface-100 rounded-xl font-bold text-lg transition-all border border-white/5 w-full sm:w-auto"
+              >
+                Browse Curriculum
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          {[
+            { icon: Trophy, title: "Achievements", desc: "Unlock badges and earn XP as you complete daily goals." },
+            { icon: Swords, title: "Boss Battles", desc: "Test your skills with coding challenges and interval review." },
+            { icon: Scroll, title: "Chronicles", desc: "Write reflections and build a learning journal." }
+          ].map((feature, i) => (
+            <motion.div
+              key={i}
+              variants={itemVariants}
+              className="card p-6 bg-surface-900/40 border-white/5 hover:border-primary-500/20 transition-colors"
+            >
+              <feature.icon className="w-8 h-8 text-primary-400 mb-4" />
+              <h3 className="text-lg font-bold text-surface-100 mb-2">{feature.title}</h3>
+              <p className="text-sm text-surface-500 leading-relaxed">{feature.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+    )
   }
 
   return (
     <motion.div
       variants={containerVariants}
+      initial="hidden"
       animate="show"
       className="space-y-6 pb-12"
     >

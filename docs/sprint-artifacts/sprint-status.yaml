@@ -51,6 +51,7 @@ development_status:
   mvp-rpg-system: done          # XP, Levels, Shop, Boss Battles
   mvp-deployment: done          # Vercel auto-deploy from GitHub
   story-production-deployment: done # Production auth & schema migration
+  story-auth-guards-guest-views: done # Auth guards and guest landing views
 
 # =============================================================================
 # PHASE 2 (FUTURE) - Local-First Architecture Enhancement

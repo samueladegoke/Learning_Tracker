@@ -1,8 +1,14 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import { reflectionsAPI, weeksAPI } from '../api/client'
+import { useAuth } from '../contexts/AuthContext'
+import { useCourse } from '../contexts/CourseContext'
 import { AlertTriangle, PenTool } from 'lucide-react'
 
 function Reflections() {
+  const { isAuthenticated } = useAuth()
+  const { guestPrompts } = useCourse()
   const [reflections, setReflections] = useState([])
   const [weeks, setWeeks] = useState([])
   const [loading, setLoading] = useState(true)
@@ -42,8 +48,12 @@ function Reflections() {
   }
 
   useEffect(() => {
-    fetchData()
-  }, [])
+    if (isAuthenticated) {
+      fetchData()
+    } else {
+      setLoading(false)
+    }
+  }, [isAuthenticated])
 
   const handleWeekChange = (weekId) => {
     const week = weeks.find(w => w.id === parseInt(weekId))
@@ -100,6 +110,30 @@ function Reflections() {
           Try Again
         </button>
       </div>
+    )
+  }
+
+  if (!isAuthenticated) {
+    return (
+      <motion.div
+        role="region"
+        aria-label="Sign in required for reflections"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="card p-12 text-center max-w-2xl mx-auto bg-surface-900/40 border-white/5 mt-10"
+      >
+        <PenTool className="w-16 h-16 text-surface-600 mx-auto mb-6 opacity-50" />
+        <h2 className="text-3xl font-bold text-surface-100 mb-4 font-display">{guestPrompts.reflectionsHeading}</h2>
+        <p className="text-surface-500 text-lg mb-8 max-w-md mx-auto">
+          {guestPrompts.reflectionsDescription}
+        </p>
+        <Link
+          to="/login"
+          className="btn-primary px-8 py-3 text-lg inline-block"
+        >
+          {guestPrompts.guestCta}
+        </Link>
+      </motion.div>
     )
   }
 

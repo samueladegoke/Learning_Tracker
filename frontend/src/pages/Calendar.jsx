@@ -1,8 +1,14 @@
 import { useState, useEffect, useCallback } from 'react'
+import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import { AlertTriangle, Flame, Check, X, ArrowLeft, ArrowRight } from 'lucide-react'
 import { progressAPI, rpgAPI } from '../api/client'
+import { useAuth } from '../contexts/AuthContext'
+import { useCourse } from '../contexts/CourseContext'
 
 function Calendar() {
+  const { isAuthenticated } = useAuth()
+  const { guestPrompts } = useCourse()
   const [calendarData, setCalendarData] = useState(null)
   const [rpgState, setRpgState] = useState(null)
   const [currentMonth, setCurrentMonth] = useState(new Date())
@@ -26,8 +32,12 @@ function Calendar() {
   }, [])
 
   useEffect(() => {
-    fetchData()
-  }, [fetchData])
+    if (isAuthenticated) {
+      fetchData()
+    } else {
+      setLoading(false)
+    }
+  }, [fetchData, isAuthenticated])
 
 
   const getDaysInMonth = (date) => {
@@ -126,6 +136,30 @@ function Calendar() {
   const days = getDaysInMonth(currentMonth)
   const monthName = currentMonth.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
   const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+
+  if (!isAuthenticated) {
+    return (
+      <motion.div
+        role="region"
+        aria-label="Sign in required for activity calendar"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="card p-12 text-center max-w-2xl mx-auto bg-surface-900/40 border-white/5 mt-10"
+      >
+        <Flame className="w-16 h-16 text-surface-600 mx-auto mb-6 opacity-50" />
+        <h2 className="text-3xl font-bold text-surface-100 mb-4 font-display">{guestPrompts.calendarHeading}</h2>
+        <p className="text-surface-500 text-lg mb-8 max-w-md mx-auto">
+          {guestPrompts.calendarDescription}
+        </p>
+        <Link
+          to="/login"
+          className="btn-primary px-8 py-3 text-lg inline-block"
+        >
+          {guestPrompts.guestCta}
+        </Link>
+      </motion.div>
+    )
+  }
 
   return (
     <div className="space-y-6">
