@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { AlertTriangle, BookX } from 'lucide-react'
 import { weeksAPI, tasksAPI } from '../api/client'
 import { useAuth } from '../contexts/AuthContext'
+import { useCourse } from '../contexts/CourseContext'
 import WeekAccordion from '../components/WeekAccordion'
 import ProgressBar from '../components/ProgressBar'
 
