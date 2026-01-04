@@ -324,6 +324,33 @@ def submit_quiz(submission: QuizSubmission, user: User = Depends(get_current_use
             xp_gained += ach_xp
             user.xp += ach_xp
 
+    # --- Phase 2: Quiz → Task Completion Hook ---
+    # If user passes quiz (≥70%), mark the corresponding task as complete
+    # This unifies progress tracking without double-awarding XP
+    task_completed = False
+    task_id = None
+    passing_threshold = 0.7
+    
+    if total_questions > 0 and (score / total_questions) >= passing_threshold:
+        # Extract day number from quiz_id (e.g., "day-5" -> 5)
+        try:
+            day_num = int(submission.quiz_id.replace("day-", "").split("-")[0])
+            # Convert to task_id format: "w{week}-d{day_of_week}"
+            week = (day_num - 1) // 7 + 1
+            day_of_week = ((day_num - 1) % 7) + 1
+            task_id = f"w{week}-d{day_of_week}"
+            
+            # Import and call task completion internal function
+            from .tasks import _complete_task_internal
+            task_result = _complete_task_internal(db, user, task_id, skip_xp=True, commit=False)
+            
+            if not task_result.get("error") and not task_result.get("already_completed"):
+                task_completed = True
+        except (ValueError, AttributeError):
+            # If quiz_id doesn't match expected format, skip task completion
+            pass
+    # --- End Quiz → Task Completion Hook ---
+
     db.commit()
 
     return {
@@ -333,5 +360,7 @@ def submit_quiz(submission: QuizSubmission, user: User = Depends(get_current_use
         "total_questions": total_questions,
         "score_breakdown": f"{score}/{total_questions}",
         "percentage": round((score / total_questions) * 100, 1) if total_questions > 0 else 0,
-        "achievements_unlocked": achievements_unlocked
+        "achievements_unlocked": achievements_unlocked,
+        "task_completed": task_completed,
+        "task_id": task_id
     }

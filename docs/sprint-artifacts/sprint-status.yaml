@@ -1,4 +1,4 @@
-# generated: 2025-12-13
+# generated: 2026-01-04
 # project: 100 Days of Code
 # project_key: 100-days
 # tracking_system: file-system
@@ -13,87 +13,74 @@
 #
 # Story Status:
 #   - backlog: Story only exists in epic file
-#   - drafted: Story file created in stories folder
-#   - ready-for-dev: Draft approved and story context created
+#   - ready-for-dev: Story file created, ready for development
 #   - in-progress: Developer actively working on implementation
-#   - review: Ready for code review
+#   - review: Implementation complete, ready for review
 #   - done: Story completed
+#
+# Retrospective Status:
+#   - optional: Can be completed but not required
+#   - done: Retrospective has been completed
 
-generated: "2025-12-13"
+generated: "2026-01-04"
 project: "100 Days of Code"
 project_key: "100-days"
 tracking_system: "file-system"
 story_location: "docs/sprint-artifacts"
 
-# =============================================================================
-# MVP PHASE (COMPLETE) - Server-First Architecture
-# =============================================================================
-# The following represents what is CURRENTLY IMPLEMENTED and deployed to Vercel.
-# Production URL: https://learning-tracker-nu-tan.vercel.app
-# =============================================================================
-
 development_status:
-  # Content Ingestion (Workflow-based)
+  # MVP PHASE (COMPLETE)
+  # =============================================================================
   content-day-8: done
-
   content-day-9: done
   CONTENT-13-16: done
   CONTENT-41-45: done
   content-remediation: done
+  mvp-dashboard: done
+  mvp-planner: done
+  mvp-practice: done
+  mvp-calendar: done
+  mvp-progress: done
+  mvp-reflections: done
+  mvp-rpg-system: done
+  mvp-deployment: done
+  story-production-deployment: done
+  story-auth-guards-guest-views: done
 
-  # MVP Core Features (Implemented)
-  mvp-dashboard: done           # Dashboard with XP, Gold, Streak, Hearts, Boss
-  mvp-planner: done             # Learning Roadmap with task completion
-  mvp-practice: done            # Quiz + DeepDive content + Code Editor (Pyodide)
-  mvp-calendar: done            # Activity calendar heatmap
-  mvp-progress: done            # Progress tracking and stats
-  mvp-reflections: done         # Weekly reflections
-  mvp-rpg-system: done          # XP, Levels, Shop, Boss Battles
-  mvp-deployment: done          # Vercel auto-deploy from GitHub
-  story-production-deployment: done # Production auth & schema migration
-  story-auth-guards-guest-views: done # Auth guards and guest landing views
+  # PHASE 2 (IN-PROGRESS)
+  # =============================================================================
+  
+  # Epic 5: Progress Unification
+  epic-5: in-progress
+  5-1-automatic-task-completion-on-quiz-pass: ready-for-dev
+  5-2-progress-page-quiz-integration: ready-for-dev
+  epic-5-retrospective: optional
 
-# =============================================================================
-# PHASE 2 (FUTURE) - Local-First Architecture Enhancement
-# =============================================================================
-# These epics from the original architecture.md are DEFERRED to Phase 2.
-# They represent optional enhancements, not blockers for MVP functionality.
-# =============================================================================
+  # Epic 6: Flexible Planner & Calendar
+  epic-6: backlog
+  6-1-day-level-planner-breakdown: ready-for-dev
+  6-2-calendar-day-status-annotations: ready-for-dev
+  epic-6-retrospective: optional
 
+  # Epic 7: Output-Driven Completion (Proof of Work)
+  epic-7: backlog
+  7-1-artifact-submission-ui: ready-for-dev
+  7-2-backend-artifact-storage: ready-for-dev
+  7-3-portfolio-view: ready-for-dev
+  epic-7-retrospective: optional
+
+  # Epic 8: Course Builder Abstraction
+  epic-8: backlog
+  8-1-course-data-model: ready-for-dev
+  8-2-course-admin-crud-api: ready-for-dev
+  8-3-course-import-from-json-yaml: ready-for-dev
+  8-4-course-selector-ui: ready-for-dev
+  epic-8-retrospective: optional
+
+# DEFERRED ORIGINAL PHASE 2
+# =============================================================================
 phase_2_backlog:
-  # Epic 1: The Resilient Learning Core (Offline-First)
   epic-1-offline-first: deferred
-  1-1-local-persistence-layer: deferred    # localStorage caching
-  1-2-offline-content-access: deferred     # Service Worker / PWA
-  1-3-streak-and-xp-local-calc: deferred   # Client-side XP calculation
-  1-4-state-restoration: deferred          # Hydrate from localStorage
-
-  # Epic 2: The Browser Runtime (Pyodide Hardening)
   epic-2-pyodide-hardening: deferred
-  2-1-web-worker-infrastructure: deferred  # Move Pyodide to Web Worker
-  2-2-runtime-version-pinning: deferred    # runtime_config.json
-  2-3-output-capture-streaming: deferred   # Real-time stdout streaming
-  2-4-instant-syntax-feedback: deferred    # Static analysis before run
-
-  # Epic 3: Cloud Synchronization & Resilience
   epic-3-sync-engine: deferred
-  3-1-background-sync-loop: deferred       # Queue-based sync
-  3-2-last-write-wins-conflict: deferred   # LWW resolution
-
-  # Epic 4: Maintenance & Observability
   epic-4-maintenance: deferred
-  4-1-non-destructive-migrations: deferred # Already have Alembic
-  4-2-debug-panel: deferred                # Hidden dev tools
-
-# =============================================================================
-# NOTES
-# =============================================================================
-# 
-# Decision: 2025-12-13
-# The original architecture.md described an ambitious Local-First PWA architecture.
-# After review, we determined the current Server-First MVP meets all user needs
-# and is successfully deployed to production.
-#
-# Phase 2 epics are preserved for future enhancement but are not blockers.
-# The project_context.md and architecture.md have been updated to reflect this.
-# =============================================================================

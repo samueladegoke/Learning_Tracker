@@ -182,3 +182,21 @@ def get_optional_user(
         return get_current_user(credentials, db)
     except HTTPException:
         return None
+
+
+def require_admin(user: User = Depends(get_current_user)) -> User:
+    """
+    Dependency that requires the user to be an admin.
+    Use this to protect admin-only endpoints.
+    
+    Usage:
+        @router.post("/admin/courses")
+        def create_course(user: User = Depends(require_admin)):
+            ...
+    """
+    if not user.is_admin:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Admin access required"
+        )
+    return user

@@ -284,54 +284,41 @@ def _rollback_challenge_progress(db: Session, user_id: int) -> None:
             db.add(uc)
 
 
-@router.post("/{task_id}/complete", response_model=TaskCompletionResult)
-def complete_task(task_id: str, user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+def _complete_task_internal(
+    db: Session,
+    user: User,
+    task_id: str,
+    skip_xp: bool = False,
+    commit: bool = True
+) -> dict:
     """
-    Mark a task as completed. Awards XP, gold, badges, and achievements.
+    Internal task completion logic. Can be called from quiz flow with skip_xp=True.
     
-    NOTE: This function intentionally uses a single transaction for all gamification
-    updates (XP, badges, achievements, quests, challenges). This ensures atomicity -
-    if any step fails, all changes are rolled back. For educational apps with low
-    concurrency, this is the correct pattern over split transactions.
+    Args:
+        db: Database session
+        user: User completing the task
+        task_id: Task ID string (e.g., "w1-d1")
+        skip_xp: If True, skips XP/gold award (for quiz-triggered completion)
+        commit: If True, commits the transaction
+    
+    Returns:
+        Dict with completion result data
     """
-    # Find task by task_id string (e.g., "w1-d1")
     task = db.query(Task).filter(Task.task_id == task_id).first()
-
     if not task:
-        raise HTTPException(status_code=404, detail="Task not found")
+        return {"error": "Task not found", "task_id": task_id}
 
-    # Get or create UserTaskStatus
     status = db.query(UserTaskStatus).filter(
         UserTaskStatus.task_id == task.id,
         UserTaskStatus.user_id == user.id
     ).first()
 
     if status and status.completed:
-        # Already completed, just return current state with zero deltas
-        new_level = level_from_xp(user.xp) if user else 1
-        streak = user.streak if user else 0
-        focus_points = user.focus_points if user else 0
-        return TaskCompletionResult(
-            id=task.id,
-            task_id=task.task_id,
-            week_id=task.week_id,
-            day=task.day,
-            description=task.description,
-            type=task.type,
-            xp_reward=task.xp_reward,
-            badge_reward=task.badge_reward,
-            difficulty=task.difficulty,
-            category=task.category,
-            is_boss_task=task.is_boss_task,
-            completed=True,
-            completed_at=status.completed_at,
-            xp_gained=0,
-            gold_gained=0,
-            level_up=False,
-            new_level=new_level,
-            streak=streak,
-            focus_points=focus_points,
-        )
+        return {
+            "already_completed": True,
+            "task_id": task.task_id,
+            "completed_at": status.completed_at
+        }
 
     if not status:
         status = UserTaskStatus(
@@ -341,41 +328,42 @@ def complete_task(task_id: str, user: User = Depends(get_current_user), db: Sess
         )
         db.add(status)
 
-    # Mark as completed
     status.completed = True
     status.completed_at = datetime.utcnow()
 
     refresh_focus_points(user)
     update_streak(user)
 
-    difficulty_multiplier = DIFFICULTY_MULTIPLIER.get(task.difficulty or "normal", 1.0)
-    xp_gained = int(task.xp_reward * difficulty_multiplier)
-    gold_gained = xp_gained // 10
+    xp_gained = 0
+    gold_gained = 0
     xp_bonus_total = 0
     gold_bonus_total = 0
     badges_unlocked = []
     achievements_unlocked = []
-
     level_before = level_from_xp(user.xp)
-    user.xp += xp_gained
-    user.gold += gold_gained
+
+    if not skip_xp:
+        difficulty_multiplier = DIFFICULTY_MULTIPLIER.get(task.difficulty or "normal", 1.0)
+        xp_gained = int(task.xp_reward * difficulty_multiplier)
+        gold_gained = xp_gained // 10
+        user.xp += xp_gained
+        user.gold += gold_gained
+
     user.level = level_from_xp(user.xp)
     level_up = user.level > level_before
-
-    # Focus points nudge: regain 1 up to cap on completion
     user.focus_points = min(FOCUS_CAP, (user.focus_points or 0) + 1)
 
-    # Apply quest damage if an active quest exists
+    # Apply quest damage if not skipping XP
     quest = active_user_quest(db, user.id)
     boss_damage = xp_gained
     boss_hp_remaining = None
     boss_defeated = False
-    if quest:
+    if quest and not skip_xp:
         boss_hp_remaining, boss_defeated = apply_quest_damage(db, quest, boss_damage)
-    if boss_defeated and quest.quest and quest.quest.reward_xp_bonus:
-        user.xp += quest.quest.reward_xp_bonus
-        user.level = level_from_xp(user.xp)
-        level_up = user.level > level_before
+        if boss_defeated and quest.quest and quest.quest.reward_xp_bonus:
+            user.xp += quest.quest.reward_xp_bonus
+            user.level = level_from_xp(user.xp)
+            level_up = user.level > level_before
 
     # Advance challenges
     challenge_updates = apply_challenge_progress(db, user.id)
@@ -414,32 +402,16 @@ def complete_task(task_id: str, user: User = Depends(get_current_user), db: Sess
 
     # Task count achievements
     tasks_done = total_tasks_completed(db, user.id)
-    if tasks_done >= 1:
-        awarded, ach_xp, ach_gold = award_achievement(db, user.id, "a-first-task")
-        if awarded:
-            xp_bonus_total += ach_xp
-            gold_bonus_total += ach_gold
-            achievements_unlocked.append("a-first-task")
-    if tasks_done >= 10:
-        awarded, ach_xp, ach_gold = award_achievement(db, user.id, "a-ten-tasks")
-        if awarded:
-            xp_bonus_total += ach_xp
-            gold_bonus_total += ach_gold
-            achievements_unlocked.append("a-ten-tasks")
-    if tasks_done >= 50:
-        awarded, ach_xp, ach_gold = award_achievement(db, user.id, "a-fifty-tasks")
-        if awarded:
-            xp_bonus_total += ach_xp
-            gold_bonus_total += ach_gold
-            achievements_unlocked.append("a-fifty-tasks")
-    if tasks_done >= 100:
-        awarded, ach_xp, ach_gold = award_achievement(db, user.id, "a-hundred-tasks")
-        if awarded:
-            xp_bonus_total += ach_xp
-            gold_bonus_total += ach_gold
-            achievements_unlocked.append("a-hundred-tasks")
+    task_thresholds = [(1, "a-first-task"), (10, "a-ten-tasks"), (50, "a-fifty-tasks"), (100, "a-hundred-tasks")]
+    for threshold, ach_code in task_thresholds:
+        if tasks_done >= threshold:
+            awarded, ach_xp, ach_gold = award_achievement(db, user.id, ach_code)
+            if awarded:
+                xp_bonus_total += ach_xp
+                gold_bonus_total += ach_gold
+                achievements_unlocked.append(ach_code)
 
-    # Award quest badge and assign next quest
+    # Quest badge and next quest
     if boss_defeated and quest and quest.quest and quest.quest.reward_badge_id:
         awarded, bonus_xp, bonus_gold = award_badge(db, user.id, quest.quest.reward_badge_id)
         if awarded:
@@ -451,12 +423,10 @@ def complete_task(task_id: str, user: User = Depends(get_current_user), db: Sess
             xp_bonus_total += ach_xp
             gold_bonus_total += ach_gold
             achievements_unlocked.append("a-boss-first")
-
-        # Auto-assign next quest
         from ..utils.quest_manager import assign_next_quest
         assign_next_quest(db, user.id)
 
-    # Award challenge badges
+    # Challenge badges
     for update in challenge_updates:
         if update.get("progress") == update.get("goal"):
             uc = (
@@ -472,16 +442,82 @@ def complete_task(task_id: str, user: User = Depends(get_current_user), db: Sess
                     gold_bonus_total += bonus_gold
                     badges_unlocked.append(uc.challenge.reward_badge_id)
 
-    # Apply reward bonuses to user
-    user.xp += xp_bonus_total
-    user.gold += gold_bonus_total
-    user.level = level_from_xp(user.xp)
-    level_up = user.level > level_before or level_up
+    # Apply bonuses
+    if not skip_xp:
+        user.xp += xp_bonus_total
+        user.gold += gold_bonus_total
+        user.level = level_from_xp(user.xp)
+        level_up = user.level > level_before or level_up
 
-    db.commit()
-    db.refresh(status)
-    db.refresh(user)
+    if commit:
+        db.commit()
+        db.refresh(status)
+        db.refresh(user)
 
+    return {
+        "task": task,
+        "status": status,
+        "xp_gained": xp_gained,
+        "gold_gained": gold_gained,
+        "xp_bonus": xp_bonus_total,
+        "gold_bonus": gold_bonus_total,
+        "level_up": level_up,
+        "new_level": user.level,
+        "streak": user.streak,
+        "focus_points": user.focus_points,
+        "boss_damage": boss_damage if quest and not skip_xp else 0,
+        "boss_hp_remaining": boss_hp_remaining,
+        "challenge_updates": challenge_updates,
+        "badges_unlocked": badges_unlocked,
+        "achievements_unlocked": achievements_unlocked,
+    }
+
+@router.post("/{task_id}/complete", response_model=TaskCompletionResult)
+def complete_task(task_id: str, user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+    """
+    Mark a task as completed. Awards XP, gold, badges, and achievements.
+    
+    NOTE: This function intentionally uses a single transaction for all gamification
+    updates (XP, badges, achievements, quests, challenges). This ensures atomicity -
+    if any step fails, all changes are rolled back. For educational apps with low
+    concurrency, this is the correct pattern over split transactions.
+    """
+    result = _complete_task_internal(db, user, task_id, skip_xp=False, commit=True)
+    
+    if "error" in result:
+        raise HTTPException(status_code=404, detail=result["error"])
+    
+    if result.get("already_completed"):
+        task = db.query(Task).filter(Task.task_id == task_id).first()
+        status = db.query(UserTaskStatus).filter(
+            UserTaskStatus.task_id == task.id,
+            UserTaskStatus.user_id == user.id
+        ).first()
+        return TaskCompletionResult(
+            id=task.id,
+            task_id=task.task_id,
+            week_id=task.week_id,
+            day=task.day,
+            description=task.description,
+            type=task.type,
+            xp_reward=task.xp_reward,
+            badge_reward=task.badge_reward,
+            difficulty=task.difficulty,
+            category=task.category,
+            is_boss_task=task.is_boss_task,
+            completed=True,
+            completed_at=status.completed_at,
+            xp_gained=0,
+            gold_gained=0,
+            level_up=False,
+            new_level=level_from_xp(user.xp),
+            streak=user.streak,
+            focus_points=user.focus_points,
+        )
+    
+    task = result["task"]
+    status = result["status"]
+    
     return TaskCompletionResult(
         id=task.id,
         task_id=task.task_id,
@@ -496,19 +532,19 @@ def complete_task(task_id: str, user: User = Depends(get_current_user), db: Sess
         is_boss_task=task.is_boss_task,
         completed=status.completed,
         completed_at=status.completed_at,
-        xp_gained=xp_gained,
-        gold_gained=gold_gained,
-        xp_bonus=xp_bonus_total,
-        gold_bonus=gold_bonus_total,
-        level_up=level_up,
-        new_level=user.level,
-        streak=user.streak,
-        focus_points=user.focus_points,
-        boss_damage=boss_damage if quest else 0,
-        boss_hp_remaining=boss_hp_remaining,
-        challenge_updates=challenge_updates,
-        badges_unlocked=badges_unlocked,
-        achievements_unlocked=achievements_unlocked,
+        xp_gained=result["xp_gained"],
+        gold_gained=result["gold_gained"],
+        xp_bonus=result["xp_bonus"],
+        gold_bonus=result["gold_bonus"],
+        level_up=result["level_up"],
+        new_level=result["new_level"],
+        streak=result["streak"],
+        focus_points=result["focus_points"],
+        boss_damage=result["boss_damage"],
+        boss_hp_remaining=result["boss_hp_remaining"],
+        challenge_updates=result["challenge_updates"],
+        badges_unlocked=result["badges_unlocked"],
+        achievements_unlocked=result["achievements_unlocked"],
     )
 
 

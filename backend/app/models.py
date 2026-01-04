@@ -22,6 +22,9 @@ class User(Base):
     last_checkin_at = Column(DateTime, nullable=True)
     current_week = Column(Integer, default=1)
     created_at = Column(DateTime, default=datetime.utcnow)
+    # Phase 2: Admin and course selection
+    is_admin = Column(Boolean, default=False)
+    active_course_id = Column(Integer, ForeignKey("courses.id"), nullable=True)
 
     # Relationships
     task_statuses = relationship("UserTaskStatus", back_populates="user")
@@ -31,6 +34,7 @@ class User(Base):
     challenges = relationship("UserChallenge", back_populates="user")
     user_quests = relationship("UserQuest", back_populates="user")
     quiz_results = relationship("QuizResult", back_populates="user")
+    artifacts = relationship("UserArtifact", back_populates="user")
 
 
 class Week(Base):
@@ -289,3 +293,32 @@ class UserQuestionReview(Base):
     # Relationships
     question = relationship("Question", back_populates="reviews")
 
+
+class Course(Base):
+    """Course definition for multi-course support."""
+    __tablename__ = "courses"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String(200), unique=True, nullable=False)
+    description = Column(Text, nullable=True)
+    total_days = Column(Integer, default=100)
+    is_active = Column(Boolean, default=True)
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, nullable=True, onupdate=datetime.utcnow)
+
+
+class UserArtifact(Base):
+    """Proof of work artifacts submitted by users."""
+    __tablename__ = "user_artifacts"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
+    day = Column(Integer, nullable=False)
+    artifact_type = Column(String(20), nullable=False)  # 'image', 'url', 'reflection'
+    content = Column(Text, nullable=True)  # URL, reflection text, or filename
+    storage_path = Column(String(500), nullable=True)  # Supabase Storage path
+    xp_bonus = Column(Integer, default=10)
+    created_at = Column(DateTime, default=datetime.utcnow)
+
+    # Relationships
+    user = relationship("User", back_populates="artifacts")
