@@ -257,10 +257,8 @@ function Dashboard() {
             <Compass className="w-64 h-64 text-primary-400" />
           </div>
           <motion.div variants={itemVariants} className="max-w-2xl mx-auto space-y-6 relative z-10">
-            <h1 className="text-4xl md:text-5xl font-bold text-surface-100 font-display">
-              {guestPrompts.dashboardHeading.split('Python').map((part, i, arr) =>
-                i < arr.length - 1 ? <span key={i}>{part}<span className="text-primary-400">Python</span></span> : part
-              )}
+            <h1 className="text-4xl md:text-5xl font-bold text-surface-100 font-display leading-tight">
+              {guestPrompts.dashboardHeading}
             </h1>
             <p className="text-xl text-surface-400 leading-relaxed">
               {guestPrompts.dashboardSubheading}
@@ -268,7 +266,7 @@ function Dashboard() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
               <Link
                 to="/login"
-                className="px-8 py-4 bg-primary-600 hover:bg-primary-500 text-white rounded-xl font-bold text-lg transition-all shadow-xl shadow-primary-900/40 hover:scale-105 active:scale-95 w-full sm:w-auto"
+                className="px-8 py-4 bg-primary-600 hover:bg-primary-500 text-white rounded-xl font-bold text-lg transition-all shadow-xl shadow-primary-900/40 hover:scale-105 active:scale-95 w-full sm:w-auto text-center"
               >
                 {guestPrompts.dashboardCta}
               </Link>
