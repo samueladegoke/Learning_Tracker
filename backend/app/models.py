@@ -24,9 +24,7 @@ class User(Base):
     created_at = Column(DateTime, default=datetime.utcnow)
     # Phase 2: Admin and course selection
     is_admin = Column(Boolean, default=False)
-    # Note: ForeignKey removed until courses table exists in production
-    # TODO: Add ForeignKey("courses.id") after migration is applied to Supabase
-    active_course_id = Column(Integer, nullable=True)
+    active_course_id = Column(Integer, ForeignKey("courses.id"), nullable=True)
 
     # Relationships
     task_statuses = relationship("UserTaskStatus", back_populates="user")
