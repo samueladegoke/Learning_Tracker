@@ -21,6 +21,7 @@ build/
 # IDE
 .idea/
 .vscode/
+.opencode/
 *.swp
 *.swo
 *~
@@ -80,6 +81,7 @@ seed_data.json
 .windsurf/
 
 # Large/External Content
+*.tar.gz
 
 # Testing & Reports
 playwright-report/
