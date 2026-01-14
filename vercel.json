@@ -33,8 +33,12 @@
             "destination": "/api/index.py"
         },
         {
-            "source": "/((?!api|assets|frontend).*)",
-            "destination": "/frontend/index.html"
+            "source": "/assets/(.*)",
+            "destination": "/frontend/dist/assets/$1"
+        },
+        {
+            "source": "/(.*)",
+            "destination": "/frontend/dist/index.html"
         }
     ]
 }
