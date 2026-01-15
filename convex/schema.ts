@@ -18,6 +18,33 @@ export default defineSchema({
         last_heart_loss: v.optional(v.number()),
     }).index("by_clerk_id", ["clerk_user_id"]),
 
+    // Phase 5: Learning System (SRS & Quizzes)
+    questions: defineTable({
+        quiz_id: v.string(), // e.g., "day-1-practice"
+        question_type: v.string(), // "mcq", "coding", "code-correction"
+        text: v.string(),
+        code: v.optional(v.string()),
+        options: v.optional(v.string()), // JSON string
+        correct_index: v.optional(v.number()),
+        starter_code: v.optional(v.string()),
+        test_cases: v.optional(v.string()), // JSON string
+        solution_code: v.optional(v.string()),
+        explanation: v.optional(v.string()),
+        difficulty: v.string(), // "easy", "medium", "hard"
+        topic_tag: v.optional(v.string()),
+    }).index("by_quiz_id", ["quiz_id"]),
+
+    userQuestionReviews: defineTable({
+        user_id: v.id("users"),
+        question_id: v.id("questions"),
+        interval_index: v.number(), // 0=1d, 1=3d, 2=7d, 3=14d
+        due_date: v.number(), // timestamp
+        success_count: v.number(),
+        is_mastered: v.boolean(),
+        last_reviewed_at: v.optional(v.number()),
+    }).index("by_user_and_due", ["user_id", "due_date"])
+        .index("by_user_and_question", ["user_id", "question_id"]),
+
     // Phase 3: Gamification & Quests
     quests: defineTable({
         name: v.string(),
@@ -32,6 +59,18 @@ export default defineSchema({
         boss_hp_remaining: v.number(),
         started_at: v.number(),
         completed_at: v.optional(v.number()),
+    }).index("by_user", ["user_id"]),
+
+    questTasks: defineTable({
+        quest_id: v.id("quests"),
+        task_id: v.id("tasks"),
+    }).index("by_quest", ["quest_id"]),
+
+    userInventory: defineTable({
+        user_id: v.id("users"),
+        item_type: v.string(), // "streak_freeze", "cosmetic", etc.
+        item_key: v.string(),
+        quantity: v.number(),
     }).index("by_user", ["user_id"]),
 
     challenges: defineTable({

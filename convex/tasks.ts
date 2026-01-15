@@ -54,7 +54,7 @@ export const completeTask = mutation({
 
         // 5. XP & Streak
         const diffMult = DIFFICULTY_MULTIPLIER[task.difficulty || "normal"] || 1.0;
-        const xpGained = Math.floor((task.xp_reward || 10) * diffMult);
+        let xpGained = Math.floor((task.xp_reward || 10) * diffMult);
         const goldGained = Math.floor(xpGained / 10);
 
         // Streak logic
