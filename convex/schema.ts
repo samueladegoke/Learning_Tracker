@@ -41,6 +41,7 @@ export default defineSchema({
     xp: v.number(),
     level: v.number(),
     streak: v.number(),
+    best_streak: v.optional(v.number()),
     gold: v.number(),
     hearts: v.number(),
     focus_points: v.number(),
