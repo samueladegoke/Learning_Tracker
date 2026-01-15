@@ -47,11 +47,11 @@ Replace the FastAPI + SQLAlchemy + Supabase stack with Convex serverless functio
 - Removal of FastAPI backend and Supabase dependencies
 
 ### Definition of Done
-- [ ] `npm run dev` starts Convex dev server
-- [ ] All 32 curriculum weeks load via Convex
-- [ ] Task completion awards XP/gold/badges atomically
-- [ ] Quest damage applies correctly
-- [ ] SRS daily review returns correct due questions
+- [x] `npm run dev` starts Convex dev server
+- [x] All 32 curriculum weeks load via Convex
+- [x] Task completion awards XP/gold/badges atomically
+- [x] Quest damage applies correctly
+- [x] SRS daily review returns correct due questions
 - [ ] Real-time updates visible within 200ms on Dashboard
 - [ ] All existing Playwright E2E tests pass
 - [ ] Production deployed to Vercel with Convex
@@ -178,7 +178,7 @@ Phase 2 (Curriculum) → Phase 3 (Gamification)
 
 ---
 
-- [ ] 1.2. Setup Clerk Authentication
+- [x] 1.2. Setup Clerk Authentication
 
   **What to do**:
   - Create Clerk application at clerk.com
@@ -212,7 +212,7 @@ Phase 2 (Curriculum) → Phase 3 (Gamification)
 
 ---
 
-- [ ] 1.3. Integrate ConvexProviderWithClerk
+- [x] 1.3. Integrate ConvexProviderWithClerk
 
   **What to do**:
   - Wrap app with `ClerkProvider` and `ConvexProviderWithClerk`
@@ -587,7 +587,7 @@ Phase 2 (Curriculum) → Phase 3 (Gamification)
 
 ---
 
-- [ ] 4.2. Implement RPG State Query
+- [x] 4.2. Implement RPG State Query
 
   **What to do**:
   - Create `convex/rpg.ts:getRPGState` query
@@ -617,7 +617,7 @@ Phase 2 (Curriculum) → Phase 3 (Gamification)
 
 ---
 
-- [ ] 4.3. Implement Shop Mutations
+- [x] 4.3. Implement Shop Mutations
 
   **What to do**:
   - Create `convex/rpg.ts:buyItem` mutation
@@ -773,7 +773,7 @@ Phase 2 (Curriculum) → Phase 3 (Gamification)
 
 ---
 
-- [ ] 5.4. Update Frontend for SRS and Quizzes
+- [x] 5.4. Update Frontend for SRS and Quizzes
 
   **What to do**:
   - Replace srsAPI calls with Convex queries/mutations

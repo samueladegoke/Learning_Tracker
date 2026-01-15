@@ -2,6 +2,7 @@ import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 import { Doc } from "./_generated/dataModel";
 import { xpForNextLevel, levelFromXp, FOCUS_CAP } from "./gamification";
+import { isSameDay } from "./lib/utils";
 
 // ========== SHOP CONFIGURATION ==========
 export const SHOP_ITEMS: Record<string, { cost: number; description: string }> = {
@@ -9,17 +10,6 @@ export const SHOP_ITEMS: Record<string, { cost: number; description: string }> =
   potion_focus: { cost: 20, description: "Refills focus points to max" },
   heart_refill: { cost: 100, description: "Restores one heart" },
 };
-
-// ========== HELPER FUNCTIONS ==========
-function isSameDay(ts1: number, ts2: number): boolean {
-  const d1 = new Date(ts1);
-  const d2 = new Date(ts2);
-  return (
-    d1.getFullYear() === d2.getFullYear() &&
-    d1.getMonth() === d2.getMonth() &&
-    d1.getDate() === d2.getDate()
-  );
-}
 
 // ========== QUERIES ==========
 
