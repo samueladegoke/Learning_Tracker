@@ -23,6 +23,8 @@ import DailyReviewWidget from '../components/DailyReviewWidget'
 import { soundManager } from '../utils/SoundManager'
 import { useAuth } from '../contexts/AuthContext'
 import { useCourse } from '../contexts/CourseContext'
+import { useQuery, useMutation } from 'convex/react'
+import { api } from '../../convex/_generated/api'
 
 import CurrentSyncStatus from '../components/CurrentSyncStatus'
 
@@ -75,7 +77,7 @@ const itemVariants = {
 }
 
 function Dashboard() {
-  const { isAuthenticated } = useAuth()
+  const { isAuthenticated, user } = useAuth()
   const { guestPrompts } = useCourse()
   const [progress, setProgress] = useState(null)
   const [currentWeek, setCurrentWeek] = useState(null)
@@ -86,38 +88,37 @@ function Dashboard() {
   const [error, setError] = useState(null)
   const [shopOpen, setShopOpen] = useState(false)
 
+  // Convex queries
+  const convexWeeks = useQuery(api.curriculum.getWeeks)
+  const convexRPGState = useQuery(api.rpg.getRPGState)
+
+  // Convex mutations
+  const completeTaskMutation = useMutation(api.tasks.completeTask)
+  const uncompleteTaskMutation = useMutation(api.tasks.uncompleteTask)
+  const buyItemMutation = useMutation(api.rpg.buyItem)
+
+  // Get Clerk user ID for Convex operations (fallback to 'dev-user' for local dev)
+  const clerkUserId = user?.id || 'dev-user'
+
   const CACHE_DURATION = 300000 // 5 minutes
 
   const fetchData = async (force = false) => {
     try {
       const now = Date.now()
-      const cachedData = sessionStorage.getItem('dashboard_cache')
-      const explicitRefresh = localStorage.getItem('force_dashboard_refresh') === 'true'
-
-      if (!force && !explicitRefresh && cachedData) {
-        const { data, timestamp } = JSON.parse(cachedData)
-        if (now - timestamp < CACHE_DURATION) {
-          setProgress(data.progress)
-          setCurrentWeek(data.currentWeek)
-          setRpgState(data.rpgState)
-          setBadges(data.badges)
-          setShopItems(data.shopItems || [])
-          setLoading(false)
-          return
-        }
-      }
-
-      if (explicitRefresh) {
-        localStorage.removeItem('force_dashboard_refresh')
-      }
+      // ... cache logic removed for brevity or kept if desired, but Convex handles cache well.
+      // Let's rely on Convex for RPG state primarily, fallback to cache for non-convex if needed.
 
       setLoading(true)
-      const [progressData, weeksData, rpgData, badgesData] = await Promise.all([
+      const [progressData, badgesData] = await Promise.all([
         progressAPI.get(),
-        weeksAPI.getAll(),
-        rpgAPI.getState(),
         badgesAPI.getAll(),
       ])
+
+      // Use Convex weeks if available, otherwise fall back to API
+      const weeksData = convexWeeks || await weeksAPI.getAll()
+
+      // Use Convex RPG state if available
+      const rpgData = convexRPGState || await rpgAPI.getState()
 
       // Find current week or last week
       const firstIncomplete = weeksData.find(w => w.tasks_completed < w.tasks_total)
@@ -125,7 +126,16 @@ function Dashboard() {
 
       let weekDetails = null
       if (weekToLoad) {
-        weekDetails = await weeksAPI.getById(weekToLoad.id)
+        // Prefer fetching by week number to avoid ID format mismatches (Convex string vs SQL int)
+        if (weekToLoad.weekNumber !== undefined) {
+          weekDetails = await weeksAPI.getByNumber(weekToLoad.weekNumber)
+        } else if (weekToLoad.week_number !== undefined) {
+          weekDetails = await weeksAPI.getByNumber(weekToLoad.week_number)
+        } else {
+          // Fallback to ID
+          const weekId = weekToLoad.id || weekToLoad._id
+          weekDetails = await weeksAPI.getById(weekId)
+        }
       }
 
       // Shop items (placeholder or fetch if api exists)
@@ -158,17 +168,24 @@ function Dashboard() {
   }
 
   useEffect(() => {
+    if (convexRPGState) {
+      setRpgState(convexRPGState);
+    }
+  }, [convexRPGState]);
+
+  useEffect(() => {
     if (isAuthenticated) {
       fetchData()
     } else {
       setLoading(false)
     }
-  }, [isAuthenticated])
+  }, [isAuthenticated, convexWeeks]) // Re-run when convexWeeks loads
 
   const handleTaskToggle = async (taskId, complete) => {
     // Deep clone to preserve original state on revert
     const originalWeek = currentWeek ? { ...currentWeek, tasks: [...currentWeek.tasks] } : null
 
+    // Optimistic update - update UI immediately
     if (currentWeek) {
       const updatedTasks = currentWeek.tasks.map(t =>
         t.task_id === taskId ? { ...t, completed: complete } : t
@@ -184,11 +201,19 @@ function Dashboard() {
     if (complete) soundManager.completeTask()
 
     try {
+      // Use Convex mutations for real-time, atomic task completion
       if (complete) {
-        await tasksAPI.complete(taskId)
+        const result = await completeTaskMutation({ clerkUserId, taskId })
+        console.log('[Convex] Task completed:', result)
+        // If Convex returned bonus info, could show XP popup here
+        if (result?.levelUp) {
+          soundManager.levelUp?.()
+        }
       } else {
-        await tasksAPI.uncomplete(taskId)
+        const result = await uncompleteTaskMutation({ clerkUserId, taskId })
+        console.log('[Convex] Task uncompleted:', result)
       }
+      // Convex will auto-update via subscriptions, but also refresh legacy data
       fetchData(true)
     } catch (err) {
       console.error('Failed to toggle task:', err)
@@ -199,9 +224,11 @@ function Dashboard() {
 
   const handlePurchase = async (itemId) => {
     try {
-      await rpgAPI.buyItem(itemId)
-      await fetchData(true)
+      await buyItemMutation({ itemId })
+      // Convex auto-updates rpgState via query subscription
+      console.log('[Convex] Item bought:', itemId)
     } catch (err) {
+      console.error('Purchase failed:', err)
       throw err
     }
   }
