@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1,
+    "name": "100 Days of Code",
+    "description": "Complete Python Bootcamp by Dr. Angela Yu",
+    "total_days": 100,
+    "is_active": true,
+    "created_at": null,
+    "updated_at": null
+  }
+]

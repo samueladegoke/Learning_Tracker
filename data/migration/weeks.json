@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "week_number": 1,
+    "title": "Week 1 - Bootcamp Days 1-11",
+    "focus": "Review-heavy week (you may batch 23 bootcamp days per study session).",
+    "milestone": null,
+    "checkin_prompt": null,
+    "course_id": 1
+  },
+  {
+    "id": 2,
+    "week_number": 2,
+    "title": "Week 2 - Bootcamp Days 12-25",
+    "focus": "Review-heavy week (you may batch 23 bootcamp days per study session). OOP Coffee/Quiz days get slightly more focus.",
+    "milestone": null,
+    "checkin_prompt": null,
+    "course_id": 1
+  },
+  {
+    "id": 3,
+    "week_number": 3,
+    "title": "Week 3 - Bootcamp Days 26-35",
+    "focus": "Review-heavy but transitioning to more complex GUI + API work. Still 2 bootcamp days per study session.",
+    "milestone": null,
+    "checkin_prompt": null,
+    "course_id": 1
+  },
+  {
+    "id": 4,
+    "week_number": 4,
+    "title": "Week 4 - Bootcamp Days 36-45",
+    "focus": "Mixed week: regular pace (mostly 2 bootcamp days per study session). Focus on APIs, automation, and first larger data/HTML projects.",
+    "milestone": null,
+    "checkin_prompt": null,
+    "course_id": 1
+  },
+  {
+    "id": 5,
+    "week_number": 5,
+    "title": "Week 5 - Bootcamp Days 46-55",
+    "focus": "Mixed week: regular pace (~2 bootcamp days per study session). Focus on scraping + Selenium bots + Flask intro.",
+    "milestone": null,
+    "checkin_prompt": null,
+    "course_id": 1
+  },
+  {
+    "id": 6,
+    "week_number": 6,
+    "title": "Week 6 - Bootcamp Days 56-65",
+    "focus": "Heavy project week: advanced Flask/web; keep pace at ~2 bootcamp days per study session, no 3-day batches.",
+    "milestone": null,
+    "checkin_prompt": null,
+    "course_id": 1
+  },
+  {
+    "id": 7,
+    "week_number": 7,
+    "title": "Week 7 - Bootcamp Days 66-75",
+    "focus": "Heavy project week: REST APIs, auth, multi-user blogs, and data science intro. Still ~2 bootcamp days per session.",
+    "milestone": null,
+    "checkin_prompt": null,
+    "course_id": 1
+  },
+  {
+    "id": 8,
+    "week_number": 8,
+    "title": "Week 8 - Bootcamp Days 76-80",
+    "focus": "Capstone & portfolio week: 1 bootcamp day per session with extra time for polishing and reflection.",
+    "milestone": null,
+    "checkin_prompt": null,
+    "course_id": 1
+  }
+]

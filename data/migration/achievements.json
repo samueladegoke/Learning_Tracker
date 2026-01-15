@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "achievement_id": "a-first-task",
+    "name": "First Step Taken",
+    "description": "Complete your first task",
+    "xp_value": 10,
+    "difficulty": "trivial"
+  },
+  {
+    "id": 2,
+    "achievement_id": "a-ten-tasks",
+    "name": "Warming Up",
+    "description": "Complete 10 tasks",
+    "xp_value": 20,
+    "difficulty": "normal"
+  },
+  {
+    "id": 3,
+    "achievement_id": "a-fifty-tasks",
+    "name": "Task Grinder",
+    "description": "Complete 50 tasks",
+    "xp_value": 50,
+    "difficulty": "hard"
+  },
+  {
+    "id": 4,
+    "achievement_id": "a-hundred-tasks",
+    "name": "Century Club",
+    "description": "Complete 100 tasks",
+    "xp_value": 100,
+    "difficulty": "epic"
+  },
+  {
+    "id": 5,
+    "achievement_id": "a-boss-first",
+    "name": "First Boss Down",
+    "description": "Defeat any quest boss",
+    "xp_value": 30,
+    "difficulty": "hard"
+  },
+  {
+    "id": 6,
+    "achievement_id": "a-all-weeks",
+    "name": "Roadmap Master",
+    "description": "Complete all weeks in the roadmap",
+    "xp_value": 120,
+    "difficulty": "epic"
+  }
+]

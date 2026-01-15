@@ -195,10 +195,10 @@ async function runImport() {
                 const allSameTable = batchConvexTables.every(t => t === targetTable);
 
                 if (allSameTable) {
-                    const newIds = await client.mutation("import_internal:insertRows", {
+                    const newIds = await client.mutation("importData:insertRows", {
                         table: targetTable,
                         rows: batchConvexData
-                    });
+                    } as any);
 
                     for (let j = 0; j < newIds.length; j++) {
                         if (batchLegacyIds[j]) {
@@ -207,10 +207,10 @@ async function runImport() {
                     }
                 } else {
                     for (let j = 0; j < batchConvexData.length; j++) {
-                        const newId = await client.mutation("import_internal:insertRow", {
+                        const newId = await client.mutation("importData:insertRow", {
                             table: batchConvexTables[j],
                             data: batchConvexData[j]
-                        });
+                        } as any);
                         if (batchLegacyIds[j]) {
                             idMap[`${table}:${batchLegacyIds[j]}`] = newId;
                         }

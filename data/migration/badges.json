@@ -1,0 +1,200 @@
+[
+  {
+    "id": 1,
+    "badge_id": "b-week-1",
+    "name": "Week 1: Core Foundations",
+    "description": "Complete all tasks in Week 1 (Days 1-11)",
+    "xp_value": 20,
+    "difficulty": "normal",
+    "course_id": 1
+  },
+  {
+    "id": 2,
+    "badge_id": "b-week-2",
+    "name": "Week 2: OOP & Games",
+    "description": "Complete all tasks in Week 2 (Days 12-25)",
+    "xp_value": 20,
+    "difficulty": "normal",
+    "course_id": 1
+  },
+  {
+    "id": 3,
+    "badge_id": "b-week-3",
+    "name": "Week 3: GUI & Automation",
+    "description": "Complete all tasks in Week 3 (Days 26-35)",
+    "xp_value": 20,
+    "difficulty": "normal",
+    "course_id": 1
+  },
+  {
+    "id": 4,
+    "badge_id": "b-week-4",
+    "name": "Week 4: APIs & Web",
+    "description": "Complete all tasks in Week 4 (Days 36-45)",
+    "xp_value": 20,
+    "difficulty": "normal",
+    "course_id": 1
+  },
+  {
+    "id": 5,
+    "badge_id": "b-week-5",
+    "name": "Week 5: Automation Sprint",
+    "description": "Complete all tasks in Week 5 (Days 46-55)",
+    "xp_value": 20,
+    "difficulty": "normal",
+    "course_id": 1
+  },
+  {
+    "id": 6,
+    "badge_id": "b-week-6",
+    "name": "Week 6: Flask Builder",
+    "description": "Complete all tasks in Week 6 (Days 56-65)",
+    "xp_value": 20,
+    "difficulty": "normal",
+    "course_id": 1
+  },
+  {
+    "id": 7,
+    "badge_id": "b-week-7",
+    "name": "Week 7: Data & Viz",
+    "description": "Complete all tasks in Week 7 (Days 66-75)",
+    "xp_value": 20,
+    "difficulty": "normal",
+    "course_id": 1
+  },
+  {
+    "id": 8,
+    "badge_id": "b-week-8",
+    "name": "Week 8: Portfolio Push",
+    "description": "Complete all tasks in Week 8 (Days 76-80)",
+    "xp_value": 20,
+    "difficulty": "hard",
+    "course_id": 1
+  },
+  {
+    "id": 9,
+    "badge_id": "b-bootcamp-finish",
+    "name": "Bootcamp Finisher",
+    "description": "Finish the entire 80-day bootcamp",
+    "xp_value": 120,
+    "difficulty": "epic",
+    "course_id": 1
+  },
+  {
+    "id": 10,
+    "badge_id": "b-streak-3",
+    "name": "3-Day Streak",
+    "description": "Complete tasks 3 days in a row",
+    "xp_value": 5,
+    "difficulty": "trivial",
+    "course_id": 1
+  },
+  {
+    "id": 11,
+    "badge_id": "b-streak-7",
+    "name": "7-Day Streak",
+    "description": "Complete tasks 7 days in a row",
+    "xp_value": 12,
+    "difficulty": "normal",
+    "course_id": 1
+  },
+  {
+    "id": 12,
+    "badge_id": "b-streak-14",
+    "name": "14-Day Streak",
+    "description": "Complete tasks 14 days in a row",
+    "xp_value": 25,
+    "difficulty": "hard",
+    "course_id": 1
+  },
+  {
+    "id": 13,
+    "badge_id": "b-streak-30",
+    "name": "30-Day Streak",
+    "description": "Complete tasks 30 days in a row",
+    "xp_value": 60,
+    "difficulty": "epic",
+    "course_id": 1
+  },
+  {
+    "id": 14,
+    "badge_id": "b-quest-fundamentals",
+    "name": "Boss Slayer: Fundamentals",
+    "description": "Defeat the Fundamentals boss quest",
+    "xp_value": 40,
+    "difficulty": "hard",
+    "course_id": 1
+  },
+  {
+    "id": 15,
+    "badge_id": "b-challenge-7day",
+    "name": "7-Day Consistency",
+    "description": "Finish the 7-day consistency challenge",
+    "xp_value": 30,
+    "difficulty": "normal",
+    "course_id": 1
+  },
+  {
+    "id": 16,
+    "badge_id": "b-boss-syntax-serpent",
+    "name": "Syntax Serpent Slayer",
+    "description": "Defeated the Syntax Serpent - Python Foundations Master",
+    "xp_value": 50,
+    "difficulty": "hard",
+    "course_id": 1
+  },
+  {
+    "id": 17,
+    "badge_id": "b-boss-oop-titan",
+    "name": "OOP Titan Vanquisher",
+    "description": "Defeated the OOP Titan - Object-Oriented Champion",
+    "xp_value": 60,
+    "difficulty": "hard",
+    "course_id": 1
+  },
+  {
+    "id": 18,
+    "badge_id": "b-boss-gui-golem",
+    "name": "GUI Golem Crusher",
+    "description": "Defeated the GUI Golem - Interface Architect",
+    "xp_value": 70,
+    "difficulty": "hard",
+    "course_id": 1
+  },
+  {
+    "id": 19,
+    "badge_id": "b-boss-api-hydra",
+    "name": "API Hydra Hunter",
+    "description": "Defeated the API Hydra - Automation Master",
+    "xp_value": 80,
+    "difficulty": "epic",
+    "course_id": 1
+  },
+  {
+    "id": 20,
+    "badge_id": "b-boss-flask-dragon",
+    "name": "Flask Dragon Tamer",
+    "description": "Defeated the Flask Dragon - Full-Stack Hero",
+    "xp_value": 100,
+    "difficulty": "epic",
+    "course_id": 1
+  },
+  {
+    "id": 21,
+    "badge_id": "b-boss-data-leviathan",
+    "name": "Data Leviathan Conqueror",
+    "description": "Defeated the Data Leviathan - Data Wizard",
+    "xp_value": 120,
+    "difficulty": "epic",
+    "course_id": 1
+  },
+  {
+    "id": 22,
+    "badge_id": "b-boss-portfolio-phoenix",
+    "name": "Portfolio Phoenix Champion",
+    "description": "Defeated the Portfolio Phoenix - Bootcamp Champion",
+    "xp_value": 150,
+    "difficulty": "legendary",
+    "course_id": 1
+  }
+]
