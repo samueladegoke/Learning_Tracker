@@ -1,119 +1,205 @@
-import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
-import { levelFromXp, xpForNextLevel, FOCUS_CAP } from "./gamification";
+import { v } from "convex/values";
+import { Doc } from "./_generated/dataModel";
+import { xpForNextLevel, levelFromXp, FOCUS_CAP } from "./gamification";
 
-export const SHOP_ITEMS = {
-    "streak_freeze": { cost: 50, description: "Protects your streak for one day" },
-    "potion_focus": { cost: 20, description: "Refills focus points to max" },
-    "heart_refill": { cost: 100, description: "Restores one heart" },
+// ========== SHOP CONFIGURATION ==========
+export const SHOP_ITEMS: Record<string, { cost: number; description: string }> = {
+  streak_freeze: { cost: 50, description: "Protects your streak for one day" },
+  potion_focus: { cost: 20, description: "Refills focus points to max" },
+  heart_refill: { cost: 100, description: "Restores one heart" },
 };
 
+// ========== HELPER FUNCTIONS ==========
+function isSameDay(ts1: number, ts2: number): boolean {
+  const d1 = new Date(ts1);
+  const d2 = new Date(ts2);
+  return (
+    d1.getFullYear() === d2.getFullYear() &&
+    d1.getMonth() === d2.getMonth() &&
+    d1.getDate() === d2.getDate()
+  );
+}
+
+// ========== QUERIES ==========
+
+/**
+ * Get RPG State - consolidated gamification stats
+ */
 export const getRPGState = query({
-    args: {},
-    handler: async (ctx) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) return null;
+  args: { clerkUserId: v.string() },
+  handler: async (ctx, args) => {
+    const user = await ctx.db
+      .query("users")
+      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", args.clerkUserId))
+      .unique();
 
-        const user = await ctx.db
-            .query("users")
-            .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", identity.subject))
-            .unique();
+    if (!user) {
+      return {
+        xp: 0,
+        level: 1,
+        next_level_xp: xpForNextLevel(1),
+        gold: 0,
+        streak: 0,
+        focus_points: FOCUS_CAP,
+        focus_cap: FOCUS_CAP,
+        active_quest: null,
+        active_challenges: [],
+        hearts: 5,
+        streak_freeze_count: 0,
+      };
+    }
 
-        if (!user) return null;
+    // Refresh focus points if new day
+    const now = Date.now();
+    let focusPoints = user.focus_points;
+    if (!user.focus_refreshed_at || !isSameDay(user.focus_refreshed_at, now)) {
+      focusPoints = FOCUS_CAP;
+      await ctx.db.patch(user._id, {
+        focus_points: FOCUS_CAP,
+        focus_refreshed_at: now,
+      });
+    }
 
-        // Active Quest
-        const activeQuests = await ctx.db
-            .query("userQuests")
-            .withIndex("by_user", (q) => q.eq("user_id", user._id))
-            .filter((q) => q.eq(q.field("completed_at"), undefined))
-            .collect();
-        const activeUserQuest = activeQuests[0]; // Assume 1 active for now
+    // Get active quest
+    const activeUserQuest = await ctx.db
+      .query("userQuests")
+      .withIndex("by_user", (q) => q.eq("user_id", user._id))
+      .filter((q) => q.eq(q.field("completed_at"), undefined))
+      .first();
 
-        let questPayload = null;
-        if (activeUserQuest) {
-            const quest = await ctx.db.get(activeUserQuest.quest_id);
-            if (quest) {
-                questPayload = {
-                    id: quest._id, // Internal ID
-                    name: quest.name,
-                    boss_hp: quest.boss_hp,
-                    boss_hp_remaining: activeUserQuest.boss_hp_remaining,
-                    reward_badge_id: quest.reward_badge_id,
-                };
-            }
-        }
-
-        // Active Challenges
-        const activeUserChallenges = await ctx.db
-            .query("userChallenges")
-            .withIndex("by_user", (q) => q.eq("user_id", user._id))
-            .filter((q) => q.eq(q.field("completed_at"), undefined))
-            .collect();
-
-        const challengesPayload = [];
-        for (const uc of activeUserChallenges) {
-            const chal = await ctx.db.get(uc.challenge_id);
-            if (chal) {
-                challengesPayload.push({
-                    id: chal._id,
-                    name: chal.name,
-                    progress: uc.progress,
-                    goal: chal.goal_count,
-                    ends_at: chal.ends_at,
-                });
-            }
-        }
-
-        return {
-            xp: user.xp,
-            level: levelFromXp(user.xp),
-            next_level_xp: xpForNextLevel(levelFromXp(user.xp)), // Calculate next req
-            gold: user.gold,
-            streak: user.streak,
-            focus_points: user.focus_points,
-            focus_cap: FOCUS_CAP,
-            active_quest: questPayload,
-            active_challenges: challengesPayload,
-            hearts: user.hearts,
-            streak_freeze_count: user.streak_freeze_count,
+    let questPayload = null;
+    if (activeUserQuest) {
+      const quest = await ctx.db.get(activeUserQuest.quest_id);
+      if (quest) {
+        questPayload = {
+          id: quest._id,
+          name: quest.name,
+          boss_hp: quest.boss_hp,
+          boss_hp_remaining: activeUserQuest.boss_hp_remaining,
+          reward_badge_id: quest.reward_badge_id,
         };
-    },
+      }
+    }
+
+    // Get active challenges
+    const activeUserChallenges = await ctx.db
+      .query("userChallenges")
+      .withIndex("by_user", (q) => q.eq("user_id", user._id))
+      .filter((q) => q.eq(q.field("completed_at"), undefined))
+      .collect();
+
+    const challengesPayload = await Promise.all(
+      activeUserChallenges.map(async (uc) => {
+        const challenge = await ctx.db.get(uc.challenge_id);
+        if (!challenge) return null;
+        return {
+          id: challenge._id,
+          name: challenge.name,
+          progress: uc.progress,
+          goal: challenge.goal_count,
+          ends_at: challenge.ends_at,
+        };
+      })
+    );
+
+    return {
+      xp: user.xp,
+      level: levelFromXp(user.xp),
+      next_level_xp: xpForNextLevel(levelFromXp(user.xp)),
+      gold: user.gold,
+      streak: user.streak,
+      focus_points: focusPoints,
+      focus_cap: FOCUS_CAP,
+      active_quest: questPayload,
+      active_challenges: challengesPayload.filter(Boolean),
+      hearts: user.hearts,
+      streak_freeze_count: user.streak_freeze_count,
+    };
+  },
 });
 
+/**
+ * Get shop items
+ */
+export const getShopItems = query({
+  args: {},
+  handler: async () => {
+    return Object.entries(SHOP_ITEMS).map(([key, item]) => ({
+      item_id: key,
+      cost: item.cost,
+      description: item.description,
+    }));
+  },
+});
+
+// ========== MUTATIONS ==========
+
+/**
+ * Buy item from shop
+ */
 export const buyItem = mutation({
-    args: { itemId: v.string() },
-    handler: async (ctx, args) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthenticated");
+  args: {
+    clerkUserId: v.string(),
+    itemId: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const user = await ctx.db
+      .query("users")
+      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", args.clerkUserId))
+      .unique();
+    if (!user) throw new Error("User not found");
 
-        const user = await ctx.db
-            .query("users")
-            .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", identity.subject))
-            .unique();
+    const item = SHOP_ITEMS[args.itemId];
+    if (!item) throw new Error("Item not found");
 
-        if (!user) throw new Error("User not found");
+    if (user.gold < item.cost) {
+      throw new Error("Not enough gold");
+    }
 
-        const item = SHOP_ITEMS[args.itemId as keyof typeof SHOP_ITEMS];
-        if (!item) throw new Error("Item not found");
+    const updates: Partial<Doc<"users">> = { gold: user.gold - item.cost };
 
-        if ((user.gold || 0) < item.cost) {
-            throw new Error("Not enough gold");
-        }
+    if (args.itemId === "streak_freeze") {
+      updates.streak_freeze_count = (user.streak_freeze_count || 0) + 1;
+    } else if (args.itemId === "potion_focus") {
+      updates.focus_points = FOCUS_CAP;
+      updates.focus_refreshed_at = Date.now();
+    } else if (args.itemId === "heart_refill") {
+      if (user.hearts >= 5) throw new Error("Hearts already full");
+      updates.hearts = (user.hearts || 0) + 1;
+    }
 
-        const updates: any = { gold: (user.gold || 0) - item.cost };
+    await ctx.db.patch(user._id, updates);
 
-        if (args.itemId === "streak_freeze") {
-            updates.streak_freeze_count = (user.streak_freeze_count || 0) + 1;
-        } else if (args.itemId === "potion_focus") {
-            updates.focus_points = FOCUS_CAP;
-            updates.focus_refreshed_at = Date.now();
-        } else if (args.itemId === "heart_refill") {
-            if ((user.hearts || 0) >= 3) throw new Error("Hearts already full");
-            updates.hearts = (user.hearts || 0) + 1;
-        }
+    return {
+      success: true,
+      new_gold: updates.gold,
+      item_purchased: args.itemId,
+    };
+  },
+});
 
-        await ctx.db.patch(user._id, updates);
+/**
+ * Use streak freeze (called automatically at midnight check)
+ */
+export const useStreakFreeze = mutation({
+  args: { clerkUserId: v.string() },
+  handler: async (ctx, args) => {
+    const user = await ctx.db
+      .query("users")
+      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", args.clerkUserId))
+      .unique();
+    if (!user) throw new Error("User not found");
 
-        return { success: true, gold: updates.gold };
-    },
+    if ((user.streak_freeze_count || 0) <= 0) {
+      throw new Error("No streak freezes available");
+    }
+
+    await ctx.db.patch(user._id, {
+      streak_freeze_count: user.streak_freeze_count - 1,
+      last_activity_date: Date.now(), // Preserve streak
+    });
+
+    return { success: true, remaining_freezes: user.streak_freeze_count - 1 };
+  },
 });

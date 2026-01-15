@@ -8,18 +8,15 @@
  * @module
  */
 
-import type * as convex__generated_api from "../convex/_generated/api.js";
-import type * as convex__generated_server from "../convex/_generated/server.js";
-import type * as convex_curriculum from "../convex/curriculum.js";
-import type * as convex_lib_xp from "../convex/lib/xp.js";
-import type * as convex_migrations_import_data from "../convex/migrations/import_data.js";
-import type * as convex_quizzes from "../convex/quizzes.js";
-import type * as convex_rpg from "../convex/rpg.js";
-import type * as convex_srs from "../convex/srs.js";
-import type * as convex_tasks from "../convex/tasks.js";
 import type * as curriculum from "../curriculum.js";
 import type * as gamification from "../gamification.js";
+import type * as import_internal from "../import_internal.js";
+import type * as lib_utils from "../lib/utils.js";
+import type * as lib_xp from "../lib/xp.js";
+import type * as migrations_import_data from "../migrations/import_data.js";
+import type * as quizzes from "../quizzes.js";
 import type * as rpg from "../rpg.js";
+import type * as srs from "../srs.js";
 import type * as tasks from "../tasks.js";
 import type * as users from "../users.js";
 
@@ -30,18 +27,15 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
-  "convex/_generated/api": typeof convex__generated_api;
-  "convex/_generated/server": typeof convex__generated_server;
-  "convex/curriculum": typeof convex_curriculum;
-  "convex/lib/xp": typeof convex_lib_xp;
-  "convex/migrations/import_data": typeof convex_migrations_import_data;
-  "convex/quizzes": typeof convex_quizzes;
-  "convex/rpg": typeof convex_rpg;
-  "convex/srs": typeof convex_srs;
-  "convex/tasks": typeof convex_tasks;
   curriculum: typeof curriculum;
   gamification: typeof gamification;
+  import_internal: typeof import_internal;
+  "lib/utils": typeof lib_utils;
+  "lib/xp": typeof lib_xp;
+  "migrations/import_data": typeof migrations_import_data;
+  quizzes: typeof quizzes;
   rpg: typeof rpg;
+  srs: typeof srs;
   tasks: typeof tasks;
   users: typeof users;
 }>;

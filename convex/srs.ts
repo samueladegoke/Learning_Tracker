@@ -1,225 +1,251 @@
-import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
+import { v } from "convex/values";
+import { Id } from "./_generated/dataModel";
+import { levelFromXp } from "./gamification";
+import { addDays } from "./lib/utils";
 
-// SM2 Spaced Repetition Intervals (in days)
-export const SRS_INTERVALS = [1, 3, 7, 14];
+// ========== SRS CONSTANTS - EXACT PORT FROM BACKEND ==========
+export const SRS_INTERVALS = [1, 3, 7, 14]; // days between reviews
+export const MASTERY_SUCCESS_COUNT = 3;
+export const MAX_DAILY_REVIEWS = 10;
+export const XP_PER_CORRECT = 10;
+export const XP_MASTERY_BONUS = 100;
 
-// Helper: Add days to timestamp
-function addDays(timestamp: number, days: number): number {
-    return timestamp + days * 24 * 60 * 60 * 1000;
-}
+// ========== QUERIES ==========
 
+/**
+ * Get daily review questions - returns up to MAX_DAILY_REVIEWS due questions
+ */
 export const getDailyReview = query({
-    args: {},
-    handler: async (ctx) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) return null;
+  args: { clerkUserId: v.string() },
+  handler: async (ctx, args) => {
+    const now = Date.now();
 
-        const user = await ctx.db
-            .query("users")
-            .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", identity.subject))
-            .unique();
+    // Get user first
+    const user = await ctx.db
+      .query("users")
+      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", args.clerkUserId))
+      .unique();
+    if (!user) return { reviews: [], totalDue: 0, maxReviews: MAX_DAILY_REVIEWS };
 
-        if (!user) return null;
+    // Get due reviews
+    const dueReviews = await ctx.db
+      .query("userQuestionReviews")
+      .withIndex("by_user_and_due", (q) => q.eq("user_id", user._id))
+      .filter((q) =>
+        q.and(
+          q.lte(q.field("due_date"), now),
+          q.eq(q.field("is_mastered"), false)
+        )
+      )
+      .take(MAX_DAILY_REVIEWS);
 
-        const now = Date.now();
-
-        // Get reviews due (due_date <= now, not mastered)
-        // Note: Using by_user_and_due index, filtering due_date <= now
-        const dueReviews = await ctx.db
-            .query("userQuestionReviews")
-            .withIndex("by_user_and_due", (q) => q.eq("user_id", user._id))
-            .filter((q) =>
-                q.and(
-                    q.lte(q.field("due_date"), now),
-                    q.eq(q.field("is_mastered"), false)
-                )
-            )
-            .take(10);
-
-        // Hydrate with question data
-        const questions = [];
-        for (const review of dueReviews) {
-            const question = await ctx.db.get(review.question_id);
-            if (question) {
-                questions.push({
-                    review_id: review._id,
-                    question_id: question._id,
-                    text: question.text,
-                    question_type: question.question_type,
-                    code: question.code,
-                    options: question.options ? JSON.parse(question.options) : [],
-                    starter_code: question.starter_code,
-                    test_cases: question.test_cases ? JSON.parse(question.test_cases) : null,
-                    topic_tag: question.topic_tag,
-                    interval_index: review.interval_index,
-                    success_count: review.success_count,
-                });
-            }
-        }
+    // Fetch question data
+    const reviewsWithQuestions = await Promise.all(
+      dueReviews.map(async (review) => {
+        const question = await ctx.db.get(review.question_id);
+        if (!question) return null;
 
         return {
-            total_due: questions.length,
-            questions,
-            xp_bonus_available: questions.length >= 5 ? 50 : questions.length * 10,
+          review_id: review._id,
+          question_id: question._id,
+          question_type: question.question_type,
+          text: question.text,
+          code: question.code,
+          options: question.options ? JSON.parse(question.options) : null,
+          starter_code: question.starter_code,
+          difficulty: question.difficulty,
+          topic_tag: question.topic_tag,
+          interval_index: review.interval_index,
+          success_count: review.success_count,
+          due_date: review.due_date,
         };
-    },
+      })
+    );
+
+    return {
+      reviews: reviewsWithQuestions.filter(Boolean),
+      totalDue: dueReviews.length,
+      maxReviews: MAX_DAILY_REVIEWS,
+    };
+  },
 });
 
-export const submitReviewResult = mutation({
-    args: {
-        reviewId: v.id("userQuestionReviews"),
-        wasCorrect: v.boolean(),
-    },
-    handler: async (ctx, args) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthenticated");
-
-        const user = await ctx.db
-            .query("users")
-            .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", identity.subject))
-            .unique();
-        if (!user) throw new Error("User not found");
-
-        const review = await ctx.db.get(args.reviewId);
-        if (!review) throw new Error("Review not found");
-        if (review.user_id !== user._id) throw new Error("Access denied");
-
-        const now = Date.now();
-        let xpAwarded = 0;
-        let message = "";
-        let isMastered = review.is_mastered;
-        let intervalIndex = review.interval_index;
-        let successCount = review.success_count;
-        let dueDate = review.due_date;
-
-        if (args.wasCorrect) {
-            successCount += 1;
-            if (intervalIndex < SRS_INTERVALS.length - 1) {
-                intervalIndex += 1;
-            }
-            const intervalDays = SRS_INTERVALS[intervalIndex];
-            dueDate = addDays(now, intervalDays);
-
-            // Check for mastery (3+ successes at max interval)
-            if (successCount >= 3 && intervalIndex === SRS_INTERVALS.length - 1) {
-                isMastered = true;
-                xpAwarded = 100;
-                message = "🏆 Concept Mastered! +100 XP";
-            } else {
-                xpAwarded = 10;
-                message = `✅ Correct! Next review in ${intervalDays} days. +10 XP`;
-            }
-        } else {
-            // Incorrect: reset
-            intervalIndex = 0;
-            successCount = 0;
-            dueDate = addDays(now, SRS_INTERVALS[0]);
-            xpAwarded = 0;
-            message = `❌ Not quite! Review again in ${SRS_INTERVALS[0]} day.`;
-        }
-
-        // Update review
-        await ctx.db.patch(review._id, {
-            interval_index: intervalIndex,
-            success_count: successCount,
-            due_date: dueDate,
-            is_mastered: isMastered,
-            last_reviewed_at: now,
-        });
-
-        // Award XP
-        if (xpAwarded > 0) {
-            await ctx.db.patch(user._id, { xp: (user.xp || 0) + xpAwarded });
-        }
-
-        return {
-            review_id: review._id,
-            is_mastered: isMastered,
-            next_due_date: dueDate,
-            xp_awarded: xpAwarded,
-            message,
-        };
-    },
-});
-
-export const addToReview = mutation({
-    args: { questionId: v.id("questions") },
-    handler: async (ctx, args) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthenticated");
-
-        const user = await ctx.db
-            .query("users")
-            .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", identity.subject))
-            .unique();
-        if (!user) throw new Error("User not found");
-
-        const question = await ctx.db.get(args.questionId);
-        if (!question) throw new Error("Question not found");
-
-        // Check if already in queue
-        const existing = await ctx.db
-            .query("userQuestionReviews")
-            .withIndex("by_user_and_question", (q) =>
-                q.eq("user_id", user._id).eq("question_id", args.questionId)
-            )
-            .unique();
-
-        const now = Date.now();
-        const dueDate = addDays(now, SRS_INTERVALS[0]);
-
-        if (existing) {
-            // Reset
-            await ctx.db.patch(existing._id, {
-                interval_index: 0,
-                success_count: 0,
-                due_date: dueDate,
-                is_mastered: false,
-            });
-            return { message: "Question reset in review queue", due_date: dueDate };
-        }
-
-        // Create new
-        await ctx.db.insert("userQuestionReviews", {
-            user_id: user._id,
-            question_id: args.questionId,
-            interval_index: 0,
-            due_date: dueDate,
-            success_count: 0,
-            is_mastered: false,
-        });
-
-        return { message: "Question added to review queue", due_date: dueDate };
-    },
-});
-
+/**
+ * Get user's SRS stats
+ */
 export const getSRSStats = query({
-    args: {},
-    handler: async (ctx) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) return null;
+  args: { clerkUserId: v.string() },
+  handler: async (ctx, args) => {
+    const now = Date.now();
 
-        const user = await ctx.db
-            .query("users")
-            .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", identity.subject))
-            .unique();
-        if (!user) return null;
+    const user = await ctx.db
+      .query("users")
+      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", args.clerkUserId))
+      .unique();
+    if (!user) return null;
 
-        const allReviews = await ctx.db
-            .query("userQuestionReviews")
-            .withIndex("by_user_and_due", (q) => q.eq("user_id", user._id))
-            .collect();
+    const allReviews = await ctx.db
+      .query("userQuestionReviews")
+      .withIndex("by_user_and_due", (q) => q.eq("user_id", user._id))
+      .collect();
 
-        const now = Date.now();
-        const totalInQueue = allReviews.length;
-        const masteredCount = allReviews.filter((r) => r.is_mastered).length;
-        const dueNow = allReviews.filter((r) => !r.is_mastered && r.due_date <= now).length;
+    const totalCards = allReviews.length;
+    const masteredCards = allReviews.filter((r) => r.is_mastered).length;
+    const dueToday = allReviews.filter(
+      (r) => r.due_date <= now && !r.is_mastered
+    ).length;
 
-        return {
-            total_in_queue: totalInQueue,
-            mastered_count: masteredCount,
-            due_now: dueNow,
-        };
-    },
+    return {
+      total_cards: totalCards,
+      mastered_cards: masteredCards,
+      due_today: dueToday,
+      mastery_percentage:
+        totalCards > 0 ? Math.round((masteredCards / totalCards) * 100) : 0,
+    };
+  },
+});
+
+// ========== MUTATIONS ==========
+
+/**
+ * Submit review result - updates SRS state based on correctness
+ */
+export const submitReviewResult = mutation({
+  args: {
+    clerkUserId: v.string(),
+    reviewId: v.id("userQuestionReviews"),
+    wasCorrect: v.boolean(),
+  },
+  handler: async (ctx, args) => {
+    const now = Date.now();
+
+    const user = await ctx.db
+      .query("users")
+      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", args.clerkUserId))
+      .unique();
+    if (!user) throw new Error("User not found");
+
+    const review = await ctx.db.get(args.reviewId);
+    if (!review) throw new Error("Review not found");
+    if (review.user_id !== user._id) throw new Error("Unauthorized");
+
+    let xpAwarded = 0;
+    let message = "";
+    let newIntervalIndex = review.interval_index;
+    let newSuccessCount = review.success_count;
+    let newDueDate: number;
+    let nowMastered = false;
+
+    if (args.wasCorrect) {
+      newSuccessCount += 1;
+
+      if (newIntervalIndex < SRS_INTERVALS.length - 1) {
+        newIntervalIndex += 1;
+      }
+
+      const intervalDays = SRS_INTERVALS[newIntervalIndex];
+      newDueDate = addDays(now, intervalDays);
+
+      if (
+        newSuccessCount >= MASTERY_SUCCESS_COUNT &&
+        newIntervalIndex === SRS_INTERVALS.length - 1
+      ) {
+        nowMastered = true;
+        xpAwarded = XP_MASTERY_BONUS;
+        message = `🏆 Concept Mastered! +${XP_MASTERY_BONUS} XP`;
+      } else {
+        xpAwarded = XP_PER_CORRECT;
+        message = `✅ Correct! Next review in ${intervalDays} days. +${XP_PER_CORRECT} XP`;
+      }
+    } else {
+      newIntervalIndex = 0;
+      newSuccessCount = 0;
+      newDueDate = addDays(now, SRS_INTERVALS[0]);
+      xpAwarded = 0;
+      message = `❌ Not quite! Review again in ${SRS_INTERVALS[0]} day.`;
+    }
+
+    // Update review
+    await ctx.db.patch(args.reviewId, {
+      interval_index: newIntervalIndex,
+      success_count: newSuccessCount,
+      due_date: newDueDate,
+      is_mastered: nowMastered || review.is_mastered,
+      last_reviewed_at: now,
+    });
+
+    // Award XP
+    if (xpAwarded > 0) {
+      const newXp = user.xp + xpAwarded;
+      await ctx.db.patch(user._id, {
+        xp: newXp,
+        level: levelFromXp(newXp),
+      });
+    }
+
+    return {
+      success: true,
+      was_correct: args.wasCorrect,
+      xp_awarded: xpAwarded,
+      message,
+      is_mastered: nowMastered || review.is_mastered,
+      next_due_date: newDueDate,
+    };
+  },
+});
+
+/**
+ * Add question to review queue
+ */
+export const addToReview = mutation({
+  args: {
+    clerkUserId: v.string(),
+    questionId: v.id("questions"),
+  },
+  handler: async (ctx, args) => {
+    const now = Date.now();
+
+    const user = await ctx.db
+      .query("users")
+      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", args.clerkUserId))
+      .unique();
+    if (!user) throw new Error("User not found");
+
+    const question = await ctx.db.get(args.questionId);
+    if (!question) throw new Error("Question not found");
+
+    // Check if already in queue
+    const existing = await ctx.db
+      .query("userQuestionReviews")
+      .withIndex("by_user_and_question", (q) =>
+        q.eq("user_id", user._id).eq("question_id", args.questionId)
+      )
+      .unique();
+
+    const dueDate = addDays(now, SRS_INTERVALS[0]);
+
+    if (existing) {
+      // Reset
+      await ctx.db.patch(existing._id, {
+        interval_index: 0,
+        success_count: 0,
+        due_date: dueDate,
+        is_mastered: false,
+      });
+      return { success: true, message: "Question reset in review queue", is_new: false };
+    }
+
+    // Add new
+    await ctx.db.insert("userQuestionReviews", {
+      user_id: user._id,
+      question_id: args.questionId,
+      interval_index: 0,
+      due_date: dueDate,
+      success_count: 0,
+      is_mastered: false,
+    });
+
+    return { success: true, message: "Question added to review queue", is_new: true };
+  },
 });

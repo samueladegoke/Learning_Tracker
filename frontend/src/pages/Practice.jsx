@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Trophy, Brain, Lock } from 'lucide-react'
-import { quizzesAPI, srsAPI } from '../api/client'
+import { useQuery } from 'convex/react'
+import { useUser } from '@clerk/clerk-react'
+import { api } from '../../convex/_generated/api'
 import { useCourse } from '../contexts/CourseContext'
-import { useAuth } from '../contexts/AuthContext'
 
 // Shadcn UI Components
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
@@ -17,12 +18,11 @@ import DaySelectorBar from '../components/Quiz/DaySelectorBar'
 import Quiz from '../components/Quiz/Quiz'
 
 function Practice() {
-    // Get course config from context
-    const { startDate, totalDays, guestPrompts } = useCourse()
-    // Get auth state to guard user-specific API calls
-    const { isAuthenticated } = useAuth()
+    const { user, isLoaded: identityLoaded } = useUser()
+    const clerkUserId = user?.id
 
-    // Calculate today's day dynamically
+    const { startDate, totalDays, guestPrompts } = useCourse()
+
     const getTodayKey = () => {
         const now = new Date()
         const diffDays = Math.floor((now - startDate) / (1000 * 60 * 60 * 24))
@@ -32,16 +32,28 @@ function Practice() {
 
     const [activeTab, setActiveTab] = useState('deep-dive')
     const [activeDay, setActiveDay] = useState(getTodayKey)
-    const [completedQuizzes, setCompletedQuizzes] = useState([])
-    const [quizData, setQuizData] = useState({ questions: [], hasCoding: false })
     const [isChallengeCleared, setIsChallengeCleared] = useState(false)
-    const [loading, setLoading] = useState(true)
     const [isReviewMode, setIsReviewMode] = useState(() => {
         const params = new URLSearchParams(window.location.search)
         return params.get('mode') === 'review'
     })
 
     const location = useLocation()
+
+    // Convex Queries
+    const completedQuizzes = useQuery(api.quizzes.getCompletedQuizzes) || []
+
+    // Dynamic Query Parameters
+    const currentDay = DAY_META[activeDay]
+    const quizId = currentDay?.quizId
+
+    // Fetch quiz questions or SRS reviews
+    const quizQuestionsRaw = useQuery(
+        isReviewMode ? api.srs.getDailyReview : api.quizzes.getQuizQuestions,
+        isReviewMode
+            ? { clerkUserId: clerkUserId || "" }
+            : { quizId: quizId || "" }
+    )
 
     // Sync review mode if URL changes 
     useEffect(() => {
@@ -51,57 +63,9 @@ function Practice() {
         if (review !== isReviewMode) setIsReviewMode(review)
     }, [location.search, isReviewMode])
 
-    const currentDay = DAY_META[activeDay]
+    const isAuthenticated = !!clerkUserId
 
-    // Only fetch completed quizzes if authenticated (prevents 401 for guests)
-    useEffect(() => {
-        if (isAuthenticated) {
-            quizzesAPI.getCompleted()
-                .then(setCompletedQuizzes)
-                .catch(err => console.error('Failed to load completed quizzes:', err))
-        }
-    }, [isAuthenticated])
-
-    useEffect(() => {
-        let active = true
-        const loadDayData = async () => {
-            setLoading(true)
-            try {
-                if (isReviewMode) {
-                    // SRS review requires authentication
-                    if (!isAuthenticated) {
-                        if (active) setQuizData({ questions: [], hasCoding: false })
-                        return
-                    }
-                    const data = await srsAPI.getDailyReview()
-                    if (active) setQuizData({ questions: data.questions || [], hasCoding: false })
-                } else {
-                    const quizId = currentDay?.quizId
-                    if (!quizId) return
-                    // Quiz questions require authentication
-                    if (!isAuthenticated) {
-                        if (active) setQuizData({ questions: [], hasCoding: false })
-                        return
-                    }
-                    const questions = await quizzesAPI.getQuestions(quizId)
-                    if (active) {
-                        const hasCoding = questions.some(q => q.question_type === 'coding')
-                        setQuizData({ questions, hasCoding })
-                    }
-                }
-            } catch (err) {
-                console.error('Failed to load day data:', err)
-            } finally {
-                if (active) setLoading(false)
-            }
-        }
-        loadDayData()
-        return () => { active = false }
-    }, [activeDay, isReviewMode, currentDay?.quizId, isAuthenticated])
-
-
-
-    // Unified Guest prompt component for Practice page tabs
+    // Unified Guest prompt component
     const GuestPracticePrompt = ({ type = 'practice' }) => {
         const config = {
             'deep-dive': {
@@ -149,7 +113,6 @@ function Practice() {
         )
     }
 
-    // Handle Review Mode for guests - show full-page prompt
     if (isReviewMode && !isAuthenticated) {
         return (
             <div className="space-y-8 pb-12 px-4 sm:px-6 lg:px-8">
@@ -178,6 +141,9 @@ function Practice() {
         )
     }
 
+    const quizQuestions = quizQuestionsRaw || []
+    const loading = !identityLoaded || quizQuestionsRaw === undefined
+
     return (
         <div className="space-y-8 pb-12 px-4 sm:px-6 lg:px-8">
             <header className="space-y-3">
@@ -188,9 +154,9 @@ function Practice() {
                                 <Brain className="w-8 h-8 text-primary-400" />
                                 Memory Training
                             </span>
-                        ) : currentDay.title}
+                        ) : currentDay?.title}
                     </h1>
-                    {!isReviewMode && (
+                    {!isReviewMode && currentDay?.level && (
                         <span className="px-3 py-1 rounded-full bg-surface-800/50 border border-surface-700 text-xs font-medium text-primary-400">
                             {currentDay.level}
                         </span>
@@ -199,7 +165,7 @@ function Practice() {
                 <p className="text-surface-400 text-lg max-w-2xl">
                     {isReviewMode
                         ? "Strengthening your knowledge with Spaced Repetition. Master these questions to lock them into long-term memory."
-                        : currentDay.subtitle}
+                        : currentDay?.subtitle}
                 </p>
 
                 {!isReviewMode && (
@@ -213,7 +179,6 @@ function Practice() {
                 )}
             </header>
 
-            {/* Celebration Overlay */}
             <AnimatePresence>
                 {isChallengeCleared && (
                     <motion.div
@@ -232,13 +197,14 @@ function Practice() {
                 )}
             </AnimatePresence>
 
-            {/* Main Content Area */}
             {!isReviewMode ? (
                 <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
                     <TabsList className="w-full justify-start bg-transparent border-b border-surface-700 rounded-none h-auto p-0 mb-6">
                         <TabsTrigger value="deep-dive" className="tab-trigger">Deep Dive</TabsTrigger>
                         <TabsTrigger value="practice" className="tab-trigger">Quiz</TabsTrigger>
-                        {quizData.hasCoding && <TabsTrigger value="challenges" className="tab-trigger">Challenges</TabsTrigger>}
+                        {quizQuestions.some(q => q.question_type === 'coding') && (
+                            <TabsTrigger value="challenges" className="tab-trigger">Challenges</TabsTrigger>
+                        )}
                     </TabsList>
 
                     <div className="min-h-[400px]">
@@ -259,9 +225,9 @@ function Practice() {
                                     ) : (
                                         <Quiz
                                             key={`${activeDay}-practice`}
-                                            quizId={currentDay.quizId}
+                                            quizId={quizId}
                                             activeDay={activeDay}
-                                            initialQuestions={quizData.questions.filter(q => q.question_type !== 'coding')}
+                                            initialQuestions={quizQuestions.filter(q => q.question_type !== 'coding')}
                                             setIsChallengeCleared={setIsChallengeCleared}
                                             isReviewMode={isReviewMode}
                                         />
@@ -273,9 +239,9 @@ function Practice() {
                                     ) : (
                                         <Quiz
                                             key={`${activeDay}-challenges`}
-                                            quizId={currentDay.quizId}
+                                            quizId={quizId}
                                             activeDay={activeDay}
-                                            initialQuestions={quizData.questions.filter(q => q.question_type === 'coding')}
+                                            initialQuestions={quizQuestions.filter(q => q.question_type === 'coding')}
                                             isChallengeTab={true}
                                             setIsChallengeCleared={setIsChallengeCleared}
                                             isReviewMode={isReviewMode}
@@ -295,7 +261,7 @@ function Practice() {
                             key={`review-mode`}
                             quizId={null}
                             activeDay={activeDay}
-                            initialQuestions={quizData.questions}
+                            initialQuestions={quizQuestions}
                             setIsChallengeCleared={setIsChallengeCleared}
                             isReviewMode={isReviewMode}
                         />

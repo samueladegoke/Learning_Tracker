@@ -679,7 +679,7 @@ Phase 2 (Curriculum) → Phase 3 (Gamification)
 
 ### Phase 5: Learning System (Week 4)
 
-- [ ] 5.1. Create SRS Schema
+- [x] 5.1. Create SRS Schema
 
   **What to do**:
   - Add `questions` table with options, test_cases (JSON fields)
@@ -709,7 +709,7 @@ Phase 2 (Curriculum) → Phase 3 (Gamification)
 
 ---
 
-- [ ] 5.2. Implement SM2 Spaced Repetition
+- [x] 5.2. Implement SM2 Spaced Repetition
 
   **What to do**:
   - Create `convex/srs.ts` with queries and mutations
@@ -744,7 +744,7 @@ Phase 2 (Curriculum) → Phase 3 (Gamification)
 
 ---
 
-- [ ] 5.3. Implement Quiz Queries
+- [x] 5.3. Implement Quiz Queries
 
   **What to do**:
   - Create `convex/quizzes.ts` with quiz-related queries

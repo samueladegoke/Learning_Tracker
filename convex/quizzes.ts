@@ -1,176 +1,350 @@
+import { mutation, query, internalMutation } from "./_generated/server";
 import { v } from "convex/values";
-import { mutation, query } from "./_generated/server";
-import { SRS_INTERVALS } from "./srs";
+import { levelFromXp } from "./gamification";
+import { addDays } from "./lib/utils";
 
-// Helper: Add days to timestamp
-function addDays(timestamp: number, days: number): number {
-    return timestamp + days * 24 * 60 * 60 * 1000;
-}
+// ========== QUIZ CONSTANTS ==========
 
+export const XP_PER_CORRECT_ANSWER = 10;
+export const XP_QUIZ_COMPLETION_BONUS = 25;
+export const XP_PERFECT_SCORE_BONUS = 50;
+
+// ========== QUERIES ==========
+
+/**
+ * Get questions for a specific quiz
+ * Returns questions without correct answers (for client-side quiz)
+ */
 export const getQuizQuestions = query({
-    args: { quizId: v.string() },
-    handler: async (ctx, args) => {
-        const questions = await ctx.db
-            .query("questions")
-            .withIndex("by_quiz_id", (q) => q.eq("quiz_id", args.quizId))
-            .collect();
+  args: { quizId: v.string() },
+  handler: async (ctx, args) => {
+    const { quizId } = args;
 
-        // Return public-safe version (no correct_index or solution_code)
-        return questions.map((q) => ({
-            id: q._id,
-            quiz_id: q.quiz_id,
-            question_type: q.question_type,
-            text: q.text,
-            code: q.code,
-            options: q.options ? JSON.parse(q.options) : [],
-            starter_code: q.starter_code,
-            test_cases: q.test_cases ? JSON.parse(q.test_cases) : null,
-            difficulty: q.difficulty,
-            topic_tag: q.topic_tag,
-        }));
-    },
+    const questions = await ctx.db
+      .query("questions")
+      .withIndex("by_quiz_id", (q) => q.eq("quiz_id", quizId))
+      .collect();
+
+    // Return questions without correct answers
+    return questions.map((q) => ({
+      id: q._id,
+      question_type: q.question_type,
+      text: q.text,
+      code: q.code,
+      options: q.options ? JSON.parse(q.options) : null,
+      starter_code: q.starter_code,
+      difficulty: q.difficulty,
+      topic_tag: q.topic_tag,
+      // Note: correct_index and solution_code are NOT returned
+    }));
+  },
 });
 
-export const verifyAnswer = mutation({
-    args: {
-        questionId: v.id("questions"),
-        answer: v.union(v.number(), v.object({ allPassed: v.boolean() })),
-    },
-    handler: async (ctx, args) => {
-        const question = await ctx.db.get(args.questionId);
-        if (!question) throw new Error("Question not found");
+/**
+ * Get quiz metadata (without questions)
+ */
+export const getQuizList = query({
+  args: {},
+  handler: async (ctx) => {
+    const allQuestions = await ctx.db.query("questions").collect();
 
-        let isCorrect = false;
-        const questionType = question.question_type || "mcq";
+    const quizMap = new Map<
+      string,
+      { quiz_id: string; questionCount: number; difficulties: Set<string> }
+    >();
 
-        if (questionType === "mcq" || questionType === "code-correction") {
-            isCorrect =
-                typeof args.answer === "number" &&
-                question.correct_index === args.answer;
-        } else if (questionType === "coding") {
-            isCorrect =
-                typeof args.answer === "object" &&
-                (args.answer as { allPassed: boolean }).allPassed === true;
-        }
+    for (const q of allQuestions) {
+      if (!quizMap.has(q.quiz_id)) {
+        quizMap.set(q.quiz_id, {
+          quiz_id: q.quiz_id,
+          questionCount: 0,
+          difficulties: new Set(),
+        });
+      }
+      const quiz = quizMap.get(q.quiz_id)!;
+      quiz.questionCount++;
+      quiz.difficulties.add(q.difficulty);
+    }
 
-        return {
-            question_id: question._id,
-            is_correct: isCorrect,
-            correct_index: question.correct_index,
-            explanation: question.explanation,
-        };
-    },
+    return Array.from(quizMap.values()).map((quiz) => ({
+      quiz_id: quiz.quiz_id,
+      question_count: quiz.questionCount,
+      difficulties: Array.from(quiz.difficulties),
+    }));
+  },
 });
 
-export const submitQuiz = mutation({
-    args: {
-        quizId: v.string(),
-        answers: v.any(), // Record<string, number | { allPassed: boolean }>
-    },
-    handler: async (ctx, args) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthenticated");
+/**
+ * Get user's quiz history
+ */
+export const getQuizHistory = query({
+  args: { clerkUserId: v.string() },
+  handler: async (ctx, args) => {
+    const user = await ctx.db
+      .query("users")
+      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", args.clerkUserId))
+      .unique();
+    if (!user) return [];
 
-        const user = await ctx.db
-            .query("users")
-            .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", identity.subject))
-            .unique();
-        if (!user) throw new Error("User not found");
+    const results = await ctx.db
+      .query("quizResults")
+      .withIndex("by_user", (q) => q.eq("user_id", user._id))
+      .collect();
 
-        // Fetch all questions for this quiz
-        const questions = await ctx.db
-            .query("questions")
-            .withIndex("by_quiz_id", (q) => q.eq("quiz_id", args.quizId))
-            .collect();
+    // Sort by completed_at descending, take 50
+    const sorted = results.sort((a, b) => b.completed_at - a.completed_at).slice(0, 50);
 
-        if (questions.length === 0) throw new Error("Quiz not found");
-
-        const questionsMap = new Map(questions.map((q) => [q._id, q]));
-        let score = 0;
-        const totalQuestions = questions.length;
-        const failedQuestionIds: string[] = [];
-
-        // Calculate score
-        for (const [qIdStr, answer] of Object.entries(args.answers)) {
-            const question = questionsMap.get(qIdStr as any);
-            if (!question) continue;
-
-            const questionType = question.question_type || "mcq";
-            let wasCorrect = false;
-
-            if (questionType === "mcq" || questionType === "code-correction") {
-                wasCorrect =
-                    typeof answer === "number" && question.correct_index === answer;
-            } else if (questionType === "coding") {
-                wasCorrect =
-                    typeof answer === "object" &&
-                    (answer as { allPassed: boolean }).allPassed === true;
-            }
-
-            if (wasCorrect) {
-                score += 1;
-            } else {
-                failedQuestionIds.push(question._id);
-            }
-        }
-
-        // --- SRS Auto-Queueing: Add incorrectly answered questions to review ---
-        const now = Date.now();
-        const dueDate = addDays(now, SRS_INTERVALS[0]);
-
-        for (const qId of failedQuestionIds) {
-            const existing = await ctx.db
-                .query("userQuestionReviews")
-                .withIndex("by_user_and_question", (q) =>
-                    q.eq("user_id", user._id).eq("question_id", qId as any)
-                )
-                .unique();
-
-            if (existing) {
-                // Reset
-                await ctx.db.patch(existing._id, {
-                    interval_index: 0,
-                    success_count: 0,
-                    due_date: dueDate,
-                    is_mastered: false,
-                });
-            } else {
-                await ctx.db.insert("userQuestionReviews", {
-                    user_id: user._id,
-                    question_id: qId as any,
-                    interval_index: 0,
-                    due_date: dueDate,
-                    success_count: 0,
-                    is_mastered: false,
-                });
-            }
-        }
-
-        // Award XP (10 base + score)
-        const xpGained = 10 + score;
-        await ctx.db.patch(user._id, { xp: (user.xp || 0) + xpGained });
-
-        return {
-            message: "Quiz submitted",
-            xp_gained: xpGained,
-            score,
-            total_questions: totalQuestions,
-            score_breakdown: `${score}/${totalQuestions}`,
-            percentage:
-                totalQuestions > 0 ? Math.round((score / totalQuestions) * 100) : 0,
-        };
-    },
+    return sorted.map((r) => ({
+      quiz_id: r.quiz_id,
+      score: r.score,
+      total_questions: r.total_questions,
+      percentage: Math.round((r.score / r.total_questions) * 100),
+      completed_at: r.completed_at,
+    }));
+  },
 });
 
+/**
+ * Get best score for a quiz
+ */
+export const getQuizBestScore = query({
+  args: {
+    clerkUserId: v.string(),
+    quizId: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const user = await ctx.db
+      .query("users")
+      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", args.clerkUserId))
+      .unique();
+    if (!user) return null;
+
+    const results = await ctx.db
+      .query("quizResults")
+      .withIndex("by_user_and_quiz", (q) =>
+        q.eq("user_id", user._id).eq("quiz_id", args.quizId)
+      )
+      .collect();
+
+    if (results.length === 0) return null;
+
+    const best = results.reduce((prev, curr) =>
+      curr.score > prev.score ? curr : prev
+    );
+
+    return {
+      quiz_id: best.quiz_id,
+      best_score: best.score,
+      total_questions: best.total_questions,
+      percentage: Math.round((best.score / best.total_questions) * 100),
+      attempts: results.length,
+    };
+  },
+});
+
+/**
+ * Get completed quizzes (L1 fix)
+ */
 export const getCompletedQuizzes = query({
-    args: {},
-    handler: async (ctx) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) return [];
+  args: {},
+  handler: async (ctx) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) return [];
 
-        // Note: Would need a quizResults table to track completed quizzes
-        // For now, return empty - this can be derived from userTaskStatuses
-        // or added as a separate table in a future iteration
-        return [];
-    },
+    const user = await ctx.db
+      .query("users")
+      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", identity.subject))
+      .unique();
+    if (!user) return [];
+
+    const results = await ctx.db
+      .query("quizResults")
+      .withIndex("by_user", (q) => q.eq("user_id", user._id))
+      .collect();
+
+    // Get unique quiz_ids
+    const quizIds = [...new Set(results.map((r) => r.quiz_id))];
+    return quizIds;
+  },
+});
+
+// ========== MUTATIONS ==========
+
+/**
+ * Submit quiz result
+ * Records result and awards XP
+ */
+export const submitQuizResult = mutation({
+  args: {
+    clerkUserId: v.string(),
+    quizId: v.string(),
+    answers: v.array(
+      v.object({
+        questionId: v.id("questions"),
+        selectedIndex: v.optional(v.number()),
+        codeAnswer: v.optional(v.string()),
+      })
+    ),
+  },
+  handler: async (ctx, args) => {
+    const { clerkUserId, quizId, answers } = args;
+    const now = Date.now();
+
+    const user = await ctx.db
+      .query("users")
+      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", clerkUserId))
+      .unique();
+    if (!user) throw new Error("User not found");
+
+    let correctCount = 0;
+    const totalQuestions = answers.length;
+
+    // Grade each answer
+    for (const answer of answers) {
+      const question = await ctx.db.get(answer.questionId);
+      if (!question) continue;
+
+      let isCorrect = false;
+
+      if (question.question_type === "mcq" && answer.selectedIndex !== undefined) {
+        isCorrect = answer.selectedIndex === question.correct_index;
+      } else if (
+        question.question_type === "coding" &&
+        answer.codeAnswer !== undefined
+      ) {
+        isCorrect = answer.codeAnswer.trim() === question.solution_code?.trim();
+      } else if (question.question_type === "code-correction") {
+        isCorrect = answer.codeAnswer?.trim() === question.solution_code?.trim();
+      }
+
+      if (isCorrect) {
+        correctCount++;
+      } else {
+        // Add incorrect questions to SRS review queue
+        const existingReview = await ctx.db
+          .query("userQuestionReviews")
+          .withIndex("by_user_and_question", (q) =>
+            q.eq("user_id", user._id).eq("question_id", answer.questionId)
+          )
+          .unique();
+
+        if (!existingReview) {
+          await ctx.db.insert("userQuestionReviews", {
+            user_id: user._id,
+            question_id: answer.questionId,
+            interval_index: 0,
+            due_date: now + 1 * 24 * 60 * 60 * 1000,
+            success_count: 0,
+            is_mastered: false,
+          });
+        }
+      }
+    }
+
+    // Calculate XP
+    let xpAwarded = correctCount * XP_PER_CORRECT_ANSWER;
+    xpAwarded += XP_QUIZ_COMPLETION_BONUS;
+
+    const isPerfect = correctCount === totalQuestions && totalQuestions > 0;
+    if (isPerfect) {
+      xpAwarded += XP_PERFECT_SCORE_BONUS;
+    }
+
+    // Record quiz result
+    await ctx.db.insert("quizResults", {
+      user_id: user._id,
+      quiz_id: quizId,
+      score: correctCount,
+      total_questions: totalQuestions,
+      completed_at: now,
+    });
+
+    // Award XP to user
+    const newXp = user.xp + xpAwarded;
+    await ctx.db.patch(user._id, {
+      xp: newXp,
+      level: levelFromXp(newXp),
+    });
+
+    return {
+      success: true,
+      score: correctCount,
+      total_questions: totalQuestions,
+      percentage: Math.round((correctCount / totalQuestions) * 100),
+      is_perfect: isPerfect,
+      xp_awarded: xpAwarded,
+    };
+  },
+});
+
+/**
+ * Check answer for a single question (for immediate feedback mode)
+ */
+export const checkAnswer = mutation({
+  args: {
+    clerkUserId: v.string(),
+    questionId: v.id("questions"),
+    selectedIndex: v.optional(v.number()),
+    codeAnswer: v.optional(v.string()),
+  },
+  handler: async (ctx, args) => {
+    const { clerkUserId, questionId, selectedIndex, codeAnswer } = args;
+
+    const user = await ctx.db
+      .query("users")
+      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", clerkUserId))
+      .unique();
+    if (!user) throw new Error("User not found");
+
+    const question = await ctx.db.get(questionId);
+    if (!question) throw new Error("Question not found");
+
+    let isCorrect = false;
+
+    if (question.question_type === "mcq" && selectedIndex !== undefined) {
+      isCorrect = selectedIndex === question.correct_index;
+    } else if (question.question_type === "coding" && codeAnswer !== undefined) {
+      isCorrect = codeAnswer.trim() === question.solution_code?.trim();
+    } else if (question.question_type === "code-correction") {
+      isCorrect = codeAnswer?.trim() === question.solution_code?.trim();
+    }
+
+    // Award XP for correct answer
+    let xpAwarded = 0;
+    if (isCorrect) {
+      xpAwarded = XP_PER_CORRECT_ANSWER;
+      const newXp = user.xp + xpAwarded;
+      await ctx.db.patch(user._id, {
+        xp: newXp,
+        level: levelFromXp(newXp),
+      });
+    } else {
+      // Add to SRS queue for later review
+      const existingReview = await ctx.db
+        .query("userQuestionReviews")
+        .withIndex("by_user_and_question", (q) =>
+          q.eq("user_id", user._id).eq("question_id", questionId)
+        )
+        .unique();
+
+      if (!existingReview) {
+        await ctx.db.insert("userQuestionReviews", {
+          user_id: user._id,
+          question_id: questionId,
+          interval_index: 0,
+          due_date: Date.now() + 1 * 24 * 60 * 60 * 1000,
+          success_count: 0,
+          is_mastered: false,
+        });
+      }
+    }
+
+    return {
+      is_correct: isCorrect,
+      correct_index: question.correct_index,
+      explanation: question.explanation,
+      solution_code: question.solution_code,
+      xp_awarded: xpAwarded,
+    };
+  },
 });

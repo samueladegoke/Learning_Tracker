@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
-import { quizzesAPI, srsAPI } from '../../api/client'
+import { useMutation } from 'convex/react'
+import { useUser } from '@clerk/clerk-react'
+import { api } from '../../convex/_generated/api'
 import { Progress } from '@/components/ui/progress'
 
 // Shared Sub-components
@@ -10,7 +12,7 @@ import QuizMasteryOverlay from './QuizMasteryOverlay'
 import { QuizLoadingSkeleton } from '../PracticeLoadingSkeleton'
 
 /**
- * Consolidated Quiz Component
+ * Consolidated Quiz Component (Convex Version)
  * Handles MCQ, Coding, and Code Correction questions.
  */
 function Quiz({
@@ -21,6 +23,9 @@ function Quiz({
     setIsChallengeCleared,
     isReviewMode = false
 }) {
+    const { user } = useUser()
+    const clerkUserId = user?.id
+
     const [questions, setQuestions] = useState(initialQuestions)
     const [currentQ, setCurrentQ] = useState(0)
     const [answers, setAnswers] = useState({}) // { questionId: selectedIndex or { code, passed, total } }
@@ -34,15 +39,26 @@ function Quiz({
     const [masteryMessage, setMasteryMessage] = useState(null)
     const [verifiedAnswers, setVerifiedAnswers] = useState({}) // { questionId: { correct_index, explanation, is_correct } }
 
+    // Convex Mutations
+    const checkAnswer = useMutation(api.quizzes.checkAnswer)
+    const submitReview = useMutation(api.srs.submitReviewResult)
+    const submitQuiz = useMutation(api.quizzes.submitQuizResult)
+
     useEffect(() => {
         if (initialQuestions && initialQuestions.length > 0) {
             setQuestions(initialQuestions)
             setLoading(false)
-        } else if (!isReviewMode && quizId) {
-            loadQuiz(quizId)
-        } else if (isReviewMode && initialQuestions && initialQuestions.length === 0) {
-            setQuestions([])
-            setLoading(false)
+
+            const stats = {
+                total: initialQuestions.length,
+                byType: { mcq: 0, coding: 0, 'code-correction': 0 },
+                byDifficulty: { easy: 0, medium: 0, hard: 0 }
+            }
+            initialQuestions.forEach(q => {
+                stats.byType[q.question_type || 'mcq']++
+                stats.byDifficulty[q.difficulty || 'medium']++
+            })
+            setQuizStats(stats)
         }
 
         // Reset local state whenever props change
@@ -50,6 +66,7 @@ function Quiz({
         setAnswers({})
         setShowResult(false)
         setResultData(null)
+        setVerifiedAnswers({})
     }, [quizId, initialQuestions, isReviewMode])
 
     // Keyboard navigation
@@ -94,43 +111,27 @@ function Quiz({
         return () => window.removeEventListener('keydown', handleKeyDown)
     }, [currentQ, questions, answers, verifiedAnswers, showResult, loading])
 
-    const loadQuiz = async (targetQuizId) => {
-        try {
-            setLoading(true)
-            setError(null)
-            const data = await quizzesAPI.getQuestions(targetQuizId)
-            setQuestions(data || [])
-            if (data?.length > 0) {
-                const stats = {
-                    total: data.length,
-                    byType: { mcq: 0, coding: 0, 'code-correction': 0 },
-                    byDifficulty: { easy: 0, medium: 0, hard: 0 }
-                }
-                data.forEach(q => {
-                    stats.byType[q.question_type || 'mcq']++
-                    stats.byDifficulty[q.difficulty || 'medium']++
-                })
-                setQuizStats(stats)
-            }
-        } catch (err) {
-            setError('Failed to load questions. Please try again.')
-        } finally {
-            setLoading(false)
-        }
-    }
-
     const handleMCQAnswer = async (optionIndex) => {
         const currentQuestion = questions[currentQ]
-        const reviewId = currentQuestion.id
-        const questionId = currentQuestion.question_id ?? reviewId
-        setAnswers(prev => ({ ...prev, [reviewId]: optionIndex }))
+        const questionId = currentQuestion.id
+
+        if (!clerkUserId) return;
+
+        setAnswers(prev => ({ ...prev, [questionId]: optionIndex }))
         try {
-            const verifyResult = await quizzesAPI.verifyAnswer(questionId, { answer_index: optionIndex })
-            setVerifiedAnswers(prev => ({ ...prev, [reviewId]: verifyResult }))
+            const verifyResult = await checkAnswer({
+                clerkUserId,
+                questionId,
+                selectedIndex: optionIndex
+            })
+
+            setVerifiedAnswers(prev => ({ ...prev, [questionId]: verifyResult }))
+
             if (isReviewMode) {
-                const srsResult = await srsAPI.submitResult({
-                    review_id: reviewId,
-                    was_correct: verifyResult.is_correct
+                const srsResult = await submitReview({
+                    clerkUserId,
+                    reviewId: questionId,
+                    wasCorrect: verifyResult.is_correct
                 })
                 if (srsResult?.message) {
                     setMasteryMessage(srsResult.message)
@@ -138,23 +139,33 @@ function Quiz({
                 }
             }
         } catch (err) {
+            console.error('Answer check failed:', err)
             setXpWarning('Verification failed. Result may not persist.')
         }
     }
 
     const handleCodingResult = async (result) => {
         const currentQuestion = questions[currentQ]
-        const reviewId = currentQuestion.id
-        const questionId = currentQuestion.question_id ?? reviewId
+        const questionId = currentQuestion.id
         const passed = Boolean(result?.allPassed)
-        setAnswers(prev => ({ ...prev, [reviewId]: result }))
+
+        if (!clerkUserId) return;
+
+        setAnswers(prev => ({ ...prev, [questionId]: result }))
         try {
-            const verifyResult = await quizzesAPI.verifyAnswer(questionId, { answer: { allPassed: passed } })
-            setVerifiedAnswers(prev => ({ ...prev, [reviewId]: verifyResult }))
+            const verifyResult = await checkAnswer({
+                clerkUserId,
+                questionId,
+                codeAnswer: result.code || ""
+            })
+
+            setVerifiedAnswers(prev => ({ ...prev, [questionId]: verifyResult }))
+
             if (isReviewMode) {
-                const srsResult = await srsAPI.submitResult({
-                    review_id: reviewId,
-                    was_correct: passed
+                const srsResult = await submitReview({
+                    clerkUserId,
+                    reviewId: questionId,
+                    wasCorrect: passed
                 })
                 if (srsResult?.message) {
                     setMasteryMessage(srsResult.message)
@@ -162,6 +173,7 @@ function Quiz({
                 }
             }
         } catch (err) {
+            console.error('Coding check failed:', err)
             setXpWarning('Verification failed.')
         }
         if (passed) {
@@ -193,10 +205,26 @@ function Quiz({
 
         setIsSubmitting(true)
         try {
-            const result = await quizzesAPI.submit({ quiz_id: quizId, answers })
+            // Adapt answers format for Convex
+            const mappedAnswers = questions.map(q => {
+                const ans = answers[q.id]
+                return {
+                    questionId: q.id,
+                    selectedIndex: typeof ans === 'number' ? ans : undefined,
+                    codeAnswer: typeof ans === 'object' ? ans.code : undefined
+                }
+            }).filter(a => a.selectedIndex !== undefined || a.codeAnswer !== undefined)
+
+            const result = await submitQuiz({
+                clerkUserId: clerkUserId || "",
+                quizId: quizId || "",
+                answers: mappedAnswers
+            })
+
             setResultData({ ...result, xp_saved: true })
             setShowResult(true)
         } catch (error) {
+            console.error('Quiz submission failed:', error)
             setError(`Submission failed: ${error.message}`)
         } finally {
             setIsSubmitting(false)
@@ -208,7 +236,7 @@ function Quiz({
     if (error) return (
         <div className="text-center p-8">
             <p className="text-red-400 mb-4">{error}</p>
-            <button onClick={() => loadQuiz(quizId)} className="btn-primary px-8">Retry</button>
+            <button onClick={() => window.location.reload()} className="btn-primary px-8">Retry</button>
         </div>
     )
 
@@ -222,7 +250,7 @@ function Quiz({
             isReviewMode={isReviewMode}
             quizStats={quizStats}
             xpWarning={xpWarning}
-            onRetry={() => loadQuiz(quizId)}
+            onRetry={() => window.location.reload()}
             onContinue={() => (window.location.href = '/')}
         />
     )
