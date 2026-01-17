@@ -40,15 +40,13 @@ export const getRPGState = query({
       };
     }
 
-    // Refresh focus points if new day
+    // Refresh focus points if new day (read-only check, actual refresh happens in mutation)
     const now = Date.now();
     let focusPoints = user.focus_points;
     if (!user.focus_refreshed_at || !isSameDay(user.focus_refreshed_at, now)) {
+      // Return refreshed value, but don't mutate in query
+      // The refreshFocus mutation should be called separately
       focusPoints = FOCUS_CAP;
-      await ctx.db.patch(user._id, {
-        focus_points: FOCUS_CAP,
-        focus_refreshed_at: now,
-      });
     }
 
     // Get active quest

@@ -19,7 +19,7 @@ export const getTasks = query({
   handler: async (ctx, args) => {
     const tasks = await ctx.db
       .query("tasks")
-      .withIndex("by_week", (q) => q.eq("weekId", args.weekId))
+      .withIndex("by_week", (q) => q.eq("week_id", args.weekId))
       .collect();
     return tasks;
   },
@@ -31,7 +31,7 @@ export const getWeekByNumber = query({
   handler: async (ctx, args) => {
     const week = await ctx.db
       .query("weeks")
-      .withIndex("by_week_number", (q) => q.eq("weekNumber", args.weekNumber))
+      .withIndex("by_week_number", (q) => q.eq("week_number", args.weekNumber))
       .first();
     return week;
   },
@@ -39,31 +39,31 @@ export const getWeekByNumber = query({
 
 // Get user's progress for a week (count completed tasks)
 export const getWeekProgress = query({
-  args: { 
+  args: {
     weekId: v.id("weeks"),
-    clerkUserId: v.string() 
+    userId: v.id("users")
   },
   handler: async (ctx, args) => {
     // Get all tasks for the week
     const tasks = await ctx.db
       .query("tasks")
-      .withIndex("by_week", (q) => q.eq("weekId", args.weekId))
+      .withIndex("by_week", (q) => q.eq("week_id", args.weekId))
       .collect();
-    
+
     // Get user's completed tasks for these task IDs
     let completedCount = 0;
     for (const task of tasks) {
       const status = await ctx.db
         .query("userTaskStatuses")
-        .withIndex("by_user_and_task", (q) => 
-          q.eq("clerkUserId", args.clerkUserId).eq("taskId", task._id)
+        .withIndex("by_user_and_task", (q) =>
+          q.eq("user_id", args.userId).eq("task_id", task._id)
         )
         .first();
       if (status?.completed) {
         completedCount++;
       }
     }
-    
+
     return {
       total: tasks.length,
       completed: completedCount,
@@ -72,14 +72,15 @@ export const getWeekProgress = query({
   },
 });
 
-// Get task by task_id string (e.g., "w1-d1")
-export const getTaskByTaskId = query({
-  args: { taskId: v.string() },
+// Get task by legacy task_id in metadata
+export const getTaskByLegacyId = query({
+  args: { legacyTaskId: v.string() },
   handler: async (ctx, args) => {
-    const task = await ctx.db
+    // Since task_id is now in metadata, we need to scan
+    // In production, consider adding a dedicated index
+    const tasks = await ctx.db
       .query("tasks")
-      .withIndex("by_task_id", (q) => q.eq("taskId", args.taskId))
-      .first();
-    return task;
+      .collect();
+    return tasks.find(t => t.metadata?.legacy_task_id === args.legacyTaskId) ?? null;
   },
 });

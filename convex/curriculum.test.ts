@@ -7,16 +7,31 @@ import { api } from "./_generated/api";
 test("getWeeks returns all weeks", async () => {
     const t = convexTest(schema);
 
-    await t.run(async (ctx) => {
-        await ctx.db.insert("courses", {
-            name: "Python",
-            description: "Test",
-            totalDays: 100,
-            isActive: true
+    // First create a course (required for weeks)
+    const courseId = await t.run(async (ctx) => {
+        return await ctx.db.insert("courses", {
+            title: "Python 100 Days",
+            description: "Learn Python in 100 days",
+            sequence_order: 1,
+            is_active: true
         });
+    });
 
-        await ctx.db.insert("weeks", { weekNumber: 1, title: "Week 1", focus: "Intro" });
-        await ctx.db.insert("weeks", { weekNumber: 2, title: "Week 2", focus: "Logic" });
+    await t.run(async (ctx) => {
+        await ctx.db.insert("weeks", {
+            course_id: courseId,
+            title: "Week 1",
+            description: "Introduction to Python",
+            week_number: 1,
+            is_locked: false
+        });
+        await ctx.db.insert("weeks", {
+            course_id: courseId,
+            title: "Week 2",
+            description: "Control Flow and Logic",
+            week_number: 2,
+            is_locked: false
+        });
     });
 
     const weeks = await t.query(api.curriculum.getWeeks, {});
@@ -27,17 +42,66 @@ test("getWeeks returns all weeks", async () => {
 test("getTasks returns tasks for a specific week", async () => {
     const t = convexTest(schema);
 
+    // Create course first
+    const courseId = await t.run(async (ctx) => {
+        return await ctx.db.insert("courses", {
+            title: "Python",
+            description: "Test course",
+            sequence_order: 1,
+            is_active: true
+        });
+    });
+
     const w1 = await t.run(async (ctx) => {
-        return await ctx.db.insert("weeks", { weekNumber: 1, title: "W1", focus: "F1" });
+        return await ctx.db.insert("weeks", {
+            course_id: courseId,
+            title: "W1",
+            description: "Week 1 focus",
+            week_number: 1,
+            is_locked: false
+        });
     });
     const w2 = await t.run(async (ctx) => {
-        return await ctx.db.insert("weeks", { weekNumber: 2, title: "W2", focus: "F2" });
+        return await ctx.db.insert("weeks", {
+            course_id: courseId,
+            title: "W2",
+            description: "Week 2 focus",
+            week_number: 2,
+            is_locked: false
+        });
     });
 
     await t.run(async (ctx) => {
-        await ctx.db.insert("tasks", { taskId: "t1", weekId: w1, day: 1, description: "T1", type: "video", xpReward: 10, difficulty: "easy", isBossTask: false });
-        await ctx.db.insert("tasks", { taskId: "t2", weekId: w1, day: 2, description: "T2", type: "coding", xpReward: 20, difficulty: "normal", isBossTask: false });
-        await ctx.db.insert("tasks", { taskId: "t3", weekId: w2, day: 8, description: "T3", type: "coding", xpReward: 20, difficulty: "normal", isBossTask: false });
+        await ctx.db.insert("tasks", {
+            week_id: w1,
+            title: "Day 1",
+            description: "Task 1",
+            task_type: "video",
+            difficulty: "easy",
+            xp_reward: 10,
+            estimated_minutes: 30,
+            required_for_streak: true
+        });
+        await ctx.db.insert("tasks", {
+            week_id: w1,
+            title: "Day 2",
+            description: "Task 2",
+            task_type: "exercise",
+            difficulty: "medium",
+            xp_reward: 20,
+            estimated_minutes: 45,
+            required_for_streak: true
+        });
+        await ctx.db.insert("tasks", {
+            week_id: w2,
+            title: "Day 8",
+            description: "Task 3",
+            task_type: "exercise",
+            difficulty: "medium",
+            xp_reward: 20,
+            estimated_minutes: 45,
+            required_for_streak: true
+        });
     });
 
     const tasksW1 = await t.query(api.curriculum.getTasks, { weekId: w1 });
