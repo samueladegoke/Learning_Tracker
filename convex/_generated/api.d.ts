@@ -10,7 +10,7 @@
 
 import type * as curriculum from "../curriculum.js";
 import type * as gamification from "../gamification.js";
-import type * as import_internal from "../import_internal.js";
+import type * as importData from "../importData.js";
 import type * as lib_utils from "../lib/utils.js";
 import type * as lib_xp from "../lib/xp.js";
 import type * as migrations_import_data from "../migrations/import_data.js";
@@ -29,7 +29,7 @@ import type {
 declare const fullApi: ApiFromModules<{
   curriculum: typeof curriculum;
   gamification: typeof gamification;
-  import_internal: typeof import_internal;
+  importData: typeof importData;
   "lib/utils": typeof lib_utils;
   "lib/xp": typeof lib_xp;
   "migrations/import_data": typeof migrations_import_data;

@@ -103,3 +103,15 @@ scripts/update_schema.py
 # Gemini/Antigravity IDE artifacts (per-conversation brain files)
 .gemini/
 
+
+# Windows artifacts
+NUL
+nul
+
+# Backup/temporary folders
+convex_backup/
+convex-backend/
+
+# Data output files
+weeks_output.json
+*_output.json

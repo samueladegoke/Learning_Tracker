@@ -15,7 +15,7 @@ export default defineSchema({
     description: v.string(),
     week_number: v.number(),
     is_locked: v.boolean(),
-  }).index("by_course", ["course_id"]),
+  }).index("by_course", ["course_id"]).index("by_week_number", ["week_number"]),
   tasks: defineTable({
     week_id: v.id("weeks"),
     title: v.string(),
