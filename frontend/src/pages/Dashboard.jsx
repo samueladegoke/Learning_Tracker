@@ -88,17 +88,17 @@ function Dashboard() {
   const [error, setError] = useState(null)
   const [shopOpen, setShopOpen] = useState(false)
 
-  // Convex queries
+  // Get Clerk user ID for Convex operations (fallback to 'dev-user' for local dev)
+  const clerkUserId = user?.id || 'dev-user'
+
+  // Convex queries - pass clerkUserId where required
   const convexWeeks = useQuery(api.curriculum.getWeeks)
-  const convexRPGState = useQuery(api.rpg.getRPGState)
+  const convexRPGState = useQuery(api.rpg.getRPGState, { clerkUserId })
 
   // Convex mutations
   const completeTaskMutation = useMutation(api.tasks.completeTask)
   const uncompleteTaskMutation = useMutation(api.tasks.uncompleteTask)
   const buyItemMutation = useMutation(api.rpg.buyItem)
-
-  // Get Clerk user ID for Convex operations (fallback to 'dev-user' for local dev)
-  const clerkUserId = user?.id || 'dev-user'
 
   const CACHE_DURATION = 300000 // 5 minutes
 
