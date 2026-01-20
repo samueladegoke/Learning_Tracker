@@ -115,3 +115,6 @@ convex-backend/
 # Data output files
 weeks_output.json
 *_output.json
+
+# Sisyphus session state
+.sisyphus/
