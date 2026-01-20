@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { ClerkProvider, useAuth } from '@clerk/clerk-react'
 import { ConvexProviderWithClerk } from 'convex/react-clerk'
-import { ConvexReactClient } from 'convex/react'
+import { ConvexReactClient, ConvexProvider } from 'convex/react'
 import App from './App'
 import './index.css'
 
@@ -13,6 +13,15 @@ const clerkPubKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 const convex = convexUrl ? new ConvexReactClient(convexUrl) : null
 
 function DevModeApp() {
+  // In dev mode without Clerk, still wrap with ConvexProvider if available
+  if (convex) {
+    return (
+      <ConvexProvider client={convex}>
+        <App />
+      </ConvexProvider>
+    )
+  }
+  // Fallback: no Convex at all (will show errors if components use useQuery)
   return <App />
 }
 
