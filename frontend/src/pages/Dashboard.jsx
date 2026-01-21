@@ -23,8 +23,6 @@ import DailyReviewWidget from '../components/DailyReviewWidget'
 import { soundManager } from '../utils/SoundManager'
 import { useAuth } from '../contexts/AuthContext'
 import { useCourse } from '../contexts/CourseContext'
-import { useQuery, useMutation } from 'convex/react'
-import { api } from '../../convex/_generated/api'
 
 import CurrentSyncStatus from '../components/CurrentSyncStatus'
 
@@ -88,37 +86,19 @@ function Dashboard() {
   const [error, setError] = useState(null)
   const [shopOpen, setShopOpen] = useState(false)
 
-  // Get Clerk user ID for Convex operations (fallback to 'dev-user' for local dev)
-  const clerkUserId = user?.id || 'dev-user'
-
-  // Convex queries - pass clerkUserId where required
-  const convexWeeks = useQuery(api.curriculum.getWeeks)
-  const convexRPGState = useQuery(api.rpg.getRPGState, { clerkUserId })
-
-  // Convex mutations
-  const completeTaskMutation = useMutation(api.tasks.completeTask)
-  const uncompleteTaskMutation = useMutation(api.tasks.uncompleteTask)
-  const buyItemMutation = useMutation(api.rpg.buyItem)
-
   const CACHE_DURATION = 300000 // 5 minutes
 
   const fetchData = async (force = false) => {
     try {
       const now = Date.now()
-      // ... cache logic removed for brevity or kept if desired, but Convex handles cache well.
-      // Let's rely on Convex for RPG state primarily, fallback to cache for non-convex if needed.
-
+      
       setLoading(true)
-      const [progressData, badgesData] = await Promise.all([
+      const [progressData, badgesData, weeksData, rpgData] = await Promise.all([
         progressAPI.get(),
         badgesAPI.getAll(),
+        weeksAPI.getAll(),
+        rpgAPI.getState()
       ])
-
-      // Use Convex weeks if available, otherwise fall back to API
-      const weeksData = convexWeeks || await weeksAPI.getAll()
-
-      // Use Convex RPG state if available
-      const rpgData = convexRPGState || await rpgAPI.getState()
 
       // Find current week or last week
       const firstIncomplete = weeksData.find(w => w.tasks_completed < w.tasks_total)
@@ -126,7 +106,7 @@ function Dashboard() {
 
       let weekDetails = null
       if (weekToLoad) {
-        // Prefer fetching by week number to avoid ID format mismatches (Convex string vs SQL int)
+        // Prefer fetching by week number to avoid ID format mismatches
         if (weekToLoad.weekNumber !== undefined) {
           weekDetails = await weeksAPI.getByNumber(weekToLoad.weekNumber)
         } else if (weekToLoad.week_number !== undefined) {
@@ -139,25 +119,13 @@ function Dashboard() {
       }
 
       // Shop items (placeholder or fetch if api exists)
-      const shopItemsData = [] // rpgAPI.getShopItems() if it existed
+      const shopItemsData = [] 
 
       setProgress(progressData)
       setCurrentWeek(weekDetails)
       setRpgState(rpgData)
       setBadges(badgesData)
       setShopItems(shopItemsData)
-
-      // Update Cache
-      sessionStorage.setItem('dashboard_cache', JSON.stringify({
-        data: {
-          progress: progressData,
-          currentWeek: weekDetails,
-          rpgState: rpgData,
-          badges: badgesData,
-          shopItems: shopItemsData
-        },
-        timestamp: now
-      }))
 
     } catch (err) {
       console.error('[Dashboard] Error fetching data:', err)
@@ -168,18 +136,12 @@ function Dashboard() {
   }
 
   useEffect(() => {
-    if (convexRPGState) {
-      setRpgState(convexRPGState);
-    }
-  }, [convexRPGState]);
-
-  useEffect(() => {
     if (isAuthenticated) {
       fetchData()
     } else {
       setLoading(false)
     }
-  }, [isAuthenticated, convexWeeks]) // Re-run when convexWeeks loads
+  }, [isAuthenticated])
 
   const handleTaskToggle = async (taskId, complete) => {
     // Deep clone to preserve original state on revert
@@ -201,20 +163,9 @@ function Dashboard() {
     if (complete) soundManager.completeTask()
 
     try {
-      // Use Convex mutations for real-time, atomic task completion
-      if (complete) {
-        const result = await completeTaskMutation({ clerkUserId, taskId })
-        console.log('[Convex] Task completed:', result)
-        // If Convex returned bonus info, could show XP popup here
-        if (result?.levelUp) {
-          soundManager.levelUp?.()
-        }
-      } else {
-        const result = await uncompleteTaskMutation({ clerkUserId, taskId })
-        console.log('[Convex] Task uncompleted:', result)
-      }
-      // Convex will auto-update via subscriptions, but also refresh legacy data
-      fetchData(true)
+        await tasksAPI.toggleComplete(taskId, complete)
+        // Refresh to get latest RPG state
+        fetchData(true)
     } catch (err) {
       console.error('Failed to toggle task:', err)
       soundManager.error()
@@ -224,9 +175,8 @@ function Dashboard() {
 
   const handlePurchase = async (itemId) => {
     try {
-      await buyItemMutation({ itemId })
-      // Convex auto-updates rpgState via query subscription
-      console.log('[Convex] Item bought:', itemId)
+      await rpgAPI.buyItem(itemId)
+      fetchData(true)
     } catch (err) {
       console.error('Purchase failed:', err)
       throw err
@@ -242,7 +192,7 @@ function Dashboard() {
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="card p-8 text-center max-w-md mx-auto mt-20"
+        className="clay-card p-8 text-center max-w-md mx-auto mt-20"
       >
         <div className="flex justify-center mb-4">
           <AlertTriangle className="w-12 h-12 text-rose-500" />
@@ -279,7 +229,7 @@ function Dashboard() {
         animate="show"
         className="space-y-8 pb-12"
       >
-        <div className="card p-12 text-center bg-gradient-to-br from-primary-900/10 to-surface-900 border-primary-500/10 relative overflow-hidden">
+        <div className="clay-card p-12 text-center bg-gradient-to-br from-primary-900/10 to-surface-900 border-primary-500/10 relative overflow-hidden">
           <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
             <Compass className="w-64 h-64 text-primary-400" />
           </div>
@@ -293,7 +243,7 @@ function Dashboard() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
               <Link
                 to="/login"
-                className="px-8 py-4 bg-primary-600 hover:bg-primary-500 text-white rounded-xl font-bold text-lg transition-all shadow-xl shadow-primary-900/40 hover:scale-105 active:scale-95 w-full sm:w-auto text-center"
+                className="px-8 py-4 bg-primary-600 hover:bg-primary-500 text-white rounded-xl font-bold text-lg transition-all shadow-neon-glow hover:scale-105 active:scale-95 w-full sm:w-auto text-center"
               >
                 {guestPrompts.dashboardCta}
               </Link>
@@ -316,7 +266,7 @@ function Dashboard() {
             <motion.div
               key={i}
               variants={itemVariants}
-              className="card p-6 bg-surface-900/40 border-white/5 hover:border-primary-500/20 transition-colors"
+              className="clay-card p-6 bg-surface-900/40 border-white/5 hover:border-primary-500/20 transition-colors"
             >
               <feature.icon className="w-8 h-8 text-primary-400 mb-4" />
               <h3 className="text-lg font-bold text-surface-100 mb-2">{feature.title}</h3>
@@ -374,7 +324,7 @@ function Dashboard() {
           {rpgState && (
             <motion.div
               variants={itemVariants}
-              className="card p-6 border-primary-500/20 bg-gradient-to-br from-primary-900/20 to-surface-900 shadow-[0_0_20px_rgba(59,130,246,0.1)] relative overflow-hidden group"
+              className="clay-card p-6 border-primary-500/20 bg-gradient-to-br from-primary-900/20 to-surface-900 shadow-[0_0_20px_rgba(59,130,246,0.1)] relative overflow-hidden group"
             >
               <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity pointer-events-none">
                 <Compass className="w-32 h-32 text-primary-400 rotate-12" />
@@ -394,7 +344,7 @@ function Dashboard() {
                 </div>
                 <Link
                   to="/practice"
-                  className="px-8 py-3 bg-primary-600 hover:bg-primary-500 text-white rounded-xl font-bold text-sm transition-all shadow-lg shadow-primary-900/40 hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
+                  className="px-8 py-3 bg-primary-600 hover:bg-primary-500 text-white rounded-xl font-bold text-sm transition-all shadow-neon-glow hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
                 >
                   Start Training <ArrowRight className="w-4 h-4" />
                 </Link>
@@ -432,7 +382,7 @@ function Dashboard() {
           {currentWeek && <QuestLog tasks={currentWeek.tasks || []} onToggle={handleTaskToggle} />}
 
           {currentWeek && (
-            <motion.div variants={itemVariants} className="card p-8 bg-gradient-to-br from-surface-900/80 to-surface-800/80">
+            <motion.div variants={itemVariants} className="clay-card p-8 bg-gradient-to-br from-surface-900/80 to-surface-800/80">
               <div className="flex items-start justify-between mb-6">
                 <div>
                   <span className="badge-surface mb-3">Current Chapter</span>
@@ -454,7 +404,7 @@ function Dashboard() {
 
         <div className="space-y-6">
           <motion.div variants={itemVariants}>
-            <Card className="bg-surface-900/60 border-white/5">
+            <Card className="clay-card border-white/5">
               <CardHeader className="pb-4">
                 <CardTitle className="text-lg font-semibold text-surface-100 flex items-center gap-2">
                   <Compass className="w-5 h-5 text-primary-400" /> Navigation
@@ -483,7 +433,7 @@ function Dashboard() {
           </motion.div>
 
           {activeChallenge && (
-            <motion.div variants={itemVariants} className="card p-6 border-accent-500/20">
+            <motion.div variants={itemVariants} className="clay-card p-6 border-accent-500/20">
               <div className="flex items-center justify-between mb-4">
                 <div>
                   <span className="badge-accent mb-2">Side Quest</span>
@@ -497,7 +447,7 @@ function Dashboard() {
             </motion.div>
           )}
 
-          <motion.div variants={itemVariants} className="card p-6 text-center relative overflow-hidden">
+          <motion.div variants={itemVariants} className="clay-card p-6 text-center relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-primary-900/5 pointer-events-none"></div>
             <h3 className="text-lg font-semibold text-surface-100 mb-6">Campaign Progress</h3>
             <div className="flex justify-center mb-6 relative">

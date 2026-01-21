@@ -2,9 +2,7 @@ import { useState, useEffect } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Trophy, Brain, Lock } from 'lucide-react'
-import { useQuery } from 'convex/react'
-import { useUser } from '@clerk/clerk-react'
-import { api } from '../../convex/_generated/api'
+import { useAuth } from '../contexts/AuthContext'
 import { useCourse } from '../contexts/CourseContext'
 
 // Shadcn UI Components
@@ -18,8 +16,10 @@ import DaySelectorBar from '../components/Quiz/DaySelectorBar'
 import Quiz from '../components/Quiz/Quiz'
 
 function Practice() {
-    const { user, isLoaded: identityLoaded } = useUser()
-    const clerkUserId = user?.id
+    const { user } = useAuth()
+    
+    // Fallback for "completedQuizzes" - for now empty, or we can fetch from backend later
+    const completedQuizzes = [] 
 
     const { startDate, totalDays, guestPrompts } = useCourse()
 
@@ -40,21 +40,14 @@ function Practice() {
 
     const location = useLocation()
 
-    // Convex Queries
-    const completedQuizzes = useQuery(api.quizzes.getCompletedQuizzes) || []
-
     // Dynamic Query Parameters
     const currentDay = DAY_META[activeDay]
     const quizId = currentDay?.quizId
 
-    // Fetch quiz questions or SRS reviews
-    const quizQuestionsRaw = useQuery(
-        isReviewMode ? api.srs.getDailyReview : api.quizzes.getQuizQuestions,
-        isReviewMode
-            ? { clerkUserId: clerkUserId || "" }
-            : { quizId: quizId || "" }
-    )
-
+    // Mock Questions for now since Convex is removed
+    // In a real implementation, this should fetch from FastAPI
+    const quizQuestionsRaw = [] 
+    
     // Sync review mode if URL changes 
     useEffect(() => {
         const params = new URLSearchParams(location.search)
@@ -63,7 +56,7 @@ function Practice() {
         if (review !== isReviewMode) setIsReviewMode(review)
     }, [location.search, isReviewMode])
 
-    const isAuthenticated = !!clerkUserId
+    const isAuthenticated = !!user
 
     // Unified Guest prompt component
     const GuestPracticePrompt = ({ type = 'practice' }) => {
@@ -94,7 +87,7 @@ function Practice() {
                 aria-label={`Sign in required for ${type} content`}
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="card p-12 text-center max-w-2xl mx-auto bg-surface-900/60 border-white/5 backdrop-blur-sm shadow-2xl"
+                className="clay-card p-12 text-center max-w-2xl mx-auto bg-surface-900/60 border-white/5 backdrop-blur-sm"
             >
                 {config.icon}
                 <h2 className="text-3xl font-bold text-surface-100 mb-4 font-display">
@@ -105,7 +98,7 @@ function Practice() {
                 </p>
                 <Link
                     to="/login"
-                    className="btn-primary px-10 py-4 text-xl inline-block shadow-lg shadow-primary-900/50 hover:scale-105 active:scale-95 transition-all"
+                    className="btn-primary px-10 py-4 text-xl inline-block shadow-neon-glow hover:scale-105 active:scale-95 transition-all"
                 >
                     {config.cta}
                 </Link>
@@ -121,7 +114,7 @@ function Practice() {
                     aria-label="Sign in required for memory training"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="card p-12 text-center max-w-2xl mx-auto bg-gradient-to-br from-primary-900/20 to-surface-900 border-primary-500/10"
+                    className="clay-card p-12 text-center max-w-2xl mx-auto bg-gradient-to-br from-primary-900/20 to-surface-900 border-primary-500/10"
                 >
                     <Brain className="w-20 h-20 text-primary-400 mx-auto mb-6" />
                     <h1 className="text-4xl font-bold text-surface-100 mb-4 font-display">
@@ -132,7 +125,7 @@ function Practice() {
                     </p>
                     <Link
                         to="/login"
-                        className="px-8 py-4 bg-primary-600 hover:bg-primary-500 text-white rounded-xl font-bold text-lg transition-all shadow-xl shadow-primary-900/40 hover:scale-105 active:scale-95 inline-block"
+                        className="px-8 py-4 bg-primary-600 hover:bg-primary-500 text-white rounded-xl font-bold text-lg transition-all shadow-neon-glow hover:scale-105 active:scale-95 inline-block"
                     >
                         Sign In to Start Training
                     </Link>
@@ -142,7 +135,7 @@ function Practice() {
     }
 
     const quizQuestions = quizQuestionsRaw || []
-    const loading = !identityLoaded || quizQuestionsRaw === undefined
+    const loading = false // Mock loading false since we have no async data yet
 
     return (
         <div className="space-y-8 pb-12 px-4 sm:px-6 lg:px-8">

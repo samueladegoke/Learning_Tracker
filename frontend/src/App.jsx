@@ -1,16 +1,53 @@
 import { Component } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { AnimatePresence, motion } from 'framer-motion'
 import { PythonProvider } from './contexts/PythonContext'
 import { AuthProvider } from './contexts/AuthContext'
 import { CourseProvider } from './contexts/CourseContext'
 import Navbar from './components/Navbar'
 import Dashboard from './pages/Dashboard'
+import WorldMap from './pages/WorldMap'
 import Planner from './pages/Planner'
 import Reflections from './pages/Reflections'
 import Progress from './pages/Progress'
 import Calendar from './pages/Calendar'
 import Practice from './pages/Practice'
 import Login from './pages/Login'
+import CyberGrid from './components/ui/CyberGrid'
+
+const PageWrapper = ({ children }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -20 }}
+    transition={{ duration: 0.3 }}
+  >
+    {children}
+  </motion.div>
+)
+
+function MainLayout() {
+  const location = useLocation()
+  return (
+    <div className="min-h-screen relative overflow-hidden">
+      <CyberGrid />
+      <Navbar />
+      <main className="container mx-auto px-4 py-8 max-w-7xl relative z-10">
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<PageWrapper><Dashboard /></PageWrapper>} />
+            <Route path="/world-map" element={<PageWrapper><WorldMap /></PageWrapper>} />
+            <Route path="/planner" element={<PageWrapper><Planner /></PageWrapper>} />
+            <Route path="/reflections" element={<PageWrapper><Reflections /></PageWrapper>} />
+            <Route path="/progress" element={<PageWrapper><Progress /></PageWrapper>} />
+            <Route path="/calendar" element={<PageWrapper><Calendar /></PageWrapper>} />
+            <Route path="/practice" element={<PageWrapper><Practice /></PageWrapper>} />
+          </Routes>
+        </AnimatePresence>
+      </main>
+    </div>
+  )
+}
 
 /**
  * Error Boundary Component
@@ -108,22 +145,7 @@ function App() {
                 <Route path="/login" element={<Login />} />
 
                 {/* Protected routes with navbar */}
-                <Route path="/*" element={
-                  <div className="min-h-screen">
-                    <Navbar />
-                    <main className="container mx-auto px-4 py-8 max-w-7xl">
-                      <Routes>
-                        <Route path="/" element={<Dashboard />} />
-                        <Route path="/planner" element={<Planner />} />
-                        <Route path="/reflections" element={<Reflections />} />
-                        <Route path="/progress" element={<Progress />} />
-                        <Route path="/calendar" element={<Calendar />} />
-                        {/* Practice page is PUBLIC for demo purposes */}
-                        <Route path="/practice" element={<Practice />} />
-                      </Routes>
-                    </main>
-                  </div>
-                } />
+                <Route path="/*" element={<MainLayout />} />
               </Routes>
             </PythonProvider>
           </CourseProvider>

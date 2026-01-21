@@ -20,7 +20,7 @@ function Navbar() {
 
   const navItems = [
     { to: '/', label: 'Dashboard', icon: LayoutDashboard },
-    { to: '/planner', label: 'Planner', icon: Map },
+    { to: '/world-map', label: 'Map', icon: Map },
     { to: '/calendar', label: 'Calendar', icon: Calendar },
     { to: '/reflections', label: 'Reflections', icon: BookOpen },
     { to: '/progress', label: 'Progress', icon: TrendingUp },

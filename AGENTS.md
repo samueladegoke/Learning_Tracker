@@ -95,3 +95,70 @@ npm run build            # Production frontend bundle
 - **Auth**: Supabase JWT in prod, dev fallback user when missing
 - **Pyodide**: Browser Python execution for code challenges - requires ~20MB WASM download
 - **SQLite files in root**: `learning_tracker.db` = legacy dev DB, ignore
+
+## BROWSER AUTOMATION (MANDATORY)
+
+**PRIMARY TOOL: agent-browser** (NOT Playwright MCP)
+
+For ANY browser automation task, use agent-browser via Bash commands:
+
+```bash
+# Open a page
+npx agent-browser --session dev open https://learning-tracker-nu-tan.vercel.app
+
+# Get interactive elements
+npx agent-browser --session dev snapshot -i
+
+# Click element by ref
+npx agent-browser --session dev click @e5
+
+# Fill form field
+npx agent-browser --session dev fill @e1 "text here"
+
+# Take screenshot
+npx agent-browser --session dev screenshot /tmp/screenshot.png
+
+# Close browser
+npx agent-browser --session dev close
+```
+
+**IMPORTANT**: 
+- Always use `--session <name>` flag (required on Windows/WSL)
+- Use `@e1`, `@e2` refs from `snapshot -i` output
+- Full docs: `.opencode/skills/agent-browser/SKILL.md`
+
+**DO NOT use** `skill("playwright")` or `skill_mcp(mcp_name="playwright")` - these are deprecated.
+
+## FRONTEND UI/UX SKILL (MANDATORY)
+
+**PRIMARY TOOL: ui-ux-pro-max** (`.opencode/skills/ui-ux-pro-max/`)
+
+For ANY frontend visual/UI/UX work, use the ui-ux-pro-max skill CLI:
+
+```bash
+# Generate complete design system (ALWAYS START HERE)
+python3 .opencode/skills/ui-ux-pro-max/scripts/search.py "dashboard learning gamification" --design-system -p "Learning Tracker"
+
+# Search specific domains
+python3 .opencode/skills/ui-ux-pro-max/scripts/search.py "dark mode" --domain style -n 5
+python3 .opencode/skills/ui-ux-pro-max/scripts/search.py "progress charts" --domain chart
+python3 .opencode/skills/ui-ux-pro-max/scripts/search.py "accessibility animation" --domain ux
+
+# Get stack-specific guidelines
+python3 .opencode/skills/ui-ux-pro-max/scripts/search.py "responsive layout" --stack react
+```
+
+**Available Domains**: product, style, typography, color, landing, chart, ux, react, web, prompt
+
+**Available Stacks**: html-tailwind, react, nextjs, vue, svelte, swiftui, react-native, flutter, shadcn
+
+**WORKFLOW**:
+1. Run `--design-system` to get complete recommendations
+2. Use domain searches for specific details (typography, colors, charts)
+3. Check `--domain ux` for accessibility and animation guidelines
+4. Apply stack-specific guidance with `--stack react`
+
+**IMPORTANT**: 
+- ALWAYS run `--design-system` first for new UI work
+- Check UX domain for accessibility before delivery
+- Follow the Pre-Delivery Checklist in SKILL.md

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Check } from 'lucide-react'
+import confetti from 'canvas-confetti'
 
 function TaskCard({ task, onToggle }) {
   const [isLoading, setIsLoading] = useState(false)
@@ -7,6 +8,17 @@ function TaskCard({ task, onToggle }) {
   const handleToggle = async () => {
     if (isLoading) return
     setIsLoading(true)
+    
+    // Trigger confetti if we are marking as complete (currently not completed)
+    if (!task.completed) {
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#FACC15', '#EC4899', '#10B981'] // Primary, Accent, Success colors
+      })
+    }
+
     try {
       await onToggle(task.task_id, !task.completed)
     } finally {

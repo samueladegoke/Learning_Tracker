@@ -106,7 +106,9 @@ export default {
 			animation: {
 				'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
 				float: 'float 6s ease-in-out infinite',
-				glow: 'glow 2s ease-in-out infinite alternate'
+				glow: 'glow 2s ease-in-out infinite alternate',
+				glitch: 'glitch 1s linear infinite',
+				shimmer: 'shimmer 2s linear infinite',
 			},
 			keyframes: {
 				float: {
@@ -124,7 +126,31 @@ export default {
 					'100%': {
 						boxShadow: '0 0 10px rgb(250 204 21 / 0.6), 0 0 40px rgb(250 204 21 / 0.3)'
 					}
+				},
+				glitch: {
+					'2%, 64%': {
+						transform: 'translate(2px,0) skew(0deg)'
+					},
+					'4%, 60%': {
+						transform: 'translate(-2px,0) skew(0deg)'
+					},
+					'62%': {
+						transform: 'translate(0,0) skew(5deg)'
+					}
+				},
+				shimmer: {
+					from: {
+						backgroundPosition: '0 0'
+					},
+					to: {
+						backgroundPosition: '-200% 0'
+					}
 				}
+			},
+			boxShadow: {
+				'clay-card': '8px 8px 16px #020617, -8px -8px 16px #1e293b',
+				'clay-inset': 'inset 8px 8px 16px #020617, inset -8px -8px 16px #1e293b',
+				'neon-glow': '0 0 10px theme("colors.primary.500"), 0 0 20px theme("colors.primary.500")',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
