@@ -1,11 +1,8 @@
 {
     "private": true,
     "scripts": {
-        "dev": "start cmd /c \"cd frontend && npm run dev\" && cd backend && uvicorn app.main:app --reload --port 8000",
-        "dev:win": "start cmd /c \"cd frontend && npm run dev\" && cd backend && uvicorn app.main:app --reload --port 8000",
-        "dev:unix": "cd frontend && npm run dev & cd backend && uvicorn app.main:app --reload --port 8000",
+        "dev": "npm run dev:frontend",
         "dev:frontend": "cd frontend && npm run dev",
-        "dev:backend": "cd backend && uvicorn app.main:app --reload --port 8000",
         "convex": "npx convex dev",
         "test:convex": "npx convex-test",
         "test": "vitest run",

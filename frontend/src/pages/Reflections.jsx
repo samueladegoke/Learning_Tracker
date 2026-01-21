@@ -1,66 +1,50 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { reflectionsAPI, weeksAPI } from '../api/client'
+import { useQuery, useMutation } from "convex/react"
+import { api } from "../../../convex/_generated/api"
 import { useAuth } from '../contexts/AuthContext'
 import { useCourse } from '../contexts/CourseContext'
 import { AlertTriangle, PenTool } from 'lucide-react'
 
 function Reflections() {
-  const { isAuthenticated } = useAuth()
+  const { user, isAuthenticated } = useAuth()
   const { guestPrompts } = useCourse()
-  const [reflections, setReflections] = useState([])
-  const [weeks, setWeeks] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  
+  const reflectionsData = useQuery(api.reflections.getAll, user?.id ? { clerkUserId: user.id } : "skip")
+  const weeksData = useQuery(api.curriculum.getWeeks)
+  const saveReflection = useMutation(api.reflections.saveReflection)
+
+  const loading = isAuthenticated && (reflectionsData === undefined || weeksData === undefined)
+  const reflections = reflectionsData || []
+  const weeks = weeksData || []
+  const error = null
+
   const [selectedWeek, setSelectedWeek] = useState(null)
   const [content, setContent] = useState('')
   const [saving, setSaving] = useState(false)
   const [savedMessage, setSavedMessage] = useState('')
 
-  const fetchData = async () => {
-    try {
-      setLoading(true)
-      const [reflectionsData, weeksData] = await Promise.all([
-        reflectionsAPI.getAll(),
-        weeksAPI.getAll()
-      ])
-      setReflections(reflectionsData)
-      setWeeks(weeksData)
-
-      // Select first week with tasks completed but no reflection
-      const weeksWithReflections = new Set(reflectionsData.map(r => r.week_id))
-      const weekToSelect = weeksData.find(w =>
-        w.tasks_completed > 0 && !weeksWithReflections.has(w.id)
-      ) || weeksData[0]
-
-      if (weekToSelect) {
-        setSelectedWeek(weekToSelect)
-        // Check if there's an existing reflection
-        const existing = reflectionsData.find(r => r.week_id === weekToSelect.id)
-        setContent(existing?.content || '')
-      }
-    } catch (err) {
-      setError(err.message)
-    } finally {
-      setLoading(false)
-    }
-  }
-
   useEffect(() => {
-    if (isAuthenticated) {
-      fetchData()
-    } else {
-      setLoading(false)
+    if (weeks.length > 0 && reflections !== undefined) {
+       const weeksWithReflections = new Set(reflections.map(r => r.week_id))
+       const weekToSelect = weeks.find(w =>
+         w.tasks_completed > 0 && !weeksWithReflections.has(w._id)
+       ) || weeks[0]
+
+       if (weekToSelect && !selectedWeek) {
+         setSelectedWeek(weekToSelect)
+         const existing = reflections.find(r => r.week_id === weekToSelect._id)
+         setContent(existing?.content || '')
+       }
     }
-  }, [isAuthenticated])
+  }, [weeks, reflections, selectedWeek])
 
   const handleWeekChange = (weekId) => {
-    const week = weeks.find(w => w.id === parseInt(weekId))
+    const week = weeks.find(w => w._id === weekId)
     setSelectedWeek(week)
 
-    // Load existing reflection if any
-    const existing = reflections.find(r => r.week_id === parseInt(weekId))
+    const existing = reflections.find(r => r.week_id === weekId)
     setContent(existing?.content || '')
     setSavedMessage('')
   }
@@ -70,16 +54,13 @@ function Reflections() {
 
     try {
       setSaving(true)
-      await reflectionsAPI.create({
-        week_id: selectedWeek.id,
+      await saveReflection({
+        clerkUserId: user.id,
+        weekId: selectedWeek._id,
         content: content.trim()
       })
 
-      // Refresh reflections
-      const data = await reflectionsAPI.getAll()
-      setReflections(data)
       setSavedMessage('Reflection saved!')
-
       setTimeout(() => setSavedMessage(''), 3000)
     } catch (err) {
       console.error('Failed to save reflection:', err)
@@ -96,19 +77,6 @@ function Reflections() {
           <div className="w-12 h-12 border-4 border-primary-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-surface-500">Loading reflections...</p>
         </div>
-      </div>
-    )
-  }
-
-  if (error) {
-    return (
-      <div className="card p-8 text-center">
-        <AlertTriangle className="w-12 h-12 text-yellow-500 mx-auto mb-4" />
-        <h2 className="text-xl font-semibold text-surface-100 mb-2">Failed to load data</h2>
-        <p className="text-surface-500 mb-4">{error}</p>
-        <button onClick={fetchData} className="btn-primary">
-          Try Again
-        </button>
       </div>
     )
   }

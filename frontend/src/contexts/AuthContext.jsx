@@ -1,167 +1,109 @@
 import { createContext, useContext, useState, useEffect, useCallback } from 'react'
-import { supabase } from '../lib/supabase'
-import { clearSessionCache } from '../api/client'
+import { useAuth as useClerkAuth, useUser, useSignIn, useSignUp, useClerk } from "@clerk/clerk-react";
 
 /**
- * Authentication Context
- * Provides global auth state and methods for sign in, sign up, and sign out.
+ * Authentication Context (Clerk Adapter)
+ * Adapts Clerk's hooks to match the legacy AuthContext interface.
  */
 const AuthContext = createContext(null)
 
 export function AuthProvider({ children }) {
-    const [user, setUser] = useState(null)
-    const [session, setSession] = useState(null)
-    const [loading, setLoading] = useState(true)
+    const { isLoaded: isAuthLoaded, userId, sessionId } = useClerkAuth();
+    const { isLoaded: isUserLoaded, user: clerkUser } = useUser();
+    const { signIn: clerkSignIn, isLoaded: isSignInLoaded, setActive } = useSignIn();
+    const { signUp: clerkSignUp, isLoaded: isSignUpLoaded, setActive: setSignUpActive } = useSignUp();
+    const { signOut: clerkSignOut } = useClerk();
+
     const [error, setError] = useState(null)
 
-    // Initialize auth state on mount
-    useEffect(() => {
-        let mounted = true
+    const loading = !isAuthLoaded || !isUserLoaded || !isSignInLoaded || !isSignUpLoaded;
 
-        async function initializeAuth() {
-            try {
-                // Get initial session
-                const { data: { session: initialSession }, error: sessionError } = await supabase.auth.getSession()
-
-                if (sessionError) {
-                    console.error('[Auth] Session error:', sessionError)
-                }
-
-                if (mounted) {
-                    setSession(initialSession)
-                    setUser(initialSession?.user ?? null)
-                    setLoading(false)
-                }
-            } catch (err) {
-                console.error('[Auth] Initialization error:', err)
-                if (mounted) {
-                    setLoading(false)
-                }
-            }
-        }
-
-        initializeAuth()
-
-        // Listen for auth state changes
-        const { data: { subscription } } = supabase.auth.onAuthStateChange(
-            async (event, currentSession) => {
-                if (mounted) {
-                    setSession(currentSession)
-                    setUser(currentSession?.user ?? null)
-                    setLoading(false)
-
-                    // Clear API cache on sign out to prevent stale token usage
-                    if (event === 'SIGNED_OUT') {
-                        clearSessionCache()
-                    }
-                }
-            }
-        )
-
-        return () => {
-            mounted = false
-            subscription.unsubscribe()
-        }
-    }, [])
+    // Map Clerk user to legacy user shape if needed, or just pass it through
+    // Legacy user had: email, id, etc. Clerk user has id, primaryEmailAddress
+    const user = clerkUser ? {
+        id: clerkUser.id,
+        email: clerkUser.primaryEmailAddress?.emailAddress,
+        ...clerkUser
+    } : null;
 
     /**
      * Sign in with email and password
      */
     const signIn = useCallback(async (email, password) => {
         setError(null)
-        setLoading(true)
+        if (!isSignInLoaded) return { success: false, error: 'Auth not ready' };
 
         try {
-            const { data, error: signInError } = await supabase.auth.signInWithPassword({
-                email,
+            const result = await clerkSignIn.create({
+                identifier: email,
                 password,
-            })
+            });
 
-            if (signInError) {
-                setError(signInError.message)
-                setLoading(false)
-                return { success: false, error: signInError.message }
+            if (result.status === "complete") {
+                await setActive({ session: result.createdSessionId });
+                return { success: true, user: result.userData };
+            } else {
+                console.log("SignIn requires next step:", result);
+                return { success: false, error: "Multi-factor authentication or other steps required (not supported in legacy UI)" };
             }
-
-            setLoading(false)
-            return { success: true, user: data.user }
         } catch (err) {
-            const message = err.message || 'An unexpected error occurred'
+            const message = err.errors?.[0]?.message || err.message || 'An unexpected error occurred'
             setError(message)
-            setLoading(false)
             return { success: false, error: message }
         }
-    }, [])
+    }, [isSignInLoaded, clerkSignIn, setActive]);
 
     /**
      * Sign up with email and password
      */
     const signUp = useCallback(async (email, password) => {
         setError(null)
-        setLoading(true)
+        if (!isSignUpLoaded) return { success: false, error: 'Auth not ready' };
 
         try {
-            const { data, error: signUpError } = await supabase.auth.signUp({
-                email,
+            const result = await clerkSignUp.create({
+                emailAddress: email,
                 password,
-            })
+            });
 
-            if (signUpError) {
-                setError(signUpError.message)
-                setLoading(false)
-                return { success: false, error: signUpError.message }
-            }
-
-            // Check if email confirmation is required
-            if (data.user && !data.session) {
-                setLoading(false)
+            if (result.status === "complete") {
+                await setSignUpActive({ session: result.createdSessionId });
+                return { success: true, user: result.userData };
+            } else if (result.status === "missing_requirements") {
+                 return { success: false, error: "Missing requirements (e.g. captcha)" };
+            } else {
+                // Usually verification needed
                 return {
-                    success: true,
-                    user: data.user,
+                    success: true, // Treat as success for "check email" flow
+                    user: result.userData,
                     message: 'Check your email to confirm your account'
                 }
             }
-
-            setLoading(false)
-            return { success: true, user: data.user }
         } catch (err) {
-            const message = err.message || 'An unexpected error occurred'
+            const message = err.errors?.[0]?.message || err.message || 'An unexpected error occurred'
             setError(message)
-            setLoading(false)
             return { success: false, error: message }
         }
-    }, [])
+    }, [isSignUpLoaded, clerkSignUp, setSignUpActive]);
 
     /**
      * Sign out
      */
     const signOut = useCallback(async () => {
         setError(null)
-
         try {
-            const { error: signOutError } = await supabase.auth.signOut()
-
-            if (signOutError) {
-                setError(signOutError.message)
-                return { success: false, error: signOutError.message }
-            }
-
-            // Clear local state
-            setUser(null)
-            setSession(null)
-            clearSessionCache()
-
+            await clerkSignOut();
             return { success: true }
         } catch (err) {
             const message = err.message || 'An unexpected error occurred'
             setError(message)
             return { success: false, error: message }
         }
-    }, [])
+    }, [clerkSignOut]);
 
     const value = {
         user,
-        session,
+        session: sessionId ? { user, access_token: "clerk_token_handled_automatically" } : null, // Mock session object for compatibility
         loading,
         error,
         signIn,

@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react'
-import { quizzesAPI, srsAPI } from '../api/client'
+import { useQuery } from "convex/react"
+import { api } from "../../../convex/_generated/api"
+import { useAuth } from "../contexts/AuthContext"
 import { DAY_META } from '@/data/dayMeta.js'
 
 /**
@@ -11,62 +12,25 @@ import { DAY_META } from '@/data/dayMeta.js'
  * @returns {Object} Quiz state and methods
  */
 function useDayQuiz(activeDay, isReviewMode = false) {
-    const [questions, setQuestions] = useState([])
-    const [hasCoding, setHasCoding] = useState(false)
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(null)
-    const [fetchCounter, setFetchCounter] = useState(0)
-
+    const { user } = useAuth()
     const currentDay = DAY_META[activeDay]
     const quizId = currentDay?.quizId
 
-    useEffect(() => {
-        let cancelled = false
+    const reviewData = useQuery(api.srs.getDailyReview, isReviewMode && user?.id ? { clerkUserId: user.id } : "skip")
+    const quizData = useQuery(api.quizzes.getQuizQuestions, !isReviewMode && quizId ? { quizId } : "skip")
 
-        const loadQuizData = async () => {
-            setLoading(true)
-            setError(null)
+    const loading = isReviewMode ? reviewData === undefined : (quizId ? quizData === undefined : false)
+    const error = null
 
-            try {
-                if (isReviewMode) {
-                    const data = await srsAPI.getDailyReview()
-                    if (!cancelled) {
-                        setQuestions(data.questions || [])
-                        setHasCoding(false)
-                    }
-                } else if (quizId) {
-                    const data = await quizzesAPI.getQuestions(quizId)
-                    if (!cancelled) {
-                        setQuestions(data || [])
-                        setHasCoding(data?.some(q => q.question_type === 'coding') || false)
-                    }
-                } else {
-                    // No quiz for this day
-                    if (!cancelled) {
-                        setQuestions([])
-                        setHasCoding(false)
-                    }
-                }
-            } catch (err) {
-                if (!cancelled) {
-                    console.error('Failed to load quiz data:', err)
-                    setError(err.message || 'Failed to load questions')
-                }
-            } finally {
-                if (!cancelled) {
-                    setLoading(false)
-                }
-            }
-        }
-
-        loadQuizData()
-
-        return () => {
-            cancelled = true
-        }
-    }, [activeDay, isReviewMode, quizId, fetchCounter])
+    let questions = []
+    if (isReviewMode && reviewData) {
+        questions = reviewData.reviews || []
+    } else if (!isReviewMode && quizData) {
+        questions = quizData
+    }
 
     // Derived data
+    const hasCoding = questions.some(q => q.question_type === 'coding')
     const mcqQuestions = questions.filter(q => q.question_type !== 'coding')
     const codingQuestions = questions.filter(q => q.question_type === 'coding')
 
@@ -84,7 +48,7 @@ function useDayQuiz(activeDay, isReviewMode = false) {
         currentDay,
 
         // Methods
-        refetch: () => setFetchCounter(c => c + 1)
+        refetch: () => {}
     }
 }
 

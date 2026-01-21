@@ -1,28 +1,13 @@
-import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Trophy, Medal, Clock, TrendingUp } from 'lucide-react'
-import { quizzesAPI } from '../api/client'
+import { useQuery } from "convex/react"
+import { api } from "../../../convex/_generated/api"
+import { useAuth } from "../contexts/AuthContext"
 
 function Leaderboard() {
-    const [entries, setEntries] = useState([])
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(null)
-
-    useEffect(() => {
-        loadLeaderboard()
-    }, [])
-
-    const loadLeaderboard = async () => {
-        try {
-            setLoading(true)
-            const data = await quizzesAPI.getLeaderboard(20)
-            setEntries(data)
-        } catch (err) {
-            setError(err.message)
-        } finally {
-            setLoading(false)
-        }
-    }
+    const { user } = useAuth()
+    const entries = useQuery(api.quizzes.getQuizHistory, user?.id ? { clerkUserId: user.id } : "skip")
+    const loading = entries === undefined
 
     const formatDate = (isoString) => {
         if (!isoString) return '-'
@@ -58,20 +43,6 @@ function Leaderboard() {
         )
     }
 
-    if (error) {
-        return (
-            <div className="card p-8 text-center">
-                <p className="text-rose-400">{error}</p>
-                <button
-                    onClick={loadLeaderboard}
-                    className="mt-4 btn-primary"
-                >
-                    Retry
-                </button>
-            </div>
-        )
-    }
-
     if (entries.length === 0) {
         return (
             <div className="card p-8 text-center">
@@ -96,7 +67,7 @@ function Leaderboard() {
                 <AnimatePresence>
                     {entries.map((entry, index) => (
                         <motion.div
-                            key={entry.id}
+                            key={index}
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: index * 0.05 }}

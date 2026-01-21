@@ -16,7 +16,9 @@ import {
     Lightbulb,
     Zap
 } from 'lucide-react'
-import { quizzesAPI, srsAPI, rpgAPI } from '../../api/client'
+import { useQuery, useMutation } from "convex/react"
+import { api } from "../../../convex/_generated/api"
+import { useAuth } from "../contexts/AuthContext"
 import CodeEditor from '../CodeEditor'
 import CodeEditorErrorBoundary from '../CodeEditorErrorBoundary'
 import InlineCode from '../InlineCode'
@@ -26,9 +28,16 @@ const MAX_VISIBLE_PAGES = 7
 
 export function Quiz({ quizId, onComplete }) {
     const navigate = useNavigate()
-    const [questions, setQuestions] = useState([])
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(null)
+    const { user } = useAuth()
+    
+    const questionsData = useQuery(api.quizzes.getQuizQuestions, quizId ? { quizId } : "skip")
+    const questions = questionsData || []
+    
+    const checkAnswer = useMutation(api.quizzes.checkAnswer)
+    const submitQuizResult = useMutation(api.quizzes.submitQuizResult)
+
+    const loading = questionsData === undefined
+    
     const [currentQ, setCurrentQ] = useState(0)
     const [answers, setAnswers] = useState({})
     const [verifiedAnswers, setVerifiedAnswers] = useState({})
@@ -36,7 +45,7 @@ export function Quiz({ quizId, onComplete }) {
     const [score, setScore] = useState(0)
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [masteryMessage, setMasteryMessage] = useState('')
-    const [srsError, setSrsError] = useState(false) // M4 Fix: Track SRS sync failures
+    const [srsError, setSrsError] = useState(false) 
     const navRef = useRef(null)
 
     // H2 Fix: Scroll navigation into view when explanation appears
@@ -46,8 +55,6 @@ export function Quiz({ quizId, onComplete }) {
         }
     }, [answers, currentQ, questions])
 
-    // M3 Fix: Memoize progress stats to prevent recalculation on every render
-    // Moved to top level to avoid React Hook violation
     const progressStats = useMemo(() => {
         if (questions.length === 0) return { answered: 0, correct: 0, percentage: 0 }
         const answered = Object.keys(answers).length
@@ -56,40 +63,6 @@ export function Quiz({ quizId, onComplete }) {
         return { answered, correct, percentage }
     }, [questions.length, answers, verifiedAnswers])
 
-    // H1 Fix: AbortController prevents race conditions on rapid day switching
-    useEffect(() => {
-        const controller = new AbortController()
-        const loadQuestions = async () => {
-            setLoading(true)
-            setError(null)
-            try {
-                const data = await quizzesAPI.getDayQuestions(quizId)
-                // H1 Fix: Check if aborted before updating state
-                if (controller.signal.aborted) return
-                if (import.meta.env.DEV) {
-                    console.log(`[Quiz Debug] Loaded questions for ${quizId}:`, data)
-                }
-                setQuestions(data.questions || data || []) // Handle both direct arrays and {questions: []}
-                // Reset state for new quiz
-                setCurrentQ(0)
-                setAnswers({})
-                setVerifiedAnswers({})
-                setShowResults(false)
-                setScore(0)
-            } catch (err) {
-                if (controller.signal.aborted) return // Ignore aborted fetches
-                console.error('Failed to load quiz:', err)
-                setError('Failed to load quiz questions.')
-            } finally {
-                if (!controller.signal.aborted) {
-                    setLoading(false)
-                }
-            }
-        }
-        loadQuestions()
-        return () => controller.abort()
-    }, [quizId])
-
     const handleMCQAnswer = async (optionIdx) => {
         const currentQuestion = questions[currentQ]
         if (verifiedAnswers[currentQuestion.id]) return
@@ -97,37 +70,18 @@ export function Quiz({ quizId, onComplete }) {
         setAnswers(prev => ({ ...prev, [currentQuestion.id]: optionIdx }))
 
         try {
-            const result = await quizzesAPI.verifyAnswer(currentQuestion.id, {
-                answer_index: optionIdx,
-                is_mcq: true
+            const result = await checkAnswer({
+                clerkUserId: user.id,
+                questionId: currentQuestion.id,
+                selectedIndex: optionIdx
             })
             setVerifiedAnswers(prev => ({ ...prev, [currentQuestion.id]: result }))
 
             if (result.is_correct) {
                 setScore(prev => prev + 1)
-                // Minimal RPG integration: increment mastery or send to backend
-                try {
-                    const srsResult = await srsAPI.submitReview({
-                        question_id: currentQuestion.id,
-                        quality: 5
-                    })
-                    if (srsResult.mastery_level > 1) {
-                        setMasteryMessage(`Mastery Level ${srsResult.mastery_level}!`)
-                        setTimeout(() => setMasteryMessage(''), 3000)
-                    }
-                } catch (e) {
-                    console.error('SRS Submit failed', e)
-                    setSrsError(true) // M4 Fix: Track failure for user visibility
-                }
-            } else {
-                try {
-                    await srsAPI.submitReview({
-                        question_id: currentQuestion.id,
-                        quality: 0
-                    })
-                } catch (e) {
-                    console.error('SRS Submit failed', e)
-                    setSrsError(true) // M4 Fix: Track failure
+                if (result.xp_awarded > 10) { 
+                     setMasteryMessage(`XP Bonus: +${result.xp_awarded}!`)
+                     setTimeout(() => setMasteryMessage(''), 3000)
                 }
             }
         } catch (err) {
@@ -141,16 +95,14 @@ export function Quiz({ quizId, onComplete }) {
 
         if (result.allPassed) {
             try {
-                const verification = await quizzesAPI.verifyAnswer(currentQuestion.id, {
-                    answer: { allPassed: Boolean(result?.allPassed) }
+                const verification = await checkAnswer({
+                    clerkUserId: user.id,
+                    questionId: currentQuestion.id,
+                    trustedPassed: result.allPassed,
+                    codeAnswer: result.code 
                 })
                 setVerifiedAnswers(prev => ({ ...prev, [currentQuestion.id]: verification }))
                 setScore(prev => prev + 1)
-
-                await srsAPI.submitReview({
-                    question_id: currentQuestion.id,
-                    quality: 5
-                })
             } catch (err) {
                 console.error('Failed to verify coding answer:', err)
             }
@@ -174,8 +126,30 @@ export function Quiz({ quizId, onComplete }) {
     const submitQuiz = async () => {
         setIsSubmitting(true)
         try {
-            // M2 Fix: Pass score to backend for persistence
-            await quizzesAPI.completeQuiz(quizId, score)
+            const answersPayload = questions.map(q => {
+                const ans = answers[q.id]
+                if (ans === undefined) return null 
+                
+                if (q.question_type === 'mcq' || q.question_type === 'code-correction') {
+                    return {
+                        questionId: q.id,
+                        selectedIndex: ans
+                    }
+                } else if (q.question_type === 'coding') {
+                    return {
+                        questionId: q.id,
+                        trustedPassed: ans?.allPassed,
+                        codeAnswer: ans?.code
+                    }
+                }
+                return null
+            }).filter(Boolean)
+
+            await submitQuizResult({
+                clerkUserId: user.id,
+                quizId,
+                answers: answersPayload
+            })
             setShowResults(true)
             if (onComplete) onComplete()
         } catch (err) {
@@ -190,22 +164,6 @@ export function Quiz({ quizId, onComplete }) {
             <div className="flex flex-col items-center justify-center p-20 gap-4">
                 <Loader2 className="w-10 h-10 text-primary-400 animate-spin" />
                 <p className="text-surface-400 font-medium">Summoning questions...</p>
-            </div>
-        )
-    }
-
-    if (error) {
-        return (
-            <div className="p-12 text-center bg-red-500/5 rounded-3xl border border-red-500/20">
-                <AlertTriangle className="w-12 h-12 text-red-500 mx-auto mb-4" />
-                <h3 className="text-xl font-bold text-surface-100 mb-2">Failed to Load Quiz</h3>
-                <p className="text-surface-400 mb-6">{error}</p>
-                <button
-                    onClick={() => window.location.reload()}
-                    className="px-6 py-2 bg-surface-800 text-surface-200 rounded-xl border border-surface-700 hover:bg-surface-700 transition-colors"
-                >
-                    Retry
-                </button>
             </div>
         )
     }

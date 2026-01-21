@@ -157,4 +157,14 @@ export default defineSchema({
     completed_at: v.number(),
   }).index("by_user", ["user_id"])
     .index("by_user_and_quiz", ["user_id", "quiz_id"]),
+
+  // ========== PHASE 6: REFLECTIONS ==========
+  reflections: defineTable({
+    user_id: v.id("users"),
+    week_id: v.id("weeks"),
+    content: v.string(),
+    sentiment: v.optional(v.string()),
+    created_at: v.number(),
+    updated_at: v.optional(v.number()),
+  }).index("by_user_and_week", ["user_id", "week_id"]),
 });

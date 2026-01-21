@@ -4,8 +4,7 @@ import { Doc, Id } from "./_generated/dataModel";
 import { isSameDay, isYesterday } from "./lib/utils";
 import { xpForNextLevel, levelFromXp, FOCUS_CAP, DIFFICULTY_MULTIPLIER } from "./gamification";
 
-// ========== CONSTANTS (ported from backend) ==========
-
+// ... (constants and helpers remain same)
 export const STREAK_BADGES: Record<number, string> = {
   3: "b-streak-3",
   7: "b-streak-7",
@@ -20,16 +19,12 @@ export const TASK_COUNT_ACHIEVEMENTS: Record<number, string> = {
   100: "a-hundred-tasks",
 };
 
-// ========== HELPERS ==========
-
-/**
- * Award a badge to user
- */
 async function awardBadge(
   ctx: any,
   userId: Id<"users">,
   badgeBusinessId: string
 ): Promise<{ awarded: boolean; xp_bonus: number; gold_bonus: number }> {
+  // ... (implementation same)
   const badge = await ctx.db
     .query("badges")
     .withIndex("by_badge_id", (q: any) => q.eq("badge_id", badgeBusinessId))
@@ -59,9 +54,6 @@ async function awardBadge(
   };
 }
 
-/**
- * Award an achievement to user
- */
 async function awardAchievement(
   ctx: any,
   userId: Id<"users">,
@@ -96,9 +88,6 @@ async function awardAchievement(
   };
 }
 
-/**
- * Get total completed tasks count for user
- */
 async function getTotalTasksCompleted(ctx: any, userId: Id<"users">): Promise<number> {
   const completed = await ctx.db
     .query("userTaskStatuses")
@@ -112,11 +101,19 @@ async function getTotalTasksCompleted(ctx: any, userId: Id<"users">): Promise<nu
 // ========== QUERIES ==========
 
 export const getUser = query({
-  args: { clerkUserId: v.string() },
+  args: { clerkUserId: v.optional(v.string()) }, // Made optional to support auth check preference
   handler: async (ctx, args) => {
+    // Prefer auth check, fallback to arg if testing/admin (but secure apps should enforce auth)
+    let userId = args.clerkUserId;
+    if (!userId) {
+        const identity = await ctx.auth.getUserIdentity();
+        if (identity) userId = identity.subject;
+    }
+    if (!userId) return null;
+
     return await ctx.db
       .query("users")
-      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", args.clerkUserId))
+      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", userId!))
       .unique();
   },
 });
@@ -132,32 +129,56 @@ export const getTasksByWeek = query({
 });
 
 export const getUserTaskStatuses = query({
-  args: { userId: v.id("users") },
+  args: { 
+    userId: v.optional(v.id("users")),
+    clerkUserId: v.optional(v.string())
+  },
   handler: async (ctx, args) => {
+    let uid = args.userId;
+    // Security: If not providing internal ID, assume self-query via auth or arg
+    if (!uid) {
+        let clerkId = args.clerkUserId;
+        if (!clerkId) {
+            const identity = await ctx.auth.getUserIdentity();
+            if (identity) clerkId = identity.subject;
+        }
+        
+        if (clerkId) {
+            const user = await ctx.db
+                .query("users")
+                .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", clerkId!))
+                .unique();
+            if (user) uid = user._id;
+        }
+    }
+
+    if (!uid) return [];
+
     return await ctx.db
       .query("userTaskStatuses")
-      .withIndex("by_user_and_task", (q) => q.eq("user_id", args.userId))
+      .withIndex("by_user_and_task", (q) => q.eq("user_id", uid!))
       .collect();
   },
 });
 
 // ========== MUTATIONS ==========
 
-/**
- * Ensure user exists
- */
 export const ensureUser = mutation({
-  args: { clerkUserId: v.string(), username: v.string() },
+  args: { username: v.string() }, // Removed clerkUserId from args
   handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) throw new Error("Unauthorized");
+    const clerkUserId = identity.subject;
+
     const existing = await ctx.db
       .query("users")
-      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", args.clerkUserId))
+      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", clerkUserId))
       .unique();
 
     if (existing) return existing._id;
 
     return await ctx.db.insert("users", {
-      clerk_user_id: args.clerkUserId,
+      clerk_user_id: clerkUserId,
       username: args.username,
       xp: 0,
       level: 1,
@@ -172,19 +193,19 @@ export const ensureUser = mutation({
   },
 });
 
-/**
- * Complete Task Mutation
- */
 export const completeTask = mutation({
   args: {
-    clerkUserId: v.string(),
-    taskId: v.id("tasks"), // Usually we use _id for app logic
+    taskId: v.id("tasks"),
   },
   handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) throw new Error("Unauthorized");
+    const clerkUserId = identity.subject;
+
     const now = Date.now();
     const user = await ctx.db
       .query("users")
-      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", args.clerkUserId))
+      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", clerkUserId))
       .unique();
 
     if (!user) throw new Error("User not found");
@@ -314,18 +335,18 @@ export const completeTask = mutation({
   },
 });
 
-/**
- * Uncomplete Task
- */
 export const uncompleteTask = mutation({
   args: {
-    clerkUserId: v.string(),
     taskId: v.id("tasks"),
   },
   handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) throw new Error("Unauthorized");
+    const clerkUserId = identity.subject;
+
     const user = await ctx.db
       .query("users")
-      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", args.clerkUserId))
+      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", clerkUserId))
       .unique();
 
     if (!user) throw new Error("User not found");

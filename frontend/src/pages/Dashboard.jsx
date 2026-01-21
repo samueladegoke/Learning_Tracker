@@ -13,9 +13,11 @@ import {
   ArrowRight,
   Trophy
 } from 'lucide-react'
-import { progressAPI, weeksAPI, tasksAPI, rpgAPI, badgesAPI } from '../api/client'
+import { useQuery, useMutation } from "convex/react";
+import { api } from "../../convex/_generated/api";
 import ProgressRing from '../components/ProgressRing'
-import ProgressBar from '../components/ProgressBar'
+import { ScanProgress } from '../components/ui/neural/ScanProgress'
+import { NeuralCard } from '../components/ui/neural/NeuralCard'
 import CharacterCard from '../components/CharacterCard'
 import QuestLog from '../components/QuestLog'
 import ShopModal from '../components/ShopModal'
@@ -28,7 +30,6 @@ import CurrentSyncStatus from '../components/CurrentSyncStatus'
 
 // Shadcn UI Components
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
-import { Progress } from '@/components/ui/progress'
 
 // Loading States
 import { DashboardLoadingSkeleton } from '../components/DashboardLoadingSkeleton'
@@ -77,109 +78,53 @@ const itemVariants = {
 function Dashboard() {
   const { isAuthenticated, user } = useAuth()
   const { guestPrompts } = useCourse()
-  const [progress, setProgress] = useState(null)
-  const [currentWeek, setCurrentWeek] = useState(null)
-  const [rpgState, setRpgState] = useState(null)
-  const [badges, setBadges] = useState([])
-  const [shopItems, setShopItems] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
   const [shopOpen, setShopOpen] = useState(false)
 
-  const CACHE_DURATION = 300000 // 5 minutes
+  // Convex Queries (Reactive)
+  const clerkUserId = user?.id;
+  const progress = useQuery(api.progress.get, clerkUserId ? { clerkUserId } : "skip");
+  const rpgState = useQuery(api.rpg.getRPGState, clerkUserId ? { clerkUserId } : "skip");
+  const badges = useQuery(api.badges.getAll) || [];
+  const weeksData = useQuery(api.curriculum.getWeeks) || [];
+  const shopItems = useQuery(api.rpg.getShopItems) || [];
 
-  const fetchData = async (force = false) => {
-    try {
-      const now = Date.now()
-      
-      setLoading(true)
-      const [progressData, badgesData, weeksData, rpgData] = await Promise.all([
-        progressAPI.get(),
-        badgesAPI.getAll(),
-        weeksAPI.getAll(),
-        rpgAPI.getState()
-      ])
+  // Convex Mutations
+  const completeTaskMutation = useMutation(api.tasks.completeTask);
+  const uncompleteTaskMutation = useMutation(api.tasks.uncompleteTask);
+  const buyItemMutation = useMutation(api.rpg.buyItem);
 
-      // Find current week or last week
-      const firstIncomplete = weeksData.find(w => w.tasks_completed < w.tasks_total)
-      const weekToLoad = firstIncomplete || weeksData[weeksData.length - 1]
+  // Derived State
+  const loading = isAuthenticated && (progress === undefined || rpgState === undefined || weeksData.length === 0);
+  
+  // Find current week logic (reactive)
+  const currentWeek = weeksData[0]; 
 
-      let weekDetails = null
-      if (weekToLoad) {
-        // Prefer fetching by week number to avoid ID format mismatches
-        if (weekToLoad.weekNumber !== undefined) {
-          weekDetails = await weeksAPI.getByNumber(weekToLoad.weekNumber)
-        } else if (weekToLoad.week_number !== undefined) {
-          weekDetails = await weeksAPI.getByNumber(weekToLoad.week_number)
-        } else {
-          // Fallback to ID
-          const weekId = weekToLoad.id || weekToLoad._id
-          weekDetails = await weeksAPI.getById(weekId)
-        }
-      }
-
-      // Shop items (placeholder or fetch if api exists)
-      const shopItemsData = [] 
-
-      setProgress(progressData)
-      setCurrentWeek(weekDetails)
-      setRpgState(rpgData)
-      setBadges(badgesData)
-      setShopItems(shopItemsData)
-
-    } catch (err) {
-      console.error('[Dashboard] Error fetching data:', err)
-      setError(err.message)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      fetchData()
-    } else {
-      setLoading(false)
-    }
-  }, [isAuthenticated])
-
+  // Fetch tasks for current week if we have one
+  const tasksForWeek = useQuery(api.curriculum.getTasks, currentWeek ? { weekId: currentWeek._id } : "skip");
+  const userTaskStatuses = useQuery(api.tasks.getUserTaskStatuses, clerkUserId ? { clerkUserId } : "skip");
+  
   const handleTaskToggle = async (taskId, complete) => {
-    // Deep clone to preserve original state on revert
-    const originalWeek = currentWeek ? { ...currentWeek, tasks: [...currentWeek.tasks] } : null
-
-    // Optimistic update - update UI immediately
-    if (currentWeek) {
-      const updatedTasks = currentWeek.tasks.map(t =>
-        t.task_id === taskId ? { ...t, completed: complete } : t
-      )
-      const updatedWeek = {
-        ...currentWeek,
-        tasks: updatedTasks,
-        tasks_completed: complete ? currentWeek.tasks_completed + 1 : currentWeek.tasks_completed - 1
-      }
-      setCurrentWeek(updatedWeek)
-    }
-
-    if (complete) soundManager.completeTask()
-
+    if (!isAuthenticated) return;
+    
     try {
-        await tasksAPI.toggleComplete(taskId, complete)
-        // Refresh to get latest RPG state
-        fetchData(true)
+      if (complete) {
+        await completeTaskMutation({ clerkUserId, taskId });
+        soundManager.completeTask();
+      } else {
+        await uncompleteTaskMutation({ clerkUserId, taskId });
+      }
     } catch (err) {
-      console.error('Failed to toggle task:', err)
-      soundManager.error()
-      setCurrentWeek(originalWeek)
+      console.error('Failed to toggle task:', err);
+      soundManager.error();
     }
   }
 
   const handlePurchase = async (itemId) => {
     try {
-      await rpgAPI.buyItem(itemId)
-      fetchData(true)
+      await buyItemMutation({ clerkUserId, itemId });
     } catch (err) {
-      console.error('Purchase failed:', err)
-      throw err
+      console.error('Purchase failed:', err);
+      throw err;
     }
   }
 
@@ -187,28 +132,9 @@ function Dashboard() {
     return <DashboardLoadingSkeleton />
   }
 
-  if (error) {
-    return (
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="clay-card p-8 text-center max-w-md mx-auto mt-20"
-      >
-        <div className="flex justify-center mb-4">
-          <AlertTriangle className="w-12 h-12 text-rose-500" />
-        </div>
-        <h2 className="text-xl font-semibold text-surface-100 mb-2">Sync Failure</h2>
-        <p className="text-surface-500 mb-6">{error}</p>
-        <button onClick={() => fetchData(true)} className="btn-primary w-full">
-          Reinitialize Connection
-        </button>
-      </motion.div>
-    )
-  }
-
-  const weekProgress = currentWeek && currentWeek.tasks_total > 0
-    ? (currentWeek.tasks_completed / currentWeek.tasks_total) * 100
-    : 0
+  // Calculate local progress for UI based on loaded data
+  const weekProgress = 0; // TODO: Calculate from tasksForWeek and statuses
+  
   const activeQuest = rpgState?.active_quest
   const activeChallenge = rpgState?.active_challenges?.[0]
   const questProgress = activeQuest && activeQuest.boss_hp
@@ -229,7 +155,7 @@ function Dashboard() {
         animate="show"
         className="space-y-8 pb-12"
       >
-        <div className="clay-card p-12 text-center bg-gradient-to-br from-primary-900/10 to-surface-900 border-primary-500/10 relative overflow-hidden">
+        <NeuralCard className="p-12 text-center bg-gradient-to-br from-primary-900/10 to-surface-900 border-primary-500/10 relative overflow-hidden">
           <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
             <Compass className="w-64 h-64 text-primary-400" />
           </div>
@@ -255,7 +181,7 @@ function Dashboard() {
               </Link>
             </div>
           </motion.div>
-        </div>
+        </NeuralCard>
 
         <div className="grid md:grid-cols-3 gap-6">
           {[
@@ -266,11 +192,12 @@ function Dashboard() {
             <motion.div
               key={i}
               variants={itemVariants}
-              className="clay-card p-6 bg-surface-900/40 border-white/5 hover:border-primary-500/20 transition-colors"
             >
-              <feature.icon className="w-8 h-8 text-primary-400 mb-4" />
-              <h3 className="text-lg font-bold text-surface-100 mb-2">{feature.title}</h3>
-              <p className="text-sm text-surface-500 leading-relaxed">{feature.desc}</p>
+              <NeuralCard className="p-6 bg-surface-900/40 border-white/5 hover:border-primary-500/20 transition-colors h-full">
+                <feature.icon className="w-8 h-8 text-primary-400 mb-4" />
+                <h3 className="text-lg font-bold text-surface-100 mb-2">{feature.title}</h3>
+                <p className="text-sm text-surface-500 leading-relaxed">{feature.desc}</p>
+              </NeuralCard>
             </motion.div>
           ))}
         </div>
@@ -322,89 +249,94 @@ function Dashboard() {
 
           {/* Daily Training Card */}
           {rpgState && (
-            <motion.div
-              variants={itemVariants}
-              className="clay-card p-6 border-primary-500/20 bg-gradient-to-br from-primary-900/20 to-surface-900 shadow-[0_0_20px_rgba(59,130,246,0.1)] relative overflow-hidden group"
-            >
-              <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity pointer-events-none">
-                <Compass className="w-32 h-32 text-primary-400 rotate-12" />
-              </div>
-              <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2 text-primary-400">
-                    <Trophy className="w-4 h-4" />
-                    <span className="text-[10px] font-bold uppercase tracking-[0.2em]">Active Mission</span>
-                  </div>
-                  <h3 className="text-2xl font-bold text-surface-100">
-                    <span className="text-primary-400">Day {rpgState.level}:</span> Journey Continued
-                  </h3>
-                  <p className="text-surface-400 text-sm max-w-md">
-                    Your training path awaits. Complete today's Chronicles of Code to earn XP and advance your rank.
-                  </p>
+            <motion.div variants={itemVariants}>
+              <NeuralCard
+                className="p-6 border-primary-500/20 bg-gradient-to-br from-primary-900/20 to-surface-900 shadow-[0_0_20px_rgba(59,130,246,0.1)] relative overflow-hidden group"
+              >
+                <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity pointer-events-none">
+                  <Compass className="w-32 h-32 text-primary-400 rotate-12" />
                 </div>
-                <Link
-                  to="/practice"
-                  className="px-8 py-3 bg-primary-600 hover:bg-primary-500 text-white rounded-xl font-bold text-sm transition-all shadow-neon-glow hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
-                >
-                  Start Training <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
+                <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 text-primary-400">
+                      <Trophy className="w-4 h-4" />
+                      <span className="text-[10px] font-bold uppercase tracking-[0.2em]">Active Mission</span>
+                    </div>
+                    <h3 className="text-2xl font-bold text-surface-100">
+                      <span className="text-primary-400">Day {rpgState.level}:</span> Journey Continued
+                    </h3>
+                    <p className="text-surface-400 text-sm max-w-md">
+                      Your training path awaits. Complete today's Chronicles of Code to earn XP and advance your rank.
+                    </p>
+                  </div>
+                  <Link
+                    to="/practice"
+                    className="px-8 py-3 bg-primary-600 hover:bg-primary-500 text-white rounded-xl font-bold text-sm transition-all shadow-neon-glow hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
+                  >
+                    Start Training <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </NeuralCard>
             </motion.div>
           )}
 
           <AnimatePresence>
             {activeQuest && (
-              <motion.div variants={itemVariants} className="rpg-card p-6 min-h-[200px]" layout>
-                <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none select-none">
-                  <Swords className="w-32 h-32" />
-                </div>
-                <div className="relative z-10">
-                  <div className="flex items-center justify-between mb-4">
-                    <div>
-                      <span className="badge-primary mb-2">Boss Battle</span>
-                      <h3 className="text-xl font-display font-bold text-surface-100">{activeQuest.name}</h3>
-                    </div>
-                    <div className="text-right text-sm text-surface-400 bg-surface-950/30 px-3 py-2 rounded-lg border border-white/5">
-                      <p className="text-xs uppercase tracking-wider mb-1">Boss HP</p>
-                      <p className="text-surface-100 font-mono font-bold text-lg">
-                        <NumberTicker value={activeQuest.boss_hp_remaining} /> / {activeQuest.boss_hp}
-                      </p>
-                    </div>
+              <motion.div variants={itemVariants} layout>
+                <NeuralCard className="p-6 min-h-[200px]">
+                  <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none select-none">
+                    <Swords className="w-32 h-32" />
                   </div>
-                  <motion.div key={activeQuest.boss_hp_remaining} animate={{ x: [0, -5, 5, -5, 5, 0] }} transition={{ duration: 0.4 }}>
-                    <ProgressBar progress={questProgress} showLabel={false} height="h-4" />
-                  </motion.div>
-                </div>
+                  <div className="relative z-10">
+                    <div className="flex items-center justify-between mb-4">
+                      <div>
+                        <span className="badge-primary mb-2">Boss Battle</span>
+                        <h3 className="text-xl font-display font-bold text-surface-100">{activeQuest.name}</h3>
+                      </div>
+                      <div className="text-right text-sm text-surface-400 bg-surface-950/30 px-3 py-2 rounded-lg border border-white/5">
+                        <p className="text-xs uppercase tracking-wider mb-1">Boss HP</p>
+                        <p className="text-surface-100 font-mono font-bold text-lg">
+                          <NumberTicker value={activeQuest.boss_hp_remaining} /> / {activeQuest.boss_hp}
+                        </p>
+                      </div>
+                    </div>
+                    <motion.div key={activeQuest.boss_hp_remaining} animate={{ x: [0, -5, 5, -5, 5, 0] }} transition={{ duration: 0.4 }}>
+                      <ScanProgress value={activeQuest.boss_hp - activeQuest.boss_hp_remaining} max={activeQuest.boss_hp} className="h-4" colorClass="bg-red-500" />
+                    </motion.div>
+                  </div>
+                </NeuralCard>
               </motion.div>
             )}
           </AnimatePresence>
 
-          {currentWeek && <QuestLog tasks={currentWeek.tasks || []} onToggle={handleTaskToggle} />}
+          {currentWeek && <QuestLog tasks={tasksForWeek || []} onToggle={handleTaskToggle} />}
 
           {currentWeek && (
-            <motion.div variants={itemVariants} className="clay-card p-8 bg-gradient-to-br from-surface-900/80 to-surface-800/80">
-              <div className="flex items-start justify-between mb-6">
-                <div>
-                  <span className="badge-surface mb-3">Current Chapter</span>
-                  <h2 className="text-2xl font-display font-bold text-surface-100 mb-2">{currentWeek.title}</h2>
-                  <p className="text-surface-400 leading-relaxed max-w-md">{currentWeek.focus}</p>
+            <motion.div variants={itemVariants}>
+              <NeuralCard className="p-8 bg-gradient-to-br from-surface-900/80 to-surface-800/80">
+                <div className="flex items-start justify-between mb-6">
+                  <div>
+                    <span className="badge-surface mb-3">Current Chapter</span>
+                    <h2 className="text-2xl font-display font-bold text-surface-100 mb-2">{currentWeek.title}</h2>
+                    <p className="text-surface-400 leading-relaxed max-w-md">{currentWeek.description}</p>
+                  </div>
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-primary-500/20 blur-xl rounded-full"></div>
+                    <ProgressRing progress={weekProgress} size={100} strokeWidth={8}>
+                      <motion.span className="text-2xl font-bold font-mono text-primary-400">
+                        {Math.round(weekProgress)}%
+                      </motion.span>
+                    </ProgressRing>
+                  </div>
                 </div>
-                <div className="relative">
-                  <div className="absolute inset-0 bg-primary-500/20 blur-xl rounded-full"></div>
-                  <ProgressRing progress={weekProgress} size={100} strokeWidth={8}>
-                    <motion.span className="text-2xl font-bold font-mono text-primary-400">
-                      {Math.round(weekProgress)}%
-                    </motion.span>
-                  </ProgressRing>
-                </div>
-              </div>
+              </NeuralCard>
             </motion.div>
           )}
         </div>
 
         <div className="space-y-6">
           <motion.div variants={itemVariants}>
-            <Card className="clay-card border-white/5">
+            <NeuralCard className="border-white/5">
               <CardHeader className="pb-4">
                 <CardTitle className="text-lg font-semibold text-surface-100 flex items-center gap-2">
                   <Compass className="w-5 h-5 text-primary-400" /> Navigation
@@ -429,44 +361,48 @@ function Dashboard() {
                   </Link>
                 ))}
               </CardContent>
-            </Card>
+            </NeuralCard>
           </motion.div>
 
           {activeChallenge && (
-            <motion.div variants={itemVariants} className="clay-card p-6 border-accent-500/20">
-              <div className="flex items-center justify-between mb-4">
-                <div>
-                  <span className="badge-accent mb-2">Side Quest</span>
-                  <h3 className="text-lg font-bold text-surface-100">{activeChallenge.name}</h3>
+            <motion.div variants={itemVariants}>
+              <NeuralCard className="p-6 border-accent-500/20">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <span className="badge-accent mb-2">Side Quest</span>
+                    <h3 className="text-lg font-bold text-surface-100">{activeChallenge.name}</h3>
+                  </div>
+                  <div className="text-right text-sm font-mono font-bold text-accent-300">
+                    <NumberTicker value={activeChallenge.progress} />/<NumberTicker value={activeChallenge.goal} />
+                  </div>
                 </div>
-                <div className="text-right text-sm font-mono font-bold text-accent-300">
-                  <NumberTicker value={activeChallenge.progress} />/<NumberTicker value={activeChallenge.goal} />
-                </div>
-              </div>
-              <ProgressBar progress={challengeProgress} showLabel={false} colorClass="bg-accent-500" />
+                <ScanProgress value={activeChallenge.progress} max={activeChallenge.goal} colorClass="bg-accent-500" />
+              </NeuralCard>
             </motion.div>
           )}
 
-          <motion.div variants={itemVariants} className="clay-card p-6 text-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-primary-900/5 pointer-events-none"></div>
-            <h3 className="text-lg font-semibold text-surface-100 mb-6">Campaign Progress</h3>
-            <div className="flex justify-center mb-6 relative">
-              <div className="absolute inset-0 bg-primary-500/10 blur-3xl rounded-full transform scale-150"></div>
-              <ProgressRing progress={progress?.completion_percentage || 0} size={160} strokeWidth={12}>
-                <div className="text-center">
-                  <span className="text-4xl font-display font-bold text-surface-100 tracking-tight block">
-                    <NumberTicker value={progress?.completion_percentage || 0} />%
-                  </span>
-                  <span className="text-xs font-bold text-primary-500 uppercase tracking-widest mt-1 block">Complete</span>
-                </div>
-              </ProgressRing>
-            </div>
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-surface-800/50 rounded-full border border-surface-700/50 text-sm text-surface-400">
-              <Check className="w-4 h-4 text-primary-500" />
-              <span>
-                <strong className="text-surface-200">{progress?.tasks_completed || 0}</strong> of {progress?.tasks_total || 0} quests
-              </span>
-            </div>
+          <motion.div variants={itemVariants}>
+            <NeuralCard className="p-6 text-center relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-primary-900/5 pointer-events-none"></div>
+              <h3 className="text-lg font-semibold text-surface-100 mb-6">Campaign Progress</h3>
+              <div className="flex justify-center mb-6 relative">
+                <div className="absolute inset-0 bg-primary-500/10 blur-3xl rounded-full transform scale-150"></div>
+                <ProgressRing progress={progress?.completion_percentage || 0} size={160} strokeWidth={12}>
+                  <div className="text-center">
+                    <span className="text-4xl font-display font-bold text-surface-100 tracking-tight block">
+                      <NumberTicker value={progress?.completion_percentage || 0} />%
+                    </span>
+                    <span className="text-xs font-bold text-primary-500 uppercase tracking-widest mt-1 block">Complete</span>
+                  </div>
+                </ProgressRing>
+              </div>
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-surface-800/50 rounded-full border border-surface-700/50 text-sm text-surface-400">
+                <Check className="w-4 h-4 text-primary-500" />
+                <span>
+                  <strong className="text-surface-200">{progress?.tasks_completed || 0}</strong> of {progress?.tasks_total || 0} quests
+                </span>
+              </div>
+            </NeuralCard>
           </motion.div>
         </div>
       </div>

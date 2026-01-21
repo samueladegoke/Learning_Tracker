@@ -2,51 +2,53 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Trophy, Target, Flame, Calendar as CalendarIcon, AlertTriangle, Star, Zap, Crown, Skull, Award, CheckCircle2 } from 'lucide-react'
+import { useQuery } from "convex/react"
+import { api } from "../../../convex/_generated/api"
 import { useAuth } from '../contexts/AuthContext'
 import { useCourse } from '../contexts/CourseContext'
-import { progressAPI, badgesAPI, achievementsAPI, weeksAPI } from '../api/client'
 import Leaderboard from '../components/Leaderboard'
 import ProgressRing from '../components/ProgressRing'
 import ProgressBar from '../components/ProgressBar'
 import BadgeCard from '../components/BadgeCard'
 
+// Helper to calculate level progress locally (matches backend logic)
+const calculateLevelStats = (totalXp) => {
+    const XP_BASE = 100
+    const XP_EXPONENT = 1.2
+    const getLevelDuration = (lvl) => Math.floor(XP_BASE * Math.pow(lvl, XP_EXPONENT))
+    
+    let level = 1
+    let remaining = totalXp || 0
+    let levelDuration = getLevelDuration(level)
+    
+    while (remaining >= levelDuration) {
+        remaining -= levelDuration
+        level++
+        levelDuration = getLevelDuration(level)
+    }
+    
+    return {
+        level,
+        level_progress: (remaining / levelDuration) * 100,
+        xp_to_next_level: levelDuration - remaining
+    }
+}
+
 function Progress() {
-  const { isAuthenticated } = useAuth()
+  const { user, isAuthenticated } = useAuth()
   const { guestPrompts } = useCourse()
-  const [progress, setProgress] = useState(null)
-  const [badges, setBadges] = useState([])
-  const [achievements, setAchievements] = useState([])
-  const [weeks, setWeeks] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  
+  const progress = useQuery(api.progress.get, user?.id ? { clerkUserId: user.id } : "skip")
+  const badges = useQuery(api.badges.getAll) || []
+  const achievements = useQuery(api.achievements.getAll) || []
+  const weeks = useQuery(api.curriculum.getWeeks) || []
 
-  const fetchData = async () => {
-    try {
-      setLoading(true)
-      const [progressData, badgesData, achievementsData, weeksData] = await Promise.all([
-        progressAPI.get(),
-        badgesAPI.getAll(),
-        achievementsAPI.getAll(),
-        weeksAPI.getAll()
-      ])
-      setProgress(progressData)
-      setBadges(badgesData)
-      setAchievements(achievementsData)
-      setWeeks(weeksData)
-    } catch (err) {
-      setError(err.message)
-    } finally {
-      setLoading(false)
-    }
-  }
+  const loading = isAuthenticated && progress === undefined
+  const error = null
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      fetchData()
-    } else {
-      setLoading(false)
-    }
-  }, [isAuthenticated])
+  const { level_progress, xp_to_next_level } = calculateLevelStats(progress?.xp || 0)
+  const levelProgress = level_progress
+  const xpToNextLevel = xp_to_next_level
 
   if (loading) {
     return (
@@ -58,23 +60,6 @@ function Progress() {
       </div>
     )
   }
-
-  if (error) {
-    return (
-      <div className="card p-8 text-center">
-        <AlertTriangle className="w-12 h-12 text-yellow-500 mx-auto mb-4" />
-        <h2 className="text-xl font-semibold text-surface-100 mb-2">Failed to load progress</h2>
-        <p className="text-surface-500 mb-4">{error}</p>
-        <button onClick={fetchData} className="btn-primary">
-          Try Again
-        </button>
-      </div>
-    )
-  }
-
-  // Level progress is now calculated on the server
-  const levelProgress = progress?.level_progress || 0
-  const xpToNextLevel = progress?.xp_to_next_level || 100
 
   if (!isAuthenticated) {
     return (
@@ -140,7 +125,7 @@ function Progress() {
             {/* Stats Grid */}
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-surface-800/50 rounded-lg p-4 text-center">
-                <p className="text-3xl font-bold text-primary-400">{progress?.total_xp || 0}</p>
+                <p className="text-3xl font-bold text-primary-400">{progress?.xp || 0}</p>
                 <p className="text-sm text-surface-500">Total XP</p>
               </div>
               <div className="bg-surface-800/50 rounded-lg p-4 text-center">
@@ -233,7 +218,6 @@ function Progress() {
             {achievements.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-80 overflow-y-auto pr-1">
                 {achievements.map((ach) => {
-                  // Determine rarity-based styling
                   const rarityStyles = {
                     trivial: 'border-surface-600 bg-surface-800/50',
                     normal: 'border-primary-600/50 bg-primary-900/20',
@@ -243,7 +227,6 @@ function Progress() {
                   const rarity = (ach.difficulty || 'normal').toLowerCase()
                   const rarityClass = rarityStyles[rarity] || rarityStyles.normal
 
-                  // Determine icon based on achievement name/type
                   const getIcon = () => {
                     const name = ach.name?.toLowerCase() || ''
                     if (name.includes('boss') || name.includes('slayer')) return <Skull className="w-5 h-5" />
@@ -261,7 +244,6 @@ function Progress() {
                       className={`relative p-4 rounded-xl border-2 transition-all cursor-default ${rarityClass} ${ach.unlocked ? 'opacity-100' : 'opacity-50 grayscale'
                         }`}
                     >
-                      {/* Unlocked indicator */}
                       {ach.unlocked && (
                         <div className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-emerald-500 rounded-full flex items-center justify-center shadow-lg">
                           <CheckCircle2 className="w-3 h-3 text-white" />
@@ -269,7 +251,6 @@ function Progress() {
                       )}
 
                       <div className="flex items-start gap-3">
-                        {/* Icon */}
                         <div className={`p-2 rounded-lg ${rarity === 'epic' ? 'bg-purple-500/20 text-purple-400' :
                           rarity === 'hard' ? 'bg-amber-500/20 text-amber-400' :
                             rarity === 'normal' ? 'bg-primary-500/20 text-primary-400' :
@@ -278,14 +259,12 @@ function Progress() {
                           {getIcon()}
                         </div>
 
-                        {/* Content */}
                         <div className="flex-1 min-w-0">
                           <h4 className="font-bold text-sm text-surface-100 truncate">{ach.name}</h4>
                           <p className="text-xs text-surface-400 mt-0.5 line-clamp-2">{ach.description}</p>
                         </div>
                       </div>
 
-                      {/* Footer */}
                       <div className="flex items-center justify-between mt-3 pt-2 border-t border-white/5">
                         <span className={`text-[10px] font-bold uppercase tracking-wider ${rarity === 'epic' ? 'text-purple-400' :
                           rarity === 'hard' ? 'text-amber-400' :
@@ -331,4 +310,3 @@ function Progress() {
 }
 
 export default Progress
-

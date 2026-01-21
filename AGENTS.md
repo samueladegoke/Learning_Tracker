@@ -98,7 +98,7 @@ npm run build            # Production frontend bundle
 
 ## BROWSER AUTOMATION (MANDATORY)
 
-**PRIMARY TOOL: agent-browser** (NOT Playwright MCP)
+**PRIMARY TOOL: agent-browser**
 
 For ANY browser automation task, use agent-browser via Bash commands:
 
@@ -128,6 +128,7 @@ npx agent-browser --session dev close
 - Full docs: `.opencode/skills/agent-browser/SKILL.md`
 
 **DO NOT use** `skill("playwright")` or `skill_mcp(mcp_name="playwright")` - these are deprecated.
+**DO NOT use** generic Playwright scripts. Use the `agent-browser` CLI.
 
 ## FRONTEND UI/UX SKILL (MANDATORY)
 
@@ -162,3 +163,16 @@ python3 .opencode/skills/ui-ux-pro-max/scripts/search.py "responsive layout" --s
 - ALWAYS run `--design-system` first for new UI work
 - Check UX domain for accessibility before delivery
 - Follow the Pre-Delivery Checklist in SKILL.md
+
+## AGILE METHODOLOGY (MANDATORY)
+
+**PRIMARY TOOL: BMad Method** (`.opencode/skills/bmad/`)
+
+For ALL planning, architecture, and workflow management:
+
+1. **Initialize**: `npx bmad-method@alpha workflow-init` (if starting fresh)
+2. **Execute**: Use the specialized agents defined in `_bmad/` for each phase
+3. **Reference**: Check `_bmad/docs/` for project artifacts
+
+**Default Track**: BMad Method (Standard)
+- Planning -> Architecture -> Implementation -> Review

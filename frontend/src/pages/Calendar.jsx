@@ -2,43 +2,26 @@ import { useState, useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { AlertTriangle, Flame, Check, X, ArrowLeft, ArrowRight } from 'lucide-react'
-import { progressAPI, rpgAPI } from '../api/client'
+import { useQuery } from "convex/react"
+import { api } from "../../../convex/_generated/api"
 import { useAuth } from '../contexts/AuthContext'
 import { useCourse } from '../contexts/CourseContext'
 
 function Calendar() {
-  const { isAuthenticated } = useAuth()
+  const { user, isAuthenticated } = useAuth()
   const { guestPrompts } = useCourse()
-  const [calendarData, setCalendarData] = useState(null)
-  const [rpgState, setRpgState] = useState(null)
   const [currentMonth, setCurrentMonth] = useState(new Date())
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
 
-  const fetchData = useCallback(async () => {
-    try {
-      setLoading(true)
-      const [calendar, rpg] = await Promise.all([
-        progressAPI.getCalendar(),
-        rpgAPI.getState(),
-      ])
-      setCalendarData(calendar)
-      setRpgState(rpg)
-    } catch (err) {
-      setError(err.message)
-    } finally {
-      setLoading(false)
-    }
-  }, [])
+  const calendarDataRaw = useQuery(api.progress.getCalendar, user?.id ? { clerkUserId: user.id } : "skip")
+  const rpgState = useQuery(api.rpg.getRPGState, user?.id ? { clerkUserId: user.id } : "skip")
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      fetchData()
-    } else {
-      setLoading(false)
-    }
-  }, [fetchData, isAuthenticated])
+  const loading = isAuthenticated && (calendarDataRaw === undefined || rpgState === undefined)
+  const error = null
 
+  const calendarData = calendarDataRaw ? {
+    completion_dates: calendarDataRaw.reduce((acc, item) => ({ ...acc, [item.date]: item.count }), {}),
+    streak_days: [] 
+  } : null
 
   const getDaysInMonth = (date) => {
     const year = date.getFullYear()

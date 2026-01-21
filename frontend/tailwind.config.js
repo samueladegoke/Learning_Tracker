@@ -81,18 +81,25 @@ export default {
 					'3': 'hsl(var(--chart-3))',
 					'4': 'hsl(var(--chart-4))',
 					'5': 'hsl(var(--chart-5))'
-				}
+				},
+				neon: {
+					cyan: '#06b6d4',
+					green: '#10b981',
+					purple: '#d946ef',
+				},
 			},
 			borderColor: {
 				border: 'hsl(var(--border))'
 			},
 			fontFamily: {
 				display: [
+					'Rajdhani',
 					'Outfit',
 					'system-ui',
 					'sans-serif'
 				],
 				body: [
+					'Inter',
 					'DM Sans',
 					'system-ui',
 					'sans-serif'
@@ -102,6 +109,9 @@ export default {
 					'Fira Code',
 					'monospace'
 				]
+			},
+			backgroundImage: {
+				'grid-pattern': "linear-gradient(to right, #1e293b 1px, transparent 1px), linear-gradient(to bottom, #1e293b 1px, transparent 1px)",
 			},
 			animation: {
 				'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
@@ -161,4 +171,3 @@ export default {
 	},
 	plugins: [require("tailwindcss-animate")],
 }
-

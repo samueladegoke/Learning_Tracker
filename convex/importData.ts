@@ -202,7 +202,18 @@ export const countRows = query({
             v.literal("users"),
             v.literal("badges"),
             v.literal("achievements"),
-            v.literal("questions")
+            v.literal("questions"),
+            v.literal("userTaskStatuses"),
+            v.literal("userBadges"),
+            v.literal("userAchievements"),
+            v.literal("quests"),
+            v.literal("questTasks"),
+            v.literal("userQuests"),
+            v.literal("challenges"),
+            v.literal("userChallenges"),
+            v.literal("userInventory"),
+            v.literal("quizResults"),
+            v.literal("userQuestionReviews")
         )
     },
     handler: async (ctx, args) => {

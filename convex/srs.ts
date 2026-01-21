@@ -4,7 +4,7 @@ import { Id } from "./_generated/dataModel";
 import { levelFromXp } from "./gamification";
 import { addDays } from "./lib/utils";
 
-// ========== SRS CONSTANTS - EXACT PORT FROM BACKEND ==========
+// ... (constants remain)
 export const SRS_INTERVALS = [1, 3, 7, 14]; // days between reviews
 export const MASTERY_SUCCESS_COUNT = 3;
 export const MAX_DAILY_REVIEWS = 10;
@@ -13,18 +13,21 @@ export const XP_MASTERY_BONUS = 100;
 
 // ========== QUERIES ==========
 
-/**
- * Get daily review questions - returns up to MAX_DAILY_REVIEWS due questions
- */
 export const getDailyReview = query({
-  args: { clerkUserId: v.string() },
+  args: { clerkUserId: v.optional(v.string()) },
   handler: async (ctx, args) => {
+    let userId = args.clerkUserId;
+    if (!userId) {
+        const identity = await ctx.auth.getUserIdentity();
+        if (identity) userId = identity.subject;
+    }
+    if (!userId) return { reviews: [], totalDue: 0, maxReviews: MAX_DAILY_REVIEWS };
+
     const now = Date.now();
 
-    // Get user first
     const user = await ctx.db
       .query("users")
-      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", args.clerkUserId))
+      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", userId!))
       .unique();
     if (!user) return { reviews: [], totalDue: 0, maxReviews: MAX_DAILY_REVIEWS };
 
@@ -71,17 +74,21 @@ export const getDailyReview = query({
   },
 });
 
-/**
- * Get user's SRS stats
- */
 export const getSRSStats = query({
-  args: { clerkUserId: v.string() },
+  args: { clerkUserId: v.optional(v.string()) },
   handler: async (ctx, args) => {
+    let userId = args.clerkUserId;
+    if (!userId) {
+        const identity = await ctx.auth.getUserIdentity();
+        if (identity) userId = identity.subject;
+    }
+    if (!userId) return null;
+
     const now = Date.now();
 
     const user = await ctx.db
       .query("users")
-      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", args.clerkUserId))
+      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", userId!))
       .unique();
     if (!user) return null;
 
@@ -108,21 +115,21 @@ export const getSRSStats = query({
 
 // ========== MUTATIONS ==========
 
-/**
- * Submit review result - updates SRS state based on correctness
- */
 export const submitReviewResult = mutation({
   args: {
-    clerkUserId: v.string(),
     reviewId: v.id("userQuestionReviews"),
     wasCorrect: v.boolean(),
   },
   handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) throw new Error("Unauthorized");
+    const clerkUserId = identity.subject;
+
     const now = Date.now();
 
     const user = await ctx.db
       .query("users")
-      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", args.clerkUserId))
+      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", clerkUserId))
       .unique();
     if (!user) throw new Error("User not found");
 
@@ -195,20 +202,20 @@ export const submitReviewResult = mutation({
   },
 });
 
-/**
- * Add question to review queue
- */
 export const addToReview = mutation({
   args: {
-    clerkUserId: v.string(),
     questionId: v.id("questions"),
   },
   handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) throw new Error("Unauthorized");
+    const clerkUserId = identity.subject;
+
     const now = Date.now();
 
     const user = await ctx.db
       .query("users")
-      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", args.clerkUserId))
+      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", clerkUserId))
       .unique();
     if (!user) throw new Error("User not found");
 

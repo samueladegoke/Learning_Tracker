@@ -8,10 +8,13 @@ import {
   TrendingUp,
   Swords,
   LogOut,
-  User
+  User,
+  Terminal,
+  Activity
 } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
 import { useCourse } from '../contexts/CourseContext'
+import { GlitchButton } from './ui/neural/GlitchButton'
 
 function Navbar() {
   const { user, isAuthenticated, signOut } = useAuth()
@@ -34,6 +37,8 @@ function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50 bg-surface-950/80 backdrop-blur-xl border-b border-surface-800/50">
+      <div className="absolute inset-x-0 bottom-0 h-[1px] bg-gradient-to-r from-transparent via-primary-500/50 to-transparent" />
+      
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -41,13 +46,16 @@ function Navbar() {
             <motion.div
               whileHover={{ rotate: 180, scale: 1.1 }}
               transition={{ duration: 0.5, type: "spring" }}
-              className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg shadow-primary-900/30 group-hover:shadow-primary-900/50 transition-shadow overflow-hidden bg-surface-900 border border-white/10"
+              className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg shadow-primary-900/30 group-hover:shadow-primary-900/50 transition-shadow overflow-hidden bg-surface-900 border border-white/10 relative"
             >
-              <img src={`${import.meta.env.BASE_URL}assets/logo.png`} alt="Logo" className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-grid-pattern opacity-20" />
+              <img src={`${import.meta.env.BASE_URL}assets/logo.png`} alt="Logo" className="w-full h-full object-cover relative z-10" />
             </motion.div>
             <div className="hidden sm:block">
-              <h1 className="font-display font-bold text-lg text-surface-100 tracking-tight">Learning Tracker</h1>
-              <p className="text-xs text-surface-500 -mt-0.5 font-medium">{title}</p>
+              <h1 className="font-display font-bold text-lg text-surface-100 tracking-tight flex items-center gap-2">
+                LEARNING_TRACKER <span className="text-primary-500 text-xs font-mono px-1 border border-primary-500 rounded">v2.0</span>
+              </h1>
+              <p className="text-[10px] text-surface-500 -mt-0.5 font-mono uppercase tracking-widest">{title}</p>
             </div>
           </NavLink>
 
@@ -58,7 +66,7 @@ function Navbar() {
                 key={item.to}
                 to={item.to}
                 className={({ isActive }) =>
-                  `relative px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 flex items-center gap-2 z-10 ${isActive
+                  `relative px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 flex items-center gap-2 z-10 font-display uppercase tracking-wide ${isActive
                     ? 'text-primary-400'
                     : 'text-surface-400 hover:text-surface-100'
                   }`
@@ -69,13 +77,15 @@ function Navbar() {
                     {isActive && (
                       <motion.div
                         layoutId="navbar-indicator"
-                        className="absolute inset-0 bg-surface-800/80 rounded-lg -z-10 border border-white/5"
+                        className="absolute inset-0 bg-primary-500/10 rounded-lg -z-10 border border-primary-500/20"
                         initial={false}
                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                      />
+                      >
+                        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-[2px] bg-primary-500 shadow-neon-glow" />
+                      </motion.div>
                     )}
                     <item.icon className={`w-4 h-4 ${isActive ? 'stroke-[2.5px]' : 'stroke-2'}`} />
-                    <span className="hidden md:inline">{item.label}</span>
+                    <span className="hidden lg:inline">{item.label}</span>
                   </>
                 )}
               </NavLink>
@@ -83,36 +93,48 @@ function Navbar() {
           </div>
 
           {/* User Section */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             {isAuthenticated ? (
               <>
+                {/* HUD Stats */}
+                <div className="hidden xl:flex items-center gap-4 mr-2">
+                  <div className="flex flex-col items-end">
+                    <span className="text-[10px] text-surface-500 font-mono uppercase">System Status</span>
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-400">
+                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      ONLINE
+                    </div>
+                  </div>
+                  <div className="h-8 w-[1px] bg-surface-800" />
+                </div>
+
                 {/* User Email */}
-                <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-surface-800/50 rounded-lg border border-surface-700/30">
-                  <User className="w-4 h-4 text-surface-400" />
-                  <span className="text-sm text-surface-300 max-w-[150px] truncate">
+                <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-surface-900/80 rounded-lg border border-surface-700/50">
+                  <Terminal className="w-3.5 h-3.5 text-primary-500" />
+                  <span className="text-xs font-mono text-surface-300 max-w-[150px] truncate">
                     {user?.email?.split('@')[0]}
                   </span>
                 </div>
 
                 {/* Logout Button */}
-                <motion.button
+                <GlitchButton
                   onClick={handleSignOut}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 px-3 py-2 text-surface-400 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors"
-                  title="Sign Out"
+                  className="px-4 py-2 text-xs bg-surface-800 hover:bg-red-900/20 text-surface-300 hover:text-red-400 border border-surface-700 hover:border-red-500/50"
                 >
-                  <LogOut className="w-4 h-4" />
-                  <span className="hidden lg:inline text-sm font-medium">Logout</span>
-                </motion.button>
+                  <span className="flex items-center gap-2">
+                    <LogOut className="w-3.5 h-3.5" />
+                    <span className="hidden lg:inline">ABORT</span>
+                  </span>
+                </GlitchButton>
               </>
             ) : (
-              <NavLink
-                to="/login"
-                className="flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-500 text-white rounded-lg font-medium text-sm transition-colors"
-              >
-                <User className="w-4 h-4" />
-                <span>Sign In</span>
+              <NavLink to="/login">
+                <GlitchButton className="px-6 py-2 text-xs">
+                  <span className="flex items-center gap-2">
+                    <User className="w-3.5 h-3.5" />
+                    INITIALIZE
+                  </span>
+                </GlitchButton>
               </NavLink>
             )}
           </div>
@@ -123,5 +145,3 @@ function Navbar() {
 }
 
 export default Navbar
-
-

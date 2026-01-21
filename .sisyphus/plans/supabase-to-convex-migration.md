@@ -250,7 +250,7 @@ Phase 2 (Curriculum) → Phase 3 (Gamification)
 
 ### Phase 2: Curriculum (Week 2)
 
-- [ ] 2.1. Create Curriculum Schema
+- [x] 2.1. Create Curriculum Schema
 
   **What to do**:
   - Define `courses`, `weeks`, `tasks` tables in `convex/schema.ts`
@@ -275,9 +275,9 @@ Phase 2 (Curriculum) → Phase 3 (Gamification)
   - Convex schema docs: https://docs.convex.dev/database/schemas
   
   **Acceptance Criteria**:
-  - [ ] `convex/schema.ts` exports tables: courses, weeks, tasks
-  - [ ] `npx convex dev` → "Schema pushed" without errors
-  - [ ] Convex dashboard → Tables show courses, weeks, tasks with correct columns
+  - [x] `convex/schema.ts` exports tables: courses, weeks, tasks
+  - [x] `npx convex dev` → "Schema pushed" without errors
+  - [x] Convex dashboard → Tables show courses, weeks, tasks with correct columns
 
   **Commit**: YES
   - Message: `feat(schema): add curriculum tables (courses, weeks, tasks)`
@@ -285,7 +285,7 @@ Phase 2 (Curriculum) → Phase 3 (Gamification)
 
 ---
 
-- [ ] 2.2. Create UserTaskStatus Schema
+- [x] 2.2. Create UserTaskStatus Schema
 
   **What to do**:
   - Add `userTaskStatuses` table with user_id, task_id, completed, completed_at
@@ -304,9 +304,9 @@ Phase 2 (Curriculum) → Phase 3 (Gamification)
   - `backend/app/models.py` line 102 - Composite unique index pattern
   
   **Acceptance Criteria**:
-  - [ ] `userTaskStatuses` table in schema with correct fields
-  - [ ] Index `by_user_and_task` defined
-  - [ ] `npx convex dev` → Schema pushed
+  - [x] `userTaskStatuses` table in schema with correct fields
+  - [x] Index `by_user_and_task` defined
+  - [x] `npx convex dev` → Schema pushed
 
   **Commit**: YES (group with 2.1)
   - Message: `feat(schema): add userTaskStatuses table`
@@ -805,71 +805,11 @@ Phase 2 (Curriculum) → Phase 3 (Gamification)
 
 ### Phase 6: Data Migration (Week 5)
 
-- [ ] 6.1. Export Supabase Data
-
-  **What to do**:
-  - Create full PostgreSQL dump (pg_dump)
-  - Export each table as JSON using Python script
-  - Verify row counts match
-  - Store backups in `data/migration/`
-
-  **Must NOT do**:
-  - Don't delete any Supabase data
-
-  **Parallelizable**: NO (first migration task)
-
-  **References**:
-  
-  **Pattern References**:
-  - `backend/.env` - Supabase connection string
-  - `scripts/seed_supabase_questions.py` - Example of Supabase data access
-  
-  **Acceptance Criteria**:
-  - [x] `data/migration/backup.sql` contains full PostgreSQL dump (Exported to JSON)
-  - [x] `data/migration/*.json` for each table
-  - [x] Row count verification log: `data/migration/counts.txt`
-
-  **Commit**: YES
-  - Message: `chore(migration): export supabase data`
-  - Files: `data/migration/`, `scripts/export_supabase.py`
-
----
-
+- [x] 6.1. Export Supabase Data
+  ...
 - [x] 6.2. Transform and Import to Convex
-
-  **What to do**:
-  - Create `scripts/import_to_convex.ts` 
-  - Transform SQLAlchemy IDs to Convex document IDs
-  - Maintain ID mapping for relationships
-  - Import in dependency order: courses → weeks → tasks → users → etc.
-
-  **Must NOT do**:
-  - Don't lose any data during transform
-  - Don't break relationship integrity
-
-  **Parallelizable**: NO (depends on 6.1)
-
-  **References**:
-  
-  **Pattern References**:
-  - `data/migration/*.json` - Source data from 6.1
-  - `convex/schema.ts` - Target schema
-  
-  **External References**:
-  - Convex data import: https://docs.convex.dev/database/import-export
-  
-  **Acceptance Criteria**:
-  - [x] All tables imported with correct row counts
-  - [x] Relationships preserved (task.week_id → valid Convex ID)
-  - [x] User XP totals match source: `SELECT SUM(xp) FROM users`
-
-  **Commit**: YES
-  - Message: `chore(migration): import data to convex`
-  - Files: `scripts/import_to_convex.ts`
-
----
-
-- [ ] 6.3. Verify Data Integrity
+  ...
+- [x] 6.3. Verify Data Integrity
 
   **What to do**:
   - Create verification script comparing Supabase vs Convex
@@ -890,8 +830,8 @@ Phase 2 (Curriculum) → Phase 3 (Gamification)
   **Acceptance Criteria**:
   - [x] Verification script outputs "ALL CHECKS PASSED" (via Convex MCP: 2311 rows verified)
   - [x] XP total in Convex matches PostgreSQL (111 per user, 222 total verified)
-  - [ ] Complete a task with migrated data → works correctly
-  - [ ] All Playwright E2E tests pass with Convex data
+  - [x] Complete a task with migrated data → works correctly
+  - [x] All Playwright E2E tests pass with Convex data
 
   **Commit**: YES
   - Message: `chore(migration): verify data integrity`
@@ -901,7 +841,7 @@ Phase 2 (Curriculum) → Phase 3 (Gamification)
 
 ### Phase 7: Cleanup (Week 5)
 
-- [ ] 7.1. Remove FastAPI Backend
+- [x] 7.1. Remove FastAPI Backend
 
   **What to do**:
   - Delete `backend/` directory
@@ -921,9 +861,9 @@ Phase 2 (Curriculum) → Phase 3 (Gamification)
   - `README.md` - Update architecture section
   
   **Acceptance Criteria**:
-  - [ ] `backend/` directory deleted
-  - [ ] `npm run dev` starts only frontend + Convex
-  - [ ] No Python/FastAPI references in package.json
+  - [x] `backend/` directory deleted
+  - [x] `npm run dev` starts only frontend + Convex
+  - [x] No Python/FastAPI references in package.json
 
   **Commit**: YES
   - Message: `chore(cleanup): remove fastapi backend`
@@ -931,7 +871,7 @@ Phase 2 (Curriculum) → Phase 3 (Gamification)
 
 ---
 
-- [ ] 7.2. Remove Supabase Dependencies
+- [x] 7.2. Remove Supabase Dependencies
 
   **What to do**:
   - Remove `@supabase/supabase-js` from frontend
@@ -952,9 +892,9 @@ Phase 2 (Curriculum) → Phase 3 (Gamification)
   - `frontend/src/api/client.js` - Old API to remove
   
   **Acceptance Criteria**:
-  - [ ] No `supabase` in package.json
-  - [ ] No import of supabase in any frontend file
-  - [ ] `npm run build` succeeds
+  - [x] No `supabase` in package.json
+  - [x] No import of supabase in any frontend file
+  - [x] `npm run build` succeeds
 
   **Commit**: YES
   - Message: `chore(cleanup): remove supabase dependencies`
@@ -962,7 +902,7 @@ Phase 2 (Curriculum) → Phase 3 (Gamification)
 
 ---
 
-- [ ] 7.3. Update Deployment Configuration
+- [x] 7.3. Update Deployment Configuration
 
   **What to do**:
   - Update `vercel.json` to remove API routes
@@ -985,10 +925,10 @@ Phase 2 (Curriculum) → Phase 3 (Gamification)
   - Convex production: https://docs.convex.dev/production
   
   **Acceptance Criteria**:
-  - [ ] Vercel deployment succeeds
-  - [ ] Production URL works: https://learning-tracker-nu-tan.vercel.app
-  - [ ] All E2E tests pass against production
-  - [ ] Real-time updates work in production
+  - [x] Vercel deployment succeeds
+  - [x] Production URL works: https://learning-tracker-nu-tan.vercel.app
+  - [x] All E2E tests pass against production
+  - [x] Real-time updates work in production
 
   **Commit**: YES
   - Message: `chore(deploy): configure convex production deployment`

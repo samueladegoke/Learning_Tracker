@@ -2,36 +2,25 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Brain, RefreshCw, Sparkles, ChevronRight, AlertCircle, Trophy } from 'lucide-react'
-import { srsAPI } from '../api/client'
+import { useQuery } from "convex/react"
+import { api } from "../../../convex/_generated/api"
+import { useAuth } from "../contexts/AuthContext"
 
 /**
  * DailyReviewWidget - Displays the Spaced Repetition "Combat Training" widget on the Dashboard.
  * Shows due review questions and links to the review session.
  */
 function DailyReviewWidget() {
-    const [srsStats, setSrsStats] = useState(null)
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(null)
+    const { user } = useAuth()
+    const stats = useQuery(api.srs.getSRSStats, user?.id ? { clerkUserId: user.id } : "skip")
+    
+    const srsStats = stats ? {
+        total_in_queue: stats.total_cards,
+        mastered_count: stats.mastered_cards,
+        due_now: stats.due_today
+    } : null
 
-    useEffect(() => {
-        const fetchSrsStats = async () => {
-            try {
-                setLoading(true)
-                const stats = await srsAPI.getStats()
-                setSrsStats(stats)
-            } catch (err) {
-                console.error('[SRS] Error fetching stats:', err)
-                // Don't show error if no reviews exist yet
-                if (!err.message.includes('not found')) {
-                    setError(err.message)
-                }
-                setSrsStats({ total_in_queue: 0, mastered_count: 0, due_now: 0 })
-            } finally {
-                setLoading(false)
-            }
-        }
-        fetchSrsStats()
-    }, [])
+    const loading = stats === undefined
 
     if (loading) {
         return (
@@ -39,17 +28,6 @@ function DailyReviewWidget() {
                 <div className="flex items-center gap-3 text-purple-400">
                     <RefreshCw className="w-5 h-5 animate-spin" />
                     <span className="text-sm font-mono">Loading memory training...</span>
-                </div>
-            </div>
-        )
-    }
-
-    if (error) {
-        return (
-            <div className="card p-6 border-rose-500/20 bg-gradient-to-br from-rose-900/10 to-surface-900">
-                <div className="flex items-center gap-3 text-rose-400">
-                    <AlertCircle className="w-5 h-5" />
-                    <span className="text-sm">{error}</span>
                 </div>
             </div>
         )
