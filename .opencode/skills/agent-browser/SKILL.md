@@ -6,7 +6,25 @@ allowed-tools: Bash(agent-browser:*)
 
 # Browser Automation with agent-browser
 
-## IMPORTANT: Windows Workaround
+## IMPORTANT: Stability & Windows Workaround
+
+To ensure stable execution (especially on Windows/WSL or in CI environments), follow these mandatory rules:
+
+1. **Always use session isolation**:
+   ```bash
+   npx agent-browser --session <unique-name> ...
+   ```
+
+2. **Set a custom socket directory**:
+   Prevents permission issues and stale locks in default paths.
+   ```bash
+   export AGENT_BROWSER_SOCKET_DIR=/tmp/agent-sockets
+   mkdir -p /tmp/agent-sockets
+   ```
+
+3. **Ignore "Daemon failed to start" false negatives**:
+   Sometimes the daemon starts but the CLI times out waiting for it.
+   **Always check if it's running** by issuing a simple command like `get url` before giving up.
 
 On Windows with Hyper-V, the default session may fail with "Daemon failed to start" due to reserved port ranges (50000-50868). **Always use `--session <name>` flag**:
 
