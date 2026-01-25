@@ -127,6 +127,10 @@ npx agent-browser --session dev close
 - Use `@e1`, `@e2` refs from `snapshot -i` output
 - Full docs: `.opencode/skills/agent-browser/SKILL.md`
 
+**STABILITY**:
+- If "Daemon failed to start" errors occur, clean up orphaned processes: `pkill -f agent-browser`
+- Use a custom socket directory if needed: `export AGENT_BROWSER_SOCKET_DIR=/tmp/agent-sockets`
+
 **DO NOT use** `skill("playwright")` or `skill_mcp(mcp_name="playwright")` - these are deprecated.
 **DO NOT use** generic Playwright scripts. Use the `agent-browser` CLI.
 
