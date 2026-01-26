@@ -193,6 +193,135 @@ export const ensureUser = mutation({
   },
 });
 
+// ========== HELPER LOGIC (Exported for reuse) ==========
+
+export async function completeTaskLogic(
+  ctx: any,
+  user: Doc<"users">,
+  task: Doc<"tasks">,
+  now: number
+) {
+  // 1. Check existing status
+  const existingStatus = await ctx.db
+    .query("userTaskStatuses")
+    .withIndex("by_user_and_task", (q: any) =>
+      q.eq("user_id", user._id).eq("task_id", task._id)
+    )
+    .unique();
+
+  if (existingStatus?.completed) {
+    return { success: false, message: "Task already completed" };
+  }
+
+  // 2. Mark as completed
+  if (existingStatus) {
+    await ctx.db.patch(existingStatus._id, {
+      completed: true,
+      completed_at: now,
+    });
+  } else {
+    await ctx.db.insert("userTaskStatuses", {
+      user_id: user._id,
+      task_id: task._id,
+      completed: true,
+      completed_at: now,
+    });
+  }
+
+  // 3. Rewards
+  const multiplier = DIFFICULTY_MULTIPLIER[task.difficulty] || 1.0;
+  const xpGained = Math.floor(task.xp_reward * multiplier);
+  const goldGained = Math.floor(xpGained / 10);
+
+  let totalXp = user.xp + xpGained;
+  let totalGold = user.gold + goldGained;
+
+  // 4. Streak Update
+  let newStreak = user.streak;
+  if (!user.last_activity_date) {
+    newStreak = 1;
+  } else if (isYesterday(user.last_activity_date, now)) {
+    newStreak += 1;
+  } else if (!isSameDay(user.last_activity_date, now)) {
+    newStreak = 1;
+  }
+
+  // 5. Quest Damage
+  const questTask = await ctx.db
+    .query("questTasks")
+    .withIndex("by_task", (q: any) => q.eq("task_id", task._id))
+    .first();
+
+  if (questTask) {
+    const activeQuest = await ctx.db
+      .query("userQuests")
+      .withIndex("by_user", (q: any) => q.eq("user_id", user._id))
+      .filter((q: any) => q.eq(q.field("completed_at"), undefined))
+      .first();
+
+    if (activeQuest && activeQuest.quest_id === questTask.quest_id) {
+      const newHp = Math.max(0, activeQuest.boss_hp_remaining - xpGained);
+      if (newHp === 0) {
+        await ctx.db.patch(activeQuest._id, {
+          boss_hp_remaining: 0,
+          completed_at: now,
+        });
+        // Award quest completion bonus
+        const quest = await ctx.db.get(activeQuest.quest_id);
+        if (quest) {
+          totalXp += quest.reward_xp_bonus;
+          if (quest.reward_badge_id) {
+            await awardBadge(ctx, user._id, quest.reward_badge_id);
+          }
+        }
+      } else {
+        await ctx.db.patch(activeQuest._id, { boss_hp_remaining: newHp });
+      }
+    }
+  }
+
+  // 6. Badges & Achievements
+  const badgesAwarded: string[] = [];
+
+  // Streak badges
+  if (STREAK_BADGES[newStreak]) {
+    const res = await awardBadge(ctx, user._id, STREAK_BADGES[newStreak]);
+    if (res.awarded) {
+      badgesAwarded.push(STREAK_BADGES[newStreak]);
+      totalXp += res.xp_bonus;
+      totalGold += res.gold_bonus;
+    }
+  }
+
+  // Count achievements
+  const totalCompleted = await getTotalTasksCompleted(ctx, user._id);
+  if (TASK_COUNT_ACHIEVEMENTS[totalCompleted]) {
+    const res = await awardAchievement(ctx, user._id, TASK_COUNT_ACHIEVEMENTS[totalCompleted]);
+    if (res.awarded) {
+      totalXp += res.xp_bonus;
+      totalGold += res.gold_bonus;
+    }
+  }
+
+  // 7. Patch user
+  await ctx.db.patch(user._id, {
+    xp: totalXp,
+    gold: totalGold,
+    level: levelFromXp(totalXp),
+    streak: newStreak,
+    last_activity_date: now,
+  });
+
+  return {
+    success: true,
+    xp_gained: xpGained,
+    gold_gained: goldGained,
+    new_streak: newStreak,
+    level_up: levelFromXp(totalXp) > user.level,
+    badges_awarded: badgesAwarded,
+  };
+}
+
 export const completeTask = mutation({
   args: {
     taskId: v.id("tasks"),
@@ -213,125 +342,7 @@ export const completeTask = mutation({
     const task = await ctx.db.get(args.taskId);
     if (!task) throw new Error("Task not found");
 
-    // 1. Check existing status
-    const existingStatus = await ctx.db
-      .query("userTaskStatuses")
-      .withIndex("by_user_and_task", (q) =>
-        q.eq("user_id", user._id).eq("task_id", task._id)
-      )
-      .unique();
-
-    if (existingStatus?.completed) {
-      return { success: false, message: "Task already completed" };
-    }
-
-    // 2. Mark as completed
-    if (existingStatus) {
-      await ctx.db.patch(existingStatus._id, {
-        completed: true,
-        completed_at: now,
-      });
-    } else {
-      await ctx.db.insert("userTaskStatuses", {
-        user_id: user._id,
-        task_id: task._id,
-        completed: true,
-        completed_at: now,
-      });
-    }
-
-    // 3. Rewards
-    const multiplier = DIFFICULTY_MULTIPLIER[task.difficulty] || 1.0;
-    const xpGained = Math.floor(task.xp_reward * multiplier);
-    const goldGained = Math.floor(xpGained / 10);
-
-    let totalXp = user.xp + xpGained;
-    let totalGold = user.gold + goldGained;
-
-    // 4. Streak Update
-    let newStreak = user.streak;
-    if (!user.last_activity_date) {
-      newStreak = 1;
-    } else if (isYesterday(user.last_activity_date, now)) {
-      newStreak += 1;
-    } else if (!isSameDay(user.last_activity_date, now)) {
-      newStreak = 1;
-    }
-
-    // 5. Quest Damage
-    const questTask = await ctx.db
-      .query("questTasks")
-      .withIndex("by_task", (q) => q.eq("task_id", task._id))
-      .first();
-
-    if (questTask) {
-      const activeQuest = await ctx.db
-        .query("userQuests")
-        .withIndex("by_user", (q) => q.eq("user_id", user._id))
-        .filter((q) => q.eq(q.field("completed_at"), undefined))
-        .first();
-
-      if (activeQuest && activeQuest.quest_id === questTask.quest_id) {
-        const newHp = Math.max(0, activeQuest.boss_hp_remaining - xpGained);
-        if (newHp === 0) {
-          await ctx.db.patch(activeQuest._id, {
-            boss_hp_remaining: 0,
-            completed_at: now,
-          });
-          // Award quest completion bonus
-          const quest = await ctx.db.get(activeQuest.quest_id);
-          if (quest) {
-            totalXp += quest.reward_xp_bonus;
-            if (quest.reward_badge_id) {
-              await awardBadge(ctx, user._id, quest.reward_badge_id);
-            }
-          }
-        } else {
-          await ctx.db.patch(activeQuest._id, { boss_hp_remaining: newHp });
-        }
-      }
-    }
-
-    // 6. Badges & Achievements
-    const badgesAwarded: string[] = [];
-
-    // Streak badges
-    if (STREAK_BADGES[newStreak]) {
-      const res = await awardBadge(ctx, user._id, STREAK_BADGES[newStreak]);
-      if (res.awarded) {
-        badgesAwarded.push(STREAK_BADGES[newStreak]);
-        totalXp += res.xp_bonus;
-        totalGold += res.gold_bonus;
-      }
-    }
-
-    // Count achievements
-    const totalCompleted = await getTotalTasksCompleted(ctx, user._id);
-    if (TASK_COUNT_ACHIEVEMENTS[totalCompleted]) {
-      const res = await awardAchievement(ctx, user._id, TASK_COUNT_ACHIEVEMENTS[totalCompleted]);
-      if (res.awarded) {
-        totalXp += res.xp_bonus;
-        totalGold += res.gold_bonus;
-      }
-    }
-
-    // 7. Patch user
-    await ctx.db.patch(user._id, {
-      xp: totalXp,
-      gold: totalGold,
-      level: levelFromXp(totalXp),
-      streak: newStreak,
-      last_activity_date: now,
-    });
-
-    return {
-      success: true,
-      xp_gained: xpGained,
-      gold_gained: goldGained,
-      new_streak: newStreak,
-      level_up: levelFromXp(totalXp) > user.level,
-      badges_awarded: badgesAwarded,
-    };
+    return await completeTaskLogic(ctx, user, task, now);
   },
 });
 

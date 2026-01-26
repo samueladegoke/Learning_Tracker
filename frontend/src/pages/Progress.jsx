@@ -149,6 +149,45 @@ function Progress() {
         </div>
       </div>
 
+      {/* Quiz Mastery Section (Story 5.2) */}
+      <div className="card p-6">
+        <h2 className="text-lg font-semibold text-surface-100 mb-4 flex items-center gap-2">
+          <Zap className="w-5 h-5 text-yellow-400" />
+          Quiz Mastery
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="bg-surface-800/50 rounded-xl p-5 border border-surface-700">
+            <div className="flex items-center gap-3 mb-2">
+              <div className="p-2 bg-primary-500/20 rounded-lg text-primary-400">
+                <Target className="w-5 h-5" />
+              </div>
+              <span className="text-surface-400 text-sm font-medium">Quizzes Taken</span>
+            </div>
+            <p className="text-3xl font-bold text-surface-100">{progress?.quizzes_taken || 0}</p>
+          </div>
+          
+          <div className="bg-surface-800/50 rounded-xl p-5 border border-surface-700">
+            <div className="flex items-center gap-3 mb-2">
+              <div className="p-2 bg-blue-500/20 rounded-lg text-blue-400">
+                <Target className="w-5 h-5" />
+              </div>
+              <span className="text-surface-400 text-sm font-medium">Average Score</span>
+            </div>
+            <p className="text-3xl font-bold text-surface-100">{progress?.average_quiz_score || 0}%</p>
+          </div>
+
+          <div className="bg-surface-800/50 rounded-xl p-5 border border-surface-700">
+            <div className="flex items-center gap-3 mb-2">
+              <div className="p-2 bg-purple-500/20 rounded-lg text-purple-400">
+                <Crown className="w-5 h-5" />
+              </div>
+              <span className="text-surface-400 text-sm font-medium">Best Score</span>
+            </div>
+            <p className="text-3xl font-bold text-surface-100">{progress?.best_quiz_score || 0}%</p>
+          </div>
+        </div>
+      </div>
+
       <Leaderboard />
 
       {/* Weekly Progress Overview */}

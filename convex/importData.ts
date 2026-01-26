@@ -111,7 +111,7 @@ export const insertQuestion = mutation({
         question_type: v.string(),
         text: v.string(),
         code: v.optional(v.string()),
-        options: v.optional(v.string()),
+        options: v.optional(v.array(v.string())),
         correct_index: v.optional(v.number()),
         starter_code: v.optional(v.string()),
         test_cases: v.optional(v.string()),
@@ -243,15 +243,17 @@ export const clearTable = mutation({
             v.literal("userInventory"),
             v.literal("quizResults"),
             v.literal("userQuestionReviews")
-        )
+        ),
+        limit: v.optional(v.number())
     },
     handler: async (ctx, args) => {
-        const rows = await ctx.db.query(args.table).collect();
+        const limit = args.limit || 1000;
+        const rows = await ctx.db.query(args.table).take(limit);
         let deleted = 0;
         for (const row of rows) {
             await ctx.db.delete(row._id);
             deleted++;
         }
-        return { deleted };
+        return { deleted, hasMore: rows.length === limit };
     },
 });

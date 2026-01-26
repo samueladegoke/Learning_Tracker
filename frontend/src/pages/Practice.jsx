@@ -5,6 +5,9 @@ import { Trophy, Brain, Lock } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
 import { useCourse } from '../contexts/CourseContext'
 
+import { useQuery } from "convex/react";
+import { api } from "../../convex/_generated/api";
+
 // Shadcn UI Components
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 
@@ -42,11 +45,10 @@ function Practice() {
 
     // Dynamic Query Parameters
     const currentDay = DAY_META[activeDay]
-    const quizId = currentDay?.quizId
+    const quizId = currentDay?.quizId || "day-1-practice" // Fallback to day 1 if undefined
 
-    // Mock Questions for now since Convex is removed
-    // In a real implementation, this should fetch from FastAPI
-    const quizQuestionsRaw = [] 
+    // Fetch Questions from Convex
+    const quizQuestionsRaw = useQuery(api.quizzes.getQuizQuestions, { quizId }) || []
     
     // Sync review mode if URL changes 
     useEffect(() => {
@@ -135,7 +137,7 @@ function Practice() {
     }
 
     const quizQuestions = quizQuestionsRaw || []
-    const loading = false // Mock loading false since we have no async data yet
+    const loading = quizQuestionsRaw === undefined
 
     return (
         <div className="space-y-8 pb-12 px-4 sm:px-6 lg:px-8">

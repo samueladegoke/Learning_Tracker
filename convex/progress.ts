@@ -23,6 +23,26 @@ export const get = query({
     
     const completedCount = completed.length;
 
+    // Calculate Quiz Stats (Story 5.2)
+    const quizResults = await ctx.db
+      .query("quizResults")
+      .withIndex("by_user", (q) => q.eq("user_id", user._id))
+      .collect();
+
+    const quizzesTaken = quizResults.length;
+    let totalScore = 0;
+    let totalPossible = 0;
+    let bestScore = 0;
+
+    quizResults.forEach(r => {
+      totalScore += r.score;
+      totalPossible += r.total_questions;
+      const percentage = r.total_questions > 0 ? (r.score / r.total_questions) * 100 : 0;
+      if (percentage > bestScore) bestScore = percentage;
+    });
+
+    const averageScore = totalPossible > 0 ? Math.round((totalScore / totalPossible) * 100) : 0;
+
     return {
       tasks_completed: completedCount,
       tasks_total: totalTasks,
@@ -31,6 +51,12 @@ export const get = query({
       best_streak: user.best_streak || user.streak,
       level: user.level,
       xp: user.xp,
+      badges_earned: (await ctx.db.query("userBadges").withIndex("by_user_and_badge", q => q.eq("user_id", user._id)).collect()).length,
+      achievements_earned: (await ctx.db.query("userAchievements").withIndex("by_user_and_achievement", q => q.eq("user_id", user._id)).collect()).length,
+      // Quiz Stats
+      quizzes_taken: quizzesTaken,
+      average_quiz_score: averageScore,
+      best_quiz_score: Math.round(bestScore)
     };
   },
 });
