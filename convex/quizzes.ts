@@ -16,11 +16,37 @@ export const getQuizQuestions = query({
   },
 });
 
+export const getQuizHistory = query({
+  args: { clerkUserId: v.string() },
+  handler: async (ctx, args) => {
+    const user = await ctx.db
+      .query("users")
+      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", args.clerkUserId))
+      .unique();
+
+    if (!user) return [];
+
+    const results = await ctx.db
+      .query("quizResults")
+      .withIndex("by_user", (q) => q.eq("user_id", user._id))
+      .order("desc")
+      .collect();
+
+    return results.map((r) => ({
+      quiz_id: r.quiz_id,
+      score: r.score,
+      total_questions: r.total_questions,
+      percentage: r.total_questions > 0 ? Math.round((r.score / r.total_questions) * 100) : 0,
+      completed_at: r.completed_at ? new Date(r.completed_at).toISOString() : null,
+    }));
+  },
+});
+
 export const getLeaderboard = query({
   args: { limit: v.optional(v.number()) },
   handler: async (ctx, args) => {
     const limit = args.limit || 20;
-    
+
     // Get top users by XP
     const users = await ctx.db
       .query("users")
@@ -136,8 +162,8 @@ export const submitQuizResult = mutation({
 
     if (args.taskId && passed) {
       // Already handled above, just return current state
-      return { 
-        success: true, 
+      return {
+        success: true,
         xp_gained: 0, // Logic handled in completeTaskLogic, but we need to return something reasonable
         new_level: user.level // This might be stale if we didn't refetch, but acceptable
       };
