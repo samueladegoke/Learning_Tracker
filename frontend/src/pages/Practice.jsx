@@ -20,9 +20,9 @@ import Quiz from '../components/Quiz/Quiz'
 
 function Practice() {
     const { user } = useAuth()
-    
+
     // Fallback for "completedQuizzes" - for now empty, or we can fetch from backend later
-    const completedQuizzes = [] 
+    const completedQuizzes = []
 
     const { startDate, totalDays, guestPrompts } = useCourse()
 
@@ -49,7 +49,7 @@ function Practice() {
 
     // Fetch Questions from Convex
     const quizQuestionsRaw = useQuery(api.quizzes.getQuizQuestions, { quizId }) || []
-    
+
     // Sync review mode if URL changes 
     useEffect(() => {
         const params = new URLSearchParams(location.search)
@@ -136,7 +136,13 @@ function Practice() {
         )
     }
 
-    const quizQuestions = quizQuestionsRaw || []
+    // Transform questions to parse JSON string fields (options, test_cases)
+    const quizQuestions = (quizQuestionsRaw || []).map(q => ({
+        ...q,
+        id: q._id, // Map Convex _id to id for component compatibility
+        options: q.options ? (typeof q.options === 'string' ? JSON.parse(q.options) : q.options) : [],
+        test_cases: q.test_cases ? (typeof q.test_cases === 'string' ? JSON.parse(q.test_cases) : q.test_cases) : [],
+    }))
     const loading = quizQuestionsRaw === undefined
 
     return (
