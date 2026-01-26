@@ -55,7 +55,7 @@ export const getDailyReview = query({
           question_type: question.question_type,
           text: question.text,
           code: question.code,
-          options: question.options ?? null,
+          options: question.options ? JSON.parse(question.options) : null,
           starter_code: question.starter_code,
           difficulty: question.difficulty,
           topic_tag: question.topic_tag,

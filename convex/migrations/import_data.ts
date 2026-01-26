@@ -348,7 +348,7 @@ export const importLearningData = mutation({
         question_type: q.question_type,
         text: q.text,
         code: q.code,
-        options: q.options,
+        options: q.options ? JSON.stringify(q.options) : undefined,
         correct_index: q.correct_index,
         starter_code: q.starter_code,
         test_cases: q.test_cases ? JSON.stringify(q.test_cases) : undefined,

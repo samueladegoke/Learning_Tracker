@@ -127,7 +127,7 @@ export default defineSchema({
     question_type: v.string(),
     text: v.string(),
     code: v.optional(v.string()),
-    options: v.optional(v.array(v.string())),
+    options: v.optional(v.string()),
     correct_index: v.optional(v.number()),
     starter_code: v.optional(v.string()),
     test_cases: v.optional(v.string()),

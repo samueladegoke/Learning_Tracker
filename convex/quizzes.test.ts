@@ -3,7 +3,7 @@ import { expect, test } from "vitest";
 import { api } from "./_generated/api";
 import schema from "./schema";
 
-test("quiz questions options should be an array", async () => {
+test("quiz questions options should be stored as JSON string", async () => {
   const t = convexTest(schema);
   const quizId = "day-1-practice";
 
@@ -12,14 +12,15 @@ test("quiz questions options should be an array", async () => {
     question_type: "mcq",
     text: "What is Python?",
     difficulty: "easy",
-    options: ["A language", "A snake"],
+    options: JSON.stringify(["A language", "A snake"]),
     correct_index: 0,
   });
 
   const questions = await t.query(api.quizzes.getQuizQuestions, { quizId });
   expect(questions).toHaveLength(1);
-  expect(Array.isArray(questions[0].options)).toBe(true);
-  expect(questions[0].options).toEqual(["A language", "A snake"]);
+  // options is stored as JSON string, parsed on frontend
+  expect(typeof questions[0].options).toBe("string");
+  expect(JSON.parse(questions[0].options as string)).toEqual(["A language", "A snake"]);
 });
 
 test("challenges should be fetched correctly", async () => {
