@@ -42,10 +42,30 @@ export function AuthProvider({ children }) {
             if (result.status === "complete") {
                 await setActive({ session: result.createdSessionId });
                 return { success: true, user: result.userData };
-            } else {
-                console.log("SignIn requires next step:", result);
-                return { success: false, error: "Multi-factor authentication or other steps required (not supported in legacy UI)" };
             }
+
+            // Handle intermediate states that require further verification
+            if (result.status === "needs_first_factor") {
+                // Attempt password verification
+                const firstFactorResult = await clerkSignIn.attemptFirstFactor({
+                    strategy: "password",
+                    password,
+                });
+
+                if (firstFactorResult.status === "complete") {
+                    await setActive({ session: firstFactorResult.createdSessionId });
+                    return { success: true, user: firstFactorResult.userData };
+                }
+            }
+
+            if (result.status === "needs_second_factor") {
+                // User has 2FA enabled - would need TOTP code
+                return { success: false, error: "Two-factor authentication required. Please disable 2FA in your account settings or use a different login method." };
+            }
+
+            // Fallback for other statuses
+            console.log("SignIn requires next step:", result.status, result);
+            return { success: false, error: `Additional verification required: ${result.status}` };
         } catch (err) {
             const message = err.errors?.[0]?.message || err.message || 'An unexpected error occurred'
             setError(message)
@@ -70,7 +90,7 @@ export function AuthProvider({ children }) {
                 await setSignUpActive({ session: result.createdSessionId });
                 return { success: true, user: result.userData };
             } else if (result.status === "missing_requirements") {
-                 return { success: false, error: "Missing requirements (e.g. captcha)" };
+                return { success: false, error: "Missing requirements (e.g. captcha)" };
             } else {
                 // Usually verification needed
                 return {
