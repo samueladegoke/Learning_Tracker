@@ -197,8 +197,8 @@
     },
     {
         "question_type": "coding",
-        "text": "Random Cafe API\\\\nComplete the Flask route that returns a random cafe as JSON.",
-        "starter_code": "import random\\nfrom flask import jsonify\\n\\n@app.route('/random')\\ndef get_random_cafe():\\n    cafes = Cafe.query.all()\\n    random_cafe = random.choice(cafes)\\n    # Return JSON with name and location\\n    pass",
+        "text": "Random Cafe API\nComplete the Flask route that returns a random cafe as JSON.",
+        "starter_code": "import random\nfrom flask import jsonify\n\n@app.route('/random')\ndef get_random_cafe():\n    cafes = Cafe.query.all()\n    random_cafe = random.choice(cafes)\n    # Return JSON with name and location\n    pass",
         "test_cases": [
             {
                 "function_call": "True",
@@ -212,8 +212,8 @@
     },
     {
         "question_type": "coding",
-        "text": "POST Route\\\\nCreate a Flask route that accepts POST requests to add a new cafe.",
-        "starter_code": "from flask import request, jsonify\\n\\n# Create route for adding cafes\\ndef add_cafe():\\n    pass",
+        "text": "POST Route\nCreate a Flask route that accepts POST requests to add a new cafe.",
+        "starter_code": "from flask import request, jsonify\n\n# Create route for adding cafes\ndef add_cafe():\n    pass",
         "test_cases": [
             {
                 "function_call": "True",
@@ -227,8 +227,8 @@
     },
     {
         "question_type": "coding",
-        "text": "PATCH Route\\\\nCreate a route that updates only the coffee price of a cafe.",
-        "starter_code": "from flask import request, jsonify\\n\\n# Create PATCH route to update price\\ndef update_price(cafe_id):\\n    pass",
+        "text": "PATCH Route\nCreate a route that updates only the coffee price of a cafe.",
+        "starter_code": "from flask import request, jsonify\n\n# Create PATCH route to update price\ndef update_price(cafe_id):\n    pass",
         "test_cases": [
             {
                 "function_call": "True",
@@ -242,8 +242,8 @@
     },
     {
         "question_type": "coding",
-        "text": "DELETE Route\\\\nCreate a route that deletes a cafe by ID with API key authentication.",
-        "starter_code": "from flask import request, jsonify\\n\\nTOP_SECRET_API_KEY = 'TopSecretKey'\\n\\ndef delete_cafe(cafe_id):\\n    pass",
+        "text": "DELETE Route\nCreate a route that deletes a cafe by ID with API key authentication.",
+        "starter_code": "from flask import request, jsonify\n\nTOP_SECRET_API_KEY = 'TopSecretKey'\n\ndef delete_cafe(cafe_id):\n    pass",
         "test_cases": [
             {
                 "function_call": "True",
@@ -257,8 +257,8 @@
     },
     {
         "question_type": "coding",
-        "text": "Search Route\\\\nCreate a route that searches cafes by location query parameter.",
-        "starter_code": "from flask import request, jsonify\\n\\ndef search_cafes():\\n    pass",
+        "text": "Search Route\nCreate a route that searches cafes by location query parameter.",
+        "starter_code": "from flask import request, jsonify\n\ndef search_cafes():\n    pass",
         "test_cases": [
             {
                 "function_call": "True",

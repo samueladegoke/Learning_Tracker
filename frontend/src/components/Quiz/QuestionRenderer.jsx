@@ -1,9 +1,10 @@
 import React from 'react'
 import { Lightbulb } from 'lucide-react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { InlineCode } from '../InlineCode'
 import CodeEditor from '../CodeEditor'
 import OptionButton from './OptionButton'
+import { normalizeNewlines, hasEscapedNewlines } from '../../utils/textNormalize'
 
 function QuestionRenderer({
     question,
@@ -22,11 +23,13 @@ function QuestionRenderer({
         const text = question.text || ''
         const isCodingChallenge = !question.options || question.options.length === 0
 
-        if (!isCodingChallenge || !text.includes('\\n')) {
+        if (!isCodingChallenge || !hasEscapedNewlines(text)) {
             return <InlineCode text={text} />
         }
 
-        const [prompt, ...codeLines] = text.split('\\n')
+        // Split on escaped newlines and normalize
+        const normalizedText = normalizeNewlines(text)
+        const [prompt, ...codeLines] = normalizedText.split('\n')
         return (
             <div className="space-y-2">
                 <InlineCode text={prompt} />

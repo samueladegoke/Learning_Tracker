@@ -16,6 +16,7 @@ import type * as gamification from "../gamification.js";
 import type * as importData from "../importData.js";
 import type * as lib_utils from "../lib/utils.js";
 import type * as lib_xp from "../lib/xp.js";
+import type * as migrations_fixNewlines from "../migrations/fixNewlines.js";
 import type * as migrations_import_data from "../migrations/import_data.js";
 import type * as progress from "../progress.js";
 import type * as quizzes from "../quizzes.js";
@@ -40,6 +41,7 @@ declare const fullApi: ApiFromModules<{
   importData: typeof importData;
   "lib/utils": typeof lib_utils;
   "lib/xp": typeof lib_xp;
+  "migrations/fixNewlines": typeof migrations_fixNewlines;
   "migrations/import_data": typeof migrations_import_data;
   progress: typeof progress;
   quizzes: typeof quizzes;

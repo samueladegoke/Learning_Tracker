@@ -197,8 +197,8 @@
     },
     {
         "question_type": "coding",
-        "text": "Hash Password\\\\nHash a password using Werkzeug with PBKDF2 and salt length of 8.",
-        "starter_code": "from werkzeug.security import generate_password_hash\\n\\ndef hash_password(password):\\n    # Return hashed password\\n    pass",
+        "text": "Hash Password\nHash a password using Werkzeug with PBKDF2 and salt length of 8.",
+        "starter_code": "from werkzeug.security import generate_password_hash\n\ndef hash_password(password):\n    # Return hashed password\n    pass",
         "test_cases": [
             {
                 "function_call": "True",
@@ -212,8 +212,8 @@
     },
     {
         "question_type": "coding",
-        "text": "Verify Password\\\\nCheck if a plain password matches a stored hash.",
-        "starter_code": "from werkzeug.security import check_password_hash\\n\\ndef verify_password(stored_hash, password):\\n    # Return True if password matches\\n    pass",
+        "text": "Verify Password\nCheck if a plain password matches a stored hash.",
+        "starter_code": "from werkzeug.security import check_password_hash\n\ndef verify_password(stored_hash, password):\n    # Return True if password matches\n    pass",
         "test_cases": [
             {
                 "function_call": "True",
@@ -227,8 +227,8 @@
     },
     {
         "question_type": "coding",
-        "text": "User Model\\\\nCreate a User model that works with Flask-Login.",
-        "starter_code": "from flask_login import UserMixin\\nfrom flask_sqlalchemy import SQLAlchemy\\n\\ndb = SQLAlchemy()\\n\\n# Create User class\\nclass User():\\n    pass",
+        "text": "User Model\nCreate a User model that works with Flask-Login.",
+        "starter_code": "from flask_login import UserMixin\nfrom flask_sqlalchemy import SQLAlchemy\n\ndb = SQLAlchemy()\n\n# Create User class\nclass User():\n    pass",
         "test_cases": [
             {
                 "function_call": "True",
@@ -242,8 +242,8 @@
     },
     {
         "question_type": "coding",
-        "text": "User Loader\\\\nCreate the required user_loader callback for Flask-Login.",
-        "starter_code": "from flask_login import LoginManager\\n\\nlogin_manager = LoginManager()\\n\\n# Add user loader callback\\ndef load_user(user_id):\\n    pass",
+        "text": "User Loader\nCreate the required user_loader callback for Flask-Login.",
+        "starter_code": "from flask_login import LoginManager\n\nlogin_manager = LoginManager()\n\n# Add user loader callback\ndef load_user(user_id):\n    pass",
         "test_cases": [
             {
                 "function_call": "True",
@@ -257,8 +257,8 @@
     },
     {
         "question_type": "coding",
-        "text": "Register Route\\\\nCreate a registration route that hashes the password before saving.",
-        "starter_code": "@app.route('/register', methods=['GET', 'POST'])\\ndef register():\\n    if request.method == 'POST':\\n        # Hash password and create user\\n        pass\\n    return render_template('register.html')",
+        "text": "Register Route\nCreate a registration route that hashes the password before saving.",
+        "starter_code": "@app.route('/register', methods=['GET', 'POST'])\ndef register():\n    if request.method == 'POST':\n        # Hash password and create user\n        pass\n    return render_template('register.html')",
         "test_cases": [
             {
                 "function_call": "True",

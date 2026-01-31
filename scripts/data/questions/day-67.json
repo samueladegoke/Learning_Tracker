@@ -183,8 +183,8 @@
     },
     {
         "question_type": "coding",
-        "text": "Delete Route\\\\nComplete the route to delete a blog post and redirect to home.",
-        "starter_code": "@app.route('/delete/<int:post_id>')\\ndef delete_post(post_id):\\n    # Get the post and delete it\\n    pass",
+        "text": "Delete Route\nComplete the route to delete a blog post and redirect to home.",
+        "starter_code": "@app.route('/delete/<int:post_id>')\ndef delete_post(post_id):\n    # Get the post and delete it\n    pass",
         "test_cases": [
             {
                 "function_call": "True",
@@ -198,8 +198,8 @@
     },
     {
         "question_type": "coding",
-        "text": "Edit Form Pre-population\\\\nCreate an edit route that pre-fills the form with existing post data.",
-        "starter_code": "@app.route('/edit/<int:post_id>', methods=['GET', 'POST'])\\ndef edit_post(post_id):\\n    post = db.get_or_404(BlogPost, post_id)\\n    # Create form with pre-filled data\\n    pass",
+        "text": "Edit Form Pre-population\nCreate an edit route that pre-fills the form with existing post data.",
+        "starter_code": "@app.route('/edit/<int:post_id>', methods=['GET', 'POST'])\ndef edit_post(post_id):\n    post = db.get_or_404(BlogPost, post_id)\n    # Create form with pre-filled data\n    pass",
         "test_cases": [
             {
                 "function_call": "True",
@@ -213,8 +213,8 @@
     },
     {
         "question_type": "coding",
-        "text": "Show Single Post\\\\nCreate a route that displays a single blog post by ID.",
-        "starter_code": "def show_post(post_id):\\n    # Get post and render template\\n    pass",
+        "text": "Show Single Post\nCreate a route that displays a single blog post by ID.",
+        "starter_code": "def show_post(post_id):\n    # Get post and render template\n    pass",
         "test_cases": [
             {
                 "function_call": "True",
@@ -228,8 +228,8 @@
     },
     {
         "question_type": "coding",
-        "text": "Create New Post\\\\nComplete the route to create a new blog post from form data.",
-        "starter_code": "@app.route('/new-post', methods=['GET', 'POST'])\\ndef add_new_post():\\n    form = CreatePostForm()\\n    if form.validate_on_submit():\\n        # Create and save new post\\n        pass\\n    return render_template('make-post.html', form=form)",
+        "text": "Create New Post\nComplete the route to create a new blog post from form data.",
+        "starter_code": "@app.route('/new-post', methods=['GET', 'POST'])\ndef add_new_post():\n    form = CreatePostForm()\n    if form.validate_on_submit():\n        # Create and save new post\n        pass\n    return render_template('make-post.html', form=form)",
         "test_cases": [
             {
                 "function_call": "True",
@@ -243,8 +243,8 @@
     },
     {
         "question_type": "coding",
-        "text": "Get All Posts\\\\nCreate the home route that fetches and displays all blog posts.",
-        "starter_code": "@app.route('/')\\ndef get_all_posts():\\n    # Fetch all posts and render\\n    pass",
+        "text": "Get All Posts\nCreate the home route that fetches and displays all blog posts.",
+        "starter_code": "@app.route('/')\ndef get_all_posts():\n    # Fetch all posts and render\n    pass",
         "test_cases": [
             {
                 "function_call": "True",

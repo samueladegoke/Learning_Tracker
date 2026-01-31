@@ -211,7 +211,7 @@
     },
     {
         "question_type": "coding",
-        "text": "CSS Color Variables\\nDefine CSS custom properties for a primary color (#3B82F6) and an accent color (#10B981).",
+        "text": "CSS Color Variables\nDefine CSS custom properties for a primary color (#3B82F6) and an accent color (#10B981).",
         "starter_code": ":root {\n    /* Define color variables */\n}",
         "test_cases": [
             {
@@ -226,7 +226,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Typography Scale\\nCreate CSS for a heading hierarchy: h1 (2.5rem), h2 (2rem), h3 (1.5rem).",
+        "text": "Typography Scale\nCreate CSS for a heading hierarchy: h1 (2.5rem), h2 (2rem), h3 (1.5rem).",
         "starter_code": "/* Define heading styles */",
         "test_cases": [
             {
@@ -241,7 +241,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Button Styling\\nCreate a CTA button style with padding, rounded corners, and a hover effect.",
+        "text": "Button Styling\nCreate a CTA button style with padding, rounded corners, and a hover effect.",
         "starter_code": ".cta-button {\n    /* Style the button */\n}",
         "test_cases": [
             {
@@ -256,7 +256,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Responsive Container\\nCreate a container class that centers content and has max-width of 1200px with auto margins.",
+        "text": "Responsive Container\nCreate a container class that centers content and has max-width of 1200px with auto margins.",
         "starter_code": ".container {\n    /* Make it centered and responsive */\n}",
         "test_cases": [
             {
@@ -271,7 +271,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Card Component\\nCreate a card style with shadow, rounded corners, and padding.",
+        "text": "Card Component\nCreate a card style with shadow, rounded corners, and padding.",
         "starter_code": ".card {\n    /* Style the card */\n}",
         "test_cases": [
             {

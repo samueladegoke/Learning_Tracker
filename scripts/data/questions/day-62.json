@@ -197,7 +197,7 @@
     },
     {
         "question_type": "coding",
-        "text": "SelectField for Ratings\\nCreate a SelectField named 'coffee_rating' with choices from '☕' to '☕☕☕☕☕' (1-5 coffee emojis).",
+        "text": "SelectField for Ratings\nCreate a SelectField named 'coffee_rating' with choices from '☕' to '☕☕☕☕☕' (1-5 coffee emojis).",
         "starter_code": "from wtforms import SelectField\n\ncoffee_rating = SelectField('Coffee Rating', choices=[...])",
         "test_cases": [
             {
@@ -212,7 +212,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Reading a CSV File\\nWrite code to read all rows from 'cafes.csv' and store them in a list called `all_cafes`.",
+        "text": "Reading a CSV File\nWrite code to read all rows from 'cafes.csv' and store them in a list called `all_cafes`.",
         "starter_code": "import csv\n\nwith open('cafes.csv', 'r') as file:\n    # Read all rows into all_cafes\n    all_cafes = []",
         "test_cases": [
             {
@@ -227,7 +227,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Appending to a CSV\\nWrite code to append a new cafe row ['Starbucks', 'London', '☕☕☕'] to 'cafes.csv'.",
+        "text": "Appending to a CSV\nWrite code to append a new cafe row ['Starbucks', 'London', '☕☕☕'] to 'cafes.csv'.",
         "starter_code": "import csv\n\n# Append new cafe row\nnew_cafe = ['Starbucks', 'London', '☕☕☕']",
         "test_cases": [
             {
@@ -242,7 +242,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Complete Cafe Form\\nCreate a FlaskForm with fields: cafe_name (StringField), location (StringField), and has_wifi (BooleanField).",
+        "text": "Complete Cafe Form\nCreate a FlaskForm with fields: cafe_name (StringField), location (StringField), and has_wifi (BooleanField).",
         "starter_code": "from flask_wtf import FlaskForm\nfrom wtforms import StringField, BooleanField, SubmitField\nfrom wtforms.validators import DataRequired\n\nclass CafeForm(FlaskForm):\n    # Define fields\n    pass",
         "test_cases": [
             {
@@ -257,7 +257,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Form to CSV\\nGiven a submitted form, extract `form.cafe_name.data` and `form.location.data` and write them as a new row.",
+        "text": "Form to CSV\nGiven a submitted form, extract `form.cafe_name.data` and `form.location.data` and write them as a new row.",
         "starter_code": "import csv\n\ndef save_cafe(form):\n    # Write form data to cafes.csv\n    pass",
         "test_cases": [
             {

@@ -197,7 +197,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Create a FlaskForm\\nDefine a simple `LoginForm` class with two fields: `email` (StringField) and `password` (PasswordField), and a submit button.",
+        "text": "Create a FlaskForm\nDefine a simple `LoginForm` class with two fields: `email` (StringField) and `password` (PasswordField), and a submit button.",
         "starter_code": "from flask_wtf import FlaskForm\nfrom wtforms import StringField, PasswordField, SubmitField\n\nclass LoginForm(FlaskForm):\n    # Define email, password, and submit fields\n    pass",
         "test_cases": [
             {
@@ -212,7 +212,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Add Validators\\nAdd a `DataRequired` and `Email` validator to an email field definition.",
+        "text": "Add Validators\nAdd a `DataRequired` and `Email` validator to an email field definition.",
         "starter_code": "from wtforms import StringField\nfrom wtforms.validators import DataRequired, Email\n\nemail = StringField('Email', validators=[...])",
         "test_cases": [
             {
@@ -227,7 +227,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Handle Form Submission\\nComplete this Flask route to process a `LoginForm`. If valid, return 'Success', otherwise render the form.",
+        "text": "Handle Form Submission\nComplete this Flask route to process a `LoginForm`. If valid, return 'Success', otherwise render the form.",
         "starter_code": "from flask import render_template\nfrom forms import LoginForm\n\n@app.route('/login', methods=['GET', 'POST'])\ndef login():\n    form = LoginForm()\n    # Check if form is valid and submitted\n    pass",
         "test_cases": [
             {
@@ -242,7 +242,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Password Confirmation\\nCreate a `RegistrationForm` with `password` and `confirm_password` fields where `confirm_password` uses the `EqualTo` validator.",
+        "text": "Password Confirmation\nCreate a `RegistrationForm` with `password` and `confirm_password` fields where `confirm_password` uses the `EqualTo` validator.",
         "starter_code": "from flask_wtf import FlaskForm\nfrom wtforms import PasswordField, SubmitField\nfrom wtforms.validators import DataRequired, EqualTo\n\nclass RegistrationForm(FlaskForm):\n    password = PasswordField('Password', validators=[DataRequired()])\n    # Add confirm_password field\n    submit = SubmitField('Register')",
         "test_cases": [
             {
@@ -257,7 +257,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Render Form in Template\\nWrite the Jinja2 code to render a Flask-WTF form with the CSRF token and the 'email' field.",
+        "text": "Render Form in Template\nWrite the Jinja2 code to render a Flask-WTF form with the CSRF token and the 'email' field.",
         "starter_code": "<form method=\"POST\">\n    <!-- Render hidden tag and email field -->\n</form>",
         "test_cases": [
             {

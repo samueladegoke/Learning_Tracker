@@ -197,7 +197,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Define a Movie Model\\nCreate a SQLAlchemy model called `Movie` with: id, title, year, description, rating, ranking, review, and img_url.",
+        "text": "Define a Movie Model\nCreate a SQLAlchemy model called `Movie` with: id, title, year, description, rating, ranking, review, and img_url.",
         "starter_code": "from flask_sqlalchemy import SQLAlchemy\n\ndb = SQLAlchemy()\n\nclass Movie(db.Model):\n    # Define columns\n    pass",
         "test_cases": [
             {
@@ -212,7 +212,7 @@
     },
     {
         "question_type": "coding",
-        "text": "TMDB API Search\\nWrite code to search for movies using the TMDB API with a query parameter.",
+        "text": "TMDB API Search\nWrite code to search for movies using the TMDB API with a query parameter.",
         "starter_code": "import requests\nimport os\n\nTMDB_API_KEY = os.environ.get('TMDB_API_KEY')\nquery = 'Matrix'\n\n# Make API request\nresponse = ...",
         "test_cases": [
             {
@@ -227,7 +227,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Update Movie Rating\\nComplete the route to update a movie's rating and review.",
+        "text": "Update Movie Rating\nComplete the route to update a movie's rating and review.",
         "starter_code": "@app.route('/edit', methods=['GET', 'POST'])\ndef edit():\n    movie_id = request.args.get('id')\n    movie = Movie.query.get(movie_id)\n    form = EditForm()\n    if form.validate_on_submit():\n        # Update movie rating and review\n        pass\n    return render_template('edit.html', movie=movie, form=form)",
         "test_cases": [
             {
@@ -242,7 +242,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Delete Movie Route\\nCreate a route to delete a movie by its ID.",
+        "text": "Delete Movie Route\nCreate a route to delete a movie by its ID.",
         "starter_code": "@app.route('/delete')\ndef delete():\n    movie_id = request.args.get('id')\n    # Delete movie and redirect to home\n    pass",
         "test_cases": [
             {
@@ -257,7 +257,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Display Ranked Movies\\nWrite the Jinja2 template loop to display movies with their ranking.",
+        "text": "Display Ranked Movies\nWrite the Jinja2 template loop to display movies with their ranking.",
         "starter_code": "{% for movie in movies %}\n    <!-- Display ranking and title -->\n{% endfor %}",
         "test_cases": [
             {

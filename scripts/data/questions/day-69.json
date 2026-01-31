@@ -183,8 +183,8 @@
     },
     {
         "question_type": "coding",
-        "text": "Admin Decorator\\\\nCreate a custom decorator that only allows user ID 1 to access a route.",
-        "starter_code": "from functools import wraps\\nfrom flask import abort\\nfrom flask_login import current_user\\n\\ndef admin_only(f):\\n    # Your code here\\n    pass",
+        "text": "Admin Decorator\nCreate a custom decorator that only allows user ID 1 to access a route.",
+        "starter_code": "from functools import wraps\nfrom flask import abort\nfrom flask_login import current_user\n\ndef admin_only(f):\n    # Your code here\n    pass",
         "test_cases": [
             {
                 "function_call": "True",
@@ -198,8 +198,8 @@
     },
     {
         "question_type": "coding",
-        "text": "User Model Relationship\\\\nAdd a posts relationship to the User model.",
-        "starter_code": "from sqlalchemy.orm import relationship\\n\\nclass User(UserMixin, db.Model):\\n    __tablename__ = 'users'\\n    id = db.Column(db.Integer, primary_key=True)\\n    name = db.Column(db.String(100))\\n    # Add posts relationship\\n    pass",
+        "text": "User Model Relationship\nAdd a posts relationship to the User model.",
+        "starter_code": "from sqlalchemy.orm import relationship\n\nclass User(UserMixin, db.Model):\n    __tablename__ = 'users'\n    id = db.Column(db.Integer, primary_key=True)\n    name = db.Column(db.String(100))\n    # Add posts relationship\n    pass",
         "test_cases": [
             {
                 "function_call": "True",
@@ -213,8 +213,8 @@
     },
     {
         "question_type": "coding",
-        "text": "Foreign Key\\\\nAdd a foreign key to BlogPost linking it to users.",
-        "starter_code": "class BlogPost(db.Model):\\n    __tablename__ = 'blog_posts'\\n    id = db.Column(db.Integer, primary_key=True)\\n    title = db.Column(db.String(250))\\n    # Add author_id foreign key\\n    pass",
+        "text": "Foreign Key\nAdd a foreign key to BlogPost linking it to users.",
+        "starter_code": "class BlogPost(db.Model):\n    __tablename__ = 'blog_posts'\n    id = db.Column(db.Integer, primary_key=True)\n    title = db.Column(db.String(250))\n    # Add author_id foreign key\n    pass",
         "test_cases": [
             {
                 "function_call": "True",
@@ -228,8 +228,8 @@
     },
     {
         "question_type": "coding",
-        "text": "Check Email Exists\\\\nComplete the registration check for existing emails.",
-        "starter_code": "@app.route('/register', methods=['GET', 'POST'])\\ndef register():\\n    form = RegisterForm()\\n    if form.validate_on_submit():\\n        # Check if email already exists\\n        pass\\n    return render_template('register.html', form=form)",
+        "text": "Check Email Exists\nComplete the registration check for existing emails.",
+        "starter_code": "@app.route('/register', methods=['GET', 'POST'])\ndef register():\n    form = RegisterForm()\n    if form.validate_on_submit():\n        # Check if email already exists\n        pass\n    return render_template('register.html', form=form)",
         "test_cases": [
             {
                 "function_call": "True",
@@ -243,8 +243,8 @@
     },
     {
         "question_type": "coding",
-        "text": "Login with Check\\\\nComplete the login route with password verification.",
-        "starter_code": "@app.route('/login', methods=['GET', 'POST'])\\ndef login():\\n    form = LoginForm()\\n    if form.validate_on_submit():\\n        user = User.query.filter_by(email=form.email.data).first()\\n        # Verify password and login\\n        pass\\n    return render_template('login.html', form=form)",
+        "text": "Login with Check\nComplete the login route with password verification.",
+        "starter_code": "@app.route('/login', methods=['GET', 'POST'])\ndef login():\n    form = LoginForm()\n    if form.validate_on_submit():\n        user = User.query.filter_by(email=form.email.data).first()\n        # Verify password and login\n        pass\n    return render_template('login.html', form=form)",
         "test_cases": [
             {
                 "function_call": "True",

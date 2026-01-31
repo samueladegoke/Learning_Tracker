@@ -197,8 +197,8 @@
     },
     {
         "question_type": "coding",
-        "text": "Git Init and Commit\\\\nWrite commands to init a repo, add all files, and make the first commit.",
-        "starter_code": "# Initialize, add, and commit\\n# Write your git commands here",
+        "text": "Git Init and Commit\nWrite commands to init a repo, add all files, and make the first commit.",
+        "starter_code": "# Initialize, add, and commit\n# Write your git commands here",
         "test_cases": [
             {
                 "function_call": "True",
@@ -212,8 +212,8 @@
     },
     {
         "question_type": "coding",
-        "text": "Push to GitHub\\\\nWrite commands to connect to a remote and push for the first time.",
-        "starter_code": "# Add remote and push\\n# URL: https://github.com/user/repo.git",
+        "text": "Push to GitHub\nWrite commands to connect to a remote and push for the first time.",
+        "starter_code": "# Add remote and push\n# URL: https://github.com/user/repo.git",
         "test_cases": [
             {
                 "function_call": "True",
@@ -227,7 +227,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Feature Branch\\\\nCreate a new feature branch and switch to it.",
+        "text": "Feature Branch\nCreate a new feature branch and switch to it.",
         "starter_code": "# Create and switch to feature/login branch",
         "test_cases": [
             {
@@ -242,7 +242,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Merge Branch\\\\nMerge feature/auth into main branch.",
+        "text": "Merge Branch\nMerge feature/auth into main branch.",
         "starter_code": "# Switch to main and merge feature/auth",
         "test_cases": [
             {
@@ -257,7 +257,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Clone Repository\\\\nClone a repository from GitHub to your local machine.",
+        "text": "Clone Repository\nClone a repository from GitHub to your local machine.",
         "starter_code": "# Clone https://github.com/user/project.git",
         "test_cases": [
             {

@@ -197,7 +197,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Define a Book Model\\nCreate a SQLAlchemy model called `Book` with columns: id (Integer, primary key), title (String), and rating (Float).",
+        "text": "Define a Book Model\nCreate a SQLAlchemy model called `Book` with columns: id (Integer, primary key), title (String), and rating (Float).",
         "starter_code": "from flask_sqlalchemy import SQLAlchemy\n\ndb = SQLAlchemy()\n\nclass Book(db.Model):\n    # Define columns\n    pass",
         "test_cases": [
             {
@@ -212,7 +212,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Add a Record\\nWrite code to create a new Book with title 'Harry Potter' and rating 9.5, then add it to the database.",
+        "text": "Add a Record\nWrite code to create a new Book with title 'Harry Potter' and rating 9.5, then add it to the database.",
         "starter_code": "new_book = Book(...)\n# Add to database",
         "test_cases": [
             {
@@ -227,7 +227,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Query All Books\\nWrite code to retrieve all books from the database and store them in a variable called `all_books`.",
+        "text": "Query All Books\nWrite code to retrieve all books from the database and store them in a variable called `all_books`.",
         "starter_code": "# Query all books\nall_books = ...",
         "test_cases": [
             {
@@ -242,7 +242,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Filter Query\\nWrite code to find all books with a rating greater than 8.",
+        "text": "Filter Query\nWrite code to find all books with a rating greater than 8.",
         "starter_code": "# Find books with rating > 8\nhigh_rated_books = ...",
         "test_cases": [
             {
@@ -257,7 +257,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Update a Record\\nGiven a book_id, update the book's rating to 10.",
+        "text": "Update a Record\nGiven a book_id, update the book's rating to 10.",
         "starter_code": "def update_rating(book_id):\n    book = Book.query.get(book_id)\n    # Update rating to 10\n    pass",
         "test_cases": [
             {
@@ -272,7 +272,7 @@
     },
     {
         "question_type": "coding",
-        "text": "Delete a Record\\nWrite a function to delete a book by its ID.",
+        "text": "Delete a Record\nWrite a function to delete a book by its ID.",
         "starter_code": "def delete_book(book_id):\n    book = Book.query.get(book_id)\n    # Delete book\n    pass",
         "test_cases": [
             {

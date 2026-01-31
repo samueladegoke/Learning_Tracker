@@ -4,6 +4,7 @@ import { python } from '@codemirror/lang-python'
 import { oneDark } from '@codemirror/theme-one-dark'
 import { Check, X, RotateCcw, Play, Send } from 'lucide-react'
 import { usePythonRunner } from '../hooks/usePythonRunner'
+import { normalizeNewlines } from '../utils/textNormalize'
 
 function CodeEditor({
   starterCode = '',
@@ -12,7 +13,8 @@ function CodeEditor({
   questionId,
   readOnly = false
 }) {
-  const [code, setCode] = useState(starterCode)
+  const normalizedStarter = normalizeNewlines(starterCode)
+  const [code, setCode] = useState(normalizedStarter)
   const [output, setOutput] = useState('')
   const [isRunning, setIsRunning] = useState(false)
   const [testResults, setTestResults] = useState(null)
@@ -24,12 +26,12 @@ function CodeEditor({
 
   // Reset code when starter code changes
   useEffect(() => {
-    setCode(starterCode)
+    setCode(normalizedStarter)
     setOutput('')
     setTestResults(null)
     setHasUnreadOutput(false)
     setHasUnreadTests(false)
-  }, [starterCode, questionId])
+  }, [normalizedStarter, questionId])
 
   // Clear unread flags when switching tabs
   useEffect(() => {
@@ -105,7 +107,7 @@ function CodeEditor({
 
   const handleReset = () => {
     if (window.confirm('Are you sure you want to reset your code? This cannot be undone.')) {
-      setCode(starterCode)
+      setCode(normalizedStarter)
       setOutput('')
       setTestResults(null)
       setActiveTab('code')
