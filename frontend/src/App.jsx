@@ -5,6 +5,7 @@ import { PythonProvider } from './contexts/PythonContext'
 import { AuthProvider } from './contexts/AuthContext'
 import { CourseProvider } from './contexts/CourseContext'
 import Navbar from './components/Navbar'
+import ProtectedRoute from './components/ProtectedRoute'
 import Dashboard from './pages/Dashboard'
 import WorldMap from './pages/WorldMap'
 import Planner from './pages/Planner'
@@ -144,7 +145,11 @@ function App() {
                 <Route path="/login" element={<Login />} />
 
                 {/* Protected routes with navbar */}
-                <Route path="/*" element={<MainLayout />} />
+                <Route path="/*" element={
+                  <ProtectedRoute>
+                    <MainLayout />
+                  </ProtectedRoute>
+                } />
               </Routes>
             </PythonProvider>
           </CourseProvider>

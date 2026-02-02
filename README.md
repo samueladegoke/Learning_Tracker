@@ -1,8 +1,26 @@
 # 🔥 AI Learning Roadmap Tracker & Gamified Dashboard
 
-**A progress-tracking, motivation-boosting web app** to support a 5-day/week, 2-hour/day learning roadmap — combining structured curriculum, daily tasks, reflections, and gamified rewards. Built with a Python backend (FastAPI) and a modern React frontend, this app helps you stay accountable, organized, and motivated from Day 1 through your 100-day learning journey.
+**A progress-tracking, motivation-boosting web app** to support a 5-day/week, 2-hour/day learning roadmap — combining structured curriculum, daily tasks, reflections, and gamified rewards. Built with **Convex** (serverless backend) and a modern **React** frontend with **Clerk** authentication.
 
-> **Version:** 1.0.0 (MVP) | **Repository:** [samueladegoke/Learning_Tracker](https://github.com/samueladegoke/Learning_Tracker)
+> **Version:** 1.1.0 | **Repository:** [samueladegoke/Learning_Tracker](https://github.com/samueladegoke/Learning_Tracker) | **Live:** [learning-tracker-nu-tan.vercel.app](https://learning-tracker-nu-tan.vercel.app)
+
+---
+
+## 🛠️ Tech Stack
+
+### Backend
+- **Database & API:** Convex (serverless, real-time)
+- **Authentication:** Clerk
+- **Deployment:** Vercel
+
+### Frontend
+- **Framework:** React 18.2.0
+- **Build Tool:** Vite 5.0.0
+- **Routing:** React Router 6.20.0
+- **Styling:** Tailwind CSS 3.3.5
+- **Animations:** Framer Motion
+- **Code Editor:** CodeMirror + Pyodide (in-browser Python)
+- **Testing:** Vitest + Playwright (E2E)
 
 ---
 
@@ -10,54 +28,30 @@
 
 ```
 Learning_Tracker/
-├── backend/
-│   ├── app/
-│   │   ├── __init__.py
-│   │   ├── main.py              # FastAPI application entry point
-│   │   ├── database.py          # SQLite database configuration
-│   │   ├── models.py            # SQLAlchemy ORM models
-│   │   ├── schemas.py           # Pydantic data validation schemas
-│   │   └── routers/             # API route handlers
-│   │       ├── weeks.py         # Week and task endpoints
-│   │       ├── tasks.py         # Task completion endpoints
-│   │       ├── reflections.py   # Weekly reflection endpoints
-│   │       ├── progress.py      # User progress & statistics
-│   │       ├── badges.py        # Badge/achievement endpoints
-│   │       ├── rpg.py           # RPG gamification features
-│   │       └── achievements.py  # Achievement system
-│   ├── seed.py                  # Database seed script
-│   ├── requirements.txt         # Python dependencies
-│   └── *.db                     # SQLite database files
+├── convex/                      # Convex backend
+│   ├── schema.ts                # Database schema
+│   ├── tasks.ts                 # Task mutations/queries
+│   ├── progress.ts              # Progress tracking
+│   ├── quizzes.ts               # Quiz system
+│   ├── rpg.ts                   # RPG gamification
+│   ├── srs.ts                   # Spaced repetition system
+│   └── users.ts                 # User management
 ├── frontend/
 │   ├── src/
-│   │   ├── api/
-│   │   │   └── client.js        # API client functions
 │   │   ├── components/          # Reusable React components
-│   │   │   ├── Navbar.jsx
-│   │   │   ├── TaskCard.jsx
-│   │   │   ├── WeekAccordion.jsx
-│   │   │   ├── BadgeCard.jsx
-│   │   │   ├── ProgressBar.jsx
-│   │   │   ├── ProgressRing.jsx
-│   │   │   └── StatCard.jsx
+│   │   ├── contexts/            # React contexts (Auth, Course, Python)
 │   │   ├── pages/               # Page components
-│   │   │   ├── Dashboard.jsx
-│   │   │   ├── Planner.jsx
-│   │   │   ├── Reflections.jsx
-│   │   │   └── Progress.jsx
+│   │   ├── hooks/               # Custom hooks
 │   │   ├── App.jsx              # Main app component
-│   │   ├── main.jsx             # React entry point
-│   │   └── index.css            # Global styles
-│   ├── e2e/                     # Playwright E2E tests
-│   ├── public/                  # Static assets
+│   │   └── main.jsx             # React entry point
 │   ├── package.json
 │   ├── tailwind.config.js
-│   ├── vite.config.js
-│   └── playwright.config.js
-├── seed_data.json               # Curriculum data for seeding
-├── 100_DAYS_OF_CODE_CURRICULUM.md  # Full learning curriculum
-├── README.md                    # This file
-└── .gitignore                   # Git ignore rules
+│   └── vite.config.js
+├── scripts/                     # Utility scripts
+├── data/                        # Curriculum data
+├── .env.example                 # Environment variables template
+├── vercel.json                  # Vercel configuration
+└── README.md                    # This file
 ```
 
 ---
