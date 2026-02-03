@@ -1,7 +1,8 @@
-import { ConvexClient } from "convex/browser";
+﻿import { ConvexClient } from "convex/browser";
 import * as fs from "fs";
 import * as path from "path";
 import * as dotenv from "dotenv";
+import { api } from "../convex/_generated/api";
 
 // Load env from frontend/.env.local for VITE_CONVEX_URL
 dotenv.config({ path: path.join(__dirname, "..", "frontend", ".env.local") });
@@ -108,8 +109,8 @@ async function runImport() {
                         xp_reward: row.xp_reward || 10,
                         estimated_minutes: row.estimated_minutes || 30,
                         required_for_streak: row.required_for_streak ?? true,
+                        legacy_task_id: row.task_id?.toString(),
                         metadata: {
-                            legacy_task_id: row.task_id,
                             category: row.category,
                             badge_reward: row.badge_reward,
                         }
@@ -179,7 +180,7 @@ async function runImport() {
                 }
 
                 if (convexData.user_id === undefined && (table.startsWith("user_") || table === "user_task_statuses")) {
-                    console.log(`  ⚠ Skipping row in ${table} (Legacy ID ${legacyId}): Missing User ID mapping`);
+                    console.log(`  Skipping row in ${table} (Legacy ID ${legacyId}): Missing User ID mapping`);
                     continue;
                 }
 
@@ -195,7 +196,7 @@ async function runImport() {
                 const allSameTable = batchConvexTables.every(t => t === targetTable);
 
                 if (allSameTable) {
-                    const newIds = await client.mutation("importData:insertRows", {
+                    const newIds = await client.mutation(api.importData.insertRows, {
                         table: targetTable,
                         rows: batchConvexData
                     } as any);
@@ -207,7 +208,7 @@ async function runImport() {
                     }
                 } else {
                     for (let j = 0; j < batchConvexData.length; j++) {
-                        const newId = await client.mutation("importData:insertRow", {
+                        const newId = await client.mutation(api.importData.insertRow, {
                             table: batchConvexTables[j],
                             data: batchConvexData[j]
                         } as any);
@@ -218,7 +219,7 @@ async function runImport() {
                 }
                 process.stdout.write(`.`);
             } catch (err: any) {
-                console.error(`\n  ❌ Error inserting batch in ${table}: ${err.message}`);
+                console.error(`\n  Error inserting batch in ${table}: ${err.message}`);
             }
         }
     }

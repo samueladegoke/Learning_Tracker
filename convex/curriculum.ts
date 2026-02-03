@@ -1,4 +1,4 @@
-import { query } from "./_generated/server";
+﻿import { query } from "./_generated/server";
 import { v } from "convex/values";
 
 // Get all weeks ordered by week number
@@ -72,15 +72,13 @@ export const getWeekProgress = query({
   },
 });
 
-// Get task by legacy task_id in metadata
+// Get task by legacy task_id using index
 export const getTaskByLegacyId = query({
   args: { legacyTaskId: v.string() },
   handler: async (ctx, args) => {
-    // Since task_id is now in metadata, we need to scan
-    // In production, consider adding a dedicated index
-    const tasks = await ctx.db
+    return await ctx.db
       .query("tasks")
-      .collect();
-    return tasks.find(t => t.metadata?.legacy_task_id === args.legacyTaskId) ?? null;
+      .withIndex("by_legacy_id", (q) => q.eq("legacy_task_id", args.legacyTaskId))
+      .first();
   },
 });

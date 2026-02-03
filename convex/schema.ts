@@ -1,4 +1,4 @@
-import { defineSchema, defineTable } from "convex/server";
+﻿import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 
 export default defineSchema({
@@ -25,8 +25,9 @@ export default defineSchema({
     xp_reward: v.number(),
     estimated_minutes: v.number(),
     required_for_streak: v.boolean(),
+    legacy_task_id: v.optional(v.string()),
     metadata: v.optional(v.any()), // For video URLs, legacy fields, etc.
-  }).index("by_week", ["week_id"]),
+  }).index("by_week", ["week_id"]).index("by_legacy_id", ["legacy_task_id"]),
   userTaskStatuses: defineTable({
     user_id: v.id("users"),
     task_id: v.id("tasks"),
