@@ -319,6 +319,7 @@ export async function completeTaskLogic(
     gold: totalGold,
     level: levelFromXp(totalXp),
     streak: newStreak,
+    best_streak: Math.max(user.best_streak || 0, newStreak),
     last_activity_date: now,
   });
 
@@ -415,3 +416,4 @@ export const uncompleteTask = mutation({
     };
   },
 });
+

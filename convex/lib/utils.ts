@@ -3,30 +3,27 @@
  */
 
 /**
+ * Get the start of the UTC day for a given timestamp
+ */
+function startOfUTCDay(ts: number): number {
+    const d = new Date(ts);
+    return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
+}
+
+/**
  * Check if two timestamps are on the same day (UTC)
  */
 export function isSameDay(ts1: number, ts2: number): boolean {
-    const d1 = new Date(ts1);
-    const d2 = new Date(ts2);
-    return (
-        d1.getUTCFullYear() === d2.getUTCFullYear() &&
-        d1.getUTCMonth() === d2.getUTCMonth() &&
-        d1.getUTCDate() === d2.getUTCDate()
-    );
+    return startOfUTCDay(ts1) === startOfUTCDay(ts2);
 }
 
 /**
  * Check if ts1 is yesterday relative to ts2 (UTC)
  */
 export function isYesterday(ts1: number, ts2: number): boolean {
-    const d1 = new Date(ts1);
-    const d1PlusOne = new Date(d1.getTime() + 24 * 60 * 60 * 1000);
-    const d2 = new Date(ts2);
-    return (
-        d1PlusOne.getUTCFullYear() === d2.getUTCFullYear() &&
-        d1PlusOne.getUTCMonth() === d2.getUTCMonth() &&
-        d1PlusOne.getUTCDate() === d2.getUTCDate()
-    );
+    const day1 = startOfUTCDay(ts1);
+    const day2 = startOfUTCDay(ts2);
+    return day1 + 24 * 60 * 60 * 1000 === day2;
 }
 
 /**
