@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useMutation } from "convex/react"
-import { api } from "../../../convex/_generated/api"
+import { api } from "../../convex/_generated/api"
 import { Progress } from '@/components/ui/progress'
 import { useAuth } from '../../contexts/AuthContext'
 import { soundManager } from '../../utils/SoundManager'
