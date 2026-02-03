@@ -1,4 +1,4 @@
-﻿import { convexTest } from "convex-test";
+import { convexTest } from "convex-test";
 import { expect, test } from "vitest";
 import schema from "./schema";
 import { api } from "./_generated/api";
@@ -38,8 +38,7 @@ test("best_streak is updated when new streak is higher", async () => {
   }));
 
   // Complete task
-  await t.mutation(api.tasks.completeTask, { 
-    clerkUserId: "streak_id",
+  await t.withIdentity({ subject: "streak_id", issuer: "clerk" }).mutation(api.tasks.completeTask, { 
     taskId: task 
   });
 

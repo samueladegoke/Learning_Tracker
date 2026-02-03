@@ -143,7 +143,7 @@ export const getUserTaskStatuses = query({
   args: { 
     userId: v.optional(v.id("users")),
     clerkUserId: v.optional(v.string()) },
-  handldler: async (ctx, args) => {
+  handler: async (ctx, args) => {
     let uid = args.userId;
     // Security: If not providing internal ID, assume self-query via auth or arg
     if (!uid) {
