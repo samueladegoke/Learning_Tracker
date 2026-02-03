@@ -44,43 +44,45 @@ export const getWeekProgress = query({
     userId: v.id("users")
   },
   handler: async (ctx, args) => {
-    // Get all tasks for the week
+    // 1. Get all tasks for the week
     const tasks = await ctx.db
       .query("tasks")
       .withIndex("by_week", (q) => q.eq("week_id", args.weekId))
       .collect();
 
-    // Get user's completed tasks for these task IDs
-    let completedCount = 0;
-    for (const task of tasks) {
-      const status = await ctx.db
-        .query("userTaskStatuses")
-        .withIndex("by_user_and_task", (q) =>
-          q.eq("user_id", args.userId).eq("task_id", task._id)
-        )
-        .first();
-      if (status?.completed) {
-        completedCount++;
-      }
-    }
+    if (tasks.length === 0) return { total: 0, completed: 0, percentage: 0 };
+
+    // 2. Batch fetch all task statuses for this user
+    // We could filter by task IDs in memory, or use the existing user_id index
+    const allUserStatuses = await ctx.db
+      .query("userTaskStatuses")
+      .withIndex("by_user_and_task", (q) => q.eq("user_id", args.userId))
+      .collect();
+
+    const completedTaskIds = new Set(
+        allUserStatuses
+            .filter(s => s.completed)
+            .map(s => s.task_id)
+    );
+
+    // 3. Count matches
+    const completedCount = tasks.filter(t => completedTaskIds.has(t._id)).length;
 
     return {
       total: tasks.length,
       completed: completedCount,
-      percentage: tasks.length > 0 ? Math.round((completedCount / tasks.length) * 100) : 0,
+      percentage: Math.round((completedCount / tasks.length) * 100),
     };
   },
 });
 
-// Get task by legacy task_id in metadata
+// Get task by legacy task_id
 export const getTaskByLegacyId = query({
   args: { legacyTaskId: v.string() },
   handler: async (ctx, args) => {
-    // Since task_id is now in metadata, we need to scan
-    // In production, consider adding a dedicated index
-    const tasks = await ctx.db
+    return await ctx.db
       .query("tasks")
-      .collect();
-    return tasks.find(t => t.metadata?.legacy_task_id === args.legacyTaskId) ?? null;
+      .withIndex("by_legacy_id", (q) => q.eq("legacy_task_id", args.legacyTaskId))
+      .first();
   },
 });

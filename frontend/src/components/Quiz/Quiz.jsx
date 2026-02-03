@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useMutation } from "convex/react"
+import { api } from "../../../convex/_generated/api"
 import { Progress } from '@/components/ui/progress'
 import { useAuth } from '../../contexts/AuthContext'
+import { soundManager } from '../../utils/SoundManager'
 
 // Shared Sub-components
 import QuestionRenderer from './QuestionRenderer'
@@ -36,6 +39,9 @@ function Quiz({
     const [xpWarning, setXpWarning] = useState(null)
     const [masteryMessage, setMasteryMessage] = useState(null)
     const [verifiedAnswers, setVerifiedAnswers] = useState({}) // { questionId: { correct_index, explanation, is_correct } }
+
+    const checkAnswerMutation = useMutation(api.quizzes.checkAnswer)
+    const submitQuizResultMutation = useMutation(api.quizzes.submitQuizResult)
 
     useEffect(() => {
         if (initialQuestions && initialQuestions.length > 0) {
@@ -112,22 +118,24 @@ function Quiz({
 
         setAnswers(prev => ({ ...prev, [questionId]: optionIndex }))
         
-        // Mock Verification Logic
-        // In a real implementation, this should verify against backend or DayMeta if keys are exposed
-        const isCorrect = optionIndex === currentQuestion.correct_answer // Assuming correct_answer is index or we mock it
-        // Note: dayMeta typically doesn't expose correct_answer for security, but for "Practice" mock we can assume logic or just always pass for visual test
-        
-        const verifyResult = {
-            is_correct: true, // Mocking success for visual overhaul verification
-            correct_index: optionIndex,
-            explanation: "Great job! (Mock explanation)"
-        }
+        try {
+            const verifyResult = await checkAnswerMutation({
+                questionId: questionId,
+                selectedIndex: optionIndex
+            })
 
-        setVerifiedAnswers(prev => ({ ...prev, [questionId]: verifyResult }))
+            setVerifiedAnswers(prev => ({ ...prev, [questionId]: verifyResult }))
 
-        if (isCorrect) {
-             setMasteryMessage("Correct!")
-             setTimeout(() => setMasteryMessage(null), 2000)
+            if (verifyResult.is_correct) {
+                setMasteryMessage("Correct!")
+                soundManager.completeTask()
+                setTimeout(() => setMasteryMessage(null), 2000)
+            } else {
+                soundManager.error()
+            }
+        } catch (err) {
+            console.error('Failed to verify answer:', err)
+            setError("Failed to verify answer. Please try again.")
         }
     }
 
@@ -140,16 +148,24 @@ function Quiz({
 
         setAnswers(prev => ({ ...prev, [questionId]: result }))
         
-        const verifyResult = {
-            is_correct: passed,
-            explanation: passed ? "All tests passed!" : "Some tests failed."
-        }
+        try {
+            const verifyResult = await checkAnswerMutation({
+                questionId: questionId,
+                trustedPassed: passed,
+                codeAnswer: result?.code
+            })
 
-        setVerifiedAnswers(prev => ({ ...prev, [questionId]: verifyResult }))
+            setVerifiedAnswers(prev => ({ ...prev, [questionId]: verifyResult }))
 
-        if (passed) {
-            setIsChallengeCleared?.(true)
-            setTimeout(() => setIsChallengeCleared?.(false), 3000)
+            if (passed) {
+                setIsChallengeCleared?.(true)
+                soundManager.completeTask()
+                setTimeout(() => setIsChallengeCleared?.(false), 3000)
+            } else {
+                soundManager.error()
+            }
+        } catch (err) {
+            console.error('Failed to verify coding result:', err)
         }
     }
 
@@ -160,25 +176,39 @@ function Quiz({
             if (!confirm) return
         }
 
-        // Calculate Mock Results
         const total = questions.length
-        // Count verified correct answers
         const correct = Object.values(verifiedAnswers).filter(a => a.is_correct).length
         
         setIsSubmitting(true)
         
-        // Mock delay
-        await new Promise(r => setTimeout(r, 1000))
+        try {
+            const submissionResult = await submitQuizResultMutation({
+                quizId: quizId || activeDay,
+                score: correct,
+                totalQuestions: total,
+                answers: Object.entries(answers).map(([id, val]) => ({
+                    questionId: id,
+                    selectedIndex: typeof val === 'number' ? val : undefined,
+                    trustedPassed: typeof val === 'object' ? val.passed : undefined,
+                    codeAnswer: typeof val === 'object' ? val.code : undefined
+                }))
+            })
 
-        setResultData({
-            score: correct,
-            total_questions: total,
-            xp_gained: correct * 10,
-            percentage: (correct / total) * 100,
-            xp_saved: true
-        })
-        setShowResult(true)
-        setIsSubmitting(false)
+            setResultData({
+                score: correct,
+                total_questions: total,
+                xp_gained: submissionResult.xp_gained,
+                percentage: (correct / total) * 100,
+                xp_saved: true,
+                new_level: submissionResult.new_level
+            })
+            setShowResult(true)
+        } catch (err) {
+            console.error('Failed to submit quiz:', err)
+            setError("Failed to submit quiz results. Please try again.")
+        } finally {
+            setIsSubmitting(false)
+        }
     }
 
     if (loading) return <QuizLoadingSkeleton />

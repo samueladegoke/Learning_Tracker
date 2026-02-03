@@ -6,7 +6,7 @@ import { useQuery } from "convex/react"
 import { api } from "../../../convex/_generated/api"
 import { useAuth } from '../contexts/AuthContext'
 import { useCourse } from '../contexts/CourseContext'
-import Leaderboard from '../components/Leaderboard'
+import QuizHistory from '../components/QuizHistory'
 import ProgressRing from '../components/ProgressRing'
 import ProgressBar from '../components/ProgressBar'
 import BadgeCard from '../components/BadgeCard'
@@ -188,7 +188,7 @@ function Progress() {
         </div>
       </div>
 
-      <Leaderboard />
+      <QuizHistory />
 
       {/* Weekly Progress Overview */}
       <div className="card p-6">

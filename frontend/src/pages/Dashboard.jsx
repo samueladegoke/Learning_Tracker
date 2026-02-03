@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence, useInView, useMotionValue, useSpring } from 'framer-motion'
 import {
@@ -108,22 +108,24 @@ function Dashboard() {
     
     try {
       if (complete) {
-        await completeTaskMutation({ clerkUserId, taskId });
+        await completeTaskMutation({ taskId });
         soundManager.completeTask();
       } else {
-        await uncompleteTaskMutation({ clerkUserId, taskId });
+        await uncompleteTaskMutation({ taskId });
       }
     } catch (err) {
       console.error('Failed to toggle task:', err);
       soundManager.error();
+      alert(`Failed to update quest status: ${err.message || 'Unknown error'}`);
     }
   }
 
   const handlePurchase = async (itemId) => {
     try {
-      await buyItemMutation({ clerkUserId, itemId });
+      await buyItemMutation({ itemId });
     } catch (err) {
       console.error('Purchase failed:', err);
+      alert(`Synthesis failed: ${err.message || 'Check your credit balance.'}`);
       throw err;
     }
   }
@@ -133,7 +135,31 @@ function Dashboard() {
   }
 
   // Calculate local progress for UI based on loaded data
-  const weekProgress = 0; // TODO: Calculate from tasksForWeek and statuses
+  const weekProgress = useMemo(() => {
+    if (!tasksForWeek || !userTaskStatuses) return 0;
+    const total = tasksForWeek.length;
+    if (total === 0) return 0;
+    
+    const completedCount = tasksForWeek.filter(task => 
+      userTaskStatuses.some(status => status.task_id === task._id && status.completed)
+    ).length;
+    
+    return (completedCount / total) * 100;
+  }, [tasksForWeek, userTaskStatuses]);
+
+  // Normalize tasks for QuestLog to include completion status and consistent ID field
+  const normalizedTasks = useMemo(() => {
+    if (!tasksForWeek || !userTaskStatuses) return [];
+    return tasksForWeek.map(task => {
+      const status = userTaskStatuses.find(s => s.task_id === task._id);
+      return {
+        ...task,
+        task_id: task._id, // Add task_id for TaskCard compatibility
+        completed: status?.completed || false,
+        day: task.day || `Day ${task.sequence_order || '?'}` // Fallback for TaskCard
+      };
+    });
+  }, [tasksForWeek, userTaskStatuses]);
   
   const activeQuest = rpgState?.active_quest
   const activeChallenge = rpgState?.active_challenges?.[0]
@@ -309,7 +335,7 @@ function Dashboard() {
             )}
           </AnimatePresence>
 
-          {currentWeek && <QuestLog tasks={tasksForWeek || []} onToggle={handleTaskToggle} />}
+          {currentWeek && <QuestLog tasks={normalizedTasks} onToggle={handleTaskToggle} />}
 
           {currentWeek && (
             <motion.div variants={itemVariants}>

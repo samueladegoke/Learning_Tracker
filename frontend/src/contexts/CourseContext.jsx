@@ -14,7 +14,9 @@ const DEFAULT_COURSE = {
     title: '100 Days of Code',
     subtitle: 'Master Python through daily practice',
     logoUrl: '/assets/logo.png',
-    startDate: new Date('2025-11-20'),
+    startDate: import.meta.env.VITE_COURSE_START_DATE 
+        ? new Date(import.meta.env.VITE_COURSE_START_DATE) 
+        : new Date('2025-11-20'),
     totalDays: 100,
     themeConfig: {
         primaryColor: 'primary',

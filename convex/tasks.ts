@@ -324,12 +324,18 @@ export async function completeTaskLogic(
 
 export const completeTask = mutation({
   args: {
-    taskId: v.id("tasks"),
+    taskId: v.optional(v.id("tasks")),
+    task_id: v.optional(v.id("tasks")), // Support snake_case from older clients
+    id: v.optional(v.id("tasks")),      // Support generic id
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
     if (!identity) throw new Error("Unauthorized");
     const clerkUserId = identity.subject;
+
+    // Resolve taskId from possible variants
+    const taskId = args.taskId || args.task_id || args.id;
+    if (!taskId) throw new Error("ArgumentValidationError: Object is missing the required field 'taskId'");
 
     const now = Date.now();
     const user = await ctx.db
@@ -339,7 +345,7 @@ export const completeTask = mutation({
 
     if (!user) throw new Error("User not found");
 
-    const task = await ctx.db.get(args.taskId);
+    const task = await ctx.db.get(taskId);
     if (!task) throw new Error("Task not found");
 
     return await completeTaskLogic(ctx, user, task, now);
@@ -348,12 +354,17 @@ export const completeTask = mutation({
 
 export const uncompleteTask = mutation({
   args: {
-    taskId: v.id("tasks"),
+    taskId: v.optional(v.id("tasks")),
+    task_id: v.optional(v.id("tasks")),
+    id: v.optional(v.id("tasks")),
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
     if (!identity) throw new Error("Unauthorized");
     const clerkUserId = identity.subject;
+
+    const taskId = args.taskId || args.task_id || args.id;
+    if (!taskId) throw new Error("ArgumentValidationError: Object is missing the required field 'taskId'");
 
     const user = await ctx.db
       .query("users")
@@ -362,7 +373,7 @@ export const uncompleteTask = mutation({
 
     if (!user) throw new Error("User not found");
 
-    const task = await ctx.db.get(args.taskId);
+    const task = await ctx.db.get(taskId);
     if (!task) throw new Error("Task not found");
 
     const status = await ctx.db

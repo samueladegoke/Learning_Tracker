@@ -28,7 +28,7 @@ export const getQuizHistory = query({
 
     const results = await ctx.db
       .query("quizResults")
-      .withIndex("by_user", (q) => q.eq("user_id", user._id))
+      .withIndex("by_user_and_date", (q) => q.eq("user_id", user._id))
       .order("desc")
       .collect();
 
@@ -47,17 +47,14 @@ export const getLeaderboard = query({
   handler: async (ctx, args) => {
     const limit = args.limit || 20;
 
-    // Get top users by XP
+    // Get top users by XP using the index
     const users = await ctx.db
       .query("users")
-      // Schema had `by_clerk_id`. No `by_xp`.
-      // We'll scan.
-      .collect();
+      .withIndex("by_xp")
+      .order("desc")
+      .take(limit);
 
-    return users
-      .sort((a, b) => b.xp - a.xp)
-      .slice(0, limit)
-      .map(u => ({
+    return users.map(u => ({
         username: u.username,
         xp: u.xp,
         level: u.level,
@@ -70,16 +67,19 @@ export const getLeaderboard = query({
 
 export const checkAnswer = mutation({
   args: {
-    clerkUserId: v.string(),
     questionId: v.id("questions"),
     selectedIndex: v.optional(v.number()),
     trustedPassed: v.optional(v.boolean()),
     codeAnswer: v.optional(v.string())
   },
   handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) throw new Error("Unauthorized");
+    const clerkUserId = identity.subject;
+
     const user = await ctx.db
       .query("users")
-      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", args.clerkUserId))
+      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", clerkUserId))
       .unique();
 
     if (!user) throw new Error("User not found");
@@ -142,7 +142,56 @@ export const submitQuizResult = mutation({
 
     const passed = (args.score / args.totalQuestions) >= 0.7;
 
-    // 2. Handle Task Completion (if taskId provided AND passed)
+    // 2. Handle SRS Updates (If any questions provided)
+    if (args.answers && args.answers.length > 0) {
+      for (const ans of args.answers) {
+        const question = await ctx.db.get(ans.questionId);
+        if (!question) continue;
+
+        let isCorrect = false;
+        if (question.question_type === "mcq" || question.question_type === "code-correction") {
+          isCorrect = ans.selectedIndex === question.correct_index;
+        } else if (question.question_type === "coding") {
+          isCorrect = !!ans.trustedPassed;
+        }
+
+        // Check if this question is in user's SRS queue
+        const review = await ctx.db
+          .query("userQuestionReviews")
+          .withIndex("by_user_and_question", (q) =>
+            q.eq("user_id", user._id).eq("question_id", ans.questionId)
+          )
+          .unique();
+
+        if (review) {
+          // Update existing SRS item
+          const newIntervalIndex = isCorrect ? review.interval_index + 1 : 0;
+          const intervals = [1, 3, 7, 14, 30, 60, 90];
+          const daysToAdd = intervals[Math.min(newIntervalIndex, intervals.length - 1)];
+          
+          await ctx.db.patch(review._id, {
+            interval_index: newIntervalIndex,
+            due_date: Date.now() + daysToAdd * 24 * 60 * 60 * 1000,
+            success_count: isCorrect ? review.success_count + 1 : review.success_count,
+            last_reviewed_at: Date.now(),
+            is_mastered: newIntervalIndex >= intervals.length,
+          });
+        } else if (!isCorrect) {
+          // Add failed non-SRS question to SRS queue (New Feature: Automatic SRS Sync)
+          await ctx.db.insert("userQuestionReviews", {
+            user_id: user._id,
+            question_id: ans.questionId,
+            interval_index: 0,
+            due_date: Date.now() + 1 * 24 * 60 * 60 * 1000, // Review tomorrow
+            success_count: 0,
+            is_mastered: false,
+            last_reviewed_at: Date.now(),
+          });
+        }
+      }
+    }
+
+    // 3. Handle Task Completion (if taskId provided AND passed)
     if (args.taskId && passed) {
       const task = await ctx.db.get(args.taskId);
       if (task) {

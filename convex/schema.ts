@@ -25,8 +25,10 @@ export default defineSchema({
     xp_reward: v.number(),
     estimated_minutes: v.number(),
     required_for_streak: v.boolean(),
-    metadata: v.optional(v.any()), // For video URLs, legacy fields, etc.
-  }).index("by_week", ["week_id"]),
+    legacy_task_id: v.optional(v.string()), // Added for indexed legacy lookup
+    metadata: v.optional(v.any()), // For video URLs, etc.
+  }).index("by_week", ["week_id"])
+    .index("by_legacy_id", ["legacy_task_id"]),
   userTaskStatuses: defineTable({
     user_id: v.id("users"),
     task_id: v.id("tasks"),
@@ -49,7 +51,8 @@ export default defineSchema({
     streak_freeze_count: v.number(),
     last_activity_date: v.optional(v.number()),
     last_heart_loss: v.optional(v.number()),
-  }).index("by_clerk_id", ["clerk_user_id"]),
+  }).index("by_clerk_id", ["clerk_user_id"])
+    .index("by_xp", ["xp"]),
 
   badges: defineTable({
     badge_id: v.string(),
@@ -156,7 +159,8 @@ export default defineSchema({
     total_questions: v.number(),
     completed_at: v.number(),
   }).index("by_user", ["user_id"])
-    .index("by_user_and_quiz", ["user_id", "quiz_id"]),
+    .index("by_user_and_quiz", ["user_id", "quiz_id"])
+    .index("by_user_and_date", ["user_id", "completed_at"]),
 
   // ========== PHASE 6: REFLECTIONS ==========
   reflections: defineTable({

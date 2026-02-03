@@ -108,8 +108,8 @@ async function runImport() {
                         xp_reward: row.xp_reward || 10,
                         estimated_minutes: row.estimated_minutes || 30,
                         required_for_streak: row.required_for_streak ?? true,
+                        legacy_task_id: row.task_id,
                         metadata: {
-                            legacy_task_id: row.task_id,
                             category: row.category,
                             badge_reward: row.badge_reward,
                         }

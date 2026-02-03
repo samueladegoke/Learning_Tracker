@@ -44,6 +44,8 @@ function MainLayout() {
             <Route path="/progress" element={<PageWrapper><Progress /></PageWrapper>} />
             <Route path="/calendar" element={<PageWrapper><Calendar /></PageWrapper>} />
             <Route path="/practice" element={<PageWrapper><Practice /></PageWrapper>} />
+            {/* Fallback for deep-nested protected routes when using path="/*" in App.jsx */}
+            <Route path="*" element={<PageWrapper><Dashboard /></PageWrapper>} />
           </Routes>
         </AnimatePresence>
       </main>
@@ -133,7 +135,6 @@ class ErrorBoundary extends Component {
   }
 }
 
-function App() {
   return (
     <ErrorBoundary>
       <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
@@ -141,10 +142,13 @@ function App() {
           <CourseProvider>
             <PythonProvider>
               <Routes>
-                {/* Public route - Login page (no navbar) */}
+                {/* Login page: accessible when not authenticated, or redirects to home */}
                 <Route path="/login" element={<Login />} />
 
-                {/* Protected routes with navbar */}
+                {/* Dashboard: Publicly accessible but has guest mode */}
+                <Route path="/" element={<MainLayout />} />
+
+                {/* Everything else is protected */}
                 <Route path="/*" element={
                   <ProtectedRoute>
                     <MainLayout />
