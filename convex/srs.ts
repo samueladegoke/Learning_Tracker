@@ -17,14 +17,20 @@ export const XP_MASTERY_BONUS = 100;
  * Get daily review questions - returns up to MAX_DAILY_REVIEWS due questions
  */
 export const getDailyReview = query({
-  args: { clerkUserId: v.string() },
+  args: { clerkUserId: v.optional(v.string()) },
   handler: async (ctx, args) => {
+    let userId = args.clerkUserId;
+    if (!userId) {
+        const identity = await ctx.auth.getUserIdentity();
+        if (identity) userId = identity.subject;
+    }
+    if (!userId) return { reviews: [], totalDue: 0, maxReviews: MAX_DAILY_REVIEWS };
+
     const now = Date.now();
 
-    // Get user first
     const user = await ctx.db
       .query("users")
-      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", args.clerkUserId))
+      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", userId!))
       .unique();
     if (!user) return { reviews: [], totalDue: 0, maxReviews: MAX_DAILY_REVIEWS };
 
@@ -52,7 +58,7 @@ export const getDailyReview = query({
           question_type: question.question_type,
           text: question.text,
           code: question.code,
-          options: question.options ? JSON.parse(question.options) : null,
+          options: question.options ?? null,
           starter_code: question.starter_code,
           difficulty: question.difficulty,
           topic_tag: question.topic_tag,
@@ -75,13 +81,20 @@ export const getDailyReview = query({
  * Get user's SRS stats
  */
 export const getSRSStats = query({
-  args: { clerkUserId: v.string() },
+  args: { clerkUserId: v.optional(v.string()) },
   handler: async (ctx, args) => {
+    let userId = args.clerkUserId;
+    if (!userId) {
+        const identity = await ctx.auth.getUserIdentity();
+        if (identity) userId = identity.subject;
+    }
+    if (!userId) return null;
+
     const now = Date.now();
 
     const user = await ctx.db
       .query("users")
-      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", args.clerkUserId))
+      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", userId!))
       .unique();
     if (!user) return null;
 
@@ -113,16 +126,19 @@ export const getSRSStats = query({
  */
 export const submitReviewResult = mutation({
   args: {
-    clerkUserId: v.string(),
     reviewId: v.id("userQuestionReviews"),
     wasCorrect: v.boolean(),
   },
   handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) throw new Error("Unauthorized");
+    const clerkUserId = identity.subject;
+
     const now = Date.now();
 
     const user = await ctx.db
       .query("users")
-      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", args.clerkUserId))
+      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", clerkUserId))
       .unique();
     if (!user) throw new Error("User not found");
 
@@ -200,15 +216,17 @@ export const submitReviewResult = mutation({
  */
 export const addToReview = mutation({
   args: {
-    clerkUserId: v.string(),
     questionId: v.id("questions"),
   },
   handler: async (ctx, args) => {
-    const now = Date.now();
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) throw new Error("Unauthorized");
+    const clerkUserId = identity.subject;
 
+    const now = Date.now();
     const user = await ctx.db
-      .query("users")
-      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", args.clerkUserId))
+       .query("users")
+      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", clerkUserId))
       .unique();
     if (!user) throw new Error("User not found");
 
@@ -247,44 +265,5 @@ export const addToReview = mutation({
     });
 
     return { success: true, message: "Question added to review queue", is_new: true };
-  },
-});
-
-export const getSRSStats = query({
-  args: { clerkUserId: v.optional(v.string()) },
-  handler: async (ctx, args) => {
-    let userId = args.clerkUserId;
-    if (!userId) {
-        const identity = await ctx.auth.getUserIdentity();
-        if (identity) userId = identity.subject;
-    }
-    if (!userId) return null;
-
-    const now = Date.now();
-
-    const user = await ctx.db
-      .query("users")
-      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", userId!))
-      .unique();
-    if (!user) return null;
-
-    const allReviews = await ctx.db
-      .query("userQuestionReviews")
-      .withIndex("by_user_and_due", (q) => q.eq("user_id", user._id))
-      .collect();
-
-    const totalCards = allReviews.length;
-    const masteredCards = allReviews.filter((r) => r.is_mastered).length;
-    const dueToday = allReviews.filter(
-      (r) => r.due_date <= now && !r.is_mastered
-    ).length;
-
-    return {
-      total_cards: totalCards,
-      mastered_cards: masteredCards,
-      due_today: dueToday,
-      mastery_percentage:
-        totalCards > 0 ? Math.round((masteredCards / totalCards) * 100) : 0,
-    };
   },
 });
