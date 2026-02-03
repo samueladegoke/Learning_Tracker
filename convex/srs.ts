@@ -4,7 +4,7 @@ import { Id } from "./_generated/dataModel";
 import { levelFromXp } from "./gamification";
 import { addDays } from "./lib/utils";
 
-// ... (constants remain)
+// ========== SRS CONSTANTS - EXACT PORT FROM BACKEND ==========
 export const SRS_INTERVALS = [1, 3, 7, 14]; // days between reviews
 export const MASTERY_SUCCESS_COUNT = 3;
 export const MAX_DAILY_REVIEWS = 10;
@@ -13,6 +13,9 @@ export const XP_MASTERY_BONUS = 100;
 
 // ========== QUERIES ==========
 
+/**
+ * Get daily review questions - returns up to MAX_DAILY_REVIEWS due questions
+ */
 export const getDailyReview = query({
   args: { clerkUserId: v.optional(v.string()) },
   handler: async (ctx, args) => {
@@ -55,7 +58,7 @@ export const getDailyReview = query({
           question_type: question.question_type,
           text: question.text,
           code: question.code,
-          options: question.options ? JSON.parse(question.options) : null,
+          options: question.options ?? null,
           starter_code: question.starter_code,
           difficulty: question.difficulty,
           topic_tag: question.topic_tag,
@@ -74,6 +77,9 @@ export const getDailyReview = query({
   },
 });
 
+/**
+ * Get user's SRS stats
+ */
 export const getSRSStats = query({
   args: { clerkUserId: v.optional(v.string()) },
   handler: async (ctx, args) => {
@@ -115,6 +121,9 @@ export const getSRSStats = query({
 
 // ========== MUTATIONS ==========
 
+/**
+ * Submit review result - updates SRS state based on correctness
+ */
 export const submitReviewResult = mutation({
   args: {
     reviewId: v.id("userQuestionReviews"),
@@ -202,6 +211,9 @@ export const submitReviewResult = mutation({
   },
 });
 
+/**
+ * Add question to review queue
+ */
 export const addToReview = mutation({
   args: {
     questionId: v.id("questions"),
@@ -212,9 +224,8 @@ export const addToReview = mutation({
     const clerkUserId = identity.subject;
 
     const now = Date.now();
-
     const user = await ctx.db
-      .query("users")
+       .query("users")
       .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", clerkUserId))
       .unique();
     if (!user) throw new Error("User not found");

@@ -4,7 +4,8 @@ import { Doc, Id } from "./_generated/dataModel";
 import { isSameDay, isYesterday } from "./lib/utils";
 import { xpForNextLevel, levelFromXp, FOCUS_CAP, DIFFICULTY_MULTIPLIER } from "./gamification";
 
-// ... (constants and helpers remain same)
+// ========== CONSTANTS (ported from backend) ==========
+
 export const STREAK_BADGES: Record<number, string> = {
   3: "b-streak-3",
   7: "b-streak-7",
@@ -19,12 +20,16 @@ export const TASK_COUNT_ACHIEVEMENTS: Record<number, string> = {
   100: "a-hundred-tasks",
 };
 
-async function awardBadge(
+// ========== HELPERS ==========
+
+/**
+ * Award a badge to user
+ */
+export async function awardBadge(
   ctx: any,
   userId: Id<"users">,
   badgeBusinessId: string
 ): Promise<{ awarded: boolean; xp_bonus: number; gold_bonus: number }> {
-  // ... (implementation same)
   const badge = await ctx.db
     .query("badges")
     .withIndex("by_badge_id", (q: any) => q.eq("badge_id", badgeBusinessId))
@@ -54,7 +59,10 @@ async function awardBadge(
   };
 }
 
-async function awardAchievement(
+/**
+ * Award an achievement to user
+ */
+export async function awardAchievement(
   ctx: any,
   userId: Id<"users">,
   achievementBusinessId: string
@@ -88,7 +96,10 @@ async function awardAchievement(
   };
 }
 
-async function getTotalTasksCompleted(ctx: any, userId: Id<"users">): Promise<number> {
+/**
+ * Get total completed tasks count for user
+ */
+export async function getTotalTasksCompleted(ctx: any, userId: Id<"users">): Promise<number> {
   const completed = await ctx.db
     .query("userTaskStatuses")
     .withIndex("by_user_and_task", (q: any) => q.eq("user_id", userId))
@@ -131,8 +142,7 @@ export const getTasksByWeek = query({
 export const getUserTaskStatuses = query({
   args: { 
     userId: v.optional(v.id("users")),
-    clerkUserId: v.optional(v.string())
-  },
+    clerkUserId: v.optional(v.string()) },
   handler: async (ctx, args) => {
     let uid = args.userId;
     // Security: If not providing internal ID, assume self-query via auth or arg
@@ -309,6 +319,7 @@ export async function completeTaskLogic(
     gold: totalGold,
     level: levelFromXp(totalXp),
     streak: newStreak,
+    best_streak: Math.max(user.best_streak || 0, newStreak),
     last_activity_date: now,
   });
 
@@ -416,3 +427,4 @@ export const uncompleteTask = mutation({
     };
   },
 });
+

@@ -25,12 +25,8 @@
     ],
     "rewrites": [
         {
-            "source": "/(index.html)?",
-            "destination": "/index.html"
-        },
-        {
-            "source": "/(.*)",
+            "source": "/((?!api|assets).*)",
             "destination": "/index.html"
         }
     ]
- }
+}

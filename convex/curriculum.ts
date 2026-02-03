@@ -1,4 +1,4 @@
-import { query } from "./_generated/server";
+﻿import { query } from "./_generated/server";
 import { v } from "convex/values";
 
 // Get all weeks ordered by week number
@@ -44,39 +44,35 @@ export const getWeekProgress = query({
     userId: v.id("users")
   },
   handler: async (ctx, args) => {
-    // 1. Get all tasks for the week
+    // Get all tasks for the week
     const tasks = await ctx.db
       .query("tasks")
       .withIndex("by_week", (q) => q.eq("week_id", args.weekId))
       .collect();
 
-    if (tasks.length === 0) return { total: 0, completed: 0, percentage: 0 };
-
-    // 2. Batch fetch all task statuses for this user
-    // We could filter by task IDs in memory, or use the existing user_id index
-    const allUserStatuses = await ctx.db
-      .query("userTaskStatuses")
-      .withIndex("by_user_and_task", (q) => q.eq("user_id", args.userId))
-      .collect();
-
-    const completedTaskIds = new Set(
-        allUserStatuses
-            .filter(s => s.completed)
-            .map(s => s.task_id)
-    );
-
-    // 3. Count matches
-    const completedCount = tasks.filter(t => completedTaskIds.has(t._id)).length;
+    // Get user's completed tasks for these task IDs
+    let completedCount = 0;
+    for (const task of tasks) {
+      const status = await ctx.db
+        .query("userTaskStatuses")
+        .withIndex("by_user_and_task", (q) =>
+          q.eq("user_id", args.userId).eq("task_id", task._id)
+        )
+        .first();
+      if (status?.completed) {
+        completedCount++;
+      }
+    }
 
     return {
       total: tasks.length,
       completed: completedCount,
-      percentage: Math.round((completedCount / tasks.length) * 100),
+      percentage: tasks.length > 0 ? Math.round((completedCount / tasks.length) * 100) : 0,
     };
   },
 });
 
-// Get task by legacy task_id
+// Get task by legacy task_id using index
 export const getTaskByLegacyId = query({
   args: { legacyTaskId: v.string() },
   handler: async (ctx, args) => {
