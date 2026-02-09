@@ -12,7 +12,11 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, './src'),
       "../../convex/_generated/api": path.resolve(__dirname, '../convex/_generated/api.js'),
+      "convex/server": path.resolve(__dirname, './convex-server-stub.js'),
     },
+  },
+  build: {
+    rollupOptions: {}
   },
   server: {
     headers: {

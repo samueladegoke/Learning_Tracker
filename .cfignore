@@ -1,0 +1,21 @@
+# Cloudflare Pages - Ignore Python dependencies
+# The frontend is Vite-based and doesn't need Python packages
+
+# Ignore Python-related files
+requirements.txt
+*.py
+__pycache__/
+*.pyc
+venv/
+env/
+
+# Ignore backend files (if any)
+backend/
+
+# Ignore development files
+.vscode/
+.idea/
+*.log
+
+# Keep only frontend build
+!frontend/

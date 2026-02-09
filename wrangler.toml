@@ -1,0 +1,26 @@
+# Cloudflare Pages Configuration for Learning Tracker
+# Documentation: https://developers.cloudflare.com/pages/
+
+name = "learning-tracker"
+compatibility_date = "2024-01-01"
+
+# Pages-specific settings
+pages_build_output_dir = "frontend/dist"
+
+# Environment variables will be set in Cloudflare Pages dashboard
+# Required variables:
+# - VITE_CONVEX_URL
+# - VITE_CLERK_PUBLISHABLE_KEY
+# - NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+# - CLERK_SECRET_KEY
+# - CONVEX_DEPLOYMENT
+# - CONVEX_DEPLOY_KEY
+
+[build]
+command = "cd frontend && npm install && npm run build"
+cwd = "."
+
+[build.environment]
+NODE_VERSION = "18"
+NPM_VERSION = "10"
+SKIP_DEPENDENCY_INSTALL = "true"
