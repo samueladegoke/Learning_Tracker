@@ -1,4 +1,6 @@
 import { createContext, useContext, useState, useEffect, useRef, useMemo, useCallback } from 'react'
+import { logError } from '@/utils/logger'
+import { PYODIDE_LOAD_FAILED } from '@/constants/errorIds'
 
 const PYODIDE_CDN_URL = "https://cdn.jsdelivr.net/pyodide/v0.27.5/full/"
 const PythonContext = createContext(null)
@@ -13,51 +15,51 @@ export function PythonProvider({ children }) {
     // Mutex for sequential execution to prevent stdout/stderr race conditions
     const executionMutex = useRef(Promise.resolve())
 
-    useEffect(() => {
-        let isMounted = true
+    // Extracted load function that can be called for retry
+    const loadPyodideInstance = useCallback(async () => {
+        // If already loaded, don't load again
+        if (pyodideRef.current) return pyodideRef.current
 
-        async function loadPyodide() {
-            // If already loaded, don't load again
-            if (pyodideRef.current) return
+        setIsLoading(true)
+        setError(null)
+        setLoadingProgress(10)
 
-            try {
-                setLoadingProgress(10)
+        try {
+            // Dynamic import of pyodide
+            const pyodideModule = await import('pyodide')
+            setLoadingProgress(30)
 
-                // Dynamic import of pyodide
-                const pyodideModule = await import('pyodide')
+            // Load Pyodide - use CDN for assets since Vite doesn't serve them locally
+            const py = await pyodideModule.loadPyodide({
+                indexURL: PYODIDE_CDN_URL
+            })
 
-                if (!isMounted) return
-                setLoadingProgress(30)
-
-                // Load Pyodide - use CDN for assets since Vite doesn't serve them locally
-                const py = await pyodideModule.loadPyodide({
-                    indexURL: PYODIDE_CDN_URL
-                })
-
-                if (!isMounted) return
-                setLoadingProgress(90)
-
-                pyodideRef.current = py
-                setPyodide(py)
-                setLoadingProgress(100)
-            } catch (err) {
-                console.error('Failed to load Pyodide:', err)
-                if (isMounted) {
-                    setError(err.message)
-                }
-            } finally {
-                if (isMounted) {
-                    setIsLoading(false)
-                }
-            }
-        }
-
-        loadPyodide()
-
-        return () => {
-            isMounted = false
+            setLoadingProgress(90)
+            pyodideRef.current = py
+            setPyodide(py)
+            setLoadingProgress(100)
+            return py
+        } catch (err) {
+            logError(PYODIDE_LOAD_FAILED, { error: err.message })
+            setError(err.message)
+            throw err
+        } finally {
+            setIsLoading(false)
         }
     }, [])
+
+    // Retry function exposed to consumers
+    const retryLoad = useCallback(async () => {
+        pyodideRef.current = null
+        setPyodide(null)
+        return loadPyodideInstance()
+    }, [loadPyodideInstance])
+
+    useEffect(() => {
+        loadPyodideInstance().catch(() => {
+            // Error already handled in loadPyodideInstance
+        })
+    }, [loadPyodideInstance])
 
     // Safe execution method that handles locking and output capture
     const runPython = useCallback(async (code, { onStdout, onStderr } = {}) => {
@@ -83,7 +85,12 @@ export function PythonProvider({ children }) {
         })
 
         // Update mutex to point to this new execution (catch error to keep chain alive)
-        executionMutex.current = execution.catch(() => { })
+        executionMutex.current = execution.catch((err) => {
+            console.error('[Python Execution Error]', {
+                error: err?.message || err,
+                stack: err?.stack
+            });
+        })
 
         return execution
     }, [])
@@ -94,8 +101,9 @@ export function PythonProvider({ children }) {
         isLoading,
         error,
         loadingProgress,
+        retryLoad,
         isReady: !isLoading && !error && pyodide !== null
-    }), [pyodide, runPython, isLoading, error, loadingProgress])
+    }), [pyodide, runPython, isLoading, error, loadingProgress, retryLoad])
 
     return (
         <PythonContext.Provider value={value}>

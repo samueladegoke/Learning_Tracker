@@ -1,10 +1,13 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { X, ShoppingBag, Snowflake, Zap, Heart, Coins } from 'lucide-react'
-import { soundManager } from '../utils/SoundManager'
+import { soundManager } from '@/utils/SoundManager'
+import { logError } from '@/utils/logger'
+import { SHOP_PURCHASE_FAILED } from '@/constants/errorIds'
 
 const ShopModal = ({ isOpen, onClose, rpgState, onPurchase }) => {
     const [purchasing, setPurchasing] = useState(false)
+    const [purchaseError, setPurchaseError] = useState(null)
 
     if (!isOpen) return null
 
@@ -37,12 +40,22 @@ const ShopModal = ({ isOpen, onClose, rpgState, onPurchase }) => {
 
     const handleBuy = async (itemId) => {
         setPurchasing(true)
+        setPurchaseError(null) // Clear error on new purchase attempt
         try {
             await onPurchase(itemId)
             soundManager.buyItem()
         } catch (err) {
             soundManager.error()
-            console.error('Purchase failed:', err)
+            logError(SHOP_PURCHASE_FAILED, { itemId, error: err.message })
+            
+            // Provide actionable error message
+            let errorMessage = err.message || 'Purchase failed'
+            if (errorMessage.toLowerCase().includes('gold') || errorMessage.toLowerCase().includes('afford')) {
+                errorMessage = 'Not enough gold - complete quests to earn more!'
+            } else if (errorMessage.toLowerCase().includes('network') || errorMessage.toLowerCase().includes('timeout')) {
+                errorMessage = 'Server busy - please try again'
+            }
+            setPurchaseError(errorMessage)
         } finally {
             setPurchasing(false)
         }
@@ -74,6 +87,11 @@ const ShopModal = ({ isOpen, onClose, rpgState, onPurchase }) => {
                 </div>
 
                 {/* Items Grid */}
+                {purchaseError && (
+                    <div className="mb-4 p-3 bg-red-500/10 border border-red-500/30 rounded-lg">
+                        <p className="text-red-400 text-sm font-medium">{purchaseError}</p>
+                    </div>
+                )}
                 <div className="grid gap-4">
                     {shopItems.map((item) => {
                         const affordable = canAfford(item.cost)

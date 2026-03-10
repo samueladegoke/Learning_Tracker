@@ -1,76 +1,61 @@
 # Development Guide
-Generated: 2025-12-10 | Updated: 2025-12-15
-
-## Quick Start (Recommended)
-From the project root, run both frontend and backend with a single command:
-```bash
-# Windows
-npm run dev
-
-# Linux/Mac
-npm run dev:unix
-```
-This opens the frontend and runs the backend concurrently.
-
-| Service | URL |
-|---------|-----|
-| Frontend | http://localhost:5173 |
-| Backend API | http://localhost:8000 |
-| Swagger Docs | http://localhost:8000/docs |
+Generated: 2026-02-19
 
 ## Prerequisites
-- **Python**: 3.9+
-- **Node.js**: 16+
-- **Git**
 
-## Manual Setup (Individual Services)
+- Node.js 20+
+- npm 10+
 
-### Backend (FastAPI)
+## Quick Start
+
+Run Convex and frontend in separate terminals.
+
 ```bash
-cd backend
-python -m venv venv
-# Windows
-venv\Scripts\activate
-# Linux/Mac
-source venv/bin/activate
+# Terminal 1
+npm run convex
 
-pip install -r requirements.txt
-python seed.py  # Initialize standard curriculum
-npm run dev:backend  # or: uvicorn app.main:app --reload --port 8000
+# Terminal 2
+npm run dev
 ```
 
-### Frontend (React)
+Frontend URL: `http://localhost:5173`
+
+## Frontend Commands
+
 ```bash
 cd frontend
 npm install
 npm run dev
+npm run build
 ```
 
-## Testing
+## Test Commands
 
-### Unit Tests (Frontend - Vitest)
 ```bash
-cd frontend
-npm test              # Run once
-npm run test:watch    # Watch mode  
-npm run test:coverage # With coverage report
+# root Convex tests
+npm run test:convex
+
+# frontend unit + component tests
+cd frontend && npm test
+
+# frontend e2e tests
+cd frontend && npm run test:e2e
 ```
 
-### API Tests (Backend - pytest)
+## Quality Checks
+
 ```bash
-cd backend
-python -m pytest tests/ -v        # Verbose
-python -m pytest tests/ --cov=app # With coverage
+# frontend lint
+cd frontend && npm run lint
+
+# frontend dead-code reachability
+cd frontend && npm run check:dead-code
+
+# core doc drift check
+npm run check:docs
 ```
 
-### End-to-End (Playwright)
-```bash
-cd frontend
-npm run test:e2e         # Run e2e tests
-npm run test:e2e:ui      # UI Mode
-npm run test:e2e:headed  # Headed browser
-```
+## Notes
 
-## Database
-- **Local**: SQLite (`backend/learning_tracker.db` by default or per `database.py` config).
-- **Schema Management**: SQLAlchemy + Alembic (if enabled). currently `seed.py` handles initialization.
+- Dev-mode auth bypass is controlled with `VITE_DEV_MODE=true`.
+- Pyodide features require cross-origin isolation headers configured in frontend/vite and deployment config.

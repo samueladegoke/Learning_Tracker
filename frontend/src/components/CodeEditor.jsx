@@ -3,8 +3,8 @@ import CodeMirror from '@uiw/react-codemirror'
 import { python } from '@codemirror/lang-python'
 import { oneDark } from '@codemirror/theme-one-dark'
 import { Check, X, RotateCcw, Play, Send } from 'lucide-react'
-import { usePythonRunner } from '../hooks/usePythonRunner'
-import { normalizeNewlines } from '../utils/textNormalize'
+import { usePythonRunner } from '@/hooks/usePythonRunner'
+import { normalizeNewlines } from '@/utils/textNormalize'
 
 function CodeEditor({
   starterCode = '',
@@ -22,7 +22,7 @@ function CodeEditor({
   const [hasUnreadOutput, setHasUnreadOutput] = useState(false)
   const [hasUnreadTests, setHasUnreadTests] = useState(false)
 
-  const { runCode, runTestCases, isLoading, loadingProgress, isReady, error: pyError } = usePythonRunner()
+  const { runCode, runTestCases, isLoading, loadingProgress, isReady, error: pyError, retryLoad } = usePythonRunner()
 
   // Reset code when starter code changes
   useEffect(() => {
@@ -159,6 +159,14 @@ function CodeEditor({
               <span className="text-[10px] font-bold uppercase tracking-tighter text-amber-500">
                 {pyError ? 'Core Offline' : `Syncing Python: ${loadingProgress}%`}
               </span>
+              {pyError && (
+                <button
+                  onClick={retryLoad}
+                  className="ml-1 text-[10px] font-bold uppercase tracking-tighter text-primary-400 hover:text-primary-300"
+                >
+                  Retry
+                </button>
+              )}
             </div>
           )}
           <button

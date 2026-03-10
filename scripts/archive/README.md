@@ -1,22 +1,23 @@
-# Archived One-Time Utility Scripts
+# Archived One-Time / Legacy Scripts
 
-These scripts were used during the initial content generation phase of the 100 Days of Code project.
-They are preserved here for reference but are **not needed for normal development**.
+Files in this folder are preserved for historical traceability only.
+They are **not** part of the active development or CI workflow.
 
-## Scripts
+## Archived Items
 
-| Script | Purpose | Original Usage |
-|--------|---------|----------------|
-| `add_cc_questions.py` | Added code-correction questions to Days 7-25 | Run once to populate initial CC questions |
-| `extract_day_content.py` | Parsed VTT transcripts and HTML from Udemy course | Used for initial curriculum extraction |
-| `extract_portfolio_content.py` | Parsed portfolio HTML assignments (Days 82-100) | Used for portfolio project metadata |
-| `fix_explanations.py` | Batch-added explanations to coding questions | One-time schema fix |
+| File | Why Archived |
+|------|--------------|
+| `add_cc_questions.py` | One-time content backfill |
+| `extract_day_content.py` | Historical ingestion pipeline |
+| `extract_portfolio_content.py` | Historical portfolio extraction |
+| `fix_explanations.py` | One-time data correction |
+| `import_cli.js` | Legacy JS duplicate of active `scripts/import_cli.ts` |
+| `day_meta.legacy.js` | Legacy generated day metadata replaced by `frontend/src/data/dayMeta.js` |
 
-## Note
+## Active Script Entry Points
 
-The active seeding scripts are located in `scripts/`:
-- `seed_supabase_questions.py` - Seeds questions to production Supabase
-- `seed_all_questions.py` - Seeds all days to local SQLite
-
----
-*Archived: 2025-12-31 during 5-pass code review cleanup*
+- `scripts/import_cli.ts`
+- `scripts/import_questions.ts`
+- `scripts/compliance_audit.py`
+- `scripts/seed_supabase_questions.py`
+- `scripts/seed_all_questions.py`

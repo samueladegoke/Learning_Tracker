@@ -23,7 +23,7 @@ date: '2025-12-10'
 
 **100 Days of Code: Learning Tracker** is a gamified, full-stack web application designed to bridge the gap between passive video watching and active skill acquisition for Dr. Angela Yu's Python Bootcamp. It solves the critical problem of **attrition in self-paced learning** by replacing the "feedback void" with a structured, interactive, and rewarding RPG-style environment.
 
-This PRD serves a specific strategic purpose: **Architectural Hardening**. We are documenting the *existing* brownfield system (FastAPI/React) to establish a solid baseline for **scalability, standardization, and automated quality assurance**, enabling future expansion to multi-user support.
+This PRD serves a specific strategic purpose: **Architectural Hardening**. We are documenting the *existing* brownfield system (Convex/React + Clerk) to establish a solid baseline for **scalability, standardization, and automated quality assurance**, enabling future expansion to multi-user support.
 
 > ⚠️ **IMPLEMENTATION STATUS NOTE (2025-12-15):** This PRD describes both **implemented MVP features** and **Phase 2 aspirational features**. The Local-First/Offline patterns (FRs 7-12, localStorage, SyncManager, Web Workers) are **NOT YET IMPLEMENTED**. The current MVP uses a Server-First architecture. See `architecture.md` for current implementation status.
 
@@ -34,7 +34,7 @@ This PRD serves a specific strategic purpose: **Architectural Hardening**. We ar
 
 ## Project Classification
 
-**Technical Type:** `web_app` (React SPA + FastAPI Backend)
+**Technical Type:** `web_app` (React SPA + Convex Backend)
 **Domain:** `edtech` (Self-directed Learning / Gamification)
 **Complexity:** `medium` (Complex state management, distinct from high-compliance domains)
 **Project Context:** **Brownfield** - Hardening and Standardizing an existing MVP.
@@ -156,7 +156,7 @@ We are prioritizing **Depth over Breadth**. Instead of adding half-baked multi-u
 ### Post-MVP Roadmap
 
 **Phase 2: The Multi-User Layer**
-*   Supabase Authentication (Email/Magic Link).
+*   Clerk Authentication and account onboarding.
 *   Cloud Sync (Backup local state to DB).
 *   Public Profiles (ReadOnly view of other users).
 

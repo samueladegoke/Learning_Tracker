@@ -3,6 +3,7 @@ import { v } from "convex/values";
 import { Id } from "./_generated/dataModel";
 import { levelFromXp } from "./gamification";
 import { addDays } from "./lib/utils";
+import { getUserByClerkId, getCurrentUser } from "./lib/auth";
 
 // ========== SRS CONSTANTS - EXACT PORT FROM BACKEND ==========
 export const SRS_INTERVALS = [1, 3, 7, 14]; // days between reviews
@@ -21,17 +22,13 @@ export const getDailyReview = query({
   handler: async (ctx, args) => {
     let userId = args.clerkUserId;
     if (!userId) {
-        const identity = await ctx.auth.getUserIdentity();
-        if (identity) userId = identity.subject;
+      const identity = await ctx.auth.getUserIdentity();
+      if (identity) userId = identity.subject;
     }
     if (!userId) return { reviews: [], totalDue: 0, maxReviews: MAX_DAILY_REVIEWS };
 
     const now = Date.now();
-
-    const user = await ctx.db
-      .query("users")
-      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", userId!))
-      .unique();
+    const user = await getUserByClerkId(ctx, userId);
     if (!user) return { reviews: [], totalDue: 0, maxReviews: MAX_DAILY_REVIEWS };
 
     // Get due reviews
@@ -85,17 +82,13 @@ export const getSRSStats = query({
   handler: async (ctx, args) => {
     let userId = args.clerkUserId;
     if (!userId) {
-        const identity = await ctx.auth.getUserIdentity();
-        if (identity) userId = identity.subject;
+      const identity = await ctx.auth.getUserIdentity();
+      if (identity) userId = identity.subject;
     }
     if (!userId) return null;
 
     const now = Date.now();
-
-    const user = await ctx.db
-      .query("users")
-      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", userId!))
-      .unique();
+    const user = await getUserByClerkId(ctx, userId);
     if (!user) return null;
 
     const allReviews = await ctx.db
@@ -130,17 +123,11 @@ export const submitReviewResult = mutation({
     wasCorrect: v.boolean(),
   },
   handler: async (ctx, args) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Unauthorized");
-    const clerkUserId = identity.subject;
+    const result = await getCurrentUser(ctx);
+    if (!result.success) throw new Error(result.error);
+    const user = result.user;
 
     const now = Date.now();
-
-    const user = await ctx.db
-      .query("users")
-      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", clerkUserId))
-      .unique();
-    if (!user) throw new Error("User not found");
 
     const review = await ctx.db.get(args.reviewId);
     if (!review) throw new Error("Review not found");
@@ -219,16 +206,11 @@ export const addToReview = mutation({
     questionId: v.id("questions"),
   },
   handler: async (ctx, args) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Unauthorized");
-    const clerkUserId = identity.subject;
+    const result = await getCurrentUser(ctx);
+    if (!result.success) throw new Error(result.error);
+    const user = result.user;
 
     const now = Date.now();
-    const user = await ctx.db
-       .query("users")
-      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", clerkUserId))
-      .unique();
-    if (!user) throw new Error("User not found");
 
     const question = await ctx.db.get(args.questionId);
     if (!question) throw new Error("Question not found");

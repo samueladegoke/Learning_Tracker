@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import { usePythonContext } from '../contexts/PythonContext'
 
 export function usePythonRunner() {
-  const { runPython, isLoading, error, loadingProgress, isReady } = usePythonContext()
+  const { runPython, isLoading, error, loadingProgress, isReady, retryLoad } = usePythonContext()
 
   const runCode = useCallback(async (code, timeout = 5000) => {
     if (!isReady) {
@@ -39,6 +39,12 @@ export function usePythonRunner() {
         error: stderr.length > 0 ? stderr.join('') : null
       }
     } catch (err) {
+      // Log error for debugging
+      console.error('[Python Runner Error]', {
+        error: err?.message || String(err),
+        timestamp: new Date().toISOString()
+      })
+
       // Clear timeout on error as well
       if (timeoutId) clearTimeout(timeoutId)
 
@@ -196,6 +202,7 @@ except Exception as e:
     isLoading,
     loadingProgress,
     error,
-    isReady
+    isReady,
+    retryLoad
   }
 }

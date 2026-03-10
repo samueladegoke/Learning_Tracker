@@ -1,49 +1,54 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useQuery, useMutation } from "convex/react"
 import { api } from "../../../convex/_generated/api"
-import { useAuth } from '../contexts/AuthContext'
-import { useCourse } from '../contexts/CourseContext'
-import { AlertTriangle, PenTool } from 'lucide-react'
+import { useAuth } from '@/contexts/AuthContext'
+import { useCourse } from '@/contexts/CourseContext'
+import { AlertTriangle, PenTool, RefreshCw } from 'lucide-react'
+import { logError } from '@/utils/logger'
+import { REFLECTIONS_SAVE_FAILED } from '@/constants/errorIds'
 
 function Reflections() {
   const { user, isAuthenticated } = useAuth()
   const { guestPrompts } = useCourse()
-  
+
   const reflectionsData = useQuery(api.reflections.getAll, user?.id ? { clerkUserId: user.id } : "skip")
   const weeksData = useQuery(api.curriculum.getWeeks)
   const saveReflection = useMutation(api.reflections.saveReflection)
 
   const loading = isAuthenticated && (reflectionsData === undefined || weeksData === undefined)
-  const reflections = reflectionsData || []
-  const weeks = weeksData || []
-  const error = null
+  const reflections = reflectionsData ?? []
+  const weeks = weeksData ?? []
 
   const [selectedWeek, setSelectedWeek] = useState(null)
+  const hasInitialized = useRef(false)
   const [content, setContent] = useState('')
   const [saving, setSaving] = useState(false)
   const [savedMessage, setSavedMessage] = useState('')
 
   useEffect(() => {
-    if (weeks.length > 0 && reflections !== undefined) {
-       const weeksWithReflections = new Set(reflections.map(r => r.week_id))
-       const weekToSelect = weeks.find(w =>
-         w.tasks_completed > 0 && !weeksWithReflections.has(w._id)
-       ) || weeks[0]
+    if (hasInitialized.current) return
+    if (weeksData === undefined) return
+    if (isAuthenticated && reflectionsData === undefined) return
+    if (weeks.length > 0) {
+      const weeksWithReflections = new Set(reflections.map(r => r.week_id))
+      const weekToSelect = weeks.find(w =>
+        w.tasks_completed > 0 && !weeksWithReflections.has(w._id)
+      ) || weeks[0]
 
-       if (weekToSelect && !selectedWeek) {
-         setSelectedWeek(weekToSelect)
-         const existing = reflections.find(r => r.week_id === weekToSelect._id)
-         setContent(existing?.content || '')
-       }
+      if (weekToSelect) {
+        hasInitialized.current = true
+        setSelectedWeek(weekToSelect)
+        const existing = reflections.find(r => r.week_id === weekToSelect._id)
+        setContent(existing?.content || '')
+      }
     }
-  }, [weeks, reflections, selectedWeek])
+  }, [isAuthenticated, weeksData, reflectionsData, weeks, reflections])
 
   const handleWeekChange = (weekId) => {
     const week = weeks.find(w => w._id === weekId)
     setSelectedWeek(week)
-
     const existing = reflections.find(r => r.week_id === weekId)
     setContent(existing?.content || '')
     setSavedMessage('')
@@ -63,7 +68,7 @@ function Reflections() {
       setSavedMessage('Reflection saved!')
       setTimeout(() => setSavedMessage(''), 3000)
     } catch (err) {
-      console.error('Failed to save reflection:', err)
+      logError(REFLECTIONS_SAVE_FAILED, { weekId: selectedWeek._id, error: err.message })
       setSavedMessage('Failed to save')
     } finally {
       setSaving(false)
@@ -124,12 +129,12 @@ function Reflections() {
               <label htmlFor="week-select" className="block text-sm text-surface-400 mb-2">Select Week</label>
               <select
                 id="week-select"
-                value={selectedWeek?.id || ''}
+                value={selectedWeek?._id || ''}
                 onChange={(e) => handleWeekChange(e.target.value)}
                 className="input"
               >
                 {weeks.map((week) => (
-                  <option key={week.id} value={week.id}>
+                  <option key={week._id} value={week._id}>
                     Week {week.week_number}: {week.title}
                   </option>
                 ))}
@@ -167,9 +172,20 @@ function Reflections() {
                 {saving ? 'Saving...' : 'Save Reflection'}
               </button>
               {savedMessage && (
-                <span className={`text-sm ${savedMessage.includes('Failed') ? 'text-red-400' : 'text-primary-400'}`}>
-                  {savedMessage}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className={`text-sm ${savedMessage.includes('Failed') ? 'text-red-400' : 'text-primary-400'}`}>
+                    {savedMessage}
+                  </span>
+                  {savedMessage.includes('Failed') && (
+                    <button
+                      onClick={handleSave}
+                      disabled={saving}
+                      className="text-xs text-primary-400 hover:text-primary-300 flex items-center gap-1"
+                    >
+                      <RefreshCw className="w-3 h-3" /> Retry
+                    </button>
+                  )}
+                </div>
               )}
             </div>
           </div>
@@ -184,10 +200,10 @@ function Reflections() {
               <div className="space-y-3 max-h-[500px] overflow-y-auto pr-2">
                 {reflections.map((ref) => (
                   <button
-                    key={ref.id}
+                    key={ref._id}
                     onClick={() => handleWeekChange(ref.week_id)}
                     className={`w-full text-left p-3 rounded-lg border transition-colors
-                      ${selectedWeek?.id === ref.week_id
+                      ${selectedWeek?._id === ref.week_id
                         ? 'bg-primary-900/30 border-primary-700/50'
                         : 'bg-surface-800/50 border-surface-700 hover:border-surface-600'
                       }`}

@@ -1,0 +1,10 @@
+{
+  "accounts": [
+    {
+      "email": "your-email@gmail.com",
+      "refresh_token": "1//your-refresh-token-here",
+      "extracted_at": "template"
+    }
+  ],
+  "active": "your-email@gmail.com"
+}

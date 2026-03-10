@@ -3,6 +3,9 @@ import { v } from "convex/values";
 import { Id } from "./_generated/dataModel";
 import { xpForNextLevel, levelFromXp, FOCUS_CAP } from "./gamification";
 import { completeTaskLogic } from "./tasks";
+import { getCurrentUser, getUserByClerkId, requireAuth } from "./lib/auth";
+import { SRS_INTERVALS, MASTERY_SUCCESS_COUNT } from "./srs";
+import { MS_PER_DAY } from "./lib/utils";
 
 // ========== QUERIES ==========
 
@@ -19,16 +22,13 @@ export const getQuizQuestions = query({
 export const getQuizHistory = query({
   args: { clerkUserId: v.string() },
   handler: async (ctx, args) => {
-    const user = await ctx.db
-      .query("users")
-      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", args.clerkUserId))
-      .unique();
+    const user = await getUserByClerkId(ctx, args.clerkUserId);
 
     if (!user) return [];
 
     const results = await ctx.db
       .query("quizResults")
-      .withIndex("by_user_and_date", (q) => q.eq("user_id", user._id))
+      .withIndex("by_user", (q) => q.eq("user_id", user._id))
       .order("desc")
       .collect();
 
@@ -47,7 +47,7 @@ export const getLeaderboard = query({
   handler: async (ctx, args) => {
     const limit = args.limit || 20;
 
-    // Get top users by XP using the index
+    // Get top users by XP using the by_xp index
     const users = await ctx.db
       .query("users")
       .withIndex("by_xp")
@@ -55,11 +55,11 @@ export const getLeaderboard = query({
       .take(limit);
 
     return users.map(u => ({
-        username: u.username,
-        xp: u.xp,
-        level: u.level,
-        streak: u.streak
-      }));
+      username: u.username,
+      xp: u.xp,
+      level: u.level,
+      streak: u.streak
+    }));
   },
 });
 
@@ -73,16 +73,11 @@ export const checkAnswer = mutation({
     codeAnswer: v.optional(v.string())
   },
   handler: async (ctx, args) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Unauthorized");
-    const clerkUserId = identity.subject;
-
-    const user = await ctx.db
-      .query("users")
-      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", clerkUserId))
-      .unique();
-
-    if (!user) throw new Error("User not found");
+    // Auth check only - user object not needed for answer validation
+    const authResult = await requireAuth(ctx);
+    if (!authResult.success) {
+      throw new Error(authResult.error);
+    }
 
     const question = await ctx.db.get(args.questionId);
     if (!question) throw new Error("Question not found");
@@ -120,16 +115,12 @@ export const submitQuizResult = mutation({
     taskId: v.optional(v.id("tasks")) // Optional: Link to a specific task
   },
   handler: async (ctx, args) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Unauthorized");
-    const clerkUserId = identity.subject;
-
-    const user = await ctx.db
-      .query("users")
-      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", clerkUserId))
-      .unique();
-
-    if (!user) throw new Error("User not found");
+    // Use helper for auth + user lookup
+    const userResult = await getCurrentUser(ctx);
+    if (!userResult.success) {
+      throw new Error(userResult.error);
+    }
+    const user = userResult.user;
 
     // 1. Record Result
     await ctx.db.insert("quizResults", {
@@ -166,15 +157,15 @@ export const submitQuizResult = mutation({
         if (review) {
           // Update existing SRS item
           const newIntervalIndex = isCorrect ? review.interval_index + 1 : 0;
-          const intervals = [1, 3, 7, 14, 30, 60, 90];
-          const daysToAdd = intervals[Math.min(newIntervalIndex, intervals.length - 1)];
-          
+          const clampedIndex = Math.min(newIntervalIndex, SRS_INTERVALS.length - 1);
+          const daysToAdd = SRS_INTERVALS[clampedIndex];
+
           await ctx.db.patch(review._id, {
-            interval_index: newIntervalIndex,
-            due_date: Date.now() + daysToAdd * 24 * 60 * 60 * 1000,
+            interval_index: clampedIndex,
+            due_date: Date.now() + daysToAdd * MS_PER_DAY,
             success_count: isCorrect ? review.success_count + 1 : review.success_count,
             last_reviewed_at: Date.now(),
-            is_mastered: newIntervalIndex >= intervals.length,
+            is_mastered: isCorrect && (review.success_count + 1) >= MASTERY_SUCCESS_COUNT && clampedIndex === SRS_INTERVALS.length - 1,
           });
         } else if (!isCorrect) {
           // Add failed non-SRS question to SRS queue (New Feature: Automatic SRS Sync)
@@ -182,7 +173,7 @@ export const submitQuizResult = mutation({
             user_id: user._id,
             question_id: ans.questionId,
             interval_index: 0,
-            due_date: Date.now() + 1 * 24 * 60 * 60 * 1000, // Review tomorrow
+            due_date: Date.now() + MS_PER_DAY,
             success_count: 0,
             is_mastered: false,
             last_reviewed_at: Date.now(),
@@ -200,25 +191,7 @@ export const submitQuizResult = mutation({
       }
     }
 
-    // 3. Fallback: Award simple XP if not a linked task (or didn't pass, but score > 0?)
-    // Actually, if they didn't pass, we might still want to give some partial XP?
-    // Story says "score * 10" in original code.
-    // If we completed the task, completeTaskLogic awards Task XP.
-    // If we DID NOT complete the task (e.g. no taskId or failed), we might want to give partial credit?
-    // But duplicate XP is bad.
-    // Let's say: If taskId was processed, we return that result.
-    // If not, we do the old logic.
-
-    if (args.taskId && passed) {
-      // Already handled above, just return current state
-      return {
-        success: true,
-        xp_gained: 0, // Logic handled in completeTaskLogic, but we need to return something reasonable
-        new_level: user.level // This might be stale if we didn't refetch, but acceptable
-      };
-    }
-
-    // Old logic for standalone quizzes or non-passing attempts
+    // Fallback: Award XP for standalone quizzes (no taskId) or non-passing attempts
     const xpGained = args.score * 10;
     const newXp = user.xp + xpGained;
 

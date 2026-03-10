@@ -1,4 +1,4 @@
-import CodeBlock from '../../CodeBlock'
+import CodeBlock from '@/components/CodeBlock'
 import { Lightbulb } from 'lucide-react'
 
 export default function DeepDiveDay2() {

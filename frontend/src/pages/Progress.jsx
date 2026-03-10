@@ -4,47 +4,46 @@ import { motion } from 'framer-motion'
 import { Trophy, Target, Flame, Calendar as CalendarIcon, AlertTriangle, Star, Zap, Crown, Skull, Award, CheckCircle2 } from 'lucide-react'
 import { useQuery } from "convex/react"
 import { api } from "../../../convex/_generated/api"
-import { useAuth } from '../contexts/AuthContext'
-import { useCourse } from '../contexts/CourseContext'
-import QuizHistory from '../components/QuizHistory'
-import ProgressRing from '../components/ProgressRing'
-import ProgressBar from '../components/ProgressBar'
-import BadgeCard from '../components/BadgeCard'
+import { useAuth } from '@/contexts/AuthContext'
+import { useCourse } from '@/contexts/CourseContext'
+import QuizHistory from '@/components/QuizHistory'
+import ProgressRing from '@/components/ProgressRing'
+import ProgressBar from '@/components/ProgressBar'
+import BadgeCard from '@/components/BadgeCard'
 
 // Helper to calculate level progress locally (matches backend logic)
 const calculateLevelStats = (totalXp) => {
-    const XP_BASE = 100
-    const XP_EXPONENT = 1.2
-    const getLevelDuration = (lvl) => Math.floor(XP_BASE * Math.pow(lvl, XP_EXPONENT))
-    
-    let level = 1
-    let remaining = totalXp || 0
-    let levelDuration = getLevelDuration(level)
-    
-    while (remaining >= levelDuration) {
-        remaining -= levelDuration
-        level++
-        levelDuration = getLevelDuration(level)
-    }
-    
-    return {
-        level,
-        level_progress: (remaining / levelDuration) * 100,
-        xp_to_next_level: levelDuration - remaining
-    }
+  const XP_BASE = 100
+  const XP_EXPONENT = 1.2
+  const getLevelDuration = (lvl) => Math.floor(XP_BASE * Math.pow(lvl, XP_EXPONENT))
+
+  let level = 1
+  let remaining = totalXp || 0
+  let levelDuration = getLevelDuration(level)
+
+  while (remaining >= levelDuration) {
+    remaining -= levelDuration
+    level++
+    levelDuration = getLevelDuration(level)
+  }
+
+  return {
+    level,
+    level_progress: (remaining / levelDuration) * 100,
+    xp_to_next_level: levelDuration - remaining
+  }
 }
 
 function Progress() {
   const { user, isAuthenticated } = useAuth()
   const { guestPrompts } = useCourse()
-  
+
   const progress = useQuery(api.progress.get, user?.id ? { clerkUserId: user.id } : "skip")
   const badges = useQuery(api.badges.getAll) || []
   const achievements = useQuery(api.achievements.getAll) || []
   const weeks = useQuery(api.curriculum.getWeeks) || []
 
   const loading = isAuthenticated && progress === undefined
-  const error = null
 
   const { level_progress, xp_to_next_level } = calculateLevelStats(progress?.xp || 0)
   const levelProgress = level_progress
@@ -165,7 +164,7 @@ function Progress() {
             </div>
             <p className="text-3xl font-bold text-surface-100">{progress?.quizzes_taken || 0}</p>
           </div>
-          
+
           <div className="bg-surface-800/50 rounded-xl p-5 border border-surface-700">
             <div className="flex items-center gap-3 mb-2">
               <div className="p-2 bg-blue-500/20 rounded-lg text-blue-400">
@@ -203,7 +202,7 @@ function Progress() {
 
             return (
               <div
-                key={week.id}
+                key={week._id}
                 className={`aspect-square rounded-lg flex items-center justify-center text-xs font-medium
                   ${isComplete
                     ? 'bg-primary-600 text-white'
@@ -277,7 +276,7 @@ function Progress() {
 
                   return (
                     <motion.div
-                      key={ach.id}
+                      key={ach._id}
                       whileHover={{ scale: 1.02, y: -2 }}
                       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                       className={`relative p-4 rounded-xl border-2 transition-all cursor-default ${rarityClass} ${ach.unlocked ? 'opacity-100' : 'opacity-50 grayscale'
@@ -319,7 +318,16 @@ function Progress() {
                 })}
               </div>
             ) : (
-              <p className="text-sm text-surface-500 text-center py-6">No achievements defined yet.</p>
+              <div className="flex flex-col items-center justify-center py-10 gap-3">
+                <div className="relative">
+                  <div className="w-14 h-14 rounded-full bg-surface-800 border border-surface-700 flex items-center justify-center">
+                    <Star className="w-6 h-6 text-surface-600" />
+                  </div>
+                  <div className="absolute inset-0 rounded-full bg-primary-500/5 animate-pulse" />
+                </div>
+                <p className="text-sm font-medium text-surface-500">No achievements unlocked yet</p>
+                <p className="text-xs text-surface-600 text-center max-w-[180px]">Complete quests and challenges to earn achievements</p>
+              </div>
             )}
           </div>
 
@@ -333,12 +341,19 @@ function Progress() {
             {badges.length > 0 ? (
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {badges.map((badge) => (
-                  <BadgeCard key={badge.id} badge={badge} />
+                  <BadgeCard key={badge._id} badge={badge} />
                 ))}
               </div>
             ) : (
-              <div className="text-center py-6">
-                <p className="text-surface-500">No badges defined yet.</p>
+              <div className="flex flex-col items-center justify-center py-10 gap-3">
+                <div className="relative">
+                  <div className="w-14 h-14 rounded-full bg-surface-800 border border-surface-700 flex items-center justify-center">
+                    <Award className="w-6 h-6 text-surface-600" />
+                  </div>
+                  <div className="absolute inset-0 rounded-full bg-accent-500/5 animate-pulse" />
+                </div>
+                <p className="text-sm font-medium text-surface-500">No badges earned yet</p>
+                <p className="text-xs text-surface-600 text-center max-w-[180px]">Keep learning to unlock your first badge</p>
               </div>
             )}
           </div>

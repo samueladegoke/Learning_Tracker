@@ -6,10 +6,7 @@ This directory contains the test suite for the Learning Tracker frontend.
 
 - `e2e/`: End-to-End tests using Playwright.
 - `component/`: Component tests using Vitest & React Testing Library.
-- `support/`: Shared test infrastructure.
-    - `fixtures/`: Playwright fixtures (Auth, API, etc.).
-    - `factories/`: Data generation factories (e.g., `user.factory.ts`).
-    - `helpers/`: Utility helpers (e.g., `wait-for.ts`).
+- `archive/e2e-legacy/`: Archived Playwright suite kept for historical reference only.
 
 ## Running Tests
 
@@ -17,6 +14,8 @@ This directory contains the test suite for the Learning Tracker frontend.
 Run using Vitest:
 ```bash
 npm run test
+npm run test:unit
+npm run test:component
 ```
 
 ### End-to-End Tests
@@ -28,11 +27,3 @@ To run specific tests:
 ```bash
 npx playwright test auth.spec.ts
 ```
-
-## Fixtures
-
-We use a Composable Fixture pattern.
-- `auth.fixture.ts`: Mocks Supabase authentication via network interception.
-- `merge.fixture.ts`: Combines all fixtures for use in tests.
-
-Import `test` from `../support/fixtures/merge.fixture` to use these capabilities.

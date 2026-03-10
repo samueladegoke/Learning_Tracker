@@ -47,34 +47,34 @@ development_status:
   story-production-deployment: done
   story-auth-guards-guest-views: done
 
-  # PHASE 2 (IN-PROGRESS)
+  # PHASE 2 (COMPLETE)
   # =============================================================================
-  
-  # Epic 5: Progress Unification
-  epic-5: in-progress
-  5-1-automatic-task-completion-on-quiz-pass: ready-for-dev
-  5-2-progress-page-quiz-integration: ready-for-dev
-  epic-5-retrospective: optional
 
-  # Epic 6: Flexible Planner & Calendar
+  # Epic 5: Progress Unification
+  epic-5: done
+  5-1-automatic-task-completion-on-quiz-pass: done
+  5-2-progress-page-quiz-integration: done
+  epic-5-retrospective: done
+
+  # Epic 6: Flexible Planner & Calendar (BACKLOG - Stories not yet created)
   epic-6: backlog
-  6-1-day-level-planner-breakdown: ready-for-dev
-  6-2-calendar-day-status-annotations: ready-for-dev
+  6-1-day-level-planner-breakdown: backlog
+  6-2-calendar-day-status-annotations: backlog
   epic-6-retrospective: optional
 
-  # Epic 7: Output-Driven Completion (Proof of Work)
-  epic-7: backlog
-  7-1-artifact-submission-ui: ready-for-dev
-  7-2-backend-artifact-storage: ready-for-dev
-  7-3-portfolio-view: ready-for-dev
+  # Epic 7: Output-Driven Completion (BACKLOG - Stories not yet created)
+  epic-7: in-progress
+  7-1-artifact-submission-ui: done
+  7-2-backend-artifact-storage: backlog
+  7-3-portfolio-view: backlog
   epic-7-retrospective: optional
 
   # Epic 8: Course Builder Abstraction
-  epic-8: backlog
-  8-1-course-data-model: ready-for-dev
-  8-2-course-admin-crud-api: ready-for-dev
-  8-3-course-import-from-json-yaml: ready-for-dev
-  8-4-course-selector-ui: ready-for-dev
+  epic-8: in-progress
+  8-1-course-data-model: done
+  8-2-course-admin-crud-api: backlog
+  8-3-course-import-from-json-yaml: backlog
+  8-4-course-selector-ui: backlog
   epic-8-retrospective: optional
 
 # DEFERRED ORIGINAL PHASE 2

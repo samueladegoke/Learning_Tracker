@@ -1,32 +1,41 @@
 # Deployment Guide
-Generated: 2025-12-10
+Generated: 2026-02-19
 
-## Architecture
-- **Frontend**: Vercel (Static/SPA)
-- **Backend**: Render (Web Service)
-- **Database**: Supabase (PostgreSQL)
+## Runtime Topology
 
-## Configuration
+- Frontend SPA: Vercel
+- Functions + Data: Convex Cloud
+- Authentication: Clerk
 
-### Backend (Render)
-- **Runtime**: Python 3
-- **Build**: `pip install -r backend/requirements.txt`
-- **Start**: `cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT`
-- **Env Vars**:
-  - `DATABASE_URL`: `postgresql://postgres:[PASSWORD]@db.[REF].supabase.co:5432/postgres`
+## Frontend (Vercel)
 
-### Frontend (Vercel)
-- **Framework Preset**: Vite
-- **Root Directory**: `frontend`
-- **Env Vars**:
-  - `VITE_API_URL`: Your Render Service URL (e.g., `https://learning-tracker-backend.onrender.com`)
+- Framework preset: Vite
+- Root directory: `frontend`
+- Build command: `npm run build`
+- Output directory: `dist`
 
-## Database Seeding (Remote)
-To seed the remote production DB:
-```bash
-# Set env var locally
-export DATABASE_URL="[YOUR_SUPABASE_CONNECTION_STRING]"
-# Run seeder
-python backend/seed.py
-```
-*(Windows: use `$env:DATABASE_URL="..."`)*
+Required environment variables:
+
+- `VITE_CONVEX_URL`
+- `VITE_CLERK_PUBLISHABLE_KEY`
+- `VITE_DEV_MODE` (optional, typically `false` in production)
+
+## Convex
+
+- Keep production deployment configured in Convex dashboard.
+- Validate schema/function deploys before frontend release.
+
+## Release Checklist
+
+1. `npm run test:convex`
+2. `cd frontend && npm test`
+3. `cd frontend && npm run build`
+4. `cd frontend && npm run test:e2e` (or CI e2e gate)
+5. Verify Clerk + Convex env vars in target environment.
+
+## Post-Deploy Smoke Checks
+
+- Dashboard loads without runtime errors.
+- `/practice`, `/calendar`, `/world-map` route correctly.
+- Auth gate behavior is correct for guest vs signed-in users.
+- Pyodide challenge runtime initializes successfully.

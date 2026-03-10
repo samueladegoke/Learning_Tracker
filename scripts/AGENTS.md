@@ -1,59 +1,33 @@
 # SCRIPTS KNOWLEDGE BASE
 
-**Scope:** Automation for content seeding and compliance
-
 ## OVERVIEW
 
-Python scripts for curriculum content management. Seeds quiz questions to Supabase, validates content compliance, extracts source material from Udemy course files.
+Automation scripts for question ingestion, audits, and migration support.
 
-## STRUCTURE
+## ACTIVE SCRIPTS
 
-```
-scripts/
-├── seed_supabase_questions.py  # Main quiz seeder
-├── seed_all_questions.py       # Batch seeding
-├── compliance_audit.py         # Validates 20+ questions/day
-├── audit_questions.py          # Question quality checks
-├── utils/
-│   ├── extract_day1_content.py # VTT/PDF parser
-│   └── generate_day1.py        # Jupyter generator
-├── data/                       # Intermediate JSON
-└── archive/                    # Legacy scripts
-```
+- `seed_supabase_questions.py` (external DB seeding utility)
+- `seed_all_questions.py` (batch seeding helper)
+- `compliance_audit.py` (question completeness validation)
+- `audit_questions.py` (question quality checks)
+- `import_cli.ts` (Convex migration import utility)
+- `import_questions.ts` (question-specific import utility)
 
-## WHERE TO LOOK
+## LEGACY / ARCHIVED
 
-| Task | Location |
-|------|----------|
-| Seed quizzes to prod | `seed_supabase_questions.py` |
-| Validate content | `compliance_audit.py` |
-| Parse Udemy VTT | `utils/extract_day1_content.py` |
-| Batch operations | `seed_all_questions.py` |
+All one-time or deprecated scripts are moved under `scripts/archive/` and are not part of daily development workflows.
 
 ## CONVENTIONS
 
-**Supabase Connection**: Uses `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` from `frontend/.env`.
+- External DB seeding uses `SUPABASE_URL` + `SUPABASE_SERVICE_KEY`.
+- Always run dry-run/audit mode before production-impacting script execution.
+- Keep generated outputs out of runtime paths unless explicitly required.
 
-**Content Compliance**: Minimum 20 questions per day, must trace to Udemy source.
-
-**Dry Run**: Most scripts support `--dry-run` flag.
-
-## ANTI-PATTERNS
-
-- **DO NOT** run seeders against prod without `--dry-run` first
-- **DO NOT** commit generated content without compliance check
-- **DO NOT** use user-facing Supabase key - use service role
-
-## COMMANDS
+## COMMON COMMANDS
 
 ```bash
-# Seed quizzes (with dry run)
+python compliance_audit.py
 python seed_supabase_questions.py --dry-run
 python seed_supabase_questions.py
-
-# Compliance check
-python compliance_audit.py
-
-# Extract from Udemy source
-python utils/extract_day1_content.py ../Udemy*/Day1/
+node --loader ts-node/esm import_cli.ts
 ```

@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Brain, RefreshCw, Sparkles, ChevronRight, AlertCircle, Trophy } from 'lucide-react'
 import { useQuery } from "convex/react"
 import { api } from "../../../convex/_generated/api"
-import { useAuth } from "../contexts/AuthContext"
+import { useAuth } from "@/contexts/AuthContext"
 
 /**
  * DailyReviewWidget - Displays the Spaced Repetition "Combat Training" widget on the Dashboard.
@@ -13,7 +13,7 @@ import { useAuth } from "../contexts/AuthContext"
 function DailyReviewWidget() {
     const { user } = useAuth()
     const stats = useQuery(api.srs.getSRSStats, user?.id ? { clerkUserId: user.id } : "skip")
-    
+
     const srsStats = stats ? {
         total_in_queue: stats.total_cards,
         mastered_count: stats.mastered_cards,
@@ -103,8 +103,8 @@ function DailyReviewWidget() {
                             <Link
                                 to={isEmpty ? "/practice" : "/practice?mode=review"}
                                 className={`w-full px-6 py-3 rounded-xl font-bold text-sm transition-all shadow-lg flex items-center justify-center gap-2 ${isEmpty
-                                        ? "bg-surface-800 hover:bg-surface-700 text-purple-400 border border-purple-500/30 shadow-purple-900/10"
-                                        : "bg-purple-600 hover:bg-purple-500 text-white shadow-purple-900/40"
+                                    ? "bg-surface-800 hover:bg-surface-700 text-purple-400 border border-purple-500/30 shadow-purple-900/10"
+                                    : "bg-purple-600 hover:bg-purple-500 text-white shadow-purple-900/40"
                                     } hover:scale-[1.02] active:scale-[0.98]`}
                             >
                                 <Brain className="w-4 h-4" />

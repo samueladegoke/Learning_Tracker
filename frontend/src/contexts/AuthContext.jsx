@@ -1,13 +1,32 @@
-import { createContext, useContext, useState, useEffect, useCallback } from 'react'
+import { createContext, useContext, useState, useCallback } from 'react'
 import { useAuth as useClerkAuth, useUser, useSignIn, useSignUp, useClerk } from "@clerk/clerk-react";
 
-/**
- * Authentication Context (Clerk Adapter)
- * Adapts Clerk's hooks to match the legacy AuthContext interface.
- */
+const DEV_MODE = import.meta.env.VITE_DEV_MODE === "true";
+
 const AuthContext = createContext(null)
 
-export function AuthProvider({ children }) {
+/** Dev mode provider — no Clerk hooks, mock user */
+function DevAuthProvider({ children }) {
+    const value = {
+        user: { id: "dev_user", email: "dev@localhost" },
+        session: { user: { id: "dev_user" }, access_token: "dev_token" },
+        loading: false,
+        error: null,
+        signIn: async () => ({ success: true }),
+        signUp: async () => ({ success: true }),
+        signOut: async () => ({ success: true }),
+        isAuthenticated: true,
+    }
+
+    return (
+        <AuthContext.Provider value={value}>
+            {children}
+        </AuthContext.Provider>
+    )
+}
+
+/** Production provider — full Clerk integration */
+function ClerkAuthProvider({ children }) {
     const { isLoaded: isAuthLoaded, userId, sessionId } = useClerkAuth();
     const { isLoaded: isUserLoaded, user: clerkUser } = useUser();
     const { signIn: clerkSignIn, isLoaded: isSignInLoaded, setActive } = useSignIn();
@@ -18,40 +37,29 @@ export function AuthProvider({ children }) {
 
     const loading = !isAuthLoaded || !isUserLoaded || !isSignInLoaded || !isSignUpLoaded;
 
-    // Map Clerk user to legacy user shape if needed, or just pass it through
-    // Legacy user had: email, id, etc. Clerk user has id, primaryEmailAddress
     const user = clerkUser ? {
         id: clerkUser.id,
         email: clerkUser.primaryEmailAddress?.emailAddress,
         ...clerkUser
     } : null;
 
-    /**
-     * Sign in with email and password
-     */
     const signIn = useCallback(async (email, password) => {
         setError(null)
         if (!isSignInLoaded) return { success: false, error: 'Auth not ready' };
 
         try {
-            const result = await clerkSignIn.create({
-                identifier: email,
-                password,
-            });
+            const result = await clerkSignIn.create({ identifier: email, password });
 
             if (result.status === "complete") {
                 await setActive({ session: result.createdSessionId });
                 return { success: true, user: result.userData };
             }
 
-            // Handle intermediate states that require further verification
             if (result.status === "needs_first_factor") {
-                // Attempt password verification
                 const firstFactorResult = await clerkSignIn.attemptFirstFactor({
                     strategy: "password",
                     password,
                 });
-
                 if (firstFactorResult.status === "complete") {
                     await setActive({ session: firstFactorResult.createdSessionId });
                     return { success: true, user: firstFactorResult.userData };
@@ -59,12 +67,9 @@ export function AuthProvider({ children }) {
             }
 
             if (result.status === "needs_second_factor") {
-                // User has 2FA enabled - would need TOTP code
-                return { success: false, error: "Two-factor authentication required. Please disable 2FA in your account settings or use a different login method." };
+                return { success: false, error: "Two-factor authentication required." };
             }
 
-            // Fallback for other statuses
-            console.log("SignIn requires next step:", result.status, result);
             return { success: false, error: `Additional verification required: ${result.status}` };
         } catch (err) {
             const message = err.errors?.[0]?.message || err.message || 'An unexpected error occurred'
@@ -73,18 +78,12 @@ export function AuthProvider({ children }) {
         }
     }, [isSignInLoaded, clerkSignIn, setActive]);
 
-    /**
-     * Sign up with email and password
-     */
     const signUp = useCallback(async (email, password) => {
         setError(null)
         if (!isSignUpLoaded) return { success: false, error: 'Auth not ready' };
 
         try {
-            const result = await clerkSignUp.create({
-                emailAddress: email,
-                password,
-            });
+            const result = await clerkSignUp.create({ emailAddress: email, password });
 
             if (result.status === "complete") {
                 await setSignUpActive({ session: result.createdSessionId });
@@ -92,9 +91,8 @@ export function AuthProvider({ children }) {
             } else if (result.status === "missing_requirements") {
                 return { success: false, error: "Missing requirements (e.g. captcha)" };
             } else {
-                // Usually verification needed
                 return {
-                    success: true, // Treat as success for "check email" flow
+                    success: true,
                     user: result.userData,
                     message: 'Check your email to confirm your account'
                 }
@@ -106,9 +104,6 @@ export function AuthProvider({ children }) {
         }
     }, [isSignUpLoaded, clerkSignUp, setSignUpActive]);
 
-    /**
-     * Sign out
-     */
     const signOut = useCallback(async () => {
         setError(null)
         try {
@@ -123,7 +118,7 @@ export function AuthProvider({ children }) {
 
     const value = {
         user,
-        session: sessionId ? { user, access_token: "clerk_token_handled_automatically" } : null, // Mock session object for compatibility
+        session: sessionId ? { user, access_token: "clerk_token_handled_automatically" } : null,
         loading,
         error,
         signIn,
@@ -139,16 +134,18 @@ export function AuthProvider({ children }) {
     )
 }
 
-/**
- * Hook to access auth context
- */
+export function AuthProvider({ children }) {
+    if (DEV_MODE) {
+        return <DevAuthProvider>{children}</DevAuthProvider>
+    }
+    return <ClerkAuthProvider>{children}</ClerkAuthProvider>
+}
+
 export function useAuth() {
     const context = useContext(AuthContext)
-
     if (!context) {
         throw new Error('useAuth must be used within an AuthProvider')
     }
-
     return context
 }
 

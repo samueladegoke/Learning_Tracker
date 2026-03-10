@@ -15,25 +15,25 @@ import {
 } from 'lucide-react'
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
-import ProgressRing from '../components/ProgressRing'
-import { ScanProgress } from '../components/ui/neural/ScanProgress'
-import { NeuralCard } from '../components/ui/neural/NeuralCard'
-import CharacterCard from '../components/CharacterCard'
-import QuestLog from '../components/QuestLog'
-import ShopModal from '../components/ShopModal'
-import DailyReviewWidget from '../components/DailyReviewWidget'
-import { soundManager } from '../utils/SoundManager'
-import { useAuth } from '../contexts/AuthContext'
-import { useCourse } from '../contexts/CourseContext'
+import ProgressRing from '@/components/ProgressRing'
+import { ScanProgress } from '@/components/ui/neural/ScanProgress'
+import { NeuralCard } from '@/components/ui/neural/NeuralCard'
+import CharacterCard from '@/components/CharacterCard'
+import QuestLog from '@/components/QuestLog'
+import ShopModal from '@/components/ShopModal'
+import DailyReviewWidget from '@/components/DailyReviewWidget'
+import { soundManager } from '@/utils/SoundManager'
+import { useAuth } from '@/contexts/AuthContext'
+import { useCourse } from '@/contexts/CourseContext'
 
-import CurrentSyncStatus from '../components/CurrentSyncStatus'
+import CurrentSyncStatus from '@/components/CurrentSyncStatus'
 
 // Shadcn UI Components
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 
 // Loading States
-import { DashboardLoadingSkeleton } from '../components/DashboardLoadingSkeleton'
-import OnboardingBanner from '../components/OnboardingBanner'
+import { DashboardLoadingSkeleton } from '@/components/DashboardLoadingSkeleton'
+import OnboardingBanner from '@/components/OnboardingBanner'
 
 // Animated Number Component
 function NumberTicker({ value, className = "" }) {
@@ -86,7 +86,6 @@ function Dashboard() {
   const rpgState = useQuery(api.rpg.getRPGState, clerkUserId ? { clerkUserId } : "skip");
   const badges = useQuery(api.badges.getAll) || [];
   const weeksData = useQuery(api.curriculum.getWeeks) || [];
-  const shopItems = useQuery(api.rpg.getShopItems) || [];
 
   // Convex Mutations
   const completeTaskMutation = useMutation(api.tasks.completeTask);
@@ -94,18 +93,44 @@ function Dashboard() {
   const buyItemMutation = useMutation(api.rpg.buyItem);
 
   // Derived State
-  const loading = isAuthenticated && (progress === undefined || rpgState === undefined || weeksData.length === 0);
-  
+  const loading = isAuthenticated && (progress === undefined || rpgState === undefined || weeksData === undefined);
+
   // Find current week logic (reactive)
-  const currentWeek = weeksData[0]; 
+  const currentWeek = weeksData[0];
 
   // Fetch tasks for current week if we have one
   const tasksForWeek = useQuery(api.curriculum.getTasks, currentWeek ? { weekId: currentWeek._id } : "skip");
   const userTaskStatuses = useQuery(api.tasks.getUserTaskStatuses, clerkUserId ? { clerkUserId } : "skip");
-  
+
+  // ✅ All useMemo hooks ABOVE any early returns (Rules of Hooks)
+  const weekProgress = useMemo(() => {
+    if (!tasksForWeek || !userTaskStatuses) return 0;
+    const total = tasksForWeek.length;
+    if (total === 0) return 0;
+    const completedCount = tasksForWeek.filter(task =>
+      userTaskStatuses.some(status => status.task_id === task._id && status.completed)
+    ).length;
+    return (completedCount / total) * 100;
+  }, [tasksForWeek, userTaskStatuses]);
+
+  const normalizedTasks = useMemo(() => {
+    if (!tasksForWeek || !userTaskStatuses) return [];
+    return tasksForWeek.map(task => {
+      const status = userTaskStatuses.find(s => s.task_id === task._id);
+      return {
+        ...task,
+        task_id: task._id,
+        completed: status?.completed || false,
+        day: task.day || `Day ${task.sequence_order || '?'}`
+      };
+    });
+  }, [tasksForWeek, userTaskStatuses]);
+
+  const activeQuest = rpgState?.active_quest;
+  const activeChallenge = rpgState?.active_challenges?.[0];
+
   const handleTaskToggle = async (taskId, complete) => {
     if (!isAuthenticated) return;
-    
     try {
       if (complete) {
         await completeTaskMutation({ taskId });
@@ -118,7 +143,7 @@ function Dashboard() {
       soundManager.error();
       alert(`Failed to update quest status: ${err.message || 'Unknown error'}`);
     }
-  }
+  };
 
   const handlePurchase = async (itemId) => {
     try {
@@ -128,48 +153,12 @@ function Dashboard() {
       alert(`Synthesis failed: ${err.message || 'Check your credit balance.'}`);
       throw err;
     }
-  }
+  };
 
+  // Early returns AFTER all hooks
   if (loading) {
-    return <DashboardLoadingSkeleton />
+    return <DashboardLoadingSkeleton />;
   }
-
-  // Calculate local progress for UI based on loaded data
-  const weekProgress = useMemo(() => {
-    if (!tasksForWeek || !userTaskStatuses) return 0;
-    const total = tasksForWeek.length;
-    if (total === 0) return 0;
-    
-    const completedCount = tasksForWeek.filter(task => 
-      userTaskStatuses.some(status => status.task_id === task._id && status.completed)
-    ).length;
-    
-    return (completedCount / total) * 100;
-  }, [tasksForWeek, userTaskStatuses]);
-
-  // Normalize tasks for QuestLog to include completion status and consistent ID field
-  const normalizedTasks = useMemo(() => {
-    if (!tasksForWeek || !userTaskStatuses) return [];
-    return tasksForWeek.map(task => {
-      const status = userTaskStatuses.find(s => s.task_id === task._id);
-      return {
-        ...task,
-        task_id: task._id, // Add task_id for TaskCard compatibility
-        completed: status?.completed || false,
-        day: task.day || `Day ${task.sequence_order || '?'}` // Fallback for TaskCard
-      };
-    });
-  }, [tasksForWeek, userTaskStatuses]);
-  
-  const activeQuest = rpgState?.active_quest
-  const activeChallenge = rpgState?.active_challenges?.[0]
-  const questProgress = activeQuest && activeQuest.boss_hp
-    ? ((activeQuest.boss_hp - (activeQuest.boss_hp_remaining || activeQuest.boss_hp)) / activeQuest.boss_hp) * 100
-    : 0
-  const challengeProgress = activeChallenge && activeChallenge.goal
-    ? (activeChallenge.progress / activeChallenge.goal) * 100
-    : 0
-
 
   if (!isAuthenticated) {
     return (

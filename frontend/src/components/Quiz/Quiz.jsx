@@ -3,19 +3,24 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useMutation } from "convex/react"
 import { api } from "../../convex/_generated/api"
 import { Progress } from '@/components/ui/progress'
-import { useAuth } from '../../contexts/AuthContext'
-import { soundManager } from '../../utils/SoundManager'
+import { useAuth } from '@/contexts/AuthContext'
+import { soundManager } from '@/utils/SoundManager'
 
 // Shared Sub-components
 import QuestionRenderer from './QuestionRenderer'
 import QuizResult from './QuizResult'
 import QuizPagination from './QuizPagination'
 import QuizMasteryOverlay from './QuizMasteryOverlay'
-import { QuizLoadingSkeleton } from '../PracticeLoadingSkeleton'
+import { QuizLoadingSkeleton } from '@/components/PracticeLoadingSkeleton'
 
 /**
- * Consolidated Quiz Component (Standard Auth Version)
+ * Consolidated Quiz Component
  * Handles MCQ, Coding, and Code Correction questions.
+ *
+ * Error Handling:
+ * - Errors during answer verification set local error state
+ * - Error UI provides a "Retry" button that clears the error state
+ * - Errors do NOT propagate to parent components
  */
 function Quiz({
     quizId,
@@ -26,7 +31,7 @@ function Quiz({
     isReviewMode = false
 }) {
     const { user } = useAuth()
-    
+
     const [questions, setQuestions] = useState(initialQuestions)
     const [currentQ, setCurrentQ] = useState(0)
     const [answers, setAnswers] = useState({}) // { questionId: selectedIndex or { code, passed, total } }
@@ -66,7 +71,8 @@ function Quiz({
         setShowResult(false)
         setResultData(null)
         setVerifiedAnswers({})
-    }, [quizId, initialQuestions, isReviewMode])
+          setError(null) // Reset error state on day/quiz change
+  }, [quizId, initialQuestions, isReviewMode])
 
     // Keyboard navigation
     useEffect(() => {
@@ -117,7 +123,7 @@ function Quiz({
         if (!user) return;
 
         setAnswers(prev => ({ ...prev, [questionId]: optionIndex }))
-        
+
         try {
             const verifyResult = await checkAnswerMutation({
                 questionId: questionId,
@@ -147,7 +153,7 @@ function Quiz({
         if (!user) return;
 
         setAnswers(prev => ({ ...prev, [questionId]: result }))
-        
+
         try {
             const verifyResult = await checkAnswerMutation({
                 questionId: questionId,
@@ -166,6 +172,7 @@ function Quiz({
             }
         } catch (err) {
             console.error('Failed to verify coding result:', err)
+            setError("Failed to verify code. Please try again.")
         }
     }
 
@@ -178,9 +185,9 @@ function Quiz({
 
         const total = questions.length
         const correct = Object.values(verifiedAnswers).filter(a => a.is_correct).length
-        
+
         setIsSubmitting(true)
-        
+
         try {
             const submissionResult = await submitQuizResultMutation({
                 quizId: quizId || activeDay,
@@ -214,25 +221,34 @@ function Quiz({
     if (loading) return <QuizLoadingSkeleton />
 
     if (error) return (
-        <div className="text-center p-8">
-            <p className="text-red-400 mb-4">{error}</p>
-            <button onClick={() => window.location.reload()} className="btn-primary px-8">Retry</button>
-        </div>
+    <div className="text-center p-8">
+    <p className="text-red-400 mb-4">{error}</p>
+    <button onClick={() => setError(null)} className="btn-primary px-8">Retry</button>
+    </div>
     )
 
     if (questions.length === 0) return (
         <div className="text-center p-8 text-surface-400">No questions found for this quiz.</div>
     )
 
+    // Extract day number from activeDay with validation (e.g., "day-9" -> 9)
+    const dayNumber = (() => {
+        if (!activeDay) return 1
+        const match = activeDay.match(/day-(\d+)/i)
+        const num = match ? parseInt(match[1], 10) : parseInt(activeDay, 10)
+        return Number.isFinite(num) && num > 0 ? num : 1
+    })()
+
     if (showResult) return (
-        <QuizResult
-            resultData={resultData}
-            isReviewMode={isReviewMode}
-            quizStats={quizStats}
-            xpWarning={xpWarning}
-            onRetry={() => window.location.reload()}
-            onContinue={() => (window.location.href = '/')}
-        />
+    <QuizResult
+    resultData={resultData}
+    isReviewMode={isReviewMode}
+    quizStats={quizStats}
+    xpWarning={xpWarning}
+    onRetry={() => setError(null)}
+    onContinue={() => (window.location.href = '/')}
+    dayNumber={dayNumber}
+    />
     )
 
     const currentQuestion = questions[currentQ]

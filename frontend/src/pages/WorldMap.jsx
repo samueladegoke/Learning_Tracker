@@ -1,18 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Map, List, ChevronRight, Star, Lock, CheckCircle } from 'lucide-react';
-import SkillTree from '../components/SkillTree/SkillTree';
-import ClayDrawer from '../components/ui/ClayDrawer';
-import { SKILL_TREE_MAP } from '../data/skillTreeMap';
-import { DAY_META } from '../data/dayMeta';
+import SkillTree from '@/components/SkillTree/SkillTree';
+import ClayDrawer from '@/components/ui/ClayDrawer';
+import { SKILL_TREE_MAP } from '@/data/skillTreeMap';
+import { DAY_META } from '@/data/dayMeta';
 
 const WorldMap = () => {
   const [selectedNode, setSelectedNode] = useState(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const closeTimerRef = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    };
+  }, []);
 
   const handleNodeClick = (node) => {
-    // Find the full node data from SKILL_TREE_MAP to get the 'days' array
+    if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
     const fullNodeData = SKILL_TREE_MAP.find(n => n.id === node.id);
     setSelectedNode(fullNodeData);
     setIsDrawerOpen(true);
@@ -20,7 +27,8 @@ const WorldMap = () => {
 
   const closeDrawer = () => {
     setIsDrawerOpen(false);
-    setTimeout(() => setSelectedNode(null), 300); // Clear after animation
+    if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    closeTimerRef.current = setTimeout(() => setSelectedNode(null), 300);
   };
 
   return (
@@ -31,8 +39,8 @@ const WorldMap = () => {
           <h1 className="text-3xl font-bold text-surface-100 font-display">World Map</h1>
           <p className="text-surface-400">Explore the curriculum and track your journey.</p>
         </div>
-        <Link 
-          to="/planner" 
+        <Link
+          to="/planner"
           className="flex items-center gap-2 px-4 py-2 bg-surface-800 hover:bg-surface-700 text-surface-200 rounded-lg transition-colors border border-surface-700"
         >
           <List className="w-4 h-4" />
@@ -42,6 +50,23 @@ const WorldMap = () => {
 
       {/* Skill Tree Visualization */}
       <SkillTree onNodeClick={handleNodeClick} />
+
+      {/* Node Legend */}
+      <div className="flex flex-wrap items-center gap-x-6 gap-y-2 px-2 text-xs text-surface-500">
+        <div className="flex items-center gap-2">
+          <div className="w-3 h-3 rounded-full bg-green-500/80 ring-1 ring-green-400/40" />
+          <span>Completed</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <Star className="w-3 h-3 text-primary-400" />
+          <span>Available</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <Lock className="w-3 h-3 text-surface-600" />
+          <span>Locked</span>
+        </div>
+        <span className="text-surface-700 ml-auto hidden sm:block">Click any node for details</span>
+      </div>
 
       {/* Drawer for Module Details */}
       <ClayDrawer
@@ -53,14 +78,13 @@ const WorldMap = () => {
           <div className="space-y-6">
             {/* Module Status */}
             <div className="flex items-center gap-3 p-4 bg-surface-800/50 rounded-xl border border-surface-700">
-              <div className={`p-3 rounded-lg ${
-                selectedNode.status === 'completed' ? 'bg-green-500/20 text-green-400' :
+              <div className={`p-3 rounded-lg ${selectedNode.status === 'completed' ? 'bg-green-500/20 text-green-400' :
                 selectedNode.status === 'available' ? 'bg-primary-500/20 text-primary-400' :
-                'bg-surface-700/50 text-surface-500'
-              }`}>
+                  'bg-surface-700/50 text-surface-500'
+                }`}>
                 {selectedNode.status === 'completed' ? <CheckCircle className="w-6 h-6" /> :
-                 selectedNode.status === 'available' ? <Star className="w-6 h-6" /> :
-                 <Lock className="w-6 h-6" />}
+                  selectedNode.status === 'available' ? <Star className="w-6 h-6" /> :
+                    <Lock className="w-6 h-6" />}
               </div>
               <div>
                 <div className="text-sm text-surface-400 uppercase tracking-wider font-medium">Status</div>
@@ -74,20 +98,20 @@ const WorldMap = () => {
                 <Map className="w-5 h-5 text-primary-400" />
                 Curriculum Days
               </h3>
-              
+
               <div className="space-y-2">
                 {selectedNode.days && selectedNode.days.length > 0 ? (
                   selectedNode.days.map((dayKey) => {
                     const dayData = DAY_META[dayKey];
                     if (!dayData) return null;
-                    
+
                     return (
                       <Link
                         key={dayKey}
                         to={`/practice?day=${dayKey}`}
                         className="block group"
                       >
-                        <motion.div 
+                        <motion.div
                           whileHover={{ x: 4 }}
                           className="p-4 bg-surface-800 hover:bg-surface-750 border border-surface-700 hover:border-primary-500/50 rounded-xl transition-all flex items-center justify-between group-hover:shadow-lg group-hover:shadow-primary-900/20"
                         >

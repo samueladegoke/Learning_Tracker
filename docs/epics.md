@@ -185,7 +185,7 @@ So that I can eventually switch devices without losing data.
 **Given** the user is online
 **When** the "Internet Connection" event allows (navigator.onLine)
 **Then** the app should check if there are unsynced changes in `localStorage`
-**And** push them to the Supabase backend
+**And** push them to the Convex backend
 **And** update the local state "Synced" timestamp
 **And** retry with exponential backoff if the request fails
 
@@ -214,7 +214,7 @@ So that users with cached offline versions don't crash when they finally reconne
 
 **Acceptance Criteria:**
 **Given** a new schema migration (e.g., adding `difficulty` column to `Tasks`)
-**When** it is applied to Supabase
+**When** it is applied through Convex schema/function rollout
 **Then** the `seed.py` and `migration_manager.py` scripts must ensure the column is nullable
 **And** older client versions must ignore the new field without erroring
 **And** frontend must gracefully handle missing optional fields from the API

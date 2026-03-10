@@ -163,8 +163,8 @@ export const importAllData = mutation({
         week_id,
         title: `Day ${task.day}`,
         description: task.description,
-        task_type: task.type,
-        difficulty,
+        task_type: task.type as "video" | "exercise" | "project" | "quiz",
+        difficulty: difficulty as "easy" | "medium" | "hard",
         xp_reward: task.xp_reward,
         estimated_minutes: 30, // Default estimate
         required_for_streak: true,

@@ -1,15 +1,16 @@
 import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
+import { getUserByClerkId, getCurrentUser } from "./lib/auth";
 
 export const getByWeek = query({
-  args: { 
+  args: {
     userId: v.id("users"),
-    weekId: v.id("weeks") 
+    weekId: v.id("weeks")
   },
   handler: async (ctx, args) => {
     return await ctx.db
       .query("reflections")
-      .withIndex("by_user_and_week", (q) => 
+      .withIndex("by_user_and_week", (q) =>
         q.eq("user_id", args.userId).eq("week_id", args.weekId)
       )
       .first();
@@ -17,15 +18,11 @@ export const getByWeek = query({
 });
 
 export const getAll = query({
-  args: { 
+  args: {
     clerkUserId: v.string()
   },
   handler: async (ctx, args) => {
-    const user = await ctx.db
-      .query("users")
-      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", args.clerkUserId))
-      .unique();
-
+    const user = await getUserByClerkId(ctx, args.clerkUserId);
     if (!user) return [];
 
     return await ctx.db
@@ -42,20 +39,13 @@ export const saveReflection = mutation({
     sentiment: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Unauthorized");
-    const clerkUserId = identity.subject;
-
-    const user = await ctx.db
-      .query("users")
-      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", clerkUserId))
-      .unique();
-
-    if (!user) throw new Error("User not found");
+    const result = await getCurrentUser(ctx);
+    if (!result.success) throw new Error(result.error);
+    const user = result.user;
 
     const existing = await ctx.db
       .query("reflections")
-      .withIndex("by_user_and_week", (q) => 
+      .withIndex("by_user_and_week", (q) =>
         q.eq("user_id", user._id).eq("week_id", args.weekId)
       )
       .first();

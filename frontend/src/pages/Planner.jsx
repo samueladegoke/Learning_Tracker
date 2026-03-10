@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Map, ChevronRight, Star, Lock, CheckCircle, LayoutGrid } from 'lucide-react';
-import { SKILL_TREE_MAP } from '../data/skillTreeMap';
-import { DAY_META } from '../data/dayMeta';
+import { SKILL_TREE_MAP } from '@/data/skillTreeMap';
+import { DAY_META } from '@/data/dayMeta';
 
 function Planner() {
   const [expandedModule, setExpandedModule] = useState(null);
@@ -19,8 +19,8 @@ function Planner() {
           <h1 className="text-3xl font-bold text-surface-100 font-display">Curriculum</h1>
           <p className="text-surface-400">List view of all modules and days.</p>
         </div>
-        <Link 
-          to="/world-map" 
+        <Link
+          to="/world-map"
           className="flex items-center gap-2 px-4 py-2 bg-surface-800 hover:bg-surface-700 text-surface-200 rounded-lg transition-colors border border-surface-700"
         >
           <LayoutGrid className="w-4 h-4" />
@@ -31,13 +31,12 @@ function Planner() {
       {/* Modules List */}
       <div className="space-y-4">
         {SKILL_TREE_MAP.map((module) => (
-          <div 
-            key={module.id} 
-            className={`card overflow-hidden transition-all duration-300 ${
-              module.status === 'completed' ? 'border-green-500/30' : 
-              module.status === 'available' ? 'border-primary-500/30' : 
-              'border-surface-700'
-            }`}
+          <div
+            key={module.id}
+            className={`card overflow-hidden transition-all duration-300 ${module.status === 'completed' ? 'border-green-500/30' :
+              module.status === 'available' ? 'border-primary-500/30' :
+                'border-surface-700'
+              }`}
           >
             {/* Module Header */}
             <button
@@ -48,12 +47,12 @@ function Planner() {
               <div className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center
                 ${module.status === 'completed' ? 'bg-green-500/20 text-green-400' :
                   module.status === 'available' ? 'bg-primary-500/20 text-primary-400' :
-                  'bg-surface-800 text-surface-500'
+                    'bg-surface-800 text-surface-500'
                 }`}
               >
                 {module.status === 'completed' ? <CheckCircle className="w-5 h-5" /> :
-                 module.status === 'available' ? <Star className="w-5 h-5" /> :
-                 <Lock className="w-5 h-5" />}
+                  module.status === 'available' ? <Star className="w-5 h-5" /> :
+                    <Lock className="w-5 h-5" />}
               </div>
 
               {/* Title and Category */}

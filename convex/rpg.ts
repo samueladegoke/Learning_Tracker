@@ -1,6 +1,7 @@
 import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 import { Id } from "./_generated/dataModel";
+import { getUserByClerkId, getCurrentUser } from "./lib/auth";
 
 export const SHOP_ITEMS = {
   streak_freeze: {
@@ -36,16 +37,12 @@ export const getRPGState = query({
   handler: async (ctx, args) => {
     let userId = args.clerkUserId;
     if (!userId) {
-        const identity = await ctx.auth.getUserIdentity();
-        if (identity) userId = identity.subject;
+      const identity = await ctx.auth.getUserIdentity();
+      if (identity) userId = identity.subject;
     }
     if (!userId) return null;
 
-    const user = await ctx.db
-      .query("users")
-      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", userId!))
-      .unique();
-
+    const user = await getUserByClerkId(ctx, userId);
     if (!user) return null;
 
     // Get active quest
@@ -106,16 +103,9 @@ export const buyItem = mutation({
     itemId: v.string(),
   },
   handler: async (ctx, args) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Unauthorized");
-    const clerkUserId = identity.subject;
-
-    const user = await ctx.db
-      .query("users")
-      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", clerkUserId))
-      .unique();
-
-    if (!user) throw new Error("User not found");
+    const result = await getCurrentUser(ctx);
+    if (!result.success) throw new Error(result.error);
+    const user = result.user;
 
     const item = SHOP_ITEMS[args.itemId as keyof typeof SHOP_ITEMS];
     if (!item) throw new Error("Item not found");
@@ -131,20 +121,31 @@ export const buyItem = mutation({
 
     // Add to inventory or apply effect
     if (item.id === "health_potion") {
-        await ctx.db.patch(user._id, {
-            hearts: Math.min(5, user.hearts + 1)
-        });
+      await ctx.db.patch(user._id, {
+        hearts: Math.min(5, user.hearts + 1)
+      });
     } else if (item.id === "streak_freeze") {
-        await ctx.db.patch(user._id, {
-            streak_freeze_count: (user.streak_freeze_count || 0) + 1
-        });
+      await ctx.db.patch(user._id, {
+        streak_freeze_count: (user.streak_freeze_count || 0) + 1
+      });
     } else {
-        await ctx.db.insert("userInventory", {
-            user_id: user._id,
-            item_type: item.type,
-            item_key: item.id,
-            quantity: 1, // Logic for stacking/unique needed? assuming 1 for now
-        });
+      // Check if user already owns this unique/cosmetic item
+      const existing = await ctx.db
+        .query("userInventory")
+        .withIndex("by_user", (q) => q.eq("user_id", user._id))
+        .filter((q) => q.eq(q.field("item_key"), item.id))
+        .first();
+
+      if (existing) {
+        throw new Error(`You already own ${item.name}`);
+      }
+
+      await ctx.db.insert("userInventory", {
+        user_id: user._id,
+        item_type: item.type,
+        item_key: item.id,
+        quantity: 1,
+      });
     }
 
     return { success: true, new_gold: user.gold - item.cost, message: `Purchased ${item.name}` };
