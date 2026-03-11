@@ -118,3 +118,5 @@ weeks_output.json
 
 # Sisyphus session state
 .sisyphus/
+# Vite temporary timestamp artifacts
+frontend/vite.config.js.timestamp-*.mjs

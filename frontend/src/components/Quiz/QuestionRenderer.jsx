@@ -1,10 +1,10 @@
 import React from 'react'
 import { Lightbulb } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { InlineCode } from '../InlineCode'
-import CodeEditor from '../CodeEditor'
+import { InlineCode } from '@/components/InlineCode'
+import CodeEditor from '@/components/CodeEditor'
 import OptionButton from './OptionButton'
-import { normalizeNewlines, hasEscapedNewlines } from '../../utils/textNormalize'
+import { normalizeNewlines, hasEscapedNewlines } from '@/utils/textNormalize'
 
 function QuestionRenderer({
     question,

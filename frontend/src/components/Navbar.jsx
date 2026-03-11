@@ -12,9 +12,9 @@ import {
   Terminal,
   Activity
 } from 'lucide-react'
-import { useAuth } from '../contexts/AuthContext'
-import { useCourse } from '../contexts/CourseContext'
-import { GlitchButton } from './ui/neural/GlitchButton'
+import { useAuth } from '@/contexts/AuthContext'
+import { useCourse } from '@/contexts/CourseContext'
+import { GlitchButton } from '@/components/ui/neural/GlitchButton'
 
 function Navbar() {
   const { user, isAuthenticated, signOut } = useAuth()
@@ -38,7 +38,7 @@ function Navbar() {
   return (
     <nav className="sticky top-0 z-50 bg-surface-950/80 backdrop-blur-xl border-b border-surface-800/50">
       <div className="absolute inset-x-0 bottom-0 h-[1px] bg-gradient-to-r from-transparent via-primary-500/50 to-transparent" />
-      
+
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}

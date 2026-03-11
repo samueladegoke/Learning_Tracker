@@ -1,6 +1,8 @@
 # System Architecture
 Generated: 2025-12-10
 
+> Status: Archived (Pre-Convex/FastAPI-Supabase architecture snapshot)
+
 ## High-Level Overview
 
 The system follows a standard 3-tier web architecture:

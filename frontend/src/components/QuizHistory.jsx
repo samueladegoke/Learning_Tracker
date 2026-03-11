@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Trophy, Medal, Clock, TrendingUp } from 'lucide-react'
 import { useQuery } from "convex/react"
 import { api } from "../../../convex/_generated/api"
-import { useAuth } from "../contexts/AuthContext"
+import { useAuth } from "@/contexts/AuthContext"
 
 function QuizHistory() {
     const { user } = useAuth()
@@ -97,12 +97,12 @@ function QuizHistory() {
                                         {entry.score}/{entry.total_questions}
                                     </span>
                                     <span className={`px-2 py-0.5 rounded text-xs font-bold ${entry.percentage === 100
-                                            ? 'bg-green-500/20 text-green-400'
-                                            : entry.percentage >= 80
-                                                ? 'bg-primary-500/20 text-primary-400'
-                                                : entry.percentage >= 60
-                                                    ? 'bg-yellow-500/20 text-yellow-400'
-                                                    : 'bg-rose-500/20 text-rose-400'
+                                        ? 'bg-green-500/20 text-green-400'
+                                        : entry.percentage >= 80
+                                            ? 'bg-primary-500/20 text-primary-400'
+                                            : entry.percentage >= 60
+                                                ? 'bg-yellow-500/20 text-yellow-400'
+                                                : 'bg-rose-500/20 text-rose-400'
                                         }`}>
                                         {entry.percentage}%
                                     </span>

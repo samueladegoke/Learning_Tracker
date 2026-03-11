@@ -1,6 +1,8 @@
 # Source Tree Analysis
 Generated: 2025-12-10
 
+> Status: Archived (Pre-Convex/FastAPI-Supabase structure snapshot)
+
 ## Project Root
 `c:\Users\USER\Documents\Programming\100 Days of Code`
 

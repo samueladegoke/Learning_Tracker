@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Trophy, Brain, Lock } from 'lucide-react'
-import { useAuth } from '../contexts/AuthContext'
-import { useCourse } from '../contexts/CourseContext'
+import { useAuth } from '@/contexts/AuthContext'
+import { useCourse } from '@/contexts/CourseContext'
+import { logError } from '@/utils/logger'
+import { QUIZ_OPTIONS_PARSE_ERROR, QUIZ_TEST_CASES_PARSE_ERROR } from '@/constants/errorIds'
 
 import { useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
@@ -13,10 +15,10 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 
 // Extracted data and components
 import { DAY_META } from '@/data/dayMeta.js'
-import { DeepDiveLoader } from '../components/content/DeepDiveLoader'
-import { PracticeLoadingSkeleton, QuizLoadingSkeleton } from '../components/PracticeLoadingSkeleton'
-import DaySelectorBar from '../components/Quiz/DaySelectorBar'
-import Quiz from '../components/Quiz/Quiz'
+import { DeepDiveLoader } from '@/components/content/DeepDiveLoader'
+import { PracticeLoadingSkeleton, QuizLoadingSkeleton } from '@/components/PracticeLoadingSkeleton'
+import DaySelectorBar from '@/components/Quiz/DaySelectorBar'
+import Quiz from '@/components/Quiz/Quiz'
 
 function Practice() {
     const { user } = useAuth()
@@ -137,12 +139,32 @@ function Practice() {
     }
 
     // Transform questions to parse JSON string fields (options, test_cases)
-    const quizQuestions = (quizQuestionsRaw || []).map(q => ({
-        ...q,
-        id: q._id, // Map Convex _id to id for component compatibility
-        options: q.options ? (typeof q.options === 'string' ? JSON.parse(q.options) : q.options) : [],
-        test_cases: q.test_cases ? (typeof q.test_cases === 'string' ? JSON.parse(q.test_cases) : q.test_cases) : [],
-    }))
+    const quizQuestions = (quizQuestionsRaw || []).map(q => {
+        let parsedOptions = [];
+        let parsedTestCases = [];
+        let optionsParseError = false;
+        let testCasesParseError = false;
+        
+        try {
+            parsedOptions = q.options ? (typeof q.options === 'string' ? JSON.parse(q.options) : q.options) : [];
+        } catch (e) {
+            logError(QUIZ_OPTIONS_PARSE_ERROR, { questionId: q._id, error: e.message });
+            optionsParseError = true;
+        }
+        try {
+            parsedTestCases = q.test_cases ? (typeof q.test_cases === 'string' ? JSON.parse(q.test_cases) : q.test_cases) : [];
+        } catch (e) {
+            logError(QUIZ_TEST_CASES_PARSE_ERROR, { questionId: q._id, error: e.message });
+            testCasesParseError = true;
+        }
+        return { 
+            ...q, 
+            id: q._id, 
+            options: parsedOptions, 
+            test_cases: parsedTestCases,
+            _parseError: optionsParseError && testCasesParseError // Only flag if BOTH failed
+        };
+    })
     const loading = quizQuestionsRaw === undefined
 
     return (

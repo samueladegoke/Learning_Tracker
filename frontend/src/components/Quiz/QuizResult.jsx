@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { Trophy, PartyPopper, BookOpen, AlertTriangle } from 'lucide-react'
-import Confetti from '../Confetti'
+import { Trophy, PartyPopper, BookOpen, AlertTriangle, Sparkles } from 'lucide-react'
+import Confetti from '@/components/Confetti'
+import ArtifactSubmissionModal from '@/components/ArtifactSubmissionModal'
+import { ARTIFACT_XP_BONUS } from '@/constants/artifacts'
 
 function QuizResult({
     resultData,
@@ -8,9 +10,11 @@ function QuizResult({
     quizStats,
     xpWarning,
     onRetry,
-    onContinue
+    onContinue,
+    dayNumber
 }) {
     const [showConfetti, setShowConfetti] = useState(false)
+    const [showArtifactModal, setShowArtifactModal] = useState(false)
 
     const percentage = resultData
         ? Math.round((resultData.score / resultData.total_questions) * 100)
@@ -79,15 +83,44 @@ function QuizResult({
                     </div>
                 )}
 
-                <div className="flex gap-4">
+                <div className="flex flex-col sm:flex-row gap-3">
+                    {!isReviewMode && isPassing && (
+                        <button
+                            onClick={() => setShowArtifactModal(true)}
+                            className="px-8 py-3 bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 text-white rounded-xl transition-all font-medium shadow-lg shadow-primary-900/30 flex items-center justify-center gap-2"
+                        >
+                            <Sparkles className="w-5 h-5" />
+                            Complete Day {dayNumber}
+                        </button>
+                    )}
                     <button
                         onClick={isReviewMode ? onContinue : onRetry}
-                        className="px-8 py-3 bg-primary-600 hover:bg-primary-500 text-white rounded-xl transition-colors font-medium shadow-lg shadow-primary-900/20"
+                        className="px-8 py-3 bg-surface-700 hover:bg-surface-600 text-surface-200 rounded-xl transition-colors font-medium"
                     >
                         {isReviewMode ? 'Continue Journey' : 'Try Again'}
                     </button>
                 </div>
+
+                {/* Artifact submission bonus hint */}
+                {!isReviewMode && isPassing && (
+                    <p className="text-xs text-primary-400/70 text-center">
+                        Submit proof of your work to earn +{ARTIFACT_XP_BONUS} bonus XP!
+                    </p>
+                )}
             </div>
+
+            {/* Artifact Submission Modal */}
+            <ArtifactSubmissionModal
+                isOpen={showArtifactModal}
+                onClose={() => setShowArtifactModal(false)}
+                dayNumber={dayNumber}
+                onSubmitted={(result) => {
+                    setShowArtifactModal(false)
+                    if (result.success) {
+                        // Could show additional success state here
+                    }
+                }}
+            />
         </>
     )
 }

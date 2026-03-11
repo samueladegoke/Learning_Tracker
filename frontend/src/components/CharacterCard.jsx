@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Heart, Flame, Coins, Zap, Activity, ChevronRight } from 'lucide-react'
-import { calculateXpProgress } from '../utils/xpUtils'
+import { calculateXpProgress } from '@/utils/xpUtils'
 
 const Counter = ({ value, className = "" }) => (
     <div className={`relative overflow-hidden inline-flex flex-col h-[1.2em] min-w-[1ch] ${className}`}>
@@ -47,17 +47,17 @@ const CharacterCard = ({ rpgState, progress }) => {
             <div className="flex items-center gap-4 mb-5 relative z-10">
                 <div className="relative shrink-0">
                     <div className="w-16 h-16 rounded-2xl clay-inset overflow-hidden border-2 border-surface-700/50">
-                        <img 
-                            src={`${import.meta.env.BASE_URL}assets/avatar.png`} 
-                            alt="Avatar" 
-                            className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity" 
+                        <img
+                            src={`${import.meta.env.BASE_URL}assets/avatar.png`}
+                            alt="Avatar"
+                            className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity"
                         />
                     </div>
                     <div className="absolute -bottom-2 -right-2 w-7 h-7 bg-primary-500 rounded-lg shadow-neon-glow flex items-center justify-center text-surface-900 font-bold text-xs border border-primary-400 z-20">
                         {rpgState.level}
                     </div>
                 </div>
-                
+
                 <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between mb-1">
                         <h2 className="text-lg font-bold text-surface-200 truncate tracking-tight">
@@ -65,14 +65,14 @@ const CharacterCard = ({ rpgState, progress }) => {
                         </h2>
                         <div className="flex gap-0.5">
                             {Array.from({ length: 3 }).map((_, i) => (
-                                <Heart 
-                                    key={i} 
-                                    className={`w-3.5 h-3.5 ${i < (rpgState.hearts ?? 3) ? 'text-red-500 fill-red-500 drop-shadow-[0_0_3px_rgba(239,68,68,0.5)]' : 'text-surface-600 fill-surface-800'}`} 
+                                <Heart
+                                    key={i}
+                                    className={`w-3.5 h-3.5 ${i < (rpgState.hearts ?? 3) ? 'text-red-500 fill-red-500 drop-shadow-[0_0_3px_rgba(239,68,68,0.5)]' : 'text-surface-600 fill-surface-800'}`}
                                 />
                             ))}
                         </div>
                     </div>
-                    
+
                     {/* XP Bar Container */}
                     <div className="relative">
                         <div className="flex justify-between text-[10px] font-bold uppercase tracking-wider text-primary-400/70 mb-1">
@@ -132,7 +132,7 @@ const CharacterCard = ({ rpgState, progress }) => {
                     </div>
                 </div>
             </div>
-            
+
             {/* Decorative Scanline */}
             <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.1)_50%),linear-gradient(90deg,rgba(255,0,0,0.03),rgba(0,255,0,0.01),rgba(0,0,255,0.03))] z-20 bg-[length:100%_2px,3px_100%] opacity-20"></div>
         </div>

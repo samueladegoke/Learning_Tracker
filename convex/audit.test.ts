@@ -2,11 +2,12 @@ import { convexTest } from "convex-test";
 import { expect, test } from "vitest";
 import schema from "./schema";
 import { api } from "./_generated/api";
+import { MS_PER_DAY } from "./lib/utils";
 
 test("best_streak is updated when new streak is higher", async () => {
   const t = convexTest(schema);
   const now = Date.now();
-  const yesterday = now - 24 * 60 * 60 * 1000;
+  const yesterday = now - MS_PER_DAY;
 
   const user = await t.run(async (ctx) => {
     return await ctx.db.insert("users", {

@@ -1,11 +1,11 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { AlertTriangle, Flame, Check, X, ArrowLeft, ArrowRight } from 'lucide-react'
+import { Flame, Check, X, ArrowLeft, ArrowRight } from 'lucide-react'
 import { useQuery } from "convex/react"
 import { api } from "../../../convex/_generated/api"
-import { useAuth } from '../contexts/AuthContext'
-import { useCourse } from '../contexts/CourseContext'
+import { useAuth } from '@/contexts/AuthContext'
+import { useCourse } from '@/contexts/CourseContext'
 
 function Calendar() {
   const { user, isAuthenticated } = useAuth()
@@ -16,11 +16,10 @@ function Calendar() {
   const rpgState = useQuery(api.rpg.getRPGState, user?.id ? { clerkUserId: user.id } : "skip")
 
   const loading = isAuthenticated && (calendarDataRaw === undefined || rpgState === undefined)
-  const error = null
 
   const calendarData = calendarDataRaw ? {
     completion_dates: calendarDataRaw.reduce((acc, item) => ({ ...acc, [item.date]: item.count }), {}),
-    streak_days: [] 
+    streak_days: []
   } : null
 
   const getDaysInMonth = (date) => {
@@ -99,19 +98,6 @@ function Calendar() {
           <div className="w-12 h-12 border-4 border-primary-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-surface-500">Loading calendar...</p>
         </div>
-      </div>
-    )
-  }
-
-  if (error) {
-    return (
-      <div className="card p-8 text-center">
-        <AlertTriangle className="w-12 h-12 text-yellow-500 mx-auto mb-4" />
-        <h2 className="text-xl font-semibold text-surface-100 mb-2">Failed to load calendar</h2>
-        <p className="text-surface-500 mb-4">{error}</p>
-        <button onClick={fetchData} className="btn-primary">
-          Try Again
-        </button>
       </div>
     )
   }
@@ -294,4 +280,3 @@ function Calendar() {
 }
 
 export default Calendar
-

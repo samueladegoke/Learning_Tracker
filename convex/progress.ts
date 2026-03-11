@@ -1,14 +1,11 @@
 import { query } from "./_generated/server";
 import { v } from "convex/values";
+import { getUserByClerkId } from "./lib/auth";
 
 export const get = query({
   args: { clerkUserId: v.string() },
   handler: async (ctx, args) => {
-    const user = await ctx.db
-      .query("users")
-      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", args.clerkUserId))
-      .unique();
-
+    const user = await getUserByClerkId(ctx, args.clerkUserId);
     if (!user) return null;
 
     // Calculate total progress
@@ -20,7 +17,7 @@ export const get = query({
       .withIndex("by_user_and_task", (q) => q.eq("user_id", user._id))
       .filter((q) => q.eq(q.field("completed"), true))
       .collect();
-    
+
     const completedCount = completed.length;
 
     // Calculate Quiz Stats (Story 5.2)
@@ -64,11 +61,7 @@ export const get = query({
 export const getCalendar = query({
   args: { clerkUserId: v.string() },
   handler: async (ctx, args) => {
-    const user = await ctx.db
-      .query("users")
-      .withIndex("by_clerk_id", (q) => q.eq("clerk_user_id", args.clerkUserId))
-      .unique();
-
+    const user = await getUserByClerkId(ctx, args.clerkUserId);
     if (!user) return [];
 
     const statuses = await ctx.db

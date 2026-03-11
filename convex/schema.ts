@@ -20,13 +20,13 @@ export default defineSchema({
     week_id: v.id("weeks"),
     title: v.string(),
     description: v.string(),
-    task_type: v.string(), // "video", "exercise", "project", "quiz"
-    difficulty: v.string(), // "easy", "medium", "hard"
+    task_type: v.union(v.literal("video"), v.literal("exercise"), v.literal("project"), v.literal("quiz")),
+    difficulty: v.union(v.literal("easy"), v.literal("medium"), v.literal("hard")),
     xp_reward: v.number(),
     estimated_minutes: v.number(),
     required_for_streak: v.boolean(),
     legacy_task_id: v.optional(v.string()),
-    metadata: v.optional(v.any()), // For video URLs, legacy fields, etc.
+    metadata: v.optional(v.any()), // TODO: Audit metadata fields and define proper type in future sprint
   }).index("by_week", ["week_id"]).index("by_legacy_id", ["legacy_task_id"]),
   userTaskStatuses: defineTable({
     user_id: v.id("users"),
@@ -50,7 +50,8 @@ export default defineSchema({
     streak_freeze_count: v.number(),
     last_activity_date: v.optional(v.number()),
     last_heart_loss: v.optional(v.number()),
-  }).index("by_clerk_id", ["clerk_user_id"]),
+  }).index("by_clerk_id", ["clerk_user_id"])
+    .index("by_xp", ["xp"]),
 
   badges: defineTable({
     badge_id: v.string(),
@@ -168,4 +169,16 @@ export default defineSchema({
     created_at: v.number(),
     updated_at: v.optional(v.number()),
   }).index("by_user_and_week", ["user_id", "week_id"]),
+
+  // ========== PHASE 7: ARTIFACTS (Proof of Work) ==========
+  userArtifacts: defineTable({
+    user_id: v.id("users"),
+    day_number: v.number(), // Day 1-100
+    artifact_type: v.string(), // "screenshot", "commit_url", "reflection"
+    content: v.string(), // URL for screenshot/commit, text for reflection
+    file_url: v.optional(v.string()), // Cloud storage URL for screenshots
+    xp_awarded: v.number(), // Bonus XP (typically 10)
+    created_at: v.number(),
+  }).index("by_user", ["user_id"])
+    .index("by_user_and_day", ["user_id", "day_number"]),
 });

@@ -4,9 +4,12 @@
         "dev": "npm run dev:frontend",
         "dev:frontend": "cd frontend && npm run dev",
         "convex": "npx convex dev",
-        "test:convex": "npx convex-test",
-        "test": "vitest run",
-        "build": "cd frontend && npm install && npm run build"
+        "test:convex": "vitest run --config vitest.config.mts",
+        "test": "npm run test:convex",
+        "build": "cd frontend && npm install && npm run build",
+        "check:docs": "node scripts/check_doc_drift.js",
+        "lint:frontend": "cd frontend && npm run lint",
+        "check:dead-code": "cd frontend && npm run check:dead-code"
     },
     "dependencies": {
         "convex": "^1.31.4",

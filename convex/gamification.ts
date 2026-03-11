@@ -1,8 +1,9 @@
+import { MS_PER_DAY } from "./lib/utils";
+
 export const XP_BASE = 100;
 export const XP_EXPONENT = 1.2;
 export const FOCUS_CAP = 5;
 
-// Pure functions
 export function xpForNextLevel(level: number): number {
     return Math.floor(XP_BASE * Math.pow(level, XP_EXPONENT));
 }
@@ -17,16 +18,12 @@ export function levelFromXp(xp: number): number {
     return level;
 }
 
-// Database helper functions (require context-like objects or just modify objects)
-// Since we can't pass `ctx` easily to pure functions, we'll return updates or take objects
-
 export function calculateStreakUpdate(
     lastCheckinAt: number | undefined | null,
     currentStreak: number
 ): { streak: number; lastCheckinAt: number } {
     const now = Date.now();
-    // UTC day calculation
-    const getDay = (ts: number) => Math.floor(ts / (24 * 60 * 60 * 1000));
+    const getDay = (ts: number) => Math.floor(ts / MS_PER_DAY);
 
     const todayVal = getDay(now);
     const lastVal = lastCheckinAt ? getDay(lastCheckinAt) : -1;

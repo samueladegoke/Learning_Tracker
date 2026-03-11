@@ -1,6 +1,8 @@
 # Integration Analysis
 Generated: 2025-12-10
 
+> Status: Archived (Pre-Convex/FastAPI-Supabase integration snapshot)
+
 ## Internal Integrations
 
 ### Frontend <-> Backend

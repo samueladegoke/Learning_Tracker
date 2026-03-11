@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, useMemo } from 'react'
-import { DAY_META } from '../data/dayMeta'
+import { DAY_META } from '@/data/dayMeta'
 
 /**
  * CourseContext - Provides dynamic course metadata throughout the application.
@@ -14,8 +14,8 @@ const DEFAULT_COURSE = {
     title: '100 Days of Code',
     subtitle: 'Master Python through daily practice',
     logoUrl: '/assets/logo.png',
-    startDate: import.meta.env.VITE_COURSE_START_DATE 
-        ? new Date(import.meta.env.VITE_COURSE_START_DATE) 
+    startDate: import.meta.env.VITE_COURSE_START_DATE
+        ? new Date(import.meta.env.VITE_COURSE_START_DATE)
         : new Date('2025-11-20'),
     totalDays: 100,
     themeConfig: {
@@ -60,18 +60,6 @@ export function CourseProvider({ children, courseId = null }) {
     useEffect(() => {
         document.title = `${course.title} - Learning Tracker`
     }, [course.title])
-
-    // Future: Load course from API based on courseId
-    useEffect(() => {
-        if (courseId) {
-            // TODO: Implement API-backed course loading
-            // setIsLoading(true)
-            // fetch(`/api/courses/${courseId}`)
-            //   .then(res => res.json())
-            //   .then(data => setCourse(data))
-            //   .finally(() => setIsLoading(false))
-        }
-    }, [courseId])
 
     const value = useMemo(() => ({
         ...course,

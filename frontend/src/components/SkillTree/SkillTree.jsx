@@ -1,15 +1,15 @@
 import React, { useMemo, useCallback } from 'react';
-import { 
-  ReactFlow, 
-  Background, 
-  Controls, 
-  useNodesState, 
+import {
+  ReactFlow,
+  Background,
+  Controls,
+  useNodesState,
   useEdgesState,
   addEdge
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 
-import { SKILL_TREE_MAP } from '../../data/skillTreeMap';
+import { SKILL_TREE_MAP } from '@/data/skillTreeMap';
 import SkillNode from './SkillNode';
 import CyberEdge from './CyberEdge';
 
@@ -28,10 +28,10 @@ const SkillTree = ({ onNodeClick }) => {
       id: item.id,
       type: 'skill',
       position: item.position,
-      data: { 
-        label: item.label, 
-        status: item.status, 
-        category: item.category 
+      data: {
+        label: item.label,
+        status: item.status,
+        category: item.category
       },
     }));
 
@@ -83,20 +83,19 @@ const SkillTree = ({ onNodeClick }) => {
         maxZoom={2}
         defaultEdgeOptions={{ type: 'cyber' }}
         onNodeClick={(event, node) => {
-          console.log('Node clicked:', node.data.label);
           if (onNodeClick) onNodeClick(node);
         }}
         proOptions={{ hideAttribution: true }}
       >
-        <Background 
-          color="#334155" 
-          gap={40} 
-          size={1} 
-          variant="dots" 
+        <Background
+          color="#334155"
+          gap={40}
+          size={1}
+          variant="dots"
           className="opacity-50"
         />
-        <Controls 
-          className="bg-surface-800 border-surface-700 fill-primary-400 [&>button]:border-surface-700 [&>button:hover]:bg-surface-700" 
+        <Controls
+          className="bg-surface-800 border-surface-700 fill-primary-400 [&>button]:border-surface-700 [&>button:hover]:bg-surface-700"
         />
       </ReactFlow>
     </div>
