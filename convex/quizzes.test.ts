@@ -119,7 +119,7 @@ test("passing quiz should complete linked task (Story 5.1)", async () => {
   
   // Verify XP (Task reward = 50, Difficulty 'easy' = 0.5 multiplier => 25 XP)
   // NOT score*10 = 80
-  const user = await t.query(api.tasks.getUser, { clerkUserId: "user_quiz" });
+  const user = await t.withIdentity({ subject: "user_quiz" }).query(api.tasks.getUser, { clerkUserId: "user_quiz" });
   expect(user?.xp).toBe(25);
 });
 
